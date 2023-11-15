@@ -1,6 +1,6 @@
-const ContainerDefault = ({children}) => {
+const ContainerDefault = ({children, containerSpecificStyle}) => {
     return (
-        <div className="container pb-xs-8 pb-lg-2">{children}</div>
+        <div className={`container ${containerSpecificStyle}`}>{children}</div>
     )
 }
 

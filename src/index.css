@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 body {
-  background-color: var(--color-main-bg);                
+  background-color: var(--color-main-bg);
   color: white;
 }
 #logo {
@@ -134,6 +134,46 @@ li {
 }
 .winner-message button {
   margin: 0;
+}
+
+/******************************************/
+/****************** POINTS ****************/
+/******************************************/
+.point-indicator {
+    border: 1.5px solid #f3e707;
+    height: 100px;
+    border-radius: 1000em;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    padding: 0 8%;
+    margin: 0 auto;
+    width: 180px;
+    transition: all 300ms cubic-bezier(.75,-0.01,.01,1);
+}
+
+.point-plus {
+    height: 100px;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.point-column {
+    text-align: center;
+    flex-direction: column;
+    flex-grow: 0;
+}
+
+.point-dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    padding: 0 5%;
+    font-size: 4.5em;
+    font-weight: 300;
 }
 
 
@@ -869,6 +909,9 @@ animation: dot-loader-after 1s infinite linear;
 .left-5 {
   left: 5%;
 }
+.w-100px {
+    width: 100px;
+}
 .w-100vw {
   width: 100vw;
 }
@@ -1143,7 +1186,7 @@ animation: dot-loader-after 1s infinite linear;
 /******************************************/
 /**************** FOLLOWED ****************/
 /******************************************/
-.meter { 
+.meter {
   height: .6rem;
   position: relative;
   width: calc(var(--container)/2.5);
@@ -1271,7 +1314,7 @@ nav .container {
   top: calc((var(--top-bar-height)/2) - 24px);
 }
 
-/******************************************/ 
+/******************************************/
 /**************** TEXT BAR *****************/
 /******************************************/
 
@@ -1293,9 +1336,9 @@ nav .container {
   color: #FFFFFF;
 }
 
-/******************************************/ 
+/******************************************/
 /**************** LANDING *****************/
-/******************************************/ 
+/******************************************/
 .icon-landing {
   width: 56px;
 }
@@ -1341,30 +1384,30 @@ filter: blur(2.5px);
   border-top: 1px solid #1C1E27;
 }
 
-/******************************************/ 
+/******************************************/
 /**************** APP BAR *****************/
-/******************************************/ 
+/******************************************/
 .app-bar-area {
   width: 100vw;
   height: var(--app-bar-height);
   position: fixed;
   bottom: -2px;
-  border-radius: 24px 24px 0 0;    
-  background-color: var(--color-main-bg);
-  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.6), 0 -12px 12px 0 rgba(0, 0, 0, 0.6);   
-}
-.app-bar-area-suspended {
-  width: 85%;    
-  height: var(--app-bar-height);
-  position: fixed;    
-  bottom: 3%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 24px;    
+  border-radius: 24px 24px 0 0;
   background-color: var(--color-main-bg);
   box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.6), 0 -12px 12px 0 rgba(0, 0, 0, 0.6);
 }
-.app-bar {                
+.app-bar-area-suspended {
+  width: 85%;
+  height: var(--app-bar-height);
+  position: fixed;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 24px;
+  background-color: var(--color-main-bg);
+  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.6), 0 -12px 12px 0 rgba(0, 0, 0, 0.6);
+}
+.app-bar {
   width: 85%;
 }
 .app-bar a {
@@ -1416,7 +1459,7 @@ filter: blur(2.5px);
   padding: 4% 0;
   border-radius: .8em;
   margin: 0;
-  border: none; 
+  border: none;
 }
 
 @media (min-width: 0px){
@@ -1440,7 +1483,7 @@ filter: blur(2.5px);
       width: 100%;
       padding: 4% 0;
       border-radius: .8em;
-      border: none;                
+      border: none;
   }
   .secondary {
       width: 100%;
@@ -1455,8 +1498,8 @@ filter: blur(2.5px);
       border-radius: .8em;
       font-size: 1.15rem;
       font-weight: 500;
-      border: none;  
-  }    
+      border: none;
+  }
 
   /***** INPUTS *****/
   input {
@@ -1502,7 +1545,7 @@ filter: blur(2.5px);
   .h-xs-50 {
       height: 50vh;
   }
-  
+
   /***** MARGIN *****/
   /* MARGIN TOP */
   .mt-xs-2 {
@@ -1589,7 +1632,7 @@ filter: blur(2.5px);
   }
   .mb-xs-20 {
       margin-bottom: 20%;
-  }    
+  }
   /* MARGIN RIGHT */
   .mr-xs-2 {
       margin-right: 2%;
@@ -1730,7 +1773,7 @@ filter: blur(2.5px);
   }
   .pl-xs-10 {
       padding-left: 10%;
-  }    
+  }
   /* PADDING RIGHT */
   .pr-xs-2 {
       padding-right: 2%;
@@ -1765,7 +1808,7 @@ filter: blur(2.5px);
   }
   .p-xs-6 {
       padding: 6%;
-  }    
+  }
   .p-xs-7 {
       padding: 7%;
   }
@@ -1845,7 +1888,7 @@ filter: blur(2.5px);
       font-size: 1rem;
       line-height: 1.8rem;
       font-weight: 400;
-  }    
+  }
   .cell-landing {
       width: 50.1%;
       margin-top: 15%;
@@ -1907,7 +1950,7 @@ filter: blur(2.5px);
       width: 100%;
       padding: 3.5% 0;
       border-radius: .8em;
-      border: none;                
+      border: none;
   }
   .secondary {
       width: 100%;
@@ -2166,7 +2209,7 @@ filter: blur(2.5px);
   }
   .pt-sm-24 {
       padding-top: 24%;
-  } 
+  }
   /* PADDING LEFT */
   .pl-sm-2 {
       padding-left: 2%;
@@ -2313,7 +2356,7 @@ filter: blur(2.5px);
       width: 100%;
       padding: 3.5% 0;
       border-radius: .8em;
-      border: none;                
+      border: none;
   }
   .secondary {
       width: 100%;
@@ -2716,7 +2759,7 @@ filter: blur(2.5px);
       width: 100%;
       padding: 3.5% 0;
       border-radius: .8em;
-      border: none;                
+      border: none;
   }
   .secondary {
       width: 100%;
@@ -3117,7 +3160,7 @@ filter: blur(2.5px);
       width: 100%;
       padding: 3.5% 0;
       border-radius: .8em;
-      border: none;                
+      border: none;
   }
   .secondary {
       width: 100%;
@@ -3498,7 +3541,7 @@ filter: blur(2.5px);
   footer {
       padding: 4% 0;
   }
-  
+
 }
 @media (min-width: 1400px) {
   :root {
@@ -3521,7 +3564,7 @@ filter: blur(2.5px);
       width: 100%;
       padding: 3.5% 0;
       border-radius: .8em;
-      border: none;                
+      border: none;
   }
   .secondary {
       width: 100%;
