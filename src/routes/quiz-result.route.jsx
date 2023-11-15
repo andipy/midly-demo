@@ -6,8 +6,10 @@ import Navbar from "../components/navbar.component";
 
 const QuizResultRoute = () => {
 
+    //this variable should contain the quiz result which is returned by the specific api call
     const result = 5
 
+    // this local state create an array with the points from 0 to the result coming from the api
     const[points, setPoints] = useState([])
     const generatePointArray = (result) => {
         let pointArray = [];
@@ -21,6 +23,7 @@ const QuizResultRoute = () => {
     }, [])
 
 
+    // this block of the code takes care of the CSS animation
     const [liveCounter, setLiveCounter] = useState(0)
     const [translation, setTranslation] = useState(0)
     const [indicatorWidth, setIndicatorWidth] = useState('')
@@ -36,6 +39,7 @@ const QuizResultRoute = () => {
         }, 500)
     }, [liveCounter])
 
+    // this block of the code differentiates the feedback message in the screen based on the result
     const [resultTitle, setResultTitle] = useState('')
     const [resultMessage, setResultMessage] = useState('')
     useEffect(() => {
