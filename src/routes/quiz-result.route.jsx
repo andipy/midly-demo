@@ -7,7 +7,7 @@ import Navbar from "../components/navbar.component";
 const QuizResultRoute = () => {
 
     //this variable should contain the quiz result which is returned by the specific api call
-    const result = 5
+    const result = 2
 
     // this local state create an array with the points from 0 to the result coming from the api
     const[points, setPoints] = useState([])
@@ -43,7 +43,10 @@ const QuizResultRoute = () => {
     const [resultTitle, setResultTitle] = useState('')
     const [resultMessage, setResultMessage] = useState('')
     useEffect(() => {
-        if ( result <= 2 ) {
+        if ( result === 0 ) {
+            setResultTitle("Mmmm...")
+            setResultMessage(`But ehy, even if you scored ${result} points, you can play the next time, game repeats multiple times per week!`)
+        } else if ( result <= 2 ) {
             setResultTitle("That's ok")
             setResultMessage(`You can do better, but ${result} points is still something that climbs you up in the leaderboard!`)
         } else if ( result >= 3 ) {

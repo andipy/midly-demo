@@ -7,6 +7,7 @@ import './index.css'
 
 import InviteFriend from './routes/invite-friend.route';
 import QuizResultRoute from "./routes/quiz-result.route";
+import QuizGameplayRoute from "./routes/quiz-gameplay.route";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,10 @@ const router = createBrowserRouter([
   },{
     path: '/quiz-result',
     element: <QuizResultRoute />
-  },
+  },{
+    path: '/quiz-gameplay',
+    element: <QuizGameplayRoute />
+  }
 ])
 
 function App() {
