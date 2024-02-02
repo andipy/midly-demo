@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import ContainerDefault from "../layout/container-default.layout";
 
 import Button from "../components/button.component";
-import Navbar from "../components/navbar.component";
 
 const QuizResultRoute = () => {
 
@@ -57,7 +56,6 @@ const QuizResultRoute = () => {
 
     return (
         <>
-        {/* <Navbar /> */}
         <ContainerDefault containerSpecificStyle={'h-100vh'}>
             <div className="d-flex-column align-items-center j-c-center h-100">
                 <h3 className="t-align-center mb-xs-4 f-w-500 fsize-xs-6">{resultTitle}</h3>

@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-import Navbar from "../components/navbar.component";
+import AM from '../images/pictures/arcticmonkeys.jpg'
+
+import NavbarInviteFriendPage from "../components/navbar-invite-friend-page.component";
 import InviteFriendCover from "../components/invite-friend-cover.component";
 import ReferralLink from "../components/referral-link.component";
 import Snackbar from "../components/snackbar.component";
@@ -8,7 +10,7 @@ import Snackbar from "../components/snackbar.component";
 import ContainerDefault from "../layout/container-default.layout";
 import Button from "../components/button.component";
 
-const InviteFriend = () => {
+const InviteFriendRoute = () => {
     const [triggered, setTriggered] = useState(false);
     const triggerSnackbar = () => {
         setTriggered(true);
@@ -19,7 +21,7 @@ const InviteFriend = () => {
 
     return (
         <>
-            <Navbar />
+            <NavbarInviteFriendPage smallTitle={'Arctic Monkeys'} avatarImage={AM} />
             <InviteFriendCover />
             <Snackbar message={'Link copied to clipboard'} triggered={triggered} />
 
@@ -47,4 +49,4 @@ const InviteFriend = () => {
     )
 }
 
-export default InviteFriend;
+export default InviteFriendRoute;

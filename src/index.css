@@ -1198,8 +1198,8 @@ animation: dot-loader-after 1s infinite linear;
   position: relative;
 }
 .followed-artist-img {
-  min-width: 120px;
-  max-width: 120px;
+  min-width: 96px;
+  max-width: 96px;
   aspect-ratio: 1;
 }
 .height-15px {
@@ -1234,8 +1234,8 @@ animation: dot-loader-after 1s infinite linear;
   height: calc(var(--container) / 1.6);
 }
 .artist-card-multiple-row-challenge {
-  width: calc(var(--container) / 2);
-  height: calc(var(--container) / 2);
+  width: calc(var(--container) / 2.3);
+  height: calc(var(--container) / 2.3);
 }
 .artist-card-referral {
   width: 100%;
@@ -1542,6 +1542,9 @@ filter: blur(2.5px);
   /***** HEIGHT *****/
   .h-xs-10 {
     height: 10vh;
+  }
+  .h-xs-18 {
+    height: 18vh;
   }
   .h-xs-20 {
       height: 20vh;
@@ -2007,6 +2010,15 @@ filter: blur(2.5px);
   }
 
   /***** HEIGHT *****/
+  .h-sm-10 {
+    height: 10vh;
+  }
+  .h-sm-18 {
+    height: 18vh;
+  }
+  .h-sm-20 {
+      height: 20vh;
+  }
   .h-sm-30 {
       height: 30vh;
   }
@@ -2413,6 +2425,15 @@ filter: blur(2.5px);
   }
 
   /***** HEIGHT *****/
+  .h-md-10 {
+    height: 10vh;
+  }
+  .h-md-18 {
+    height: 18vh;
+  }
+  .h-md-20 {
+      height: 20vh;
+  }
   .h-md-30 {
       height: 30vh;
   }
@@ -2816,6 +2837,15 @@ filter: blur(2.5px);
   }
 
   /***** HEIGHT *****/
+  .h-lg-10 {
+    height: 10vh;
+  }
+  .h-lg-18 {
+    height: 18vh;
+  }
+  .h-lg-20 {
+      height: 20vh;
+  }
   .h-lg-30 {
       height: 30vh;
   }
@@ -3217,6 +3247,15 @@ filter: blur(2.5px);
   }
 
   /***** HEIGHT *****/
+  .h-xl-10 {
+    height: 10vh;
+  }
+  .h-xl-18 {
+    height: 18vh;
+  }
+  .h-xl-20 {
+      height: 20vh;
+  }
   .h-xl-30 {
       height: 30vh;
   }
@@ -3621,6 +3660,15 @@ filter: blur(2.5px);
   }
 
   /***** HEIGHT *****/
+  .h-xxl-10 {
+    height: 10vh;
+  }
+  .h-xxl-18 {
+    height: 18vh;
+  }
+  .h-xxl-20 {
+      height: 20vh;
+  }
   .h-xxl-30 {
       height: 30vh;
   }
