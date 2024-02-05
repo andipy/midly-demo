@@ -6,6 +6,7 @@ import NavbarArtistPage from "../components/navbar-artist-page.component";
 import CoverArtistPage from "../components/cover-artist-page.component";
 import CardLeaderboardFan from "../components/card-leaderboard-fan.component";
 import CardLeaderboardYourPosition from "../components/card-leaderboard-your-position.component";
+import Button from '../components/button.component'
 
 import IconPoints from "../images/icons/icon-point-xs.svg";
 
@@ -17,6 +18,11 @@ import Fan6 from "../images/pictures/fan-4.jpg";
 import Sanremo2024 from '../images/pictures/sanremo.png'
 
 const Sanremo2024Route = () => {
+
+    const [spotifyConnected, setSpotifyConnected] = useState(false)
+    const connectSpotify = () => {
+        setSpotifyConnected(prev => !prev)
+    }
 
     const leaderboard = [
         {
@@ -60,7 +66,11 @@ const Sanremo2024Route = () => {
             <ContainerDefault containerSpecificStyle={'pb-xs-8 pb-lg-2'}>
 
             <div className="container mt-avatar-header">
-                <CardLeaderboardYourPosition currentFanPoints={1187} currentFanPosition={39} currentFanImage={Fan3} />
+                {spotifyConnected ?
+                <CardLeaderboardYourPosition currentFanPoints={1187} currentFanPosition={39} currentFanImage={Fan3} onClick={connectSpotify} />
+                :
+                <Button style={'bg-green-spotify white letter-spacing-1 f-w-500 mt-xs-4 mb-xs-4 position-sticky z-index-5 top-navbar'} label={'CONNETTI SPOTIFY'} onClick={connectSpotify} />
+                }
 
                 <section className="mt-xs-12 mt-lg-8">
 
