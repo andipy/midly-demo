@@ -12,24 +12,24 @@ const Appbar = () => {
     const location = useLocation()
 
     return (
-        <div class="app-bar-area d-flex-row j-c-center z-index-max">            
-            <div class="container d-flex-row align-items-center j-c-space-between">                
+        <div className="app-bar-area d-flex-row j-c-center z-index-max">            
+            <div className="container d-flex-row align-items-center j-c-space-between">                
                 <Link to='/search'>
-                    <div class="d-flex-column align-items-center">
+                    <div className="d-flex-column align-items-center">
                         <img src={location.pathname.includes('search') ? IconSearchActive : IconSearchInactive} alt="Search" />
-                        <span class={`${location.pathname.includes('search') ? 'f-w-700 lime-400' : 'f-w-300 dark-200'} fsize-xs-0 letter-spacing-1`}>Cerca</span>
+                        <span className={`${location.pathname.includes('search') ? 'f-w-700 lime-400' : 'f-w-300 dark-200'} fsize-xs-0 letter-spacing-1`}>Cerca</span>
                     </div>                    
                 </Link>
                 <Link to='/your-favourites'>
-                    <div class="d-flex-column align-items-center">
+                    <div className="d-flex-column align-items-center">
                         <img src={location.pathname.includes('your-favourites') ? IconFavouritesActive : IconFavouritesInactive} alt="Favourites" />
-                        <span class={`${location.pathname.includes('your-favourites') ? 'f-w-700 lime-400' : 'f-w-300 dark-200'} fsize-xs-0 letter-spacing-1`}>Preferiti</span>
+                        <span className={`${location.pathname.includes('your-favourites') ? 'f-w-700 lime-400' : 'f-w-300 dark-200'} fsize-xs-0 letter-spacing-1`}>Preferiti</span>
                     </div>
                 </Link>
                 <Link to='/profile'>
-                    <div class="d-flex-column align-items-center">
+                    <div className="d-flex-column align-items-center">
                         <img src={location.pathname.includes('profile') ? IconProfileActive : IconProfileInactive} alt="Profile" />
-                        <span class={`${location.pathname.includes('profile') ? 'f-w-700 lime-400' : 'f-w-300 dark-200'} fsize-xs-0 letter-spacing-1`}>Profilo</span>
+                        <span className={`${location.pathname.includes('profile') ? 'f-w-700 lime-400' : 'f-w-300 dark-200'} fsize-xs-0 letter-spacing-1`}>Profilo</span>
                     </div>
                 </Link>                
             </div>

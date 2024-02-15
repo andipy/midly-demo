@@ -20,8 +20,8 @@ const QuizGameplayRoute = () => {
 
     return (
         <>
-        <header class="position-relative h-xs-10">
-            <img class="w-100 h-inherit object-fit-cover" src={thasup} alt="" />              
+        <header className="position-relative h-xs-10">
+            <img className="w-100 h-inherit object-fit-cover" src={thasup} alt="" />              
         </header>
 
         <ContainerDefault>

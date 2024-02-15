@@ -26,36 +26,37 @@ const YourFavouritesRoute = () => {
     ])
 
     const [quizzes, setQuizzes] = useState([
-        {
-            artistSlug: 'arctic-monkeys',
-            artName: 'Arctic Monkeys',
-            image: require('../images/pictures/arcticmonkeys.jpg'),
-            quizAlreadyPlayed: false
-        },{
-            artistSlug: 'thasup',
-            artName: 'thasup',
-            image: require('../images/pictures/thasup.jpg'),
-            quizAlreadyPlayed: false
-        }
+        // {
+        //     artistSlug: 'arctic-monkeys',
+        //     artName: 'Arctic Monkeys',
+        //     image: require('../images/pictures/arcticmonkeys.jpg'),
+        //     quizAlreadyPlayed: false
+        // },{
+        //     artistSlug: 'thasup',
+        //     artName: 'thasup',
+        //     image: require('../images/pictures/thasup.jpg'),
+        //     quizAlreadyPlayed: false
+        // }
     ])
+
+    const [sanremo, setSanremo] = useState(false)
 
     return (
         <>
             <NavbarDefault />
-            <ContainerDefault containerSpecificStyle={'pb-xs-8 pb-lg-2'}>
-                <section className="mb-xs-8">
+            <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+                {sanremo && <section className="mb-xs-8">
                     <CardSanremo />
-                </section>
+                </section>}
 
-                <section>
+                {quizzes.length > 0 && <section>
                     <TextTitle title={'Live quiz'} />
                     <Carousel>
                         {quizzes.map(quiz => <CardQuiz artistSlug={quiz.artistSlug} artName={quiz.artName} image={quiz.image} quizAlreadyPlayed={quiz.quizAlreadyPlayed} key={quiz.artName} />)}
-
                     </Carousel>
-                </section>
+                </section>}
 
-                <section className="mt-xs-8">
+                <section className={quizzes.length > 0 && "mt-xs-8"}>
                     <TextTitle title={'Preferiti'} />
                     <section>
                         {favourites.map(favourite => <CardFollowedArtist artistSlug={favourite.artistSlug} artName={favourite.artName} image={favourite.image} key={favourite.artName} />
