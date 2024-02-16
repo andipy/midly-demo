@@ -7,6 +7,7 @@ import CoverArtistPage from "../components/cover-artist-page.component";
 import CardLeaderboardYourPosition from "../components/card-leaderboard-your-position.component";
 import Button from '../components/button.component'
 import Leaderboard from './leaderboard.route'
+import LiveListenings from "../components/live-listenings.component";
 
 import Fan3 from "../images/pictures/fan-14.jpg";
 import IconSpotifyWhite from '../images/icons/icon-spotify.svg'
@@ -32,7 +33,7 @@ const LeaderboardFlashRoute = () => {
                             <div className="avatar-14 border-radius-100 bg-red-400 position-relative">
                                 <div className="border-radius-100 bg-red-400 position-absolute-x-y flash-animation"></div>
                             </div>
-                            <span className="fsize-xs-1">Titolo del brano co...</span>
+                            <span className="fsize-xs-1 f-w-600">Titolo del brano co...</span>
                         </div>
 
                         <Link className="d-inline-flex-row align-items-center gap-0_5em bg-black-transp50 border-radius-100 border-green-spotify pl-xs-4 pr-xs-1 pt-xs-1 pb-xs-1" to='https://open.spotify.com/intl-it/track/5Hjy8lyZ4h99OjrW8jzPQ8' target='blank'>
@@ -49,6 +50,7 @@ const LeaderboardFlashRoute = () => {
                 </div>
                 <Leaderboard />
             </ContainerDefault>
+            <LiveListenings />
         </>
     )
 }

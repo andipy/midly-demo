@@ -10,6 +10,12 @@ const CardFollowedArtist = ({artistSlug, artName, image}) => {
                 <img className="followed-artist-img object-fit-cover border-radius-1" src={image} />
 
                 <h5 className="fsize-xs-4 f-w-500">{artName}</h5>
+
+                {artName == 'thasup' && 
+                    <div className="avatar-14 border-radius-100 bg-red-400 position-relative ml-xs-2">
+                        <div className="border-radius-100 bg-red-400 position-absolute-x-y flash-animation"></div>
+                    </div>
+                }
         </div>
     )
 }
