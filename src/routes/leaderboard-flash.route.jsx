@@ -26,7 +26,7 @@ const LeaderboardFlashRoute = () => {
             <NavbarLeaderboardFlashPage smallTitle={state.artName} avatarImage={state.image} />
             <CoverArtistPage artName={state.artName} image={state.image} />
 
-            <ContainerDefault containerSpecificStyle={'mt-avatar-header-2 pb-xs-8'}>
+            <ContainerDefault containerSpecificStyle={'mt-avatar-header-2 pb-xs-24'}>
                 <div className="d-flex-column position-sticky top-navbar z-index-max">
                     <div className="d-flex-row align-items-center j-c-space-between gap-0_5em">
                         <div className="d-inline-flex-row align-items-center gap-0_5em bg-black-transp50 border-radius-100 border-red-dashed-1 pl-xs-4 pr-xs-4 pt-xs-3 pb-xs-3">

@@ -291,38 +291,30 @@ animation: dot-loader-after 1s infinite linear;
   animation-name: flashDot;
   animation-iteration-count: infinite;
   animation-duration: 2500ms;
+  animation-fill-mode: forwards;
 }
 
-@-moz-keyframes infiniteRotation { 
-  100% { -moz-transform: rotate(360deg); } 
-}
-@-webkit-keyframes infiniteRotation { 
-  100% { -webkit-transform: rotate(360deg); } 
-}
 @keyframes infiniteRotation { 
-  100% { 
-      -webkit-transform: rotate(360deg); 
-      transform:rotate(360deg); 
+  100% {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg); 
+    transform:rotate(360deg); 
   } 
 }
 .infinite-rotation {
   -webkit-animation: infiniteRotation 5000ms linear infinite;
   -moz-animation: infiniteRotation 5000ms linear infinite;
   animation: infiniteRotation 5000ms linear infinite;
+  animation-fill-mode: forwards;
 }
-/*
- @-moz-keyframes slideUp { 
-  100% { -moz-bottom: 100%; } 
-}
-@-webkit-keyframes slideUp { 
-  100% { -webkit-bottom: 100%; } 
-}
-*/
 
 @keyframes slideUp { 
   100% { 
-      -webkit-top: -10%; 
-      top: -10%;
+      -webkit-top: -5%;
+      -moz-top: -5%;
+      top: -5%;
+      -webkit-opacity: 0%;
+      -moz-opacity: 0%;
       opacity: 0%;
   } 
 } 
