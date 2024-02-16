@@ -8,7 +8,7 @@ const LiveListenings = () => {
     const [array, setArray] = useState([])
     useEffect(() => {
         for (let i = 1; i <= 1000; i++) {
-          setTimeout(() => setArray((prevState) => [...prevState, i]), 900 * i);
+          setTimeout(() => setArray((prevState) => [...prevState, i]), 1050 * i);
         }
       }, []);
 
