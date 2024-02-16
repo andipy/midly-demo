@@ -271,23 +271,16 @@ animation: dot-loader-after 1s infinite linear;
 /************* FLASH ANIMATION ************/
 /******************************************/
 @keyframes flashDot {
-  0%{
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  99%{
+  100%{
     width: 48px;
     height: 48px;
     opacity: 0;
   }
-  100%{
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
 }
 .flash-animation {
+  width: 0;
+    height: 0;
+    opacity: 1;
   animation-name: flashDot;
   animation-iteration-count: infinite;
   animation-duration: 2500ms;
@@ -308,7 +301,23 @@ animation: dot-loader-after 1s infinite linear;
   animation-fill-mode: forwards;
 }
 
-@keyframes slideUp { 
+@keyframes slideUp {
+  0% { 
+    -webkit-top: 92%;
+    -moz-top: 92%;
+    top: 92%;
+    -webkit-opacity: 100%;
+    -moz-opacity: 100%;
+    opacity: 100%;
+  }
+  65% {
+    -webkit-top: 36%;
+    -moz-top: 36%;
+    top: 36%;
+    -webkit-opacity: 75%;
+    -moz-opacity: 75%;
+    opacity: 75%;
+  }
   100% { 
       -webkit-top: -5%;
       -moz-top: -5%;
@@ -321,9 +330,9 @@ animation: dot-loader-after 1s infinite linear;
 .live-listening {
   opacity: 100%;
   top: 92%;
-  -webkit-animation: slideUp 7000ms linear;
-  -moz-animation: slideUp 7000ms linear;
-  animation: slideUp 7000ms linear;
+  -webkit-animation: slideUp 4500ms linear;
+  -moz-animation: slideUp 4500ms linear;
+  animation: slideUp 4500ms linear;
   animation-fill-mode: forwards;
 }
 
