@@ -373,9 +373,9 @@ animation: dot-loader-after 1s infinite linear;
   }
 }
 .slide-up {
-  -webkit-animation: slideUp 800ms ease;
-  -moz-animation: slideUp 800ms ease;
-  animation: slideUp 800ms ease;
+  -webkit-animation: slideUp 400ms ease;
+  -moz-animation: slideUp 400ms ease;
+  animation: slideUp 400ms ease;
   animation-fill-mode: forwards;
 }
 @keyframes slideDown {
@@ -387,9 +387,9 @@ animation: dot-loader-after 1s infinite linear;
   }
 }
 .slide-down {
-  -webkit-animation: slideDown 800ms ease;
-  -moz-animation: slideDown 800ms ease;
-  animation: slideDown 800ms ease;
+  -webkit-animation: slideDown 400ms ease;
+  -moz-animation: slideDown 400ms ease;
+  animation: slideDown 400ms ease;
   animation-fill-mode: forwards;
 }
 
@@ -1078,6 +1078,9 @@ animation: dot-loader-after 1s infinite linear;
 .left-5 {
   left: 5%;
 }
+.w-fit-content {
+  width: fit-content;
+}
 .w-auto {
   width: auto;;
 }
@@ -1092,6 +1095,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .w-100 {
   width: 100%;
+}
+.w-min-100 {
+  min-width: 100%;
 }
 .w-95 {
   width: 95%;
