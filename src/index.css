@@ -1470,8 +1470,23 @@ nav .container {
   transform: translateX(-50%);
   display: flex;
   align-items: center;
+  z-index: 999;
 }
 .text-bar input {
+  background-color: #000000;
+  border-radius: 100em;
+  height: 36px;
+  color: #FFFFFF;
+}
+.text-bar-live-chat {
+  width: 100vw;
+  height: 56px;
+  background-color: #161616;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+}
+.text-bar-live-chat input {
   background-color: #000000;
   border-radius: 100em;
   height: 36px;
