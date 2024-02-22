@@ -14,6 +14,7 @@ import ArtistRoute from "./routes/artist.route";
 import LeaderboardRoute from "./routes/leaderboard.route";
 import LeaderboardFlashRoute from "./routes/leaderboard-flash.route";
 import Sanremo2024Route from "./routes/sanremo-2024.route";
+import LeaderboardFlashRewardsRoute from "./routes/leaderboard-flash-rewards.route";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,13 @@ const router = createBrowserRouter([
     ]
   },{
     path: '/artist/:artistSlug/leaderboard-flash',
-    element: <LeaderboardFlashRoute />
+    element: <LeaderboardFlashRoute />,
+    children: [
+      {
+        path: '/artist/:artistSlug/leaderboard-flash/rewards',
+        element: <LeaderboardFlashRewardsRoute />
+      }
+    ]
   },{
     path: '/sanremo-2024',
     element: <Sanremo2024Route />

@@ -78,6 +78,10 @@ li {
 /******************************************/
 /*********** MODALS & SNACKBARS ***********/
 /******************************************/
+.full-screen-modal {
+  z-index: 1200;
+  border-radius: .8em .8em 0 0;
+}
 .modal {
   display: none;
   position: fixed;
@@ -325,7 +329,7 @@ animation: dot-loader-after 1s infinite linear;
   animation-fill-mode: forwards;
 }
 
-@keyframes slideUp {
+@keyframes moveUp {
   0% { 
     -webkit-top: 92%;
     -moz-top: 92%;
@@ -354,9 +358,38 @@ animation: dot-loader-after 1s infinite linear;
 .live-listening {
   opacity: 100%;
   top: 92%;
-  -webkit-animation: slideUp 5000ms linear;
-  -moz-animation: slideUp 5000ms linear;
-  animation: slideUp 5000ms linear;
+  -webkit-animation: moveUp 5000ms linear;
+  -moz-animation: moveUp 5000ms linear;
+  animation: moveUp 5000ms linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideUp {
+  from {
+    bottom: -200%
+  }
+  to {
+    bottom: 0%
+  }
+}
+.slide-up {
+  -webkit-animation: slideUp 800ms ease;
+  -moz-animation: slideUp 800ms ease;
+  animation: slideUp 800ms ease;
+  animation-fill-mode: forwards;
+}
+@keyframes slideDown {
+  from {
+    bottom: 0%
+  }
+  to {
+    bottom: -200%
+  }
+}
+.slide-down {
+  -webkit-animation: slideDown 800ms ease;
+  -moz-animation: slideDown 800ms ease;
+  animation: slideDown 800ms ease;
   animation-fill-mode: forwards;
 }
 
@@ -383,7 +416,7 @@ animation: dot-loader-after 1s infinite linear;
   background-color: #000000;
 }
 .bg-black-transp50 {
-  background-color: rgba(0,0,0, .45);
+  background-color: rgba(0,0,0, .5);
 }
 .bg-dark {
   background-color: var(--color-main-bg);
@@ -1128,6 +1161,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .h-100vh {
   height: 100vh;
+}
+.h-98vh {
+  height: 98vh;
 }
 .h-80vh {
   height: 80vh;

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useLocation } from "react-router-dom"
+import { Outlet, useNavigate, useLocation } from "react-router-dom"
 
 import ContainerDefault from "../layout/container-default.layout"
 import NavbarLeaderboardFlashPage from "../components/navbar-leaderboard-flash-page.component"
@@ -11,10 +11,11 @@ import LiveMessages from "../components/live-messages.component"
 import LiveMusicProduct from "../components/live-music-product.component"
 
 import Fan3 from "../images/pictures/fan-14.jpg"
-
+import IconPrize from '../images/icons/icon-prize.svg'
 
 const LeaderboardFlashRoute = () => {
 
+    const navigate = useNavigate()
     const { state } = useLocation()
 
     const [spotifyConnected, setSpotifyConnected] = useState(true)
@@ -40,6 +41,8 @@ const LeaderboardFlashRoute = () => {
             </ContainerDefault>
 
             <LiveMessages />
+
+            <Outlet />
         </>
     )
 }
