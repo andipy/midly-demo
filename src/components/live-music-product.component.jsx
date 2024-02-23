@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom"
 
 import IconSpotifyWhite from '../images/icons/icon-spotify.svg'
-import IconBadgeGolden from '../images/icons/icon-badge-golden.svg'
+import IconBadgeGolden from '../images/icons/icon-badge-golden.png'
 
 const LiveMusicProduct = () => {
 
