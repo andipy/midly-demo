@@ -27,7 +27,7 @@ const NavbarLeaderboardFlashPage = ({ smallTitle, avatarImage }) => {
 
                 <div className={`d-flex-row align-items-center j-c-center bg-black-transp50 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 border-radius-100`}>
                     <img className="avatar-18 border-radius-100" src={IconPerson} />
-                    <p className="fsize-xs-1">145</p>
+                    <p className="fsize-xs-1 f-w-500">7.4K</p>
                 </div>
             </div>
         </nav>

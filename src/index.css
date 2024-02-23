@@ -1215,6 +1215,9 @@ animation: dot-loader-after 1s infinite linear;
 .h-98vh {
   height: 98vh;
 }
+.h-98 {
+  height: 98%;
+}
 .h-80vh {
   height: 80vh;
 }

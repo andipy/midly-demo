@@ -22,9 +22,9 @@ import Sanremo2024 from '../images/pictures/sanremo.png'
 
 const Sanremo2024Route = () => {
 
-    const [spotifyConnected, setSpotifyConnected] = useState(false)
+    const [spotifyConnected, setSpotifyConnected] = useState(true)
     const connectSpotify = () => {
-        setSpotifyConnected(prev => !prev)
+        //setSpotifyConnected(prev => !prev)
     }
 
     const leaderboard = [
@@ -85,12 +85,12 @@ const Sanremo2024Route = () => {
 
             <div className="container mt-avatar-header">
                 {spotifyConnected ?
-                <CardLeaderboardYourPosition currentFanPoints={467} currentFanPosition={8} currentFanImage={Fan8} onClick={connectSpotify} />
+                    <CardLeaderboardYourPosition currentFanPoints={467} currentFanPosition={8} currentFanImage={Fan8} onClick={connectSpotify} />
                 :
-                <Button style={'bg-green-spotify white letter-spacing-1 f-w-500 mt-xs-4 mb-xs-4 position-sticky z-index-5 top-navbar'} label={'CONNETTI SPOTIFY'} onClick={connectSpotify} />
+                    <Button style={'bg-green-spotify white letter-spacing-1 f-w-500 mt-xs-4 mb-xs-4 position-sticky z-index-5 top-navbar'} label={'CONNETTI SPOTIFY'} onClick={connectSpotify} />
                 }
 
-                <section className="mt-xs-12 mt-lg-8">
+                <section className="mt-xs-4">
 
                 <div className="mb-xs-4">
                     <div className="d-flex-row j-c-center">

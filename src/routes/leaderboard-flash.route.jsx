@@ -23,6 +23,7 @@ import Fan9 from '../images/pictures/fan-9.jpg'
 import SpecialBadge1P from '../images/illustrations/special-badge-01-p.png'
 import SpecialBadge2P from '../images/illustrations/special-badge-02-p.png'
 import SpecialBadge3P from '../images/illustrations/special-badge-03-p.png'
+import AlbumCover from '../images/pictures/thasup-album-cover.jpeg'
 
 const LeaderboardFlashRoute = () => {
 
@@ -31,7 +32,7 @@ const LeaderboardFlashRoute = () => {
 
     const [spotifyConnected, setSpotifyConnected] = useState(true)
     const connectSpotify = () => {
-        setSpotifyConnected(prev => !prev)
+        //setSpotifyConnected(prev => !prev)
     }
 
     const leaderboard = [
@@ -86,7 +87,7 @@ const LeaderboardFlashRoute = () => {
     return (
         <>
             <NavbarLeaderboardFlashPage smallTitle={state.artName} avatarImage={state.image} />
-            <CoverArtistPage artName={state.artName} image={state.image} />
+            <CoverArtistPage artName={state.artName} image={AlbumCover} />
 
             <ContainerDefault containerSpecificStyle={'mt-avatar-header-2 pb-xs-24 pb-md-8'}>
                 <div className="d-flex-column position-sticky top-navbar z-index-max">

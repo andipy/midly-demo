@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import IconPoints from "../images/icons/icon-point-xs.svg";
 
-const CardLeaderboardYourPosition = ({ currentFanPosition, currentFanPoints, currentFanImage, onClick, flashLeaderboard }) => {
+const CardLeaderboardYourPosition = ({ currentFanPosition, currentFanPoints, currentFanImage, onClick }) => {
 
     const { pathname } = useLocation()
 

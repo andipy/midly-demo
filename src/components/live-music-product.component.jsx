@@ -14,7 +14,7 @@ const LiveMusicProduct = () => {
                 <div className="avatar-14 border-radius-100 bg-red-400 position-relative">
                     <div className="border-radius-100 bg-red-400 position-absolute-x-y flash-animation"></div>
                 </div>
-                <span className="fsize-xs-1 f-w-600">Titolo del bra... - </span>
+                <span className="fsize-xs-2 f-w-600">Titolo del b... - </span>
                 <span className="fsize-xs-2 green-spotify f-w-600 grow-1">Ascoltalo su</span>
                 <img className="avatar-28 border-radius-100 bg-green-spotify" src={IconSpotifyWhite} />
             </Link>

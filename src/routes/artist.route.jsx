@@ -17,12 +17,15 @@ const ArtistRoute = () => {
 
     const [spotifyConnected, setSpotifyConnected] = useState(true)
     const connectSpotify = () => {
-        setSpotifyConnected(prev => !prev)
+        // setSpotifyConnected(prev => !prev)
     }
 
     const [flashLeaderboard, setFlashLeaderboard] = useState(false)
     useEffect(() => {
         if ( state.artName === 'thasup' ) {
+            setFlashLeaderboard(true)
+        }
+        if ( state.artName === 'Arctic Monkeys' ) {
             setFlashLeaderboard(true)
         }
     }, [])
@@ -35,7 +38,7 @@ const ArtistRoute = () => {
             <ContainerDefault containerSpecificStyle={''}>
                 <div className="mt-avatar-header position-sticky top-navbar z-index-max bg-dark">
                     {flashLeaderboard && <MessageFlashLeaderboard state={state} />}
-                    <Tab flashLeaderboard={flashLeaderboard} />
+                    <Tab />
                     {spotifyConnected ?
                         <CardLeaderboardYourPosition currentFanPoints={467} currentFanPosition={8} currentFanImage={Fan8} onClick={connectSpotify} flashLeaderboard={flashLeaderboard} />
                             :
