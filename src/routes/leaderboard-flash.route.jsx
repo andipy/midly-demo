@@ -1,17 +1,25 @@
-import { useState } from "react"
-import { Outlet, useNavigate, useLocation } from "react-router-dom"
+import { useState } from 'react'
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
-import ContainerDefault from "../layout/container-default.layout"
-import NavbarLeaderboardFlashPage from "../components/navbar-leaderboard-flash-page.component"
-import CoverArtistPage from "../components/cover-artist-page.component"
-import CardLeaderboardYourPosition from "../components/card-leaderboard-your-position.component"
+import ContainerDefault from '../layout/container-default.layout'
+import NavbarLeaderboardFlashPage from '../components/navbar-leaderboard-flash-page.component'
+import CoverArtistPage from '../components/cover-artist-page.component'
+import CardLeaderboardYourPosition from '../components/card-leaderboard-your-position.component'
 import Button from '../components/button.component'
-import Leaderboard from './leaderboard.route'
-import LiveMessages from "../components/live-messages.component"
+import CardLeaderboardFan from '../components/card-leaderboard-fan.component'
+import LiveMessages from '../components/live-messages.component'
 import LiveMusicProduct from "../components/live-music-product.component"
 
-import Fan3 from "../images/pictures/fan-14.jpg"
-import IconPrize from '../images/icons/icon-prize.svg'
+import IconPoints from '../images/icons/icon-point-xs.svg'
+import Fan1 from '../images/pictures/fan-1.jpg'
+import Fan2 from '../images/pictures/fan-2.jpg'
+import Fan3 from '../images/pictures/fan-3.jpg'
+import Fan4 from '../images/pictures/fan-4.jpg'
+import Fan5 from '../images/pictures/fan-5.jpg'
+import Fan6 from '../images/pictures/fan-6.jpg'
+import Fan7 from '../images/pictures/fan-7.jpg'
+import Fan8 from '../images/pictures/fan-8.jpg'
+import Fan9 from '../images/pictures/fan-9.jpg'
 
 const LeaderboardFlashRoute = () => {
 
@@ -23,21 +31,123 @@ const LeaderboardFlashRoute = () => {
         setSpotifyConnected(prev => !prev)
     }
 
+    const leaderboard = [
+        {
+            image: Fan4,
+            username: "Danny Snatch",
+            points: 176,
+            position: "1"
+        },{
+            image: Fan3,
+            username: "Lil kid __",
+            points: 158,
+            position: "2"
+        },{
+            image: Fan5,
+            username: "Polly Lolly",
+            points: 146,
+            position: "3"
+        },{
+            image: Fan9,
+            username: "kevin alfa",
+            points: 121,
+            position: "4"
+        },{
+            image: Fan1,
+            username: "The King",
+            points: 99,
+            position: "5"
+        },{
+            image: Fan7,
+            username: "_freak 3x_",
+            points: 82,
+            position: "6"
+        },{
+            image: Fan6,
+            username: "Kop Kalisti",
+            points: 74,
+            position: "7"
+        },{
+            image: Fan8,
+            username: "craft andG",
+            points: 54,
+            position: "8"
+        },{
+            image: Fan2,
+            username: "Big Law ::",
+            points: 32,
+            position: "9"
+        }
+    ]
+
     return (
         <>
             <NavbarLeaderboardFlashPage smallTitle={state.artName} avatarImage={state.image} />
             <CoverArtistPage artName={state.artName} image={state.image} />
 
-            <ContainerDefault containerSpecificStyle={'mt-avatar-header-2 pb-xs-24'}>
+            <ContainerDefault containerSpecificStyle={'mt-avatar-header-2 pb-xs-24 pb-md-8'}>
                 <div className="d-flex-column position-sticky top-navbar z-index-max">
                     <LiveMusicProduct />
                     {spotifyConnected ?
-                        <CardLeaderboardYourPosition currentFanPoints={1187} currentFanPosition={23} currentFanImage={Fan3} onClick={connectSpotify} />
+                        <CardLeaderboardYourPosition currentFanPoints={271} currentFanPosition={23} currentFanImage={Fan8} onClick={connectSpotify} />
                             :
                         <Button style={'bg-green-spotify white letter-spacing-1 f-w-500 mt-xs-4'} label={'CONNETTI SPOTIFY E COMPETI'} onClick={connectSpotify} />
                     }
                 </div>
-                <Leaderboard />
+                
+                <section className={`mt-xs-4`}>
+                    <div className="mb-xs-4">
+                        <div className="d-flex-row j-c-center">
+                            <div className="d-flex-column w-33">
+                                <div className="d-flex-row align-items-center j-c-center align-items-stretch position-relative first-position">
+                                    <img className="first-position object-fit-cover bg-gold-linear-gradient border-radius-100 p-xs-7" src={leaderboard[0].image} />
+                                    <div className="podium-position-indicator p-xs-16 bg-gold-radial-gradient d-flex-row align-items-center j-c-center position-absolute border-radius-100 top-0 right-0">{leaderboard[0].position}°</div>
+                                </div>
+                                <div className="text-info d-flex-column align-items-center">
+                                    <div className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[0].username}</div>
+                                    <div className="d-flex-row letter-spacing-1">
+                                        <div className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[0].points} </div>
+                                        <img className="ml-xs-2" src={IconPoints} alt=" points" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="d-flex-row j-c-start mt-xs-negative20">
+                            <div className="d-flex-column w-33">
+                                <div className="d-flex-row align-items-center j-c-center align-items-stretch position-relative second-position">
+                                    <img className="second-position object-fit-cover bg-silver-linear-gradient border-radius-100 p-xs-6" src={leaderboard[1].image} />
+                                    <div className="podium-position-indicator p-xs-14 bg-silver-radial-gradient d-flex-row align-items-center j-c-center position-absolute border-radius-100 top-0 right-0">{leaderboard[1].position}°</div>
+                                </div>
+                                <div className="text-info d-flex-column align-items-center">
+                                    <div className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[1].username}</div>
+                                    <div className="d-flex-row letter-spacing-1">
+                                        <div className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[1].points} </div>
+                                        <img className="ml-xs-2" src={IconPoints} alt=" points" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="d-flex-row j-c-end mt-xs-negative25">
+                            <div className="d-flex-column w-33">
+                                <div className="d-flex-row align-items-center j-c-center align-items-stretch position-relative third-position">
+                                    <img className="third-position object-fit-cover bg-bronze-linear-gradient border-radius-100 p-xs-5" src={leaderboard[2].image} />
+                                    <div className="podium-position-indicator p-xs-12 bg-bronze-radial-gradient d-flex-row align-items-center j-c-center position-absolute border-radius-100 top-0 right-0">{leaderboard[2].position}°</div>
+                                </div>
+                                <div className="text-info d-flex-column align-items-center">
+                                    <div className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[2].username}</div>
+                                    <div className="d-flex-row letter-spacing-1">
+                                        <div className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[2].points} </div>
+                                        <img className="ml-xs-2" src={IconPoints} alt=" points" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {leaderboard.map(fan => fan.position > 3 && <CardLeaderboardFan fanImage={fan.image}  fanUsername={fan.username} fanPoints={fan.points} fanPosition={fan.position} key={fan.position} />)}
+                </section>
             </ContainerDefault>
 
             <LiveMessages />

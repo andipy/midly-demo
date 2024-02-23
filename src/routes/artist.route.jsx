@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useLocation, Outlet } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { useLocation, Outlet } from 'react-router-dom'
 
-import ContainerDefault from "../layout/container-default.layout";
-import NavbarArtistPage from "../components/navbar-artist-page.component";
-import CoverArtistPage from "../components/cover-artist-page.component";
-import CardLeaderboardYourPosition from "../components/card-leaderboard-your-position.component";
+import ContainerDefault from '../layout/container-default.layout'
+import NavbarArtistPage from '../components/navbar-artist-page.component'
+import CoverArtistPage from '../components/cover-artist-page.component'
+import CardLeaderboardYourPosition from '../components/card-leaderboard-your-position.component'
 import Button from '../components/button.component'
-import Tab from '../components/tab.component';
+import Tab from '../components/tab.component'
 import MessageFlashLeaderboard from '../components/message-flash-leaderboard.component'
 
-import Fan3 from "../images/pictures/fan-14.jpg";
+import Fan8 from '../images/pictures/fan-8.jpg'
 
 const ArtistRoute = () => {
 
@@ -37,7 +37,7 @@ const ArtistRoute = () => {
                     {flashLeaderboard && <MessageFlashLeaderboard state={state} />}
                     <Tab flashLeaderboard={flashLeaderboard} />
                     {spotifyConnected ?
-                        <CardLeaderboardYourPosition currentFanPoints={1187} currentFanPosition={39} currentFanImage={Fan3} onClick={connectSpotify} flashLeaderboard={flashLeaderboard} />
+                        <CardLeaderboardYourPosition currentFanPoints={467} currentFanPosition={8} currentFanImage={Fan8} onClick={connectSpotify} flashLeaderboard={flashLeaderboard} />
                             :
                         <Button style={'bg-green-spotify white letter-spacing-1 f-w-500 mt-xs-4'} label={'CONNETTI SPOTIFY E COMPETI'} onClick={connectSpotify} />
                     }
