@@ -40,7 +40,7 @@ const LiveMessages = () => {
       }, []);
 
     return (
-        <div className="position-fixed bottom-0 w-100">
+        <div className="position-fixed bottom-0 w-100 z-index-5">
             <div className="h-xs-40 bg-dark-overlay-header">
                 <ContainerDefault containerSpecificStyle={'position-relative h-inherit d-flex-column j-c-end'}>
                     <div className="position-relative d-flex-column grow-1">

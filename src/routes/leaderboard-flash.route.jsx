@@ -8,7 +8,7 @@ import CardLeaderboardYourPosition from '../components/card-leaderboard-your-pos
 import Button from '../components/button.component'
 import CardLeaderboardFan from '../components/card-leaderboard-fan.component'
 import LiveMessages from '../components/live-messages.component'
-import LiveMusicProduct from "../components/live-music-product.component"
+import LiveMusicProduct from '../components/live-music-product.component'
 
 import IconPoints from '../images/icons/icon-point-xs.svg'
 import Fan1 from '../images/pictures/fan-1.jpg'
@@ -20,6 +20,9 @@ import Fan6 from '../images/pictures/fan-6.jpg'
 import Fan7 from '../images/pictures/fan-7.jpg'
 import Fan8 from '../images/pictures/fan-8.jpg'
 import Fan9 from '../images/pictures/fan-9.jpg'
+import SpecialBadge1P from '../images/illustrations/special-badge-01-p.svg'
+import SpecialBadge2P from '../images/illustrations/special-badge-02-p.svg'
+import SpecialBadge3P from '../images/illustrations/special-badge-03-p.svg'
 
 const LeaderboardFlashRoute = () => {
 
@@ -95,51 +98,54 @@ const LeaderboardFlashRoute = () => {
                     }
                 </div>
                 
-                <section className={`mt-xs-4`}>
+                <section>
                     <div className="mb-xs-4">
                         <div className="d-flex-row j-c-center">
-                            <div className="d-flex-column w-33">
-                                <div className="d-flex-row align-items-center j-c-center align-items-stretch position-relative first-position">
-                                    <img className="first-position object-fit-cover bg-gold-linear-gradient border-radius-100 p-xs-7" src={leaderboard[0].image} />
-                                    <div className="podium-position-indicator p-xs-16 bg-gold-radial-gradient d-flex-row align-items-center j-c-center position-absolute border-radius-100 top-0 right-0">{leaderboard[0].position}°</div>
+                            <div className="d-flex-column align-items-center w-33 position-relative gap-0_5em">
+                                <div className='first-position position-relative'>
+                                    <img className="first-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-7 z-index-2" src={leaderboard[0].image} />
+                                    <img className='position-absolute-x-y first-position-graphic z-index-1' src={SpecialBadge1P} />
                                 </div>
-                                <div className="text-info d-flex-column align-items-center">
-                                    <div className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[0].username}</div>
+
+                                <div className="d-flex-column align-items-center">
+                                    <span className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[0].username}</span>
                                     <div className="d-flex-row letter-spacing-1">
-                                        <div className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[0].points} </div>
-                                        <img className="ml-xs-2" src={IconPoints} alt=" points" />
+                                        <span className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[0].points}</span>
+                                        <img className="ml-xs-2" src={IconPoints} />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="d-flex-row j-c-start mt-xs-negative20">
-                            <div className="d-flex-column w-33">
-                                <div className="d-flex-row align-items-center j-c-center align-items-stretch position-relative second-position">
-                                    <img className="second-position object-fit-cover bg-silver-linear-gradient border-radius-100 p-xs-6" src={leaderboard[1].image} />
-                                    <div className="podium-position-indicator p-xs-14 bg-silver-radial-gradient d-flex-row align-items-center j-c-center position-absolute border-radius-100 top-0 right-0">{leaderboard[1].position}°</div>
+                        <div className="d-flex-row j-c-start mt-xs-negative5">
+                            <div className="d-flex-column align-items-center w-33 position-relative gap-0_5em">
+                                <div className='second-position position-relative'>
+                                    <img className="second-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-7 z-index-2" src={leaderboard[1].image} />
+                                    <img className='position-absolute-x-y second-position-graphic z-index-1' src={SpecialBadge2P} />
                                 </div>
-                                <div className="text-info d-flex-column align-items-center">
-                                    <div className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[1].username}</div>
+
+                                <div className="d-flex-column align-items-center">
+                                    <span className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[1].username}</span>
                                     <div className="d-flex-row letter-spacing-1">
-                                        <div className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[1].points} </div>
-                                        <img className="ml-xs-2" src={IconPoints} alt=" points" />
+                                        <span className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[1].points}</span>
+                                        <img className="ml-xs-2" src={IconPoints} />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="d-flex-row j-c-end mt-xs-negative25">
-                            <div className="d-flex-column w-33">
-                                <div className="d-flex-row align-items-center j-c-center align-items-stretch position-relative third-position">
-                                    <img className="third-position object-fit-cover bg-bronze-linear-gradient border-radius-100 p-xs-5" src={leaderboard[2].image} />
-                                    <div className="podium-position-indicator p-xs-12 bg-bronze-radial-gradient d-flex-row align-items-center j-c-center position-absolute border-radius-100 top-0 right-0">{leaderboard[2].position}°</div>
+                        <div className="d-flex-row j-c-end mt-xs-negative30">
+                            <div className="d-flex-column align-items-center w-33 position-relative gap-0_5em">
+                                <div className='third-position position-relative'>
+                                    <img className="third-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-7 z-index-2" src={leaderboard[2].image} />
+                                    <img className='position-absolute-x-y third-position-graphic z-index-1' src={SpecialBadge3P} />
                                 </div>
-                                <div className="text-info d-flex-column align-items-center">
-                                    <div className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[2].username}</div>
+
+                                <div className="d-flex-column align-items-center">
+                                    <span className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[2].username}</span>
                                     <div className="d-flex-row letter-spacing-1">
-                                        <div className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[2].points} </div>
-                                        <img className="ml-xs-2" src={IconPoints} alt=" points" />
+                                        <span className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[2].points}</span>
+                                        <img className="ml-xs-2" src={IconPoints} />
                                     </div>
                                 </div>
                             </div>

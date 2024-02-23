@@ -6,9 +6,9 @@ import Carousel from "../layout/carousel.layout"
 import NavbarBackOnly from "../components/navbar-back-only.component"
 import BadgeSpecialPreview from "../components/badge-special-preview.component"
 
-import SpecialBadge1 from '../images/illustrations/special-badge-01.png'
-import SpecialBadge2 from '../images/illustrations/special-badge-02.png'
-import SpecialBadge3 from '../images/illustrations/special-badge-03.png'
+import SpecialBadge1 from '../images/illustrations/special-badge-01.svg'
+import SpecialBadge2 from '../images/illustrations/special-badge-02.svg'
+import SpecialBadge3 from '../images/illustrations/special-badge-03.svg'
 
 const LeaderboardFlashRewardsRoute = () => {
 
