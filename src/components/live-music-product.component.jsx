@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom"
 
 import IconSpotifyWhite from '../images/icons/icon-spotify.svg'
-import IconPrize from '../images/icons/icon-prize.svg'
+import IconBadgeGolden from '../images/icons/icon-badge-golden.svg'
 
 const LiveMusicProduct = () => {
 
@@ -19,10 +19,11 @@ const LiveMusicProduct = () => {
                 <img className="avatar-28 border-radius-100 bg-green-spotify" src={IconSpotifyWhite} />
             </Link>
             <div
-                    className="d-flex-row align-items-center j-c-center border-radius-100 avatar-40 bg-purple-400-op-75"
+                    className="d-flex-row align-items-center j-c-center border-radius-100 avatar-40 bg-black-transp50 position-relative"
                     onClick={() => navigate(`/artist/${state.artistSlug}/leaderboard-flash/rewards`, { state : {...state, invokedModal: true}})}
             >
-                <img className="avatar-28" src={IconPrize} alt="" />
+                <div className="position-absolute-x-y bg-gold-transp25 border-radius-100 z-index-1 flash-animation-badge-icon"></div>
+                <img className="avatar-32 z-index-2" src={IconBadgeGolden} />
             </div>
         </div>
     )

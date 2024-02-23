@@ -315,6 +315,47 @@ animation: dot-loader-after 1s infinite linear;
   animation: flashDot 2000ms linear infinite;
 }
 
+@keyframes flashIconBadge {
+  0% {
+    -moz-width: 40px;
+    -moz-height: 40px;
+    -moz-opacity: 100%;
+    -webkit-width: 40px;
+    -webkit-height: 40px;
+    -webkit-opacity: 100%;
+    width: 40px;
+    height: 40px;
+    opacity: 100%;
+  }
+  50%{
+    -moz-width: 56px;
+    -moz-height: 56px;
+    -moz-opacity: 0%;
+    -webkit-width: 56px;
+    -webkit-height: 56px;
+    -webkit-opacity: 0%;
+    width: 56px;
+    height: 56px;
+    opacity: 0%;
+  }
+  100% {
+    -moz-width: 0px;
+    -moz-height: 0px;
+    -moz-opacity: 0%;
+    -webkit-width: 0px;
+    -webkit-height: 0px;
+    -webkit-opacity: 0%;
+    width: 0px;
+    height: 0px;
+    opacity: 0%;
+  }
+}
+.flash-animation-badge-icon {
+  -webkit-animation: flashIconBadge 2000ms linear infinite;
+  -moz-animation: flashIconBadge 2000ms linear infinite;
+  animation: flashIconBadge 2000ms linear infinite;
+}
+
 @keyframes infiniteRotation { 
   100% {
     -moz-transform: rotate(360deg);
@@ -411,6 +452,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .bg-white-transp25 {
   background-color: rgba(255,255,255, .25);
+}
+.bg-gold-transp25 {
+  background-color: rgba(255,225,119, .25);
 }
 .bg-black {
   background-color: #000000;
@@ -1447,9 +1491,8 @@ animation: dot-loader-after 1s infinite linear;
   aspect-ratio: 1;
 }
 .first-position-graphic {
-  width: calc(var(--container) / 1.9);
-  height: calc(var(--container) / 1.9);
-  aspect-ratio: 1;
+  width: calc(var(--container) / 1.95);
+  aspect-ratio: auto;
 }
 .second-position {
   width: calc(var(--container) / 3.7);
@@ -1457,9 +1500,8 @@ animation: dot-loader-after 1s infinite linear;
   aspect-ratio: 1;
 }
 .second-position-graphic {
-  width: calc(var(--container) / 2.6);
-  height: calc(var(--container) / 2.6);
-  aspect-ratio: 1;
+  width: calc(var(--container) / 2.65);
+  aspect-ratio: auto;
 }
 .third-position {
   width: calc(var(--container) / 4);
@@ -1467,9 +1509,8 @@ animation: dot-loader-after 1s infinite linear;
   aspect-ratio: 1;
 }
 .third-position-graphic {
-  width: calc(var(--container) / 2.8);
-  height: calc(var(--container) / 2.8);
-  aspect-ratio: 1;
+  width: calc(var(--container) / 2.85);
+  aspect-ratio: auto;
 }
 .podium-position-indicator {
   width: calc(var(--container) / 20);
