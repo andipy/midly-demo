@@ -468,6 +468,9 @@ animation: dot-loader-after 1s infinite linear;
 .bg-dark-soft {
   background-color: #161616;
 }
+.bg-dark-soft-2 {
+  background-color: #252525;
+}
 .bg-grey-50 {
   background-color: #F0F0F0;
 }
@@ -670,11 +673,26 @@ animation: dot-loader-after 1s infinite linear;
 
 
 /************* BORDER RADIUS *************/
+.border-radius-01 {
+  border-radius: .1rem;
+}
+.border-radius-02 {
+  border-radius: .2rem;
+}
+.border-radius-03 {
+  border-radius: .3rem;
+}
 .border-radius-04 {
   border-radius: .4rem;
 }
+.border-radius-05 {
+  border-radius: .5rem;
+}
 .border-radius-06 {
   border-radius: .6rem;
+}
+.border-radius-07 {
+  border-radius: .7rem;
 }
 .border-radius-08 {
   border-radius: .8rem;
@@ -875,6 +893,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 
 /************* LETTER SPACING *************/
+.letter-spacing-0_2 {
+  letter-spacing: .02rem;
+}
 .letter-spacing-1 {
   letter-spacing: .05rem;
 }
@@ -1069,7 +1090,7 @@ animation: dot-loader-after 1s infinite linear;
   bottom: calc(var(--avatar-72) * -0.9);
 }
 .mt-avatar-header {
-  margin-top: calc(var(--avatar-72) * 1);
+  margin-top: calc(var(--avatar-72) * 1.1);
 }
 .mt-avatar-header-2 {
   margin-top: calc(20vh * .85);
@@ -1740,7 +1761,7 @@ filter: blur(2.5px);
   button {
       width: 100%;
       padding: 4% 0;
-      border-radius: .8em;
+      border-radius: .5em;
       border: none;
   }
   .secondary {
@@ -2039,6 +2060,9 @@ filter: blur(2.5px);
       padding-top: calc(var(--top-bar-height) * 1.05);
   }
   /* PADDING LEFT */
+  .pl-xs-1 {
+    padding-left: 1%;
+  }
   .pl-xs-2 {
       padding-left: 2%;
   }
@@ -2503,6 +2527,9 @@ filter: blur(2.5px);
       padding-top: 24%;
   }
   /* PADDING LEFT */
+  .pl-sm-1 {
+    padding-left: 1%;
+  }
   .pl-sm-2 {
       padding-left: 2%;
   }
@@ -2921,6 +2948,9 @@ filter: blur(2.5px);
       padding-top: 24%;
   }
   /* PADDING LEFT */
+  .pl-md-1 {
+    padding-left: 1%;
+  }
   .pl-md-2 {
       padding-left: 2%;
   }
@@ -3336,6 +3366,9 @@ filter: blur(2.5px);
       padding-top: 24%;
   }
   /* PADDING LEFT */
+  .pl-lg-1 {
+    padding-left: 1%;
+  }
   .pl-lg-2 {
       padding-left: 2%;
   }
@@ -3749,6 +3782,9 @@ filter: blur(2.5px);
       padding-top: 24%;
   }
   /* PADDING LEFT */
+  .pl-xl-1 {
+    padding-left: 1%;
+  }
   .pl-xl-2 {
       padding-left: 2%;
   }
@@ -4165,6 +4201,9 @@ filter: blur(2.5px);
       padding-top: 24%;
   }
   /* PADDING LEFT */
+  .pl-xxl-1 {
+    padding-left: 1%;
+  }
   .pl-xxl-2 {
       padding-left: 2%;
   }

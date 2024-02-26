@@ -1,6 +1,5 @@
-import { useState } from "react";
-
-import AM from '../images/pictures/arcticmonkeys.jpg'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import NavbarInviteFriendPage from "../components/navbar-invite-friend-page.component";
 import InviteFriendCover from "../components/invite-friend-cover.component";
@@ -11,6 +10,9 @@ import ContainerDefault from "../layout/container-default.layout";
 import Button from "../components/button.component";
 
 const InviteFriendRoute = () => {
+
+    const location = useLocation()
+
     const [triggered, setTriggered] = useState(false);
     const triggerSnackbar = () => {
         setTriggered(true);
@@ -21,7 +23,7 @@ const InviteFriendRoute = () => {
 
     return (
         <>
-            <NavbarInviteFriendPage smallTitle={'Arctic Monkeys'} avatarImage={AM} />
+            <NavbarInviteFriendPage smallTitle={location.state.artName} avatarImage={location.state.image} />
             <InviteFriendCover />
             <Snackbar message={'Link copied to clipboard'} triggered={triggered} />
 
@@ -42,7 +44,7 @@ const InviteFriendRoute = () => {
                     <hr className="w-100" />
                 </div>
 
-                <Button disabled={false} label={'Invita tramite whatsapp'} style={'bg-green-whatsapp'} />
+                <Button disabled={false} label={'Invita tramite whatsapp'} style={'bg-green-whatsapp fsize-xs-3 f-w-500'} />
 
             </ContainerDefault>
         </>

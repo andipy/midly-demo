@@ -33,6 +33,9 @@ const router = createBrowserRouter([
       }
     ]
   },{
+    path: '/artist/:artistSlug/invite-friend',
+    element: <InviteFriendRoute />
+  },{
     path: '/artist/:artistSlug/leaderboard-flash',
     element: <LeaderboardFlashRoute />,
     children: [
@@ -44,9 +47,6 @@ const router = createBrowserRouter([
   },{
     path: '/sanremo-2024',
     element: <Sanremo2024Route />
-  },{
-    path: '/invite-friend',
-    element: <InviteFriendRoute />
   },{
     path: '/quiz-result',
     element: <QuizResultRoute />

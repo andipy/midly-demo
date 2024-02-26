@@ -18,12 +18,20 @@ const YourFavouritesRoute = () => {
             artistSlug: 'arctic-monkeys',
             artName: 'Arctic Monkeys',
             image: require('../images/pictures/arcticmonkeys.jpg'),
-            invokedModal: false
+            invokedModal: false,
+            currentUser: {
+                points: 467,
+                position: 8
+            }
         },{
             artistSlug: 'thasup',
             artName: 'thasup',
             image: require('../images/pictures/thasup.jpg'),
-            invokedModal: false
+            invokedModal: false,
+            currentUser: {
+                points: 0,
+                position: 8
+            }
         }
     ])
 
@@ -61,7 +69,7 @@ const YourFavouritesRoute = () => {
                 <section className={quizzes.length > 0 ? "mt-xs-8" : ''}>
                     <TextTitle title={'Preferiti'} />
                     <section>
-                        {favourites.map(favourite => <CardFollowedArtist artistSlug={favourite.artistSlug} artName={favourite.artName} image={favourite.image} invokedModal={favourite.invokedModal} key={favourite.artName} />
+                        {favourites.map(favourite => <CardFollowedArtist artistSlug={favourite.artistSlug} artName={favourite.artName} image={favourite.image} invokedModal={favourite.invokedModal} key={favourite.artName} currentUser={favourite.currentUser} />
                         )}
                     </section>
                     <ButtonFollowMoreArtists />
