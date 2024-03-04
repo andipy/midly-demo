@@ -53,7 +53,7 @@ const ArtistRoute = () => {
                     {spotifyConnected && !userCompeting &&
                         <Button style={'bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4'} label={'Competi nella classifica'} onClick={handleCompete} />
                     }
-                    {state.currentUser.points > 0 &&
+                    {userCompeting &&
                         <CardLeaderboardYourPosition currentFanPoints={state.currentUser.points} currentFanPosition={state.currentUser.position} currentFanImage={Fan8} flashLeaderboard={flashLeaderboard} />
                     }
                 </div>

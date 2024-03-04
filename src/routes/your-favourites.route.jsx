@@ -20,7 +20,7 @@ const YourFavouritesRoute = () => {
             image: require('../images/pictures/arcticmonkeys.jpg'),
             invokedModal: false,
             currentUser: {
-                points: 467,
+                points: 0,
                 position: 8
             }
         },{
@@ -29,7 +29,7 @@ const YourFavouritesRoute = () => {
             image: require('../images/pictures/thasup.jpg'),
             invokedModal: false,
             currentUser: {
-                points: 0,
+                points: 467,
                 position: 8
             }
         }
