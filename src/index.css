@@ -971,6 +971,9 @@ animation: dot-loader-after 1s infinite linear;
 .flex-wrap {
   flex-wrap: wrap;
 }
+.gap-0_25em {
+  gap: 0.25em;
+}
 .gap-0_5em {
   gap: 0.5em;
 }
@@ -1840,6 +1843,12 @@ filter: blur(2.5px);
 
   /***** MARGIN *****/
   /* MARGIN TOP */
+  .mt-xs-1 {
+    margin-top: 1%;
+  }
+  .mt-xs-1_5 {
+    margin-top: 1.5%;
+  }
   .mt-xs-2 {
       margin-top: 2%;
   }
