@@ -1,44 +1,42 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef } from 'react'
+import { mockSongs } from '../mock-data/songs'
 
-import ContainerDefault from "../layout/container-default.layout"
-import LiveMessage from "./live-message.component"
-import Countdown from "./countdown.component"
-import Textbar from "./textbar.component"
+import ContainerDefault from '../layout/container-default.layout'
+import LiveMessage from './live-message.component'
+import Countdown from './countdown.component'
+import Textbar from './textbar.component'
 
 const LiveMessages = () => {
 
     //this useRef has the only responsibility to keep track if the page has been rendered
-    const firstPageRender = useRef(false)
+    const firstPageRender = useRef(true)
+    const messageRecentlySent = useRef(false)
 
     //this 'liveMessages' state is the 5-position array, which is the MASTER array that has to contain both comments left by the users and songs, both queues coming from the two separate websockets. comments left by the users must always have highest priority to occupy the positions of the array, to the songs can have their spot in this array only if users are not sending messages for more than 5 seconds
     const [liveMessages, setLiveMessages] = useState([])
 
     // this 'comments' state and the 'handleSubmitComment' function simulate the whole list of comments coming back from the websocket, so basically it stores every single comment that the user sends, without number limitation
     const [comments, setComments] = useState([])
+    
     const handleSubmitComment = (e, currentComment) => {
         e.preventDefault()
         if ( currentComment.content.length > 0 ) {
-            setComments(prev => [...prev, currentComment])
+            setComments(prev => [...prev, {...currentComment, timestamp: Date.now()}])
         }
         setCurrentComment({
             type: 'COMMENT',
-            content: '',
-            timestamp: Date.now()
+            content: ''
         })
+        messageRecentlySent.current = true
+        setTimeout(() => {
+            messageRecentlySent.current = false
+        }, 5000)
     }
 
-    // const [songs, setSongs] = useState([])
-    // useEffect(() => {
-    //     for (let i = 1; i <= 100000; i++) {
-    //       setTimeout(() => setSongs(prev => [...prev, i]), 1050 * i);
-    //     }
-    //   }, [])
-    
     // this 'currentComment' state and 'handleCurrentComment' function just handle the comment that the user is currently typing
     const [currentComment, setCurrentComment] = useState({
         type: 'COMMENT',
-        content: '',
-        timestamp: Date.now()
+        content: ''
     })
     const handleCurrentComment = (e) => {
         setCurrentComment({
@@ -47,22 +45,53 @@ const LiveMessages = () => {
         })
     }
 
-    // this useEffect should handle the MASTER state 'liveMessages', which is described above
+    // this 'songs' and useEffect simulate the whole list of songs coming back from the websocket, so basically it stores every single song that the backend returns throught the websocket, without number limitation
+    const [songs, setSongs] = useState([])
+    
     useEffect(() => {
-        if ( firstPageRender.current ) {
-            if ( liveMessages.length < 5 ) {
-                setLiveMessages(prev => [...prev, comments.slice(-1)[0]])
-            } else if ( liveMessages.length >= 5 ) {
-                setLiveMessages(prev => prev.slice(1))
-                setLiveMessages(prev => [...prev, comments.slice(-1)[0]])
+        for (let i = 1; i <= 100000; i++) {
+          setTimeout(() => setSongs(prev => [...prev, 
+            {
+                type: 'SONG',
+                content: mockSongs[Math.floor(Math.random() * mockSongs.length)].content,
+                timestamp: Date.now()
             }
+        ]), 1500 * i);
         }
+    }, [])
+
+    // IMPORTANT: this useEffect should handle the MASTER state 'liveMessages', which is described above. all this useEffect is a WORK IN PROGRESS
+    useEffect(() => {
+        if ( !firstPageRender.current ) {
+
+            if ( comments.length <= 0 ) {
+                setLiveMessages(prev => [...prev, songs.slice(-1)[0]])
+            }
+
+            if ( comments.length > 0 ) {
+                if ( !messageRecentlySent.current ) {
+                    setLiveMessages(prev => [...prev, songs.slice(-1)[0]])
+                    setLiveMessages(prev => [...prev, comments.slice(-1)[0]])
+                }
+            }
         
-        //this is just to avoid this entire useEffect to run on first render of the page
-        if ( liveMessages.length > 0 ) {
-            firstPageRender.current = true
+
+        if ( liveMessages.length >= 5 ) {
+            setLiveMessages(prev => prev.slice(1))
         }
-    }, [comments])
+
+        }
+
+        //this is just to avoid this entire useEffect to run on first render of the page
+        if ( firstPageRender.current ) {
+            firstPageRender.current = false
+        }
+
+        console.log('messaggio inviato di recente?',messageRecentlySent.current)
+        
+    }, [comments, songs])
+
+    
 
     return (
         <div className="position-fixed bottom-0 w-100 z-index-5">

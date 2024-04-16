@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { songs } from '../mock-data/songs'
 import IconMusic from '../images/icons/icon-music.svg'
 import IconMessage from '../images/icons/icon-message-color-03.svg'
 

@@ -1,4 +1,4 @@
-let songs = [
+let mockSongs = [
     {
         type: "SONG",
         content: "3uphon"
@@ -65,4 +65,4 @@ let songs = [
     }
 ]
 
-export { songs };
+export { mockSongs };
