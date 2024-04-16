@@ -22,7 +22,8 @@ const LiveMessages = () => {
         }
         setCurrentComment({
             type: 'COMMENT',
-            content: ''
+            content: '',
+            timestamp: Date.now()
         })
     }
 
@@ -36,7 +37,8 @@ const LiveMessages = () => {
     // this 'currentComment' state and 'handleCurrentComment' function just handle the comment that the user is currently typing
     const [currentComment, setCurrentComment] = useState({
         type: 'COMMENT',
-        content: ''
+        content: '',
+        timestamp: Date.now()
     })
     const handleCurrentComment = (e) => {
         setCurrentComment({
@@ -55,9 +57,9 @@ const LiveMessages = () => {
                 setLiveMessages(prev => [...prev, comments.slice(-1)[0]])
             }
         }
-
+        
         //this is just to avoid this entire useEffect to run on first render of the page
-        if ( !firstPageRender.current ) {
+        if ( liveMessages.length > 0 ) {
             firstPageRender.current = true
         }
     }, [comments])
