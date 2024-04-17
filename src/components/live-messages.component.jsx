@@ -10,6 +10,8 @@ const LiveMessages = () => {
 
     //this useRef has the only responsibility to keep track if the page has been rendered
     const pageHasRendered = useRef(false)
+    
+    // this useRef has the responsibility to store the information if a message was sent in the last 2.5 seconds. it's used in the useEffect to prioritize comments over songs
     const messageRecentlySent = useRef(false)
 
     //this 'liveMessages' state is the 5-position array, which is the MASTER array that has to contain both comments left by the users and songs, both queues coming from the two separate websockets. comments left by the users must always have highest priority to occupy the positions of the array, to the songs can have their spot in this array only if users are not sending messages for more than 5 seconds
@@ -25,31 +27,35 @@ const LiveMessages = () => {
         setCurrentComment({
             type: 'COMMENT',
             content: '',
-            id: ''
+            timestamp: undefined,
+            id: undefined
         })
+
+        // when a message is sent, the related useRef declared above turns true, and immediately after, it start a timeout that resets it to false after 2.5 seconds
         messageRecentlySent.current = true
         setTimeout(() => {
             messageRecentlySent.current = false
-        }, 5000)
+        }, 2500)
     }
 
     // this 'currentComment' state and 'handleCurrentComment' function just handle the comment that the user is currently typing
     const [currentComment, setCurrentComment] = useState({
         type: 'COMMENT',
         content: '',
-        id: ''
+        timestamp: undefined,
+        id: undefined
     })
     const handleCurrentComment = (e) => {
         setCurrentComment({
             type: 'COMMENT',
             content: e.target.value,
-            id: ''
+            timestamp: undefined,
+            id: undefined
         })
     }
 
     // this 'songs' and useEffect simulate the whole list of songs coming back from the websocket, so basically it stores every single song that the backend returns throught the websocket, without number limitation
     const [songs, setSongs] = useState([])
-    
     useEffect(() => {
         for (let i = 1; i <= 100000; i++) {
           setTimeout(() => setSongs(prev => [...prev, 
@@ -59,19 +65,20 @@ const LiveMessages = () => {
                 timestamp: Date.now(),
                 id: Math.floor(Math.random() * 123456789)
             }
-        ]), 1500 * i);
+        ]), 800 * i);
         }
     }, [])
 
-    // IMPORTANT: this useEffect should handle the MASTER state 'liveMessages', which is described above. all this useEffect is a WORK IN PROGRESS
+    // IMPORTANT: this useEffect should handle the MASTER state 'liveMessages', which is described above. this useEffect is finished up, but for sure it need to be redesigned according to real stream of data coming from the backend
     useEffect(() => {
         if ( pageHasRendered.current ) {
 
             if (comments.length > 0) {
                 const lastComment = comments[comments.length - 1]
-                const existsInLiveMessages = liveMessages.some(msg => msg.id === lastComment.id)
-                if ( !existsInLiveMessages ) {
+                const lastCommentExistsInLiveMessages = liveMessages.some(msg => msg.id === lastComment.id)
+                if ( !lastCommentExistsInLiveMessages ) {
                     setLiveMessages(prev => [...prev, comments.slice(-1)[0]])
+                    setComments(comments.filter(msg => msg.id !== lastComment.id))
                 }
             }
             
@@ -85,12 +92,10 @@ const LiveMessages = () => {
         
         }
 
-        //this is just to avoid this entire useEffect to run on first render of the page
+        //this leverages the first useRef declared above and it is just to avoid this entire useEffect to run on first render of the page
         if ( !pageHasRendered.current ) {
             pageHasRendered.current = true
         }
-
-        //console.log('messaggio inviato di recente?',messageRecentlySent.current)
         
     }, [comments, songs])
 
