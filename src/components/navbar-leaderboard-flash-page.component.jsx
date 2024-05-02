@@ -22,12 +22,12 @@ const NavbarLeaderboardFlashPage = ({ smallTitle, avatarImage }) => {
                         <img className="avatar-32 border-radius-100" src={avatarImage} />
                         <img className="artist-avatar-verified-icon avatar-12" src={IconVerifiedArtist} />
                     </div>                    
-                    <h2 className="f-w-600 fsize-xs-1 letter-spacing-1">{smallTitle}</h2>
+                    <h2 className="f-w-600 fsize-xs-1 letter-spacing-1 no-shrink">{smallTitle}</h2>
                 </div>
 
                 <div className={`d-flex-row align-items-center j-c-center bg-black-transp50 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 border-radius-100`}>
                     <img className="avatar-18 border-radius-100" src={IconPerson} />
-                    <p className="fsize-xs-1 f-w-500">7.4K</p>
+                    <p className="fsize-xs-1 f-w-500">7438</p>
                 </div>
             </div>
         </nav>

@@ -16,31 +16,42 @@ const LiveMessages = () => {
 
     //this 'liveMessages' state is the 5-position array, which is the MASTER array that has to contain both comments left by the users and songs, both queues coming from the two separate websockets. comments left by the users must always have highest priority to occupy the positions of the array, to the songs can have their spot in this array only if users are not sending messages for more than 5 seconds
     const [liveMessages, setLiveMessages] = useState([])
+    
+    // this state has the objective of containing only and only the messages sent by the ARTIST, so they don't get overwritten by the flow of songs or the messages of the fans, and they get rendered in their own html space
+    const [artistMessages, setArtistMessages] = useState([])
 
     // this 'comments' state and the 'handleSubmitComment' function simulate the whole list of comments coming back from the websocket, so basically it stores every single comment that the user sends, without number limitation
     const [comments, setComments] = useState([])
     const handleSubmitComment = (e, currentComment) => {
         e.preventDefault()
         if ( currentComment.content.length > 0 ) {
-            setComments(prev => [...prev, {...currentComment, timestamp: Date.now(), id: Math.floor(Math.random() * 123456789)}])
+            if ( currentComment.user_type == 'fan' ) {
+                setComments(prev => [...prev, {...currentComment, timestamp: Date.now(), id: Math.floor(Math.random() * 123456789)}])
+                messageRecentlySent.current = true
+                setTimeout(() => {
+                    messageRecentlySent.current = false
+                }, 2500)
+            }
+            
+            if ( currentComment.user_type == 'artist' ) {
+                setArtistMessages(prev => [...prev, {...currentComment, timestamp: Date.now(), id: Math.floor(Math.random() * 123456789)}])
+            }
         }
         setCurrentComment({
             type: 'COMMENT',
+            user_type: 'artist',
             content: '',
             timestamp: undefined,
             id: undefined
         })
 
         // when a message is sent, the related useRef declared above turns true, and immediately after, it start a timeout that resets it to false after 2.5 seconds
-        messageRecentlySent.current = true
-        setTimeout(() => {
-            messageRecentlySent.current = false
-        }, 2500)
     }
 
     // this 'currentComment' state and 'handleCurrentComment' function just handle the comment that the user is currently typing
     const [currentComment, setCurrentComment] = useState({
         type: 'COMMENT',
+        user_type: 'artist',
         content: '',
         timestamp: undefined,
         id: undefined
@@ -48,6 +59,7 @@ const LiveMessages = () => {
     const handleCurrentComment = (e) => {
         setCurrentComment({
             type: 'COMMENT',
+            user_type: 'artist',
             content: e.target.value,
             timestamp: undefined,
             id: undefined
@@ -99,15 +111,30 @@ const LiveMessages = () => {
         
     }, [comments, songs])
 
-    
+    // this useEffect has the only objective of cutting to one
+    useEffect(() => {
+        if ( artistMessages.length > 1 ) {
+            setArtistMessages(prev => prev.slice(1))
+        }
+    },[artistMessages])
 
     return (
         <div className="position-fixed bottom-0 w-100 z-index-5">
             <div className="bg-dark-overlay-header">
                 <ContainerDefault containerSpecificStyle={'position-relative h-inherit d-flex-column j-c-end'}>
+                    {/* thel following div is there to contain the messages sent to by the ARTIST, so they are divided by the flow of songs and messages sent by the fans */}
+                    <div className="d-flex-column grow-1 gap-0_5em mb-xs-2">
+                        {artistMessages.map((message, key) => {
+                            if ( message.user_type == 'artist' )
+                                return <LiveMessage key={key} message={message} />
+                        })}
+                    </div>
+
+                    {/* thel following div is there to contain the messages sent to by the FANS, they are merged in the flow of the songs and divided by the artist's messages */}
                     <div className="d-flex-column grow-1 gap-0_5em">
                         {liveMessages.map((message, key) => {
-                            return <LiveMessage key={key} message={message} />
+                            if ( message.user_type == 'fan' || message.user_type == null )
+                                return <LiveMessage key={key} message={message} />
                         })}
                     </div>
                     <Countdown />
