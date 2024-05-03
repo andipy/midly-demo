@@ -36,7 +36,7 @@ const LiveMessage = ({ message }) => {
                     <span className={`fsize-xs-2 f-w-700 color03`}>username:</span>
                 }
                 {message.type == 'COMMENT' && message.user_type == 'artist' &&
-                    <span className={`fsize-xs-2 f-w-700 black no-shrink`}>Pinguini Tattici Nucleari:</span>
+                    <span className={`fsize-xs-2 f-w-700 black no-shrink`}>thasup:</span>
                 }
             </div>
             <span className={`fsize-xs-2 ${message.user_type == 'fan' ? 'mt-xs-1_5' : 'mt-xs-1'}`}>{message.content}</span>
