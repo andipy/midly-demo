@@ -2104,7 +2104,10 @@ filter: blur(2.5px);
       padding-right: 6%;
   }
   .pr-xs-8 {
-      padding-right: 8%;
+    padding-right: 8%;
+  }
+  .pr-xs-10 {
+    padding-right: 10%;
   }
   .pr-xs-60 {
       padding-right: 60%;

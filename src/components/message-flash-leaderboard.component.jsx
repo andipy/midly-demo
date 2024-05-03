@@ -36,7 +36,7 @@ const MessageFlashLeaderboard = ({ state }) => {
                     <div className="avatar-14 border-radius-100 bg-red-400 position-relative">
                         <div className="border-radius-100 bg-red-400 position-absolute-x-y flash-animation"></div>
                     </div>
-                    <p className="fsize-xs-2">Classifica FLASH live now.</p>
+                    <p className="fsize-xs-2">Classifica LIVE in corso</p>
                 </div>
 
                 <Button style={"bg-red-400 border-radius-100 white w-auto pl-xs-4 pr-xs-4 pt-xs-2 pb-xs-2 fsize-xs-3 f-w-600"} label="Entra" />
@@ -44,7 +44,7 @@ const MessageFlashLeaderboard = ({ state }) => {
         : state.artName == 'Arctic Monkeys' &&
             <div className="d-flex-row align-items-center j-c-space-between bg-dark-soft border-radius-100 border-red-dashed-1 pl-xs-1 pr-xs-1 pt-xs-1 pb-xs-1 mb-xs-4">
                 <div className='d-flex-row j-c-center align-items-center pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 bg-white-transp15 border-radius-100 w-100'>
-                    <p className="fsize-xs-2 no-shrink"><span className="f-w-600">Classifica FLASH apre tra:</span> <span className="f-w-600">18</span>h <span className="f-w-600">{minutes}</span>min <span className="f-w-600">{seconds}</span>s</p>
+                    <p className="fsize-xs-2 no-shrink"><span className="f-w-600">Classifica LIVE apre tra:</span> <span className="f-w-600">18</span>h <span className="f-w-600">{minutes}</span>min <span className="f-w-600">{seconds}</span>s</p>
                 </div>
             </div>
         }

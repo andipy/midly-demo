@@ -104,6 +104,7 @@ const LeaderboardFlashRoute = () => {
                         <div className="d-flex-row j-c-center">
                             <div className="d-flex-column align-items-center w-33 position-relative gap-0_5em">
                                 <div className='first-position position-relative'>
+                                    <span className='position-absolute bottom-0 z-index-3 bg-gold-radial-gradient black pt-xs-6 pb-xs-6 pl-xs-10 pr-xs-10 border-radius-06 t-align-center f-w-600'>1</span>
                                     <img className="first-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-7 z-index-2" src={leaderboard[0].image} />
                                     <img className='position-absolute-x-y first-position-graphic z-index-1' src={SpecialBadge1P} />
                                 </div>
@@ -121,6 +122,7 @@ const LeaderboardFlashRoute = () => {
                         <div className="d-flex-row j-c-start mt-xs-negative5">
                             <div className="d-flex-column align-items-center w-33 position-relative gap-0_5em">
                                 <div className='second-position position-relative'>
+                                    <span className='position-absolute bottom-0 z-index-3 bg-silver-radial-gradient black pt-xs-6 pb-xs-6 pl-xs-10 pr-xs-10 border-radius-06 t-align-center f-w-600'>2</span>
                                     <img className="second-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-7 z-index-2" src={leaderboard[1].image} />
                                     <img className='position-absolute-x-y second-position-graphic z-index-1' src={SpecialBadge2P} />
                                 </div>
@@ -138,6 +140,7 @@ const LeaderboardFlashRoute = () => {
                         <div className="d-flex-row j-c-end mt-xs-negative30">
                             <div className="d-flex-column align-items-center w-33 position-relative gap-0_5em">
                                 <div className='third-position position-relative'>
+                                    <span className='position-absolute bottom-0 z-index-3 bg-bronze-radial-gradient black pt-xs-6 pb-xs-6 pl-xs-10 pr-xs-10 border-radius-04 t-align-center f-w-600'>3</span>
                                     <img className="third-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-7 z-index-2" src={leaderboard[2].image} />
                                     <img className='position-absolute-x-y third-position-graphic z-index-1' src={SpecialBadge3P} />
                                 </div>

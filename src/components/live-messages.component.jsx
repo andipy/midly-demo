@@ -39,7 +39,7 @@ const LiveMessages = () => {
         }
         setCurrentComment({
             type: 'COMMENT',
-            user_type: 'artist',
+            user_type: 'fan',
             content: '',
             timestamp: undefined,
             id: undefined
@@ -51,7 +51,7 @@ const LiveMessages = () => {
     // this 'currentComment' state and 'handleCurrentComment' function just handle the comment that the user is currently typing
     const [currentComment, setCurrentComment] = useState({
         type: 'COMMENT',
-        user_type: 'artist',
+        user_type: 'fan',
         content: '',
         timestamp: undefined,
         id: undefined
@@ -59,7 +59,7 @@ const LiveMessages = () => {
     const handleCurrentComment = (e) => {
         setCurrentComment({
             type: 'COMMENT',
-            user_type: 'artist',
+            user_type: 'fan',
             content: e.target.value,
             timestamp: undefined,
             id: undefined
@@ -123,20 +123,24 @@ const LiveMessages = () => {
             <div className="bg-dark-overlay-header">
                 <ContainerDefault containerSpecificStyle={'position-relative h-inherit d-flex-column j-c-end'}>
                     {/* thel following div is there to contain the messages sent to by the ARTIST, so they are divided by the flow of songs and messages sent by the fans */}
-                    <div className="d-flex-column grow-1 gap-0_5em mb-xs-2 bg-dark-overlay-header-3">
+                    {artistMessages.length > 0 &&
+                        <div className="d-flex-column grow-1 gap-0_5em mb-xs-2 bg-dark-overlay-header-3">
                         {artistMessages.map((message, key) => {
                             if ( message.user_type == 'artist' )
                                 return <LiveMessage key={key} message={message} />
                         })}
                     </div>
+                    }
 
                     {/* thel following div is there to contain the messages sent to by the FANS, they are merged in the flow of the songs and divided by the artist's messages */}
-                    <div className="d-flex-column grow-1 gap-0_5em">
-                        {liveMessages.map((message, key) => {
-                            if ( message.user_type == 'fan' || message.user_type == null )
-                                return <LiveMessage key={key} message={message} />
-                        })}
-                    </div>
+                    {liveMessages.length > 0 && 
+                        <div className="d-flex-column grow-1 gap-0_5em">
+                            {liveMessages.map((message, key) => {
+                                if ( message.user_type == 'fan' || message.user_type == null )
+                                    return <LiveMessage key={key} message={message} />
+                            })}
+                        </div>
+                    }
                     <Countdown />
                 </ContainerDefault>
             </div>
