@@ -123,7 +123,7 @@ const LiveMessages = () => {
             <div className="bg-dark-overlay-header">
                 <ContainerDefault containerSpecificStyle={'position-relative h-inherit d-flex-column j-c-end'}>
                     {/* thel following div is there to contain the messages sent to by the ARTIST, so they are divided by the flow of songs and messages sent by the fans */}
-                    <div className="d-flex-column grow-1 gap-0_5em mb-xs-2">
+                    <div className="d-flex-column grow-1 gap-0_5em mb-xs-2 bg-dark-overlay-header-3">
                         {artistMessages.map((message, key) => {
                             if ( message.user_type == 'artist' )
                                 return <LiveMessage key={key} message={message} />
