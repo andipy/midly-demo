@@ -1793,6 +1793,7 @@ filter: blur(2.5px);
       border-radius: .8em;
       border: none;
       text-indent: 20px;
+      font-size: 1.1em;
   }
   textarea {
     width: 100%;
@@ -1800,6 +1801,7 @@ filter: blur(2.5px);
     border-radius: .8em;
     border: none;
     text-indent: 20px;
+    font-size: 1.1em;
 }
   .input-search {
       padding: 2% 0;
@@ -1809,7 +1811,6 @@ filter: blur(2.5px);
   }
   input::placeholder {
       color: #8d8d8d;
-      letter-spacing: .1em;
   }
   input[type=checkbox] {
       width: 24px;
