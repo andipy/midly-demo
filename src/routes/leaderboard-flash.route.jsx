@@ -20,9 +20,9 @@ import Fan6 from '../images/pictures/fan-6.jpg'
 import Fan7 from '../images/pictures/fan-7.jpg'
 import Fan8 from '../images/pictures/fan-8.jpg'
 import Fan9 from '../images/pictures/fan-9.jpg'
-import SpecialBadge1P from '../images/illustrations/special-badge-01-grad.png'
-import SpecialBadge2P from '../images/illustrations/special-badge-02-grad.png'
-import SpecialBadge3P from '../images/illustrations/special-badge-03-grad.png'
+import SpecialBadge1P from '../images/illustrations/special-badge-01-grad-circ.png'
+import SpecialBadge2P from '../images/illustrations/special-badge-02-grad-circ.png'
+import SpecialBadge3P from '../images/illustrations/special-badge-03-grad-circ.png'
 import AlbumCover from '../images/pictures/thasup-album-cover.jpeg'
 
 const LeaderboardFlashRoute = () => {
