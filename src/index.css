@@ -18,6 +18,9 @@ body {
 p {
   line-height: 1.65em;
 }
+.line-height-1 {
+  line-height: 1;
+}
 .line-height-sm {
   line-height: 1.1rem;
 }
@@ -72,6 +75,9 @@ li {
   z-index: 99;
   width: 101%;
   aspect-ratio: 1.288 / 1;
+}
+.flash-badge-image-rotation {
+  transform: rotate(350deg);
 }
 
 

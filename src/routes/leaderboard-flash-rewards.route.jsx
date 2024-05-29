@@ -6,9 +6,12 @@ import Carousel from "../layout/carousel.layout"
 import NavbarBackOnly from "../components/navbar-back-only.component"
 import BadgeSpecialPreview from "../components/badge-special-preview.component"
 
-import SpecialBadge1 from '../images/illustrations/special-badge-01.png'
-import SpecialBadge2 from '../images/illustrations/special-badge-02.png'
-import SpecialBadge3 from '../images/illustrations/special-badge-03.png'
+//import SpecialBadge1 from '../images/illustrations/special-badge-01.png'
+// import SpecialBadge2 from '../images/illustrations/special-badge-02.png'
+//import SpecialBadge3 from '../images/illustrations/special-badge-03.png'
+import SpecialBadge1 from '../images/illustrations/GOLD.png'
+import SpecialBadge2 from '../images/illustrations/SILVER.png'
+import SpecialBadge3 from '../images/illustrations/BRONZE.png'
 
 const LeaderboardFlashRewardsRoute = () => {
 
@@ -48,15 +51,15 @@ const LeaderboardFlashRewardsRoute = () => {
         <FullScreenModalLayout>
             <NavbarBackOnly onClick={onClick} />
             <ContainerDefault>
-                <h1 className="fsize-xs-6 grey-100 f-w-600 mb-xs-2">Ottieni i BADGE speciali di TOP FAN</h1>
+                <h1 className="fsize-xs-4 grey-200 f-w-600 mb-xs-4">Vinci i badge di SUPER FAN</h1>
                 <Carousel>
                     {specialBadges.map((badge, key) => {
                         return (
-                            <BadgeSpecialPreview position={badge.position} image={badge.image} musicProduct={badge.musicProduct} key={key} />
+                            <BadgeSpecialPreview badge={badge} key={key} />
                         )
                     })}
                 </Carousel>
-                <h3 className="fsize-xs-3 grey-200 f-w-600 mt-xs-6 mb-xs-4">Come guadagnare punti</h3>
+                <h3 className="fsize-xs-4 grey-200 f-w-600 mt-xs-10 mb-xs-4">Come guadagnare punti</h3>
                 <div className="d-flex-row gap-0_5em">
                     <span className="fsize-xs-4 f-w-600 grey-200">x3</span>
                     <p className="fsize-xs-1 grey-300">Ogni ascolto del brano “titolo del brano” vale 3 punti: ti permette di scalare la classifica più velocemente, ma viene conteggiato massimo 5 volte</p>
