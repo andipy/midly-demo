@@ -12,6 +12,7 @@ import BadgeSpecialPreview from "../components/badge-special-preview.component"
 import SpecialBadge1 from '../images/illustrations/GOLD.png'
 import SpecialBadge2 from '../images/illustrations/SILVER.png'
 import SpecialBadge3 from '../images/illustrations/BRONZE.png'
+import SpecialBadgeGeneric from '../images/illustrations/GENERIC.png'
 
 const LeaderboardFlashRewardsRoute = () => {
 
@@ -40,6 +41,13 @@ const LeaderboardFlashRewardsRoute = () => {
         },{
             position: 3,
             image: SpecialBadge3,
+            musicProduct: {
+                musicProductType: 'track',
+                musicProductName: 'Titolo del brano'
+            }
+        },{
+            position: 4,
+            image: SpecialBadgeGeneric,
             musicProduct: {
                 musicProductType: 'track',
                 musicProductName: 'Titolo del brano'

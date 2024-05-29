@@ -8,7 +8,7 @@
 const BadgeSpecialPreview = ({ badge }) => {
     return (
         <div className="d-flex-column j-c-space-between w-min-100 bg-dark-soft pt-xs-6 pb-xs-8 pl-xs-8 pr-xs-4 border-radius-1 gap-1em mr-xs-2 position-relative overflow-all-hidden">
-            <span className="fsize-xs-10 f-w-700 lime-400 line-height-1 z-index-2">SUPER <br></br> FAN # {badge.position}</span>
+            <span className="fsize-xs-10 f-w-700 lime-400 line-height-1 z-index-2">SUPER <br></br> FAN #{badge.position}</span>
             
             <span className="f-w-300 grey-200 w-50 z-index-2">della classifica FLASH sul {badge.musicProduct.musicProductType == 'track' ? 'brano' : 'disco'}</span>
             <span className="fsize-xs-6 f-w-600 white w-60 z-index-2">{badge.musicProduct.musicProductName}</span>
