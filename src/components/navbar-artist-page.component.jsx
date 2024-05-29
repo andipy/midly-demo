@@ -31,7 +31,7 @@ const NavbarArtistPage = ({ smallTitle, avatarImage }) => {
                         <img className="avatar-36 border-radius-100" src={avatarImage} />                       
                         <img className="artist-avatar-verified-icon avatar-12" src={IconVerifiedArtist} />
                     </div>                    
-                    <h2 id="artist-name" className="f-w-600 fsize-xs-1 letter-spacing-1">{smallTitle}</h2>
+                    <h2 className="f-w-600 fsize-xs-1 letter-spacing-1">{smallTitle.length > 15 ? smallTitle.substring(0, 15) + '...' : smallTitle}</h2>
                 </div>
 
                 <div className={`${scrolled ? 'd-flex-row' : 'd-xs-none'} align-items-center j-c-center border-radius-100 avatar-36 bg-dark-soft-transp75 d-flex-row`}>

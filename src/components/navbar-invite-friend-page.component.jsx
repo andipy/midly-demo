@@ -19,7 +19,7 @@ const NavbarInviteFriendPage = ({ smallTitle, avatarImage }) => {
                             <img className="avatar-36 border-radius-100" src={avatarImage} />                       
                             <img className="artist-avatar-verified-icon avatar-12" src={IconVerifiedArtist} alt="Verified" />
                         </div>                    
-                        <h2 id="artist-name" className="f-w-600 fsize-xxl-2 fsize-xl-2 fsize-lg-2 fsize-md-2 fsize-sm-2 fsize-xs-2 letter-spacing-1 no-shrink w-100">{smallTitle}</h2>
+                        <h2 className="f-w-600 fsize-xxl-2 fsize-xl-2 fsize-lg-2 fsize-md-2 fsize-sm-2 fsize-xs-2 letter-spacing-1 no-shrink w-100">{smallTitle.length > 15 ? smallTitle.substring(0, 15) + '...' : smallTitle}</h2>
                     </div>
                 </div>
             </div>

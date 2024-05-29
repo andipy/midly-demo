@@ -98,7 +98,7 @@ const LiveMessages = () => {
                 setLiveMessages(prev => [...prev, songs.slice(-1)[0]])
             }
         
-            if ( liveMessages.length >= 5 ) {
+            if ( liveMessages.length >= 4 ) {
                 setLiveMessages(prev => prev.slice(1))
             }
         

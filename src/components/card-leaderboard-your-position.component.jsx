@@ -17,7 +17,7 @@ const CardLeaderboardYourPosition = ({ currentFanPosition, currentFanPoints, cur
     })
 
     return (
-        <article className={`d-flex-row align-items-center j-c-space-between w-100 position-sticky z-index-5 pr-xs-4 pl-xs-4 mb-xs-4 mt-xs-2 ${pathname.includes('leaderboard-flash') ? `${scrolled ? 'bg-black-transp50' : 'bg-dark-soft'} border-radius-100 pb-xs-3 pt-xs-3` : 'bg-dark-soft border-radius-08 pb-xs-3 pt-xs-3'}`} onClick={onClick}>
+        <article className={`d-flex-row align-items-center j-c-space-between w-100 position-sticky z-index-5 pr-xs-4 pl-xs-2 mb-xs-4 mt-xs-2 ${pathname.includes('leaderboard-flash') ? `${scrolled ? 'bg-black-transp50' : 'bg-dark-soft'} border-radius-100 pb-xs-2 pt-xs-2` : 'bg-dark-soft border-radius-08 pb-xs-2 pt-xs-2'}`} onClick={onClick}>
             {currentFanPoints > 0 ?
             <>
                 <div className="d-flex-row align-items-center j-c-start no-shrink">

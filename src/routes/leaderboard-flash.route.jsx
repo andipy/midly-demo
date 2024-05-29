@@ -20,9 +20,9 @@ import Fan6 from '../images/pictures/fan-6.jpg'
 import Fan7 from '../images/pictures/fan-7.jpg'
 import Fan8 from '../images/pictures/fan-8.jpg'
 import Fan9 from '../images/pictures/fan-9.jpg'
-import SpecialBadge1P from '../images/illustrations/special-badge-01-grad-circ.png'
-import SpecialBadge2P from '../images/illustrations/special-badge-02-grad-circ.png'
-import SpecialBadge3P from '../images/illustrations/special-badge-03-grad-circ.png'
+import SpecialBadge1P from '../images/illustrations/flash-podium-1.png'
+import SpecialBadge2P from '../images/illustrations/flash-podium-2.png'
+import SpecialBadge3P from '../images/illustrations/flash-podium-3.png'
 import AlbumCover from '../images/pictures/thasup-album-cover.jpeg'
 
 const LeaderboardFlashRoute = () => {
@@ -81,6 +81,31 @@ const LeaderboardFlashRoute = () => {
             username: "Big Law ::",
             points: 32,
             position: "9"
+        },{
+            image: Fan1,
+            username: "skusku78",
+            points: 31,
+            position: "10"
+        },{
+            image: Fan7,
+            username: "_blue_",
+            points: 27,
+            position: "11"
+        },{
+            image: Fan6,
+            username: "jack Mario",
+            points: 22,
+            position: "12"
+        },{
+            image: Fan8,
+            username: "gianfranco",
+            points: 19,
+            position: "13"
+        },{
+            image: Fan2,
+            username: "gremy",
+            points: 13,
+            position: "14"
         }
     ]
 
@@ -104,13 +129,18 @@ const LeaderboardFlashRoute = () => {
                         <div className="d-flex-row j-c-center">
                             <div className="d-flex-column align-items-center w-33 position-relative gap-0_5em">
                                 <div className='first-position position-relative'>
-                                    <span className='position-absolute bottom-0 z-index-3 bg-gold-radial-gradient black pt-xs-6 pb-xs-6 pl-xs-10 pr-xs-10 border-radius-06 t-align-center f-w-600'>1</span>
-                                    <img className="first-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-7 z-index-2" src={leaderboard[0].image} />
-                                    <img className='position-absolute-x-y first-position-graphic z-index-1' src={SpecialBadge1P} />
+                                    {/* <span className='position-absolute bottom-0 z-index-3 bg-gold-radial-gradient black pt-xs-6 pb-xs-6 pl-xs-10 pr-xs-10 border-radius-06 t-align-center f-w-600'>1</span> */}
+                                    <img className='position-absolute-x-y first-position-graphic z-index-2' src={SpecialBadge1P} />
+                                    
+                                    {leaderboard[0].image ?
+                                        <img className="first-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-6 z-index-1" src={leaderboard[0].image} />
+                                    :
+                                        <div className='first-position position-absolute-x-y bg-dark-soft border-radius-100 z-index-1 d-flex-row align-items-center j-c-center fsize-xs-6'>{leaderboard[0].username.charAt(0)}</div>
+                                    }
                                 </div>
 
                                 <div className="d-flex-column align-items-center">
-                                    <span className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[0].username}</span>
+                                    <span className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[0].username.length > 12 ? leaderboard[0].username.substring(0, 12) + '...' : leaderboard[0].username}</span>
                                     <div className="d-flex-row letter-spacing-1">
                                         <span className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[0].points}</span>
                                         <img className="ml-xs-2" src={IconPoints} />
@@ -119,16 +149,22 @@ const LeaderboardFlashRoute = () => {
                             </div>
                         </div>
 
-                        <div className="d-flex-row j-c-start mt-xs-negative5">
+                        <div className="d-flex-row j-c-start mt-xs-negative10">
                             <div className="d-flex-column align-items-center w-33 position-relative gap-0_5em">
                                 <div className='second-position position-relative'>
-                                    <span className='position-absolute bottom-0 z-index-3 bg-silver-radial-gradient black pt-xs-6 pb-xs-6 pl-xs-10 pr-xs-10 border-radius-06 t-align-center f-w-600'>2</span>
-                                    <img className="second-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-7 z-index-2" src={leaderboard[1].image} />
-                                    <img className='position-absolute-x-y second-position-graphic z-index-1' src={SpecialBadge2P} />
+                                    {/* <span className='position-absolute bottom-0 z-index-3 bg-silver-radial-gradient black pt-xs-6 pb-xs-6 pl-xs-10 pr-xs-10 border-radius-06 t-align-center f-w-600'>2</span> */}
+                                    
+                                    <img className='position-absolute-x-y second-position-graphic z-index-2' src={SpecialBadge2P} />
+
+                                    {leaderboard[1].image ?
+                                        <img className="second-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-6 z-index-1" src={leaderboard[1].image} />
+                                    :
+                                        <div className='second-position position-absolute-x-y bg-dark-soft border-radius-100 z-index-1 d-flex-row align-items-center j-c-center fsize-xs-6'>{leaderboard[1].username.charAt(0)}</div>
+                                    }
                                 </div>
 
                                 <div className="d-flex-column align-items-center">
-                                    <span className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[1].username}</span>
+                                    <span className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[1].username.length > 12 ? leaderboard[1].username.substring(0, 12) + '...' : leaderboard[1].username}</span>
                                     <div className="d-flex-row letter-spacing-1">
                                         <span className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[1].points}</span>
                                         <img className="ml-xs-2" src={IconPoints} />
@@ -137,16 +173,21 @@ const LeaderboardFlashRoute = () => {
                             </div>
                         </div>
 
-                        <div className="d-flex-row j-c-end mt-xs-negative30">
+                        <div className="d-flex-row j-c-end mt-xs-negative35">
                             <div className="d-flex-column align-items-center w-33 position-relative gap-0_5em">
                                 <div className='third-position position-relative'>
-                                    <span className='position-absolute bottom-0 z-index-3 bg-bronze-radial-gradient black pt-xs-6 pb-xs-6 pl-xs-10 pr-xs-10 border-radius-04 t-align-center f-w-600'>3</span>
-                                    <img className="third-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-7 z-index-2" src={leaderboard[2].image} />
-                                    <img className='position-absolute-x-y third-position-graphic z-index-1' src={SpecialBadge3P} />
+                                    {/* <span className='position-absolute bottom-0 z-index-3 bg-bronze-radial-gradient black pt-xs-6 pb-xs-6 pl-xs-10 pr-xs-10 border-radius-04 t-align-center f-w-600'>3</span> */}
+                                    <img className='position-absolute-x-y third-position-graphic z-index-2' src={SpecialBadge3P} />
+
+                                    {leaderboard[2].image ?
+                                        <img className="third-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-6 z-index-1" src={leaderboard[2].image} />
+                                    :
+                                        <div className='third-position position-absolute-x-y bg-dark-soft border-radius-100 z-index-1 d-flex-row align-items-center j-c-center fsize-xs-6'>{leaderboard[2].username.charAt(0)}</div>
+                                    }
                                 </div>
 
                                 <div className="d-flex-column align-items-center">
-                                    <span className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[2].username}</span>
+                                    <span className="fsize-xs-1 t-align-center letter-spacing-1">{leaderboard[2].username.length > 12 ? leaderboard[2].username.substring(0, 12) + '...' : leaderboard[2].username}</span>
                                     <div className="d-flex-row letter-spacing-1">
                                         <span className="grey-400 fsize-xs-1 letter-spacing-1">{leaderboard[2].points}</span>
                                         <img className="ml-xs-2" src={IconPoints} />

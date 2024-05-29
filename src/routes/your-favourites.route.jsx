@@ -55,22 +55,28 @@ const YourFavouritesRoute = () => {
         <>
             <NavbarDefault />
             <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
-                {sanremo && <section className="mb-xs-8">
-                    <CardSanremo />
-                </section>}
+                {sanremo &&
+                    <section className="mb-xs-8">
+                        <CardSanremo />
+                    </section>
+                }
 
-                {quizzes.length > 0 && <section>
-                    <TextTitle title={'Live quiz'} />
-                    <Carousel>
-                        {quizzes.map(quiz => <CardQuiz artistSlug={quiz.artistSlug} artName={quiz.artName} image={quiz.image} quizAlreadyPlayed={quiz.quizAlreadyPlayed} key={quiz.artName} />)}
-                    </Carousel>
-                </section>}
+                {quizzes.length > 0 &&
+                    <section>
+                        <TextTitle title={'Live quiz'} />
+                        <Carousel>
+                            {quizzes.map(quiz => <CardQuiz artistSlug={quiz.artistSlug} artName={quiz.artName} image={quiz.image} quizAlreadyPlayed={quiz.quizAlreadyPlayed} key={quiz.artName} />)}
+                        </Carousel>
+                    </section>
+                }
 
                 <section className={quizzes.length > 0 ? "mt-xs-8" : ''}>
                     <TextTitle title={'Preferiti'} />
                     <section>
-                        {favourites.map(favourite => <CardFollowedArtist artistSlug={favourite.artistSlug} artName={favourite.artName} image={favourite.image} invokedModal={favourite.invokedModal} key={favourite.artName} currentUser={favourite.currentUser} />
-                        )}
+                        {
+                            favourites.map(favourite => <CardFollowedArtist artist={favourite} key={favourite.artistSlug} />
+                        )
+                        }
                     </section>
                     <ButtonFollowMoreArtists />
                 </section>

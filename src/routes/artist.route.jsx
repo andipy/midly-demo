@@ -28,15 +28,16 @@ const ArtistRoute = () => {
 
     const [flashLeaderboard, setFlashLeaderboard] = useState(false)
     useEffect(() => {
-        if ( state.artName === 'thasup' ) {
+        if ( state.artistSlug === 'thasup' ) {
             setFlashLeaderboard(true)
             setUserCompeting(true)
         }
-        if ( state.artName === 'Arctic Monkeys' ) {
+        if ( state.artistSlug === 'arctic-monkeys' ) {
             setFlashLeaderboard(true)
             setUserCompeting(false)
         }
     }, [])
+    console.log(state)
 
     return (
         <>
@@ -45,7 +46,9 @@ const ArtistRoute = () => {
 
             <ContainerDefault containerSpecificStyle={''}>
                 <div className="mt-avatar-header position-sticky top-navbar z-index-max bg-dark">
-                    {flashLeaderboard && <MessageFlashLeaderboard state={state} />}
+                    {flashLeaderboard &&
+                        <MessageFlashLeaderboard artist={state} />
+                    }
                     <Tab />
                     {/* {!spotifyConnected &&
                         <Button style={'bg-green-spotify fsize-xs-3 f-w-500 white mt-xs-4'} label={'Connetti spotify e competi'} onClick={connectSpotify} />
