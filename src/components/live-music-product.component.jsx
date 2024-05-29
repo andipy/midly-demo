@@ -1,9 +1,9 @@
 import { Link, useNavigate, useLocation } from "react-router-dom"
 
-import IconSpotifyWhite from '../images/icons/icon-spotify.svg'
+// import IconSpotifyWhite from '../images/icons/icon-spotify.svg'
+// import IconBadgeGolden from '../images/icons/icon-badge-golden.png'
+// import IconInfoBlack from '../images/icons/icon-info-black.svg'
 import IconSpotifyGreen from '../images/icons/icon-spotify-green.svg'
-import IconBadgeGolden from '../images/icons/icon-badge-golden.png'
-import IconInfoBlack from '../images/icons/icon-info-black.svg'
 import IconInfoLime from '../images/icons/icon-info-lime.svg'
 import { useState } from "react"
 
@@ -12,7 +12,7 @@ const LiveMusicProduct = () => {
     const navigate = useNavigate()
     const { state } = useLocation()
 
-    const [product, setProduct] = useState('URAGANO DAMN')
+    const [product, setProduct] = useState('s!r! (feat. Lazza & Sfera Ebbasta)')
 
     return (
         <div className="d-flex-row align-items-center j-c-space-between gap-0_5em">
