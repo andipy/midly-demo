@@ -70,11 +70,11 @@ const LeaderboardFlashRewardsRoute = () => {
                 <h3 className="fsize-xs-4 grey-200 f-w-600 mt-xs-10 mb-xs-4">Come guadagnare punti</h3>
                 <div className="d-flex-row gap-0_5em">
                     <span className="fsize-xs-4 f-w-600 grey-200">x3</span>
-                    <p className="fsize-xs-1 grey-300">Ogni ascolto del brano “titolo del brano” vale 3 punti: ti permette di scalare la classifica più velocemente, ma viene conteggiato massimo 5 volte</p>
+                    <p className="fsize-xs-1 grey-300">Ogni ascolto del brano “Titolo del brano” vale 3 punti: ti permette di scalare la classifica FLASH più velocemente.</p>
                 </div>
                 <div className="d-flex-row gap-0_5em mt-xs-4">
                     <span className="fsize-xs-4 f-w-600 grey-200">x1</span>
-                    <p className="fsize-xs-1 grey-300">Ogni altro brano di thasup ti fa fare 1 punto, e viene conteggiato massimo 3 volte</p>
+                    <p className="fsize-xs-1 grey-300">Ogni altro brano di thasup ti fa fare 1 punto, e viene conteggiato massimo 3 volte al giorno.</p>
                 </div>
             </ContainerDefault>
         </FullScreenModalLayout>

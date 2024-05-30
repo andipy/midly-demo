@@ -501,6 +501,9 @@ animation: dot-loader-after 1s infinite linear;
 .bg-green-300 {
   background-color: #42CD71;
 }
+.bg-green-900 {
+  background-color: #15221E;
+}
 .bg-dark-soft-transp75 {
   background-color: rgba(15, 17, 28, .75);
 }
@@ -512,6 +515,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .bg-red-400 {
   background-color: #E94359;
+}
+.bg-red-900 {
+  background-color: #2D1C1C;
 }
 .bg-purple-200-transp10 {
   background-color: rgba(203, 151, 255, 0.1);
@@ -542,6 +548,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .bg-orange-400 {
   background-color: #F5BE6B;
+}
+.bg-blue-400 {
+  background-color: #5CBBFF;
 }
 .bg-apple-music {
   background-color: #FE2C55;
@@ -813,6 +822,9 @@ animation: dot-loader-after 1s infinite linear;
 .red-300 {
   color: #FF6565;
 }
+.red-400 {
+  color: #F64040;
+}
 .red-500 {
   color: #FF0000;
 }
@@ -839,6 +851,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .aquamarine-200 {
   color: #73FFD5;
+}
+.green-400 {
+  color: #40F6BF
 }
 .gold {
   color: gold;
