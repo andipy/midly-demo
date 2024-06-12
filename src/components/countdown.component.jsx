@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import IconTime from '../images/icons/icon-time.svg'
 
 const Countdown = () => {
+
+    const location = useLocation()
 
     const [seconds, setSeconds] = useState(59)
     useEffect(() => {
@@ -27,7 +30,17 @@ const Countdown = () => {
     return (
         <div className='d-flex-row align-items-center pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-2 mb-xs-2 mt-xs-2 bg-white-transp15 border-radius-100 w-max-content'>
             <img className='avatar-28' src={IconTime} />
-            <p className="fsize-xs-2 no-shrink"><span className="f-w-600">Time left:</span> <span className="f-w-600">1</span>day <span className="f-w-600">23</span>h <span className="f-w-600">{minutes}</span>min <span className="f-w-600">{seconds}</span>s</p>
+            
+            <div className="d-flex-row gap-0_5em fsize-xs-2 no-shrink"
+            >
+                {!location.pathname.includes('artist-app') &&
+                    <span className="f-w-600">Time left:</span>
+                }
+                <span className="f-w-600">1<span className="f-w-300">d</span></span>
+                <span className="f-w-600">23<span className="f-w-300">h</span></span>
+                <span className="f-w-600">{minutes}<span className="f-w-300">m</span></span>
+                <span className="f-w-600">{seconds}<span className="f-w-300">s</span></span>
+            </div>
         </div>
     )
 }

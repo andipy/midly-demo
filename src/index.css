@@ -2109,6 +2109,12 @@ filter: blur(2.5px);
   .pt-xs-8 {
       padding-top: 8%;
   }
+  .pt-xs-12 {
+    padding-top: 12%;
+  }
+  .pt-xs-16 {
+    padding-top: 16%;
+  }
   .pt-xs-20 {
       padding-top: 20%;
   }
@@ -2582,6 +2588,12 @@ filter: blur(2.5px);
   .pt-sm-8 {
       padding-top: 8%;
   }
+  .pt-sm-12 {
+    padding-top: 12%;
+  }
+  .pt-sm-16 {
+    padding-top: 16%;
+  }
   .pt-sm-20 {
       padding-top: 20%;
   }
@@ -3003,6 +3015,12 @@ filter: blur(2.5px);
   .pt-md-8 {
       padding-top: 8%;
   }
+  .pt-md-12 {
+    padding-top: 12%;
+  }
+  .pt-md-16 {
+    padding-top: 16%;
+  }
   .pt-md-20 {
       padding-top: 20%;
   }
@@ -3421,6 +3439,12 @@ filter: blur(2.5px);
   .pt-lg-8 {
       padding-top: 8%;
   }
+  .pt-lg-12 {
+    padding-top: 12%;
+  }
+  .pt-lg-16 {
+    padding-top: 16%;
+  }
   .pt-lg-20 {
       padding-top: 20%;
   }
@@ -3836,6 +3860,12 @@ filter: blur(2.5px);
   }
   .pt-xl-8 {
       padding-top: 8%;
+  }
+  .pt-xl-12 {
+    padding-top: 12%;
+  }
+  .pt-xl-16 {
+    padding-top: 16%;
   }
   .pt-xl-20 {
       padding-top: 20%;
@@ -4255,6 +4285,12 @@ filter: blur(2.5px);
   }
   .pt-xxl-8 {
       padding-top: 8%;
+  }
+  .pt-xxl-12 {
+    padding-top: 12%;
+  }
+  .pt-xxl-16 {
+    padding-top: 16%;
   }
   .pt-xxl-20 {
       padding-top: 20%;

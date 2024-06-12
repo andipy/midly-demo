@@ -1,39 +1,33 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 
-import ContainerDefault from "../layout/container-default.layout";
-import Carousel from "../layout/carousel.layout";
+import { ArtistsContext } from "../contexts/artists.context"
+import { CurrentFanContext } from "../contexts/currentFan.context"
 
-import CardFollowedArtist from "../components/card-followed-artist.component";
-import NavbarDefault from "../components/navbar-default.component";
-import ButtonFollowMoreArtists from "../components/button-follow-more-artists.components";
-import CardQuiz from "../components/card-quiz.component";
-import CardSanremo from "../components/card-sanremo.component";
-import Appbar from "../components/appbar.component";
+import ContainerDefault from "../layout/container-default.layout"
+import Carousel from "../layout/carousel.layout"
 
-import TextTitle from "../components/text-title.component";
+import CardFollowedArtist from "../components/card-followed-artist.component"
+import NavbarDefault from "../components/navbar-default.component"
+import ButtonFollowMoreArtists from "../components/button-follow-more-artists.components"
+import CardQuiz from "../components/card-quiz.component"
+import CardSanremo from "../components/card-sanremo.component"
+import Appbar from "../components/appbar.component"
+
+import TextTitle from "../components/text-title.component"
 
 const YourFavouritesRoute = () => {
-    const [favourites, setFavourites] = useState([
-        {
-            artistSlug: 'arctic-monkeys',
-            artName: 'Arctic Monkeys',
-            image: require('../images/pictures/arcticmonkeys.jpg'),
-            invokedModal: false,
-            currentUser: {
-                points: 0,
-                position: 8
-            }
-        },{
-            artistSlug: 'thasup',
-            artName: 'thasup',
-            image: require('../images/pictures/thasup.jpg'),
-            invokedModal: false,
-            currentUser: {
-                points: 467,
-                position: 8
-            }
-        }
-    ])
+
+    const { artists } = useContext(ArtistsContext)
+    const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+    
+    const [favourites, setFavourites] = useState([])
+    const fetchFavourites = () => {
+        const followedArtistIds = currentFan.leaderboardsFollowed.map(artist => artist.artistId)
+
+        const followedArtists = artists.filter(artist => followedArtistIds.includes(artist.id))
+
+        setFavourites(followedArtists)
+    }
 
     const [quizzes, setQuizzes] = useState([
         // {
@@ -51,6 +45,10 @@ const YourFavouritesRoute = () => {
 
     const [sanremo, setSanremo] = useState(false)
 
+    useEffect(() => {
+        fetchFavourites()
+    }, [])
+
     return (
         <>
             <NavbarDefault />
@@ -65,7 +63,7 @@ const YourFavouritesRoute = () => {
                     <section>
                         <TextTitle title={'Live quiz'} />
                         <Carousel>
-                            {quizzes.map(quiz => <CardQuiz artistSlug={quiz.artistSlug} artName={quiz.artName} image={quiz.image} quizAlreadyPlayed={quiz.quizAlreadyPlayed} key={quiz.artName} />)}
+                            {quizzes.map(quiz => <CardQuiz slug={quiz.slug} artName={quiz.artName} image={quiz.image} quizAlreadyPlayed={quiz.quizAlreadyPlayed} key={quiz.artName} />)}
                         </Carousel>
                     </section>
                 }
@@ -74,7 +72,7 @@ const YourFavouritesRoute = () => {
                     <TextTitle title={'Preferiti'} />
                     <section>
                         {
-                            favourites.map(favourite => <CardFollowedArtist artist={favourite} key={favourite.artistSlug} />
+                            favourites.map(favourite => <CardFollowedArtist artist={favourite} key={favourite.id} />
                         )
                         }
                     </section>

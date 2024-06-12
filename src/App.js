@@ -6,17 +6,22 @@ import {
 
 import './index.css'
 
-import InviteFriendRoute from './routes/invite-friend.route';
-import QuizResultRoute from "./routes/quiz-result.route";
-import QuizGameplayRoute from "./routes/quiz-gameplay.route";
-import YourFavouritesRoute from "./routes/your-favourites.route";
-import ArtistRoute from "./routes/artist.route";
-import LeaderboardRoute from "./routes/leaderboard.route";
-import LeaderboardFlashRoute from "./routes/leaderboard-flash.route";
-import Sanremo2024Route from "./routes/sanremo-2024.route";
-import LeaderboardFlashRewardsRoute from "./routes/leaderboard-flash-rewards.route";
+import { ArtistsProvider } from "./contexts/artists.context"
+import { CurrentFanProvider } from "./contexts/currentFan.context"
+import { CurrentArtistProvider } from "./contexts/currentArtist.context";
 
-import FanclubRoute from "./routes/fanclub.route.artist";
+import InviteFriendRoute from './routes/invite-friend.route'
+import QuizResultRoute from "./routes/quiz-result.route"
+import QuizGameplayRoute from "./routes/quiz-gameplay.route"
+import YourFavouritesRoute from "./routes/your-favourites.route"
+import ArtistRoute from "./routes/artist.route"
+import LeaderboardRoute from "./routes/leaderboard.route"
+import LeaderboardFlashRoute from "./routes/leaderboard-flash.route"
+import Sanremo2024Route from "./routes/sanremo-2024.route"
+import LeaderboardFlashRewardsRoute from "./routes/leaderboard-flash-rewards.route"
+
+import FanclubRoute from "./routes/fanclub.route.artist"
+import FlashLeaderboardsRoute from "./routes/flash-leaderboards.route.artist"
 
 const router = createBrowserRouter([
   {
@@ -58,12 +63,24 @@ const router = createBrowserRouter([
   },{
     path: '/artist-app/fan-club',
     element: <FanclubRoute />
+  },{
+    path: '/artist-app/flash-leaderboards',
+    element: <FlashLeaderboardsRoute />
+  },{
+    path: '/artist-app/flash-leaderboard',
+    element: <LeaderboardFlashRoute />
   }
 ])
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <ArtistsProvider>
+      <CurrentFanProvider>
+        <CurrentArtistProvider>
+          <RouterProvider router={router} />
+        </CurrentArtistProvider>
+      </CurrentFanProvider>
+    </ArtistsProvider>
   );
 }
 
