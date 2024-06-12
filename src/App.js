@@ -16,6 +16,8 @@ import LeaderboardFlashRoute from "./routes/leaderboard-flash.route";
 import Sanremo2024Route from "./routes/sanremo-2024.route";
 import LeaderboardFlashRewardsRoute from "./routes/leaderboard-flash-rewards.route";
 
+import FanclubRoute from "./routes/fanclub.route.artist";
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -53,6 +55,9 @@ const router = createBrowserRouter([
   },{
     path: '/quiz-gameplay',
     element: <QuizGameplayRoute />
+  },{
+    path: '/artist-app/fan-club',
+    element: <FanclubRoute />
   }
 ])
 

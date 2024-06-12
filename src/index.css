@@ -1722,7 +1722,7 @@ filter: blur(2.5px);
   height: var(--app-bar-height);
   position: fixed;
   bottom: -2px;
-  border-radius: 24px 24px 0 0;
+  /* border-radius: 24px 24px 0 0; */
   background-color: var(--color-main-bg);
   box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.6), 0 -12px 12px 0 rgba(0, 0, 0, 0.6);
 }
@@ -1754,7 +1754,7 @@ filter: blur(2.5px);
 /******************************************/
 :root {
   --top-bar-height: 10vh;
-  --app-bar-height: 12vh;
+  --app-bar-height: 11vh;
   --font-heading: 'Inter', sans-serif;;
   --font-body: 'Inter', sans-serif;
   --font-special-01: 'Exo 2', sans-serif;
