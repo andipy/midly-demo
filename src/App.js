@@ -2,31 +2,34 @@ import {
   createBrowserRouter,
   RouterProvider,
   Navigate
-} from "react-router-dom";
+} from 'react-router-dom';
 
 import './index.css'
 
-import { ArtistsProvider } from "./contexts/artists.context"
-import { CurrentFanProvider } from "./contexts/currentFan.context"
-import { CurrentArtistProvider } from "./contexts/currentArtist.context";
+import { ArtistsProvider } from './contexts/artists.context'
+import { CurrentFanProvider } from './contexts/currentFan.context'
+import { CurrentArtistProvider } from './contexts/currentArtist.context'
+import { FlashLeaderboardsProvider } from './contexts/flash-leaderboards.context'
 
+//FAN ROUTES
 import InviteFriendRoute from './routes/invite-friend.route'
-import QuizResultRoute from "./routes/quiz-result.route"
-import QuizGameplayRoute from "./routes/quiz-gameplay.route"
-import YourFavouritesRoute from "./routes/your-favourites.route"
-import ArtistRoute from "./routes/artist.route"
-import LeaderboardRoute from "./routes/leaderboard.route"
-import LeaderboardFlashRoute from "./routes/leaderboard-flash.route"
-import Sanremo2024Route from "./routes/sanremo-2024.route"
-import LeaderboardFlashRewardsRoute from "./routes/leaderboard-flash-rewards.route"
+import QuizResultRoute from './routes/quiz-result.route'
+import QuizGameplayRoute from './routes/quiz-gameplay.route'
+import YourFavouritesRoute from './routes/your-favourites.route'
+import ArtistRoute from './routes/artist.route'
+import LeaderboardRoute from './routes/leaderboard.route'
+import FlashLeaderboardRoute from './routes/flash-leaderboard.route'
+import Sanremo2024Route from './routes/sanremo-2024.route'
+import FlashLeaderboardRewardsRoute from './routes/flash-leaderboard-rewards.route'
 
-import FanclubRoute from "./routes/fanclub.route.artist"
-import FlashLeaderboardsRoute from "./routes/flash-leaderboards.route.artist"
+// ARTIST ROUTES
+import FanclubRoute from './routes/fanclub.route.artist'
+import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element:<Navigate to="/your-favourites" />
+    element:<Navigate to='/your-favourites' />
   },{
     path: '/your-favourites',
     element: <YourFavouritesRoute />
@@ -43,12 +46,12 @@ const router = createBrowserRouter([
     path: '/artist/:artistSlug/invite-friend',
     element: <InviteFriendRoute />
   },{
-    path: '/artist/:artistSlug/leaderboard-flash',
-    element: <LeaderboardFlashRoute />,
+    path: '/artist/:artistSlug/flash-leaderboard',
+    element: <FlashLeaderboardRoute />,
     children: [
       {
-        path: '/artist/:artistSlug/leaderboard-flash/rewards',
-        element: <LeaderboardFlashRewardsRoute />
+        path: '/artist/:artistSlug/flash-leaderboard/rewards',
+        element: <FlashLeaderboardRewardsRoute />
       }
     ]
   },{
@@ -68,7 +71,7 @@ const router = createBrowserRouter([
     element: <FlashLeaderboardsRoute />
   },{
     path: '/artist-app/flash-leaderboard',
-    element: <LeaderboardFlashRoute />
+    element: <FlashLeaderboardRoute />
   }
 ])
 
@@ -77,7 +80,9 @@ function App() {
     <ArtistsProvider>
       <CurrentFanProvider>
         <CurrentArtistProvider>
-          <RouterProvider router={router} />
+          <FlashLeaderboardsProvider>
+            <RouterProvider router={router} />
+          </FlashLeaderboardsProvider>
         </CurrentArtistProvider>
       </CurrentFanProvider>
     </ArtistsProvider>

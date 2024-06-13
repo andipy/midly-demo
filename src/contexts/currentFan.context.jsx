@@ -1,4 +1,4 @@
-import { useState, createContext } from "react"
+import { useState, createContext } from 'react'
 
 export const CurrentFanContext = createContext()
 
@@ -9,6 +9,7 @@ export const CurrentFanProvider = ({ children }) => {
         type: 'FAN',
         username: 'imtheKING',
         email: 'theking@gmail.com',
+        image: require('../images/pictures/fan-8.jpg'),
         hasSpotify: true,
         hasAppleMusic: false,
         hasInstagram: false,
@@ -21,7 +22,11 @@ export const CurrentFanProvider = ({ children }) => {
         ],
         fanclubsSubscribed: [
             {artistId: 2}
-        ]
+        ],
+        leaderboardStats: {
+            position: 8,
+            points: 111
+        }
     })
 
     return (

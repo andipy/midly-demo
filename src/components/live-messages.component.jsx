@@ -119,12 +119,12 @@ const LiveMessages = () => {
     },[artistMessages])
 
     return (
-        <div className="position-fixed bottom-0 w-100 z-index-5">
-            <div className="bg-dark-overlay-header">
+        <div className='position-fixed bottom-0 w-100 z-index-5'>
+            <div className='bg-dark-overlay-header'>
                 <ContainerDefault containerSpecificStyle={'position-relative h-inherit d-flex-column j-c-end'}>
                     {/* thel following div is there to contain the messages sent to by the ARTIST, so they are divided by the flow of songs and messages sent by the fans */}
                     {artistMessages.length > 0 &&
-                        <div className="d-flex-column grow-1 gap-0_5em mb-xs-2 bg-dark-overlay-header-3">
+                        <div className='d-flex-column grow-1 gap-0_5em mb-xs-2 bg-dark-overlay-header-3'>
                         {artistMessages.map((message, key) => {
                             if ( message.user_type == 'artist' )
                                 return <LiveMessage key={key} message={message} />
@@ -134,7 +134,7 @@ const LiveMessages = () => {
 
                     {/* thel following div is there to contain the messages sent to by the FANS, they are merged in the flow of the songs and divided by the artist's messages */}
                     {liveMessages.length > 0 && 
-                        <div className="d-flex-column grow-1 gap-0_5em">
+                        <div className='d-flex-column grow-1 gap-0_5em'>
                             {liveMessages.map((message, key) => {
                                 if ( message.user_type == 'fan' || message.user_type == null )
                                     return <LiveMessage key={key} message={message} />

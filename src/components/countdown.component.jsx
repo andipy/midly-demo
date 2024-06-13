@@ -31,15 +31,15 @@ const Countdown = () => {
         <div className='d-flex-row align-items-center pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-2 mb-xs-2 mt-xs-2 bg-white-transp15 border-radius-100 w-max-content'>
             <img className='avatar-28' src={IconTime} />
             
-            <div className="d-flex-row gap-0_5em fsize-xs-2 no-shrink"
+            <div className='d-flex-row gap-0_5em fsize-xs-2 no-shrink'
             >
                 {!location.pathname.includes('artist-app') &&
-                    <span className="f-w-600">Time left:</span>
+                    <span className='f-w-600'>Time left:</span>
                 }
-                <span className="f-w-600">1<span className="f-w-300">d</span></span>
-                <span className="f-w-600">23<span className="f-w-300">h</span></span>
-                <span className="f-w-600">{minutes}<span className="f-w-300">m</span></span>
-                <span className="f-w-600">{seconds}<span className="f-w-300">s</span></span>
+                <span className='f-w-600'>1<span className='f-w-300'>d</span></span>
+                <span className='f-w-600'>23<span className='f-w-300'>h</span></span>
+                <span className='f-w-600'>{minutes}<span className='f-w-300'>m</span></span>
+                <span className='f-w-600'>{seconds}<span className='f-w-300'>s</span></span>
             </div>
         </div>
     )

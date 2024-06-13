@@ -4,9 +4,9 @@ const NavbarBackOnly = ({ onClick }) => {
 
     return (
         <nav className={`d-flex-row align-items-center j-c-center white z-index-max top-0`}>
-            <div className="container d-flex-row align-items-center j-c-start w-100">
-                <div className="avatar-28" onClick={() => onClick()}>
-                    <img className="avatar-28 bg-dark-soft-transp75 border-radius-100" src={IconArrowLeft} />
+            <div className='container d-flex-row align-items-center j-c-start w-100'>
+                <div className='avatar-28' onClick={() => onClick()}>
+                    <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} />
                 </div>
             </div>
         </nav>

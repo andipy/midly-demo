@@ -1,4 +1,4 @@
-import { useState, createContext } from "react"
+import { useState, createContext } from 'react'
 
 export const ArtistsContext = createContext()
 
@@ -12,11 +12,6 @@ export const ArtistsProvider = ({ children }) => {
             image: require('../images/pictures/arcticmonkeys.jpg'),
             flashLeaderboard: {
                 status: 'PENDING',
-            },
-            invokedModal: false,
-            currentUser: {
-                points: 0,
-                position: 8
             }
         },{
             id: 2,
@@ -25,11 +20,6 @@ export const ArtistsProvider = ({ children }) => {
             image: require('../images/pictures/thasup.jpg'),
             flashLeaderboard: {
                 status: 'ONGOING',
-            },
-            invokedModal: false,
-            currentUser: {
-                points: 467,
-                position: 8
             }
         }
     ])
