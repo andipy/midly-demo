@@ -18,15 +18,15 @@ import TextTitle from "../components/text-title.component"
 const YourFavouritesRoute = () => {
 
     const { artists } = useContext(ArtistsContext)
-    const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+    const { currentFan } = useContext(CurrentFanContext)
     
     const [favourites, setFavourites] = useState([])
     const fetchFavourites = () => {
-        const followedArtistIds = currentFan.leaderboardsFollowed.map(artist => artist.artistId)
+        const favouriteArtistIds = currentFan.leaderboardsFollowed.map(artist => artist.artistId)
 
-        const followedArtists = artists.filter(artist => followedArtistIds.includes(artist.id))
+        const favouriteArtists = artists.filter(artist => favouriteArtistIds.includes(artist.id))
 
-        setFavourites(followedArtists)
+        setFavourites(favouriteArtists)
     }
 
     const [quizzes, setQuizzes] = useState([

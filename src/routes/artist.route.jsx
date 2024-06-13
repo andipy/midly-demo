@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useLocation, Outlet } from 'react-router-dom'
+
+import { ArtistsContext } from "../contexts/artists.context"
+import { CurrentFanContext } from "../contexts/currentFan.context"
 
 import ContainerDefault from '../layout/container-default.layout'
 import NavbarArtistPage from '../components/navbar-artist-page.component'
@@ -16,48 +19,72 @@ const ArtistRoute = () => {
 
     const { state } = useLocation()
 
-    const [spotifyConnected, setSpotifyConnected] = useState(true)
-    const connectSpotify = () => {
-        setSpotifyConnected(prev => !prev)
+    const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+
+    const { artists } = useContext(ArtistsContext)
+    const [artist, setArtist] = useState()
+    const fetchThisArtist = () => {
+        const thisArtist = artists.filter(artist => state.id === artist.id)
+        console.log(thisArtist[0], 'this artist')
+        setArtist(thisArtist[0])
     }
 
     const [userCompeting, setUserCompeting] = useState(false)
-    const handleCompete = () => {
-        setUserCompeting(prev => !prev)
-    }
+    const fetchCompeting = () => {
+        if ( currentFan.leaderboardsFollowed.length > 0 ) {
+            const favouriteArtistIds = currentFan.leaderboardsFollowed.map(followed => followed.artistId)
 
-    const [flashLeaderboard, setFlashLeaderboard] = useState(false)
-    useEffect(() => {
-        if ( state.artistSlug === 'thasup' ) {
-            setFlashLeaderboard(true)
-            setUserCompeting(true)
-        }
-        if ( state.artistSlug === 'arctic-monkeys' ) {
-            setFlashLeaderboard(true)
+            if (favouriteArtistIds.includes(artist.id)) {
+                setUserCompeting(true)
+            } else {
+                setUserCompeting(false)
+            }
+        } else {
             setUserCompeting(false)
         }
-    }, [])
-    console.log(state)
+    }
+    
+    const handleCompete = () => {
+        if (userCompeting) {
+            const newLeaderboardsFollowed = currentFan.leaderboardsFollowed.filter(leaderboard => leaderboard.artistId !== artist.id);
+            setCurrentFan(prev => ({ ...prev, leaderboardsFollowed: newLeaderboardsFollowed }))
+        } else {
+            setCurrentFan(prev => ({
+                ...prev,
+                leaderboardsFollowed: [...prev.leaderboardsFollowed, { artistId: artist.id }]
+            }))
+        }
+    }
+
+    useEffect(() => {
+        fetchThisArtist()
+    }, [artists])
+
+    useEffect(() => {
+        if (artist) {
+            fetchCompeting()
+        }
+    }, [currentFan, artist])
 
     return (
         <>
-            <NavbarArtistPage smallTitle={state.artName} avatarImage={state.image} />
-            <CoverArtistPage artName={state.artName} image={state.image} flashLeaderboard={flashLeaderboard} userCompeting={userCompeting} handleCompete={handleCompete} />
+            <NavbarArtistPage artist={artist} />
+            <CoverArtistPage artist={artist} userCompeting={userCompeting} handleCompete={handleCompete} currentFan={currentFan} />
 
             <ContainerDefault containerSpecificStyle={''}>
                 <div className="mt-avatar-header position-sticky top-navbar z-index-max bg-dark">
-                    {flashLeaderboard &&
-                        <MessageFlashLeaderboard artist={state} />
+                    {artist?.flashLeaderboard.status === 'ONGOING' || artist?.flashLeaderboard.status === 'PENDING' ?
+                        <MessageFlashLeaderboard artist={artist} /> : null
                     }
                     <Tab />
-                    {/* {!spotifyConnected &&
-                        <Button style={'bg-green-spotify fsize-xs-3 f-w-500 white mt-xs-4'} label={'Connetti spotify e competi'} onClick={connectSpotify} />
-                    } */}
-                    {spotifyConnected && !userCompeting &&
+                    {!currentFan.hasSpotify &&
+                        <Button style={'bg-green-spotify fsize-xs-3 f-w-500 white mt-xs-4'} label={'Connetti spotify e competi'} />
+                    }
+                    {currentFan.hasSpotify && !userCompeting &&
                         <Button style={'bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4'} label={'Competi nella classifica'} onClick={handleCompete} />
                     }
-                    {userCompeting &&
-                        <CardLeaderboardYourPosition currentFanPoints={state.currentUser.points} currentFanPosition={state.currentUser.position} currentFanImage={Fan8} flashLeaderboard={flashLeaderboard} />
+                    {userCompeting && currentFan.hasSpotify &&
+                        <CardLeaderboardYourPosition currentFanPoints={state.currentUser.points} currentFanPosition={state.currentUser.position} currentFanImage={Fan8} />
                     }
                 </div>
                 <Outlet />

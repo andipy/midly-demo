@@ -10,7 +10,9 @@ export const ArtistsProvider = ({ children }) => {
             slug: 'arctic-monkeys',
             artistName: 'Arctic Monkeys',
             image: require('../images/pictures/arcticmonkeys.jpg'),
-            hasFlashLeadeboard: 'PENDING',
+            flashLeaderboard: {
+                status: 'PENDING',
+            },
             invokedModal: false,
             currentUser: {
                 points: 0,
@@ -21,7 +23,9 @@ export const ArtistsProvider = ({ children }) => {
             slug: 'thasup',
             artistName: 'thasup',
             image: require('../images/pictures/thasup.jpg'),
-            hasFlashLeadeboard: 'ONGOING',
+            flashLeaderboard: {
+                status: 'ONGOING',
+            },
             invokedModal: false,
             currentUser: {
                 points: 467,
