@@ -21,8 +21,8 @@ const FlashLeaderboardRewardsRoute = () => {
     const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
     const [leaderboard, setLeaderboard] = useState()
     const fetchThisLeaderboard = () => {
-        const thisLeaderboard = flashLeaderboards.filter(elem => state.id === elem.artistId)
-        setLeaderboard(thisLeaderboard[0])
+        const thisLeaderboard = flashLeaderboards.find(elem => state.id === elem.artistId)
+        setLeaderboard(thisLeaderboard)
     }
 
     useEffect(() => {

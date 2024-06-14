@@ -11,8 +11,7 @@ export const CurrentArtistProvider = ({ children }) => {
         artistName: 'thasup',
         email: 'thasup.midly@gmail.com',
         image: require('../images/pictures/thasup.jpg'),
-        hasFlashLeadeboard: 'ONGOING',
-        hasFanclub: false
+        hasFlashLeadeboard: 'ONGOING'
     })
 
     return (

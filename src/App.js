@@ -11,6 +11,7 @@ import { CurrentFanProvider } from './contexts/currentFan.context'
 import { CurrentArtistProvider } from './contexts/currentArtist.context'
 import { FlashLeaderboardsProvider } from './contexts/flash-leaderboards.context'
 import { LeaderboardsProvider } from './contexts/leaderboards.context'
+import { FanclubsProvider } from './contexts/fanclubs.context';
 
 //FAN ROUTES
 import InviteFriendRoute from './routes/invite-friend.route'
@@ -89,7 +90,9 @@ function App() {
         <CurrentArtistProvider>
           <LeaderboardsProvider>
             <FlashLeaderboardsProvider>
-              <RouterProvider router={router} />
+              <FanclubsProvider>
+                <RouterProvider router={router} />
+              </FanclubsProvider>
             </FlashLeaderboardsProvider>
           </LeaderboardsProvider>
         </CurrentArtistProvider>

@@ -22,8 +22,8 @@ const ArtistRoute = () => {
     const { artists } = useContext(ArtistsContext)
     const [artist, setArtist] = useState()
     const fetchThisArtist = () => {
-        const thisArtist = artists.filter(artist => state.id === artist.id)
-        setArtist(thisArtist[0])
+        const thisArtist = artists.find(artist => state.id === artist.id)
+        setArtist(thisArtist)
     }
 
     const [userCompeting, setUserCompeting] = useState(false)

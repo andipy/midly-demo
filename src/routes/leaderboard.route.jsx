@@ -15,8 +15,8 @@ const LeaderboardRoute = () => {
     
     const [leaderboard, setLeaderboard] = useState()
     const fetchThisLeaderboard = () => {
-        const thisLeaderboard = leaderboards.filter(elem => location.state.id === elem.artistId)
-        setLeaderboard(thisLeaderboard[0])
+        const thisLeaderboard = leaderboards.find(elem => location.state.id === elem.artistId)
+        setLeaderboard(thisLeaderboard)
     }
 
     useEffect(() => {

@@ -1,5 +1,6 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
+import { FanclubsContext } from '../contexts/fanclubs.context'
 
 import Appbar from '../components/appbar.component.artist'
 import Button from '../components/button.component'
@@ -12,15 +13,25 @@ import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
 const FanclubRoute = () => {
 
     const { currentArtist } = useContext(CurrentArtistContext)
+    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
 
-    console.log(currentArtist, 'current artist')
+    const [fanclub, setFanclub] = useState(null)
+    const fetchThisFanclub = () => {
+        const thisFanclub = fanclubs.find(elem => elem.artistId === currentArtist.id)
+        setFanclub(thisFanclub)
+    }
+    useEffect(() => {
+        fetchThisFanclub()
+    }, [fanclubs])
 
     return (
         <>
-            <Navbar />
+            <Navbar fanclub={fanclub} />
 
-            {currentArtist.hasFanclub ? 
-                <div className='pt-xs-topbar'>Lista dei post</div>
+            {fanclub?.isActive ?
+                <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
+                    <h1>Fanclub</h1>
+                </ContainerDefault>
             :
                 <FullPageCenter>
                     <ContainerDefault containerSpecificStyle='d-flex-column align-items-center j-c-center gap-1em'>
