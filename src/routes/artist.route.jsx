@@ -88,7 +88,7 @@ const ArtistRoute = () => {
             </ContainerDefault>
             
             <ContainerDefault containerSpecificStyle='position-sticky bottom-2 z-index-5'>
-                <CardInviteFriend state={state} />
+                <CardInviteFriend artist={artist} />
             </ContainerDefault>
         </>
     )

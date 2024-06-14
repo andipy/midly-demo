@@ -23,7 +23,7 @@ const InviteFriendRoute = () => {
 
     return (
         <>
-            <NavbarInviteFriendPage smallTitle={location.state.artName} avatarImage={location.state.image} />
+            <NavbarInviteFriendPage smallTitle={location.state.artistName} avatarImage={location.state.image} />
             <InviteFriendCover />
             <Snackbar message={'Link copied to clipboard'} triggered={triggered} />
 
