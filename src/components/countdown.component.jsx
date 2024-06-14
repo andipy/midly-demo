@@ -33,7 +33,7 @@ const Countdown = () => {
             
             <div className='d-flex-row gap-0_5em fsize-xs-2 no-shrink'
             >
-                {!location.pathname.includes('artist-app') &&
+                {!location.pathname.includes('artist-app/flash-leaderboards') &&
                     <span className='f-w-600'>Time left:</span>
                 }
                 <span className='f-w-600'>1<span className='f-w-300'>d</span></span>

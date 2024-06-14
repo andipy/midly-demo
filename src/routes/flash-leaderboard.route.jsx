@@ -21,7 +21,7 @@ import SpecialBadge3P from '../images/illustrations/flash-podium-3.png'
 
 const FlashLeaderboardRoute = () => {
 
-    const { state } = useLocation()
+    const { state, pathname } = useLocation()
 
     const { currentFan } = useContext(CurrentFanContext)
     
@@ -59,15 +59,15 @@ const FlashLeaderboardRoute = () => {
             <ContainerDefault containerSpecificStyle='mt-avatar-header-2 pb-xs-24 pb-md-8'>
                 <div className='d-flex-column position-sticky top-navbar z-index-max'>
                     <LiveMusicProduct artist={artist} leaderboard={leaderboard} />
-                    {currentFan.hasSpotify ?
+                    {currentFan.hasSpotify && !pathname.includes('artist-app') ?
                         <CardLeaderboardYourPosition currentFan={currentFan}  />
-                    :
+                    : !pathname.includes('artist-app') &&
                         <Button style='bg-green-spotify white letter-spacing-1 f-w-500 mt-xs-4' label='CONNETTI SPOTIFY E COMPETI' />
                     }
                 </div>
                 
                 {leaderboard ?
-                    <section>
+                    <section className={pathname.includes('artist-app') ? 'mt-xs-4' : ''}>
                     <div className='mb-xs-4'>
                         <div className='d-flex-row j-c-center'>
                             <div className='d-flex-column align-items-center w-33 position-relative gap-0_5em'>

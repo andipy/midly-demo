@@ -1,26 +1,40 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
+
 import IconTrophy from '../images/icons/icon-flash-leaderboard-inactive.svg'
 
 import Countdown from './countdown.component'
 import Button from './button.component'
 
-const CardFlashLeaderboard = ({ flashLeaderboard }) => {
+const CardFlashLeaderboard = () => {
 
     const navigate = useNavigate()
+    
+    const { currentArtist } = useContext(CurrentArtistContext)
 
     return (
         <>
-            {flashLeaderboard ?
+            {currentArtist?.hasFlashLeadeboard === 'ONGOING' ?
                 <div className='bg-dark-gradient d-flex-column align-items-center j-c-center border-radius-1 pt-xs-12 pb-xs-12'>
                     <img className='w-15' src={IconTrophy} />
                     <h4 className='fsize-xs-3 mb-xs-4 letter-spacing-1 f-w-400 white t-align-center mt-xs-4'>Classifica FLASH in corso:</h4>
-                    <Button style='bg-acid-lime dark-900 border-radius-04 w-80 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4 fsize-xs-3 f-w-600' label='Controlla la classifica' onClick={() => navigate('/artist-app/flash-leaderboard')} />
+                    <Button style='bg-acid-lime dark-900 border-radius-04 w-80 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4 fsize-xs-3 f-w-600' label='Controlla la classifica' onClick={() => navigate('/artist-app/flash-leaderboard', {state: currentArtist})} />
                     <div className='d-flex-column align-items-center j-c-center mt-xs-16'>
-                        <h4 className='fsize-xs-2 mb-xs-4 letter-spacing-1 f-w-400 grey-300 t-align-center'>Classifica FLASH termina tra:</h4>
+                        <h4 className='fsize-xs-2 mb-xs-4 letter-spacing-1 f-w-400 grey-300 t-align-center'>Termina tra:</h4>
                         <Countdown />
                     </div>
                 </div>
+            : currentArtist?.hasFlashLeadeboard === 'PENDING' ?
+                <div className='bg-dark-gradient d-flex-column align-items-center j-c-center border-radius-1 pt-xs-12 pb-xs-12'>
+                    <div className='d-flex-column align-items-center j-c-center'>
+                        <img className='w-15' src={IconTrophy} />
+                        <h4 className='fsize-xs-3 mb-xs-4 letter-spacing-1 f-w-400 white t-align-center mt-xs-4'>Classifica FLASH apre tra:</h4>
+                        <Countdown />
+                    </div>
+                </div>
+
             :
                 <div className='d-flex-column align-items-center j-c-center'>
                     <img className='avatar-48' src={IconTrophy} />

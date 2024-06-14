@@ -6,7 +6,7 @@ import IconInfoLime from '../images/icons/icon-info-lime.svg'
 const LiveMusicProduct = ({ artist, leaderboard }) => {
 
     const navigate = useNavigate()
-    const { state } = useLocation()
+    const { state, pathname } = useLocation()
 
     return (
         <div className='d-flex-row align-items-center j-c-space-between gap-0_5em'>
@@ -22,8 +22,16 @@ const LiveMusicProduct = ({ artist, leaderboard }) => {
                 </div>
             </Link>
             <div
-                className='d-flex-row align-items-center j-c-center border-radius-100 avatar-40 bg-black-transp50 position-relative'
-                onClick={() => navigate(`/artist/${artist?.slug}/flash-leaderboard/rewards`, { state : {...state, invokedModal: true}})}
+                className='d-flex-row align-items-center j-c-center border-radius-100 avatar-40 bg-black-transp50 position-relative no-shrink'
+                onClick={
+                    () => {
+                        if ( !pathname.includes('artist-app') ) {
+                            navigate(`/artist/${artist?.slug}/flash-leaderboard/rewards`, { state : {...state, invokedModal: true}})
+                        } else {
+                            navigate(`/artist-app/flash-leaderboard/rewards`, { state : {...state, invokedModal: true}})
+                        }
+                    }
+                }
             >
                 <div className='position-absolute-x-y bg-gold-transp25 border-radius-100 z-index-1 flash-animation-badge-icon'></div>
                 <img className='avatar-32 z-index-2' src={IconInfoLime} />

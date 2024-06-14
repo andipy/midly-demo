@@ -72,7 +72,13 @@ const router = createBrowserRouter([
     element: <FlashLeaderboardsRoute />
   },{
     path: '/artist-app/flash-leaderboard',
-    element: <FlashLeaderboardRoute />
+    element: <FlashLeaderboardRoute />,
+    children: [
+      {
+        path: '/artist-app/flash-leaderboard/rewards',
+        element: <FlashLeaderboardRewardsRoute />
+      }
+    ]
   }
 ])
 

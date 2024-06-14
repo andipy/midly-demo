@@ -12,7 +12,7 @@ import BadgeSpecialPreview from '../components/badge-special-preview.component'
 const FlashLeaderboardRewardsRoute = () => {
 
     const navigate = useNavigate()
-    const { state } = useLocation()
+    const { state, pathname } = useLocation()
 
     const onClick = () => {
         navigate(-1, { state : {...state, invokedModal: false}})
@@ -35,7 +35,13 @@ const FlashLeaderboardRewardsRoute = () => {
         <FullScreenModalLayout>
             <NavbarBackOnly onClick={onClick} />
             <ContainerDefault>
-                <h1 className='fsize-xs-4 grey-200 f-w-600 mb-xs-4'>Vinci i badge di SUPER FAN</h1>
+                <h1 className='fsize-xs-4 grey-200 f-w-600 mb-xs-4'>
+                    {!pathname.includes('artist-app') ?
+                        'Vinci i badge di SUPER FAN'
+                    :
+                        'I badge in palio per i tuoi SUPER FAN'
+                    }
+                </h1>
                 <Carousel>
                     {leaderboard?.badges.map((badge, key) => {
                         return (
@@ -43,7 +49,13 @@ const FlashLeaderboardRewardsRoute = () => {
                         )
                     })}
                 </Carousel>
-                <h3 className='fsize-xs-4 grey-200 f-w-600 mt-xs-10 mb-xs-4'>Come guadagnare punti</h3>
+                <h3 className='fsize-xs-4 grey-200 f-w-600 mt-xs-10 mb-xs-4'>
+                    {!pathname.includes('artist-app') ?
+                        'Come guadagnare punti'
+                    :
+                        'Come i tuoi fan guadagnano punti'
+                    }
+                </h3>
                 <div className='d-flex-row gap-0_5em'>
                     <span className='fsize-xs-4 f-w-600 grey-200'>x3</span>
                     {leaderboard?.song &&

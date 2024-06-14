@@ -1,4 +1,4 @@
-const FullPageEmptyState = ({ children }) => {
+const FullPageCenter = ({ children }) => {
     return (
         <div className='position-fixed w-100vw h-100vh z-index-1 d-flex-column align-items-center j-c-center'>
             {children}
@@ -6,4 +6,4 @@ const FullPageEmptyState = ({ children }) => {
     )
 }
 
-export default FullPageEmptyState
+export default FullPageCenter
