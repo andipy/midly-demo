@@ -16,7 +16,7 @@ const FanclubRoute = () => {
     const navigate = useNavigate()
 
     const { currentArtist } = useContext(CurrentArtistContext)
-    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
+    const { fanclubs } = useContext(FanclubsContext)
 
     const [fanclub, setFanclub] = useState(null)
     const fetchThisFanclub = () => {
