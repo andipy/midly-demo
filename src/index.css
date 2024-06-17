@@ -1553,7 +1553,9 @@ animation: dot-loader-after 1s infinite linear;
 .object-fit-cover {
   object-fit: cover;
 }
-
+.object-fit-none {
+  object-fit: none;
+}
 /******************************************/
 /************* PRIZE SECTION *************/
 /******************************************/
@@ -1671,6 +1673,15 @@ nav .container {
   height: 36px;
   color: #FFFFFF;
 }
+
+/******************************************/
+/************** VIDEO FRAME ***************/
+/******************************************/
+
+.video-frame-post-creation {
+  height: calc(100vh - var(--app-bar-height) - var(--top-bar-height) - 3vh);
+}
+
 
 /******************************************/
 /**************** LANDING *****************/

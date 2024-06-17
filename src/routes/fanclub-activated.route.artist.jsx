@@ -8,8 +8,6 @@ import Button from '../components/button.component'
 
 import ContainerDefault from '../layout/container-default.layout'
 
-import CoverSuccess from '../images/pictures/cover-success.png'
-
 const FanclubActivated = () => {
 
     const navigate = useNavigate()

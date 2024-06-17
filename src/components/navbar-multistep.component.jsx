@@ -24,7 +24,7 @@ const NavbarMultistep = ({ stepNumber }) => {
                 }
 
                 <div className='d-flex-row gap-0_5em'>
-                    <div className='avatar-32 d-flex-row align-items-center j-c-center'>
+                    <div className='avatar-32 d-flex-row align-items-center j-c-center' onClick={() => navigate(-1)}>
                         <img className='avatar-32' src={IconExit} alt='X' />
                     </div>
                 </div>
