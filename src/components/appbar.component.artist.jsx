@@ -28,18 +28,18 @@ const Appbar = () => {
                         <span className={`${location.pathname.includes('flash-leaderboards') ? 'f-w-700 lime-400' : 'f-w-300 white'} fsize-xs-0 letter-spacing-1`}>Classifica flash</span>
                     </div>                    
                 </Link>
-                <Link to='/artist-app/metrics'>
+                <div to='/artist-app/metrics'>
                     <div className='d-flex-column align-items-center'>
                         <img className='mb-xs-8' src={location.pathname.includes('metrics') ? IconStatsActive : IconStatsInactive} />
                         <span className={`${location.pathname.includes('metrics') ? 'f-w-700 lime-400' : 'f-w-300 white'} fsize-xs-0 letter-spacing-1`}>Stats</span>
                     </div>
-                </Link>
-                <Link to='/artist-app//profile'>
+                </div>
+                <div to='/artist-app//profile'>
                     <div className='d-flex-column align-items-center'>
                         <img className='mb-xs-8' src={location.pathname.includes('profile') ? IconProfileActive : IconProfileInactive} alt='Profile' />
                         <span className={`${location.pathname.includes('profile') ? 'f-w-700 lime-400' : 'f-w-300 white'} fsize-xs-0 letter-spacing-1`}>Profilo</span>
                     </div>
-                </Link>                
+                </div>                
             </div>
         </div>
 

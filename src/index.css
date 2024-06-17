@@ -444,6 +444,9 @@ animation: dot-loader-after 1s infinite linear;
 /************ BACKGROUND COLORS ***********/
 /******************************************/
 /****************** FLAT ******************/
+.bg-none {
+  background: none;
+}
 .bg-white {
   background-color: #ffffff;
 }
@@ -687,6 +690,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .border-red-dashed-1 {
   border: 1px dashed #E94359;
+}
+.border-lime {
+  border: 1.5px solid #DAEF64;
 }
 .underline-landing {
   border-bottom: 3px solid #f1cbff;

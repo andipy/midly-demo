@@ -11,7 +11,7 @@ import { CurrentFanProvider } from './contexts/currentFan.context'
 import { CurrentArtistProvider } from './contexts/currentArtist.context'
 import { FlashLeaderboardsProvider } from './contexts/flash-leaderboards.context'
 import { LeaderboardsProvider } from './contexts/leaderboards.context'
-import { FanclubsProvider } from './contexts/fanclubs.context';
+import { FanclubsProvider } from './contexts/fanclubs.context'
 
 //FAN ROUTES
 import InviteFriendRoute from './routes/invite-friend.route'
@@ -27,6 +27,10 @@ import FlashLeaderboardRewardsRoute from './routes/flash-leaderboard-rewards.rou
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
+import FanclubName from './routes/fanclub-name.route.artist'
+import FanclubCover from './routes/fanclub-cover.route.artist'
+import FanclubPricing from './routes/fanclub-pricing.route.artist'
+import FanclubActivated from './routes/fanclub-activated.route.artist'
 
 const router = createBrowserRouter([
   {
@@ -80,6 +84,18 @@ const router = createBrowserRouter([
         element: <FlashLeaderboardRewardsRoute />
       }
     ]
+  },{
+    path: '/artist-app/fan-club/name',
+    element: <FanclubName />
+  },{
+    path: '/artist-app/fan-club/cover',
+    element: <FanclubCover />
+  },{
+    path: '/artist-app/fan-club/pricing',
+    element: <FanclubPricing />
+  },{
+    path: '/artist-app/fan-club/activated',
+    element: <FanclubActivated />
   }
 ])
 
