@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import IconBack from '../images/icons/icon-arrowleft.svg'
 import IconExit from '../images/icons/icon-exit.svg'
@@ -6,6 +6,7 @@ import IconExit from '../images/icons/icon-exit.svg'
 const NavbarMultistep = ({ stepNumber }) => {
 
     const navigate = useNavigate()
+    const { pathname } = useLocation()
 
     return (
         <nav className='top-bar-area-overlay-fixed bg-dark d-flex-row align-items-center j-c-center white z-index-max top-0 shadow-dark-400'>
@@ -18,7 +19,9 @@ const NavbarMultistep = ({ stepNumber }) => {
                     <div className='avatar-32'></div>
                 }
 
-                <span>Passo {stepNumber} di 3</span>
+                {!pathname.includes('/content-creation') &&
+                    <span>Passo {stepNumber} di 3</span>
+                }
 
                 <div className='d-flex-row gap-0_5em'>
                     <div className='avatar-32 d-flex-row align-items-center j-c-center'>

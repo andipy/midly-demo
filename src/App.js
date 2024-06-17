@@ -31,6 +31,7 @@ import FanclubName from './routes/fanclub-name.route.artist'
 import FanclubCover from './routes/fanclub-cover.route.artist'
 import FanclubPricing from './routes/fanclub-pricing.route.artist'
 import FanclubActivated from './routes/fanclub-activated.route.artist'
+import ContentCreation from './routes/content-creation.route.artist'
 
 const router = createBrowserRouter([
   {
@@ -96,6 +97,9 @@ const router = createBrowserRouter([
   },{
     path: '/artist-app/fan-club/activated',
     element: <FanclubActivated />
+  },{
+    path: '/artist-app/content-creation',
+    element: <ContentCreation />
   }
 ])
 
