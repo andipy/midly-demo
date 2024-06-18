@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 
 import IconArrowUp from '../images/icons/icon-arrow-up.svg'
 
-const Textbar = ({ currentComment, handleCurrentComment, handleSubmitComment }) => {
+const Textbar = ({ currentComment, handleCurrentComment, handleSubmitComment, onClick }) => {
 
     const { pathname } = useLocation()
 
@@ -19,6 +19,7 @@ const Textbar = ({ currentComment, handleCurrentComment, handleSubmitComment }) 
                             'Chatta con i tuoi fan'
                     }
                     onChange={(e) => handleCurrentComment(e)} value={currentComment.content}
+                    onClick={onClick}
                 />
                 <button className='chat-button d-flex-row align-items-center j-c-center bg-acid-lime'><img src={IconArrowUp} /></button>
             </form>                

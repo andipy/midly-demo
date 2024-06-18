@@ -1323,6 +1323,9 @@ animation: dot-loader-after 1s infinite linear;
 .h-10px {
   height: 10px;
 }
+.h-0 {
+  height: 0;
+}
 .h-min-100vh {
   min-height: 100vh;
 }

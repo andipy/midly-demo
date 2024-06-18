@@ -118,9 +118,12 @@ const LiveMessages = () => {
         }
     },[artistMessages])
 
+    const [chatOpen, setChatOpen] = useState(true)
+
     return (
         <div className='position-fixed bottom-0 w-100 z-index-5'>
-            <div className='bg-dark-overlay-header'>
+            <div className={`bg-dark overflow-hidden position-relative ${chatOpen ? 'pt-xs-4 border-top-dark-01' : 'h-0'}`}>
+                <span onClick={() => setChatOpen(false)} className='position-absolute top-0 right-0 f-w-600 lime-400 mt-xs-2 mr-xs-2'>Chiudi chat</span>
                 <ContainerDefault containerSpecificStyle={'position-relative h-inherit d-flex-column j-c-end'}>
                     {/* thel following div is there to contain the messages sent to by the ARTIST, so they are divided by the flow of songs and messages sent by the fans */}
                     {artistMessages.length > 0 &&
@@ -144,7 +147,7 @@ const LiveMessages = () => {
                     <Countdown />
                 </ContainerDefault>
             </div>
-            <Textbar currentComment={currentComment} handleCurrentComment={handleCurrentComment} handleSubmitComment={handleSubmitComment} />
+            <Textbar onClick={() => setChatOpen(true)} currentComment={currentComment} handleCurrentComment={handleCurrentComment} handleSubmitComment={handleSubmitComment} />
         </div>
     )
 }
