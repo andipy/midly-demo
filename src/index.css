@@ -655,6 +655,9 @@ animation: dot-loader-after 1s infinite linear;
 /******************************************/
 
 /************** BORDER COLORS ************/
+.border-white {
+  border: 2px solid #FFFFFF;
+}
 .border-gold {
   border: 8px solid #e6c600;
 }
@@ -1762,6 +1765,14 @@ filter: blur(2.5px);
   max-width: 36px;
 }
 
+.app-bar-content-creation-area {
+  width: 100vw;
+  height: var(--app-bar-height);
+  position: fixed;
+  bottom: -2px;
+  background-color: var(--color-main-bg);
+}
+
 .marker {
   width: 100%;
   height: 5px;
@@ -1856,7 +1867,7 @@ filter: blur(2.5px);
       border-radius: .8em;
       border: none;
       text-indent: 20px;
-      font-size: 1.1em;
+      font-size: 1.05em;
   }
   textarea {
     width: 100%;

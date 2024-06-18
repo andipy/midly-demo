@@ -27,4 +27,4 @@ const NavbarInviteFriendPage = ({ smallTitle, avatarImage }) => {
     )
 }
 
-export default NavbarInviteFriendPage;
+export default NavbarInviteFriendPage

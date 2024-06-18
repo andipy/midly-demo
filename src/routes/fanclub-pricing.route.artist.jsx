@@ -68,10 +68,16 @@ const FanclubPricing = () => {
             <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500'>Stabilisci il prezzo dell'abbonamento mensile al tuo fanclub</h3>
 
-                <div className='mt-xs-4'>
-                    <p className='grey-300 mb-xs-4'>Min €2.99 al mese, max €11.99 al mese</p>
-                    <span className='pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 bg-green-900 border-radius-04 green-400' onClick={setRecommendedPricing}>Imposta consigliato €3.99 al mese</span>
-                    <input className="bg-dark-soft white letter-spacing-1 border-radius-06 mt-xs-6" type="number" onChange={handlePricing} value={pricing} placeholder="Es. €3.99" min='2.99' max='11.99' />
+                <div className='d-flex-column gap-0_5em mt-xs-4'>
+                    <p className='fsize-xs-2 grey-300'>Min €2.99 al mese, max €11.99 al mese</p>
+                    <span
+                        className='fsize-xs-2 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 bg-green-900 border-radius-04 green-400 align-self-start'
+                        onClick={setRecommendedPricing}
+                    >
+                        Imposta consigliato €3.99 al mese
+                    </span>
+                    <input className="bg-dark-soft white letter-spacing-1 border-radius-06" type="number" onChange={handlePricing} value={pricing} placeholder="Inserisci qui il prezzo" min='2.99' max='11.99' />
+                    
                 </div>
 
                 <ContainerDefault containerSpecificStyle='position-absolute bottom-5'>
