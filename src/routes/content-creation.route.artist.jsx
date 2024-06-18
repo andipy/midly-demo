@@ -4,6 +4,10 @@ import FullPageCenter from '../layout/full-page-center.layout'
 import ContainerDefault from '../layout/container-default.layout'
 
 import IconExit from '../images/icons/icon-exit.svg'
+import IconSettings from '../images/icons/icon-settings-white.svg'
+import IconLink from '../images/icons/icon-link.svg'
+import IconText from '../images/icons/icon-text.svg'
+import IconFlip from '../images/icons/icon-flip.svg'
 import NavbarMultistep from '../components/navbar-multistep.component'
 import AppbarContentCreation from '../components/appbar-content-creation.component.artist'
 
@@ -103,6 +107,23 @@ const CameraViewport = () => {
       {error && <p>Error accessing the camera: {error}</p>}
       <FullPageCenter>
         <ContainerDefault containerSpecificStyle={'video-frame-post-creation position-relative'}>
+          <div className='d-flex-column position-absolute right-0 bottom-0 gap-0_5em mb-xs-2 mr-xs-2'>
+		  	{!photoUrl && !videoUrl && 
+				<div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
+				<img className='avatar-32' src={IconFlip} />
+				</div>
+			}
+            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
+              <img className='avatar-32' src={IconText} />
+            </div>
+			<div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
+              <img className='avatar-32' src={IconLink} />
+            </div>
+			<div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
+              <img className='avatar-32' src={IconSettings} />
+            </div>
+
+          </div>
           {!photoUrl && !videoUrl &&
             <>
               <video className='border-radius-04 overflow-clip object-fit-cover' ref={videoRef} autoPlay style={{ width: '100%', height: '100%' }} />
