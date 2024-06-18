@@ -10,6 +10,8 @@ import IconText from '../images/icons/icon-text.svg'
 import IconFlip from '../images/icons/icon-flip.svg'
 import NavbarMultistep from '../components/navbar-multistep.component'
 import AppbarContentCreation from '../components/appbar-content-creation.component.artist'
+import TextAreaCaption from '../components/textarea-caption.component.artist'
+import LinkArea from '../components/link-area.component.artist'
 
 
 const CameraViewport = () => {
@@ -21,6 +23,8 @@ const CameraViewport = () => {
   const [videoUrl, setVideoUrl] = useState(null)
   const [photoUrl, setPhotoUrl] = useState(null)
   const [mediaType, setMediaType] = useState('PHOTO')
+  const [showTextArea, setShowTextArea] = useState(false)
+  const [showLinkArea, setShowLinkArea] = useState(false)
 
   useEffect(() => {
     const getCameraStream = async () => {
@@ -101,6 +105,14 @@ const CameraViewport = () => {
     setMediaType('VIDEO')
   }
 
+  const handleTextAreaVisibility = () => {
+    setShowTextArea(prev => !prev)
+  }
+
+  const handleLinkAreaVisibility = () => {
+    setShowLinkArea(prev => !prev)
+  }
+
   return (
     <>
       <NavbarMultistep stepNumber={1} />
@@ -110,17 +122,17 @@ const CameraViewport = () => {
           <div className='d-flex-column position-absolute right-0 bottom-0 gap-0_5em mb-xs-2 mr-xs-2'>
 		  	{!photoUrl && !videoUrl && 
 				<div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
-				<img className='avatar-32' src={IconFlip} />
+				    <img className='avatar-32' src={IconFlip} />
 				</div>
 			}
-            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
-              <img className='avatar-32' src={IconText} />
+            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
+                <img className='avatar-32' src={IconText} />
             </div>
-			<div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
-              <img className='avatar-32' src={IconLink} />
+			<div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
+                <img className='avatar-32' src={IconLink} />
             </div>
-			<div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
-              <img className='avatar-32' src={IconSettings} />
+			<div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
+                <img className='avatar-32' src={IconSettings} />
             </div>
 
           </div>
@@ -163,6 +175,16 @@ const CameraViewport = () => {
         mediaType={mediaType}
         photoUrl={photoUrl}
         videoUrl={videoUrl}
+      />
+
+      <TextAreaCaption
+        showTextArea={showTextArea}
+        handleTextAreaVisibility={handleTextAreaVisibility}
+      />
+
+      <LinkArea
+        showLinkArea={showLinkArea}
+        handleLinkAreaVisibility={handleLinkAreaVisibility}
       />
     </>
   );

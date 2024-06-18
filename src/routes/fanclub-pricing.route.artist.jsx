@@ -76,7 +76,7 @@ const FanclubPricing = () => {
                     >
                         Imposta consigliato €3.99 al mese
                     </span>
-                    <input className="bg-dark-soft white letter-spacing-1 border-radius-06" type="number" onChange={handlePricing} value={pricing} placeholder="Inserisci qui il prezzo" min='2.99' max='11.99' />
+                    <input className='bg-dark-soft white letter-spacing-1 border-radius-06' type='number' onChange={handlePricing} value={pricing} placeholder='Inserisci il prezzo mensile' min='2.99' max='11.99' />
                     
                 </div>
 
