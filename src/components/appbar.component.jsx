@@ -12,7 +12,7 @@ const Appbar = () => {
     const { pathname } = useLocation()
 
     return (
-        <div className='app-bar-area border-top-dark-01 d-flex-row j-c-center z-index-max'>            
+        <div className='app-bar-area border-top-dark-01 d-flex-row j-c-center z-index-5'>            
             <div className='container d-flex-row align-items-center j-c-space-between'>                
                 {/* <Link to='/search'> */}
                     <div className='d-flex-column align-items-center'>

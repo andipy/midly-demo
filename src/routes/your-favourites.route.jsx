@@ -1,10 +1,12 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { ArtistsContext } from '../contexts/artists.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 
 import ContainerDefault from '../layout/container-default.layout'
 import Carousel from '../layout/carousel.layout'
+import FullPageCenter from '../layout/full-page-center.layout'
 
 import CardFollowedArtist from '../components/card-followed-artist.component'
 import NavbarDefault from '../components/navbar-default.component'
@@ -12,15 +14,21 @@ import ButtonFollowMoreArtists from '../components/button-follow-more-artists.co
 import CardQuiz from '../components/card-quiz.component'
 import CardSanremo from '../components/card-sanremo.component'
 import Appbar from '../components/appbar.component'
+import Button from '../components/button.component'
 
 import TextTitle from '../components/text-title.component'
 
 const YourFavouritesRoute = () => {
 
+    const navigate = useNavigate()
+
     const { artists } = useContext(ArtistsContext)
     const { currentFan } = useContext(CurrentFanContext)
     
     const [favourites, setFavourites] = useState([])
+    const [showComponent, setShowComponent] = useState(false)
+    const timeoutRef = useRef(null)
+
     const fetchFavourites = () => {
         const favouriteArtistIds = currentFan.leaderboardsFollowed.map(artist => artist.artistId)
 
@@ -48,6 +56,29 @@ const YourFavouritesRoute = () => {
     useEffect(() => {
         fetchFavourites()
     }, [])
+
+
+    useEffect(() => {
+        const handleMouseDown = () => {
+            timeoutRef.current = setTimeout(() => {
+                setShowComponent(true)
+            }, 3000)
+        }
+
+        const handleMouseUp = () => {
+            clearTimeout(timeoutRef.current)
+            // setShowComponent(false)
+        }
+
+        document.addEventListener('mousedown', handleMouseDown)
+        document.addEventListener('mouseup', handleMouseUp)
+
+        return () => {
+            document.removeEventListener('mousedown', handleMouseDown)
+            document.removeEventListener('mouseup', handleMouseUp)
+        }
+    }, [])
+
 
     return (
         <>
@@ -83,9 +114,20 @@ const YourFavouritesRoute = () => {
                 </section>
             </ContainerDefault>
 
+            {showComponent &&
+            <FullPageCenter className={'z-index-max bg-black-transp70'}>
+                <ContainerDefault containerSpecificStyle={'bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 w-80'}>
+                    <h4 className='fsize-xs-5 grey-200 f-w-300'>Ehi, mi hai scoperto.</h4>
+                    <p className='fsize-xs-3 grey-200 f-w-300 mt-xs-4'>Vuoi visitare la demo dell'app artisti?</p>
+                    <Button style='bg-blue-600 dark-900 border-radius-02 fsize-xs-3 f-w-500 mt-xs-4' label='Vai alla demo artisti' onClick={() => navigate('/artist-app/flash-leaderboards')} />
+                    <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-4' label='Rimani qui' onClick={() => setShowComponent(false)} />
+                </ContainerDefault>
+            </FullPageCenter>
+            }
+
             <Appbar />
         </>
     )
 }
 
-export default YourFavouritesRoute;
+export default YourFavouritesRoute

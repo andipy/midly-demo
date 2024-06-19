@@ -555,6 +555,9 @@ animation: dot-loader-after 1s infinite linear;
 .bg-blue-400 {
   background-color: #5CBBFF;
 }
+.bg-blue-600 {
+  background-color: #1191EC;
+}
 .bg-apple-music {
   background-color: #FE2C55;
 }
@@ -691,6 +694,9 @@ animation: dot-loader-after 1s infinite linear;
 .border-green-spotify {
   border: 1px solid #1ED760;
 }
+.border-blue-bright-600 {
+  border: 2px solid #1191EC;
+}
 .border-red-dashed-1 {
   border: 1px dashed #E94359;
 }
@@ -824,6 +830,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .blue-500 {
   color: #395eca;
+}
+.blue-bright-600 {
+  color: #1191EC;
 }
 .green-spotify {
   color: #1ED760;
