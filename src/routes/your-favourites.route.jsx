@@ -27,6 +27,7 @@ const YourFavouritesRoute = () => {
     
     const [favourites, setFavourites] = useState([])
     const [showComponent, setShowComponent] = useState(false)
+    const [clickCount, setClickCount] = useState(0)
     const timeoutRef = useRef(null)
 
     const fetchFavourites = () => {
@@ -60,24 +61,30 @@ const YourFavouritesRoute = () => {
 
     useEffect(() => {
         const handleMouseDown = () => {
+            setClickCount(prevCount => prevCount + 1);
+
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+
             timeoutRef.current = setTimeout(() => {
-                setShowComponent(true)
-            }, 3000)
-        }
+                setClickCount(0);
+            }, 400); // Reset the count if more than 1 second passes between clicks
 
-        const handleMouseUp = () => {
-            clearTimeout(timeoutRef.current)
-            // setShowComponent(false)
-        }
+            if (clickCount + 1 >= 6) {
+                setShowComponent(true);
+                setClickCount(0); // Reset the click count after triggering the action
+                clearTimeout(timeoutRef.current);
+            }
+        };
 
-        document.addEventListener('mousedown', handleMouseDown)
-        document.addEventListener('mouseup', handleMouseUp)
+        document.addEventListener('mousedown', handleMouseDown);
 
         return () => {
-            document.removeEventListener('mousedown', handleMouseDown)
-            document.removeEventListener('mouseup', handleMouseUp)
-        }
-    }, [])
+            document.removeEventListener('mousedown', handleMouseDown);
+            clearTimeout(timeoutRef.current);
+        };
+    }, [clickCount]);
 
 
     return (
