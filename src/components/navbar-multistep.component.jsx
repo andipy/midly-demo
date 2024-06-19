@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import IconBack from '../images/icons/icon-arrowleft.svg'
 import IconExit from '../images/icons/icon-exit.svg'
 
-const NavbarMultistep = ({ stepNumber }) => {
+const NavbarMultistep = ({ stepNumber, totalStepNumber }) => {
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
@@ -19,7 +19,7 @@ const NavbarMultistep = ({ stepNumber }) => {
                     <div className='avatar-32'></div>
                 }
 
-                {!pathname.includes('/content-creation') &&
+                {!totalStepNumber &&
                     <span>Passo {stepNumber} di 3</span>
                 }
 

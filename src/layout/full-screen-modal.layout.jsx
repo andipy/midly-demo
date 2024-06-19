@@ -9,4 +9,4 @@ const FullScreenModalLayout = ({ children }) => {
     )
 }
 
-export default FullScreenModalLayout;
+export default FullScreenModalLayout

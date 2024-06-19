@@ -6,14 +6,14 @@ import { FanclubsContext } from '../contexts/fanclubs.context'
 import Appbar from '../components/appbar.component.artist'
 import Button from '../components/button.component'
 import Navbar from '../components/navbar.component.artist'
+import NavbarCommentsModal from '../components/navbar-comments-modal.component'
+import TextbarComments from '../components/textbar-comments.component'
+import Post from '../components/post.component'
 import ContainerDefault from '../layout/container-default.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
+import CommentModalLayout from '../layout/comments-modal.layout'
 
 import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
-import IconSettings from '../images/icons/icon-settings-white.svg'
-import IconLikes from '../images/icons/icon-like-white-empty.svg'
-import IconComments from '../images/icons/icon-comment-white.svg'
-import IconShare from '../images/icons/icon-share-white.svg'
 import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanclub-empty.svg'
 
 const FanclubRoute = () => {
@@ -21,7 +21,84 @@ const FanclubRoute = () => {
     const navigate = useNavigate()
 
     const { currentArtist } = useContext(CurrentArtistContext)
-    const { fanclubs } = useContext(FanclubsContext)
+    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
+
+    const [commentsOpen, setCommentsOpen] = useState(false)
+    const [commentsInFocus, setCommentsInFocus] = useState(null)
+    const openComments = (id) => {
+        setCommentsOpen(true)
+        setCommentsInFocus(id)
+    }
+    const closeComments = () => {
+        setCommentsOpen(false)
+        setCommentsInFocus(null)
+    }
+    const [currentComment, setCurrentComment] = useState({
+        id: undefined,
+        artistId: undefined,
+        userType: undefined,
+        createdAt: undefined,
+        comment: '',
+        likes: 0,
+        comments: []
+    })
+    const handleCurrentComment = (e) => {
+        e.preventDefault()
+        let commentsNumber
+        let currentDate = new Date()
+        let date = currentDate.toISOString().split('T')[0]
+        fanclubs.map(fanclub => {
+            if ( fanclub.artistId === currentArtist.id ) {
+                fanclub.posts.map(post => {
+                    if ( post.id === commentsInFocus ) {
+                        commentsNumber = post.comments.length + 1
+                    }
+                })
+            }
+        })
+
+        setCurrentComment(prev => ({
+            ...prev,
+            id: commentsNumber,
+            artistId: currentArtist.id,
+            userType: currentArtist.type,
+            createdAt: date,
+            comment: e.target.value
+        }))
+    }
+
+    const handleSubmitComment = (e) => {
+        e.preventDefault()
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === currentArtist.id) {
+                    return {
+                        ...fanclub,
+                        posts: fanclub.posts.map(post => {
+                            if (post.id === commentsInFocus) {
+                                return {
+                                    ...post,
+                                    comments: [...post.comments, currentComment]
+                                }
+                            }
+                            return post;
+                        })
+                    }
+                }
+                return fanclub;
+            })
+        )
+        setCurrentComment({
+            id: undefined,
+            artistId: undefined,
+            userType: undefined,
+            createdAt: undefined,
+            comment: '',
+            likes: 0,
+            comments: []
+        })
+    }
+    
 
     const [fanclub, setFanclub] = useState(null)
     const fetchThisFanclub = () => {
@@ -51,42 +128,13 @@ const FanclubRoute = () => {
 
                         </FullPageCenter>
                     :
-                        <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
-                            {fanclub.posts.map(post => 
-                                <div className='bg-dark-soft border-radius-04 pt-xs-2 pb-xs-4 pl-xs-2 pr-xs-2 mb-xs-8 position-relative'>
-                                    {post.media.type === 'PHOTO' ?
-                                        <img className='border-radius-04 w-100 h-100' src={post.media?.url} alt="" />
-                                    : post.media.type === 'VIDEO' &&
-                                        <video className='border-radius-04 w-100 h-100' src={post.media?.url} controls />
-                                    }
-
-                                    <div className='d-flex-row align-items-center j-c-space-between mb-xs-1 mt-xs-1'>
-                                        <div className='d-flex-row align-items-center j-c-start gap-0_5em'>
-                                            <div className='avatar-32 d-flex-row align-items-center j-c-center'>
-                                                <img className='avatar-32' src={IconComments} />
-                                            </div>
-                                            <div className='avatar-32 d-flex-row align-items-center j-c-center'>
-                                                <img className='avatar-32' src={IconLikes} />
-                                            </div>
-                                            <div className='avatar-32 d-flex-row align-items-center j-c-center'>
-                                                <img className='avatar-32' src={IconShare} />
-                                            </div>
-                                        </div>
-
-                                        <div className='avatar-32 d-flex-row align-items-center j-c-center'>
-                                            <img className='avatar-32' src={IconSettings} />
-                                        </div>
-                                    </div>
-
-                                    <p className='mb-xs-2'>{post.caption && post.caption}</p>
-                                    <span className='fsize-xs-1 grey-200 f-w-300'>{post.createdAt}</span>
-
-                                    
-
-                                    {/* <div className='d-flex-row align-items-center j-c-center position-absolute z-index-3 top-0 right-0 avatar-32 bg-dark-soft-transp75 border-radius-100 mt-xs-4 mr-xs-4'>
-                                        <img className='avatar-32' src={IconSettings} alt="X" />
-                                    </div> */}
-                                </div>
+                        <ContainerDefault containerSpecificStyle={'pb-xs-appbar mt-xs-4'}>
+                            {fanclub.posts.map(post =>
+                                <Post
+                                    post={post}
+                                    openComments={() => openComments(post.id)}
+                                    key={post.id}
+                                />
                             )}
                         </ContainerDefault>
                     }
@@ -103,6 +151,31 @@ const FanclubRoute = () => {
                     </ContainerDefault>
                 </FullPageCenter>
             }
+
+            <CommentModalLayout
+                commentsOpen={commentsOpen}
+                closeComments={closeComments}
+            >
+                <NavbarCommentsModal
+                    closeComments={closeComments}
+                />
+                <ContainerDefault containerSpecificStyle={'pt-xs-topbar'}>
+                    {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
+                        return (
+                            <p key={comment.id}>{comment.comment}</p>
+                        )
+                    })}
+                </ContainerDefault>
+
+                <TextbarComments
+                    handleCurrentComment={handleCurrentComment}
+                    handleSubmitComment={handleSubmitComment}
+                    currentComment={currentComment}
+                    setCurrentComment={setCurrentComment}
+                    className={'position-absolute bottom-0'}
+                />
+
+            </CommentModalLayout>
 
             <Appbar />
         </>

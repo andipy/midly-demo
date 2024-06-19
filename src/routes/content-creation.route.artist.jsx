@@ -174,7 +174,7 @@
 
     return (
         <>
-        <NavbarMultistep stepNumber={1} />
+        <NavbarMultistep stepNumber={1} totalStepNumber={1} />
         {error && <p>Error accessing the camera: {error}</p>}
         <FullPageCenter>
             <ContainerDefault containerSpecificStyle={'video-frame-post-creation position-relative'}>
