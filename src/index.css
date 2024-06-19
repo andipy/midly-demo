@@ -1885,11 +1885,11 @@ filter: blur(2.5px);
   }
   textarea {
     width: 100%;
-    padding: 4% 0;
+    padding: 4%;
     border-radius: .8em;
     border: none;
-    text-indent: 20px;
-    font-size: 1.1em;
+    line-height: 160%;
+    font-size: 1.05em;
 }
   .input-search {
       padding: 2% 0;

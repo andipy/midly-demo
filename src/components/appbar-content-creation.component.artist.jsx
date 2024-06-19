@@ -4,7 +4,7 @@ import IconMedia from '../images/icons/icon-picture.svg'
 import ContainerDefault from '../layout/container-default.layout'
 import Button from '../components/button.component'
 
-const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording, mediaType, photoUrl, videoUrl }) => {
+const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording, mediaType, photoUrl, videoUrl, updatePosts }) => {
 
     const location = useLocation()
 
@@ -12,7 +12,7 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording,
       <div className='app-bar-content-creation-area d-flex-row j-c-center border-top-dark-01 z-index-max'>
         <ContainerDefault containerSpecificStyle='d-flex-row j-c-center align-items-center position-relative'>
           {videoUrl || photoUrl ?
-            <Button style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Pubblica' />
+            <Button style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Pubblica' onClick={updatePosts} />
           :
             <>
               {mediaType === 'PHOTO' ?

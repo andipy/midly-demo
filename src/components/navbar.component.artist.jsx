@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import Logo from '../images/logo/logo-simple-artists.svg'
 
@@ -9,6 +9,7 @@ import IconInbox from '../images/icons/icon-inbox-white.svg'
 
 const Navbar = ({ fanclub }) => {
 
+    const navigate = useNavigate()
     const { pathname } = useLocation()
 
     return (
@@ -32,7 +33,7 @@ const Navbar = ({ fanclub }) => {
                             <img className='avatar-32' src={IconInbox} alt='+' />
                         </div>
                         
-                        <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32'>
+                        <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32' onClick={() => navigate('/artist-app/content-creation')}>
                             <img src={IconPlus} alt='+' />
                         </button>
                     </div>
