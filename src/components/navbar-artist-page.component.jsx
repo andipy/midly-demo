@@ -28,7 +28,7 @@ const NavbarArtistPage = ({ artist }) => {
     return (
         <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-max top-0 ${scrolled ? 'bg-dark shadow-dark-400' : ''}`}>
             <div className='container d-flex-row align-items-center j-c-space-between w-100'>
-                <div className='avatar-28' onClick={() => navigate(-1)}>
+                <div className='avatar-28' onClick={() => navigate('/your-favourites')}>
                     <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} alt='Back' />
                 </div>
 

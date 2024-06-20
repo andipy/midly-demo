@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useOutletContext } from 'react-router-dom'
 
 import { LeaderboardsContext } from '../contexts/leaderboards.context'
 
@@ -9,21 +9,21 @@ import IconPoints from '../images/icons/icon-point-xs.svg'
 
 const LeaderboardRoute = () => {
 
-    const location = useLocation()
+    const context = useOutletContext()
 
     const { leaderboards } = useContext(LeaderboardsContext)
     
     const [leaderboard, setLeaderboard] = useState()
     const fetchThisLeaderboard = () => {
-        const thisLeaderboard = leaderboards.find(elem => location.state.id === elem.artistId)
+        const thisLeaderboard = leaderboards.find(elem => context.id === elem.artistId)
         setLeaderboard(thisLeaderboard)
     }
 
     useEffect(() => {
-        if ( location ) {
+        if ( context ) {
             fetchThisLeaderboard()
         }
-    }, [location])
+    }, [context])
 
     return (
         <section className='mt-xs-4'>

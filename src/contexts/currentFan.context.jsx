@@ -21,9 +21,7 @@ export const CurrentFanProvider = ({ children }) => {
         flashLeaderboardsFollowed: [
             {artistId: 2}
         ],
-        fanclubsSubscribed: [
-            {artistId: 2}
-        ],
+        fanclubsSubscribed: [],
         leaderboardStats: {
             position: 8,
             points: 111

@@ -11,19 +11,19 @@ import Button from '../components/button.component';
 
 const InviteFriendRoute = () => {
 
-    const location = useLocation()
+    const { state } = useLocation()
 
     const [triggered, setTriggered] = useState(false);
     const triggerSnackbar = () => {
         setTriggered(true);
         setTimeout(() => {
             setTriggered(false)
-        }, 3000)
+        }, 2000)
     }
 
     return (
         <>
-            <NavbarInviteFriendPage smallTitle={location.state.artistName} avatarImage={location.state.image} />
+            <NavbarInviteFriendPage artist={state} />
             <InviteFriendCover />
             <Snackbar message={'Link copied to clipboard'} triggered={triggered} />
 

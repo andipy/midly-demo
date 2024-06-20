@@ -1787,7 +1787,10 @@ nav .container {
   filter: blur(1.7px);
 }
 .blur-2_5 {
-filter: blur(2.5px);
+  filter: blur(2.5px);
+}
+.blur-50 {
+  filter: blur(50px);
 }
 .footer-landing {
   border-top: 1px solid #1C1E27;
