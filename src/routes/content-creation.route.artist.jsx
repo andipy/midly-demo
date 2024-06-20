@@ -243,18 +243,18 @@ const CameraViewport = () => {
             }
 
             {photoUrl ?
-                <div className='position-relative video-frame-post-creation'>
-                <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
-                    <img className='avatar-32' src={IconExit} alt="X" />
-                </div>
-                <img className='border-radius-04 object-fit-cover w-100 h-100' src={photoUrl} />
+                <div className='position-relative video-frame-post-creation' style={{ width: '100%', height: '100%' }}>
+                    <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
+                        <img className='avatar-32' src={IconExit} alt="X" />
+                    </div>
+                    <img className='border-radius-04 object-fit-cover w-100 h-100' src={photoUrl} />
                 </div>
                 : videoUrl &&
-                <div className='position-relative video-frame-post-creation'>
-                <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearVideo}>
-                    <img className='avatar-32' src={IconExit} alt="X" />
-                </div>
-                <video className='border-radius-04 object-fit-cover w-100 h-100' src={videoUrl} controls />
+                <div className='position-relative video-frame-post-creation'  style={{ width: '100%', height: '100%' }}>
+                    <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearVideo}>
+                        <img className='avatar-32' src={IconExit} alt="X" />
+                    </div>
+                    <video className='border-radius-04 object-fit-cover w-100 h-100' src={videoUrl} controls />
                 </div>
             }
             </ContainerDefault>
