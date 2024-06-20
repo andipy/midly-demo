@@ -9,7 +9,7 @@ const NavbarMultistep = ({ stepNumber, totalStepNumber }) => {
     const { pathname } = useLocation()
 
     return (
-        <nav className='top-bar-area-overlay-fixed bg-dark d-flex-row align-items-center j-c-center white z-index-max top-0 shadow-dark-400'>
+        <nav className='top-bar-area-overlay-fixed bg-dark d-flex-row align-items-center j-c-center white z-index-max top-0 shadow-dark-400 nav-multi'>
             <div className='container d-flex-row align-items-center j-c-space-between'>
                 {stepNumber !== 1 ?
                     <div className='d-flex-row align-items-center j-c-center' onClick={() => navigate(-1)}>

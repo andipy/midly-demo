@@ -9,7 +9,7 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording,
     const location = useLocation()
 
     return (
-      <div className='app-bar-content-creation-area d-flex-row j-c-center border-top-dark-01 z-index-max'>
+      <div className='app-bar-content-creation-area d-flex-row j-c-center border-top-dark-01 z-index-max appbar-creation'>
         <ContainerDefault containerSpecificStyle='d-flex-row j-c-center align-items-center position-relative'>
           {videoUrl || photoUrl ?
             <Button style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Pubblica' onClick={updatePosts} />

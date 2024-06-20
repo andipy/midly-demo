@@ -1674,6 +1674,7 @@ nav .container {
 .top-bar-area-overlay-fixed {
   width: 100%;
   position: fixed;
+  top: 0;
   height: var(--top-bar-height);
 }
 .top-bar-area-block {
@@ -1738,12 +1739,9 @@ nav .container {
 /************** VIDEO FRAME ***************/
 /******************************************/
 
-.video-frame-post-creation {
-  height: calc(100% - var(--app-bar-height) - var(--top-bar-height) - 3vh);
-  width: 100%;
-  max-width: 100%;
+.wrapper {
+	border: 2px solid yellow;
 }
-
 
 /******************************************/
 /**************** LANDING *****************/

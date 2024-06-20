@@ -59,6 +59,27 @@ const CameraViewport = () => {
     })
 
     useEffect(() => {
+        const setWrapperHeight = () => {
+            const outer = document.querySelector('.outer')
+            const wrapper = document.querySelector('.wrapper')
+            const navbar = document.querySelector('.nav-multi')
+            const appbar = document.querySelector('.appbar-creation')
+            const outerHeight = window.innerHeight
+            const wrapperHeight = (window.innerHeight - navbar.offsetHeight - appbar.offsetHeight) * .95
+            outer.style.setProperty('height', `${outerHeight}px`)
+            wrapper.style.setProperty('height', `${wrapperHeight}px`)
+        };
+
+        // Initial setting of the height
+        setWrapperHeight();
+
+        // Adjust height on resize
+        window.addEventListener('resize', setWrapperHeight);
+
+        return () => window.removeEventListener('resize', setWrapperHeight);
+    }, []);
+
+    useEffect(() => {
         const getCameraStream = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -208,10 +229,10 @@ const CameraViewport = () => {
 
     return (
         <>
+        <div className='d-flex-column j-c-center outer'>
         <NavbarMultistep stepNumber={1} totalStepNumber={1} />
         {error && <p>Error accessing the camera: {error}</p>}
-        <FullPageCenter>
-            <ContainerDefault containerSpecificStyle={'video-frame-post-creation position-relative'}>
+        <ContainerDefault containerSpecificStyle={'wrapper position-relative'}>
             <div className='d-flex-column position-absolute right-0 bottom-0 gap-0_5em mb-xs-2 mr-xs-2'>
                 {!photoUrl && !videoUrl && 
                     <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
@@ -243,14 +264,14 @@ const CameraViewport = () => {
             }
 
             {photoUrl ?
-                <div className='position-relative video-frame-post-creation' style={{ width: '100%', height: '100%' }}>
+                <div className='position-relative' style={{ width: '100%', height: '100%' }}>
                     <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
                         <img className='avatar-32' src={IconExit} alt="X" />
                     </div>
                     <img className='border-radius-04 object-fit-cover w-100 h-100' src={photoUrl} />
                 </div>
                 : videoUrl &&
-                <div className='position-relative video-frame-post-creation'  style={{ width: '100%', height: '100%' }}>
+                <div className='position-relative'  style={{ width: '100%', height: '100%' }}>
                     <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearVideo}>
                         <img className='avatar-32' src={IconExit} alt="X" />
                     </div>
@@ -258,38 +279,39 @@ const CameraViewport = () => {
                 </div>
             }
             </ContainerDefault>
-        </FullPageCenter>
-        <canvas ref={canvasRef} style={{ display: 'none' }} />
 
-        <AppbarContentCreation
-            handleCapturePhoto={handleCapturePhoto}
-            toggleRecording={toggleRecording}
-            recording={recording}
-            mediaType={mediaType}
-            photoUrl={photoUrl}
-            videoUrl={videoUrl}
-            updatePosts={updatePosts}
-        />
+            <canvas ref={canvasRef} style={{ display: 'none' }} />
 
-        <TextAreaCaption
-            showTextArea={showTextArea}
-            handleTextAreaVisibility={handleTextAreaVisibility}
-            handleCaption={handleCaption}
-        />
+            <AppbarContentCreation
+                handleCapturePhoto={handleCapturePhoto}
+                toggleRecording={toggleRecording}
+                recording={recording}
+                mediaType={mediaType}
+                photoUrl={photoUrl}
+                videoUrl={videoUrl}
+                updatePosts={updatePosts}
+            />
+            </div>
 
-        <LinkArea
-            showLinkArea={showLinkArea}
-            handleLinkAreaVisibility={handleLinkAreaVisibility}
-            handleLinkUrl={handleLinkUrl}
-            handleLinkName={handleLinkName}
-        />
+            <TextAreaCaption
+                showTextArea={showTextArea}
+                handleTextAreaVisibility={handleTextAreaVisibility}
+                handleCaption={handleCaption}
+            />
 
-        <SettingsArea
-            showSettingsArea={showSettingsArea}
-            handleSettingsAreaVisibility={handleSettingsAreaVisibility}
-            handleIsPrivate={handleIsPrivate}
-            isPrivate={post.settings.isPrivate}
-        />
+            <LinkArea
+                showLinkArea={showLinkArea}
+                handleLinkAreaVisibility={handleLinkAreaVisibility}
+                handleLinkUrl={handleLinkUrl}
+                handleLinkName={handleLinkName}
+            />
+
+            <SettingsArea
+                showSettingsArea={showSettingsArea}
+                handleSettingsAreaVisibility={handleSettingsAreaVisibility}
+                handleIsPrivate={handleIsPrivate}
+                isPrivate={post.settings.isPrivate}
+            />
         </>
     )
     }
