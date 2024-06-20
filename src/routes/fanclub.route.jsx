@@ -16,6 +16,11 @@ const Fanclub = () => {
     const context = useOutletContext()
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+
+    const [commentInFocus, setCommentInFocus] = useState(null)
+    const spotCommentToReply = (id) => {
+        setCommentInFocus(id)
+    }
     
     const [fanclub, setFanclub] = useState()
     const fetchThisFanclub = () => {
@@ -55,6 +60,7 @@ const Fanclub = () => {
     const closeComments = () => {
         setCommentsOpen(false)
         setCommentsInFocus(null)
+        setCommentInFocus(null)
     }
 
     const handleCurrentComment = (e) => {
@@ -86,25 +92,57 @@ const Fanclub = () => {
 
     const handleSubmitComment = (e) => {
         e.preventDefault()
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === context.id) {
-                    return {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post => {
-                            if (post.id === commentsInFocus) {
-                                return {
-                                    ...post,
-                                    comments: [...post.comments, currentComment]
+        if ( commentInFocus ) {
+            setFanclubs(prevFanclubs =>
+                prevFanclubs.map(fanclub => {
+                    if (fanclub.artistId === context.id) {
+                        return {
+                            ...fanclub,
+                            posts: fanclub.posts.map(post => {
+                                if (post.id === commentsInFocus) {
+                                    return {
+                                        ...post,
+                                        comments: post.comments.map(comment => {
+                                            if (comment.id === commentInFocus) {
+                                                return {
+                                                    ...comment,
+                                                    comments: [...comment.comments, currentComment]
+                                                }
+                                            }
+                                            return comment
+                                        })
+                                    }
                                 }
-                            }
-                            return post
-                        })
+                                return post
+                            })
+                        }
                     }
-                }
-                return fanclub
-            })
-        )
+                    return fanclub
+                })
+            )
+            setCommentInFocus(null)
+        } else if ( !commentInFocus ) {
+            setFanclubs(prevFanclubs =>
+                prevFanclubs.map(fanclub => {
+                    if (fanclub.artistId === context.id) {
+                        return {
+                            ...fanclub,
+                            posts: fanclub.posts.map(post => {
+                                if (post.id === commentsInFocus) {
+                                    return {
+                                        ...post,
+                                        comments: [...post.comments, currentComment]
+                                    }
+                                }
+                                return post;
+                            })
+                        }
+                    }
+                    return fanclub;
+                })
+            )
+        }
+        
         setCurrentComment({
             id: undefined,
             userId: undefined,
@@ -166,7 +204,11 @@ const Fanclub = () => {
                 <ContainerDefault containerSpecificStyle={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
                         return (
-                            <Comment comment={comment} key={comment.id} />
+                            <Comment
+                                comment={comment}
+                                spotCommentToReply={() => spotCommentToReply(comment.id)}
+                                key={comment.id}
+                            />
                         )
                     })}
                 </ContainerDefault>

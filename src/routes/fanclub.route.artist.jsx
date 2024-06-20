@@ -37,6 +37,11 @@ const FanclubRoute = () => {
     const closeComments = () => {
         setCommentsOpen(false)
         setCommentsInFocus(null)
+        setCommentInFocus(null)
+    }
+    const [commentInFocus, setCommentInFocus] = useState(null)
+    const spotCommentToReply = (id) => {
+        setCommentInFocus(id)
     }
     const [currentComment, setCurrentComment] = useState({
         id: undefined,
@@ -78,6 +83,72 @@ const FanclubRoute = () => {
 
     const handleSubmitComment = (e) => {
         e.preventDefault()
+        if ( commentInFocus ) {
+            setFanclubs(prevFanclubs =>
+                prevFanclubs.map(fanclub => {
+                    if (fanclub.artistId === currentArtist.id) {
+                        return {
+                            ...fanclub,
+                            posts: fanclub.posts.map(post => {
+                                if (post.id === commentsInFocus) {
+                                    return {
+                                        ...post,
+                                        comments: post.comments.map(comment => {
+                                            if (comment.id === commentInFocus) {
+                                                return {
+                                                    ...comment,
+                                                    comments: [...comment.comments, currentComment]
+                                                }
+                                            }
+                                            return comment
+                                        })
+                                    }
+                                }
+                                return post
+                            })
+                        }
+                    }
+                    return fanclub
+                })
+            )
+            setCommentInFocus(null)
+        } else if ( !commentInFocus ) {
+            setFanclubs(prevFanclubs =>
+                prevFanclubs.map(fanclub => {
+                    if (fanclub.artistId === currentArtist.id) {
+                        return {
+                            ...fanclub,
+                            posts: fanclub.posts.map(post => {
+                                if (post.id === commentsInFocus) {
+                                    return {
+                                        ...post,
+                                        comments: [...post.comments, currentComment]
+                                    }
+                                }
+                                return post;
+                            })
+                        }
+                    }
+                    return fanclub;
+                })
+            )
+        }
+        
+        setCurrentComment({
+            id: undefined,
+            userId: undefined,
+            userType: undefined,
+            userImage: undefined,
+            username: undefined,
+            createdAt: undefined,
+            comment: '',
+            likes: 0,
+            comments: []
+        })
+    }
+
+    const handleSubmitReply = (e) => {
+        e.preventDefault()
         setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub => {
                 if (fanclub.artistId === currentArtist.id) {
@@ -87,7 +158,13 @@ const FanclubRoute = () => {
                             if (post.id === commentsInFocus) {
                                 return {
                                     ...post,
-                                    comments: [...post.comments, currentComment]
+                                    comments: post.comments.map(comment => {
+                                        if ( comment.id === commentInFocus ) {
+                                            return (
+                                                [...comment.comments, currentComment]
+                                            )
+                                        }
+                                    })
                                 }
                             }
                             return post;
@@ -108,8 +185,8 @@ const FanclubRoute = () => {
             likes: 0,
             comments: []
         })
+        
     }
-    
 
     const [fanclub, setFanclub] = useState(null)
     const fetchThisFanclub = () => {
@@ -200,7 +277,11 @@ const FanclubRoute = () => {
                 <ContainerDefault containerSpecificStyle={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
                         return (
-                            <Comment comment={comment} key={comment.id} />
+                            <Comment
+                                comment={comment}
+                                key={comment.id}
+                                spotCommentToReply={() => spotCommentToReply(comment.id)}
+                            />
                         )
                     })}
                 </ContainerDefault>
