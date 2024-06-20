@@ -214,7 +214,7 @@ const CameraViewport = () => {
             <ContainerDefault containerSpecificStyle={'video-frame-post-creation position-relative'}>
             <div className='d-flex-column position-absolute right-0 bottom-0 gap-0_5em mb-xs-2 mr-xs-2'>
                 {!photoUrl && !videoUrl && 
-                    <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
+                    <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
                         <img className='avatar-32' src={IconFlip} />
                     </div>
                 }
@@ -294,4 +294,4 @@ const CameraViewport = () => {
     )
     }
 
-    export default CameraViewport;
+    export default CameraViewport

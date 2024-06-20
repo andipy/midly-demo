@@ -1739,9 +1739,10 @@ nav .container {
 /******************************************/
 
 .video-frame-post-creation {
-  height: calc(100vh - var(--app-bar-height) - var(--top-bar-height) - 3vh);
+  height: calc(100% - var(--app-bar-height) - var(--top-bar-height) - 3vh);
   width: 100%;
   max-width: 100%;
+  border: 1px solid white;
 }
 
 
