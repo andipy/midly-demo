@@ -2,12 +2,12 @@ import { useLocation } from 'react-router-dom'
 
 import IconArrowUp from '../images/icons/icon-arrow-up.svg'
 
-const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitComment, onClick, className }) => {
+const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitComment, onClick, commentsOpen }) => {
 
     const { pathname } = useLocation()
 
     return (
-        <section className={`text-bar-live-chat ${className}`}>
+        <section className={`text-bar-live-chat ${commentsOpen ? 'position-fixed bottom-0' : 'bottom-hidden-textbar-comments'}`}>
             <form className='container d-flex-row align-items-center gap-1em' onSubmit={(e) => handleSubmitComment(e, currentComment)}>
                 <input
                     type='text'
@@ -16,7 +16,7 @@ const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitCom
                         !pathname.includes('artist-app') ?
                             'Lascia un commento'
                         :
-                            'Lascia un commento ai tuoi fan'
+                            'Commenta il tuo contenuto'
                     }
                     onChange={(e) => handleCurrentComment(e)} value={currentComment.comment}
                     onClick={onClick}

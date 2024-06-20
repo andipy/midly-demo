@@ -9,9 +9,10 @@ import Navbar from '../components/navbar.component.artist'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import TextbarComments from '../components/textbar-comments.component'
 import Post from '../components/post.component'
+import Comment from '../components/comment.component'
 import ContainerDefault from '../layout/container-default.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
-import CommentModalLayout from '../layout/comments-modal.layout'
+import CommentsModalLayout from '../layout/comments-modal.layout'
 
 import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
 import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanclub-empty.svg'
@@ -35,8 +36,10 @@ const FanclubRoute = () => {
     }
     const [currentComment, setCurrentComment] = useState({
         id: undefined,
-        artistId: undefined,
+        userId: undefined,
         userType: undefined,
+        userImage: undefined,
+        username: undefined,
         createdAt: undefined,
         comment: '',
         likes: 0,
@@ -60,8 +63,10 @@ const FanclubRoute = () => {
         setCurrentComment(prev => ({
             ...prev,
             id: commentsNumber,
-            artistId: currentArtist.id,
+            userId: currentArtist.id,
             userType: currentArtist.type,
+            userImage: currentArtist.image,
+            username: currentArtist.artistName,
             createdAt: date,
             comment: e.target.value
         }))
@@ -90,8 +95,10 @@ const FanclubRoute = () => {
         )
         setCurrentComment({
             id: undefined,
-            artistId: undefined,
+            userId: undefined,
             userType: undefined,
+            userImage: undefined,
+            username: undefined,
             createdAt: undefined,
             comment: '',
             likes: 0,
@@ -121,7 +128,7 @@ const FanclubRoute = () => {
                     
                     {fanclub.posts.length === 0 ?
                         <FullPageCenter>
-                            <img className='w-35' src={IllustrationsFanclubEmpty} alt="" />
+                            <img className='w-35' src={IllustrationsFanclubEmpty} alt='' />
                             <h1 className='fsize-xs-6 f-w-500 mb-xs-2 mt-xs-4'>Il tuo fanclub è attivo!</h1>
                             <p className='fsize-xs-4 f-w-200 grey-200 w-70 t-align-center mb-xs-4'>Puoi pubblicare contenuti per i tuoi fan 🎉</p>
                             <Button style='bg-acid-lime fsize-xs-3 f-w-500 black w-70' label='Crea un contenuto' onClick={() => navigate('/artist-app/content-creation')} />
@@ -152,17 +159,17 @@ const FanclubRoute = () => {
                 </FullPageCenter>
             }
 
-            <CommentModalLayout
+            <CommentsModalLayout
                 commentsOpen={commentsOpen}
                 closeComments={closeComments}
             >
                 <NavbarCommentsModal
                     closeComments={closeComments}
                 />
-                <ContainerDefault containerSpecificStyle={'pt-xs-topbar'}>
+                <ContainerDefault containerSpecificStyle={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
                         return (
-                            <p key={comment.id}>{comment.comment}</p>
+                            <Comment comment={comment} key={comment.id} />
                         )
                     })}
                 </ContainerDefault>
@@ -172,10 +179,10 @@ const FanclubRoute = () => {
                     handleSubmitComment={handleSubmitComment}
                     currentComment={currentComment}
                     setCurrentComment={setCurrentComment}
-                    className={'position-absolute bottom-0'}
+                    commentsOpen={commentsOpen}
                 />
 
-            </CommentModalLayout>
+            </CommentsModalLayout>
 
             <Appbar />
         </>

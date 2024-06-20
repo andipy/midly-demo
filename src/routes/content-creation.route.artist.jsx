@@ -1,26 +1,27 @@
-    import React, { useRef, useEffect, useState, useContext } from 'react'
-    import { useNavigate } from 'react-router-dom'
+import React, { useRef, useEffect, useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-    import { CurrentArtistContext } from '../contexts/currentArtist.context'
-    import { FanclubsContext } from '../contexts/fanclubs.context'
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
+import { FanclubsContext } from '../contexts/fanclubs.context'
 
-    import FullPageCenter from '../layout/full-page-center.layout'
-    import ContainerDefault from '../layout/container-default.layout'
+import FullPageCenter from '../layout/full-page-center.layout'
+import ContainerDefault from '../layout/container-default.layout'
 
-    import IconExit from '../images/icons/icon-exit.svg'
-    import IconSettings from '../images/icons/icon-settings-white.svg'
-    import IconLink from '../images/icons/icon-link.svg'
-    import IconText from '../images/icons/icon-text.svg'
-    import IconFlip from '../images/icons/icon-flip.svg'
-    import NavbarMultistep from '../components/navbar-multistep.component'
-    import AppbarContentCreation from '../components/appbar-content-creation.component.artist'
-    import TextAreaCaption from '../components/textarea-caption.component.artist'
-    import LinkArea from '../components/link-area.component.artist'
+import IconExit from '../images/icons/icon-exit.svg'
+import IconSettings from '../images/icons/icon-settings-white.svg'
+import IconLink from '../images/icons/icon-link.svg'
+import IconText from '../images/icons/icon-text.svg'
+import IconFlip from '../images/icons/icon-flip.svg'
+import NavbarMultistep from '../components/navbar-multistep.component'
+import AppbarContentCreation from '../components/appbar-content-creation.component.artist'
+import TextAreaCaption from '../components/textarea-caption.component.artist'
+import LinkArea from '../components/link-area.component.artist'
+import SettingsArea from '../components/settings-area.component.artist'
 
 
-    const CameraViewport = () => {
+const CameraViewport = () => {
 
-        const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const { currentArtist } = useContext(CurrentArtistContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
@@ -35,22 +36,24 @@
     const [mediaType, setMediaType] = useState('PHOTO')
     const [showTextArea, setShowTextArea] = useState(false)
     const [showLinkArea, setShowLinkArea] = useState(false)
+    const [showSettingsArea, setShowSettingsArea] = useState(false)
     const [post, setPost] = useState({
         id: undefined,
         artistId: currentArtist.id,
         media: {
-        type: '',
-        url: ''
+            type: '',
+            url: ''
         },
         caption: '',
         link: {
-        name: '',
-        url: ''
+            url: '',
+            name: ''
         },
         settings: {
-        isPrivate: undefined
+            isPrivate: true
         },
         likes: 0,
+        shares: 0,
         comments: [],
         createdAt: undefined
     })
@@ -148,14 +151,45 @@
     const handleTextAreaVisibility = () => {
         setShowTextArea(prev => !prev)
     }
-
     const handleLinkAreaVisibility = () => {
         setShowLinkArea(prev => !prev)
+    }
+    const handleSettingsAreaVisibility = () => {
+        setShowSettingsArea(prev => !prev)
     }
 
     const handleCaption = (e) => {
         e.preventDefault()
         setPost(prev => ({...prev, caption: e.target.value}))
+    }
+    const handleLinkUrl = (e) => {
+        e.preventDefault()
+        setPost(prev => ({
+            ...prev,
+            link: {
+                ...prev.link,
+                url: e.target.value,
+            }
+        }))
+    }
+    const handleLinkName = (e) => {
+        e.preventDefault()
+        setPost(prev => ({
+            ...prev,
+            link: {
+                ...prev.link,
+                name: e.target.value,
+            }
+        }))
+    }
+    const handleIsPrivate = () => {
+        setPost(prev => ({
+            ...prev,
+            settings: {
+                ...prev.settings,
+                isPrivate: !prev.settings.isPrivate,
+            }
+        }))
     }
 
     const updatePosts = () => {
@@ -191,7 +225,7 @@
                     <img className='avatar-32' src={IconLink} />
                 </div>
                 <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                    <img className='avatar-32' src={IconSettings} />
+                    <img className='avatar-32' src={IconSettings} onClick={handleSettingsAreaVisibility} />
                 </div>
 
             </div>
@@ -246,9 +280,18 @@
         <LinkArea
             showLinkArea={showLinkArea}
             handleLinkAreaVisibility={handleLinkAreaVisibility}
+            handleLinkUrl={handleLinkUrl}
+            handleLinkName={handleLinkName}
+        />
+
+        <SettingsArea
+            showSettingsArea={showSettingsArea}
+            handleSettingsAreaVisibility={handleSettingsAreaVisibility}
+            handleIsPrivate={handleIsPrivate}
+            isPrivate={post.settings.isPrivate}
         />
         </>
-    );
-    };
+    )
+    }
 
     export default CameraViewport;

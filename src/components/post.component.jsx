@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import IconSettings from '../images/icons/icon-settings-white.svg'
 import IconLikes from '../images/icons/icon-like-white-empty.svg'
 import IconComments from '../images/icons/icon-comment-white.svg'
@@ -13,12 +15,14 @@ const Post = ({ post, openComments }) => {
             }
 
             <div className='d-flex-row align-items-center j-c-space-between mb-xs-1 mt-xs-1'>
-                <div className='d-flex-row align-items-center j-c-start gap-0_5em'>
+                <div className='d-flex-row align-items-center j-c-start gap-1em'>
                     <div className='avatar-32 d-flex-row align-items-center j-c-center' onClick={openComments}>
                         <img className='avatar-32' src={IconComments} />
+                        <span>{post.comments.length > 0 && post.comments.length}</span>
                     </div>
                     <div className='avatar-32 d-flex-row align-items-center j-c-center'>
                         <img className='avatar-32' src={IconLikes} />
+                        <span>{post.likes > 0 && post.likes}</span>
                     </div>
                     <div className='avatar-32 d-flex-row align-items-center j-c-center'>
                         <img className='avatar-32' src={IconShare} />
@@ -27,10 +31,16 @@ const Post = ({ post, openComments }) => {
 
                 <div className='avatar-32 d-flex-row align-items-center j-c-center'>
                     <img className='avatar-32' src={IconSettings} />
+                    <span>{post.shares > 0 && post.length}</span>
                 </div>
             </div>
 
-            <p className='mb-xs-2'>{post.caption && post.caption}</p>
+            <p className='pre-wrap mb-xs-2'>{post.caption && post.caption}</p>
+            {post.link.url &&
+                <div className='mb-xs-2'>
+                    <Link to={post.link.url} target='blank' className='lime-400'>{post.link.name ? post.link.name : 'Apri al link'}</Link>
+                </div>
+            }
             <span className='fsize-xs-1 grey-200 f-w-300'>{post.createdAt}</span>
 
             
