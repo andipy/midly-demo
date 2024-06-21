@@ -58,6 +58,7 @@ const CameraViewport = () => {
         createdAt: undefined
     })
 
+    // this useEffect sets the height of the camera viewport
     useEffect(() => {
         const setWrapperHeight = () => {
             const outer = document.querySelector('.outer')
@@ -77,27 +78,32 @@ const CameraViewport = () => {
         window.addEventListener('resize', setWrapperHeight);
 
         return () => window.removeEventListener('resize', setWrapperHeight);
-    }, []);
+    }, [])
 
     useEffect(() => {
         const getCameraStream = async () => {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true })
             if (videoRef.current) {
-            videoRef.current.srcObject = stream
+                videoRef.current.srcObject = stream
             }
         } catch (err) {
             setError(err.message)
         }
         }
 
-        getCameraStream()
+        const handleUserAction = () => {
+            getCameraStream()
+        }
+      
+        // Adding event listener to handle user interaction
+        document.addEventListener('click', handleUserAction, { once: true })
 
         return () => {
-        if (videoRef.current && videoRef.current.srcObject) {
-            let tracks = videoRef.current.srcObject.getTracks()
-            tracks.forEach(track => track.stop())
-        }
+            if (videoRef.current && videoRef.current.srcObject) {
+                let tracks = videoRef.current.srcObject.getTracks()
+                tracks.forEach(track => track.stop())
+            }
         }
     }, [photoUrl, videoUrl])
 
@@ -252,7 +258,7 @@ const CameraViewport = () => {
             </div>
             {!photoUrl && !videoUrl &&
                 <>
-                <video className='border-radius-04 overflow-clip object-fit-cover' ref={videoRef} autoPlay style={{ width: '100%', height: '100%' }} />
+                <video className='border-radius-04 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
 
                 {!photoUrl && !videoUrl &&
                     <div className='position-absolute-x bottom-0 d-flex-row align-items-center j-c-center gap-0_5em mb-xs-2'>
