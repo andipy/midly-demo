@@ -19,7 +19,7 @@ const Navbar = ({ fanclub }) => {
                     <img src={Logo} alt='MIDLY' />
                 </div>
 
-                {fanclub?.isActive && pathname.includes('fan-club') &&
+                {fanclub?.isActive && pathname.includes('fanclub') &&
                     <div className='d-flex-row gap-0_5em'>
                         <div className='avatar-32 d-flex-row align-items-center j-c-center'>
                             <img className='avatar-32' src={IconInfo} alt='+' />

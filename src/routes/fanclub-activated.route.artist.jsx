@@ -40,7 +40,7 @@ const FanclubActivated = () => {
                 
                     <h3 className='fsize-xs-5 f-w-500'>Pubblica il tuo primo contenuto:</h3>
                     <Button style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Crea un contenuto' onClick={() => navigate('/artist-app/content-creation')} />
-                    <Button style='bg-none border-lime lime-400 fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Lo faccio più tardi' onClick={() => navigate('/artist-app/fan-club')} />
+                    <Button style='bg-none border-lime lime-400 fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Lo faccio più tardi' onClick={() => navigate('/artist-app/fanclub')} />
                 </section>
 
             </ContainerDefault>

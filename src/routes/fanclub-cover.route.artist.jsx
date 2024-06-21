@@ -54,7 +54,7 @@ const FanclubCover = () => {
                 <img className='w-100' src={currentImage && currentImage} />
 
                 <ContainerDefault containerSpecificStyle='position-absolute bottom-5'>
-                    <Button style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Next' onClick={() => navigate('/artist-app/fan-club/pricing')} />
+                    <Button style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Next' onClick={() => navigate('/artist-app/fanclub/pricing')} />
                 </ContainerDefault>
             </ContainerDefault>
         </>

@@ -42,7 +42,7 @@ const FanclubPricing = () => {
                     : fanclub
             )
         )
-        navigate('/artist-app/fan-club/activated')
+        navigate('/artist-app/fanclub/activated')
     }
 
     useEffect(() => {

@@ -236,7 +236,7 @@ const CameraViewport = () => {
                     : fanclub
             )
         );
-        navigate('/artist-app/fan-club')
+        navigate('/artist-app/fanclub')
     }
 
 

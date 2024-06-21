@@ -16,10 +16,10 @@ const Appbar = () => {
     return (
         <div className='app-bar-area d-flex-row j-c-center border-top-dark-01 z-index-max'>            
             <div className='container d-flex-row align-items-center j-c-space-between'>
-                <Link to='/artist-app/fan-club'>
+                <Link to='/artist-app/fanclub'>
                     <div className='d-flex-column align-items-center'>
-                        <img className='mb-xs-8' src={location.pathname.includes('fan-club') ? IconFanclubActive : IconFanclubInactive} />
-                        <span className={`${location.pathname.includes('fan-club') ? 'f-w-700 lime-400' : 'f-w-300 white'} fsize-xs-0 letter-spacing-1`}>Fanclub</span>
+                        <img className='mb-xs-8' src={location.pathname.includes('fanclub') ? IconFanclubActive : IconFanclubInactive} />
+                        <span className={`${location.pathname.includes('fanclub') ? 'f-w-700 lime-400' : 'f-w-300 white'} fsize-xs-0 letter-spacing-1`}>Fanclub</span>
                     </div>                    
                 </Link>
                 <Link to='/artist-app/flash-leaderboards'>
