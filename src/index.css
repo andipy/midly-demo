@@ -1787,6 +1787,19 @@ nav .container {
 }
 
 /******************************************/
+/************ VIDEO CREATION *************/
+/******************************************/
+.icon-flip-camera {
+  transition: all .3s ease-out;
+}
+.icon-flip-camera-user {
+  transform: rotate(0deg);
+}
+.icon-flip-camera-environment {
+  transform: rotate(180deg);
+}
+
+/******************************************/
 /**************** APP BAR *****************/
 /******************************************/
 .app-bar-area {

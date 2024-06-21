@@ -199,30 +199,36 @@ const FanclubRoute = () => {
 
     useEffect(() => {
         const handleMouseDown = () => {
-            setClickCount(prevCount => prevCount + 1)
+            setClickCount(prevCount => {
+                const newCount = prevCount + 1
+                
+                if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current)
+                }
 
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current)
-            }
+                timeoutRef.current = setTimeout(() => {
+                    setClickCount(0);
+                }, 400) // Reset the count if more than 1 second passes between clicks
 
-            timeoutRef.current = setTimeout(() => {
-                setClickCount(0)
-            }, 400) // Reset the count if more than 1 second passes between clicks
+                if (newCount >= 6) {
+                    setShowComponent(true)
+                    setClickCount(0) // Reset the click count after triggering the action
+                    clearTimeout(timeoutRef.current)
+                }
 
-            if (clickCount + 1 >= 6) {
-                setShowComponent(true)
-                setClickCount(0) // Reset the click count after triggering the action
-                clearTimeout(timeoutRef.current)
-            }
+                return newCount
+            })
         }
 
         document.addEventListener('mousedown', handleMouseDown)
 
         return () => {
             document.removeEventListener('mousedown', handleMouseDown)
-            clearTimeout(timeoutRef.current)
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current)
+            }
         }
-    }, [clickCount])
+    }, [])
 
     return (
         <>

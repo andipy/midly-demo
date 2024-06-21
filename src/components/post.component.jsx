@@ -70,7 +70,7 @@ const Post = ({ post, openComments, hasUserSubscribed, handleSubscription }) => 
             {!hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate &&
                 <div className='position-absolute-x-y w-80 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
                     <p className='t-align-center mb-xs-4'>Vuoi accedere ai contenuti esclusivi dell'artista?</p>
-                    <Button style='bg-acid-lime f-w-500 fsize-xs-2' label='Abbonati' onClick={handleSubscription} />
+                    <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={handleSubscription} />
                 </div>
             }
 

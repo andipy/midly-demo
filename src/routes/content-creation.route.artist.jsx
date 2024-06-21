@@ -31,6 +31,7 @@ const CameraViewport = () => {
     const mediaRecorderRef = useRef(null)
     const [error, setError] = useState(null)
     const [recording, setRecording] = useState(false)
+    const [facingMode, setFacingMode] = useState('user')
     const [videoUrl, setVideoUrl] = useState(null)
     const [photoUrl, setPhotoUrl] = useState(null)
     const [mediaType, setMediaType] = useState('PHOTO')
@@ -82,15 +83,17 @@ const CameraViewport = () => {
 
     useEffect(() => {
         const getCameraStream = async () => {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true })
-            if (videoRef.current) {
-                videoRef.current.srcObject = stream
-            }
-        } catch (err) {
-            setError(err.message)
-        }
-        }
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                  video: { facingMode }
+                });
+                if (videoRef.current) {
+                  videoRef.current.srcObject = stream;
+                }
+              } catch (err) {
+                setError(err.message);
+              }
+            };
 
         const handleUserAction = () => {
             getCameraStream()
@@ -105,7 +108,11 @@ const CameraViewport = () => {
                 tracks.forEach(track => track.stop())
             }
         }
-    }, [photoUrl, videoUrl])
+    }, [photoUrl, videoUrl, facingMode])
+
+    const switchCamera = () => {
+        setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'))
+    }
 
     const handleCapturePhoto = () => {
         const canvas = canvasRef.current
@@ -238,11 +245,11 @@ const CameraViewport = () => {
         <div className='d-flex-column j-c-center outer'>
         <NavbarMultistep stepNumber={1} totalStepNumber={1} />
         {error && <p>Error accessing the camera: {error}</p>}
-        <ContainerDefault containerSpecificStyle={'wrapper position-relative'}>
+        <ContainerDefault containerSpecificStyle='wrapper position-relative'>
             <div className='d-flex-column position-absolute right-0 bottom-0 gap-0_5em mb-xs-2 mr-xs-2'>
                 {!photoUrl && !videoUrl && 
-                    <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                        <img className='avatar-32' src={IconFlip} />
+                    <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={switchCamera}>
+                        <img className={`avatar-32 icon-flip-camera ${facingMode == 'user' ? 'icon-flip-camera-user' : facingMode === 'environment' && 'icon-flip-camera-environment'}`} src={IconFlip} />
                     </div>
                 }
                 <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
