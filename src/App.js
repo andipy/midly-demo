@@ -2,7 +2,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   Navigate
-} from 'react-router-dom';
+} from 'react-router-dom'
 
 import './index.css'
 
@@ -33,6 +33,7 @@ import FanclubCover from './routes/fanclub-cover.route.artist'
 import FanclubPricing from './routes/fanclub-pricing.route.artist'
 import FanclubActivated from './routes/fanclub-activated.route.artist'
 import ContentCreation from './routes/content-creation.route.artist'
+import MetricsRoute from './routes/metrics.route.artist'
 
 const router = createBrowserRouter([
   {
@@ -104,6 +105,9 @@ const router = createBrowserRouter([
   },{
     path: '/artist-app/content-creation',
     element: <ContentCreation />
+  },{
+    path: '/artist-app/metrics',
+    element: <MetricsRoute />
   }
 ])
 
@@ -125,4 +129,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

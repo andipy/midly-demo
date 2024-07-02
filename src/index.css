@@ -313,6 +313,24 @@ animation: dot-loader-after 1s infinite linear;
 }
 
 /******************************************/
+/************** SPINNER LOADER ************/
+/******************************************/
+.loader {
+  margin: 0 auto;
+  border: 5px solid #313131; /* Light grey */
+  border-top: 5px solid var(--color-accent-primary); /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/******************************************/
 /************* FLASH ANIMATION ************/
 /******************************************/
 @keyframes flashDot {
