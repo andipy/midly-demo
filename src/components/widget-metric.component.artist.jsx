@@ -1,0 +1,16 @@
+const WidgetMetric = ({ metric }) => {
+
+    const { label, value, dailyIncrement } = metric
+
+    return (
+        <div className='w-100 bg-dark-gradient d-flex-column j-c-center border-radius-08 pl-xs-8 pr-xs-8 pt-xs-8 pb-xs-8 mt-xs-4'>
+            <p className='fsize-xs-1 grey-300 letter-spacing-3'>{label}</p>
+            <div className='d-flex-row align-items-center gap-1em mt-xs-6'>
+                <h4 className='fsize-xs-8 letter-spacing-2 f-w-500'>{value}</h4>
+                <p className={`fsize-xs-2 f-w-200 grey-200 letter-spacing-1 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 border-radius-02 ${dailyIncrement >= 0 ? 'bg-green-900' : 'bg-red-900'}`}><span className={`${dailyIncrement >= 0 ? 'green-400' : 'red-400'} f-w-400`}>{dailyIncrement}</span> Rispetto a ieri</p>
+            </div>
+        </div>
+    )
+}
+
+export default WidgetMetric
