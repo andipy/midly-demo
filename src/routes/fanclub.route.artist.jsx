@@ -306,7 +306,7 @@ const FanclubRoute = () => {
 
             {showComponent &&
                 <FullPageCenter className={'z-index-max bg-black-transp70'}>
-                    <ContainerDefault containerSpecificStyle={'bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 w-80'}>
+                    <ContainerDefault containerSpecificStyle={'centered-popup position-absolute bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                         <h4 className='fsize-xs-5 grey-200 f-w-300'>Ehi, mi hai scoperto.</h4>
                         <p className='fsize-xs-3 grey-200 f-w-300 mt-xs-4'>Vuoi visitare la demo dell'app fan?</p>
                         <Button style='bg-blue-600 dark-900 border-radius-02 fsize-xs-3 f-w-500 mt-xs-4' label='Vai alla demo fan' onClick={() => navigate('/your-favourites')} />
