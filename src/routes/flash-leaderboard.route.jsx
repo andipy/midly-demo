@@ -25,10 +25,28 @@ import SpecialBadge3P from '../images/illustrations/flash-podium-3.png'
 
 const FlashLeaderboardRoute = () => {
 
-    const [showComponent, setShowComponent] = useState(true)
-    const handlePopup = () => {
+    const [showComponent, setShowComponent] = useState(null)
+    const closePopup = () => {
+        const now = new Date()
+        localStorage.setItem('showFlashLeaderboardPopUp', false)
+        localStorage.setItem('showFlashLeaderboardPopUpExpiry', now.getTime())
         setShowComponent(false)
     }
+    useEffect(() => {
+        const now = new Date()
+        if ( localStorage.getItem('showFlashLeaderboardPopUp') ) {
+            if ( localStorage.getItem('showFlashLeaderboardPopUp') === false ) {
+                setShowComponent(false)
+            }
+            console.log(localStorage.getItem('showFlashLeaderboardPopUpExpiry'))
+            if ( ( now - localStorage.getItem('showFlashLeaderboardPopUpExpiry') ) > ( 24 * 60 * 60 * 1000 ) ) {
+                localStorage.removeItem('showFlashLeaderboardPopUp')
+                localStorage.removeItem('showFlashLeaderboardPopUpExpiry')
+            }
+        } else {
+            setShowComponent(true)
+        }
+    }, [])
 
     const { state, pathname } = useLocation()
 
@@ -164,7 +182,7 @@ const FlashLeaderboardRoute = () => {
                     <ContainerDefault containerSpecificStyle={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                         <img className='avatar-48' src={IconTime} />
                         <p className='fsize-xs-4 grey-100 f-w-300 t-align-center'>Gli ascolti che fai in Spotify si trasformano in punti nella classifica circa entro 60 minuti, ricarica la pagina per aggiornare la classifica.</p>
-                        <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 mt-xs-4' label='Ho capito' onClick={handlePopup} />
+                        <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 mt-xs-4' label='Ho capito' onClick={closePopup} />
                     </ContainerDefault>
                 </FullPageCenter>
             }
