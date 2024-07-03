@@ -38,7 +38,6 @@ const FlashLeaderboardRoute = () => {
             if ( localStorage.getItem('showFlashLeaderboardPopUp') === false ) {
                 setShowComponent(false)
             }
-            console.log(localStorage.getItem('showFlashLeaderboardPopUpExpiry'))
             if ( ( now - localStorage.getItem('showFlashLeaderboardPopUpExpiry') ) > ( 24 * 60 * 60 * 1000 ) ) {
                 localStorage.removeItem('showFlashLeaderboardPopUp')
                 localStorage.removeItem('showFlashLeaderboardPopUpExpiry')
