@@ -161,7 +161,7 @@ const FlashLeaderboardRoute = () => {
 
             {showComponent &&
                 <FullPageCenter className={'z-index-max bg-black-transp70'}>
-                    <ContainerDefault containerSpecificStyle={'d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 w-80 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
+                    <ContainerDefault containerSpecificStyle={'d-flex-column position-absolute align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 w-80 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 centered-popup'}>
                         <img className='avatar-48' src={IconTime} />
                         <p className='fsize-xs-4 grey-100 f-w-300 t-align-center'>Gli ascolti che fai in Spotify si trasformano in punti nella classifica circa entro 60 minuti, ricarica la pagina per aggiornare la classifica.</p>
                         <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 mt-xs-4' label='Ho capito' onClick={handlePopup} />
