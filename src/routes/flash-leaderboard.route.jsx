@@ -6,6 +6,8 @@ import { ArtistsContext } from '../contexts/artists.context'
 import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context'
 
 import ContainerDefault from '../layout/container-default.layout'
+import FullPageCenter from '../layout/full-page-center.layout'
+
 import NavbarLeaderboardFlashPage from '../components/navbar-leaderboard-flash-page.component'
 import CoverArtistPage from '../components/cover-artist-page.component'
 import CardLeaderboardYourPosition from '../components/card-leaderboard-your-position.component'
@@ -13,13 +15,20 @@ import Button from '../components/button.component'
 import CardLeaderboardFan from '../components/card-leaderboard-fan.component'
 import LiveMessages from '../components/live-messages.component'
 import LiveMusicProduct from '../components/live-music-product.component'
+import SimpleSpinnerLoader from '../components/simple-spinner-loader.component'
 
 import IconPoints from '../images/icons/icon-point-xs.svg'
+import IconTime from '../images/icons/icon-time-2.svg'
 import SpecialBadge1P from '../images/illustrations/flash-podium-1.png'
 import SpecialBadge2P from '../images/illustrations/flash-podium-2.png'
 import SpecialBadge3P from '../images/illustrations/flash-podium-3.png'
 
 const FlashLeaderboardRoute = () => {
+
+    const [showComponent, setShowComponent] = useState(true)
+    const handlePopup = () => {
+        setShowComponent(false)
+    }
 
     const { state, pathname } = useLocation()
 
@@ -144,9 +153,21 @@ const FlashLeaderboardRoute = () => {
                     )}
                 </section>
                 :
-                <div>Loading...</div>
+                <div className='mt-xs-8 mb-xs-8'>
+                    <SimpleSpinnerLoader />
+                </div>
                 }
             </ContainerDefault>
+
+            {showComponent &&
+                <FullPageCenter className={'z-index-max bg-black-transp70'}>
+                    <ContainerDefault containerSpecificStyle={'d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 w-80 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
+                        <img className='avatar-48' src={IconTime} />
+                        <p className='fsize-xs-4 grey-100 f-w-300 t-align-center'>Gli ascolti che fai in Spotify si trasformano in punti nella classifica circa entro 60 minuti, ricarica la pagina per aggiornare la classifica.</p>
+                        <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 mt-xs-4' label='Ho capito' onClick={handlePopup} />
+                    </ContainerDefault>
+                </FullPageCenter>
+            }
 
             <LiveMessages />
 
@@ -155,4 +176,4 @@ const FlashLeaderboardRoute = () => {
     )
 }
 
-export default FlashLeaderboardRoute;
+export default FlashLeaderboardRoute
