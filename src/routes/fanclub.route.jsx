@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 import { useOutletContext } from 'react-router-dom'
 
 import { FanclubsContext } from '../contexts/fanclubs.context'
@@ -18,8 +18,10 @@ const Fanclub = () => {
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
 
     const [commentInFocus, setCommentInFocus] = useState(null)
+    const inputRef = useRef(null)
     const spotCommentToReply = (id) => {
         setCommentInFocus(id)
+        inputRef.current.focus()
     }
     
     const [fanclub, setFanclub] = useState()
@@ -207,6 +209,7 @@ const Fanclub = () => {
                             <Comment
                                 comment={comment}
                                 spotCommentToReply={() => spotCommentToReply(comment.id)}
+                                inputRef={inputRef}
                                 key={comment.id}
                             />
                         )
@@ -219,6 +222,7 @@ const Fanclub = () => {
                     currentComment={currentComment}
                     setCurrentComment={setCurrentComment}
                     commentsOpen={commentsOpen}
+                    inputRef={inputRef}
                 />
 
             </CommentsModalLayout>

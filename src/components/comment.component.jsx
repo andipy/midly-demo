@@ -2,7 +2,7 @@ import CommentReply from './comment-reply.component'
 
 import IconLikes from '../images/icons/icon-like-white-empty.svg'
 
-const Comment = ({ comment, spotCommentToReply }) => {
+const Comment = ({ comment, spotCommentToReply, inputRef }) => {
     return (
         <div className={`d-flex-column mb-xs-6`}>
             <div className={`d-flex-row gap-0_5em mb-xs-3`} key={comment.id}>

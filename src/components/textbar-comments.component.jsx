@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 
 import IconArrowUp from '../images/icons/icon-arrow-up.svg'
 
-const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitComment, onClick, commentsOpen }) => {
+const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitComment, onClick, commentsOpen, inputRef }) => {
 
     const { pathname } = useLocation()
 
@@ -12,6 +12,7 @@ const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitCom
                 <input
                     type='text'
                     name='user-message'
+                    ref={inputRef}
                     placeholder={
                         !pathname.includes('artist-app') ?
                             'Lascia un commento'

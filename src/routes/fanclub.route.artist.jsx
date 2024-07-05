@@ -30,6 +30,7 @@ const FanclubRoute = () => {
 
     const [commentsOpen, setCommentsOpen] = useState(false)
     const [commentsInFocus, setCommentsInFocus] = useState(null)
+    const inputRef = useRef(null)
     const openComments = (id) => {
         setCommentsOpen(true)
         setCommentsInFocus(id)
@@ -42,6 +43,7 @@ const FanclubRoute = () => {
     const [commentInFocus, setCommentInFocus] = useState(null)
     const spotCommentToReply = (id) => {
         setCommentInFocus(id)
+        inputRef.current.focus()
     }
     const [currentComment, setCurrentComment] = useState({
         id: undefined,
@@ -286,6 +288,7 @@ const FanclubRoute = () => {
                             <Comment
                                 comment={comment}
                                 key={comment.id}
+                                inputRef={inputRef}
                                 spotCommentToReply={() => spotCommentToReply(comment.id)}
                             />
                         )
@@ -298,6 +301,7 @@ const FanclubRoute = () => {
                     currentComment={currentComment}
                     setCurrentComment={setCurrentComment}
                     commentsOpen={commentsOpen}
+                    inputRef={inputRef}
                 />
 
             </CommentsModalLayout>
