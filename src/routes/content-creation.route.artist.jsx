@@ -19,7 +19,7 @@ import LinkArea from '../components/link-area.component.artist'
 import SettingsArea from '../components/settings-area.component.artist'
 
 
-const CameraViewport = () => {
+const ContentCreationRoute = () => {
 
     const navigate = useNavigate()
 
@@ -243,7 +243,7 @@ const CameraViewport = () => {
     return (
         <>
         <div className='d-flex-column j-c-center outer'>
-        <NavbarMultistep stepNumber={1} totalStepNumber={1} />
+        <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
         {error && <p>Error accessing the camera: {error}</p>}
         <ContainerDefault containerSpecificStyle='wrapper position-relative'>
             <div className='d-flex-column position-absolute right-0 bottom-0 gap-0_5em mb-xs-2 mr-xs-2'>
@@ -329,4 +329,4 @@ const CameraViewport = () => {
     )
     }
 
-    export default CameraViewport
+    export default ContentCreationRoute

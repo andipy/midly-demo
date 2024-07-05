@@ -8,7 +8,7 @@ import Button from '../components/button.component'
 
 import ContainerDefault from '../layout/container-default.layout'
 
-const FanclubActivated = () => {
+const FanclubActivatedRoute = () => {
 
     const navigate = useNavigate()
 
@@ -48,4 +48,4 @@ const FanclubActivated = () => {
     )
 }
 
-export default FanclubActivated
+export default FanclubActivatedRoute

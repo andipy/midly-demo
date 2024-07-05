@@ -242,7 +242,7 @@ const FanclubRoute = () => {
                     
                     {fanclub.posts.length === 0 ?
                         <FullPageCenter>
-                            <img className='w-35' src={IllustrationsFanclubEmpty} alt='' />
+                            <img className='w-35' src={IllustrationsFanclubEmpty} />
                             <h1 className='fsize-xs-6 f-w-500 mb-xs-2 mt-xs-4'>Il tuo fanclub è attivo!</h1>
                             <p className='fsize-xs-4 f-w-200 grey-200 w-70 t-align-center mb-xs-4'>Puoi pubblicare contenuti per i tuoi fan 🎉</p>
                             <Button style='bg-acid-lime fsize-xs-3 f-w-500 black w-70' label='Crea un contenuto' onClick={() => navigate('/artist-app/content-creation')} />

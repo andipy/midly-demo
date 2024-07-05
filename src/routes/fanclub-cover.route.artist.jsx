@@ -9,7 +9,7 @@ import NavbarMultistep from '../components/navbar-multistep.component'
 
 import ContainerDefault from '../layout/container-default.layout'
 
-const FanclubCover = () => {
+const FanclubCoverRoute = () => {
 
     const navigate = useNavigate()
 
@@ -45,7 +45,7 @@ const FanclubCover = () => {
     
     return (
         <>
-            <NavbarMultistep stepNumber={2} />
+            <NavbarMultistep stepNumber={2} totalStepNumber={3} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
             <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500'>Carica una immagine di copertina per il tuo fanclub</h3>
@@ -61,4 +61,4 @@ const FanclubCover = () => {
     )
 }
 
-export default FanclubCover
+export default FanclubCoverRoute

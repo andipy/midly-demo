@@ -9,7 +9,7 @@ import NavbarMultistep from '../components/navbar-multistep.component'
 
 import ContainerDefault from '../layout/container-default.layout'
 
-const FanclubName = () => {
+const FanclubNameRoute = () => {
 
     const navigate = useNavigate()
 
@@ -49,7 +49,7 @@ const FanclubName = () => {
 
     return (
         <>
-            <NavbarMultistep stepNumber={1} />
+            <NavbarMultistep stepNumber={1} totalStepNumber={3} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
             <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500'>Dai un nome al tuo fanclub</h3>
@@ -63,4 +63,4 @@ const FanclubName = () => {
     )
 }
 
-export default FanclubName
+export default FanclubNameRoute

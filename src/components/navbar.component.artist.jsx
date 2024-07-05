@@ -21,16 +21,16 @@ const Navbar = ({ fanclub }) => {
 
                 {fanclub?.isActive && pathname.includes('fanclub') &&
                     <div className='d-flex-row gap-0_5em'>
-                        <div className='avatar-32 d-flex-row align-items-center j-c-center'>
-                            <img className='avatar-32' src={IconInfo} alt='+' />
+                        <div className='avatar-32 d-flex-row align-items-center j-c-center' onClick={() => navigate('tips')}>
+                            <img className='avatar-32' src={IconInfo} alt='?' />
+                        </div>
+
+                        <div className='avatar-32 d-flex-row align-items-center j-c-center' onClick={() => navigate('settings')}>
+                            <img className='avatar-32' src={IconSettings} alt='O' />
                         </div>
 
                         <div className='avatar-32 d-flex-row align-items-center j-c-center'>
-                            <img className='avatar-32' src={IconSettings} alt='+' />
-                        </div>
-
-                        <div className='avatar-32 d-flex-row align-items-center j-c-center'>
-                            <img className='avatar-32' src={IconInbox} alt='+' />
+                            <img className='avatar-32' src={IconInbox} alt='M' />
                         </div>
                         
                         <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32' onClick={() => navigate('/artist-app/content-creation')}>

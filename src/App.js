@@ -28,12 +28,15 @@ import Fanclub from './routes/fanclub.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
-import FanclubName from './routes/fanclub-name.route.artist'
-import FanclubCover from './routes/fanclub-cover.route.artist'
-import FanclubPricing from './routes/fanclub-pricing.route.artist'
-import FanclubActivated from './routes/fanclub-activated.route.artist'
-import ContentCreation from './routes/content-creation.route.artist'
+import FanclubNameRoute from './routes/fanclub-name.route.artist'
+import FanclubCoverRoute from './routes/fanclub-cover.route.artist'
+import FanclubPricingRoute from './routes/fanclub-pricing.route.artist'
+import FanclubActivatedRoute from './routes/fanclub-activated.route.artist'
+import ContentCreationRoute from './routes/content-creation.route.artist'
 import MetricsRoute from './routes/metrics.route.artist'
+import FanclubSettingsRoute from './routes/fanclub-settings.route.artist'
+import FanclubSettingsEditRoute from './routes/fanclub-settings-edit.route.artist'
+import FanclubTipsRoute from './routes/fanclub-tips.routes.artist'
 
 const router = createBrowserRouter([
   {
@@ -92,19 +95,28 @@ const router = createBrowserRouter([
     ]
   },{
     path: '/artist-app/fanclub/name',
-    element: <FanclubName />
+    element: <FanclubNameRoute />
   },{
     path: '/artist-app/fanclub/cover',
-    element: <FanclubCover />
+    element: <FanclubCoverRoute />
   },{
     path: '/artist-app/fanclub/pricing',
-    element: <FanclubPricing />
+    element: <FanclubPricingRoute />
   },{
     path: '/artist-app/fanclub/activated',
-    element: <FanclubActivated />
+    element: <FanclubActivatedRoute />
+  },{
+    path: '/artist-app/fanclub/settings',
+    element: <FanclubSettingsRoute />
+  },{
+    path: '/artist-app/fanclub/settings/edit',
+    element: <FanclubSettingsEditRoute />
+  },{
+    path: '/artist-app/fanclub/tips',
+    element: <FanclubTipsRoute />
   },{
     path: '/artist-app/content-creation',
-    element: <ContentCreation />
+    element: <ContentCreationRoute />
   },{
     path: '/artist-app/metrics',
     element: <MetricsRoute />

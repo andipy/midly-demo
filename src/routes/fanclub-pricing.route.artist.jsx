@@ -9,7 +9,7 @@ import NavbarMultistep from '../components/navbar-multistep.component'
 
 import ContainerDefault from '../layout/container-default.layout'
 
-const FanclubPricing = () => {
+const FanclubPricingRoute = () => {
 
     const navigate = useNavigate()
 
@@ -63,7 +63,7 @@ const FanclubPricing = () => {
     
     return (
         <>
-            <NavbarMultistep stepNumber={3} />
+            <NavbarMultistep stepNumber={3} totalStepNumber={3} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
             <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500'>Stabilisci il prezzo dell'abbonamento mensile al tuo fanclub</h3>
@@ -88,4 +88,4 @@ const FanclubPricing = () => {
     )
 }
 
-export default FanclubPricing
+export default FanclubPricingRoute
