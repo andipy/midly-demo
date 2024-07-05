@@ -180,7 +180,7 @@ const Fanclub = () => {
                 </ContainerDefault>
             :
             <>
-                <ContainerDefault containerSpecificStyle={'pb-xs-appbar mt-xs-4'}>
+                <ContainerDefault containerSpecificStyle={'pb-xs-2 mt-xs-4'}>
                     {fanclub?.posts.map(post =>
                         <Post
                             post={post}

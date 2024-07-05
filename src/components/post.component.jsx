@@ -19,8 +19,17 @@ const Post = ({ post, openComments, hasUserSubscribed, handleSubscription }) => 
             }
             {post.media.type === 'PHOTO' ?
                 <img className={`border-radius-04 w-100 h-100 ${!hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''}`} src={post.media?.url} alt="" />
-            : post.media.type === 'VIDEO' &&
-                <video className='border-radius-04 w-100 h-100' src={post.media?.url} controls />
+            : post.media.type === 'VIDEO' ?
+                <video className={`border-radius-04 w-100 h-100 ${!hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''}`} src={post.media?.url} controls={false} autoPlay={true} loop={true} />
+            : post.text &&
+                <div className={`${!hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''}`}>
+                    <p className='pre-wrap fsize-xs-5'>{post.text}</p>
+                    {post.link.url && post.text &&
+                        <div className='mb-xs-2'>
+                            <Link to={post.link.url} target='blank' className='lime-400'>{post.link.name ? post.link.name : 'Apri al link'}</Link>
+                        </div>
+                    }
+                </div>
             }
 
             <div className='d-flex-row align-items-center j-c-space-between mb-xs-1 mt-xs-1'>
@@ -59,8 +68,8 @@ const Post = ({ post, openComments, hasUserSubscribed, handleSubscription }) => 
                 }
             </div>
 
-            <p className='pre-wrap mb-xs-2'>{post.caption && post.caption}</p>
-            {post.link.url &&
+            <p className='pre-wrap mb-xs-2 grey-200 f-w-300'>{post.caption && post.caption}</p>
+            {post.link.url && !post.text &&
                 <div className='mb-xs-2'>
                     <Link to={post.link.url} target='blank' className='lime-400'>{post.link.name ? post.link.name : 'Apri al link'}</Link>
                 </div>

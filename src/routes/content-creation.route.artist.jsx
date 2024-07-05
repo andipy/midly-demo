@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 
-import FullPageCenter from '../layout/full-page-center.layout'
 import ContainerDefault from '../layout/container-default.layout'
 
 import IconExit from '../images/icons/icon-exit.svg'
@@ -34,7 +33,8 @@ const ContentCreationRoute = () => {
     const [facingMode, setFacingMode] = useState('user')
     const [videoUrl, setVideoUrl] = useState(null)
     const [photoUrl, setPhotoUrl] = useState(null)
-    const [mediaType, setMediaType] = useState('PHOTO')
+    const [textContent, setTextContent] = useState(null)
+    const [contentType, setContentType] = useState('PHOTO')
     const [showTextArea, setShowTextArea] = useState(false)
     const [showLinkArea, setShowLinkArea] = useState(false)
     const [showSettingsArea, setShowSettingsArea] = useState(false)
@@ -45,6 +45,7 @@ const ContentCreationRoute = () => {
             type: '',
             url: ''
         },
+        text: '',
         caption: '',
         link: {
             url: '',
@@ -86,14 +87,14 @@ const ContentCreationRoute = () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({
                   video: { facingMode }
-                });
+                })
                 if (videoRef.current) {
                   videoRef.current.srcObject = stream;
                 }
               } catch (err) {
-                setError(err.message);
+                setError(err.message)
               }
-            };
+            }
 
         const handleUserAction = () => {
             getCameraStream()
@@ -108,7 +109,7 @@ const ContentCreationRoute = () => {
                 tracks.forEach(track => track.stop())
             }
         }
-    }, [photoUrl, videoUrl, facingMode])
+    }, [photoUrl, videoUrl, facingMode, contentType])
 
     const switchCamera = () => {
         setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'))
@@ -163,10 +164,19 @@ const ContentCreationRoute = () => {
 
     const toggleRecording = () => {
         if (recording) {
-        handleStopRecording()
+            handleStopRecording()
         } else {
-        handleStartRecording()
+            handleStartRecording()
         }
+    }
+
+    const handleCaptureText = (e) => {
+        e.preventDefault()
+        setTextContent(e.target.value)
+        setPost(prev => ({
+            ...prev,
+            text: e.target.value
+        }))
     }
 
     const clearPhoto = () => {
@@ -176,10 +186,13 @@ const ContentCreationRoute = () => {
         setVideoUrl(null)
     }
     const handlePhotoType = () => {
-        setMediaType('PHOTO')
+        setContentType('PHOTO')
     }
     const handleVideoType = () => {
-        setMediaType('VIDEO')
+        setContentType('VIDEO')
+    }
+    const handleTextType = () => {
+        setContentType('TEXT')
     }
 
     const handleTextAreaVisibility = () => {
@@ -235,26 +248,29 @@ const ContentCreationRoute = () => {
                     ? { ...fanclub, posts: [...fanclub.posts, { ...post, id: fanclub.posts.length + 1, createdAt: date }] }
                     : fanclub
             )
-        );
+        )
         navigate('/artist-app/fanclub')
     }
-
 
     return (
         <>
         <div className='d-flex-column j-c-center outer'>
         <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
-        {error && <p>Error accessing the camera: {error}</p>}
+        {error && <p className='pt-xs-topbar'>Error accessing the camera: {error}</p>}
         <ContainerDefault containerSpecificStyle='wrapper position-relative'>
             <div className='d-flex-column position-absolute right-0 bottom-0 gap-0_5em mb-xs-2 mr-xs-2'>
-                {!photoUrl && !videoUrl && 
-                    <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={switchCamera}>
-                        <img className={`avatar-32 icon-flip-camera ${facingMode == 'user' ? 'icon-flip-camera-user' : facingMode === 'environment' && 'icon-flip-camera-environment'}`} src={IconFlip} />
-                    </div>
+                {contentType !== 'TEXT' &&
+                    <>
+                        {!photoUrl && !videoUrl && 
+                            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={switchCamera}>
+                                <img className={`avatar-32 icon-flip-camera ${facingMode == 'user' ? 'icon-flip-camera-user' : facingMode === 'environment' && 'icon-flip-camera-environment'}`} src={IconFlip} />
+                            </div>
+                        }
+                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
+                            <img className='avatar-32' src={IconText} />
+                        </div>
+                    </>
                 }
-                <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
-                    <img className='avatar-32' src={IconText} />
-                </div>
                 <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
                     <img className='avatar-32' src={IconLink} />
                 </div>
@@ -263,16 +279,22 @@ const ContentCreationRoute = () => {
                 </div>
 
             </div>
+
             {!photoUrl && !videoUrl &&
                 <>
-                <video className='border-radius-04 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
+                    {contentType == 'PHOTO' || contentType === 'VIDEO' ?
+                        <video className='border-radius-04 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
+                    : contentType === 'TEXT' &&
+                        <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-04 fsize-xs-6' placeholder='Scrivi qui...' rows='8' onChange={handleCaptureText}></textarea>
+                    }
 
-                {!photoUrl && !videoUrl &&
-                    <div className='position-absolute-x bottom-0 d-flex-row align-items-center j-c-center gap-0_5em mb-xs-2'>
-                    <span className={`pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${mediaType === 'PHOTO' ? 'white' : 'grey-400'}`} onClick={handlePhotoType}>FOTO</span>
-                    <span className={`pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${mediaType === 'VIDEO' ? 'white' : 'grey-400'}`} onClick={handleVideoType}>VIDEO</span>
-                </div>
-                }
+                    {!photoUrl && !videoUrl &&
+                        <div className='position-absolute-x bottom-0 d-flex-row align-items-center j-c-center gap-0_5em mb-xs-2'>
+                            <span className={`pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'PHOTO' ? 'white' : 'grey-400'}`} onClick={handlePhotoType}>FOTO</span>
+                            <span className={`pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'VIDEO' ? 'white' : 'grey-400'}`} onClick={handleVideoType}>VIDEO</span>
+                            <span className={`pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'TEXT' ? 'white' : 'grey-400'}`} onClick={handleTextType}>TEXT</span>
+                        </div>
+                    }
                 </>
             }
 
@@ -283,12 +305,12 @@ const ContentCreationRoute = () => {
                     </div>
                     <img className='border-radius-04 object-fit-cover w-100 h-100' src={photoUrl} />
                 </div>
-                : videoUrl &&
+            : videoUrl &&
                 <div className='position-relative'  style={{ width: '100%', height: '100%' }}>
                     <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearVideo}>
                         <img className='avatar-32' src={IconExit} alt="X" />
                     </div>
-                    <video className='border-radius-04 object-fit-cover w-100 h-100' src={videoUrl} controls />
+                    <video className='border-radius-04 object-fit-cover w-100 h-100' src={videoUrl} controls={false} autoPlay={true} loop={true} />
                 </div>
             }
             </ContainerDefault>
@@ -299,9 +321,10 @@ const ContentCreationRoute = () => {
                 handleCapturePhoto={handleCapturePhoto}
                 toggleRecording={toggleRecording}
                 recording={recording}
-                mediaType={mediaType}
+                contentType={contentType}
                 photoUrl={photoUrl}
                 videoUrl={videoUrl}
+                textContent={textContent}
                 updatePosts={updatePosts}
             />
             </div>

@@ -4,18 +4,18 @@ import IconMedia from '../images/icons/icon-picture.svg'
 import ContainerDefault from '../layout/container-default.layout'
 import Button from '../components/button.component'
 
-const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording, mediaType, photoUrl, videoUrl, updatePosts }) => {
+const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording, contentType, photoUrl, videoUrl, textContent, updatePosts }) => {
 
     const location = useLocation()
 
     return (
       <div className='app-bar-content-creation-area d-flex-row j-c-center border-top-dark-01 z-index-max appbar-creation'>
         <ContainerDefault containerSpecificStyle='d-flex-row j-c-center align-items-center position-relative'>
-          {videoUrl || photoUrl ?
+          {videoUrl || photoUrl || textContent ?
             <Button style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Pubblica' onClick={updatePosts} />
           :
             <>
-              {mediaType === 'PHOTO' ?
+              {contentType === 'PHOTO' ?
                 <div className='d-flex-row align-items-center j-c-center gap-1em'>
                   <div className='position-relative border-white avatar-48 border-radius-100 fsize-xs-3 f-w-600 dark-900 no-shrink' onClick={handleCapturePhoto}>
                     <div className='position-absolute-x-y bg-white avatar-40 border-radius-100'></div>
@@ -25,7 +25,7 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording,
                     <input type='file' className='w-100 h-100 grey-300 w-auto opacity-0' />
                   </div>
                 </div>
-              : mediaType === 'VIDEO' &&
+              : contentType === 'VIDEO' ?
                 <div className='d-flex-row align-items-center j-c-center gap-1em'>
                   <div
                     className='position-relative border-white avatar-48 border-radius-100 fsize-xs-3 f-w-600 dark-900 letter-spacing-1'
@@ -38,6 +38,8 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording,
                     <input type='file' className='w-100 h-100 grey-300 w-auto opacity-0' />
                   </div>
                 </div>
+              : contentType === 'TEXT' &&
+                <p className='grey-500'>Scrivi un testo per pubblicare</p>
               }
             </>
           }
