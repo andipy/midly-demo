@@ -41,10 +41,10 @@ a {
   padding: 0;
   margin: 0;
   border-radius: 50%;
-  width: 40px;
-  max-width: 40px;
-  height: 40px;
-  max-height: 40px;
+  width: 36px;
+  max-width: 36px;
+  height: 36px;
+  max-height: 36px;
   aspect-ratio: 1 / 1;
 }
 hr {
@@ -1929,6 +1929,12 @@ nav .container {
   border-radius: .8em;
   margin: 0;
   border: none;
+}
+.button-leave-leaderboard {
+  height: 28px;
+}
+.button-flash-leaderboard-live {
+  height: 32px;
 }
 
 @media (min-width: 0px){
