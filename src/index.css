@@ -1947,7 +1947,7 @@ nav .container {
   /***** BUTTONS *****/
   button {
       width: 100%;
-      padding: 4% 0;
+      height: 46px;
       border-radius: .5em;
       border: none;
   }
@@ -2467,8 +2467,8 @@ nav .container {
   /***** BUTTONS *****/
   button {
       width: 100%;
-      padding: 3.5% 0;
-      border-radius: .8em;
+      height: 46px;
+      border-radius: .5em;
       border: none;
   }
   .secondary {
@@ -2900,8 +2900,8 @@ nav .container {
   /***** BUTTONS *****/
   button {
       width: 100%;
-      padding: 3.5% 0;
-      border-radius: .8em;
+      height: 50px;
+      border-radius: .5em;
       border: none;
   }
   .secondary {
@@ -3330,8 +3330,8 @@ nav .container {
   /***** BUTTONS *****/
   button {
       width: 100%;
-      padding: 3.5% 0;
-      border-radius: .8em;
+      height: 50px;
+      border-radius: .5em;
       border: none;
   }
   .secondary {
@@ -3758,8 +3758,8 @@ nav .container {
   /***** BUTTONS *****/
   button {
       width: 100%;
-      padding: 3.5% 0;
-      border-radius: .8em;
+      height: 54px;
+      border-radius: .5em;
       border: none;
   }
   .secondary {
@@ -4189,8 +4189,8 @@ nav .container {
   /***** BUTTONS *****/
   button {
       width: 100%;
-      padding: 3.5% 0;
-      border-radius: .8em;
+      height: 54px;
+      border-radius: .5em;
       border: none;
   }
   .secondary {
