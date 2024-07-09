@@ -37,9 +37,13 @@ import MetricsRoute from './routes/metrics.route.artist'
 import FanclubSettingsRoute from './routes/fanclub-settings.route.artist'
 import FanclubSettingsEditRoute from './routes/fanclub-settings-edit.route.artist'
 import FanclubTipsRoute from './routes/fanclub-tips.routes.artist'
+import LoadersRoute from './routes/loaders.route'
 
 const router = createBrowserRouter([
   {
+    path: '/loaders',
+    element: <LoadersRoute />
+  },{
     path: '/',
     element:<Navigate to='/your-favourites' />
   },{

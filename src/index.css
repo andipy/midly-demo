@@ -339,6 +339,14 @@ animation: dot-loader-after 1s infinite linear;
   height: 40px;
   animation: spin 1s ease-in-out infinite;
 }
+.loader-button {
+  border: 3px solid #313131; /* Light grey */
+  border-top: 3px solid var(--color-accent-primary); /* Blue */
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: spin 1s ease-in-out infinite;
+}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
