@@ -20,7 +20,7 @@ const GraphEmpty = ({ label }) => {
             <div className='d-flex-column align-items-center j-c-center pt-xs-8 pb-xs-8'>
                 <img className='avatar-48' src={IconMetrics} />
 
-                <p className='fsize-xs-1 f-w-200 t-align-center grey-300 w-90'>Non ci sono abbastanza dati per costrutire il grafico di comparazione tra il mese precedente e quello in corso.</p>
+                <p className='fsize-xs-1 f-w-200 t-align-center grey-300 w-90'>Non ci sono abbastanza dati per costruire il grafico di comparazione tra il mese precedente e quello in corso. È normale se sei su MIDLY da meno di un mese.</p>
             </div>
         </div>
     )
