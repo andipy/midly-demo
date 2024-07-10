@@ -342,7 +342,7 @@ animation: dot-loader-after 1s infinite linear;
   height: 40px;
   animation: spin 1s ease-in-out infinite;
 }
-.loader-button {
+.loader-small {
   border: 3px solid #313131; /* Light grey */
   border-top: 3px solid var(--color-accent-primary); /* Blue */
   border-radius: 50%;

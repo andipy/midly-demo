@@ -1,6 +1,6 @@
-const SimpleSpinnerLoader = ({ place }) => {
+const SimpleSpinnerLoader = ({ size }) => {
     return (
-        <div className={place ? place : 'loader'}></div>
+        <div className={size ? size : 'loader'}></div>
     )
 }
 
