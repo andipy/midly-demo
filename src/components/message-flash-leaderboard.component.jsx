@@ -39,7 +39,7 @@ const MessageFlashLeaderboard = ({ artist }) => {
                     <p className='fsize-xs-2'>Classifica FLASH in corso</p>
                 </div>
 
-                <Button style={'button-flash-leaderboard-live bg-red-400 border-radius-100 white w-auto pl-xs-4 pr-xs-4 pt-xs-2 pb-xs-2 fsize-xs-3 f-w-600'} label='Entra' />
+                <Button style={'button-flash-leaderboard-live d-flex-row align-items-center j-c-center bg-red-400 border-radius-100 white w-auto pl-xs-4 pr-xs-4 pt-xs-2 pb-xs-2 fsize-xs-3 f-w-600'} label='Entra' />
             </div>
         : artist.flashLeaderboard.status === 'PENDING' ?
             <div className='d-flex-row align-items-center j-c-space-between bg-dark-soft border-radius-100 border-red-dashed-1 pl-xs-1 pr-xs-1 pt-xs-1 pb-xs-1 mb-xs-4'>
