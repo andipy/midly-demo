@@ -770,6 +770,9 @@ animation: dot-loader-after 1s infinite linear;
 .border-red-6 {
   border: 6px solid #E94359;
 }
+.border-lime-6 {
+  border: 6px solid var(--color-accent-primary);
+}
 .border-green-spotify {
   border: 1px solid #1ED760;
 }
@@ -778,6 +781,12 @@ animation: dot-loader-after 1s infinite linear;
 }
 .border-red-dashed-1 {
   border: 1px dashed #E94359;
+}
+.border-lime-dashed-1 {
+  border: 1px dashed var(--color-accent-primary);
+}
+.border-lime-1 {
+  border: 1px solid var(--color-accent-primary);
 }
 .border-lime {
   border: 1.5px solid var(--color-accent-primary);
