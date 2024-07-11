@@ -63,8 +63,8 @@ const LoginRoute = () => {
             <FullPageCenter className={'z-index-max bg-black-transp70'}>
                 <ContainerDefault containerSpecificStyle={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                     <section className='w-100'>
-                        <h3 className='fsize-xs-5 grey-200 f-w-600 mt-xs-4 lime-400'>Stai avendo problemi ad accedere? Stiamo avendo un traffico enorme!</h3>
-                        <p className='fsize-xs-2 grey-100 f-w-300 mt-xs-2'>Se non riesci a registrarti o accedere, riprova tra pochissimo, stiamo avendo un traffico molto elevato che rallenta il sito! Se proprio non riesci dopo vari tentativi, scrivici per assitenza su telegram:</p>
+                        <h3 className='fsize-xs-4 grey-200 f-w-500 mt-xs-4 lime-400 t-align-center'>Stiamo avendo un traffico enorme che potrebbe rallentare il sito!</h3>
+                        <p className='fsize-xs-2 grey-100 f-w-300 mt-xs-2 t-align-center'>Se non riesci a registrarti o accedere, riprova tra pochissimo! Se proprio non riesci dopo vari tentativi, scrivici per assitenza su telegram:</p>
                         <Link to='https://t.me/midlyofficial' target='blank'>
                             <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-2' label='Chiedi aiuto sul canale telegram' />
                         </Link>
