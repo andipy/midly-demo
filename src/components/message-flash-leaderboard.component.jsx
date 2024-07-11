@@ -36,15 +36,15 @@ const MessageFlashLeaderboard = ({ artist }) => {
                     <div className='avatar-14 border-radius-100 bg-acid-lime position-relative'>
                         <div className='border-radius-100 bg-acid-lime position-absolute-x-y flash-animation'></div>
                     </div>
-                    <p className='fsize-xs-2'>Classifica FLASH in corso</p>
+                    <p className='fsize-xs-2'>CLASSIFICA FLASH ATTIVA</p>
                 </div>
 
-                <Button style={'button-flash-leaderboard-live d-flex-row align-items-center j-c-center bg-acid-lime border-radius-100 black w-auto pl-xs-4 pr-xs-4 pt-xs-2 pb-xs-2 fsize-xs-3 f-w-600'} label='Entra' />
+                <Button style={'button-flash-leaderboard-live d-flex-row align-items-center j-c-center bg-acid-lime border-radius-100 black w-auto pl-xs-4 pr-xs-4 pt-xs-2 pb-xs-2 fsize-xs-3 f-w-600'} label='ENTRA' />
             </div>
         : artist.flashLeaderboard.status === 'PENDING' ?
             <div className='d-flex-row align-items-center j-c-space-between bg-dark-soft border-radius-100 border-lime-1 pl-xs-1 pr-xs-1 pt-xs-1 pb-xs-1 mb-xs-4'>
                 <div className='d-flex-row j-c-center align-items-center pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 bg-white-transp15 border-radius-100 w-100'>
-                    <p className='fsize-xs-2 no-shrink'><span className='f-w-600'>Classifica FLASH →</span> <span className='f-w-600'>18</span>h <span className='f-w-600'>{minutes}</span>min <span className='f-w-600'>{seconds}</span>s</p>
+                    <p className='fsize-xs-2 no-shrink'><span className='f-w-600'>CLASSIFICA FLASH →</span> <span className='f-w-600'>18</span>h <span className='f-w-600'>{minutes}</span>min <span className='f-w-600'>{seconds}</span>s</p>
                 </div>
             </div>
         :
