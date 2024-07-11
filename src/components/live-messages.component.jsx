@@ -8,6 +8,23 @@ import Textbar from './textbar.component'
 
 const LiveMessages = () => {
 
+    const wordsToCensor = ['negr', 'negro', 'negra', 'fuck', 'coglion', 'coglione', 'cogliona', 'caz', 'cazz', 'cazzo', 'idiot', 'idiota', 'idioto', 'scem', 'scemo', 'scema', 'bastard', 'bastardo', 'bastarda', 'stronz', 'stronza', 'stronzo', 'putt', 'putta', 'puttan', 'puttana', 'puttano', 'troia', 'troi', 'bagasc', 'bagascia', 'bagascio', 'baldrac', 'nigga', 'bitc', 'bitch', 'muori', 'devi mori', 'devi mor', 'devi morire', 'testa di', 'testa di ca', 'testa di caz', 'testa di cazz', 'testa di cazzo'];
+    const censorString = (input, wordsToCensor) => {
+        let originalMessage = input
+        let toCheckString = input.toLowerCase()
+        
+        wordsToCensor.forEach(word => {
+            if ( toCheckString.includes(word) ) {
+                const censor = '*'.repeat(word.length)
+                toCheckString = toCheckString.split(word).join(censor)
+            } else {
+                return originalMessage
+            }
+        })
+
+        return toCheckString
+    }
+
     //this useRef has the only responsibility to keep track if the page has been rendered
     const pageHasRendered = useRef(false)
     
@@ -25,8 +42,12 @@ const LiveMessages = () => {
     const handleSubmitComment = (e, currentComment) => {
         e.preventDefault()
         if ( currentComment.content.length > 0 ) {
+
+            const censoredContent = censorString(currentComment.content, wordsToCensor);
+            const censoredComment = { ...currentComment, content: censoredContent };
+
             if ( currentComment.user_type == 'fan' ) {
-                setComments(prev => [...prev, {...currentComment, timestamp: Date.now(), id: Math.floor(Math.random() * 123456789)}])
+                setComments(prev => [...prev, {...censoredComment, timestamp: Date.now(), id: Math.floor(Math.random() * 123456789)}])
                 messageRecentlySent.current = true
                 setTimeout(() => {
                     messageRecentlySent.current = false
@@ -34,7 +55,7 @@ const LiveMessages = () => {
             }
             
             if ( currentComment.user_type == 'artist' ) {
-                setArtistMessages(prev => [...prev, {...currentComment, timestamp: Date.now(), id: Math.floor(Math.random() * 123456789)}])
+                setArtistMessages(prev => [...prev, {...censoredComment, timestamp: Date.now(), id: Math.floor(Math.random() * 123456789)}])
             }
         }
         setCurrentComment({
