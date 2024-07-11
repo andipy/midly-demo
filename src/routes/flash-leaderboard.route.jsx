@@ -184,9 +184,9 @@ const FlashLeaderboardRoute = () => {
                         <img className='avatar-48' src={IconInfoLime} />
                         <section className='w-100'>
                             <h3 className='fsize-xs-5 grey-200 f-w-600 mt-xs-4 lime-400'>Come guadagnare punti?</h3>
-                            <p className='fsize-xs-2 grey-100 f-w-300'>1) Ogni ascolto del brano {leaderboard?.song.title} vale 3 punti: ti permette di scalare la classifica FLASH più velocemente.</p>
+                            <p className='fsize-xs-2 grey-100 f-w-300'>1) Ogni ascolto del brano {leaderboard?.song.title} vale 3 punti: ti permette di scalare la classifica FLASH più velocemente. Viene conteggiato massimo 10 volte al giorno.</p>
 
-                            <p className='fsize-xs-3 grey-100 f-w-300 mt-xs-4'>2) Ogni altro brano di {state.artistName} ti fa fare 1 punto.</p>
+                            <p className='fsize-xs-3 grey-100 f-w-300 mt-xs-4'>2) Ogni altro brano di {state.artistName} ti fa fare 1 punto. Viene conteggiato massimo 3 volte al giorno.</p>
                         </section>
 
                         <section className='w-100'>
