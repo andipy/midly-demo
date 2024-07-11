@@ -15,8 +15,8 @@ const LiveMessages = () => {
         
         wordsToCensor.forEach(word => {
             if ( toCheckString.includes(word) ) {
-                const censor = '*'.repeat(word.length)
-                toCheckString = toCheckString.split(word).join(censor)
+                //const censor = '*'.repeat(word.length)
+                toCheckString = toCheckString.split(word).join('*')
             } else {
                 return originalMessage
             }
