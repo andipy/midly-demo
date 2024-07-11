@@ -53,7 +53,7 @@ const LoginRoute = () => {
                 </div>
 
                 <p className='fsize-xs-2 grey-400 t-align-center w-80 mt-xs-6 mx-xs-auto'>C'è qualcosa che non va? Scrivici per assitenza diretta su telegram:</p>
-                <Link to='https://t.me/midlyofficial'>
+                <Link to='https://t.me/midlyofficial' target='blank'>
                     <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-2' label='Chiedi aiuto sul canale telegram' />
                 </Link>
             </div>            
