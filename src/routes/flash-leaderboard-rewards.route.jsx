@@ -39,7 +39,7 @@ const FlashLeaderboardRewardsRoute = () => {
                 <h3 className='fsize-xs-4 grey-200 f-w-600 mb-xs-2'>C'è qualcosa che non va?</h3>
                 <p className='fsize-xs-1 grey-300'>Scrivici per assitenza su telegram:</p>
                 <Link to='https://t.me/midlyofficial'>
-                    <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-2' label='Vai al canale telegram' />
+                    <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-2' label='Chiedi aiuto sul canale telegram' />
                 </Link>
 
                 <h1 className='fsize-xs-4 grey-200 f-w-600 mt-xs-10 mb-xs-4'>

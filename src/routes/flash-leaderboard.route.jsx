@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { ArtistsContext } from '../contexts/artists.context'
@@ -24,8 +24,6 @@ import SpecialBadge2P from '../images/illustrations/flash-podium-2.png'
 import SpecialBadge3P from '../images/illustrations/flash-podium-3.png'
 
 const FlashLeaderboardRoute = () => {
-
-    const navigate = useNavigate()
 
     const [showComponent, setShowComponent] = useState(null)
     const closePopup = () => {
@@ -198,7 +196,7 @@ const FlashLeaderboardRoute = () => {
                             <h3 className='fsize-xs-5 grey-200 f-w-600 mt-xs-4 lime-400'>C'è qualcosa che non va?</h3>
                             <p className='fsize-xs-2 grey-100 f-w-300'>Scrivici per assitenza su telegram:</p>
                             <Link to='https://t.me/midlyofficial'>
-                                <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-2' label='Vai al canale telegram' />
+                                <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-2' label='Chiedi aiuto sul canale telegram' />
                             </Link>
                         </section>
                         
