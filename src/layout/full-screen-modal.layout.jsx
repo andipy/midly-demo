@@ -5,7 +5,7 @@ const FullScreenModalLayout = ({ children }) => {
     const location = useLocation()
 
     return (
-        <div className={`position-fixed bottom-hidden h-98 bg-dark w-100 full-screen-modal ${location.state.invokedModal ? 'slide-up' : 'slide-down'}`}>{children}</div>
+        <div className={`position-fixed bottom-hidden h-98 bg-dark w-100 full-screen-modal overflow-scroll pb-xs-4 ${location.state.invokedModal ? 'slide-up' : 'slide-down'}`}>{children}</div>
     )
 }
 
