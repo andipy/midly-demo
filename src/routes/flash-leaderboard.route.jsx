@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { ArtistsContext } from '../contexts/artists.context'
@@ -18,12 +18,14 @@ import LiveMusicProduct from '../components/live-music-product.component'
 import SimpleSpinnerLoader from '../components/simple-spinner-loader.component'
 
 import IconPoints from '../images/icons/icon-point-xs.svg'
-import IconTime from '../images/icons/icon-time-2.svg'
+import IconInfoLime from '../images/icons/icon-info-lime.svg'
 import SpecialBadge1P from '../images/illustrations/flash-podium-1.png'
 import SpecialBadge2P from '../images/illustrations/flash-podium-2.png'
 import SpecialBadge3P from '../images/illustrations/flash-podium-3.png'
 
 const FlashLeaderboardRoute = () => {
+
+    const navigate = useNavigate()
 
     const [showComponent, setShowComponent] = useState(null)
     const closePopup = () => {
@@ -179,8 +181,27 @@ const FlashLeaderboardRoute = () => {
             {showComponent &&
                 <FullPageCenter className={'z-index-max bg-black-transp70'}>
                     <ContainerDefault containerSpecificStyle={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
-                        <img className='avatar-48' src={IconTime} />
-                        <p className='fsize-xs-4 grey-100 f-w-300 t-align-center'>Gli ascolti che fai in Spotify si trasformano in punti nella classifica circa entro 60 minuti, ricarica la pagina per aggiornare la classifica.</p>
+                        <img className='avatar-48' src={IconInfoLime} />
+                        <section className='w-100'>
+                            <h3 className='fsize-xs-5 grey-200 f-w-600 mt-xs-4 lime-400'>Come guadagnare punti?</h3>
+                            <p className='fsize-xs-2 grey-100 f-w-300'>1) Ogni ascolto del brano {leaderboard?.song.title} vale 3 punti: ti permette di scalare la classifica FLASH più velocemente.</p>
+
+                            <p className='fsize-xs-3 grey-100 f-w-300 mt-xs-4'>2) Ogni altro brano di {state.artistName} ti fa fare 1 punto.</p>
+                        </section>
+
+                        <section className='w-100'>
+                            <h3 className='fsize-xs-5 grey-200 f-w-600 mt-xs-4 lime-400'>Dopo quanto tempo ricevo i punti?</h3>
+                            <p className='fsize-xs-2 grey-100 f-w-300'>Gli ascolti che fai in Spotify si trasformano in punti nella classifica circa entro 60 minuti, ricarica la pagina per aggiornare la classifica.</p>
+                        </section>
+
+                        <section className='w-100'>
+                            <h3 className='fsize-xs-5 grey-200 f-w-600 mt-xs-4 lime-400'>C'è qualcosa che non va?</h3>
+                            <p className='fsize-xs-2 grey-100 f-w-300'>Scrivici per assitenza su telegram:</p>
+                            <Link to='https://t.me/midlyofficial'>
+                                <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-2' label='Vai al canale telegram' />
+                            </Link>
+                        </section>
+                        
                         <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 mt-xs-4' label='Ho capito' onClick={closePopup} />
                     </ContainerDefault>
                 </FullPageCenter>
