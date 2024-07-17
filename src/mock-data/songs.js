@@ -1,4 +1,4 @@
-let mockSongs = [
+let mockSongsThasup = [
     {
         type: "SONG",
         content: "3uphon"
@@ -65,4 +65,41 @@ let mockSongs = [
     }
 ]
 
-export { mockSongs };
+let mockSongsArtie5ive = [
+    {
+        type: "SONG",
+        content: "00"
+    },{
+        type: "SONG",
+        content: "ANELLI E COLLANE (feat. ANNA)"
+    },{
+        type: "SONG",
+        content: "BOULEVARD"
+    },{
+        type: "SONG",
+        content: "TOP G (feat. Sacky)"
+    },{
+        type: "SONG",
+        content: "EYES OF THE TIGER"
+    },{
+        type: "SONG",
+        content: "MUSTANG"
+    },{
+        type: "SONG",
+        content: "SOULJAS"
+    },{
+        type: "SONG",
+        content: "PADRE NOSTRO"
+    },{
+        type: "SONG",
+        content: "AGHI ACUMINATI"
+    },{
+        type: "SONG",
+        content: "SACRIFICIO (feat. Kid Yugi)"
+    },{
+        type: "SONG",
+        content: "NIKE (feat. Tony Boy, Digital Astro)"
+    }
+]
+
+export { mockSongsThasup, mockSongsArtie5ive }

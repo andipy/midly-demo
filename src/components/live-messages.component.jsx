@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
-import { mockSongs } from '../mock-data/songs'
+import { useLocation } from 'react-router-dom'
+import { mockSongsThasup, mockSongsArtie5ive } from '../mock-data/songs'
 
 import ContainerDefault from '../layout/container-default.layout'
 import LiveMessage from './live-message.component'
@@ -7,6 +8,21 @@ import Countdown from './countdown.component'
 import Textbar from './textbar.component'
 
 const LiveMessages = () => {
+
+    const { pathname } = useLocation()
+
+    let mockSongs
+    const mockSongsDefiner = () => {
+        if ( pathname.includes('thasup') ) {
+            mockSongs = mockSongsThasup
+        }
+        if ( pathname.includes('artie-5ive') ) {
+            mockSongs = mockSongsArtie5ive
+        }
+    }
+    useEffect(() => {
+        mockSongsDefiner()
+    }, [])
 
     // const wordsToCensor = ['negro', 'negra', 'negr', 'fuck', 'coglione', 'cogliona', 'coglion', 'cazzo', 'cazz', 'caz', 'idiota', 'idioto', 'idiot', 'scemo', 'scema', 'scem', 'bastardo', 'bastarda', 'bastard', 'stronza', 'stronzo', 'stronz', 'puttana', 'puttano', 'puttan', 'putta', 'putt', 'troia', 'troi', 'bagascia', 'bagascio', 'bagasc', 'baldracca', 'baldracc', 'baldrac', 'nigga', 'bitch', 'bitc', 'muori', 'devi morire', 'devi morir', 'devi mori', 'devi mor', 'devi mo', 'testa di cazzo', 'testa di cazz', 'testa di caz', 'testa di ca', 'merda', 'merdo', 'merd', 'schifo', 'schifa', 'schif', 'cagare', 'cagara', 'cagaro', 'cagar', 'caga'];
     // const censorString = (input, wordsToCensor) => {

@@ -21,6 +21,14 @@ export const FanclubsProvider = ({ children }) => {
             image: null,
             isActive: false,
             posts: []
+        },{
+            id: 3,
+            artistId: 3,
+            name: null,
+            pricing: null,
+            image: null,
+            isActive: false,
+            posts: []
         }
     ])
 

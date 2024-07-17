@@ -21,6 +21,14 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'ONGOING',
             }
+        },{
+            id: 3,
+            slug: 'artie-5ive',
+            artistName: 'Artie 5ive',
+            image: require('../images/pictures/artie-5ive.jpeg'),
+            flashLeaderboard: {
+                status: 'ONGOING',
+            }
         }
     ])
 

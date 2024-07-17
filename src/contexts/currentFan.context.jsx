@@ -16,7 +16,8 @@ export const CurrentFanProvider = ({ children }) => {
         hasTikTok: false,
         leaderboardsFollowed: [
             {artistId: 1},
-            {artistId: 2}
+            {artistId: 2},
+            {artistId: 3}
         ],
         flashLeaderboardsFollowed: [
             {artistId: 2}
