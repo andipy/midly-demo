@@ -16,6 +16,7 @@ import CardLeaderboardFan from '../components/card-leaderboard-fan.component'
 import LiveMessages from '../components/live-messages.component'
 import LiveMusicProduct from '../components/live-music-product.component'
 import SimpleSpinnerLoader from '../components/simple-spinner-loader.component'
+import MultistepExplanation from '../components/multistep-explanation.component'
 
 import IconPoints from '../images/icons/icon-point-xs.svg'
 import IconInfoLime from '../images/icons/icon-info-lime.svg'
@@ -36,7 +37,7 @@ const FlashLeaderboardRoute = () => {
     const [showComponent, setShowComponent] = useState(null)
     
 
-    const sliderSteps = 3
+    const sliderSteps = 5
     const [sliderPage, setSliderPage] = useState(1)
     const incrementPageSlider = () => {
         if ( sliderPage < sliderSteps ) {
@@ -221,6 +222,10 @@ const FlashLeaderboardRoute = () => {
                 }
             </ContainerDefault>
 
+            {showComponent &&
+                <MultistepExplanation sliderSteps={sliderSteps} leaderboard={leaderboard} artist={artist} sliderPage={sliderPage} incrementPageSlider={incrementPageSlider} decrementPageSlider={decrementPageSlider} />
+            }
+
             {/* {showComponent &&
                 <FullPageCenter className={'z-index-max bg-black-transp70'}>
                     <ContainerDefault containerSpecificStyle={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
@@ -249,38 +254,6 @@ const FlashLeaderboardRoute = () => {
                     </ContainerDefault>
                 </FullPageCenter>
             } */}
-
-            {showComponent &&
-                <FullPageCenter className={'z-index-max bg-black-transp80'}>
-                    <ContainerDefault containerSpecificStyle={'d-flex-row j-c-space-between'}>
-                        <h2 className='fsize-xs-9 f-w-600 t-align-center mb-xs-12 mx-xs-auto'>Regole della <br /> CLASSIFICA FLASH</h2>
-                    </ContainerDefault>
-
-                    <div className={`d-inline-flex-row align-self-start align-items-center mb-xs-12 horizontal-slider-base horizontal-slider-${sliderPage}`}>
-                        <div className='w-100vw'>
-                            <ContainerDefault containerSpecificStyle={'d-flex-column gap-1em'}>
-                                <p className='fsize-xs-5 f-w-300 t-align-center'>Ogni ascolto su Spotify del brano "{leaderboard?.song.title}" di {artist?.artistName} vale <span className='f-w-600'>3 punti nella sua CLASSIFICA FLASH.</span></p>
-                                <p className='fsize-xs-5 f-w-300 t-align-center'>Vale più punti degli altri brani di {artist?.artistName}, ma viene conteggiato <span className='f-w-600'>massimo 10 volte al giorno.</span></p>
-                            </ContainerDefault>
-                        </div>
-                        <div className='w-100vw'>
-                            <ContainerDefault containerSpecificStyle={'d-flex-column gap-1em'}>
-                                <p className='fsize-xs-5 f-w-300 t-align-center'>Qualsiasi altro brano di {artist?.artistName} ti fa fare 1 punto nella sua CLASSIFICA FLASH.</p>
-                            </ContainerDefault>
-                        </div>
-                        <div className='w-100vw'>
-                            <ContainerDefault containerSpecificStyle={'d-flex-column gap-1em'}>
-                                <p className='fsize-xs-5 f-w-300 t-align-center'>Gli ascolti che fai su Spotify si <span className='f-w-600'>trasformano in punti nella CLASSIFICA circa entro 90 minuti</span>, ricarica la pagina per aggiornare la classifica.</p>
-                            </ContainerDefault>
-                        </div>
-                    </div>
-
-                    <ContainerDefault containerSpecificStyle={'d-flex-row j-c-space-between'}>
-                        <Button style={`${sliderPage === 1 ? 'border-dark dark-500' : 'border-lime-1 lime-400'} bg-dark  border-radius-04 fsize-xs-3 f-w-500 w-48`} label='Precedente' onClick={decrementPageSlider} disabled={sliderPage === 1 ? true : false} />
-                        <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 w-48' label={sliderPage === sliderSteps ? 'Ho capito, entra' : 'Continua'} onClick={incrementPageSlider} />
-                    </ContainerDefault>
-                </FullPageCenter>
-            }
 
             <LiveMessages />
 
