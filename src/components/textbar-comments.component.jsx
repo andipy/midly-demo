@@ -23,7 +23,7 @@ const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitCom
                     onClick={onClick}
                     
                 />
-                <button className='chat-button d-flex-row align-items-center j-c-center bg-acid-lime'><img src={IconArrowUp} /></button>
+                <button className='chat-button d-flex-row align-items-center j-c-center bg-acid-lime no-shrink'><img src={IconArrowUp} /></button>
             </form>                
         </section>
     )

@@ -13,7 +13,7 @@ const LiveMessages = () => {
 
     let mockSongs
     const mockSongsDefiner = () => {
-        if ( pathname.includes('thasup') ) {
+        if ( pathname.includes('thasup') || pathname.includes('/artist-app/') ) {
             mockSongs = mockSongsThasup
         }
         if ( pathname.includes('artie-5ive') ) {

@@ -2005,6 +2005,9 @@ nav .container {
       height: 46px;
       border-radius: .5em;
       border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }
   .secondary {
       width: 100%;
@@ -2016,7 +2019,7 @@ nav .container {
   .button-landing {
       width: 100%;
       padding: 4% 0;
-      border-radius: .8em;
+      border-radius: .4em;
       font-size: 1.15rem;
       font-weight: 500;
       border: none;
@@ -2536,7 +2539,6 @@ nav .container {
   .button-landing {
       width: 60%;
       padding: 3% 0;
-      border-radius: .8em;
   }
 
   /***** INPUTS *****/
@@ -2969,7 +2971,6 @@ nav .container {
   .button-landing {
       width: 50%;
       padding: 2.6% 0;
-      border-radius: .8em;
   }
 
   /***** INPUTS *****/
@@ -3399,7 +3400,6 @@ nav .container {
   .button-landing {
       width: 45%;
       padding: 2% 0;
-      border-radius: .8em;
   }
 
   /***** INPUTS *****/
@@ -3827,7 +3827,6 @@ nav .container {
   .button-landing {
       width: 50%;
       padding: 2% 0;
-      border-radius: .8em;
   }
 
   /***** INPUTS *****/
@@ -4258,7 +4257,6 @@ nav .container {
   .button-landing {
       width: 35%;
       padding: 1.7% 0;
-      border-radius: .8em;
   }
 
   /***** INPUTS *****/
