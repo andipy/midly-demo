@@ -108,11 +108,11 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             artistId: 3,
             participants: 4557,
             image: require('../images/pictures/artie-5ive.jpeg'),
-            song: {
-                title: '00',
-                url: 'https://open.spotify.com/intl-it/track/58b9VLwnigGBDjvq89Eo1W'
+            song: null,
+            album: {
+                title: 'ASPETTANDO LA BELLA VITA',
+                url: 'https://open.spotify.com/intl-it/album/7kPBwGRrSCDXGUuxcD6AWb'
             },
-            album: null,
             badges: [
                 {
                     position: 1,

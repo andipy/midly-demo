@@ -69,12 +69,12 @@ const FlashLeaderboardRewardsRoute = () => {
                         <p className='fsize-xs-1 grey-300'>Ogni ascolto del brano {leaderboard?.song.title} vale 3 punti: ti permette di scalare la classifica FLASH più velocemente. Viene conteggiato massimo 10 volte al giorno.</p>
                     }
                     {leaderboard?.album &&
-                        <p className='fsize-xs-1 grey-300'>Ogni ascolto di ogni brano del disco {leaderboard?.album.title} vale 3 punti: ti permette di scalare la classifica FLASH più velocemente. Viene conteggiato massimo 10 volte al giorno.</p>
+                        <p className='fsize-xs-1 grey-300'>Ogni ascolto di ogni brano dell'album {leaderboard?.album.title} vale 3 punti: ti permette di scalare la classifica FLASH più velocemente. Viene conteggiato massimo 10 volte al giorno.</p>
                     }
                 </div>
                 <div className='d-flex-row gap-0_5em mt-xs-4'>
                     <span className='fsize-xs-4 f-w-600 grey-200'>x1</span>
-                    <p className='fsize-xs-1 grey-300'>Ogni altro brano di {state.artistName} ti fa fare 1 punto. Viene conteggiato massimo 3 volte al giorno.</p>
+                    <p className='fsize-xs-1 grey-300'>Ogni altro brano di {state.artistName} ti fa fare 1 punto.</p>
                 </div>
             </ContainerDefault>
         </FullScreenModalLayout>

@@ -15,7 +15,12 @@ const MultistepExplanation = ({ sliderSteps, leaderboard, artist, sliderPage, in
                 <div className='w-100vw'>
                     <ContainerDefault containerSpecificStyle={'d-flex-column gap-1em'}>
                         <div className='d-flex-column align-items-center'>
-                            <p className='fsize-xs-5 f-w-300 t-align-center'>1 ascolto su Spotify del brano "{leaderboard?.song.title}"</p>
+                            {leaderboard?.song &&
+                                <p className='fsize-xs-5 f-w-300 t-align-center'>1 ascolto su Spotify del brano "{leaderboard?.song.title}"</p>
+                            }
+                            {leaderboard?.album &&
+                                <p className='fsize-xs-5 f-w-300 t-align-center'>1 ascolto su Spotify di ogni brano dell'album "{leaderboard?.album.title}"</p>
+                            }
                             <span>↓</span>
                             <p className='fsize-xs-5 f-w-600 t-align-center'>3 punti nella CLASSIFICA FLASH</p>
                         </div>
@@ -38,7 +43,12 @@ const MultistepExplanation = ({ sliderSteps, leaderboard, artist, sliderPage, in
                 </div>
                 <div className='w-100vw'>
                     <ContainerDefault containerSpecificStyle={'d-flex-column gap-1em'}>
-                        <p className='fsize-xs-5 f-w-300 t-align-center'>Usa la <span className='f-w-600'>live chat</span> nella CLASSIFICA FLASH per commentare il brano "{leaderboard?.song.title}</p>
+                        {leaderboard?.song &&
+                            <p className='fsize-xs-5 f-w-300 t-align-center'>Usa la <span className='f-w-600'>live chat</span> nella CLASSIFICA FLASH per commentare il brano "{leaderboard?.song.title}"</p>
+                        }
+                        {leaderboard?.album &&
+                            <p className='fsize-xs-5 f-w-300 t-align-center'>Usa la <span className='f-w-600'>live chat</span> nella CLASSIFICA FLASH per commentare i brani dell'album "{leaderboard?.album.title}"</p>
+                        }
                     </ContainerDefault>
                 </div>
 
@@ -54,7 +64,7 @@ const MultistepExplanation = ({ sliderSteps, leaderboard, artist, sliderPage, in
 
             <ContainerDefault containerSpecificStyle={'d-flex-row j-c-space-between'}>
                 <Button style={`${sliderPage === 1 ? 'border-dark dark-500' : 'border-lime-1 lime-400'} bg-dark  border-radius-04 fsize-xs-3 f-w-500 w-30`} label='Indietro' onClick={decrementPageSlider} disabled={sliderPage === 1 ? true : false} />
-                <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 w-65' label={sliderPage === sliderSteps ? 'Ok, vai alla classifica' : 'Continua'} onClick={incrementPageSlider} />
+                <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 w-65' label={sliderPage === sliderSteps ? 'Ok, vai alla classifica' : 'Avanti'} onClick={incrementPageSlider} />
             </ContainerDefault>
         </FullPageCenter>
     )
