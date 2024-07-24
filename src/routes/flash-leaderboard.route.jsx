@@ -104,24 +104,35 @@ const FlashLeaderboardRoute = () => {
     }, [artist])
 
     useEffect(() => {
-    if (leaderboard) {
-        const now = new Date().getTime();
-        const visitedFlashLeaderboards = JSON.parse(localStorage.getItem('visitedFlashLeaderboards') || '[]')
+        if (leaderboard) {
+            const now = new Date().getTime();
+            const visitedFlashLeaderboards = JSON.parse(localStorage.getItem('visitedFlashLeaderboards') || '[]')
 
-        const updatedVisited = visitedFlashLeaderboards.filter(elem => {
-            // Keep only entries from the last 8 hours
-            return now - elem.visitedOn <= 8 * 60 * 60 * 1000
-        })
+            const updatedVisited = visitedFlashLeaderboards.filter(elem => {
+                // Keep only entries from the last 8 hours
+                return now - elem.visitedOn <= 8 * 60 * 60 * 1000
+            })
 
-        localStorage.setItem('visitedFlashLeaderboards', JSON.stringify(updatedVisited))
+            localStorage.setItem('visitedFlashLeaderboards', JSON.stringify(updatedVisited))
 
-        if (updatedVisited.some(elem => elem.flashLeaderboardId === leaderboard.id)) {
-            setShowComponent(false)
-        } else {
-            setShowComponent(true)
+            if (updatedVisited.some(elem => elem.flashLeaderboardId === leaderboard.id)) {
+                setShowComponent(false)
+            } else {
+                setShowComponent(true)
+            }
+        }
+    }, [leaderboard])
+
+    const handleUsername = (condition, username, limit) => {
+        if ( condition ) {
+            const usernameNoEmail = username.split('@')[0]
+            if ( usernameNoEmail.length > limit ) {
+                const usernameNoEmailTruncated = usernameNoEmail.slice(0, limit) + '...'
+                return usernameNoEmailTruncated
+            }
+            return usernameNoEmail
         }
     }
-}, [leaderboard])
 
     return (
         <>
@@ -154,7 +165,7 @@ const FlashLeaderboardRoute = () => {
                                 </div>
 
                                 <div className='d-flex-column align-items-center'>
-                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{leaderboard?.leaderboard[0].username.length > 12 ? leaderboard?.leaderboard[0].username.substring(0, 12) + '...' : leaderboard?.leaderboard[0].username}</span>
+                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(leaderboard, leaderboard?.leaderboard[0].username, 12)}</span>
                                     <div className='d-flex-row letter-spacing-1'>
                                         <span className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard?.leaderboard[0].points}</span>
                                         <img className='ml-xs-2' src={IconPoints} />
@@ -176,7 +187,7 @@ const FlashLeaderboardRoute = () => {
                                 </div>
 
                                 <div className='d-flex-column align-items-center'>
-                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{leaderboard?.leaderboard[1].username.length > 12 ? leaderboard?.leaderboard[1].username.substring(0, 12) + '...' : leaderboard?.leaderboard[1].username}</span>
+                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(leaderboard, leaderboard?.leaderboard[1].username, 12)}</span>
                                     <div className='d-flex-row letter-spacing-1'>
                                         <span className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard?.leaderboard[1].points}</span>
                                         <img className='ml-xs-2' src={IconPoints} />
@@ -198,7 +209,7 @@ const FlashLeaderboardRoute = () => {
                                 </div>
 
                                 <div className='d-flex-column align-items-center'>
-                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{leaderboard?.leaderboard[2].username.length > 12 ? leaderboard?.leaderboard[2].username.substring(0, 12) + '...' : leaderboard?.leaderboard[2].username}</span>
+                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(leaderboard, leaderboard?.leaderboard[2].username, 12)}</span>
                                     <div className='d-flex-row letter-spacing-1'>
                                         <span className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard?.leaderboard[2].points}</span>
                                         <img className='ml-xs-2' src={IconPoints} />

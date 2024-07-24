@@ -33,7 +33,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             leaderboard: [
                 {
                     image: require('../images/pictures/fan-4.jpg'),
-                    username: 'Danny Snatch',
+                    username: 'Danny Snatch Vito Super Beast Long Name',
                     points: 176,
                     position: 1
                 },{
@@ -43,22 +43,22 @@ export const FlashLeaderboardsProvider = ({ children }) => {
                     position: 2
                 },{
                     image: require('../images/pictures/fan-5.jpg'),
-                    username: 'Polly Lolly',
+                    username: 'PollyLollyFreakingLongString@yahoo.com',
                     points: 146,
                     position: 3
                 },{
                     image: require('../images/pictures/fan-9.jpg'),
-                    username: 'kevin alfa',
+                    username: 'kevin alfa very very long username',
                     points: 121,
                     position: 4
                 },{
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'TheKing1@gmail.com',
                     points: 99,
                     position: 5
                 },{
                     image: require('../images/pictures/fan-7.jpg'),
-                    username: '_freak 3x_',
+                    username: 'Freak3xFreakingLongString@yahoo.com',
                     points: 82,
                     position: 6
                 },{

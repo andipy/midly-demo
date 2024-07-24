@@ -11,7 +11,7 @@ export const LeaderboardsProvider = ({ children }) => {
             leaderboard: [
                 {
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
@@ -62,12 +62,12 @@ export const LeaderboardsProvider = ({ children }) => {
             leaderboard: [
                 {
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
                     image: require('../images/pictures/fan-2.jpg'),
-                    username: 'Big Law ::',
+                    username: 'Big Laww @yahoo.it',
                     points: 3021,
                     position: 2
                 },{
@@ -77,12 +77,12 @@ export const LeaderboardsProvider = ({ children }) => {
                     position: 3
                 },{
                     image: require('../images/pictures/fan-4.jpg'),
-                    username: 'Danny Snatch',
+                    username: 'DannySnatchVitoSuperBeast@gmail.com',
                     points: 1984,
                     position: 4
                 },{
                     image: require('../images/pictures/fan-5.jpg'),
-                    username: 'Polly Lolly',
+                    username: 'PollyLollyVeryLongUsername',
                     points: 1888,
                     position: 5
                 },{
