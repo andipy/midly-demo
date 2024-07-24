@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 
-import IconPoints from '../images/icons/icon-point-xs.svg'
+import IconPoints from '../images/icons/icon-points.svg'
 
 const CardLeaderboardFan = ({ fan }) => {
 
@@ -22,9 +22,9 @@ const CardLeaderboardFan = ({ fan }) => {
                 <img className='avatar-38 border-radius-100 mr-xs-4' src={fan?.image} />
                 <div className='text-info d-flex-column'>
                     <div className='letter-spacing-1'>{handleUsername(fan, fan?.username, 18)}</div>
-                    <div className='d-flex-row letter-spacing-1'>
+                    <div className='d-flex-row align-items-center letter-spacing-1'>
                         <div className='grey-400 fsize-xs-1 letter-spacing-1'>{fan?.points} </div>
-                        <img className='ml-xs-2' src={IconPoints} alt=' points' />
+                        <img className='avatar-12 ml-xs-2 mt-xs-1' src={IconPoints} alt=' points' />
                     </div>
                 </div>
             </div>

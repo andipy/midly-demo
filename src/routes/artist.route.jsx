@@ -13,6 +13,8 @@ import Button from '../components/button.component'
 import Tab from '../components/tab.component'
 import MessageFlashLeaderboard from '../components/message-flash-leaderboard.component'
 import CardInviteFriend from '../components/card-invite-friend.component'
+import CardConnectSpotify from '../components/card-connect-spotify.component'
+
 
 const ArtistRoute = () => {
 
@@ -93,7 +95,7 @@ const ArtistRoute = () => {
                         <Tab artist={artist} />
                     }
                     {!currentFan.hasSpotify &&
-                        <Button style='bg-green-spotify fsize-xs-3 f-w-500 white mt-xs-4' label='Connetti spotify e competi' />
+                        <CardConnectSpotify />
                     }
                     {currentFan.hasSpotify && !userCompeting &&
                         <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' onClick={handleCompete} />

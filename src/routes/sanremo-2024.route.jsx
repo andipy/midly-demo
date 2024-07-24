@@ -8,7 +8,7 @@ import CardLeaderboardFan from '../components/card-leaderboard-fan.component';
 import CardLeaderboardYourPosition from '../components/card-leaderboard-your-position.component';
 import Button from '../components/button.component'
 
-import IconPoints from '../images/icons/icon-point-xs.svg'
+import IconPoints from '../images/icons/icon-points.svg'
 import Fan1 from '../images/pictures/fan-1.jpg'
 import Fan2 from '../images/pictures/fan-2.jpg'
 import Fan3 from '../images/pictures/fan-3.jpg'
@@ -103,7 +103,7 @@ const Sanremo2024Route = () => {
                                 <div className='fsize-xs-1 t-align-center letter-spacing-1'>{leaderboard[0].username}</div>
                                 <div className='d-flex-row letter-spacing-1'>
                                     <div className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard[0].points} </div>
-                                    <img className='ml-xs-2' src={IconPoints} alt=' points' />
+                                    <img className='avatar-12 ml-xs-2 mt-xs-5' src={IconPoints} alt=' points' />
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@ const Sanremo2024Route = () => {
                                 <div className='fsize-xs-1 t-align-center letter-spacing-1'>{leaderboard[1].username}</div>
                                 <div className='d-flex-row letter-spacing-1'>
                                     <div className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard[1].points} </div>
-                                    <img className='ml-xs-2' src={IconPoints} alt=' points' />
+                                    <img className='avatar-12 ml-xs-2 mt-xs-5' src={IconPoints} alt=' points' />
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@ const Sanremo2024Route = () => {
                                 <div className='fsize-xs-1 t-align-center letter-spacing-1'>{leaderboard[2].username}</div>
                                 <div className='d-flex-row letter-spacing-1'>
                                     <div className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard[2].points} </div>
-                                    <img className='ml-xs-2' src={IconPoints} alt=' points' />
+                                    <img className='avatar-12 ml-xs-2 mt-xs-5' src={IconPoints} alt=' points' />
                                 </div>
                             </div>
                         </div>

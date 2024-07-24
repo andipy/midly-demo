@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
-import IconPoints from '../images/icons/icon-point-xs.svg'
+import IconPoints from '../images/icons/icon-points.svg'
 
 const CardLeaderboardYourPosition = ({ currentFan }) => {
 
@@ -30,7 +30,7 @@ const CardLeaderboardYourPosition = ({ currentFan }) => {
 
                     <div className='d-flex-row align-items-center'>
                         <div className='fsize-xs-3'>{currentFan?.leaderboardStats.points} </div>
-                        <img className='avatar-12 ml-xs-2' src={IconPoints} alt='points' />
+                        <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
                     </div>
                 </div>
             </>

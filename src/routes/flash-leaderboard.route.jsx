@@ -17,8 +17,9 @@ import LiveMessages from '../components/live-messages.component'
 import LiveMusicProduct from '../components/live-music-product.component'
 import SimpleSpinnerLoader from '../components/simple-spinner-loader.component'
 import MultistepExplanation from '../components/multistep-explanation.component'
+import CardConnectSpotify from '../components/card-connect-spotify.component'
 
-import IconPoints from '../images/icons/icon-point-xs.svg'
+import IconPoints from '../images/icons/icon-points.svg'
 import IconInfoLime from '../images/icons/icon-info-lime.svg'
 import SpecialBadge1P from '../images/illustrations/flash-podium-1.png'
 import SpecialBadge2P from '../images/illustrations/flash-podium-2.png'
@@ -140,17 +141,17 @@ const FlashLeaderboardRoute = () => {
             <CoverArtistPage leaderboard={leaderboard} />
 
             <ContainerDefault containerSpecificStyle='mt-avatar-header-2 pb-xs-24 pb-md-8'>
-                <div className='d-flex-column position-sticky top-navbar z-index-max'>
+                <div className='d-flex-column position-sticky top-navbar z-index-max mb-xs-4'>
                     <LiveMusicProduct artist={artist} leaderboard={leaderboard} />
                     {currentFan.hasSpotify && !pathname.includes('artist-app') ?
                         <CardLeaderboardYourPosition currentFan={currentFan}  />
                     : !pathname.includes('artist-app') &&
-                        <Button style='bg-green-spotify white letter-spacing-1 f-w-500 mt-xs-4' label='CONNETTI SPOTIFY E COMPETI' />
+                        <CardConnectSpotify />
                     }
                 </div>
                 
                 {leaderboard ?
-                    <section className={pathname.includes('artist-app') ? 'mt-xs-4' : ''}>
+                    <section className={pathname.includes('/artist-app') ? 'mt-xs-4' : ''}>
                     <div className='mb-xs-4'>
                         <div className='d-flex-row j-c-center'>
                             <div className='d-flex-column align-items-center w-33 position-relative gap-0_5em'>
@@ -168,7 +169,7 @@ const FlashLeaderboardRoute = () => {
                                     <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(leaderboard, leaderboard?.leaderboard[0].username, 12)}</span>
                                     <div className='d-flex-row letter-spacing-1'>
                                         <span className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard?.leaderboard[0].points}</span>
-                                        <img className='ml-xs-2' src={IconPoints} />
+                                        <img className='avatar-12 ml-xs-2 mt-xs-5' src={IconPoints} />
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +191,7 @@ const FlashLeaderboardRoute = () => {
                                     <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(leaderboard, leaderboard?.leaderboard[1].username, 12)}</span>
                                     <div className='d-flex-row letter-spacing-1'>
                                         <span className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard?.leaderboard[1].points}</span>
-                                        <img className='ml-xs-2' src={IconPoints} />
+                                        <img className='avatar-12 ml-xs-2 mt-xs-5' src={IconPoints} />
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +213,7 @@ const FlashLeaderboardRoute = () => {
                                     <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(leaderboard, leaderboard?.leaderboard[2].username, 12)}</span>
                                     <div className='d-flex-row letter-spacing-1'>
                                         <span className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard?.leaderboard[2].points}</span>
-                                        <img className='ml-xs-2' src={IconPoints} />
+                                        <img className='avatar-12 ml-xs-2 mt-xs-5' src={IconPoints} />
                                     </div>
                                 </div>
                             </div>

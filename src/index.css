@@ -239,6 +239,78 @@ li {
     font-weight: 300;
 }
 
+.invite-friend-card {
+  position: relative;
+  padding: 10px;
+  background: white; /* Background color */
+  border-radius: .5rem; /* Apply border-radius here */
+}
+.invite-friend-card::before {
+  content: '';
+  position: absolute;
+  top: -1.5px; /* Adjust based on border width */
+  left: -1.5px;
+  right: -1.5px;
+  bottom: -1.5px;
+  z-index: -1;
+  background: linear-gradient(to right, #97EAC6, #DAEF64, #5565BC);
+  border-radius: .6rem; /* Adjust based on border width */
+}
+
+.connect-spotify-button {
+  position: relative;
+  padding: 10px;
+  background: white; /* Background color */
+  border-radius: 8px; /* Apply border-radius here */
+}
+.connect-spotify-button::before {
+  content: '';
+  position: absolute;
+  top: -2px; /* Adjust based on border width */
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  background: linear-gradient(to right, #97EAC6, #DAEF64, #5565BC);
+  border-radius: 10px; /* Adjust based on border width */
+}
+
+.your-position-card {
+  position: relative;
+  padding: 8px;
+  background: linear-gradient(45deg, #DAEF64 20%, #97EAC6 60%,  #5565BC 80%);
+  border-radius: 10px;
+  z-index: 1;
+}
+.your-position-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #DAEF64 20%, #97EAC6 60%,  #5565BC 80%);
+  border-radius: 6px;
+  z-index: -1;
+}
+
+.podium-border {
+  position: relative;
+  padding: 8px;
+  background: linear-gradient(45deg, #DAEF64 20%, #97EAC6 60%,  #5565BC 80%);
+  border-radius: 50%;
+  z-index: 1;
+}
+.podium-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #DAEF64 20%, #97EAC6 60%,  #5565BC 80%);
+  z-index: -1;
+}
 
 /******************************************/
 /**************** DOT LOADER **************/
@@ -765,6 +837,9 @@ animation: dot-loader-after 1s infinite linear;
 .bg-light-red {
   background: linear-gradient(180deg, #FF0000 0%, rgba(255, 0, 0, 0) 100%);;
 }
+.bg-brand-gradient {
+  background: linear-gradient(to right, #97EAC6, #DAEF64, #5565BC);
+}
 
 /******************************************/
 /****************** BORDER ****************/
@@ -808,7 +883,7 @@ animation: dot-loader-after 1s infinite linear;
   border: 6px solid var(--color-accent-primary);
 }
 .border-green-spotify {
-  border: 1px solid #1ED760;
+  border: 2px solid #1DB954;
 }
 .border-blue-bright-600 {
   border: 2px solid #1191EC;
@@ -1748,6 +1823,7 @@ animation: dot-loader-after 1s infinite linear;
   width: calc(var(--container) / 20);
   height: calc(var(--container) / 20);
   border: 4px solid #0F111C;
+  z-index: 2;
 }
 
 /******************************************/
