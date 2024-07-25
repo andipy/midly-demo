@@ -41,9 +41,9 @@ const CardFlashLeaderboard = () => {
                     <h4 className='fsize-xs-2 mb-xs-4 letter-spacing-1 f-w-300 white t-align-center mt-xs-4 line-height-140'>CLASSIFICA FLASH ATTIVA <br /> {leaderboard?.song ? "SUL BRANO:" : leaderboard?.album && "SULL'ALBUM:"}</h4>
                     <h4 className='fsize-xs-4 mb-xs-4 letter-spacing-1 f-w-500 white t-align-center mb-xs-6 w-85'>"{leaderboard?.song ? leaderboard.song.title : leaderboard?.album && leaderboard.album.title}"</h4>
                     <Button style='bg-acid-lime dark-900 border-radius-04 w-85 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4 fsize-xs-3 f-w-600' label='Controlla la classifica' onClick={() => navigate('/artist-app/flash-leaderboard', {state: currentArtist})} />
-                    <section className='mt-xs-8'>
+                    <div className='w-100 d-flex-row j-c-center align-items-center mt-xs-8'>
                         <Countdown flashLeadeboardStatus={currentArtist.hasFlashLeadeboard} />
-                    </section>
+                    </div>
                 </div>
             : currentArtist?.hasFlashLeadeboard === 'PENDING' ?
                 <div className='bg-dark-gradient d-flex-column align-items-center j-c-center border-radius-1 pt-xs-20 pb-xs-20'>
