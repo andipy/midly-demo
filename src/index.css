@@ -242,7 +242,7 @@ li {
 .invite-friend-card {
   position: relative;
   padding: 10px;
-  background: white; /* Background color */
+  background: var(--color-main-bg); /* Background color */
   border-radius: .5rem; /* Apply border-radius here */
 }
 .invite-friend-card::before {
@@ -309,7 +309,22 @@ li {
   right: 0;
   bottom: 0;
   background: linear-gradient(45deg, #DAEF64 20%, #97EAC6 60%,  #5565BC 80%);
+  border-radius: 50%;
   z-index: -1;
+}
+
+.podium-border-empty-image {
+  position: relative;
+  padding: 10px; /* Adjust padding as needed */
+  background: linear-gradient(45deg, #DAEF64 20%, #97EAC6 60%,  #5565BC 80%);
+  border-radius: 50%; /* Apply border-radius here */
+}
+.podium-border-empty-image-inner {
+  background: #161616;
+  border-radius: 50%; /* Apply border-radius here */
+  z-index: 2;
+  width: 83%;
+  aspect-ratio: 1 / 1;
 }
 
 /******************************************/
