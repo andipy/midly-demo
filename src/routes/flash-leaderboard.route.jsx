@@ -305,7 +305,7 @@ const FlashLeaderboardRoute = () => {
             : artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
                 <div className='w-100vw bg-dark border-lime position-fixed bottom-0 z-index-max pt-xs-6 pb-xs-6 pl-xs-6 pb-xs-6'>
                     <p className='fsize-xs-4 mb-xs-2'>CLASSIFICA FLASH {leaderboard?.song.title ? "SUL BRANO " + leaderboard?.song.title : leaderboard?.album.title && "SULL'ALBUM " + leaderboard?.song.title} TERMINATA</p>
-                    <p>Puoi consultare la classifica finale, ma non puoi più fare punti: la classifica è chiusa.</p>
+                    <p className='grey-200'>Puoi consultare la classifica finale, ma non puoi più fare punti. Se vedi qualche movimento è perché stiamo finendo di contare gli ascolti già fatti, ma la classifica è chiusa.</p>
                 </div>
             }
             <Outlet />
