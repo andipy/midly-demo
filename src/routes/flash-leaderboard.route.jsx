@@ -136,7 +136,9 @@ const FlashLeaderboardRoute = () => {
             if (updatedVisited.some(elem => elem.flashLeaderboardId === leaderboard.id)) {
                 setShowComponent(false)
             } else {
-                setShowComponent(true)
+                if ( artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' ) {
+                    setShowComponent(true)
+                }
             }
         }
     }, [leaderboard])
@@ -161,22 +163,24 @@ const FlashLeaderboardRoute = () => {
 
             <ContainerDefault containerSpecificStyle={`mt-avatar-header-2 pb-xs-24 pb-md-8 ${artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && 'pt-xs-8'}`}>
                 <div className='d-flex-column position-sticky top-navbar z-index-max mb-xs-4'>
-                    {artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' &&
-                        <LiveMusicProduct artist={artist} leaderboard={leaderboard} />
+                    {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
+                        <CardLeaderboardYourPosition currentFan={currentFan}  />  
                     }
                     {artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' &&
                         <>
-                        {!currentFan?.hasSpotify && !pathname.includes('/artist-app') &&
-                            <CardConnectSpotify />
-                        }
-                        {currentFan?.hasSpotify && !userCompeting &&
-                            <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' />
-                        }
-                        {currentFan?.hasSpotify && userCompeting &&
-                            <CardLeaderboardYourPosition currentFan={currentFan}  />
-                        }
+                            <LiveMusicProduct artist={artist} leaderboard={leaderboard} />
+                            {!currentFan?.hasSpotify && !pathname.includes('/artist-app') &&
+                                <CardConnectSpotify />
+                            }
+                            {currentFan?.hasSpotify && !userCompeting &&
+                                <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' />
+                            }
+                            {currentFan?.hasSpotify && userCompeting &&
+                                <CardLeaderboardYourPosition currentFan={currentFan}  />
+                            }
                         </>
                     }
+                    
                 </div>
                 
                 {leaderboard ?
