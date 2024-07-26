@@ -27,7 +27,7 @@ import SpecialBadge3P from '../images/illustrations/flash-podium-3.png'
 
 const FlashLeaderboardRoute = () => {
 
-    const { state, pathname } = useLocation()
+    const { state, pathname, } = useLocation()
 
     const { currentFan } = useContext(CurrentFanContext)
     const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
@@ -36,7 +36,7 @@ const FlashLeaderboardRoute = () => {
     const [artist, setArtist] = useState(null)
     const [leaderboard, setLeaderboard] = useState()
     const [showComponent, setShowComponent] = useState(null)
-    
+    const [userCompeting, setUserCompeting] = useState(null)
 
     const sliderSteps = 5
     const [sliderPage, setSliderPage] = useState(1)
@@ -60,15 +60,12 @@ const FlashLeaderboardRoute = () => {
         const visitedFlashLeaderboards = JSON.parse(localStorage.getItem('visitedFlashLeaderboards') || '[]')
 
         if ( visitedFlashLeaderboards?.length === 0 ) {
-            console.log('non ci sono dati nella local storage')
             localStorage.setItem('visitedFlashLeaderboards', JSON.stringify([{
                 flashLeaderboardId: leaderboard.id,
                 visitedOn: now.getTime()
             }]))
             setShowComponent(false)
         } else {
-            console.log('ci sono dati nella storage')
-            console.log(visitedFlashLeaderboards, 'leaderboards visitate')
             visitedFlashLeaderboards.map(elem => {
                 if ( leaderboard.id !== elem.flashLeaderboardId ) {
                     const updatedData = [...visitedFlashLeaderboards, {
@@ -92,6 +89,20 @@ const FlashLeaderboardRoute = () => {
         setLeaderboard(thisLeaderboard[0])
     }
 
+    const fetchCompeting = () => {
+        if ( currentFan.leaderboardsFollowed.length > 0 ) {
+            const favouriteArtistIds = currentFan.leaderboardsFollowed.map(followed => followed.artistId)
+
+            if (favouriteArtistIds.includes(artist.id)) {
+                setUserCompeting(true)
+            } else {
+                setUserCompeting(false)
+            }
+        } else {
+            setUserCompeting(false)
+        }
+    }
+
     useEffect(() => {
         if ( artists ) {
             fetchThisArtist()
@@ -103,6 +114,12 @@ const FlashLeaderboardRoute = () => {
             fetchThisLeaderboard()
         }
     }, [artist])
+
+    useEffect(() => {
+        if (artist) {
+            fetchCompeting()
+        }
+    }, [currentFan, artist])
 
     useEffect(() => {
         if (leaderboard) {
@@ -135,18 +152,30 @@ const FlashLeaderboardRoute = () => {
         }
     }
 
+    console.log(state)
+
     return (
         <>
             <NavbarLeaderboardFlashPage artist={artist} leaderboard={leaderboard} />
             <CoverArtistPage leaderboard={leaderboard} />
 
-            <ContainerDefault containerSpecificStyle='mt-avatar-header-2 pb-xs-24 pb-md-8'>
+            <ContainerDefault containerSpecificStyle={`mt-avatar-header-2 pb-xs-24 pb-md-8 ${artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && 'pt-xs-8'}`}>
                 <div className='d-flex-column position-sticky top-navbar z-index-max mb-xs-4'>
-                    <LiveMusicProduct artist={artist} leaderboard={leaderboard} />
-                    {currentFan.hasSpotify && !pathname.includes('artist-app') ?
-                        <CardLeaderboardYourPosition currentFan={currentFan}  />
-                    : !pathname.includes('artist-app') &&
-                        <CardConnectSpotify />
+                    {artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' &&
+                        <LiveMusicProduct artist={artist} leaderboard={leaderboard} />
+                    }
+                    {artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' &&
+                        <>
+                        {!currentFan?.hasSpotify && !pathname.includes('/artist-app') &&
+                            <CardConnectSpotify />
+                        }
+                        {currentFan?.hasSpotify && !userCompeting &&
+                            <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' />
+                        }
+                        {currentFan?.hasSpotify && userCompeting &&
+                            <CardLeaderboardYourPosition currentFan={currentFan}  />
+                        }
+                        </>
                     }
                 </div>
                 
@@ -267,8 +296,14 @@ const FlashLeaderboardRoute = () => {
                 </FullPageCenter>
             } */}
 
-            <LiveMessages />
-
+            {artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' ?
+                <LiveMessages />
+            : artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
+                <div className='w-100vw bg-dark border-lime position-fixed bottom-0 z-index-max pt-xs-6 pb-xs-6 pl-xs-6 pb-xs-6'>
+                    <p className='fsize-xs-4 mb-xs-2'>CLASSIFICA FLASH {leaderboard?.song.title ? "SUL BRANO " + leaderboard?.song.title : leaderboard?.album.title && "SULL'ALBUM " + leaderboard?.song.title} TERMINATA</p>
+                    <p>Puoi consultare la classifica finale, ma non puoi più fare punti: la classifica è chiusa.</p>
+                </div>
+            }
             <Outlet />
         </>
     )

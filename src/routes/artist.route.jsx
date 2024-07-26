@@ -88,8 +88,8 @@ const ArtistRoute = () => {
 
             <ContainerDefault containerSpecificStyle={''}>
                 <div className='mt-avatar-header position-sticky top-navbar z-index-max bg-dark'>
-                    {artist?.flashLeaderboard.status === 'ONGOING' || artist?.flashLeaderboard.status === 'PENDING' ?
-                        <MessageFlashLeaderboard artist={artist} /> : null
+                    {artist?.flashLeaderboard.status === 'ONGOING' || artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' ?
+                        <MessageFlashLeaderboard artist={artist} userCompeting={userCompeting} /> : null
                     }
                     {fanclub?.isActive &&
                         <Tab artist={artist} />

@@ -19,7 +19,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'thasup',
             image: require('../images/pictures/thasup.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'CLOSED_VISIBLE',
             }
         },{
             id: 3,

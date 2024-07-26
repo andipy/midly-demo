@@ -10,7 +10,7 @@ export const CurrentFanProvider = ({ children }) => {
         username: 'imtheKING',
         email: 'theking@gmail.com',
         image: require('../images/pictures/fan-8.jpg'),
-        hasSpotify: false,
+        hasSpotify: true,
         hasAppleMusic: false,
         hasInstagram: false,
         hasTikTok: false,
