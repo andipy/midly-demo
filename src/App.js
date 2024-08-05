@@ -39,6 +39,8 @@ import FanclubSettingsEditRoute from './routes/fanclub-settings-edit.route.artis
 import FanclubTipsRoute from './routes/fanclub-tips.routes.artist'
 import LoadersRoute from './routes/loaders.route'
 import LoginRoute from './routes/login.route'
+import Cool1Route from './routes/cool-1.route'
+import Cool2Route from './routes/cool-2.route'
 
 const router = createBrowserRouter([
   {
@@ -128,6 +130,12 @@ const router = createBrowserRouter([
   },{
     path: '/artist-app/metrics',
     element: <MetricsRoute />
+  },{
+    path: '/cool/1',
+    element: <Cool1Route />
+  },{
+    path: '/cool/2',
+    element: <Cool2Route />
   }
 ])
 

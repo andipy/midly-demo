@@ -5,6 +5,7 @@ import SimpleSpinnerLoader from '../components/simple-spinner-loader.component'
 import GraphEmpty from '../components/graph-empty-temporary.component'
 
 const LoadersRoute = () => {
+
     return (
         <ContainerDefault>
             <h3 className='mt-xs-10 fsize-xs-4'>Here a loading button for visual comparison</h3>
