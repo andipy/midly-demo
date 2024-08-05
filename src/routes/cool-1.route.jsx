@@ -4,46 +4,77 @@ import { useEffect, useState } from "react"
 const Cool1Route = () => {
 
     const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(null);
-  const [endX, setEndX] = useState(null);
-  const [rotation, setRotation] = useState(0);
-  const screenW = window.innerWidth;
+    const [startX, setStartX] = useState(null);
+    const [endX, setEndX] = useState(null);
+    const [rotation, setRotation] = useState(0);
+    const screenW = window.innerWidth;
 
-  useEffect(() => {
-    const handleMouseDown = (e) => {
-      setIsDragging(true);
-      setStartX(Math.floor(e.clientX / screenW * 100))
-      setEndX(null);  // Reset endX when a new drag starts
-    }
+    useEffect(() => {
+        const handleMouseDown = (e) => {
+            setIsDragging(true);
+            setStartX(Math.floor(e.clientX / screenW * 100));
+            setEndX(null);  // Reset endX when a new drag starts
+        };
 
-    const handleMouseMove = (e) => {
-      if (isDragging) {
-        setEndX(Math.floor(e.clientX / screenW * 100))
-      }
-    };
+        const handleMouseMove = (e) => {
+            if (isDragging) {
+                setEndX(Math.floor(e.clientX / screenW * 100));
+            }
+        };
 
-    const handleMouseUp = () => {
-        setIsDragging(false);
-        if (endX !== null && startX !== null) {
-        if ( (endX - startX) > 10 ) {
-            setRotation((prevRotation) => prevRotation + 90);
-        } else if ( (startX - endX) > 10 ) {
-            setRotation((prevRotation) => prevRotation - 90);
-        }
-      }
-    };
+        const handleMouseUp = () => {
+            setIsDragging(false);
+            if (endX !== null && startX !== null) {
+                if ((endX - startX) > 10) {
+                    setRotation((prevRotation) => prevRotation + 90);
+                } else if ((startX - endX) > 10) {
+                    setRotation((prevRotation) => prevRotation - 90);
+                }
+            }
+        };
 
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
-    window.addEventListener('mousemove', handleMouseMove);
+        const handleTouchStart = (e) => {
+            setIsDragging(true);
+            setStartX(Math.floor(e.touches[0].clientX / screenW * 100));
+            setEndX(null);  // Reset endX when a new drag starts
+        };
 
-    // Cleanup event listeners on component unmount
-    return () => {
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [isDragging, startX, endX, screenW]);
+        const handleTouchMove = (e) => {
+            if (isDragging) {
+                setEndX(Math.floor(e.touches[0].clientX / screenW * 100));
+            }
+        };
+
+        const handleTouchEnd = () => {
+            setIsDragging(false);
+            if (endX !== null && startX !== null) {
+                if ((endX - startX) > 10) {
+                    setRotation((prevRotation) => prevRotation + 90);
+                } else if ((startX - endX) > 10) {
+                    setRotation((prevRotation) => prevRotation - 90);
+                }
+            }
+        };
+
+        window.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('mouseup', handleMouseUp);
+        window.addEventListener('mousemove', handleMouseMove);
+
+        window.addEventListener('touchstart', handleTouchStart);
+        window.addEventListener('touchend', handleTouchEnd);
+        window.addEventListener('touchmove', handleTouchMove);
+
+        // Cleanup event listeners on component unmount
+        return () => {
+            window.removeEventListener('mousedown', handleMouseDown);
+            window.removeEventListener('mouseup', handleMouseUp);
+            window.removeEventListener('mousemove', handleMouseMove);
+
+            window.removeEventListener('touchstart', handleTouchStart);
+            window.removeEventListener('touchend', handleTouchEnd);
+            window.removeEventListener('touchmove', handleTouchMove);
+        };
+    }, [isDragging, startX, endX, screenW]);
 
     return (
         <>
