@@ -420,6 +420,14 @@ animation: dot-loader-after 1s infinite linear;
 /******************************************/
 /************** SPINNER LOADER ************/
 /******************************************/
+.loader-small {
+  border: 3px solid #313131; /* Light grey */
+  border-top: 3px solid var(--color-accent-primary); /* Blue */
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: spin 1s ease-in-out infinite;
+}
 .loader {
   margin: 0 auto;
   border: 5px solid #313131; /* Light grey */
@@ -429,12 +437,13 @@ animation: dot-loader-after 1s infinite linear;
   height: 40px;
   animation: spin 1s ease-in-out infinite;
 }
-.loader-small {
-  border: 3px solid #313131; /* Light grey */
-  border-top: 3px solid var(--color-accent-primary); /* Blue */
+.loader-medium {
+  margin: 0 auto;
+  border: 5px solid #313131; /* Light grey */
+  border-top: 5px solid var(--color-accent-primary); /* Blue */
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 48px;
+  height: 48px;
   animation: spin 1s ease-in-out infinite;
 }
 

@@ -38,6 +38,7 @@ import FanclubSettingsRoute from './routes/fanclub-settings.route.artist'
 import FanclubSettingsEditRoute from './routes/fanclub-settings-edit.route.artist'
 import FanclubTipsRoute from './routes/fanclub-tips.routes.artist'
 import LoadersRoute from './routes/loaders.route'
+import LoadingRoute from './routes/loading.route'
 import LoginRoute from './routes/login.route'
 import Cool1Route from './routes/cool-1.route'
 import Cool2Route from './routes/cool-2.route'
@@ -46,6 +47,9 @@ const router = createBrowserRouter([
   {
     path: '/loaders',
     element: <LoadersRoute />
+  },{
+    path: '/loading',
+    element: <LoadingRoute />
   },{
     path: '/login',
     element: <LoginRoute />
