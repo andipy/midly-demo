@@ -11,11 +11,11 @@ const CardFollowedArtist = ({ artist }) => {
 
                 <h5 className='fsize-xs-4 f-w-500'>{artist?.artistName}</h5>
 
-                {artist?.flashLeaderboard.status === 'ONGOING' &&
+                {/* {artist?.flashLeaderboard.status === 'ONGOING' &&
                     <div className='avatar-14 border-radius-100 bg-red-400 position-relative ml-xs-2'>
                         <div className='border-radius-100 bg-red-400 position-absolute-x-y flash-animation'></div>
                     </div>
-                }
+                } */}
         </div>
     )
 }

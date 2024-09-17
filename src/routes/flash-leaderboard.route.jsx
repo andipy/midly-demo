@@ -154,8 +154,6 @@ const FlashLeaderboardRoute = () => {
         }
     }
 
-    console.log(state)
-
     return (
         <>
             <NavbarLeaderboardFlashPage artist={artist} leaderboard={leaderboard} />

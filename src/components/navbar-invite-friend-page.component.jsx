@@ -6,7 +6,6 @@ import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 const NavbarInviteFriendPage = ({ artist }) => {
 
     const navigate = useNavigate()
-    console.log(artist, 'from navbar invite friend')
     
     return (
         <nav className='top-bar-area-overlay-fixed bg-dark d-flex-row align-items-center j-c-center white z-index-5 top-0 shadow-dark-400'>

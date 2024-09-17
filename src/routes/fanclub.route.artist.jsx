@@ -28,15 +28,15 @@ const FanclubRoute = () => {
     const [clickCount, setClickCount] = useState(0)
     const timeoutRef = useRef(null)
 
-    const [commentsOpen, setCommentsOpen] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
     const [commentsInFocus, setCommentsInFocus] = useState(null)
     const inputRef = useRef(null)
     const openComments = (id) => {
-        setCommentsOpen(true)
+        setModalOpen(true)
         setCommentsInFocus(id)
     }
-    const closeComments = () => {
-        setCommentsOpen(false)
+    const closeModal = () => {
+        setModalOpen(false)
         setCommentsInFocus(null)
         setCommentInFocus(null)
     }
@@ -276,11 +276,11 @@ const FanclubRoute = () => {
             }
 
             <CommentsModalLayout
-                commentsOpen={commentsOpen}
-                closeComments={closeComments}
+                modalOpen={modalOpen}
+                closeModal={closeModal}
             >
                 <NavbarCommentsModal
-                    closeComments={closeComments}
+                    closeModal={closeModal}
                 />
                 <ContainerDefault containerSpecificStyle={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
@@ -300,7 +300,7 @@ const FanclubRoute = () => {
                     handleSubmitComment={handleSubmitComment}
                     currentComment={currentComment}
                     setCurrentComment={setCurrentComment}
-                    commentsOpen={commentsOpen}
+                    modalOpen={modalOpen}
                     inputRef={inputRef}
                 />
 

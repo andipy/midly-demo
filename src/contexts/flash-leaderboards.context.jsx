@@ -107,12 +107,12 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             id: 2,
             artistId: 3,
             participants: 4557,
-            image: require('../images/pictures/artie-5ive.jpeg'),
-            song: null,
-            album: {
-                title: 'ASPETTANDO LA BELLA VITA',
-                url: 'https://open.spotify.com/intl-it/album/7kPBwGRrSCDXGUuxcD6AWb'
+            image: require('../images/pictures/artie-5ive-cover.jpg'),
+            song: {
+                title: 'MILANO TESTAROSSA (feat. Guè)',
+                url: 'https://open.spotify.com/intl-it/track/5zVQoMHyELfcHYviXDao3I'
             },
+            album: null,
             badges: [
                 {
                     position: 1,

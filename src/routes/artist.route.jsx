@@ -12,6 +12,7 @@ import CardLeaderboardYourPosition from '../components/card-leaderboard-your-pos
 import Button from '../components/button.component'
 import Tab from '../components/tab.component'
 import MessageFlashLeaderboard from '../components/message-flash-leaderboard.component'
+import MessageFlashLeaderboardNew from '../components/message-flash-leaderboard-new.component'
 import CardInviteFriend from '../components/card-invite-friend.component'
 import CardConnectSpotify from '../components/card-connect-spotify.component'
 
@@ -88,7 +89,7 @@ const ArtistRoute = () => {
 
             <ContainerDefault containerSpecificStyle={''}>
                 <div className='mt-avatar-header position-sticky top-navbar z-index-max bg-dark'>
-                    {artist?.flashLeaderboard.status === 'ONGOING' || artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' ?
+                    {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' ?
                         <MessageFlashLeaderboard artist={artist} userCompeting={userCompeting} /> : null
                     }
                     {fanclub?.isActive &&
@@ -106,6 +107,10 @@ const ArtistRoute = () => {
                 </div>
                 <Outlet context={artist} />
             </ContainerDefault>
+
+            {artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING' ?
+                <MessageFlashLeaderboardNew artist={artist} userCompeting={userCompeting} /> : null
+            }
             
             {!pathname.includes('fanclub') &&
                 <ContainerDefault containerSpecificStyle='position-sticky bottom-2 z-index-5'>

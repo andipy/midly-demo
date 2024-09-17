@@ -43,13 +43,17 @@ const NavbarArtistPage = ({ artist }) => {
                 </div>
 
                 <div className={`${scrolled ? 'd-flex-row' : 'd-xs-none'} align-items-center j-c-center border-radius-100 avatar-36 bg-dark-soft-transp75 d-flex-row`}>
+                    {/* this empty div is to keep the layout */}
+                </div>
+                
+                {/* <div className={`${scrolled ? 'd-flex-row' : 'd-xs-none'} align-items-center j-c-center border-radius-100 avatar-36 bg-dark-soft-transp75 d-flex-row`}>
                     {!location.pathname.includes('sanremo') && (
                         <>
                             <img className='avatar-28' src={IconPrize} alt='Prize' />
                             <p className='artist-avatar-verified-icon avatar-16 fsize-xs-1 bg-red-300 border-radius-100 d-flex-row align-items-center j-c-center dark-900 f-w-600'>5</p>
                         </>
                     )}
-                </div>
+                </div> */}
             </div>
         </nav>
     )

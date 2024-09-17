@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 import IconTime from '../images/icons/icon-time.svg'
 
 const Countdown = ({ flashLeadeboardStatus }) => {
 
-    const location = useLocation()
-
     const [seconds, setSeconds] = useState(59)
+    const [text, setText] = useState(null)
+
     useEffect(() => {
         setTimeout(() => {
             if (seconds > 0) {
@@ -27,10 +26,7 @@ const Countdown = ({ flashLeadeboardStatus }) => {
         }, 60000)    
     }, [minutes])
 
-    const [text, setText] = useState(null)
-
     useEffect(() => {
-        console.log("Status:", flashLeadeboardStatus);
         switch ( flashLeadeboardStatus ) {
             case 'PENDING':
                 setText('')
@@ -51,7 +47,7 @@ const Countdown = ({ flashLeadeboardStatus }) => {
             <div className='d-flex-row gap-0_5em fsize-xs-2 no-shrink'
             >
                 <span className='f-w-600'>{text}</span>
-                <span className='f-w-600'>1<span className='f-w-300'>d</span></span>
+                {/* <span className='f-w-600'>1<span className='f-w-300'>d</span></span> */}
                 <span className='f-w-600'>23<span className='f-w-300'>h</span></span>
                 <span className='f-w-600'>{minutes}<span className='f-w-300'>m</span></span>
                 <span className='f-w-600'>{seconds}<span className='f-w-300'>s</span></span>

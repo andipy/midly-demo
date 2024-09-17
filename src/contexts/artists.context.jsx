@@ -29,6 +29,14 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'ONGOING',
             }
+        },{
+            id: 4,
+            slug: 'lazza',
+            artistName: 'Lazza',
+            image: require('../images/pictures/lazza.jpeg'),
+            flashLeaderboard: {
+                status: 'PENDING',
+            }
         }
     ])
 

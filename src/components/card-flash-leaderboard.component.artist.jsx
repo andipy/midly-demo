@@ -30,9 +30,6 @@ const CardFlashLeaderboard = () => {
         }
     }, [currentArtist])
 
-    console.log(leaderboard)
-    console.log(currentArtist)
-
     return (
         <>
             {currentArtist?.hasFlashLeadeboard === 'ONGOING' ?

@@ -2,12 +2,12 @@ import { useLocation } from 'react-router-dom'
 
 import IconArrowUp from '../images/icons/icon-arrow-up.svg'
 
-const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitComment, onClick, commentsOpen, inputRef }) => {
+const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitComment, onClick, modalOpen, inputRef }) => {
 
     const { pathname } = useLocation()
 
     return (
-        <section className={`text-bar-live-chat ${commentsOpen ? 'position-fixed bottom-0' : 'bottom-hidden-textbar-comments'}`}>
+        <section className={`text-bar-live-chat ${modalOpen ? 'position-fixed bottom-0' : 'bottom-hidden-textbar-comments'}`}>
             <form className='container d-flex-row align-items-center gap-1em' onSubmit={(e) => handleSubmitComment(e, currentComment)}>
                 <input
                     type='text'

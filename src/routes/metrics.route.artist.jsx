@@ -167,7 +167,6 @@ const MetricsRoute = () => {
                     })}
 
                     {graphs?.map(graph => {
-                        console.log(graph, 'grafico', graph.id)
                         return (
                             <Graph graph={graph} key={graph.id} />
                         )

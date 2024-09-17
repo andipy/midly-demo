@@ -23,6 +23,7 @@ import LeaderboardRoute from './routes/leaderboard.route'
 import FlashLeaderboardRoute from './routes/flash-leaderboard.route'
 import Sanremo2024Route from './routes/sanremo-2024.route'
 import FlashLeaderboardRewardsRoute from './routes/flash-leaderboard-rewards.route'
+import FlashLeaderboardExplanationRoute from './routes/flash-leaderboard-explanation.route'
 import Fanclub from './routes/fanclub.route'
 
 // ARTIST ROUTES
@@ -83,6 +84,9 @@ const router = createBrowserRouter([
         element: <FlashLeaderboardRewardsRoute />
       }
     ]
+  },{
+    path: '/flash-leaderboard-explanation',
+    element: <FlashLeaderboardExplanationRoute />,
   },{
     path: '/sanremo-2024',
     element: <Sanremo2024Route />
