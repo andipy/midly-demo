@@ -15,13 +15,14 @@ export const CurrentFanProvider = ({ children }) => {
         hasInstagram: false,
         hasTikTok: false,
         leaderboardsFollowed: [
+            {artistId: 1},
             {artistId: 2},
             {artistId: 3},
             {artistId: 4}
         ],
-        flashLeaderboardsFollowed: [
-            {artistId: 2}
-        ],
+        // flashLeaderboardsFollowed: [
+        //     {artistId: 2}
+        // ],
         fanclubsSubscribed: [],
         leaderboardStats: {
             position: 8,

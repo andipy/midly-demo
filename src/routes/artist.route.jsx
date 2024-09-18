@@ -12,7 +12,7 @@ import CardLeaderboardYourPosition from '../components/card-leaderboard-your-pos
 import Button from '../components/button.component'
 import Tab from '../components/tab.component'
 import MessageFlashLeaderboard from '../components/message-flash-leaderboard.component'
-import MessageFlashLeaderboardNew from '../components/message-flash-leaderboard-new.component'
+import MessageFlashLeaderboardModal from '../components/message-flash-leaderboard-modal.component'
 import CardInviteFriend from '../components/card-invite-friend.component'
 import CardConnectSpotify from '../components/card-connect-spotify.component'
 
@@ -82,6 +82,36 @@ const ArtistRoute = () => {
         }
     }, [artist])
 
+    // this part of the code handles the flash leaderboard pop up
+    const [modalOpen, setModalOpen] = useState(false)
+    const [upperModalCompressed, setUpperModalCompressed] = useState(false)
+    const [lowerModalCompressed, setLowerModalCompressed] = useState(true)
+    
+    const toggleModalContent = () => {
+        let upperModalDelay
+        let lowerModalDelay
+        if ( upperModalCompressed ) {
+            upperModalDelay = 300
+            lowerModalDelay = 0
+        } else {
+            upperModalDelay = 0
+            lowerModalDelay = 300
+        }
+
+        setTimeout(() => {
+            setUpperModalCompressed(!upperModalCompressed)
+        }, upperModalDelay)
+        setTimeout(() => {
+            setLowerModalCompressed(!lowerModalCompressed)
+        }, lowerModalDelay)
+    }
+
+    useEffect(() => {
+        setTimeout(() => {
+            setModalOpen(true)
+        }, 600) 
+    }, [])
+
     return (
         <>
             <NavbarArtistPage artist={artist} />
@@ -109,11 +139,18 @@ const ArtistRoute = () => {
             </ContainerDefault>
 
             {artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING' ?
-                <MessageFlashLeaderboardNew artist={artist} userCompeting={userCompeting} /> : null
+                <MessageFlashLeaderboardModal
+                    artist={artist}
+                    userCompeting={userCompeting}
+                    modalOpen={modalOpen}
+                    toggleModalContent={toggleModalContent}
+                    upperModalCompressed={upperModalCompressed}
+                    lowerModalCompressed={lowerModalCompressed}
+                /> : null
             }
             
             {!pathname.includes('fanclub') &&
-                <ContainerDefault containerSpecificStyle='position-sticky bottom-2 z-index-5'>
+                <ContainerDefault containerSpecificStyle={`position-sticky z-index-5 ${upperModalCompressed ? 'bottom-14' : 'bottom-2'}`}>
                     <CardInviteFriend artist={artist} />
                 </ContainerDefault>
             }

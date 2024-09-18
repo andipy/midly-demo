@@ -11,7 +11,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Arctic Monkeys',
             image: require('../images/pictures/arcticmonkeys.jpg'),
             flashLeaderboard: {
-                status: 'PENDING',
+                status: 'NONE',
             }
         },{
             id: 2,

@@ -1418,6 +1418,12 @@ animation: dot-loader-after 1s infinite linear;
 .bottom-12 {
   bottom: 12%;
 }
+.bottom-13 {
+  bottom: 13%;
+}
+.bottom-14 {
+  bottom: 14%;
+}
 .bottom-15 {
   bottom: 15%;
 }
@@ -1577,9 +1583,77 @@ animation: dot-loader-after 1s infinite linear;
 .w-36px {
   width: 36px;
 }
+.h-0 {
+  height: 0;
+}
 .h-100 {
   height: 100%;
 }
+
+@keyframes compressUp {
+  from {
+    max-height: 100vh;
+  }
+  to {
+    max-height: 0;
+  }
+}
+.compress-up {
+  -webkit-animation: compressUp 300ms ease-out;
+  -moz-animation: compressUp 300ms ease-out;
+  animation: compressUp 300ms ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes expandUp {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 100vh;
+  }
+}
+.expand-up {
+  -webkit-animation: expandUp 300ms ease-out;
+  -moz-animation: expandUp 300ms ease-out;
+  animation: expandUp 300ms ease-out;
+  animation-fill-mode: forwards;
+}
+
+/**/
+
+@keyframes compressDown {
+  from {
+    max-height: 100vh;
+  }
+  to {
+    max-height: 0;
+  }
+}
+.compress-down {
+  -webkit-animation: compressDown 300ms ease-out;
+  -moz-animation: compressDown 300ms ease-out;
+  animation: compressDown 300ms ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes expandDown {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 100vh;
+  }
+}
+.expand-down {
+  -webkit-animation: expandDown 300ms ease-out;
+  -moz-animation: expandDown 300ms ease-out;
+  animation: expandDown 300ms ease-out;
+  animation-fill-mode: forwards;
+}
+
+
+
 .h-100vh {
   height: 100vh;
 }
@@ -1618,9 +1692,6 @@ animation: dot-loader-after 1s infinite linear;
 }
 .h-10px {
   height: 10px;
-}
-.h-0 {
-  height: 0;
 }
 .h-min-100vh {
   min-height: 100vh;
