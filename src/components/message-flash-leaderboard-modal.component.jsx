@@ -64,12 +64,12 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
 
                     <ContainerDefault containerSpecificStyle={`d-flex-column align-items-center j-c-center overflow-all-hidden ${upperModalCompressed ? 'compress-up' : 'expand-up'}`}>
                         <img className='w-25' src={IllustrationTrophy} />
-                        <h4 className='fsize-xs-4 mb-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 w-80'>Sta per uscire il nuovo album di {artist.artistName}! In quel momento si aprirà anche la CLASSIFICA FLASH qui su MIDLY:</h4>
+                        <h4 className='fsize-xs-4 mb-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 w-80'>Sta per uscire “LOCURA” il nuovo album di {artist.artistName}! La CLASSIFICA FLASH si attiva alle 1.00.</h4>
                         <div className='d-flex-row j-c-center gap-0_5em fsize-xs-2 no-shrink bg-brand-gradient pt-xs-4 pb-xs-4 border-radius-04 w-100'>
-                            <span className='f-w-600 black fsize-xs-4'>MANCANO </span>
-                            <span className='f-w-600 black fsize-xs-4'>8<span className='f-w-300'>h</span></span>
-                            <span className='f-w-600 black fsize-xs-4'>{minutes}<span className='f-w-300'>m</span></span>
-                            <span className='f-w-600 black fsize-xs-4'>{seconds}<span className='f-w-300'>s</span></span>
+                            <span className='f-w-600 black fsize-xs-4'>SI ATTIVA TRA </span>
+                            <span className='f-w-600 black fsize-xs-4'>8<span className='f-w-300'>H</span></span>
+                            <span className='f-w-600 black fsize-xs-4'>{minutes}<span className='f-w-300'>M</span></span>
+                            <span className='f-w-600 black fsize-xs-4'>{seconds}<span className='f-w-300'>S</span></span>
                         </div>
                         <Button
                             style='bg-dark-soft border-lime lime-400 border-radius-04 fsize-xs-3 f-w-500 mt-xs-4 z-index-max'
@@ -82,7 +82,7 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
 
                     <div className={`bg-brand-gradient w-100 position-sticky bottom-0 z-index-max ${lowerModalCompressed ? 'compress-down' : 'expand-down pt-xs-3 pb-xs-3'}`} onClick={toggleModalContent}>
                         <ContainerDefault containerSpecificStyle={`d-flex-column align-items-center j-c-center overflow-all-hidden z-index-max ${lowerModalCompressed ? 'compress-down' : 'expand-down'}`}>
-                            <h4 className='fsize-xs-3 f-w-500 black'>CLASSIFICA FLASH APRE TRA:</h4>
+                            <h4 className='fsize-xs-3 f-w-500 black'>CLASSIFICA FLASH SI ATTIVA TRA:</h4>
                             <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink mt-xs-4 border-radius-04 w-100'>
                                 <span className='f-w-600 black'> </span>
                                 <span className='f-w-600 black'>8<span className='f-w-300'>h</span></span>
@@ -110,19 +110,19 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                             src={require('../images/pictures/artie-5ive-cover.jpg')}
                         />
                         </div>
-                        <h4 className='pt-xs-modal-header fsize-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 mb-xs-4'>CLASSIFICA FLASH sull'album <span className='lime-400 f-w-500'>Nome dell'album</span> ATTIVA</h4>
+                        <h4 className='pt-xs-modal-header fsize-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 mb-xs-4'>La classifica flash di "<span className='lime-400 f-w-500'>Nome dell'album</span>" è attiva: ascolta i brani e competi nella classifica dei super fan di {artist.artistName}.</h4>
 
                         <Button
                             style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 z-index-max mb-xs-4'
-                            label="ENTRA NELLA CLASSIFICA FLASH →"
+                            label="ENTRA →"
                             onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}
                         />
 
                         <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink pt-xs-4 border-radius-04 w-100'>
-                            <span className='f-w-600 white'>Termina tra: </span>
-                            <span className='f-w-600 white'>8<span className='f-w-300'>h</span></span>
-                            <span className='f-w-600 white'>{minutes}<span className='f-w-300'>m</span></span>
-                            <span className='f-w-600 white'>{seconds}<span className='f-w-300'>s</span></span>
+                            <span className='f-w-600 white'>TERMINA TRA: </span>
+                            <span className='f-w-600 white'>8<span className='f-w-300'>H</span></span>
+                            <span className='f-w-600 white'>{minutes}<span className='f-w-300'>M</span></span>
+                            <span className='f-w-600 white'>{seconds}<span className='f-w-300'>S</span></span>
                         </div>
                     </ContainerDefault>
 
