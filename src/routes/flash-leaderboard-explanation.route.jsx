@@ -17,9 +17,9 @@ const FlashLeaderboardExplanationRoute = () => {
                 <p className='fsize-xs-4 mt-xs-2 mb-xs-12'>Il singolo o ogni brano dell'album appena pubblicato valgono 3 punti, ma max 10 ascolti per brano ogni 24 ore. <br /><br /> Ogni altro brano dell'artista vale 1 punto.</p>
 
                 <h3 className='fsize-xs-7 f-w-600 lime-400'>Community e assistenza</h3>
-                <p className='fsize-xs-4 mt-xs-2'>Se ti serve aiuto, scrivici per assitenza su telegram:</p>
+                <p className='fsize-xs-4 mt-xs-2'>Unisci alla community su Telegram e aspetta l'apertura della classifica flash con gli altri membri:</p>
                 <Link to='https://t.me/midlyofficial' target='blank'>
-                    <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-2' label='Chiedi aiuto sul canale telegram' />
+                    <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-2' label='Vai alla community telegram' />
                 </Link>
                 
             </ContainerDefault>
