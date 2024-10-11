@@ -289,10 +289,10 @@ const ContentCreationRoute = () => {
                     }
 
                     {!photoUrl && !videoUrl &&
-                        <div className='position-absolute-x bottom-0 d-flex-row align-items-center j-c-center gap-0_5em mb-xs-2'>
-                            <span className={`pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'PHOTO' ? 'white' : 'grey-400'}`} onClick={handlePhotoType}>FOTO</span>
-                            <span className={`pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'VIDEO' ? 'white' : 'grey-400'}`} onClick={handleVideoType}>VIDEO</span>
-                            <span className={`pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'TEXT' ? 'white' : 'grey-400'}`} onClick={handleTextType}>TEXT</span>
+                        <div className='position-absolute-x bottom-0 d-flex-row align-items-center j-c-center gap-0_25em mb-xs-2'>
+                            <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'PHOTO' ? 'white' : 'grey-400'}`} onClick={handlePhotoType}>FOTO</span>
+                            <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'VIDEO' ? 'white' : 'grey-400'}`} onClick={handleVideoType}>VIDEO</span>
+                            <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'TEXT' ? 'white' : 'grey-400'}`} onClick={handleTextType}>TEXT</span>
                         </div>
                     }
                 </>
