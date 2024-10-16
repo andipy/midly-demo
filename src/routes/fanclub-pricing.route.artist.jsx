@@ -16,6 +16,7 @@ const FanclubPricingRoute = () => {
     const { currentArtist } = useContext(CurrentArtistContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
 
+    const [filledMandatory, setFilledMandatory] = useState(false)
     const [pricing, setPricing] = useState()
     const setRecommendedPricing = () => {
         setPricing(3.99)
@@ -34,20 +35,16 @@ const FanclubPricingRoute = () => {
         )
     }
 
-    const saveThisFanclub = () => {
-        setFanclubs(prevFanclubs => 
-            prevFanclubs.map(fanclub =>
-                fanclub.artistId === currentArtist.id
-                    ? { ...fanclub, isActive: true }
-                    : fanclub
-            )
-        )
-        navigate('/artist-app/fanclub/activated')
-    }
-
     useEffect(() => {
-        if (pricing !== undefined) {
+        if (pricing) {
             updateThisFanclub()
+        }
+
+        // Check if all mandatory fields are filled
+        if (pricing) {
+            setFilledMandatory(true)
+        } else {
+            setFilledMandatory(false)
         }
     }, [pricing])
 
@@ -63,13 +60,14 @@ const FanclubPricingRoute = () => {
     
     return (
         <>
-            <NavbarMultistep stepNumber={3} totalStepNumber={3} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
+            <NavbarMultistep stepNumber={2} totalStepNumber={4} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
             <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
-                <h3 className='fsize-xs-6 f-w-500'>Stabilisci il prezzo dell'abbonamento mensile al tuo fanclub</h3>
+                <h3 className='fsize-xs-6 f-w-500 white'>Prezzo mensile del tuo fanclub</h3>
 
                 <div className='d-flex-column gap-0_5em mt-xs-4'>
-                    <p className='fsize-xs-2 grey-300'>Min €2.99 al mese, max €11.99 al mese</p>
+                    <p className='fsize-xs-3 grey-200'>Quanto deve pagare ogni mese un tuo fan per accedere al tuo fan club?</p>
+                    <p className='fsize-xs-3 grey-200'>Minimo €2.99, massimo €11.99. Consigliato €4.99.</p>
                     <span
                         className='fsize-xs-2 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 bg-green-900 border-radius-04 green-400 align-self-start'
                         onClick={setRecommendedPricing}
@@ -80,8 +78,12 @@ const FanclubPricingRoute = () => {
                     
                 </div>
 
-                <ContainerDefault containerSpecificStyle='position-absolute bottom-5'>
-                    <Button style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Save' onClick={saveThisFanclub} />
+                <ContainerDefault containerSpecificStyle='position-fixed bottom-5'>
+                    <Button
+                        disabled={filledMandatory ? false : true}
+                        style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Continua'
+                        onClick={() => navigate('/artist-app/fanclub/billing-info')}
+                    />
                 </ContainerDefault>
             </ContainerDefault>
         </>

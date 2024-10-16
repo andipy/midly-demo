@@ -43,6 +43,10 @@ import LoadingRoute from './routes/loading.route'
 import LoginRoute from './routes/login.route'
 import Cool1Route from './routes/cool-1.route'
 import Cool2Route from './routes/cool-2.route'
+import FanclubTermsRoute from './routes/fanclub-terms.route.artist'
+import FanclubInfoRoute from './routes/fanclub-info.route.artist'
+import FanclubBillingInfoRoute from './routes/fanclub-billing-info.route.artist'
+import FanclubPaymentInfoRoute from './routes/fanclub-payment-info.route.artist'
 
 const router = createBrowserRouter([
   {
@@ -111,6 +115,18 @@ const router = createBrowserRouter([
         element: <FlashLeaderboardRewardsRoute />
       }
     ]
+  },{
+    path: '/artist-app/fanclub/terms-and-conditions',
+    element: <FanclubTermsRoute />
+  },{
+    path: '/artist-app/fanclub/info',
+    element: <FanclubInfoRoute />
+  },{
+    path: '/artist-app/fanclub/billing-info',
+    element: <FanclubBillingInfoRoute />
+  },{
+    path: '/artist-app/fanclub/payment-info',
+    element: <FanclubPaymentInfoRoute />
   },{
     path: '/artist-app/fanclub/name',
     element: <FanclubNameRoute />

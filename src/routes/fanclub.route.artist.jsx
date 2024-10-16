@@ -267,10 +267,10 @@ const FanclubRoute = () => {
                     <ContainerDefault containerSpecificStyle='d-flex-column align-items-center j-c-center gap-1em'>
                         <div className='d-flex-column align-items-center j-c-center'>
                             <img className='avatar-48' src={IconFanclub} />
-                            <h4 className='fsize-xs-3 mb-xs-8 letter-spacing-1 f-w-400 white t-align-center mt-xs-4'>Apri il tuo fanclub!</h4>
+                            <h4 className='fsize-xs-5 letter-spacing-1 f-w-600 white t-align-center mt-xs-4 w-80'>Apri il tuo fan club su MIDLY</h4>
                         </div>
-                        <p className='letter-spacing-1 grey-300 fsize-xs-2 t-align-center w-80'>Pubblica contenuti esclusivi per i tuoi fan in cambio di un abbonamento mensile:</p>
-                        <Button style='bg-acid-lime fsize-xs-3 f-w-500 black w-70' label='Attiva fanclub' onClick={() => navigate('/artist-app/fanclub/name')} />
+                        <p className='letter-spacing-1 grey-300 fsize-xs-3 t-align-center w-80'>Crea un’esperienza esclusiva per i tuoi Super Fan a cui possono accedere in cambio di un abbonamento mensile.</p>
+                        <Button style='bg-acid-lime fsize-xs-3 f-w-500 black w-70' label='Inizia' onClick={() => navigate('/artist-app/fanclub/terms-and-conditions')} />
                     </ContainerDefault>
                 </FullPageCenter>
             }
