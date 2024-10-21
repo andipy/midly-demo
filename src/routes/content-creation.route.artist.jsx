@@ -10,7 +10,6 @@ import IconExit from '../images/icons/icon-exit.svg'
 import IconSettings from '../images/icons/icon-settings-white.svg'
 import IconLink from '../images/icons/icon-link.svg'
 import IconText from '../images/icons/icon-text.svg'
-import IconFlip from '../images/icons/icon-flip.svg'
 import NavbarMultistep from '../components/navbar-multistep.component'
 import AppbarContentCreation from '../components/appbar-content-creation.component.artist'
 import TextAreaCaption from '../components/textarea-caption.component.artist'
@@ -66,7 +65,7 @@ const ContentCreationRoute = () => {
             const outer = document.querySelector('.outer')
             const wrapper = document.querySelector('.camera-frame-wrapper')
             const navbar = document.querySelector('.nav-multi')
-            const appbar = document.querySelector('.appbar-creation')
+            const appbar = document.querySelector('.app-bar-content-creation-area')
             const outerHeight = window.innerHeight
             const wrapperHeight = (window.innerHeight - appbar.offsetHeight)
             outer.style.setProperty('height', `${outerHeight}px`)
@@ -259,42 +258,28 @@ const ContentCreationRoute = () => {
             {error && <p className='pt-xs-topbar'>Error accessing the camera: {error}</p>}
             
             <div className='camera-frame-wrapper position-relative'>
-                <div className='d-flex-column position-absolute right-0 bottom-0 gap-0_5em mb-xs-2 mr-xs-2'>
-                    {contentType !== 'TEXT' &&
-                        <>
-                            {!photoUrl && !videoUrl && 
-                                <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={switchCamera}>
-                                    <img className={`avatar-32 icon-flip-camera ${facingMode == 'user' ? 'icon-flip-camera-user' : facingMode === 'environment' && 'icon-flip-camera-environment'}`} src={IconFlip} />
-                                </div>
-                            }
+                <ContainerDefault containerSpecificStyle={'h-inherit d-flex-row align-items-center j-c-end position-absolute left-0 right-0'}>
+                    <div className='d-flex-column gap-0_5em'>
+                        {contentType !== 'TEXT' &&
                             <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
                                 <img className='avatar-32' src={IconText} />
                             </div>
-                        </>
-                    }
-                    <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
-                        <img className='avatar-32' src={IconLink} />
+                        }
+                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
+                            <img className='avatar-32' src={IconLink} />
+                        </div>
+                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
+                            <img className='avatar-32' src={IconSettings} onClick={handleSettingsAreaVisibility} />
+                        </div>
                     </div>
-                    <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                        <img className='avatar-32' src={IconSettings} onClick={handleSettingsAreaVisibility} />
-                    </div>
-
-                </div>
+                </ContainerDefault>
 
                 {!photoUrl && !videoUrl &&
                     <>
-                        {contentType == 'PHOTO' || contentType === 'VIDEO' ?
-                            <video className='border-radius-04 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
+                        {contentType === 'PHOTO' || contentType === 'VIDEO' ?
+                            <video className='border-radius-1 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
                         : contentType === 'TEXT' &&
-                            <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-04 fsize-xs-6' placeholder='Scrivi qui...' rows='8' onChange={handleCaptureText}></textarea>
-                        }
-
-                        {!photoUrl && !videoUrl &&
-                            <div className='position-absolute-x bottom-0 d-flex-row align-items-center j-c-center gap-0_25em mb-xs-2'>
-                                <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'PHOTO' ? 'white' : 'grey-400'}`} onClick={handlePhotoType}>FOTO</span>
-                                <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'VIDEO' ? 'white' : 'grey-400'}`} onClick={handleVideoType}>VIDEO</span>
-                                <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'TEXT' ? 'white' : 'grey-400'}`} onClick={handleTextType}>TEXT</span>
-                            </div>
+                            <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-1 fsize-xs-6' placeholder='Scrivi qui...' rows='8' onChange={handleCaptureText}></textarea>
                         }
                     </>
                 }
@@ -314,41 +299,48 @@ const ContentCreationRoute = () => {
                         <video className='border-radius-04 object-fit-cover w-100 h-100' src={videoUrl} controls={false} autoPlay={true} loop={true} />
                     </div>
                 }
+
+                <AppbarContentCreation
+                    handleCapturePhoto={handleCapturePhoto}
+                    toggleRecording={toggleRecording}
+                    recording={recording}
+                    contentType={contentType}
+                    photoUrl={photoUrl}
+                    videoUrl={videoUrl}
+                    textContent={textContent}
+                    updatePosts={updatePosts}
+                    handlePhotoType={handlePhotoType}
+                    handleVideoType={handleVideoType}
+                    handleTextType={handleTextType}
+                    facingMode={facingMode}
+                    switchCamera={switchCamera}
+                />
             </div>
 
             <canvas ref={canvasRef} style={{ display: 'none' }} />
 
-            <AppbarContentCreation
-                handleCapturePhoto={handleCapturePhoto}
-                toggleRecording={toggleRecording}
-                recording={recording}
-                contentType={contentType}
-                photoUrl={photoUrl}
-                videoUrl={videoUrl}
-                textContent={textContent}
-                updatePosts={updatePosts}
-            />
-            </div>
+            
+        </div>
 
-            <TextAreaCaption
-                showTextArea={showTextArea}
-                handleTextAreaVisibility={handleTextAreaVisibility}
-                handleCaption={handleCaption}
-            />
+        <TextAreaCaption
+            showTextArea={showTextArea}
+            handleTextAreaVisibility={handleTextAreaVisibility}
+            handleCaption={handleCaption}
+        />
 
-            <LinkArea
-                showLinkArea={showLinkArea}
-                handleLinkAreaVisibility={handleLinkAreaVisibility}
-                handleLinkUrl={handleLinkUrl}
-                handleLinkName={handleLinkName}
-            />
+        <LinkArea
+            showLinkArea={showLinkArea}
+            handleLinkAreaVisibility={handleLinkAreaVisibility}
+            handleLinkUrl={handleLinkUrl}
+            handleLinkName={handleLinkName}
+        />
 
-            <SettingsArea
-                showSettingsArea={showSettingsArea}
-                handleSettingsAreaVisibility={handleSettingsAreaVisibility}
-                handleIsPrivate={handleIsPrivate}
-                isPrivate={post.settings.isPrivate}
-            />
+        <SettingsArea
+            showSettingsArea={showSettingsArea}
+            handleSettingsAreaVisibility={handleSettingsAreaVisibility}
+            handleIsPrivate={handleIsPrivate}
+            isPrivate={post.settings.isPrivate}
+        />
         </>
     )
     }

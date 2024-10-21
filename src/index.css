@@ -1339,6 +1339,11 @@ animation: dot-loader-after 1s infinite linear;
   left: 50%;
   transform: translateX(-50%);
 }
+.position-absolute-y {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .position-absolute-x-y {
   position: absolute;
   left: 50%;
@@ -1813,6 +1818,12 @@ animation: dot-loader-after 1s infinite linear;
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
+.avatar-60 {
+  width: var(--avatar-60);
+  height: var(--avatar-60);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
 .avatar-64 {
   width: var(--avatar-64);
   height: var(--avatar-64);
@@ -2173,10 +2184,8 @@ nav .container {
 
 .app-bar-content-creation-area {
   width: 100vw;
-  height: var(--app-bar-height);
-  position: fixed;
-  bottom: -2px;
-  background-color: var(--color-main-bg);
+  position: absolute;
+  bottom: 0;
 }
 
 .marker {
@@ -2213,6 +2222,7 @@ nav .container {
   --avatar-40: 40px;
   --avatar-48: 48px;
   --avatar-56: 56px;
+  --avatar-60: 60px;
   --avatar-64: 64px;
   --avatar-72: 72px;
   --avatar-80: 80px;
