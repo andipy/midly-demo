@@ -64,11 +64,11 @@ const ContentCreationRoute = () => {
     useEffect(() => {
         const setWrapperHeight = () => {
             const outer = document.querySelector('.outer')
-            const wrapper = document.querySelector('.wrapper')
+            const wrapper = document.querySelector('.camera-frame-wrapper')
             const navbar = document.querySelector('.nav-multi')
             const appbar = document.querySelector('.appbar-creation')
             const outerHeight = window.innerHeight
-            const wrapperHeight = (window.innerHeight - navbar.offsetHeight - appbar.offsetHeight) * .95
+            const wrapperHeight = (window.innerHeight - appbar.offsetHeight)
             outer.style.setProperty('height', `${outerHeight}px`)
             wrapper.style.setProperty('height', `${wrapperHeight}px`)
         };
@@ -255,65 +255,66 @@ const ContentCreationRoute = () => {
     return (
         <>
         <div className='d-flex-column j-c-center outer'>
-        <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
-        {error && <p className='pt-xs-topbar'>Error accessing the camera: {error}</p>}
-        <ContainerDefault containerSpecificStyle='wrapper position-relative'>
-            <div className='d-flex-column position-absolute right-0 bottom-0 gap-0_5em mb-xs-2 mr-xs-2'>
-                {contentType !== 'TEXT' &&
+            <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} transparent={true} forcedExitPath={'/artist-app/fanclub'} />
+            {error && <p className='pt-xs-topbar'>Error accessing the camera: {error}</p>}
+            
+            <div className='camera-frame-wrapper position-relative'>
+                <div className='d-flex-column position-absolute right-0 bottom-0 gap-0_5em mb-xs-2 mr-xs-2'>
+                    {contentType !== 'TEXT' &&
+                        <>
+                            {!photoUrl && !videoUrl && 
+                                <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={switchCamera}>
+                                    <img className={`avatar-32 icon-flip-camera ${facingMode == 'user' ? 'icon-flip-camera-user' : facingMode === 'environment' && 'icon-flip-camera-environment'}`} src={IconFlip} />
+                                </div>
+                            }
+                            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
+                                <img className='avatar-32' src={IconText} />
+                            </div>
+                        </>
+                    }
+                    <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
+                        <img className='avatar-32' src={IconLink} />
+                    </div>
+                    <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
+                        <img className='avatar-32' src={IconSettings} onClick={handleSettingsAreaVisibility} />
+                    </div>
+
+                </div>
+
+                {!photoUrl && !videoUrl &&
                     <>
-                        {!photoUrl && !videoUrl && 
-                            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={switchCamera}>
-                                <img className={`avatar-32 icon-flip-camera ${facingMode == 'user' ? 'icon-flip-camera-user' : facingMode === 'environment' && 'icon-flip-camera-environment'}`} src={IconFlip} />
+                        {contentType == 'PHOTO' || contentType === 'VIDEO' ?
+                            <video className='border-radius-04 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
+                        : contentType === 'TEXT' &&
+                            <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-04 fsize-xs-6' placeholder='Scrivi qui...' rows='8' onChange={handleCaptureText}></textarea>
+                        }
+
+                        {!photoUrl && !videoUrl &&
+                            <div className='position-absolute-x bottom-0 d-flex-row align-items-center j-c-center gap-0_25em mb-xs-2'>
+                                <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'PHOTO' ? 'white' : 'grey-400'}`} onClick={handlePhotoType}>FOTO</span>
+                                <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'VIDEO' ? 'white' : 'grey-400'}`} onClick={handleVideoType}>VIDEO</span>
+                                <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'TEXT' ? 'white' : 'grey-400'}`} onClick={handleTextType}>TEXT</span>
                             </div>
                         }
-                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
-                            <img className='avatar-32' src={IconText} />
-                        </div>
                     </>
                 }
-                <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
-                    <img className='avatar-32' src={IconLink} />
-                </div>
-                <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                    <img className='avatar-32' src={IconSettings} onClick={handleSettingsAreaVisibility} />
-                </div>
 
-            </div>
-
-            {!photoUrl && !videoUrl &&
-                <>
-                    {contentType == 'PHOTO' || contentType === 'VIDEO' ?
-                        <video className='border-radius-04 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
-                    : contentType === 'TEXT' &&
-                        <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-04 fsize-xs-6' placeholder='Scrivi qui...' rows='8' onChange={handleCaptureText}></textarea>
-                    }
-
-                    {!photoUrl && !videoUrl &&
-                        <div className='position-absolute-x bottom-0 d-flex-row align-items-center j-c-center gap-0_25em mb-xs-2'>
-                            <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'PHOTO' ? 'white' : 'grey-400'}`} onClick={handlePhotoType}>FOTO</span>
-                            <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'VIDEO' ? 'white' : 'grey-400'}`} onClick={handleVideoType}>VIDEO</span>
-                            <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'TEXT' ? 'white' : 'grey-400'}`} onClick={handleTextType}>TEXT</span>
+                {photoUrl ?
+                    <div className='position-relative' style={{ width: '100%', height: '100%' }}>
+                        <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
+                            <img className='avatar-32' src={IconExit} alt="X" />
                         </div>
-                    }
-                </>
-            }
-
-            {photoUrl ?
-                <div className='position-relative' style={{ width: '100%', height: '100%' }}>
-                    <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
-                        <img className='avatar-32' src={IconExit} alt="X" />
+                        <img className='border-radius-04 object-fit-cover w-100 h-100' src={photoUrl} />
                     </div>
-                    <img className='border-radius-04 object-fit-cover w-100 h-100' src={photoUrl} />
-                </div>
-            : videoUrl &&
-                <div className='position-relative'  style={{ width: '100%', height: '100%' }}>
-                    <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearVideo}>
-                        <img className='avatar-32' src={IconExit} alt="X" />
+                : videoUrl &&
+                    <div className='position-relative'  style={{ width: '100%', height: '100%' }}>
+                        <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearVideo}>
+                            <img className='avatar-32' src={IconExit} alt="X" />
+                        </div>
+                        <video className='border-radius-04 object-fit-cover w-100 h-100' src={videoUrl} controls={false} autoPlay={true} loop={true} />
                     </div>
-                    <video className='border-radius-04 object-fit-cover w-100 h-100' src={videoUrl} controls={false} autoPlay={true} loop={true} />
-                </div>
-            }
-            </ContainerDefault>
+                }
+            </div>
 
             <canvas ref={canvasRef} style={{ display: 'none' }} />
 

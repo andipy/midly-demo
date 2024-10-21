@@ -8,6 +8,7 @@ import Button from '../components/button.component'
 import NavbarMultistep from '../components/navbar-multistep.component'
 
 import ContainerDefault from '../layout/container-default.layout'
+import { isCursorAtEnd } from '@testing-library/user-event/dist/utils'
 
 const FanclubPaymentInfoRoute = () => {
 
@@ -44,6 +45,16 @@ const FanclubPaymentInfoRoute = () => {
     }
 
     const saveThisFanclub = () => {
+        setFanclubs(prevFanclubs => 
+            prevFanclubs.map(fanclub =>
+                fanclub.artistId === currentArtist.id
+                    ? {
+                        ...fanclub,
+                        isActive: true
+                    }
+                    : fanclub
+            )
+        )
         navigate('/artist-app/fanclub/activated')
     }
 

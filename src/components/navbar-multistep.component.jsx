@@ -4,7 +4,7 @@ import IconBack from '../images/icons/icon-arrowleft.svg'
 import IconExit from '../images/icons/icon-exit.svg'
 import IconEdit from '../images/icons/icon-edit.svg'
 
-const NavbarMultistep = ({ stepNumber, totalStepNumber, dismissable, editable, editPath, forcedBackPath, forcedExitPath }) => {
+const NavbarMultistep = ({ stepNumber, totalStepNumber, dismissable, transparent, editable, editPath, forcedBackPath, forcedExitPath }) => {
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
@@ -26,10 +26,10 @@ const NavbarMultistep = ({ stepNumber, totalStepNumber, dismissable, editable, e
     }
 
     return (
-        <nav className='top-bar-area-overlay-fixed bg-dark d-flex-row align-items-center j-c-center white z-index-max top-0 shadow-dark-400 nav-multi'>
+        <nav className={`${transparent ? '' : 'bg-dark shadow-dark-400'} top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-max top-0 nav-multi`}>
             <div className='container d-flex-row align-items-center j-c-space-between'>
                 {stepNumber !== 1 || totalStepNumber === 1 && !dismissable ?
-                    <div className='d-flex-row align-items-center j-c-center' onClick={handleBackNavigation}>
+                    <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={handleBackNavigation}>
                         <img src={IconBack} alt='MIDLY' />
                     </div>
                 :
@@ -42,12 +42,12 @@ const NavbarMultistep = ({ stepNumber, totalStepNumber, dismissable, editable, e
 
                 <div className='d-flex-row gap-0_5em'>
                     {dismissable && !editable &&
-                        <div className='avatar-32 d-flex-row align-items-center j-c-center' onClick={handleExit}>
+                        <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={handleExit}>
                             <img className='avatar-32' src={IconExit} alt='X' />
                         </div>
                     }
                     {editable && !dismissable &&
-                        <div className='avatar-32 d-flex-row align-items-center j-c-center' onClick={() => navigate(editPath)}>
+                        <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate(editPath)}>
                             <img className='avatar-32' src={IconEdit} alt='X' />
                         </div>
                     }

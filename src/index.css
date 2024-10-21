@@ -2125,6 +2125,11 @@ nav .container {
 /******************************************/
 /************ VIDEO CREATION *************/
 /******************************************/
+.camera-frame-wrapper {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
 .icon-flip-camera {
   transition: all .3s ease-out;
 }
