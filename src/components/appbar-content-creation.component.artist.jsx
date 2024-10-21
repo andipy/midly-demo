@@ -19,7 +19,7 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording,
                                 <img className='avatar-32 position-absolute-x-y' src={IconMedia} />
                                 <input type='file' className='w-100 h-100 grey-300 w-auto opacity-0' />
                             </div>
-                            <span className='fsize-xs-0'>GALLER</span>
+                            <span className='fsize-xs-0'>GALLERY</span>
                         </div>
                     </section>
                 }
