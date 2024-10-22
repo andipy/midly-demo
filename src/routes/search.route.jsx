@@ -88,16 +88,14 @@ const SearchRoute = () => {
         <>
         <NavbarDefault />
         <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
-        <section>
-            <TextTitle title={'Artisti'} />
-            <SearchInput 
-                value={searchQuery} 
-                onChange={(e) => {
-                    const newValue = e.target.value;
-                    setSearchQuery(newValue);  
-                }}   /* NON RIMANE STICKY */
-            />
-        </section>
+        <TextTitle title={'Artisti'} />
+        <SearchInput 
+            value={searchQuery} 
+            onChange={(e) => {
+                const newValue = e.target.value;
+                setSearchQuery(newValue);  
+            }}   
+        />
         <section id='artists-list' className='mt-lg-2'>
                         {filteredItems.length > 0 ? (
                         <div className='d-flex-column mt-xs-2 mb-xs-0'>
