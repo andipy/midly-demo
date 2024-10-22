@@ -1490,6 +1490,7 @@ animation: dot-loader-after 1s infinite linear;
 .left-5 {
   left: 5%;
 }
+
 .w-music-product {
   width: calc(100% - var(--avatar-40));
 }
@@ -1715,6 +1716,9 @@ animation: dot-loader-after 1s infinite linear;
   margin-left: -5.4%;
   padding: 0 5.5%;
   width: 112%;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
 }
 .d-none {
   display: none;
