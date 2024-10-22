@@ -66,11 +66,12 @@ const SearchRoute = () => {
 
     ]
 
-    /* NON SONO IN ORDINE ALFABETICO */
 
-    const filteredItems = items.filter(item =>
+    const filteredItems = items
+    .filter(item =>
         item.artistName.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    )
+    .sort((a, b) => a.artistName.localeCompare(b.artistName));
 
 
     
