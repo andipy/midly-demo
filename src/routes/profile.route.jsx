@@ -108,7 +108,7 @@ function ProfileRoute() {
                 {/* DIV ITEMS */}
                 <div className='d-flex-column'>
                     {/* ITEM */}
-                    <a className='d-flex-row j-c-space-between mb-xs-3'>
+                    <a className='d-flex-row j-c-space-between mb-xs-3' href='/personal-info'>
                         <div className='d-flex-row align-items-center w-100'>
                             <img className='mr-xs-2' src={SettingsLogo} alt='SETTINGS'></img>
                             <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Informazioni personali</h6>
@@ -116,7 +116,7 @@ function ProfileRoute() {
                         <img className='' src={IconRounded} alt='go'/>
                     </a>
                     {/* ITEM */}
-                    <a className='d-flex-row j-c-space-between mb-xs-3'>
+                    <a className='d-flex-row j-c-space-between mb-xs-3' href='/faq'>
                         <div className='d-flex-row align-items-center w-100'>
                             <img className='mr-xs-2' src={InfoLogo} alt='SETTINGS'></img>
                             <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>FAQs</h6>
@@ -124,7 +124,7 @@ function ProfileRoute() {
                         <img className='' src={IconRounded} alt='go'/>
                     </a>
                     {/* ITEM */}
-                    <a className='d-flex-row j-c-space-between mb-xs-3'>
+                    <a className='d-flex-row j-c-space-between mb-xs-3' href='/legal/terms-and-conditions-fans'>
                         <div className='d-flex-row align-items-center w-100'>
                             <img className='mr-xs-2' src={''} alt='SETTINGS'></img> {/* MANCA */}
                             <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Termini e condizioni fan</h6>
@@ -132,7 +132,7 @@ function ProfileRoute() {
                         <img className='' src={IconRounded} alt='go'/>
                     </a>
                     {/* ITEM */}
-                    <a className='d-flex-row j-c-space-between mb-xs-3'>
+                    <a className='d-flex-row j-c-space-between mb-xs-3' href='/legal/privacy-policy-fans'>
                         <div className='d-flex-row align-items-center w-100'>
                             <img className='mr-xs-2' src={''} alt='SETTINGS'></img> {/* MANCA */}
                             <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Privacy e policy fan</h6>
@@ -140,7 +140,7 @@ function ProfileRoute() {
                         <img className='' src={IconRounded} alt='go'/>
                     </a>
                     {/* ITEM */}
-                    <a className='d-flex-row j-c-space-between mb-xs-3'>
+                    <a className='d-flex-row j-c-space-between mb-xs-3' href='/legal/cookie-policy'>
                         <div className='d-flex-row align-items-center w-100'>
                             <img className='mr-xs-2' src={''} alt='SETTINGS'></img> {/* MANCA */}
                             <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Cookie policy</h6>
