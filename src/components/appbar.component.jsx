@@ -14,24 +14,24 @@ const Appbar = () => {
     return (
         <div className='app-bar-area border-top-dark-01 d-flex-row j-c-center z-index-5'>            
             <div className='container d-flex-row align-items-center j-c-space-between'>                
-                {/* <Link to='/search'> */}
+                <Link to='/search'>
                     <div className='d-flex-column align-items-center'>
                         <img className='mb-xs-8' src={pathname.includes('search') ? IconSearchActive : IconSearchInactive} alt='Search' />
                         <span className={`${pathname.includes('search') ? 'f-w-700 lime-400' : 'f-w-300 white'} fsize-xs-0 letter-spacing-1`}>Cerca</span>
                     </div>                    
-                {/* </Link> */}
+                </Link>
                 <Link to='/your-favourites'>
                     <div className='d-flex-column align-items-center'>
                         <img className='mb-xs-8' src={pathname.includes('your-favourites') ? IconFavouritesActive : IconFavouritesInactive} alt='Favourites' />
                         <span className={`${pathname.includes('your-favourites') ? 'f-w-700 lime-400' : 'f-w-300 white'} fsize-xs-0 letter-spacing-1`}>Preferiti</span>
                     </div>
                 </Link>
-                {/* <Link to='/profile'> */}
+                <Link to='/profile'>
                     <div className='d-flex-column align-items-center'>
                         <img className='mb-xs-8' src={pathname.includes('profile') ? IconProfileActive : IconProfileInactive} alt='Profile' />
                         <span className={`${pathname.includes('profile') ? 'f-w-700 lime-400' : 'f-w-300 white'} fsize-xs-0 letter-spacing-1`}>Profilo</span>
                     </div>
-                {/* </Link>                 */}
+                </Link>                
             </div>
         </div>
 
