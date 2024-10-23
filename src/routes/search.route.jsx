@@ -1,6 +1,7 @@
 import {useState, useContext} from 'react'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
+import { ArtistsContext } from '../contexts/artists.context';
 
 import NavbarDefault from '../components/navbar-default.component'
 import ContainerDefault from '../layout/container-default.layout'
@@ -13,65 +14,16 @@ import CardArtist from '../components/card-search-artists.component'
 const SearchRoute = () => {
 
     const { currentFan } = useContext(CurrentFanContext)
+    const { artists } = useContext(ArtistsContext);
     const [searchQuery, setSearchQuery] = useState('');
 
 
-    /* SOSTITUIRE ITEMS CON CONTEXT ARTISTI */
 
-    const items = [
-        {
-            id: 1,
-            slug: 'arctic-monkeys',
-            artistName: 'Arctic Monkeys',
-            image: require('../images/pictures/arcticmonkeys.jpg'),
-
-        },{
-            id: 2,
-            slug: 'thasup',
-            artistName: 'thasup',
-            image: require('../images/pictures/thasup.jpg'),
-
-        },{
-            id: 3,
-            slug: 'artie-5ive',
-            artistName: 'Artie 5ive',
-            image: require('../images/pictures/artie-5ive.jpeg'),
-
-        },{
-            id: 4,
-            slug: 'lazza',
-            artistName: 'Lazza',
-            image: require('../images/pictures/lazza.jpeg'),
-        },{
-            id: 5,
-            slug: 'mett',
-            artistName: 'mett',
-            image: require('../images/pictures/lazza.jpeg'),
-        },{
-            id: 6,
-            slug: 'luca-re',
-            artistName: 'luca re',
-            image: require('../images/pictures/lazza.jpeg'),
-        },{
-            id: 7,
-            slug: 'kiriku',
-            artistName: 'kiriku',
-            image: require('../images/pictures/lazza.jpeg'),
-        },{
-            id: 8,
-            slug: 'lazza',
-            artistName: 'Lazza',
-            image: require('../images/pictures/lazza.jpeg'),
-        }
-    ]
-
-
-    const filteredItems = items
-        .filter(item =>
-        item.artistName.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-        .sort((a, b) => a.artistName.localeCompare(b.artistName));
-
+    const filteredItems = artists
+    .filter(artist =>
+        artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => a.artistName.localeCompare(b.artistName));
 
     
     const chunkArray = (array, chunkSize) => {

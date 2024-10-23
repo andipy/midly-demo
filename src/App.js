@@ -26,6 +26,7 @@ import FlashLeaderboardRewardsRoute from './routes/flash-leaderboard-rewards.rou
 import FlashLeaderboardExplanationRoute from './routes/flash-leaderboard-explanation.route'
 import Fanclub from './routes/fanclub.route'
 import SearchRoute from './routes/search.route'
+import ProfileRoute from './routes/profile.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -165,6 +166,9 @@ const router = createBrowserRouter([
   {
     path: '/search',
     element: <SearchRoute />
+  },
+  {path: '/profile',
+   element: <ProfileRoute />
   }
 ])
 
