@@ -25,6 +25,7 @@ import Sanremo2024Route from './routes/sanremo-2024.route'
 import FlashLeaderboardRewardsRoute from './routes/flash-leaderboard-rewards.route'
 import FlashLeaderboardExplanationRoute from './routes/flash-leaderboard-explanation.route'
 import Fanclub from './routes/fanclub.route'
+import SearchRoute from './routes/search.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -160,6 +161,10 @@ const router = createBrowserRouter([
   },{
     path: '/cool/2',
     element: <Cool2Route />
+  },
+  {
+    path: '/search',
+    element: <SearchRoute />
   }
 ])
 
