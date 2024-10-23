@@ -137,7 +137,7 @@ const ContentCreationRoute = () => {
         const chunks = []
         mediaRecorderRef.current.ondataavailable = (e) => chunks.push(e.data)
         mediaRecorderRef.current.onstop = () => {
-            const blob = new Blob(chunks, { type: 'video/webm' })
+            const blob = new Blob(chunks, { type: 'video/mp4' })
             const dataUrl = URL.createObjectURL(blob)
             setVideo({
                 id: post.media.length + 1,
@@ -346,16 +346,18 @@ const ContentCreationRoute = () => {
                         <img className='border-radius-04 object-fit-cover w-100 h-100' src={photo?.url} />
                     </div>
                 : video &&
-                    <div className='position-relative'  style={{ width: '100%', height: '100%' }}>
-                        <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 gap-0_5em'>
-                            <div className='d-flex-row align-items-center j-c-center avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => clearVideo(video.id)}>
+                    <div className='position-relative' style={{ width: '100%', height: '100%' }}>
+                        <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-2 gap-0_5em'>
+                            <div className='d-flex-row align-items-center j-c-center bg-dark-soft-transp75 border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-4' onClick={() => clearVideo(video.id)}>
                                 <img className='avatar-32' src={IconExit} alt="X" />
+                                <span>Elimina</span>
                             </div>
-                            <div className='d-flex-row align-items-center j-c-center avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => keepVideo(video.id)}>
+                            <div className='d-flex-row align-items-center j-c-center bg-dark-soft-transp75 border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-4' onClick={() => keepVideo(video.id)}>
                                 <img className='avatar-32' src={IconOk} alt="X" />
+                                <span>Tieni</span>
                             </div>
                         </div>
-                        <video className='border-radius-04 object-fit-cover w-100 h-100' src={video?.url} controls={false} autoPlay={true} loop={true} />
+                        <video className='border-radius-04 object-fit-cover w-100 h-100' src={video?.url} controls={false} autoPlay={true} playsInline loop={true} />
                     </div>
                 }
 
@@ -393,7 +395,7 @@ const ContentCreationRoute = () => {
                                             <img className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} alt="" />
                                         }
                                         {elem.type ==='VIDEO' &&
-                                            <video className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} controls={false} autoPlay={true} loop={true} />
+                                            <video className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} controls={false} autoPlay={true} playsInline loop={true} />
                                         }
                                     </>
                                 )
