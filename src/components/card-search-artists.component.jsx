@@ -1,7 +1,8 @@
 import IconSuccess from "../images/icons/icon-success-standard.svg";
 const CardArtist = ({ slug, artistName, image, isFollowed}) => {
     return (
-        <a className='mr-xs-2' href={`/artist/${slug}`}>
+        // <a className='mr-xs-2' href={`/artist/${slug}`}>
+        <a className='mr-xs-2'>
             <div className='artist-card-multiple-row bg-dark-gradient border-radius-06 position-relative'>
                 <div className='overlay-card bg-dark-overlay-card border-radius-06 z-index-1'></div>
                 <img className='artist-card-multiple-row object-fit-cover border-radius-06' src={image} alt=""/>
