@@ -1291,8 +1291,26 @@ animation: dot-loader-after 1s infinite linear;
 .no-shrink {
   flex-shrink: 0;
 }
+.shrink-1 {
+  flex-shrink: 1;
+}
+.shrink-2 {
+  flex-shrink: 2;
+}
+.shrink-3 {
+  flex-shrink: 3;
+}
 .grow-1 {
   flex-grow: 1;
+}
+.no-grow {
+  flex-grow: 0;
+}
+.grow-2 {
+  flex-grow: 2;
+}
+.grow-3 {
+  flex-grow: 3;
 }
 .flex-no-wrap {
   white-space: nowrap;
@@ -1686,6 +1704,18 @@ animation: dot-loader-after 1s infinite linear;
 }
 .h-40vh {
   height: 40vh;
+}
+.h-96px {
+  height: 96px;
+}
+.h-90px {
+  height: 90px;
+}
+.h-84px {
+  height: 84px;
+}
+.h-72px {
+  height: 72px;
 }
 .h-64px {
   height: 64px;

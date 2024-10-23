@@ -10,11 +10,13 @@ import IconExit from '../images/icons/icon-exit.svg'
 import IconSettings from '../images/icons/icon-settings-white.svg'
 import IconLink from '../images/icons/icon-link.svg'
 import IconText from '../images/icons/icon-text.svg'
+import IconOk from '../images/icons/icon-ok.svg'
 import NavbarMultistep from '../components/navbar-multistep.component'
 import AppbarContentCreation from '../components/appbar-content-creation.component.artist'
 import TextAreaCaption from '../components/textarea-caption.component.artist'
 import LinkArea from '../components/link-area.component.artist'
 import SettingsArea from '../components/settings-area.component.artist'
+import Button from '../components/button.component'
 
 
 const ContentCreationRoute = () => {
@@ -30,8 +32,8 @@ const ContentCreationRoute = () => {
     const [error, setError] = useState(null)
     const [recording, setRecording] = useState(false)
     const [facingMode, setFacingMode] = useState('user')
-    const [videoUrl, setVideoUrl] = useState(null)
-    const [photoUrl, setPhotoUrl] = useState(null)
+    const [video, setVideo] = useState(null)
+    const [photo, setPhoto] = useState(null)
     const [textContent, setTextContent] = useState(null)
     const [contentType, setContentType] = useState('PHOTO')
     const [showTextArea, setShowTextArea] = useState(false)
@@ -40,10 +42,7 @@ const ContentCreationRoute = () => {
     const [post, setPost] = useState({
         id: undefined,
         artistId: currentArtist.id,
-        media: {
-            type: '',
-            url: ''
-        },
+        media: [],
         text: '',
         caption: '',
         link: {
@@ -64,10 +63,10 @@ const ContentCreationRoute = () => {
         const setWrapperHeight = () => {
             const outer = document.querySelector('.outer')
             const wrapper = document.querySelector('.camera-frame-wrapper')
-            const navbar = document.querySelector('.nav-multi')
-            const appbar = document.querySelector('.app-bar-content-creation-area')
-            const outerHeight = window.innerHeight
-            const wrapperHeight = (window.innerHeight - appbar.offsetHeight)
+            const mediaCreationControlBar = document.querySelector('.media-creation-control-bar')
+            
+            const outerHeight = (window.innerHeight - mediaCreationControlBar.offsetHeight)
+            const wrapperHeight = (window.innerHeight - mediaCreationControlBar.offsetHeight)
             outer.style.setProperty('height', `${outerHeight}px`)
             wrapper.style.setProperty('height', `${wrapperHeight}px`)
         };
@@ -108,7 +107,7 @@ const ContentCreationRoute = () => {
                 tracks.forEach(track => track.stop())
             }
         }
-    }, [photoUrl, videoUrl, facingMode, contentType])
+    }, [photo, video, facingMode, contentType])
 
     const switchCamera = () => {
         setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'))
@@ -123,34 +122,28 @@ const ContentCreationRoute = () => {
             const context = canvas.getContext('2d')
             context.drawImage(video, 0, 0, canvas.width, canvas.height)
             const dataUrl = canvas.toDataURL('image/png')
-            setPhotoUrl(dataUrl)
-            setPost(prev => ({
-                ...prev,
-                media: {
-                    type: 'PHOTO',
-                    url: dataUrl
-                }
-            }))
+            setPhoto({
+                id: post.media.length + 1,
+                type: 'PHOTO',
+                url: dataUrl
+            })
         }
     }
 
     const handleStartRecording = () => {
         const stream = videoRef.current.srcObject
-        const options = { mimeType: 'video/webm' }
+        const options = { mimeType: 'video/mp4' }
         mediaRecorderRef.current = new MediaRecorder(stream, options)
         const chunks = []
         mediaRecorderRef.current.ondataavailable = (e) => chunks.push(e.data)
         mediaRecorderRef.current.onstop = () => {
-        const blob = new Blob(chunks, { type: 'video/webm' })
-        const videoUrl = URL.createObjectURL(blob)
-        setVideoUrl(videoUrl)
-        setPost(prev => ({
-            ...prev,
-            media: {
+            const blob = new Blob(chunks, { type: 'video/webm' })
+            const dataUrl = URL.createObjectURL(blob)
+            setVideo({
+                id: post.media.length + 1,
                 type: 'VIDEO',
-                url: videoUrl
-             }
-        }))
+                url: dataUrl
+            })
         }
         mediaRecorderRef.current.start()
         setRecording(true)
@@ -159,6 +152,28 @@ const ContentCreationRoute = () => {
     const handleStopRecording = () => {
         mediaRecorderRef.current.stop()
         setRecording(false)
+    }
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0]
+        if (file) {
+            const dataUrl = URL.createObjectURL(file)
+            if ( file.type.startsWith('image/') ) {
+                setPhoto({
+                    id: post.media.length + 1,
+                    type: 'PHOTO',
+                    url: dataUrl
+                })
+            } else if ( file.type.startsWith('video/') ) {
+                setVideo({
+                    id: post.media.length + 1,
+                    type: 'VIDEO',
+                    url: dataUrl
+                })
+            } else {
+                console.error("Unsupported file type:", file.type);
+            }
+        }
     }
 
     const toggleRecording = () => {
@@ -178,11 +193,41 @@ const ContentCreationRoute = () => {
         }))
     }
 
-    const clearPhoto = () => {
-        setPhotoUrl(null)
+    const clearPhoto = (id) => {
+        setPhoto(null)
+        setPost(prev => ({
+            ...prev,
+            media: prev.media.filter(mediaItem => mediaItem.id !== id)  // Remove media item by ID
+        }))
     }
-    const clearVideo = () => {
-        setVideoUrl(null)
+    const keepPhoto = () => {
+        setPost(prev => ({
+            ...prev,
+            media: [...prev.media, {
+                id: photo.id,
+                type: 'PHOTO',
+                url: photo.url
+            }]
+        }))
+        setPhoto(null)
+    }
+    const clearVideo = (id) => {
+        setVideo(null)
+        setPost(prev => ({
+            ...prev,
+            media: prev.media.filter(mediaItem => mediaItem.id !== id)  // Remove media item by ID
+        }))
+    }
+    const keepVideo = () => {
+        setPost(prev => ({
+            ...prev,
+            media: [...prev.media, {
+                id: video.id,
+                type: 'VIDEO',
+                url: video.url
+            }]
+        }))
+        setVideo(null)
     }
     const handlePhotoType = () => {
         setContentType('PHOTO')
@@ -258,23 +303,25 @@ const ContentCreationRoute = () => {
             {error && <p className='pt-xs-topbar'>Error accessing the camera: {error}</p>}
             
             <div className='camera-frame-wrapper position-relative'>
-                <ContainerDefault containerSpecificStyle={'h-inherit d-flex-row align-items-center j-c-end position-absolute left-0 right-0'}>
-                    <div className='d-flex-column gap-0_5em'>
-                        {contentType !== 'TEXT' &&
-                            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
-                                <img className='avatar-32' src={IconText} />
+                {!video && !photo &&
+                    <ContainerDefault containerSpecificStyle={'h-inherit d-flex-row align-items-center j-c-end position-absolute left-0 right-0'}>
+                        <div className='d-flex-column gap-0_5em'>
+                            {contentType !== 'TEXT' &&
+                                <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
+                                    <img className='avatar-32' src={IconText} />
+                                </div>
+                            }
+                            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
+                                <img className='avatar-32' src={IconLink} />
                             </div>
-                        }
-                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
-                            <img className='avatar-32' src={IconLink} />
+                            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
+                                <img className='avatar-32' src={IconSettings} onClick={handleSettingsAreaVisibility} />
+                            </div>
                         </div>
-                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                            <img className='avatar-32' src={IconSettings} onClick={handleSettingsAreaVisibility} />
-                        </div>
-                    </div>
-                </ContainerDefault>
+                    </ContainerDefault>
+                }
 
-                {!photoUrl && !videoUrl &&
+                {!photo && !video &&
                     <>
                         {contentType === 'PHOTO' || contentType === 'VIDEO' ?
                             <video className='border-radius-1 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
@@ -284,19 +331,31 @@ const ContentCreationRoute = () => {
                     </>
                 }
 
-                {photoUrl ?
+                {photo ?
                     <div className='position-relative' style={{ width: '100%', height: '100%' }}>
-                        <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearPhoto}>
-                            <img className='avatar-32' src={IconExit} alt="X" />
+                        <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-2 gap-0_5em'>
+                            <div className='d-flex-row align-items-center j-c-center bg-dark-soft-transp75 border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-4' onClick={() => clearPhoto(photo.id)}>
+                                <img className='avatar-32' src={IconExit} alt="X" />
+                                <span>Elimina</span>
+                            </div>
+                            <div className='d-flex-row align-items-center j-c-center bg-dark-soft-transp75 border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-4' onClick={() => keepPhoto(photo.id)}>
+                                <img className='avatar-32' src={IconOk} alt="X" />
+                                <span>Tieni</span>
+                            </div>
                         </div>
-                        <img className='border-radius-04 object-fit-cover w-100 h-100' src={photoUrl} />
+                        <img className='border-radius-04 object-fit-cover w-100 h-100' src={photo?.url} />
                     </div>
-                : videoUrl &&
+                : video &&
                     <div className='position-relative'  style={{ width: '100%', height: '100%' }}>
-                        <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={clearVideo}>
-                            <img className='avatar-32' src={IconExit} alt="X" />
+                        <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-0 gap-0_5em'>
+                            <div className='d-flex-row align-items-center j-c-center avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => clearVideo(video.id)}>
+                                <img className='avatar-32' src={IconExit} alt="X" />
+                            </div>
+                            <div className='d-flex-row align-items-center j-c-center avatar-48 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => keepVideo(video.id)}>
+                                <img className='avatar-32' src={IconOk} alt="X" />
+                            </div>
                         </div>
-                        <video className='border-radius-04 object-fit-cover w-100 h-100' src={videoUrl} controls={false} autoPlay={true} loop={true} />
+                        <video className='border-radius-04 object-fit-cover w-100 h-100' src={video?.url} controls={false} autoPlay={true} loop={true} />
                     </div>
                 }
 
@@ -305,8 +364,8 @@ const ContentCreationRoute = () => {
                     toggleRecording={toggleRecording}
                     recording={recording}
                     contentType={contentType}
-                    photoUrl={photoUrl}
-                    videoUrl={videoUrl}
+                    photo={photo}
+                    video={video}
                     textContent={textContent}
                     updatePosts={updatePosts}
                     handlePhotoType={handlePhotoType}
@@ -314,13 +373,43 @@ const ContentCreationRoute = () => {
                     handleTextType={handleTextType}
                     facingMode={facingMode}
                     switchCamera={switchCamera}
+                    handleFileChange={handleFileChange}
                 />
             </div>
 
             <canvas ref={canvasRef} style={{ display: 'none' }} />
 
-            
         </div>
+
+        {!video && !photo &&
+            <div className='media-creation-control-bar d-flex-row j-c-space-between align-items-center h-96px'>
+                <ContainerDefault containerSpecificStyle={'d-flex-row j-c-space-between align-items-center gap-0_5em'}>
+                    {post.media.length > 0 ?
+                        <div className='d-flex-row align-items-center gap-0_25em overflow-x shrink-1'>
+                            {post.media.map(elem => {
+                                return (
+                                    <>
+                                        {elem.type ==='PHOTO' &&
+                                            <img className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} alt="" />
+                                        }
+                                        {elem.type ==='VIDEO' &&
+                                            <video className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} controls={false} autoPlay={true} loop={true} />
+                                        }
+                                    </>
+                                )
+                            })}
+                        </div>
+                    :
+                        <p>Aggiungi almeno un media o un testo stand-alone per procedere alla pubblicazione del post</p>
+                    }
+                    <Button
+                        style={`${post.media.length > 0 ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-2 f-w-600 border-radius-100 letter-spacing-1 no-shrink w-25`}
+                        disabled={post.media.length > 0 ? false : true}
+                        label={'Avanti →'}
+                    ></Button>
+                </ContainerDefault>
+            </div>
+        }
 
         <TextAreaCaption
             showTextArea={showTextArea}
