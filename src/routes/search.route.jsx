@@ -60,9 +60,7 @@ const SearchRoute = () => {
                                     );
                                     return (
                                         <CardArtist 
-                                            slug={item.slug} 
-                                            artistName={item.artistName} 
-                                            image={item.image} 
+                                            artist={item} 
                                             key={item.id} 
                                             isFollowed={isFollowed}
                                         />
