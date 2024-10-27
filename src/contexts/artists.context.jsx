@@ -35,7 +35,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Suspect CB',
             image: require('../images/pictures/suspect-cb.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             }
         },{
             id: 5,
@@ -43,7 +43,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Astro',
             image: require('../images/pictures/astro.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             }
         },{
             id: 6,
@@ -51,7 +51,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Alfa',
             image: require('../images/pictures/alfa.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             }
         },{
             id: 7,
@@ -59,7 +59,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Sick Luke',
             image: require('../images/pictures/sick-luke.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             }
         },{
             id: 8,
@@ -67,7 +67,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Nabi',
             image: require('../images/pictures/nabi.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             }
         },{
             id: 9,
@@ -75,7 +75,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Mezzosangue',
             image: require('../images/pictures/mezzosangue.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             }
         },{
             id: 10,
@@ -83,7 +83,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Anna',
             image: require('../images/pictures/anna.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             }
         },{
             id: 11,
@@ -91,7 +91,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Guè',
             image: require('../images/pictures/gue.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             }
         },{
             id: 12,
@@ -99,7 +99,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Marracash',
             image: require('../images/pictures/marracash.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             }
         },{
             id: 13,
@@ -107,9 +107,9 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Sfera Ebbasta',
             image: require('../images/pictures/sfera-ebbasta.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             }
-        },
+        }
     ])
 
     return (

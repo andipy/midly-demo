@@ -110,7 +110,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             image: require('../images/pictures/artie-5ive-cover.jpg'),
             song: {
                 title: 'MILANO TESTAROSSA (feat. Guè)',
-                url: 'https://open.spotify.com/intl-it/track/5zVQoMHyELfcHYviXDao3I, https://open.spotify.com/intl-it/track/25xUkNnc4azNAsli0pCNU7'
+                url: 'https://open.spotify.com/intl-it/track/5zVQoMHyELfcHYviXDao3I'
             },
             album: null,
             badges: [
