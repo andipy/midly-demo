@@ -22,7 +22,7 @@ import ArtistRoute from './routes/artist.route'
 import LeaderboardRoute from './routes/leaderboard.route'
 import FlashLeaderboardRoute from './routes/flash-leaderboard.route'
 import Sanremo2024Route from './routes/sanremo-2024.route'
-import FlashLeaderboardRewardsRoute from './routes/flash-leaderboard-rewards.route'
+import FlashLeaderboardRulesRoute from './routes/flash-leaderboard-rules.route'
 import FlashLeaderboardExplanationRoute from './routes/flash-leaderboard-explanation.route'
 import Fanclub from './routes/fanclub.route'
 import SearchRoute from './routes/search.route'
@@ -86,8 +86,8 @@ const router = createBrowserRouter([
     element: <FlashLeaderboardRoute />,
     children: [
       {
-        path: '/artist/:artistSlug/flash-leaderboard/rewards',
-        element: <FlashLeaderboardRewardsRoute />
+        path: '/artist/:artistSlug/flash-leaderboard/rules',
+        element: <FlashLeaderboardRulesRoute />
       }
     ]
   },{
@@ -113,8 +113,8 @@ const router = createBrowserRouter([
     element: <FlashLeaderboardRoute />,
     children: [
       {
-        path: '/artist-app/flash-leaderboard/rewards',
-        element: <FlashLeaderboardRewardsRoute />
+        path: '/artist-app/flash-leaderboard/rules',
+        element: <FlashLeaderboardRulesRoute />
       }
     ]
   },{

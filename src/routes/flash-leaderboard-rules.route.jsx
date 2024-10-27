@@ -10,7 +10,7 @@ import NavbarBackOnly from '../components/navbar-back-only.component'
 import BadgeSpecialPreview from '../components/badge-special-preview.component'
 import Button from '../components/button.component'
 
-const FlashLeaderboardRewardsRoute = () => {
+const FlashLeaderboardRulesRoute = () => {
 
     const navigate = useNavigate()
     const { state, pathname } = useLocation()
@@ -44,7 +44,7 @@ const FlashLeaderboardRewardsRoute = () => {
 
                 <h1 className='fsize-xs-4 grey-200 f-w-600 mt-xs-10 mb-xs-4'>
                     {!pathname.includes('artist-app') ?
-                        'Vinci i badge di SUPER FAN'
+                        'Ottieni i badge di SUPER FAN'
                     :
                         'I badge in palio per i tuoi SUPER FAN'
                     }
@@ -81,4 +81,4 @@ const FlashLeaderboardRewardsRoute = () => {
     )
 }
 
-export default FlashLeaderboardRewardsRoute
+export default FlashLeaderboardRulesRoute
