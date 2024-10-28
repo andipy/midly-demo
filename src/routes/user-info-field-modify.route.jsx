@@ -147,10 +147,10 @@ function UserInfoFieldModify() {
                                             onChange={(e) => setNewValue(e.target.value)}
                                             required
                                         >
-                                            <option value='FEMALE'>DONNA</option>
-                                            <option value='MALE'>UOMO</option>
-                                            <option value='NON BINARY'>NON BINARIO</option>
-                                            <option value='OTHER'>ALTRO</option>
+                                            <option value='DONNA'>DONNA</option>
+                                            <option value='UOMO'>UOMO</option>
+                                            <option value='NON BINARIO'>NON BINARIO</option>
+                                            <option value='ALTRO'>ALTRO</option>
                                         </select>
                                     </div>
                                     <div className='container position-absolute bottom-5'>
