@@ -84,7 +84,7 @@ function UserInfo() {
             <div id='contacts' className='mt-xs-24 mt-lg-1'>
                 <h4 className='fsize-xs-5 mb-xs-4 letter-spacing-2 f-w-500'>Contatti</h4>
                 <Link to='/user-info-field' state={{ type: 'Email' }}>
-                    <div id='fan-email'>
+                    <div id='fan-email' className='mt-xs-8'>
                         <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                             EMAIL
                         </label>
@@ -99,7 +99,7 @@ function UserInfo() {
                     </div>
                 </Link>
                 <Link to='/user-info-field' state={{ type: 'Cellulare' }}>
-                    <div id='fan-phone'>
+                    <div id='fan-phone' className='mt-xs-8'>
                         <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                             CELLULARE
                         </label>
@@ -114,13 +114,13 @@ function UserInfo() {
                     </div>
                 </Link>
                 <Link to='/user-info-field' state={{ type: 'Indirizzo' }}>
-                <div id='fan-address'>
+                <div id='fan-address' className='mt-xs-8'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                         INDIRIZZO
                     </label>
                     <a className='d-flex-row j-c-space-between mb-xs-3 w-100' href=''>
-                        {currentFan.adress ? 
-                            <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.address}</h6>
+                        {currentFan.adress.strada ? 
+                            <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.adress.strada}</h6>
                         : 
                             <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Aggiungi il tuo indirizzo!</h6>
                         }

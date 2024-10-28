@@ -5,7 +5,7 @@ import NavbarProfileSettings from "../components/navbar-profile-settings-compone
 function TermsConditions() {
   return (
     <>
-    <NavbarProfileSettings title={'Termini e condizioni fan'} />
+    <NavbarProfileSettings title={'Termini e condizioni Fan'} />
     <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
     </ContainerDefault>
     <Appbar />

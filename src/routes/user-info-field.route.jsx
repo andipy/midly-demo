@@ -5,11 +5,10 @@ import { CurrentFanContext } from '../contexts/currentFan.context'
 
 import ContainerDefault from '../layout/container-default.layout'
 import Appbar from "../components/appbar.component";
-import NavbarPersonalInfoModify from '../components/navbar-personal-info-modify.component';
-import IconArrowRight from "../images/icons/icon-arrowright.svg"
+import NavbarPersonalInfoField from '../components/navbar-personal-info-field.component';
 
 
-function UserInfoModify() {
+function UserInfoField() {
 
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
 
@@ -18,7 +17,7 @@ function UserInfoModify() {
 
   return (
     <>
-    <NavbarPersonalInfoModify title={type} />
+    <NavbarPersonalInfoField title={type} />
     <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
         <div>
         {(() => {
@@ -119,12 +118,72 @@ function UserInfoModify() {
                         <>
                             <div className='mt-xs-8 mb-xs-8'>
                                 <label className='fsize-xs-1 grey-300 letter-spacing-3'>
-                                    INDIRIZZO
+                                    NOME
                                 </label>
-                                {currentFan.adress ? 
-                                    <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.adress}</h6>
+                                {currentFan.adress.name ? 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.adress.name}</h6>
                                 : 
-                                    <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Aggiungi il tuo indirizzo!</h6>
+                                    <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Aggiungi il tuo nome!</h6>
+                                }
+                            </div>
+                            <div className='mt-xs-8 mb-xs-8'>
+                                <label className='fsize-xs-1 grey-300 letter-spacing-3'>
+                                    COGNOME
+                                </label>
+                                {currentFan.adress.surname ? 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.adress.surname}</h6>
+                                : 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Aggiungi il tuo cognome!</h6>
+                                }
+                            </div>
+                            <div className='mt-xs-8 mb-xs-8'>
+                                <label className='fsize-xs-1 grey-300 letter-spacing-3'>
+                                    VIA E NUMERO
+                                </label>
+                                {currentFan.adress.strada ? 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.adress.strada}</h6>
+                                : 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Nesun indirizzo! Aggiungilo</h6>
+                                }
+                            </div>
+                            <div className='mt-xs-8 mb-xs-8'>
+                                <label className='fsize-xs-1 grey-300 letter-spacing-3'>
+                                    CAP
+                                </label>
+                                {currentFan.adress.zipcode ? 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.adress.zipcode}</h6>
+                                : 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Nesun CAP! Aggiungilo</h6>
+                                }
+                            </div>
+                            <div className='mt-xs-8 mb-xs-8'>
+                                <label className='fsize-xs-1 grey-300 letter-spacing-3'>
+                                    COMUNE/CITTA'
+                                </label>
+                                {currentFan.adress.city ? 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.adress.city}</h6>
+                                : 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Nesuna città! Aggiungila</h6>
+                                }
+                            </div>
+                            <div className='mt-xs-8 mb-xs-8'>
+                                <label className='fsize-xs-1 grey-300 letter-spacing-3'>
+                                    PROVINCIA
+                                </label>
+                                {currentFan.adress.province ? 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.adress.province}</h6>
+                                : 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Nesuna provincia! Aggiungila</h6>
+                                }
+                            </div>
+                            <div className='mt-xs-8 mb-xs-8'>
+                                <label className='fsize-xs-1 grey-300 letter-spacing-3'>
+                                    STATO
+                                </label>
+                                {currentFan.adress.state ? 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.adress.state}</h6>
+                                : 
+                                    <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Nesuno stato! Aggiungilo</h6>
                                 }
                             </div>
                         </>
@@ -147,4 +206,4 @@ function UserInfoModify() {
   )
 }
 
-export default UserInfoModify
+export default UserInfoField

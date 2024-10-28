@@ -33,6 +33,7 @@ import TermsConditionsRoute from './routes/terms-conditions-fans.route'
 import PrivacyPolicyRoute from './routes/privacy-policy-fans.route'
 import CookiePolicyRoute from './routes/cookie-policy-fans.route'
 import UserInfoFieldRoute from './routes/user-info-field.route'
+import UserInfoFieldModifyRoute from './routes/user-info-field-modify.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -193,6 +194,9 @@ const router = createBrowserRouter([
   }, {
     path: '/user-info-field',
     element: <UserInfoFieldRoute />
+  }, {
+    path: '/user-info-field-modify',
+    element: <UserInfoFieldModifyRoute />
   }
 ])
 

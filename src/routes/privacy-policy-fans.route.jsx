@@ -5,7 +5,7 @@ import NavbarProfileSettings from "../components/navbar-profile-settings-compone
 function PrivacyPolicy() {
   return (
     <>
-    <NavbarProfileSettings title={'Informativa privacy fans'} />
+    <NavbarProfileSettings title={'Informativa privacy Fan'} />
     <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
     </ContainerDefault>
     <Appbar />
