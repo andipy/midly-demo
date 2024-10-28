@@ -27,6 +27,11 @@ import FlashLeaderboardExplanationRoute from './routes/flash-leaderboard-explana
 import Fanclub from './routes/fanclub.route'
 import SearchRoute from './routes/search.route'
 import ProfileRoute from './routes/profile.route'
+import UserInfoRoute from './routes/user-info.route'
+import FaqRoute from './routes/faq.route'
+import TermsConditionsRoute from './routes/terms-conditions-fans.route'
+import PrivacyPolicyRoute from './routes/privacy-policy-fans.route'
+import CookiePolicyRoute from './routes/cookie-policy-fans.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -169,6 +174,21 @@ const router = createBrowserRouter([
   },
   {path: '/profile',
    element: <ProfileRoute />
+  },
+  {path:'userinfo',
+    element: <UserInfoRoute />
+  }, {
+    path: '/faq',
+    element: <FaqRoute />
+  }, {
+    path: '/terms-and-conditions-fans',
+    element: <TermsConditionsRoute />
+  },{
+    path: '/privacy-policy-fans',
+    element: <PrivacyPolicyRoute />
+  }, {
+    path: '/cookie-policy-fans',
+    element: <CookiePolicyRoute />
   }
 ])
 

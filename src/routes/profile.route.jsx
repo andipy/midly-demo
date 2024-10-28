@@ -15,6 +15,7 @@ import InfoLogo from "../images/icons/icon-info-white.svg"
 import IconTerms from '../images/icons/icon-terms.svg'
 import IconCookies from '../images/icons/icon-cookie.svg'
 import IconTrophyGold from '../images/icons/icon-trophy-gold.svg'
+import { Link } from 'react-router-dom'
 
 function ProfileRoute() {
 
@@ -76,41 +77,51 @@ function ProfileRoute() {
             <div id='profile-settings' className="mt-xs-12 mt-lg-5"> 
                 <h4 className='fsize-xs-5 mb-xs-4 mb-lg-2 letter-spacing-2 f-w-500'>Impostazioni</h4>
                 <div className='d-flex-column'>
-                    <div className='d-flex-row j-c-space-between mb-xs-3'>
-                        <div className='d-flex-row align-items-center w-100'>
-                            <img className='mr-xs-2' src={SettingsLogo} alt='SETTINGS'></img>
-                            <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Informazioni personali</h6>
+                    <Link to='/userinfo'>
+                        <div className='d-flex-row j-c-space-between mb-xs-3'>
+                            <div className='d-flex-row align-items-center w-100'>
+                                <img className='mr-xs-2' src={SettingsLogo} alt='SETTINGS'></img>
+                                <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Informazioni personali</h6>
+                            </div>
+                            <img className='' src={IconArrowRight} alt='->'/>
                         </div>
-                        <img className='' src={IconArrowRight} alt='->'/>
-                    </div>
-                    <div className='d-flex-row j-c-space-between mb-xs-3'>
-                        <div className='d-flex-row align-items-center w-100'>
-                            <img className='mr-xs-2' src={InfoLogo} alt='SETTINGS'></img>
-                            <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>FAQs</h6>
+                    </Link>
+                    <Link to={'/faq'}>
+                        <div className='d-flex-row j-c-space-between mb-xs-3'>
+                            <div className='d-flex-row align-items-center w-100'>
+                                <img className='mr-xs-2' src={InfoLogo} alt='SETTINGS'></img>
+                                <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>FAQs</h6>
+                            </div>
+                            <img className='' src={IconArrowRight} alt='->'/>
                         </div>
-                        <img className='' src={IconArrowRight} alt='->'/>
-                    </div>
-                    <div className='d-flex-row j-c-space-between mb-xs-3'>
-                        <div className='d-flex-row align-items-center w-100'>
-                            <img className='mr-xs-2' src={IconTerms} alt='SETTINGS' />
-                            <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Termini e condizioni fan</h6>
+                    </Link>
+                    <Link to='/terms-and-conditions-fans'>
+                        <div className='d-flex-row j-c-space-between mb-xs-3'>
+                            <div className='d-flex-row align-items-center w-100'>
+                                <img className='mr-xs-2' src={IconTerms} alt='SETTINGS' />
+                                <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Termini e condizioni fan</h6>
+                            </div>
+                            <img className='' src={IconArrowRight} alt='->'/>
                         </div>
-                        <img className='' src={IconArrowRight} alt='->'/>
-                    </div>
-                    <div className='d-flex-row j-c-space-between mb-xs-3'>
-                        <div className='d-flex-row align-items-center w-100'>
-                            <img className='mr-xs-2' src={IconTerms} alt='O' />
-                            <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Privacy e policy fan</h6>
+                    </Link>
+                    <Link to='/privacy-policy-fans'>
+                        <div className='d-flex-row j-c-space-between mb-xs-3'>
+                            <div className='d-flex-row align-items-center w-100'>
+                                <img className='mr-xs-2' src={IconTerms} alt='O' />
+                                <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Privacy e policy fan</h6>
+                            </div>
+                            <img className='' src={IconArrowRight} alt='->'/>
                         </div>
-                        <img className='' src={IconArrowRight} alt='->'/>
-                    </div>
-                    <div className='d-flex-row j-c-space-between mb-xs-3'>
-                        <div className='d-flex-row align-items-center w-100'>
-                            <img className='mr-xs-2' src={IconCookies} alt='O' />
-                            <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Cookie policy</h6>
+                    </Link>
+                    <Link to='/cookie-policy-fans'>
+                        <div className='d-flex-row j-c-space-between mb-xs-3'>
+                            <div className='d-flex-row align-items-center w-100'>
+                                <img className='mr-xs-2' src={IconCookies} alt='O' />
+                                <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Cookie policy</h6>
+                            </div>
+                            <img className='' src={IconArrowRight} alt='->'/>
                         </div>
-                        <img className='' src={IconArrowRight} alt='->'/>
-                    </div>
+                    </Link>
                 </div>
             </div>
             <div className='mt-xs-10 mb-xs-10 mt-lg--4 mb-lg-4'>
