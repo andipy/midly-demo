@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { ArtistsContext } from '../contexts/artists.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
+import { LiveQuizContext } from '../contexts/live-quiz.context'
 
 import ContainerDefault from '../layout/container-default.layout'
 import Carousel from '../layout/carousel.layout'
@@ -36,19 +37,10 @@ const YourFavouritesRoute = () => {
         setFavourites(favouriteArtists)
     }
 
-    const [quizzes, setQuizzes] = useState([
-        // {
-        //     artistSlug: 'arctic-monkeys',
-        //     artName: 'Arctic Monkeys',
-        //     image: require('../images/pictures/arcticmonkeys.jpg'),
-        //     quizAlreadyPlayed: false
-        // },{
-        //     artistSlug: 'thasup',
-        //     artName: 'thasup',
-        //     image: require('../images/pictures/thasup.jpg'),
-        //     quizAlreadyPlayed: false
-        // }
-    ])
+    const { quizzes } = useContext(LiveQuizContext)
+
+
+
 
     const [sanremo, setSanremo] = useState(false)
 
@@ -95,6 +87,7 @@ const YourFavouritesRoute = () => {
         <>
             <NavbarDefault />
             <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+            <TextTitle title={'I tuoi preferiti'} />
                 {sanremo &&
                     <section className='mb-xs-8'>
                         <CardSanremo />
@@ -102,16 +95,28 @@ const YourFavouritesRoute = () => {
                 }
 
                 {quizzes.length > 0 &&
-                    <section>
-                        <TextTitle title={'Live quiz'} />
+                    <section id='quiz' className='mt-xs-4 mb-xs-12'>
+                        <h2 className='fsize-xs-5 f-w-500'>Gioca ai quiz</h2>
+                        <p className='fsize-xs-2 f-w-200 grey-300'>Vinci ai quiz e guadagna punti nelle classifiche</p>
                         <Carousel>
-                            {quizzes.map(quiz => <CardQuiz slug={quiz.slug} artName={quiz.artName} image={quiz.image} quizAlreadyPlayed={quiz.quizAlreadyPlayed} key={quiz.artName} />)}
+                            {quizzes.map(quiz => {
+                                const hasPlayed = quiz.quizAlreadyPlayed.some(play => play.userID === currentFan.id);
+                                return (
+                                    <CardQuiz
+                                        slug={quiz.artistSlug}
+                                        artName={quiz.artistName}
+                                        image={quiz.image}
+                                        quizAlreadyPlayed={hasPlayed}
+                                        key={quiz.quizId} 
+                                        id={quiz.quizId}
+                                    />
+                                );
+                            })}
                         </Carousel>
                     </section>
                 }
 
                 <section className={quizzes.length > 0 ? 'mt-xs-8' : ''}>
-                    <TextTitle title={'Preferiti'} />
                     <section>
                         {favourites.map(favourite => <CardFollowedArtist artist={favourite} key={favourite.id} />
                         )}

@@ -12,6 +12,7 @@ import { CurrentArtistProvider } from './contexts/currentArtist.context'
 import { FlashLeaderboardsProvider } from './contexts/flash-leaderboards.context'
 import { LeaderboardsProvider } from './contexts/leaderboards.context'
 import { FanclubsProvider } from './contexts/fanclubs.context'
+import { LiveQuizProvider } from './contexts/live-quiz.context';
 
 //FAN ROUTES
 import InviteFriendRoute from './routes/invite-friend.route'
@@ -34,6 +35,9 @@ import PrivacyPolicyRoute from './routes/privacy-policy-fans.route'
 import CookiePolicyRoute from './routes/cookie-policy-fans.route'
 import UserInfoFieldRoute from './routes/user-info-field.route'
 import UserInfoFieldModifyRoute from './routes/user-info-field-modify.route'
+import LiveQuizRoute from './routes/live-quiz.route'
+import LiveQuizPlayRoute from './routes/live-quiz-play.route'
+import LiveQuizResultRoute from './routes/live-quiz-result.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -197,6 +201,15 @@ const router = createBrowserRouter([
   }, {
     path: '/user-info-field-modify',
     element: <UserInfoFieldModifyRoute />
+  }, {
+    path: '/quiz/:id',
+    element: <LiveQuizRoute />
+  }, {
+    path: '/quiz-play/:id',
+    element: <LiveQuizPlayRoute />
+  }, {
+    path: "/quiz-result",
+    element: <LiveQuizResultRoute />
   }
 ])
 
@@ -208,7 +221,9 @@ function App() {
           <LeaderboardsProvider>
             <FlashLeaderboardsProvider>
               <FanclubsProvider>
+                <LiveQuizProvider>
                 <RouterProvider router={router} />
+                </LiveQuizProvider>
               </FanclubsProvider>
             </FlashLeaderboardsProvider>
           </LeaderboardsProvider>
