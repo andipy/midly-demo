@@ -108,7 +108,7 @@ const router = createBrowserRouter([
     path: '/sanremo-2024',
     element: <Sanremo2024Route />
   },{
-    path: '/quiz-result',
+    path: '/quiz-result-unactive',
     element: <QuizResultRoute />
   },{
     path: '/quiz-gameplay',

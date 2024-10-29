@@ -5,8 +5,8 @@ import React from 'react'
 function LiveQuizResult() {
   return (
     <>
-
-\{/*SE HO FATTO 0 PUNTI*/}    
+        CIAO
+ {/*SE HO FATTO 0 PUNTI*/}    
  
  {/* SE HO FATTO PIU PUNTI */}
  </>
