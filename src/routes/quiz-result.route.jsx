@@ -54,6 +54,11 @@ const QuizResultRoute = () => {
         }
     }, [])
 
+
+
+
+    
+
     return (
         <>
         <ContainerDefault containerSpecificStyle={'h-100vh'}>

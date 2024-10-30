@@ -21,7 +21,9 @@ function LiveQuizPlay() {
     const songChunk = quiz.songChunks.find(chunk => chunk.chunkId === '1');
 
     const [timeLeft, setTimeLeft] = useState(60)
-    const [userAnswer, setUserAnswer] = useState(''); /* risposta utente */
+    const [userAnswer, setUserAnswer] = useState('');
+
+    const correctAnswer = songChunk.correctResponse;
 
     
 
@@ -39,6 +41,8 @@ function LiveQuizPlay() {
 
         return () => clearInterval(timer);
     }, []);
+
+
 
     const handleTimeout = () => {
 
@@ -64,11 +68,12 @@ function LiveQuizPlay() {
         navigate(`/quiz-result`, { state: { id } });
     };
 
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        /* Qui devo gestire il calcolo del punteggio */
-
-        const points = 0;
+        
+        const points = calculateScore(correctAnswer, userAnswer);
 
 
         const newResponse = {
@@ -93,6 +98,66 @@ function LiveQuizPlay() {
 
         navigate(`/quiz-result`, { state: { id } });
     };
+
+
+    /* DA RIVEDERE ALGORITMO */
+
+
+    function levenshtein(a, b) {
+        const matrix = [];
+    
+        // Initialize the matrix
+        for (let i = 0; i <= b.length; i++) {
+            matrix[i] = [i];
+        }
+        for (let j = 0; j <= a.length; j++) {
+            matrix[0][j] = j;
+        }
+    
+        // Populate the matrix
+        for (let i = 1; i <= b.length; i++) {
+            for (let j = 1; j <= a.length; j++) {
+                if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + 1, // substitution
+                        Math.min(matrix[i][j - 1] + 1, // insertion
+                            matrix[i - 1][j] + 1) // deletion
+                    );
+                }
+            }
+        }
+    
+        return matrix[b.length][a.length];
+    }
+    
+    function calculateScore(correctAnswer, userAnswer) {
+        const processedCorrectAnswer = correctAnswer.toLowerCase().replace(/[.,!?]/g, '').trim();
+        const processedUserAnswer = userAnswer.toLowerCase().replace(/[.,!?]/g, '').trim();
+    
+        // 1. Calcola la distanza di Levenshtein
+        const distance = levenshtein(processedCorrectAnswer, processedUserAnswer);
+        const maxLength = Math.max(processedCorrectAnswer.length, processedUserAnswer.length);
+    
+        // 2. Calcola un punteggio di similarità
+        const similarity = 1 - (distance / maxLength); // valore tra 0 e 1
+    
+        // 3. Conteggio delle parole corrette
+        const correctWords = processedCorrectAnswer.split(' ');
+        const userWords = processedUserAnswer.split(' ');
+    
+        const correctWordCount = correctWords.reduce((count, word) => {
+            return count + (userWords.includes(word) ? 1 : 0);
+        }, 0);
+    
+        // 4. Calcolo finale del punteggio
+        let score = Math.round(similarity * 5) + Math.round((correctWordCount / correctWords.length) * 5);
+        score = Math.min(5, Math.max(0, score)); // Assicurati che il punteggio sia tra 0 e 5
+    
+        return score;
+    }
+    
 
 
     

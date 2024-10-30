@@ -10,7 +10,7 @@ function LiveQuizResult() {
   const location = useLocation();
 
   const { id } = location.state || {};
-  const { quizzes, setQuizzes } = useContext(LiveQuizContext);
+  const { quizzes } = useContext(LiveQuizContext);
   const { currentFan } = useContext(CurrentFanContext)
 
   const quiz = quizzes.find(quiz => quiz.quizId === id);
@@ -78,18 +78,11 @@ function LiveQuizResult() {
 
   return (
     <>
-        {/* Inizio a scrivere tutto il codice e poi inserisco
-        lo state per il punteggio, lo state per il messaggio
-        e la transizione */}
-
       <ContainerDefault containerSpecificStyle={'h-100vh'}>
-        {/* CENTRO */}
         <div className="d-flex-column align-items-center j-c-center h-100">
-          {/* TITLE */}
           <h3 className="t-align-center mb-xs-4 f-w-500 fsize-xs-6">
             {resultTitle}
           </h3>
-          {/* POINT */}
           <div className="point-indicator">
             <p className="gold point-plus fsize-xs-5">
               +
@@ -103,12 +96,10 @@ function LiveQuizResult() {
             </div>
             <p className="gold point-plus f-size-xs-5">punti</p>
           </div>
-          {/* DESCR */}
           <p className="t-align-center w-80 mt-xs-4">
             {resultMessage}
           </p>
         </div>
-        {/* BUTTON */}
         <ContainerDefault containerSpecificStyle={'position-fixed bottom-5'}>
           <button className="bg-acid-lime black font-body" onClick={closeClick}>
             <span className="fsize-xs-3 f-w-500">
