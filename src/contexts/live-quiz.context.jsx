@@ -46,20 +46,11 @@ export const LiveQuizProvider = ({ children }) => {
                    firstLine: 'Dimmi che c è, cerco il motivo',
                    secondLine: 'Giuro a nessuno mai,mai,mai,mai',
                    correctResponse: 'Per cui sei sad, sai che non lo dirò'
-               }, {
-                    chunkId: '2',
-                    songName: 'iN uNa buBbLe',
-                    firstLine: 'Oh no, no, tu sei gas e benzina',
-                    secondLine: 'Oggi no, non voglio fare finta',
-                    correctResponse: 'Vedo odio se passo in quella via'
-                }
+               }
             ],
             responses: [
                {
-                   userId: '',
-                   chunkId: '',
-                   response: '',
-                   score: ''
+                   
                }
             ],
 

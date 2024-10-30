@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 
 import { LiveQuizContext } from '../contexts/live-quiz.context';
+import { CurrentFanContext } from '../contexts/currentFan.context';
 
 import ContainerDefault from '../layout/container-default.layout'
 
@@ -12,14 +13,17 @@ function LiveQuizPlay() {
     const location = useLocation();
 
     const { id } = location.state || {};
-    console.log(id);
-    const { quizzes } = useContext(LiveQuizContext);
+    const { currentFan } = useContext(CurrentFanContext)
+
+    const { quizzes, setQuizzes } = useContext(LiveQuizContext);
 
     const quiz = quizzes.find(quiz => quiz.quizId === id);
     const songChunk = quiz.songChunks.find(chunk => chunk.chunkId === '1');
 
     const [timeLeft, setTimeLeft] = useState(60)
     const [userAnswer, setUserAnswer] = useState(''); /* risposta utente */
+
+    
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -37,15 +41,57 @@ function LiveQuizPlay() {
     }, []);
 
     const handleTimeout = () => {
-        /* Qui devo gestire l'assegnamento del punteggio 0 a timer scaduto */
-        navigate(`/quiz-result`);
+
+        const newResponse = {
+            userId: currentFan.id, 
+            chunkId: songChunk.chunkId,
+            response: '',
+            score: 0
+        };
+
+        const updatedQuizzes = quizzes.map(q => {
+            if (q.quizId === id) {
+                return {
+                    ...q,
+                    responses: [...q.responses, newResponse],
+                    quizAlreadyPlayed: [...q.quizAlreadyPlayed, { userID: currentFan.id }]
+                };
+            }
+            return q;
+        });
+
+        setQuizzes(updatedQuizzes);
+        navigate(`/quiz-result`, { state: { id } });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({userAnswer}) /* risposta utente */
-        /* Qui devo gestire l'assegnamento del punteggio 0 al submit */
-        navigate(`/quiz-result`);
+        /* Qui devo gestire il calcolo del punteggio */
+
+        const points = 0;
+
+
+        const newResponse = {
+            userId: currentFan.id, 
+            chunkId: songChunk.chunkId,
+            response: userAnswer,
+            score: points
+        };
+
+        const updatedQuizzes = quizzes.map(q => {
+            if (q.quizId === id) {
+                return {
+                    ...q,
+                    responses: [...q.responses, newResponse],
+                    quizAlreadyPlayed: [...q.quizAlreadyPlayed, { userID: currentFan.id }]
+                };
+            }
+            return q;
+        });
+
+        setQuizzes(updatedQuizzes);
+
+        navigate(`/quiz-result`, { state: { id } });
     };
 
 
