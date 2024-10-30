@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 
 
@@ -10,17 +10,20 @@ import ContainerDefault from '../layout/container-default.layout'
 import IconArrowLeft from "../images/icons/icon-arrowleft.svg";
 
 function LiveQuiz() {
-    const { id } = useParams();
-    const { quizzes } = useContext(LiveQuizContext);
+
+    const location = useLocation();
+    const { id } = location.state || {}; 
+
+   const { quizzes } = useContext(LiveQuizContext);
     const navigate = useNavigate();
 
     const quiz = quizzes.find(quiz => quiz.quizId === id);
 
     const playClick = () => {
-        navigate(`/quiz-play/${id}`);
+        navigate('/quiz-play', { state: { id } });
     };
 
-    console.log(quiz); // Qui puoi vedere il quiz recuperato
+    /* console.log(quiz);  */
 
     return (
         <>

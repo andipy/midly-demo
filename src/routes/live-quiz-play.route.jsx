@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 
 import { LiveQuizContext } from '../contexts/live-quiz.context';
@@ -9,8 +9,10 @@ import ContainerDefault from '../layout/container-default.layout'
 
 function LiveQuizPlay() {
     const navigate = useNavigate();
+    const location = useLocation();
 
-    const { id } = useParams();
+    const { id } = location.state || {};
+    console.log(id);
     const { quizzes } = useContext(LiveQuizContext);
 
     const quiz = quizzes.find(quiz => quiz.quizId === id);

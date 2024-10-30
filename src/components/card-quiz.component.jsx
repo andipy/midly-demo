@@ -1,7 +1,16 @@
+import { useNavigate } from 'react-router-dom';
+
 import IconSuccess from '../images/icons/icon-success-standard.svg';
 
 
 const CardQuiz = ({ artistSlug, artName, image, quizAlreadyPlayed, id }) => {
+    const navigate = useNavigate();
+
+    const handleNavigation = (event) => {
+        event.preventDefault(); 
+        navigate('/quiz', { state: { id } }); 
+    };
+
     return (
         <>
         {quizAlreadyPlayed ? (
@@ -24,7 +33,7 @@ const CardQuiz = ({ artistSlug, artName, image, quizAlreadyPlayed, id }) => {
                 </div>
             </div>
             ) : (
-            <a className='mr-xs-2' href={`/quiz/${id}`}>
+            <a className='mr-xs-2' href={``} onClick={handleNavigation}>
                 <div className='artist-card-multiple-row-challenge bg-dark-gradient border-radius-1 position-relative'>
                     <div className='overlay-card bg-dark-overlay-card border-radius-1 z-index-1'></div>
                     <img className='artist-card-multiple-row-challenge object-fit-cover border-radius-1' src={image} />

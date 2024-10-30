@@ -202,10 +202,10 @@ const router = createBrowserRouter([
     path: '/user-info-field-modify',
     element: <UserInfoFieldModifyRoute />
   }, {
-    path: '/quiz/:id',
+    path: '/quiz',
     element: <LiveQuizRoute />
   }, {
-    path: '/quiz-play/:id',
+    path: '/quiz-play',
     element: <LiveQuizPlayRoute />
   }, {
     path: "/quiz-result",
