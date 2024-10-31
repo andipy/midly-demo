@@ -38,6 +38,8 @@ import UserInfoFieldModifyRoute from './routes/user-info-field-modify.route'
 import LiveQuizRoute from './routes/live-quiz.route'
 import LiveQuizPlayRoute from './routes/live-quiz-play.route'
 import LiveQuizResultRoute from './routes/live-quiz-result.route'
+import RegistrationRoute from './routes/registration.route'
+import RecoverPasswordRoute from './routes/recover-password.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -210,6 +212,12 @@ const router = createBrowserRouter([
   }, {
     path: "/quiz-result",
     element: <LiveQuizResultRoute />
+  }, {
+    path: "/signup",
+    element: <RegistrationRoute />
+  }, {
+    path: "/recover-password",
+    element: <RecoverPasswordRoute />
   }
 ])
 

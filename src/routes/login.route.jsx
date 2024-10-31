@@ -5,6 +5,7 @@ import FullPageCenter from '../layout/full-page-center.layout'
 import ContainerDefault from '../layout/container-default.layout'
 
 import Button from '../components/button.component'
+import NavbarDefault from '../components/navbar-default.component'
 
 const LoginRoute = () => {
 
@@ -15,15 +16,9 @@ const LoginRoute = () => {
 
     return (
         <>
-        <nav className="top-bar-area-block d-flex-row align-items-center j-c-center white z-index-max">
-            <div className="container d-flex-row align-items-center j-c-center">
-                <a href="#">
-                    <img src="../assets/logo-simple.svg" alt="MIDLY" />
-                </a>
-            </div>
-        </nav>
+        <NavbarDefault />
         
-        <div className="container pb-xs-12 pb-lg-8">
+        <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
             <div>
                 <h2 className="fsize-xs-9 mb-xs-1 white">Bentornata!</h2>
                 <p className="fsize-xs-2 f-w-200 grey-200 letter-spacing-1">Accedi al tuo account Midly con mail e password.</p>
@@ -40,7 +35,7 @@ const LoginRoute = () => {
                         <input id="input-password" className="bg-dark-soft white letter-spacing-1 border-radius-08" type="password" placeholder="La tua password" />
                         <div className="d-flex-row align-items-center j-c-start mt-xs-2">
                             <p className="fsize-xs-1 grey-400 mr-xs-2">Password dimenticata?</p>
-                            <a className="fsize-xs-1 lime-400 f-w-600" href="recover-password-input-email.html">Recuperala!</a>
+                            <a className="fsize-xs-1 lime-400 f-w-600" href="/recover-password">Recuperala!</a>
                         </div>  
                     </div>                                      
 
@@ -49,15 +44,16 @@ const LoginRoute = () => {
 
                 <div className="d-flex-row align-items-center j-c-center mt-xs-6">
                     <p className="fsize-xs-2 grey-400 mr-xs-2">Non hai un account?</p>
-                    <a className="fsize-xs-2 lime-400 f-w-600" href="signup-fan.html">Registrati qui!</a>
+                    <a className="fsize-xs-2 lime-400 f-w-600" href="/signup">Registrati qui!</a>
                 </div>
 
                 <p className='fsize-xs-2 grey-400 t-align-center w-80 mt-xs-6 mx-xs-auto'>C'è qualcosa che non va? Scrivici per assitenza diretta su telegram:</p>
                 <Link to='https://t.me/midlyofficial' target='blank'>
                     <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-2' label='Chiedi aiuto sul canale telegram' />
                 </Link>
-            </div>            
-        </div>
+            </div>  
+
+        </ContainerDefault>          
 
         {showComponent &&
             <FullPageCenter className={'z-index-max bg-black-transp70'}>
