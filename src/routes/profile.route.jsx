@@ -1,4 +1,5 @@
 import {useContext} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
 
@@ -19,7 +20,14 @@ import { Link } from 'react-router-dom'
 
 function ProfileRoute() {
 
+    const navigate = useNavigate()
+
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+
+    const logout = () => {
+        /* gestisci logout */
+        navigate('/login')
+    }
 
     return (
         <>
@@ -124,7 +132,7 @@ function ProfileRoute() {
                     </Link>
                 </div>
             </div>
-            <div className='mt-xs-10 mb-xs-10 mt-lg--4 mb-lg-4'>
+            <div className='mt-xs-10 mb-xs-10 mt-lg--4 mb-lg-4' onClick={logout}>
                 <h6 className='fsize-xs-3 f-w-500 blue-300 letter-spacing-1'>Esegui il log out</h6>
             </div>
             
