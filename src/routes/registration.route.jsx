@@ -29,12 +29,7 @@ function Registration() {
             setErrorMesssage('Tutti i campi sono obbligatori e non possono essere vuoti');
             return;
         }
-        if (!isTermsAndConditionsAccepted) {
-            setError(true);
-            setErrorMesssage('Devi accettare i Termini e condizioni fan e la Privacy policy');
-            return;
-        }
-
+        
         if (!emailRegex.test(inputEmail)) {
             setError(true);
             setErrorMesssage('L\'email inserita non è in un formato corretto');
@@ -50,6 +45,12 @@ function Registration() {
         if (inputPassword !== inputRepeatPassword) {
             setError(true);
             setErrorMesssage('Le password non corrispondono');
+            return;
+        }
+
+        if (!isTermsAndConditionsAccepted) {
+            setError(true);
+            setErrorMesssage('Devi accettare i Termini e condizioni fan e la Privacy policy');
             return;
         }
 

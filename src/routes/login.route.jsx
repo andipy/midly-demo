@@ -13,6 +13,14 @@ const LoginRoute = () => {
     const navigate = useNavigate()
 
     const [showComponent, setShowComponent] = useState(true)
+    const [errorMessage, setErrorMesssage] = useState('')
+    const [error, setError] = useState(false)
+    const [inputEmail, setInputEmail] = useState("")
+    const [inputPassword, setInputPassword] = useState("")
+
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
+
     const closePopup = () => {
         setShowComponent(false)
     }
@@ -20,6 +28,21 @@ const LoginRoute = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         /* CONTROLLI */
+
+        if (!inputEmail || !inputPassword) {
+            setError(true);
+            setErrorMesssage('Tutti i campi sono obbligatori e non possono essere vuoti');
+            return;
+        }
+
+        if (!emailRegex.test(inputEmail)) {
+            setError(true);
+            setErrorMesssage('L\'email inserita non è in un formato corretto');
+            return;
+        } 
+
+        setError(false);
+        setErrorMesssage('');
         navigate('/search')
     };
 
@@ -37,16 +60,27 @@ const LoginRoute = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="mt-xs-8 mb-xs-8 mt-lg-4 mb-lg-4">
                         <label className="fsize-xs-1 grey-300 letter-spacing-3 pl-xs-6" for="input-email" >EMAIL</label>
-                        <input id="input-email" className="bg-dark-soft white letter-spacing-1 border-radius-08" type="email" placeholder="La tua email" required/>
+                        <input id="input-email" className="bg-dark-soft white letter-spacing-1 border-radius-08" type="text" placeholder="La tua email" value={inputEmail} onChange={(e) =>setInputEmail(e.target.value)}/>
                     </div>
                     <div className="mt-xs-8 mb-xs-8 mt-lg-4 mb-lg-4">
                         <label className="fsize-xs-1 grey-300 letter-spacing-3 pl-xs-6" for="input-password">PASSWORD</label>
-                        <input id="input-password" className="bg-dark-soft white letter-spacing-1 border-radius-08" type="password" placeholder="La tua password" required/>
+                        <input id="input-password" className="bg-dark-soft white letter-spacing-1 border-radius-08" type="password" placeholder="La tua password" value={inputPassword} onChange={(e) =>setInputPassword(e.target.value)}/>
                         <div className="d-flex-row align-items-center j-c-start mt-xs-2">
                             <p className="fsize-xs-1 grey-400 mr-xs-2">Password dimenticata?</p>
                             <a className="fsize-xs-1 lime-400 f-w-600" href="/recover-password">Recuperala!</a>
                         </div>  
-                    </div>                                      
+                    </div> 
+
+                    { error && (
+                        <div id="error-message-card" className="error-message mb-xs-4 mt-xs-4">
+                        <div className="d-flex-row align-items-center pl-xs-4 pt-xs-4 pb-xs-4 pr-xs-4 bg-red-300 border-radius-08">
+                            <img className="mr-xs-4" src={''} alt="ALT!"></img>
+                            <p className="fsize-xs-1 f-w-400 white letter-spacing-1 line-height-sm mr-xs-2">
+                                {errorMessage}
+                            </p>
+                        </div>
+                    </div>
+                    )}                                     
 
                     <button className="bg-acid-lime black font-body fsize-xs-3 f-w-600 mt-xs-4 mb-xs-4" type='submit'>Accedi</button>
                 </form>
