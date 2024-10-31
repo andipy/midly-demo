@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 import FullPageCenter from '../layout/full-page-center.layout'
 import ContainerDefault from '../layout/container-default.layout'
@@ -9,10 +10,18 @@ import NavbarDefault from '../components/navbar-default.component'
 
 const LoginRoute = () => {
 
+    const navigate = useNavigate()
+
     const [showComponent, setShowComponent] = useState(true)
     const closePopup = () => {
         setShowComponent(false)
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        /* CONTROLLI */
+        navigate('/search')
+    };
 
     return (
         <>
@@ -25,21 +34,21 @@ const LoginRoute = () => {
             </div>
             
             <div>
-                <form action="POST">
+                <form onSubmit={handleSubmit}>
                     <div className="mt-xs-8 mb-xs-8 mt-lg-4 mb-lg-4">
-                        <label className="fsize-xs-1 grey-300 letter-spacing-3 pl-xs-6" for="input-email">EMAIL</label>
-                        <input id="input-email" className="bg-dark-soft white letter-spacing-1 border-radius-08" type="email" placeholder="La tua email" />
+                        <label className="fsize-xs-1 grey-300 letter-spacing-3 pl-xs-6" for="input-email" >EMAIL</label>
+                        <input id="input-email" className="bg-dark-soft white letter-spacing-1 border-radius-08" type="email" placeholder="La tua email" required/>
                     </div>
                     <div className="mt-xs-8 mb-xs-8 mt-lg-4 mb-lg-4">
                         <label className="fsize-xs-1 grey-300 letter-spacing-3 pl-xs-6" for="input-password">PASSWORD</label>
-                        <input id="input-password" className="bg-dark-soft white letter-spacing-1 border-radius-08" type="password" placeholder="La tua password" />
+                        <input id="input-password" className="bg-dark-soft white letter-spacing-1 border-radius-08" type="password" placeholder="La tua password" required/>
                         <div className="d-flex-row align-items-center j-c-start mt-xs-2">
                             <p className="fsize-xs-1 grey-400 mr-xs-2">Password dimenticata?</p>
                             <a className="fsize-xs-1 lime-400 f-w-600" href="/recover-password">Recuperala!</a>
                         </div>  
                     </div>                                      
 
-                    <button className="bg-acid-lime black font-body fsize-xs-3 f-w-600 mt-xs-4 mb-xs-4">Accedi</button>
+                    <button className="bg-acid-lime black font-body fsize-xs-3 f-w-600 mt-xs-4 mb-xs-4" type='submit'>Accedi</button>
                 </form>
 
                 <div className="d-flex-row align-items-center j-c-center mt-xs-6">
