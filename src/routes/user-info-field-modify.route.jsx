@@ -1,13 +1,13 @@
-import { useContext, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { CurrentFanContext } from '../contexts/currentFan.context';
-import NavbarPersonalInfoFieldModify from '../components/navbar-personal-info-modify.component';
-import ContainerDefault from '../layout/container-default.layout';
+import { useContext, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { CurrentFanContext } from '../contexts/currentFan.context'
+import NavbarPersonalInfoFieldModify from '../components/navbar-personal-info-modify.component'
+import ContainerDefault from '../layout/container-default.layout'
 
-function UserInfoFieldModify() {
-    const { currentFan, setCurrentFan } = useContext(CurrentFanContext);
+const UserInfoFieldModifyRoute = () => {
+    const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
 
-    const [newValue, setNewValue] = useState('');
+    const [newValue, setNewValue] = useState('')
     const [adress, setAdress] = useState({
         name: currentFan.adress?.name || '',
         surname: currentFan.adress?.surname || '',
@@ -16,26 +16,26 @@ function UserInfoFieldModify() {
         city: currentFan.adress?.city || '',
         province: currentFan.adress?.province || '',
         state: currentFan.adress?.state || '',
-    });
+    })
 
-    const location = useLocation();
-    const { field } = location.state || {};
-    const navigate = useNavigate();
+    const location = useLocation()
+    const { field } = location.state || {}
+    const navigate = useNavigate()
 
     const fieldName = (() => {
         switch (field) {
-            case 'Username': return 'username';
-            case 'Instagram username': return 'instagram';
-            case 'Email': return 'email';
-            case 'Data di nascita': return 'birthdate';
-            case 'Genere': return 'genre';
-            case 'Cellulare': return 'cellphone';
-            case 'Indirizzo': return 'adress';
+            case 'Username': return 'username'
+            case 'Instagram username': return 'instagram'
+            case 'Email': return 'email'
+            case 'Data di nascita': return 'birthdate'
+            case 'Genere': return 'genre'
+            case 'Cellulare': return 'cellphone'
+            case 'Indirizzo': return 'adress'
         }
-    })();
+    })()
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         if (fieldName === 'adress') {
             setCurrentFan((prev) => ({
@@ -43,24 +43,23 @@ function UserInfoFieldModify() {
                 adress: {
                     ...adress,  
                 },
-            }));
+            }))
         } else {
             setCurrentFan((prev) => ({
                 ...prev,
                 [fieldName]: newValue,
-            }));
+            }))
         }
-
-        navigate(-2); 
-    };
+        navigate(-2)
+    }
 
     const handleAddressChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target
         setAdress((prevAdress) => ({
             ...prevAdress,
             [name]: value,
-        }));
-    };
+        }))
+    }
 
     return (
         <>
@@ -89,7 +88,7 @@ function UserInfoFieldModify() {
                                         </button>
                                     </div>
                                 </form>
-                            );
+                            )
                         case 'Instagram username':
                             return (
                                 <form onSubmit={handleSubmit}>
@@ -111,7 +110,7 @@ function UserInfoFieldModify() {
                                         </button>
                                     </div>
                                 </form>
-                            );
+                            )
                         case 'Data di nascita':
                             return (
                                 <form onSubmit={handleSubmit}>
@@ -133,7 +132,7 @@ function UserInfoFieldModify() {
                                         </button>
                                     </div>
                                 </form>
-                            );
+                            )
                         case 'Genere':
                             return (
                                 <form onSubmit={handleSubmit}>
@@ -159,7 +158,7 @@ function UserInfoFieldModify() {
                                         </button>
                                     </div>
                                 </form>
-                            );   
+                            )
                         case 'Email':
                             return (
                                 <form onSubmit={handleSubmit}>
@@ -181,7 +180,7 @@ function UserInfoFieldModify() {
                                         </button>
                                     </div>
                                 </form>
-                            );
+                            )
                         case 'Cellulare':
                             return (
                                 <form onSubmit={handleSubmit}>
@@ -203,7 +202,7 @@ function UserInfoFieldModify() {
                                         </button>
                                     </div>
                                 </form>
-                            );
+                            )
                         case 'Indirizzo':
                             return (
                                 <form onSubmit={handleSubmit}>
@@ -304,14 +303,14 @@ function UserInfoFieldModify() {
                                         </button>
                                     </div>
                                 </form>
-                            );
+                            )
                         default:
-                            return <></>;
+                            return <></>
                     }
                 })()}
             </ContainerDefault>
         </>
-    );
+    )
 }
 
-export default UserInfoFieldModify;
+export default UserInfoFieldModifyRoute

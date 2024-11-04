@@ -1,28 +1,26 @@
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useContext } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useContext } from 'react'
 
-
-import { LiveQuizContext } from '../contexts/live-quiz.context';
+import { LiveQuizContext } from '../contexts/live-quiz.context'
 
 import ContainerDefault from '../layout/container-default.layout'
 
 
-import IconArrowLeft from "../images/icons/icon-arrowleft.svg";
+import IconArrowLeft from '../images/icons/icon-arrowleft.svg'
 
-function LiveQuiz() {
+const LiveQuizRoute = () => {
 
-    const location = useLocation();
-    const { id } = location.state || {}; 
+    const location = useLocation()
+    const { id } = location.state || {}
 
-   const { quizzes } = useContext(LiveQuizContext);
-    const navigate = useNavigate();
+    const { quizzes } = useContext(LiveQuizContext)
+    const navigate = useNavigate()
 
-    const quiz = quizzes.find(quiz => quiz.quizId === id);
+    const quiz = quizzes.find(quiz => quiz.quizId === id)
 
     const playClick = () => {
-        navigate('/quiz-play', { state: { id } });
-    };
-
+        navigate('/quiz-play', { state: { id } })
+    }
 
     return (
         <>
@@ -30,7 +28,7 @@ function LiveQuiz() {
                 <div className='container d-flex-row align-items-center j-c-space-between'>
                     <div>
                         <div className='avatar-28'>
-                            <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} alt="BACK" onClick={() => navigate(-1)} />
+                            <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} alt='BACK' onClick={() => navigate(-1)} />
                         </div>
                     </div>
                 </div>
@@ -65,7 +63,7 @@ function LiveQuiz() {
             </ContainerDefault>
 
         </>
-    );
+    )
 }
 
-export default LiveQuiz;
+export default LiveQuizRoute

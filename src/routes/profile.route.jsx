@@ -85,7 +85,7 @@ function ProfileRoute() {
             <div id='profile-settings' className="mt-xs-12 mt-lg-5"> 
                 <h4 className='fsize-xs-5 mb-xs-4 mb-lg-2 letter-spacing-2 f-w-500'>Impostazioni</h4>
                 <div className='d-flex-column'>
-                    <Link to='/userinfo'>
+                    <Link to='/user-info'>
                         <div className='d-flex-row j-c-space-between mb-xs-3'>
                             <div className='d-flex-row align-items-center w-100'>
                                 <img className='mr-xs-2' src={SettingsLogo} alt='SETTINGS'></img>
@@ -94,7 +94,7 @@ function ProfileRoute() {
                             <img className='' src={IconArrowRight} alt='->'/>
                         </div>
                     </Link>
-                    <Link to={'/faq'}>
+                    <Link to='/faq'>
                         <div className='d-flex-row j-c-space-between mb-xs-3'>
                             <div className='d-flex-row align-items-center w-100'>
                                 <img className='mr-xs-2' src={InfoLogo} alt='SETTINGS'></img>
@@ -137,7 +137,7 @@ function ProfileRoute() {
             </div>
             
             <div className='t-align-center mt-xs-5 mb-xs-2 mt-lg-2 mb-lg-1'>
-                <span className='grey-300 fsize-xs-1'>© Midly Srl 2024</span>
+                <span className='grey-300 fsize-xs-1'>© Midly Srl 2024 - DEMO</span>
             </div>
         </div>
         </ContainerDefault>

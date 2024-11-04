@@ -175,48 +175,47 @@ const router = createBrowserRouter([
   },{
     path: '/cool/2',
     element: <Cool2Route />
-  },
-  {
+  },{
     path: '/search',
     element: <SearchRoute />
-  },
-  {path: '/profile',
-   element: <ProfileRoute />
-  },
-  {path:'userinfo',
+  },{
+    path: '/profile',
+    element: <ProfileRoute />
+  },{
+    path:'/user-info',
     element: <UserInfoRoute />
-  }, {
+  },{
     path: '/faq',
     element: <FaqRoute />
-  }, {
+  },{
     path: '/terms-and-conditions-fans',
     element: <TermsConditionsRoute />
   },{
     path: '/privacy-policy-fans',
     element: <PrivacyPolicyRoute />
-  }, {
+  },{
     path: '/cookie-policy-fans',
     element: <CookiePolicyRoute />
-  }, {
+  },{
     path: '/user-info-field',
     element: <UserInfoFieldRoute />
-  }, {
+  },{
     path: '/user-info-field-modify',
     element: <UserInfoFieldModifyRoute />
-  }, {
+  },{
     path: '/quiz',
     element: <LiveQuizRoute />
-  }, {
+  },{
     path: '/quiz-play',
     element: <LiveQuizPlayRoute />
-  }, {
-    path: "/quiz-result",
+  },{
+    path: '/quiz-result',
     element: <LiveQuizResultRoute />
-  }, {
-    path: "/signup",
+  },{
+    path: '/signup',
     element: <RegistrationRoute />
-  }, {
-    path: "/recover-password",
+  },{
+    path: '/recover-password',
     element: <RecoverPasswordRoute />
   }
 ])

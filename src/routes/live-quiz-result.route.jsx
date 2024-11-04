@@ -1,79 +1,75 @@
-import { useEffect, useState, useContext } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { LiveQuizContext } from '../contexts/live-quiz.context'; 
-import { CurrentFanContext } from '../contexts/currentFan.context';
+import { useEffect, useState, useContext } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { LiveQuizContext } from '../contexts/live-quiz.context'
+import { CurrentFanContext } from '../contexts/currentFan.context'
 import ContainerDefault from "../layout/container-default.layout"
 
-function LiveQuizResult() {
+const LiveQuizResultRoute = () => {
 
-  const navigate = useNavigate();
-  const location = useLocation();
+    const navigate = useNavigate()
+    const location = useLocation()
 
-  const { id } = location.state || {};
-  const { quizzes } = useContext(LiveQuizContext);
-  const { currentFan } = useContext(CurrentFanContext)
+    const { id } = location.state || {}
+    const { quizzes } = useContext(LiveQuizContext)
+    const { currentFan } = useContext(CurrentFanContext)
 
-  const quiz = quizzes.find(quiz => quiz.quizId === id);
+    const quiz = quizzes.find(quiz => quiz.quizId === id)
 
+    const userResponse = quiz.responses.find(response => response.userId === currentFan.id)
 
-  const userResponse = quiz.responses.find(response => response.userId === currentFan.id);
+    const result = userResponse ? userResponse.score : 0
 
+    /* array di punti */
+    const[points, setPoints] = useState([])
 
+      const generatePointArray = (result) => {
+          let pointArray = []
+          for ( var i = 0; i <= result; i++ ) {
+              pointArray.push(i)
+          }
+          setPoints(pointArray)        
+      }
 
-  const result = userResponse ? userResponse.score : 0;
-
-
-  /* array di punti */
-  const[points, setPoints] = useState([])
-
-    const generatePointArray = (result) => {
-        let pointArray = [];
-        for ( var i = 0; i <= result; i++ ) {
-            pointArray.push(i)
-        }
-        setPoints(pointArray)        
-    }
+      useEffect(() => {
+          generatePointArray(result)        
+      }, [])
+    
+    /* transizione */
+    const [liveCounter, setLiveCounter] = useState(0)
+    const [translation, setTranslation] = useState(0)
 
     useEffect(() => {
-        generatePointArray(result)        
+        setTimeout(() => {
+            if ( liveCounter < result ) {
+                setLiveCounter(prev => prev + 1)
+                setTranslation(prev => prev + 100)
+            }
+        }, 500)
+    }, [liveCounter])
+
+
+    /*Setting del messaggio e del title in base al result*/
+    const [resultTitle, setResultTitle] = useState('')
+    const [resultMessage, setResultMessage] = useState('')
+
+    useEffect(() => {
+      if (result === 0) {
+        setResultTitle('Mmmmm...')
+        setResultMessage('Ma hey, anche se hai fatto 0 punti, puoi provare la prossima volta, il gioco si ripete più volte la settimana!')
+      } else if ( result <= 2) {
+        setResultTitle("E' okay!")
+        setResultMessage(`Puoi fare meglio, ma ${result} punti è comunque un risultato che ti permette di scalare la classifica!`)
+
+      } else if ( result >= 3) {
+        setResultTitle('Ben fatto')
+        setResultMessage(`${result} punti in più per scalare la classifica di questo mese`)
+      }
     }, [])
-  
-  /* transizione */
-  const [liveCounter, setLiveCounter] = useState(0)
-  const [translation, setTranslation] = useState(0)
 
-  useEffect(() => {
-      setTimeout(() => {
-          if ( liveCounter < result ) {
-              setLiveCounter(prev => prev + 1)
-              setTranslation(prev => prev + 100)
-          }
-      }, 500)
-  }, [liveCounter])
-
-
-  /*Setting del messaggio e del title in base al result*/
-  const [resultTitle, setResultTitle] = useState('')
-  const [resultMessage, setResultMessage] = useState('')
-
-  useEffect(() => {
-    if (result === 0) {
-      setResultTitle('Mmmmm...')
-      setResultMessage('Ma hey, anche se hai fatto 0 punti, puoi provare la prossima volta, il gioco si ripete più volte la settimana!')
-    } else if ( result <= 2) {
-      setResultTitle("E' okay!")
-      setResultMessage(`Puoi fare meglio, ma ${result} punti è comunque un risultato che ti permette di scalare la classifica!`)
-
-    } else if ( result >= 3) {
-      setResultTitle('Ben fatto')
-      setResultMessage(`${result} punti in più per scalare la classifica di questo mese`)
-    }
-  }, [])
-
-  /* button funct */
-  const closeClick = () => {
-    navigate(-3);
-};
+    /* button funct */
+    const closeClick = () => {
+      navigate(-3)
+  }
 
 
   return (
@@ -91,7 +87,7 @@ function LiveQuizResult() {
             {points.map((point, index) => {
               return (
                 <h4 key={index} className='point-dot gold'>{point}</h4>
-              );
+              )
             })}
             </div>
             <p className="gold point-plus f-size-xs-5">punti</p>
@@ -112,4 +108,4 @@ function LiveQuizResult() {
   )
 }
 
-export default LiveQuizResult
+export default LiveQuizResultRoute

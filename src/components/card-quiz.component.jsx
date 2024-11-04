@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import IconSuccess from '../images/icons/icon-success-standard.svg';
 
 
-const CardQuiz = ({ artistSlug, artName, image, quizAlreadyPlayed, id }) => {
+const CardQuiz = ({ artName, image, quizAlreadyPlayed, id }) => {
     const navigate = useNavigate();
 
     const handleNavigation = (event) => {
@@ -17,12 +17,12 @@ const CardQuiz = ({ artistSlug, artName, image, quizAlreadyPlayed, id }) => {
             <div className='mr-xs-2'>
                 <div className='artist-card-multiple-row-challenge bg-dark-gradient border-radius-1 position-relative'>
                     {quizAlreadyPlayed && (
-                        <div className="artist-card-multiple-row-challenge d-flex-row align-items-center j-c-center position-absolute z-index-3">
-                            <div className="d-flex-row align-items-center j-c-center z-index-4">
-                                <h5 className='fsize-xs-2 f-w-300'>Quiz completed!</h5>
+                        <div className='artist-card-multiple-row-challenge d-flex-row align-items-center j-c-center position-absolute z-index-3'>
+                            <div className='d-flex-row align-items-center j-c-center z-index-4 gap-0_25em'>
                                 <img src={IconSuccess} alt='Y!' />
+                                <h5 className='fsize-xs-1 f-w-300'>Quiz completed!</h5>
                             </div>
-                            <div className="overlay-card-followed bg-dark-soft-transp75 border-radius-1"></div>
+                            <div className='overlay-card-followed bg-dark-soft-transp75 border-radius-1'></div>
                         </div>
                     )}
                     <div className='overlay-card bg-dark-overlay-card border-radius-1 z-index-1'></div>
