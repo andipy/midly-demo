@@ -31,6 +31,16 @@ const UserInfoFieldModifyRoute = () => {
         ADDRESS: 'adress'
     }[field]
 
+    const fieldLabels = {
+        USERNAME: 'USERNAME',
+        INSTAGRAM_USERNAME: 'INSTAGRAM',
+        EMAIL: 'EMAIL',
+        BIRTHDATE: 'DATA DI NASCITA',
+        GENRE: 'GENERE',
+        CELLPHONE: 'CELLULARE',
+        ADDRESS: 'INDIRIZZO'
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         
@@ -136,7 +146,7 @@ const UserInfoFieldModifyRoute = () => {
             <ContainerDefault containerSpecificStyle='pb-xs-appbar'>
                 <form onSubmit={handleSubmit}>
                     <div className='mt-xs-8 mb-xs-8'>
-                        <label className='fsize-xs-1 grey-300 letter-spacing-3 pl-xs-6'>{field}</label>
+                        <label className='fsize-xs-1 grey-300 letter-spacing-3 pl-xs-6'>{fieldLabels[field]}</label>
                         {renderFieldInput()}
                     </div>
                     <div className='container bottom-5'>
