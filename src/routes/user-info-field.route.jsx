@@ -4,16 +4,16 @@ import { useLocation } from 'react-router-dom'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 
 import ContainerDefault from '../layout/container-default.layout'
-import Appbar from "../components/appbar.component";
-import NavbarPersonalInfoField from '../components/navbar-personal-info-field.component';
+import Appbar from '../components/appbar.component'
+import NavbarPersonalInfoField from '../components/navbar-personal-info-field.component'
 
 
-function UserInfoField() {
+const UserInfoFieldRoute = () => {
 
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
 
-    const location = useLocation();
-    const { type } = location.state || {}; 
+    const location = useLocation()
+    const { type } = location.state || {} 
 
   return (
     <>
@@ -22,7 +22,7 @@ function UserInfoField() {
         <div>
         {(() => {
             switch (type) {
-                case 'Username':
+                case 'USERNAME':
                     return (
                         <>
                             <div className='mt-xs-8 mb-xs-8'>
@@ -36,8 +36,8 @@ function UserInfoField() {
                                 }
                             </div>
                         </>
-                    );
-                case 'Instagram username':
+                    )
+                case 'INSTAGRAM_USERNAME':
                     return (
                         <>
                             <div className='mt-xs-8 mb-xs-8'>
@@ -51,8 +51,8 @@ function UserInfoField() {
                                 }
                             </div>
                         </>
-                    );
-                case 'Data di nascita':
+                    )
+                case 'BIRTHDATE':
                     return (
                         <>
                             <div className='mt-xs-8 mb-xs-8'>
@@ -66,9 +66,9 @@ function UserInfoField() {
                                 }
                             </div>
                         </>
-                    );
+                    )
                     
-                case 'Genere':
+                case 'GENRE':
                     return (
                         <>
                             <div className='mt-xs-8 mb-xs-8'>
@@ -82,8 +82,8 @@ function UserInfoField() {
                                 }
                             </div>
                         </>
-                    );
-                case 'Email':
+                    )
+                case 'EMAIL':
                     return (
                         <>
                             <div className='mt-xs-8 mb-xs-8'>
@@ -97,8 +97,8 @@ function UserInfoField() {
                                 }
                             </div>
                         </>
-                    );
-                case 'Cellulare':
+                    )
+                case 'CELLPHONE':
                     return (
                         <>
                             <div className='mt-xs-8 mb-xs-8'>
@@ -112,8 +112,8 @@ function UserInfoField() {
                                 }
                             </div>
                         </>
-                    );
-                case 'Indirizzo':
+                    )
+                case 'ADDRESS':
                     return (
                         <>
                             <div className='mt-xs-8 mb-xs-8'>
@@ -187,7 +187,7 @@ function UserInfoField() {
                                 }
                             </div>
                         </>
-                    );
+                    )
                 
                 default:
                     return (
@@ -195,7 +195,7 @@ function UserInfoField() {
                             <h4>Modifica Informazioni</h4>
                             <p>Seleziona un'opzione per modificare le informazioni del tuo account.</p>
                         </>
-                    );
+                    )
             }
         })()}   
         </div>
@@ -206,4 +206,4 @@ function UserInfoField() {
   )
 }
 
-export default UserInfoField
+export default UserInfoFieldRoute

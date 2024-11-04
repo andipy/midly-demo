@@ -19,7 +19,7 @@ const UserInfoRoute = () => {
             <div>
                 <div id='about-you' className='mt-xs-8'>
                     <h4 className='fsize-xs-5 mb-xs-4 letter-spacing-2 f-w-500'>About you</h4>
-                    <Link to='/user-info-field' state={{ type: 'Username' }}>
+                    <Link to='/user-info-field' state={{ type: 'USERNAME' }}>
                     <div id='fan-username' className='mt-xs-8 mb-xs-8'>
                         <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                             USERNAME
@@ -34,7 +34,7 @@ const UserInfoRoute = () => {
                         </a>
                     </div>
                     </Link>
-                    <Link to='/user-info-field' state={{ type: 'Instagram username' }}>
+                    <Link to='/user-info-field' state={{ type: 'INSTAGRAM_USERNAME' }}>
                     <div id='fan-instagram' className='mt-xs-8'>
                         <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                             INSTAGRAM
@@ -49,7 +49,7 @@ const UserInfoRoute = () => {
                         </a>
                     </div>
                     </Link>
-                    <Link to='/user-info-field' state={{ type: 'Data di nascita' }}>
+                    <Link to='/user-info-field' state={{ type: 'BIRTHDATE' }}>
                         <div id='fan-birthdate' className='mt-xs-8'>
                             <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                                 DATA DI NASCITA
@@ -64,7 +64,7 @@ const UserInfoRoute = () => {
                             </a>
                         </div>
                     </Link>
-                    <Link to='/user-info-field' state={{ type: 'Genere' }}>
+                    <Link to='/user-info-field' state={{ type: 'GENRE' }}>
                         <div id='fan-gender' className='mt-xs-8'>
                             <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                                 GENERE
@@ -82,7 +82,7 @@ const UserInfoRoute = () => {
                 </div>
                 <div id='contacts' className='mt-xs-24 mt-lg-1'>
                     <h4 className='fsize-xs-5 mb-xs-4 letter-spacing-2 f-w-500'>Contatti</h4>
-                    <Link to='/user-info-field' state={{ type: 'Email' }}>
+                    <Link to='/user-info-field' state={{ type: 'EMAIL' }}>
                         <div id='fan-email' className='mt-xs-8'>
                             <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                                 EMAIL
@@ -97,7 +97,7 @@ const UserInfoRoute = () => {
                             </a>
                         </div>
                     </Link>
-                    <Link to='/user-info-field' state={{ type: 'Cellulare' }}>
+                    <Link to='/user-info-field' state={{ type: 'CELLPHONE' }}>
                         <div id='fan-phone' className='mt-xs-8'>
                             <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                                 CELLULARE
@@ -112,7 +112,7 @@ const UserInfoRoute = () => {
                             </a>
                         </div>
                     </Link>
-                    <Link to='/user-info-field' state={{ type: 'Indirizzo' }}>
+                    <Link to='/user-info-field' state={{ type: 'ADDRESS' }}>
                     <div id='fan-address' className='mt-xs-8'>
                         <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                             INDIRIZZO

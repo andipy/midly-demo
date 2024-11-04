@@ -8,17 +8,17 @@ import ContainerDefault from '../layout/container-default.layout'
 import TextTitle from '../components/text-title.component'
 import Appbar from '../components/appbar.component'
 
-import SpotifyLogo from "../images/icons/icon-spotify-full-green.svg"
-import IconArrowRight from "../images/icons/icon-arrowright.svg"
-import GoldBagde from "../images/illustrations/GOLD.png"
-import SettingsLogo from "../images/icons/icon-settings-white.svg"
-import InfoLogo from "../images/icons/icon-info-white.svg"
+import SpotifyLogo from '../images/icons/icon-spotify-full-green.svg'
+import IconArrowRight from '../images/icons/icon-arrowright.svg'
+import GoldBagde from '../images/illustrations/GOLD.png'
+import SettingsLogo from '../images/icons/icon-settings-white.svg'
+import InfoLogo from '../images/icons/icon-info-white.svg'
 import IconTerms from '../images/icons/icon-terms.svg'
 import IconCookies from '../images/icons/icon-cookie.svg'
 import IconTrophyGold from '../images/icons/icon-trophy-gold.svg'
 import { Link } from 'react-router-dom'
 
-function ProfileRoute() {
+const ProfileRoute = () => {
 
     const navigate = useNavigate()
 
@@ -82,7 +82,7 @@ function ProfileRoute() {
         </div>
 
         <div>
-            <div id='profile-settings' className="mt-xs-12 mt-lg-5"> 
+            <div id='profile-settings' className='mt-xs-12 mt-lg-5'> 
                 <h4 className='fsize-xs-5 mb-xs-4 mb-lg-2 letter-spacing-2 f-w-500'>Impostazioni</h4>
                 <div className='d-flex-column'>
                     <Link to='/user-info'>

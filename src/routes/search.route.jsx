@@ -1,7 +1,7 @@
 import {useState, useContext} from 'react'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
-import { ArtistsContext } from '../contexts/artists.context';
+import { ArtistsContext } from '../contexts/artists.context'
 
 import NavbarDefault from '../components/navbar-default.component'
 import ContainerDefault from '../layout/container-default.layout'
@@ -14,8 +14,8 @@ import CardArtist from '../components/card-search-artists.component'
 const SearchRoute = () => {
 
     const { currentFan } = useContext(CurrentFanContext)
-    const { artists } = useContext(ArtistsContext);
-    const [searchQuery, setSearchQuery] = useState('');
+    const { artists } = useContext(ArtistsContext)
+    const [searchQuery, setSearchQuery] = useState('')
 
 
 
@@ -23,7 +23,7 @@ const SearchRoute = () => {
     .filter(artist =>
         artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
     )
-    .sort((a, b) => a.artistName.localeCompare(b.artistName));
+    .sort((a, b) => a.artistName.localeCompare(b.artistName))
 
     
     const chunkArray = (array, chunkSize) => {
@@ -44,8 +44,8 @@ const SearchRoute = () => {
             <SearchInput 
                 value={searchQuery} 
                 onChange={(e) => {
-                    const newValue = e.target.value;
-                    setSearchQuery(newValue);  
+                    const newValue = e.target.value
+                    setSearchQuery(newValue)  
                 }}   
             />
             <section id='artists-list' className='mt-lg-2'>
@@ -57,14 +57,14 @@ const SearchRoute = () => {
                                 {chunk.map(item => {
                                     const isFollowed = currentFan.leaderboardsFollowed.some(
                                         (followed) => followed.artistId === item.id
-                                    );
+                                    )
                                     return (
                                         <CardArtist 
                                             artist={item} 
                                             key={item.id} 
                                             isFollowed={isFollowed}
                                         />
-                                    );
+                                    )
                                 })}
                             </Carousel>
                         </div>

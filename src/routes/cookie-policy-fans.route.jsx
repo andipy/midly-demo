@@ -1,8 +1,8 @@
 import ContainerDefault from '../layout/container-default.layout'
-import Appbar from "../components/appbar.component";
-import NavbarProfileSettings from "../components/navbar-profile-settings-component";
+import Appbar from '../components/appbar.component'
+import NavbarProfileSettings from '../components/navbar-profile-settings-component'
 
-function CookiePolicy() {
+const CookiePolicyRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'Cookie Policy'} />
@@ -14,4 +14,4 @@ function CookiePolicy() {
   )
 }
 
-export default CookiePolicy
+export default CookiePolicyRoute

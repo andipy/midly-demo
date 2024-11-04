@@ -101,8 +101,8 @@ const YourFavouritesRoute = () => {
                         <h2 className='fsize-xs-5 f-w-500'>Gioca ai quiz</h2>
                         <p className='fsize-xs-2 f-w-200 grey-300'>Vinci ai quiz e guadagna punti nelle classifiche</p>
                         <Carousel>
-                            {quizzes.map(quiz => {
-                                const hasPlayed = quiz.quizAlreadyPlayed.some(play => play.userID === currentFan.id);
+                            {quizzes.filter(quiz => currentFan.leaderboardsFollowed.some(followed => String(followed.artistId) === String(quiz.artistId))).map(quiz => {
+                                const hasPlayed = quiz.responses.some(play => play.userId === currentFan.id);
                                 return (
                                     <CardQuiz
                                         slug={quiz.artistSlug}

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { LiveQuizContext } from '../contexts/live-quiz.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
-import ContainerDefault from "../layout/container-default.layout"
+import ContainerDefault from '../layout/container-default.layout'
 
 const LiveQuizResultRoute = () => {
 

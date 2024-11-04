@@ -1,8 +1,8 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useContext, useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useContext, useState, useEffect } from 'react'
 
-import { LiveQuizContext } from '../contexts/live-quiz.context';
-import { CurrentFanContext } from '../contexts/currentFan.context';
+import { LiveQuizContext } from '../contexts/live-quiz.context'
+import { CurrentFanContext } from '../contexts/currentFan.context'
 
 import ContainerDefault from '../layout/container-default.layout'
 
@@ -45,14 +45,13 @@ const LiveQuizPlayRoute = () => {
             chunkId: songChunk.chunkId,
             response: '',
             score: 0
-        };
+        }
 
         const updatedQuizzes = quizzes.map(q => {
             if (q.quizId === id) {
                 return {
                     ...q,
                     responses: [...q.responses, newResponse],
-                    quizAlreadyPlayed: [...q.quizAlreadyPlayed, { userID: currentFan.id }]
                 }
             }
             return q
@@ -79,7 +78,6 @@ const LiveQuizPlayRoute = () => {
                 return {
                     ...q,
                     responses: [...q.responses, newResponse],
-                    quizAlreadyPlayed: [...q.quizAlreadyPlayed, { userID: currentFan.id }]
                 }
             }
             return q
@@ -128,7 +126,7 @@ const LiveQuizPlayRoute = () => {
         const maxLength = Math.max(processedCorrectAnswer.length, processedUserAnswer.length)
     
         // 2. Calcola un punteggio di similarità
-        const similarity = 1 - (distance / maxLength); // valore tra 0 e 1
+        const similarity = 1 - (distance / maxLength) // valore tra 0 e 1
     
         // 3. Conteggio delle parole corrette
         const correctWords = processedCorrectAnswer.split(' ')
@@ -169,7 +167,7 @@ const LiveQuizPlayRoute = () => {
                         <p className='fsize-xs-6'>{songChunk.secondLine}</p>
                         <textarea className='bg-dark-soft white letter-spacing-1 border-radius-04 mt-xs-4 fsize-xs-3' rows='4' placeholder='Scrivi il verso mancante' value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)}></textarea>
                     </div>
-                    <button className="bg-acid-lime black font-body mt-xs-6" type='submit'>
+                    <button className='bg-acid-lime black font-body mt-xs-6' type='submit'>
                         <span className='fsize-xs-2 f-w-500'>Invia la risposta</span>
                     </button>
                 </form>

@@ -1,8 +1,8 @@
 import ContainerDefault from '../layout/container-default.layout'
-import Appbar from "../components/appbar.component";
-import NavbarProfileSettings from "../components/navbar-profile-settings-component";
+import Appbar from '../components/appbar.component'
+import NavbarProfileSettings from '../components/navbar-profile-settings-component'
 
-function Faq() {
+const FaqRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'FAQ'} />
@@ -104,4 +104,4 @@ function Faq() {
   )
 }
 
-export default Faq
+export default FaqRoute

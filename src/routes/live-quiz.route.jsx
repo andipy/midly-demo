@@ -21,7 +21,6 @@ const LiveQuizRoute = () => {
     const playClick = () => {
         navigate('/quiz-play', { state: { id } })
     }
-
     return (
         <>
             <nav id='transparent-nav' className='top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-max top-0'>
