@@ -8,7 +8,13 @@ export const FlashLeaderboardsProvider = ({ children }) => {
         {
             id: 1,
             artistId: 2,
+            announceMessage: 'Sta per aprire la classifica flash di thasup',
+            announceStartDate: '2024-11-05 08:00:00',
+            announceEndDate: '2024-11-07 00:00:00',
+            rankStartDate: '2024-11-05 12:00:00',
+            rankEndDate: '2024-11-05 18:00:00',
             participants: 7139,
+            totalStreams: 108712,
             image: require('../images/pictures/thasup-album-cover.jpeg'),
             song: {
                 title: 's!r! (feat. Lazza & Sfera Ebbasta)',
@@ -106,7 +112,13 @@ export const FlashLeaderboardsProvider = ({ children }) => {
         },{
             id: 2,
             artistId: 3,
+            announceMessage: 'Sta per aprire la classifica flash di Artie 5ive',
+            announceStartDate: '2024-11-05 08:00:00',
+            announceEndDate: '2024-11-08 00:00:00',
+            rankStartDate: '2024-11-06 12:00:00',
+            rankEndDate: '2024-11-07 18:00:00',
             participants: 4557,
+            totalStreams: 39016,
             image: require('../images/pictures/artie-5ive-cover.jpg'),
             song: {
                 title: 'MILANO TESTAROSSA (feat. Guè)',
