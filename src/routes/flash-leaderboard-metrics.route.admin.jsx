@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import NavbarBackOnly from '../components/navbar-back-only.component'
 import ContainerDefault from '../layout/container-default.layout'
@@ -6,9 +7,13 @@ import WidgetMetricFlashLeaderboard from '../components/widget-metric-flash-lead
 import TextTitle from '../components/text-title.component'
 
 
-const FlashLeaderboardsAdminRoute = () => {
+const FlashLeaderboardMetricsAdminRoute = () => {
 
     const navigate = useNavigate()
+    const location = useLocation()
+    const { leaderboardId } = location.state || {}
+
+    console.log(leaderboardId)
 
     const numberFanFlashLeaderboards = 2400
     const streamGenerated = 4500
@@ -54,4 +59,4 @@ const FlashLeaderboardsAdminRoute = () => {
   )
 }
 
-export default FlashLeaderboardsAdminRoute
+export default FlashLeaderboardMetricsAdminRoute

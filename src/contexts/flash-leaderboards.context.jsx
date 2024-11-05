@@ -113,10 +113,10 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             id: 2,
             artistId: 3,
             announceMessage: 'Sta per aprire la classifica flash di Artie 5ive',
-            announceStartDate: '2024-11-05 08:00:00',
+            announceStartDate: '2024-10-05 08:00:00',
             announceEndDate: '2024-11-08 00:00:00',
-            rankStartDate: '2024-11-06 12:00:00',
-            rankEndDate: '2024-11-07 18:00:00',
+            rankStartDate: '2024-10-06 12:00:00',
+            rankEndDate: '2024-10-07 18:00:00',
             participants: 4557,
             totalStreams: 39016,
             image: require('../images/pictures/artie-5ive-cover.jpg'),
@@ -125,6 +125,110 @@ export const FlashLeaderboardsProvider = ({ children }) => {
                 url: 'https://open.spotify.com/intl-it/track/5zVQoMHyELfcHYviXDao3I'
             },
             album: null,
+            badges: [
+                {
+                    position: 1,
+                    image: require('../images/illustrations/GOLD.png')
+                },{
+                    position: 2,
+                    image: require('../images/illustrations/SILVER.png')
+                },{
+                    position: 3,
+                    image: require('../images/illustrations/BRONZE.png')
+                },{
+                    position: 4,
+                    image: require('../images/illustrations/GENERIC.png')
+                }
+            ],
+            leaderboard: [
+                {
+                    image: require('../images/pictures/fan-4.jpg'),
+                    username: 'Danny Snatch',
+                    points: 176,
+                    position: 1
+                },{
+                    image: require('../images/pictures/fan-3.jpg'),
+                    username: 'Lil kid __',
+                    points: 158,
+                    position: 2
+                },{
+                    image: require('../images/pictures/fan-5.jpg'),
+                    username: 'Polly Lolly',
+                    points: 146,
+                    position: 3
+                },{
+                    image: require('../images/pictures/fan-9.jpg'),
+                    username: 'kevin alfa',
+                    points: 121,
+                    position: 4
+                },{
+                    image: require('../images/pictures/fan-1.jpg'),
+                    username: 'The King',
+                    points: 99,
+                    position: 5
+                },{
+                    image: require('../images/pictures/fan-7.jpg'),
+                    username: '_freak 3x_',
+                    points: 82,
+                    position: 6
+                },{
+                    image: require('../images/pictures/fan-6.jpg'),
+                    username: 'Kop Kalisti',
+                    points: 74,
+                    position: 7
+                },{
+                    image: require('../images/pictures/fan-8.jpg'),
+                    username: 'craft andG',
+                    points: 54,
+                    position: 8
+                },{
+                    image: require('../images/pictures/fan-2.jpg'),
+                    username: 'Big Law ::',
+                    points: 32,
+                    position: 9
+                },{
+                    image: require('../images/pictures/fan-1.jpg'),
+                    username: 'skusku78',
+                    points: 31,
+                    position: 10
+                },{
+                    image: require('../images/pictures/fan-7.jpg'),
+                    username: '_blue_',
+                    points: 27,
+                    position: 11
+                },{
+                    image: require('../images/pictures/fan-6.jpg'),
+                    username: 'jack Mario',
+                    points: 22,
+                    position: 12
+                },{
+                    image: require('../images/pictures/fan-8.jpg'),
+                    username: 'gianfranco',
+                    points: 19,
+                    position: 13
+                },{
+                    image: require('../images/pictures/fan-2.jpg'),
+                    username: 'gremy',
+                    points: 13,
+                    position: 14
+                }
+            ]
+        }, {
+            id: 3,
+            artistId: 3,
+            announceMessage: 'Sta per aprire la classifica flash di Artie 5ive',
+            announceStartDate: '2024-11-05 08:00:00',
+            announceEndDate: '2024-11-08 00:00:00',
+            rankStartDate: '2024-11-06 12:00:00',
+            rankEndDate: '2024-11-07 18:00:00',
+            participants: 4557,
+            totalStreams: 39016,
+            image: require('../images/pictures/artie-5ive-albv-cover.jpeg'),
+            song: null,
+            album: {
+                title: 'ASPETTANDO LA BELLA VITA',
+                url: 'https://open.spotify.com/intl-it/album/7kPBwGRrSCDXGUuxcD6AWb?si=i0JT4VCMT7Gc97ERLfFA1w'
+            },
             badges: [
                 {
                     position: 1,
