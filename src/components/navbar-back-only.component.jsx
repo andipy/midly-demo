@@ -13,4 +13,4 @@ const NavbarBackOnly = ({ onClick }) => {
     )
 }
 
-export default NavbarBackOnly;
+export default NavbarBackOnly
