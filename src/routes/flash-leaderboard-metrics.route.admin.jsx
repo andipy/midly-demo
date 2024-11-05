@@ -19,7 +19,7 @@ const FlashLeaderboardMetricsAdminRoute = () => {
 
     const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
 
-    const leaderboard = flashLeaderboards.find(lb => lb.id === leaderboardId);
+    const leaderboard = flashLeaderboards.find(lb => lb.id === leaderboardId)
 
     const numberFanFlashLeaderboards = leaderboard.participants
     const streamGenerated = leaderboard.totalStreams
