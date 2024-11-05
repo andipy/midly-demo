@@ -31,12 +31,6 @@ const FlashLeaderboardsAdminRoute = () => {
         return diffA - diffB 
     })
 
-    const sortedLeaderboards = filteredLeaderboards.sort((a, b) => {
-        const diffA = Math.abs(new Date(a.rankStartDate) - now)
-        const diffB = Math.abs(new Date(b.rankStartDate) - now)
-        return diffA - diffB 
-    })
-
   return (
     <>
         <NavbarDefault />
