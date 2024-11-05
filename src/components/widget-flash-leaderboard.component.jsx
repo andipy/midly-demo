@@ -2,12 +2,17 @@ import { useState, useEffect } from 'react'
 import CountdownFlashLeaderboards from './countdown-flash-leaderboards.component'
 const WidgetFlashLeaderboard = ({leaderboard, type, artistName, title, onClick}) => {
 
-  const [started, setStarted] = useState(true)
+  const [started, setStarted] = useState()
 
   useEffect(() => {
-    const now = Date.now()
-    const start = new Date(leaderboard.rankStartDate)
-    setStarted(now >= start) 
+    const calculateTimeRemaining = () => {
+      const now = Date.now()
+      const start = new Date(leaderboard.rankStartDate)
+      const startParsed = start.getTime()
+      setStarted(now >= startParsed)
+    }
+    const interval = setInterval(calculateTimeRemaining, 1000)
+    return () => clearInterval(interval)
   }, [leaderboard.rankStartDate])
   
   return (    
