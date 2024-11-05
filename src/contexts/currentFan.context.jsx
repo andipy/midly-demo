@@ -14,7 +14,7 @@ export const CurrentFanProvider = ({ children }) => {
         birthdate: '01-09-2002',
         genre: 'UOMO',
         cellphone: '',
-        adress: {
+        address: {
             name: '',
             surname: '',
             strada: '',

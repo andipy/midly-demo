@@ -7,14 +7,14 @@ import ContainerDefault from '../layout/container-default.layout'
 const UserInfoFieldModifyRoute = () => {
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const [newValue, setNewValue] = useState('')
-    const [adress, setAdress] = useState({
-        name: currentFan.adress?.name || '',
-        surname: currentFan.adress?.surname || '',
-        strada: currentFan.adress?.strada || '',
-        zipcode: currentFan.adress?.zipcode || '',
-        city: currentFan.adress?.city || '',
-        province: currentFan.adress?.province || '',
-        state: currentFan.adress?.state || '',
+    const [address, setAddress] = useState({
+        name: currentFan.address?.name || '',
+        surname: currentFan.address?.surname || '',
+        strada: currentFan.address?.strada || '',
+        zipcode: currentFan.address?.zipcode || '',
+        city: currentFan.address?.city || '',
+        province: currentFan.address?.province || '',
+        state: currentFan.address?.state || '',
     })
 
     const location = useLocation()
@@ -28,7 +28,7 @@ const UserInfoFieldModifyRoute = () => {
         BIRTHDATE: 'birthdate',
         GENRE: 'genre',
         CELLPHONE: 'cellphone',
-        ADDRESS: 'adress'
+        ADDRESS: 'address'
     }[field]
 
     const fieldLabels = {
@@ -44,11 +44,11 @@ const UserInfoFieldModifyRoute = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        if (fieldName === 'adress') {
+        if (fieldName === 'address') {
             setCurrentFan((prev) => ({
                 ...prev,
-                adress: {
-                    ...adress,  
+                address: {
+                    ...address,  
                 },
             }))
         } else {
@@ -63,8 +63,8 @@ const UserInfoFieldModifyRoute = () => {
 
     const handleAddressChange = (e) => {
         const { name, value } = e.target
-        setAdress((prevAdress) => ({
-            ...prevAdress,
+        setAddress((prevAddress) => ({
+            ...prevAddress,
             [name]: value,
         }))
     }
@@ -126,8 +126,8 @@ const UserInfoFieldModifyRoute = () => {
                                     className='bg-dark-soft white letter-spacing-1 border-radius-08'
                                     type='text'
                                     name={fieldKey}
-                                    placeholder={adress[fieldKey]}
-                                    value={adress[fieldKey]}
+                                    placeholder={address[fieldKey]}
+                                    value={address[fieldKey]}
                                     onChange={handleAddressChange}
                                     required
                                 />

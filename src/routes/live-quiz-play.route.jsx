@@ -16,10 +16,12 @@ const LiveQuizPlayRoute = () => {
     const { quizzes, setQuizzes } = useContext(LiveQuizContext)
 
     const quiz = quizzes.find(quiz => quiz.quizId === id)
-    const songChunk = quiz.songChunks.find(chunk => chunk.chunkId === '1')
+    const songChunk = quiz.songChunks.find(chunk => chunk.chunkId === 1)
 
     const [timeLeft, setTimeLeft] = useState(60)
     const [userAnswer, setUserAnswer] = useState('')
+
+    console.log(id, quiz, songChunk)
 
     const correctAnswer = songChunk.correctResponse
 

@@ -26,7 +26,7 @@ const UserInfoFieldRoute = () => {
             case 'CELLPHONE':
                 return renderField('CELLULARE', currentFan.cellphone, 'Aggiungi il tuo cellulare!');
             case 'ADDRESS':
-                return renderAddressFields(currentFan.adress);
+                return renderAddressFields(currentFan.address);
             default:
                 return (
                     <>

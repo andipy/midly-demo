@@ -118,8 +118,8 @@ const UserInfoRoute = () => {
                             INDIRIZZO
                         </label>
                         <a className='d-flex-row j-c-space-between mb-xs-3 w-100' href=''>
-                            {currentFan.adress.strada ? 
-                                <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.adress.strada}</h6>
+                            {currentFan.address.strada ? 
+                                <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{currentFan.address.strada}</h6>
                             : 
                                 <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Aggiungi il tuo indirizzo!</h6>
                             }
