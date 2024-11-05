@@ -44,6 +44,8 @@ const CountdownFlashLeaderboards = ({ announceStartDate, rankStartDate, rankEndD
 
                 setTimeRemaining({ days, hours, minutes, seconds })
             } else {
+                setEnded(true)
+                setLabel('Classifica flash terminata')
                 setTimeRemaining({ days: 0, hours: 0, minutes: 0, seconds: 0 })
             }
         }

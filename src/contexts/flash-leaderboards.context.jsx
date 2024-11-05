@@ -12,7 +12,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             announceStartDate: '2024-11-05 08:00:00',
             announceEndDate: '2024-11-07 00:00:00',
             rankStartDate: '2024-11-05 12:00:00',
-            rankEndDate: '2024-11-05 18:00:00',
+            rankEndDate: '2024-11-05 17:17:00',
             participants: 7139,
             totalStreams: 108712,
             image: require('../images/pictures/thasup-album-cover.jpeg'),
