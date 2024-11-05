@@ -115,7 +115,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             announceMessage: 'Sta per aprire la classifica flash di Artie 5ive',
             announceStartDate: '2024-11-05 08:00:00',
             announceEndDate: '2024-11-09 00:00:00',
-            rankStartDate: '2024-11-05 19:20:00',
+            rankStartDate: '2024-11-05 19:30:00',
             rankEndDate: '2024-11-06 20:00:00',
             participants: 4557,
             totalStreams: 39016,

@@ -1,10 +1,8 @@
 import { useContext } from 'react'
-import { useNavigate, useLocation, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context'
 import { ArtistsContext } from '../contexts/artists.context'
-
-
 
 import NavbarDefault from '../components/navbar-default.component'
 import ContainerDefault from '../layout/container-default.layout'
@@ -47,6 +45,10 @@ const FlashLeaderboardsAdminRoute = () => {
                     )
                 })}
             </section>
+
+            <Link to='/'>
+                <p className='lime-400 t-align-center mt-xs-10 w-100'>Navigate back</p>
+            </Link>
         </ContainerDefault>
     </>
   )
