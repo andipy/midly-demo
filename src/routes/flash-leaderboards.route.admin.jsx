@@ -40,7 +40,7 @@ const FlashLeaderboardsAdminRoute = () => {
     <>
     <NavbarDefault />
     <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
-        <TextTitle title={'I tuoi preferiti'} />
+        <TextTitle title={'Statistiche'} />
         <p className="fsize-xs-3 f-w-300 grey-200 letter-spacing-1 mt-xs-2">
             Totali per le classifiche flash:
         </p>
