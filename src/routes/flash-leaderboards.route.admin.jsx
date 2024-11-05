@@ -25,13 +25,19 @@ const FlashLeaderboardsAdminRoute = () => {
         return now >= announceStartDate && now <= announceEndDate
     })
 
+    const sortedLeaderboards = filteredLeaderboards.sort((a, b) => {
+        const diffA = Math.abs(new Date(a.rankStartDate) - now)
+        const diffB = Math.abs(new Date(b.rankStartDate) - now)
+        return diffA - diffB 
+    })
+
   return (
     <>
         <NavbarDefault />
         <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
             <TextTitle title={'Classifiche flash'} />
             <section id='leaderboards' className='mt-xs-8'>
-                {filteredLeaderboards.map(leaderboard => {
+                {sortedLeaderboards.map(leaderboard => {
                     const artist = artists.find(artist => artist.id === leaderboard.artistId)
                     const title = leaderboard.album ? leaderboard.album.title : leaderboard.song.title
                     const type = leaderboard.album ? 'ALBUM' : 'BRANO'

@@ -19,7 +19,7 @@ const FlashLeaderboardMetricsAdminRoute = () => {
 
     const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
 
-    const leaderboard = flashLeaderboards.find(lb => lb.id === leaderboardId);
+    const leaderboard = flashLeaderboards.find(lb => lb.id === leaderboardId)
 
     const numberFanFlashLeaderboards = leaderboard.participants
     const streamGenerated = leaderboard.totalStreams
@@ -51,7 +51,7 @@ const FlashLeaderboardMetricsAdminRoute = () => {
     <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
         <TextTitle title={'Statistiche'} />
         <p className='fsize-xs-3 f-w-300 grey-200 letter-spacing-1 mt-xs-2'>
-            Totali per le classifiche flash:
+            Totali per la classifica flash:
         </p>
         <section className='mt-xs-2 mx-xs-auto'>
             {metrics?.map(metric => {
