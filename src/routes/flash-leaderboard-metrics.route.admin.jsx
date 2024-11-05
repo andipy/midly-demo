@@ -1,5 +1,9 @@
+import { useContext } from 'react'
+
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+
+import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context'
 
 import NavbarBackOnly from '../components/navbar-back-only.component'
 import ContainerDefault from '../layout/container-default.layout'
@@ -13,13 +17,15 @@ const FlashLeaderboardMetricsAdminRoute = () => {
     const location = useLocation()
     const { leaderboardId } = location.state || {}
 
-    console.log(leaderboardId)
+    const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
 
-    const numberFanFlashLeaderboards = 2400
-    const streamGenerated = 4500
+    const leaderboard = flashLeaderboards.find(lb => lb.id === leaderboardId);
+
+    const numberFanFlashLeaderboards = leaderboard.participants
+    const streamGenerated = leaderboard.totalStreams
 
     const calcRatio = () => {
-        const result = numberFanFlashLeaderboards / streamGenerated
+        const result = streamGenerated / numberFanFlashLeaderboards 
         return result
     }
 

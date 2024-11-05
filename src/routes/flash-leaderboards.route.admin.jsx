@@ -17,13 +17,13 @@ const FlashLeaderboardsAdminRoute = () => {
     const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
     const { artists } = useContext(ArtistsContext)
 
-    const now = new Date();
+    const now = new Date()
 
     const filteredLeaderboards = flashLeaderboards.filter(leaderboard => {
-        const announceStartDate = new Date(leaderboard.announceStartDate);
-        const announceEndDate = new Date(leaderboard.announceEndDate);
-        return now >= announceStartDate && now <= announceEndDate;
-    });
+        const announceStartDate = new Date(leaderboard.announceStartDate)
+        const announceEndDate = new Date(leaderboard.announceEndDate)
+        return now >= announceStartDate && now <= announceEndDate
+    })
 
   return (
     <>
@@ -32,9 +32,9 @@ const FlashLeaderboardsAdminRoute = () => {
             <TextTitle title={'Classifiche flash'} />
             <section id='leaderboards' className='mt-xs-8'>
                 {filteredLeaderboards.map(leaderboard => {
-                    const artist = artists.find(artist => artist.id === leaderboard.artistId);
-                    const title = leaderboard.album ? leaderboard.album.title : leaderboard.song.title;
-                    const type = leaderboard.album ? 'ALBUM' : 'BRANO';
+                    const artist = artists.find(artist => artist.id === leaderboard.artistId)
+                    const title = leaderboard.album ? leaderboard.album.title : leaderboard.song.title
+                    const type = leaderboard.album ? 'ALBUM' : 'BRANO'
                     return (
                         <WidgetFlashLeaderboard leaderboard={leaderboard} type={type} artistName={artist.artistName} title={title} onClick={() => navigate('/flash-leaderboard-metrics', { state: { leaderboardId: leaderboard.id } })} key={leaderboard.id} />
                     )
