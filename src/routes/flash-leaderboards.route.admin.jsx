@@ -8,6 +8,8 @@ import NavbarDefault from '../components/navbar-default.component'
 import ContainerDefault from '../layout/container-default.layout'
 import TextTitle from '../components/text-title.component'
 import WidgetFlashLeaderboard from '../components/widget-flash-leaderboard.component'
+import WidgetFlashLeaderboardComplete from '../components/widget-complete-flash-leaderboard.component'
+
 
 const FlashLeaderboardsAdminRoute = () => {
 
@@ -36,12 +38,20 @@ const FlashLeaderboardsAdminRoute = () => {
             <TextTitle title={'Dashboard admin classifiche flash'} />
             <p className='mt-xs-4 red-300'><span className='f-w-700'>⚠️ ATTENZIONE</span>: non divulgare questo link per alcun motivo a nessuno fuori dal team stretto di MIDLY.</p>
             <section id='leaderboards' className='mt-xs-4'>
-                {sortedLeaderboards.map(leaderboard => {
+                {/* {sortedLeaderboards.map(leaderboard => {
                     const artist = artists.find(artist => artist.id === leaderboard.artistId)
                     const title = leaderboard.album ? leaderboard.album.title : leaderboard.song.title
                     const type = leaderboard.album ? 'ALBUM' : 'BRANO'
                     return (
                         <WidgetFlashLeaderboard leaderboard={leaderboard} type={type} artistName={artist.artistName} title={title} onClick={() => navigate('/flash-leaderboard-metrics', { state: { leaderboardId: leaderboard.id } })} key={leaderboard.id} />
+                    )
+                })} */}
+                {sortedLeaderboards.map(leaderboard => {
+                    const artist = artists.find(artist => artist.id === leaderboard.artistId)
+                    const title = leaderboard.album ? leaderboard.album.title : leaderboard.song.title
+                    const type = leaderboard.album ? 'ALBUM' : 'BRANO'
+                    return (
+                        <WidgetFlashLeaderboardComplete leaderboard={leaderboard} type={type} artistName={artist.artistName} title={title}  key={leaderboard.id} />
                     )
                 })}
             </section>
