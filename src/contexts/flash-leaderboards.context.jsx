@@ -9,10 +9,10 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             id: 1,
             artistId: 2,
             announceMessage: 'Sta per aprire la classifica flash di thasup',
-            announceStartDate: '2024-11-06 10:00:00',
-            announceEndDate: '2024-11-09 00:00:00',
-            rankStartDate: '2024-11-06 14:00:00',
-            rankEndDate: '2024-11-07 00:00:00',
+            announceStartDate: '2024-11-06 13:00:00',
+            announceEndDate: '2024-11-06 13:39:00',
+            rankStartDate: '2024-11-06 13:36:50',
+            rankEndDate: '2024-11-06 13:38:00',
             participants: 7139,
             totalStreams: 108712,
             image: require('../images/pictures/thasup-album-cover.jpeg'),
@@ -117,8 +117,8 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             announceEndDate: '2024-11-09 00:00:00',
             rankStartDate: '2024-11-05 19:30:00',
             rankEndDate: '2024-11-06 20:00:00',
-            participants: 4557,
-            totalStreams: 39016,
+            participants: 18557,
+            totalStreams: 390167,
             image: require('../images/pictures/artie-5ive-cover.jpg'),
             song: {
                 title: 'MILANO TESTAROSSA (feat. Guè)',
@@ -215,19 +215,76 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             ]
         }, {
             id: 3,
-            artistId: 3,
-            announceMessage: 'Sta per aprire la classifica flash di Artie 5ive',
+            artistId: 1,
+            announceMessage: 'Sta per aprire la classifica flash di Lazza',
             announceStartDate: '2024-11-05 08:00:00',
             announceEndDate: '2024-11-08 00:00:00',
             rankStartDate: '2024-11-06 12:00:00',
             rankEndDate: '2024-11-07 18:00:00',
             participants: 4557,
             totalStreams: 39016,
-            image: require('../images/pictures/artie-5ive-albv-cover.jpeg'),
+            image: require('../images/pictures/lazza.jpeg'),
             song: null,
             album: {
-                title: 'ASPETTANDO LA BELLA VITA',
-                url: 'https://open.spotify.com/intl-it/album/7kPBwGRrSCDXGUuxcD6AWb?si=i0JT4VCMT7Gc97ERLfFA1w'
+                title: 'LOCURA',
+                url: 'https://open.spotify.com/intl-it/album/0wYy8LTZuhiAyvchPppHPj',
+                streamDetails: [
+                    {
+                        songTitle: "CANZONE D'ODIO (feat. Lil Baby)",
+                        streamCount: 99876
+                    },{
+                        songTitle: "FENTANYL (feat. Sfera Ebbasta)",
+                        streamCount: 89712
+                    },{
+                        songTitle: "VERDI NEI VIOLA",
+                        streamCount: 84321
+                    },{
+                        songTitle: "ABITUDINE",
+                        streamCount: 79321
+                    },{
+                        songTitle: "GHETTO SUPERSTAR (feat. Ghali)",
+                        streamCount: 71098
+                    },{
+                        songTitle: "-3 (PERDERE IL VOLO) (feat. Marracash)",
+                        streamCount: 62341
+                    },{
+                        songTitle: "CASANOVA (feat. Artie 5ive)",
+                        streamCount: 59001
+                    },{
+                        songTitle: "MEZZE VERITÀ (feat. Kid Yugi)",
+                        streamCount: 54636
+                    },{
+                        songTitle: "HOT",
+                        streamCount: 44771
+                    },{
+                        songTitle: "CERTE COSE",
+                        streamCount: 39831
+                    },{
+                        songTitle: "MALE DA VENDERE",
+                        streamCount: 28119
+                    },{
+                        songTitle: "GIORNO DA CANI",
+                        streamCount: 19614
+                    },{
+                        songTitle: "DOLCEVITA",
+                        streamCount: 16028
+                    },{
+                        songTitle: "ESTRANEO (feat. Guè)",
+                        streamCount: 14100
+                    },{
+                        songTitle: "SAFARI",
+                        streamCount: 9122
+                    },{
+                        songTitle: "BUIO DAVANTI",
+                        streamCount: 4320
+                    },{
+                        songTitle: "ZERI IN PIÙ (LOCURA) (feat. Laura Pausini)",
+                        streamCount: 1299
+                    },{
+                        songTitle: "100 MESSAGGI",
+                        streamCount: 667
+                    }
+                ]
             },
             badges: [
                 {

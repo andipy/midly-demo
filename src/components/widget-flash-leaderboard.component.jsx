@@ -6,10 +6,10 @@ const WidgetFlashLeaderboard = ({leaderboard, type, artistName, title, onClick})
 
   useEffect(() => {
     const calculateTimeRemaining = () => {
-      const now = Date.now()
-      const start = new Date(leaderboard.rankStartDate)
-      const startParsed = start.getTime()
-      setStarted(now >= startParsed)
+        const now = Date.now()
+        const start = new Date(leaderboard.rankStartDate)
+        const startParsed = start.getTime()
+        setStarted(now >= startParsed)
     }
     const interval = setInterval(calculateTimeRemaining, 1000)
     return () => clearInterval(interval)

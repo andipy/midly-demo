@@ -23,7 +23,7 @@ const CountdownFlashLeaderboards = ({ announceStartDate, rankStartDate, rankEndD
         const updateLabel = () => {
             if (now > convAnnounceStartDate && now < convRankStartDate) {
                 setTargetDate(rankStartDate)
-                setLabel('Inizia tra: ')
+                setLabel('Classifica flash inizia tra: ')
             } else if (now > convAnnounceStartDate && now < convRankEndDate) {
                 setTargetDate(rankEndDate)
                 setLabel('Termina tra:')

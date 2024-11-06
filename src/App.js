@@ -40,8 +40,6 @@ import LiveQuizPlayRoute from './routes/live-quiz-play.route'
 import LiveQuizResultRoute from './routes/live-quiz-result.route'
 import RegistrationRoute from './routes/registration.route'
 import RecoverPasswordRoute from './routes/recover-password.route'
-import FlashLeaderboardMetricsAdminRoute from './routes/flash-leaderboard-metrics.route.admin'
-import FlashLeaderboardsAdminRoute from './routes/flash-leaderboards.route.admin'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -64,6 +62,11 @@ import FanclubTermsRoute from './routes/fanclub-terms.route.artist'
 import FanclubInfoRoute from './routes/fanclub-info.route.artist'
 import FanclubBillingInfoRoute from './routes/fanclub-billing-info.route.artist'
 import FanclubPaymentInfoRoute from './routes/fanclub-payment-info.route.artist'
+
+//ADMIN ROUTES
+import FlashLeaderboardMetricsRoute from './routes/flash-leaderboard-metrics.route.admin'
+import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
+import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics-detail.route.admin'
 
 const router = createBrowserRouter([
   {
@@ -221,10 +224,13 @@ const router = createBrowserRouter([
     element: <RecoverPasswordRoute />
   },{
     path: '/flash-leaderboard-metrics',
-    element: <FlashLeaderboardMetricsAdminRoute />
-  }, {
-    path: '/flash-leaderboards-admin',
-    element: <FlashLeaderboardsAdminRoute />
+    element: <FlashLeaderboardMetricsRoute />
+  },{
+    path: '/flash-leaderboards-dashboard',
+    element: <FlashLeaderboardsDashboardRoute />
+  },{
+    path: '/flash-leaderboards-dashboard/flash-leaderboard-metrics-detail',
+    element: <FlashLeaderboardMetricsDetailRoute />
   }
 ])
 

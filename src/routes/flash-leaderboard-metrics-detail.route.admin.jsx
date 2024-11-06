@@ -11,11 +11,11 @@ import WidgetMetricFlashLeaderboard from '../components/widget-metric-flash-lead
 import TextTitle from '../components/text-title.component'
 
 
-const FlashLeaderboardMetricsRoute = () => {
+const FlashLeaderboardMetricsDetailRoute = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    const { leaderboardId } = location.state || {}
+    const { leaderboardId, artistName } = location.state || {}
 
     const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
 
@@ -26,7 +26,8 @@ const FlashLeaderboardMetricsRoute = () => {
 
     const calcRatio = () => {
         const result = streamGenerated / numberFanFlashLeaderboards 
-        return result
+        const rounded = Math.round(result * 10) / 10
+        return rounded
     }
 
     const metrics = [
@@ -48,21 +49,15 @@ const FlashLeaderboardMetricsRoute = () => {
   return (
     <>
     <NavbarBackOnly onClick={() => navigate(-1)} />
-    <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
-        <TextTitle title={'Statistiche'} />
-        <p className='fsize-xs-3 f-w-300 grey-200 letter-spacing-1 mt-xs-2'>
-            Totali per la classifica flash:
-        </p>
+    <ContainerDefault containerSpecificStyle={'pb-xs-12'}>
+        <TextTitle title={`${leaderboard.album ? leaderboard.album.title : leaderboard.song.title} - ${artistName}`} />
+        <p className='fsize-xs-6 f-w-300 grey-100 letter-spacing-1 mt-xs-2'>Split per brano</p>
         <section className='mt-xs-2 mx-xs-auto'>
-            {metrics?.map(metric => {
-                return (
-                    <WidgetMetricFlashLeaderboard widgetLabel={metric.widgetLabel} widgetValue={metric.widgetValue} key={metric.id}/>
-                )
-            })}
+            {/* map songs of the albums here */}
         </section>
     </ContainerDefault>
     </>
   )
 }
 
-export default FlashLeaderboardMetricsRoute
+export default FlashLeaderboardMetricsDetailRoute

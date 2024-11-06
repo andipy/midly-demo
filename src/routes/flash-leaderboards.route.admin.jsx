@@ -11,7 +11,7 @@ import WidgetFlashLeaderboard from '../components/widget-flash-leaderboard.compo
 import WidgetFlashLeaderboardComplete from '../components/widget-complete-flash-leaderboard.component'
 
 
-const FlashLeaderboardsAdminRoute = () => {
+const FlashLeaderboardsDashboardRoute = () => {
 
     const navigate = useNavigate()
     const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
@@ -34,7 +34,7 @@ const FlashLeaderboardsAdminRoute = () => {
   return (
     <>
         <NavbarDefault />
-        <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+        <ContainerDefault containerSpecificStyle={'pb-xs-12'}>
             <TextTitle title={'Dashboard admin classifiche flash'} />
             <p className='mt-xs-4 red-300'><span className='f-w-700'>⚠️ ATTENZIONE</span>: non divulgare questo link per alcun motivo a nessuno fuori dal team stretto di MIDLY.</p>
             <section id='leaderboards' className='mt-xs-4'>
@@ -51,7 +51,7 @@ const FlashLeaderboardsAdminRoute = () => {
                     const title = leaderboard.album ? leaderboard.album.title : leaderboard.song.title
                     const type = leaderboard.album ? 'ALBUM' : 'BRANO'
                     return (
-                        <WidgetFlashLeaderboardComplete leaderboard={leaderboard} type={type} artistName={artist.artistName} title={title}  key={leaderboard.id} />
+                        <WidgetFlashLeaderboardComplete leaderboard={leaderboard} type={type} artistName={artist.artistName} title={title} key={leaderboard.id} />
                     )
                 })}
             </section>
@@ -64,4 +64,4 @@ const FlashLeaderboardsAdminRoute = () => {
   )
 }
 
-export default FlashLeaderboardsAdminRoute
+export default FlashLeaderboardsDashboardRoute
