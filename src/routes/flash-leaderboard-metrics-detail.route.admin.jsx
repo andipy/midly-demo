@@ -21,30 +21,11 @@ const FlashLeaderboardMetricsDetailRoute = () => {
 
     const leaderboard = flashLeaderboards.find(lb => lb.id === leaderboardId)
 
-    const numberFanFlashLeaderboards = leaderboard.participants
-    const streamGenerated = leaderboard.totalStreams
+    const songs = leaderboard.album.streamDetails
 
-    const calcRatio = () => {
-        const result = streamGenerated / numberFanFlashLeaderboards 
-        const rounded = Math.round(result * 10) / 10
-        return rounded
+    const formatNumber = (value) => {
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")
     }
-
-    const metrics = [
-        {
-            id: 1,
-            widgetLabel: 'STREAM GENERATI',
-            widgetValue: streamGenerated
-        },{
-            id: 2,
-            widgetLabel: 'FAN IN CLASSIFICA FLASH',
-            widgetValue: numberFanFlashLeaderboards,
-        },{
-            id: 3,
-            widgetLabel: 'ASCOLTI MEDI PER FAN',
-            widgetValue: calcRatio(),
-        }
-    ]
 
   return (
     <>
@@ -53,7 +34,16 @@ const FlashLeaderboardMetricsDetailRoute = () => {
         <TextTitle title={`${leaderboard.album ? leaderboard.album.title : leaderboard.song.title} - ${artistName}`} />
         <p className='fsize-xs-6 f-w-300 grey-100 letter-spacing-1 mt-xs-2'>Split per brano</p>
         <section className='mt-xs-2 mx-xs-auto'>
-            {/* map songs of the albums here */}
+            {songs?.map((song, index) => (
+            <div className='d-flex-col w-100'>
+                {index > 0 && <hr />}
+                <div className='d-flex-row w-100 j-c-space-between mt-xs-2 mb-xs-2'>
+                    <p className='fsize-xs-0 grey-100 letter-spacing-1 no-shrink'>{index+1}. {song.songTitle}</p>
+                    <p className='fsize-xs-1 grey-100'>{formatNumber(song.streamCount)}</p>
+                </div>
+            </div>
+            ))}
+            
         </section>
     </ContainerDefault>
     </>
