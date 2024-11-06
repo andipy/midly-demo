@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import CountdownFlashLeaderboards from './countdown-flash-leaderboards.component'
 
-const WidgetFlashLeaderboardComplete = ({leaderboard, type, artistName, title}) => {
+const WidgetFlashLeaderboardDashboard = ({leaderboard, type, artistName, title}) => {
 
   const navigate = useNavigate()
   
@@ -90,4 +90,4 @@ const WidgetFlashLeaderboardComplete = ({leaderboard, type, artistName, title}) 
     )
 }
 
-export default WidgetFlashLeaderboardComplete
+export default WidgetFlashLeaderboardDashboard

@@ -64,7 +64,6 @@ import FanclubBillingInfoRoute from './routes/fanclub-billing-info.route.artist'
 import FanclubPaymentInfoRoute from './routes/fanclub-payment-info.route.artist'
 
 //ADMIN ROUTES
-import FlashLeaderboardMetricsRoute from './routes/flash-leaderboard-metrics.route.admin'
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
 import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics-detail.route.admin'
 
@@ -222,9 +221,6 @@ const router = createBrowserRouter([
   },{
     path: '/recover-password',
     element: <RecoverPasswordRoute />
-  },{
-    path: '/flash-leaderboard-metrics',
-    element: <FlashLeaderboardMetricsRoute />
   },{
     path: '/flash-leaderboards-dashboard',
     element: <FlashLeaderboardsDashboardRoute />

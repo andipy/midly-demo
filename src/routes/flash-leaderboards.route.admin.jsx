@@ -7,8 +7,7 @@ import { ArtistsContext } from '../contexts/artists.context'
 import NavbarDefault from '../components/navbar-default.component'
 import ContainerDefault from '../layout/container-default.layout'
 import TextTitle from '../components/text-title.component'
-import WidgetFlashLeaderboard from '../components/widget-flash-leaderboard.component'
-import WidgetFlashLeaderboardComplete from '../components/widget-complete-flash-leaderboard.component'
+import WidgetFlashLeaderboardDashboard from '../components/widget-flash-leaderboard-dashboard.component'
 
 
 const FlashLeaderboardsDashboardRoute = () => {
@@ -51,7 +50,7 @@ const FlashLeaderboardsDashboardRoute = () => {
                     const title = leaderboard.album ? leaderboard.album.title : leaderboard.song.title
                     const type = leaderboard.album ? 'ALBUM' : 'BRANO'
                     return (
-                        <WidgetFlashLeaderboardComplete leaderboard={leaderboard} type={type} artistName={artist.artistName} title={title} key={leaderboard.id} />
+                        <WidgetFlashLeaderboardDashboard leaderboard={leaderboard} type={type} artistName={artist.artistName} title={title} key={leaderboard.id} />
                     )
                 })}
             </section>

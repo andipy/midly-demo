@@ -3,12 +3,12 @@ import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 
-import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context'
+import { FlashLeaderboardsContext } from '../../contexts/flash-leaderboards.context'
 
-import NavbarBackOnly from '../components/navbar-back-only.component'
-import ContainerDefault from '../layout/container-default.layout'
-import WidgetMetricFlashLeaderboard from '../components/widget-metric-flash-leaderboard.component'
-import TextTitle from '../components/text-title.component'
+import NavbarBackOnly from '../../components/navbar-back-only.component'
+import ContainerDefault from '../../layout/container-default.layout'
+import WidgetMetricFlashLeaderboard from '../../components/archived/widget-metric-flash-leaderboard.component'
+import TextTitle from '../../components/text-title.component'
 
 
 const FlashLeaderboardMetricsRoute = () => {
