@@ -40,7 +40,12 @@ export const CurrentFanProvider = ({ children }) => {
         leaderboardStats: {
             position: 8,
             points: 111
-        }
+        },
+        preferredArtists : [
+            {artistId: 1},
+            {artistId: 7},
+            {artistId: 10}
+        ]
     })
 
     return (

@@ -40,6 +40,7 @@ import LiveQuizPlayRoute from './routes/live-quiz-play.route'
 import LiveQuizResultRoute from './routes/live-quiz-result.route'
 import RegistrationRoute from './routes/registration.route'
 import RecoverPasswordRoute from './routes/recover-password.route'
+import Search2Route from './routes/search-2.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -227,6 +228,9 @@ const router = createBrowserRouter([
   },{
     path: '/flash-leaderboards-admin/flash-leaderboard-metrics-detail',
     element: <FlashLeaderboardMetricsDetailRoute />
+  }, {
+    path: '/search-2',
+    element: <Search2Route />
   }
 ])
 
