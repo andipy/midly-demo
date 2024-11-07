@@ -7,7 +7,7 @@ import { ArtistsContext } from '../contexts/artists.context'
 import NavbarDefault from '../components/navbar-default.component'
 import ContainerDefault from '../layout/container-default.layout'
 import TextTitle from '../components/text-title.component'
-import WidgetFlashLeaderboardDashboard from '../components/widget-flash-leaderboard-dashboard.component'
+import WidgetFlashLeaderboard from '../components/widget-flash-leaderboard.component.jsx'
 
 
 const FlashLeaderboardsDashboardRoute = () => {
@@ -37,24 +37,24 @@ const FlashLeaderboardsDashboardRoute = () => {
             <TextTitle title={'Dashboard admin classifiche flash'} />
             <p className='mt-xs-4 red-300'><span className='f-w-700'>⚠️ ATTENZIONE</span>: non divulgare questo link per alcun motivo a nessuno fuori dal team stretto di MIDLY.</p>
             <section id='leaderboards' className='mt-xs-4'>
-                {/* {sortedLeaderboards.map(leaderboard => {
+                {sortedLeaderboards.map(leaderboard => {
                     const artist = artists.find(artist => artist.id === leaderboard.artistId)
                     const title = leaderboard.album ? leaderboard.album.title : leaderboard.song.title
                     const type = leaderboard.album ? 'ALBUM' : 'BRANO'
+                    const isAlbum = leaderboard.album ? true : false
                     return (
-                        <WidgetFlashLeaderboard leaderboard={leaderboard} type={type} artistName={artist.artistName} title={title} onClick={() => navigate('/flash-leaderboard-metrics', { state: { leaderboardId: leaderboard.id } })} key={leaderboard.id} />
+                        <WidgetFlashLeaderboard leaderboard={leaderboard} type={type} artistName={artist.artistName} title={title} onClick={() => navigate('/flash-leaderboards-dashboard/flash-leaderboard-metrics-detail', { state: { leaderboardId: leaderboard.id, isAlbum : isAlbum } })} key={leaderboard.id} />
                     )
-                })} */}
-                {sortedLeaderboards.map(leaderboard => {
+                })}
+                {/* {sortedLeaderboards.map(leaderboard => {
                     const artist = artists.find(artist => artist.id === leaderboard.artistId)
                     const title = leaderboard.album ? leaderboard.album.title : leaderboard.song.title
                     const type = leaderboard.album ? 'ALBUM' : 'BRANO'
                     return (
                         <WidgetFlashLeaderboardDashboard leaderboard={leaderboard} type={type} artistName={artist.artistName} title={title} key={leaderboard.id} />
                     )
-                })}
+                })} */}
             </section>
-
             <Link to='/'>
                 <p className='lime-400 t-align-center mt-xs-10 w-100'>Navigate back</p>
             </Link>

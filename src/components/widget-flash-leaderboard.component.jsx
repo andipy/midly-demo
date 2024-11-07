@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import CountdownFlashLeaderboards from '../countdown-flash-leaderboards.component'
+import CountdownFlashLeaderboards from './countdown-flash-leaderboards.component'
 const WidgetFlashLeaderboard = ({leaderboard, type, artistName, title, onClick}) => {
 
   const [started, setStarted] = useState()

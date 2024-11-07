@@ -3,36 +3,40 @@ import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 
-import { FlashLeaderboardsContext } from '../../contexts/flash-leaderboards.context'
+import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context'
 
-import NavbarBackOnly from '../../components/navbar-back-only.component'
-import ContainerDefault from '../../layout/container-default.layout'
-import WidgetMetricFlashLeaderboard from '../../components/archived/widget-metric-flash-leaderboard.component'
-import TextTitle from '../../components/text-title.component'
+import NavbarBackOnly from '../components/navbar-back-only.component'
+import ContainerDefault from '../layout/container-default.layout'
+import WidgetMetricFlashLeaderboard from '../components/widget-metric-flash-leaderboard.component'
+import TextTitle from '../components/text-title.component'
+import WidgetFlashLeaderboardMetricSongs from '../components/widget-flash-leaderboard-metric-song.component'
 
 
 const FlashLeaderboardMetricsRoute = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    const { leaderboardId } = location.state || {}
+    const { leaderboardId, isAlbum } = location.state || {}
+
 
     const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
 
     const leaderboard = flashLeaderboards.find(lb => lb.id === leaderboardId)
+    
 
     const numberFanFlashLeaderboards = leaderboard.participants
     const streamGenerated = leaderboard.totalStreams
 
     const calcRatio = () => {
         const result = streamGenerated / numberFanFlashLeaderboards 
-        return result
+        const rounded = Math.round(result * 10) / 10
+        return rounded
     }
 
     const metrics = [
         {
             id: 1,
-            widgetLabel: 'STREAM GENERATI',
+            widgetLabel: `STREAM ${isAlbum ? "SULL'ALBUM:" : 'SUL BRANO:'}`,
             widgetValue: streamGenerated
         },{
             id: 2,
@@ -60,6 +64,12 @@ const FlashLeaderboardMetricsRoute = () => {
                 )
             })}
         </section>
+        { isAlbum && (
+            
+            <section id='songs' className='mt-xs-2 mx-xs-auto'>
+                <WidgetFlashLeaderboardMetricSongs leaderboardId={leaderboardId} />
+            </section>
+        )}
     </ContainerDefault>
     </>
   )

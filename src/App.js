@@ -65,7 +65,7 @@ import FanclubPaymentInfoRoute from './routes/fanclub-payment-info.route.artist'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
-import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics-detail.route.admin'
+import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics.route.admin'
 
 const router = createBrowserRouter([
   {
