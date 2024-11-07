@@ -12,7 +12,7 @@ import { CurrentArtistProvider } from './contexts/currentArtist.context'
 import { FlashLeaderboardsProvider } from './contexts/flash-leaderboards.context'
 import { LeaderboardsProvider } from './contexts/leaderboards.context'
 import { FanclubsProvider } from './contexts/fanclubs.context'
-import { LiveQuizProvider } from './contexts/live-quiz.context';
+import { LiveQuizProvider } from './contexts/live-quiz.context'
 
 //FAN ROUTES
 import InviteFriendRoute from './routes/invite-friend.route'
@@ -65,7 +65,7 @@ import FanclubPaymentInfoRoute from './routes/fanclub-payment-info.route.artist'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
-import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics.route.admin'
+import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics-detail.route.admin'
 
 const router = createBrowserRouter([
   {
@@ -222,10 +222,10 @@ const router = createBrowserRouter([
     path: '/recover-password',
     element: <RecoverPasswordRoute />
   },{
-    path: '/flash-leaderboards-dashboard',
+    path: '/flash-leaderboards-admin',
     element: <FlashLeaderboardsDashboardRoute />
   },{
-    path: '/flash-leaderboards-dashboard/flash-leaderboard-metrics-detail',
+    path: '/flash-leaderboards-admin/flash-leaderboard-metrics-detail',
     element: <FlashLeaderboardMetricsDetailRoute />
   }
 ])
