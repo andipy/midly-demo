@@ -87,6 +87,18 @@ li {
   transform: rotate(350deg);
 }
 
+.badge-miniatura-container {
+  width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Riduci il badge in una miniatura con un fattore di scala */
+    transform: scale(0.2);  /* Riduce la dimensione al 40% */
+    transform-origin: center;  /* Mantiene il centro fisso */
+}
+
 
 /******************************************/
 /*********** MODALS & SNACKBARS ***********/
@@ -131,6 +143,7 @@ li {
   from{opacity: 0}
   to{opacity: 1}
 }
+
 .snackbar {
   top: -30%;
   left: 50%;
