@@ -44,6 +44,7 @@ export const CurrentFanProvider = ({ children }) => {
         preferredArtists : [
             {artistId: 1},
             {artistId: 7},
+            {artistId: 6},
             {artistId: 10}
         ]
     })

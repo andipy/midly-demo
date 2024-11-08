@@ -20,21 +20,21 @@ const Search2Route = () => {
     const [isSearchBarClicked, setIsSearchBarClicked] = useState(false)
 
     const filteredItems = artists
-    .filter(artist => {
-        const isPreferred = currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
-        const matchesSearch = artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
-        if (searchQuery !== '') {
-            return matchesSearch
-        }
-        return !isPreferred && matchesSearch
-    })
-    .sort((a, b) => a.artistName.localeCompare(b.artistName))
+        .filter(artist => {
+            const isPreferred = currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
+            const matchesSearch = artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
+            if (searchQuery !== '') {
+                return matchesSearch
+            }
+            return !isPreferred && matchesSearch
+        })
+        .sort((a, b) => a.artistName.localeCompare(b.artistName))
 
     const preferredItems = artists
-    .filter(artist => 
+        .filter(artist => 
         currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
     )
-    .sort((a, b) => a.artistName.localeCompare(b.artistName))
+        .sort((a, b) => a.artistName.localeCompare(b.artistName))
     
     const chunkArray = (array, chunkSize) => {
         const chunks = []
@@ -64,10 +64,10 @@ const Search2Route = () => {
                     setSearchQuery(newValue)  
                 }}   
             />
-            { !isSearchBarClicked && (
+            {!isSearchBarClicked && 
                 <section id='preferred-artists' className='mt-lg-2'>
-                    <TextTitle title={'I più ascoltati da te'}/>
-                    {chunkPreferred.length > 0 ? (
+                    <h2 className='fsize-xs-5 f-w-600'>I tuoi più ascoltati</h2>
+                    {chunkPreferred.length > 0 ?
                         <div className='d-flex-column mt-xs-2 mb-xs-0'>
                             {chunkPreferred.map((artists, index) => (
                                 <div className='mb-xs-8' key={index}>
@@ -79,24 +79,22 @@ const Search2Route = () => {
                                                     key = {artist.id}                                                
                                                 />
                                             )
-                                            
                                         })}
                                     </Carousel>
                                 </div>
                             ))}
                         </div>
-                    ) : (
+                    :
                         <div className='d-flex-column mt-xs-2 mb-xs-8'>
                             <h1 className='grey-400 fsize-xs-5 mt-xs-2 mt-xl-2 overflow-x'>Non hai ancora artisti tra i tuoi preferiti!</h1>
                         </div>
-                    )}
-                    
+                    }
                 </section>
-            )}
+            }
 
             <section id='artists-list' className='mt-lg-2'>
-                <TextTitle title={'Altri artisti in Midly'}/>
-                {filteredItems.length > 0 ? (
+                <h2 className='fsize-xs-5 f-w-600'>Altri artisti in Midly</h2>
+                {filteredItems.length > 0 ?
                 <div className='d-flex-column mt-xs-2 mb-xs-0'>
                     {chunkedItems.map((chunk, index) => (
                         <div className='mb-xs-8' key={index}>
@@ -118,7 +116,7 @@ const Search2Route = () => {
                     ))}
                     <p className='fsize-xs-0 f-w-300 grey-400 mt-xs-6'> * in ordine alfabetico</p>
                 </div>
-            ) : (
+            :
                 <div className='d-flex-column mt-xs-2 mb-xs-0'>
                     <div className='d-flex-column mt-xs-2'>
                         <h1 className='grey-400 fsize-xs-5 mt-xs-2 mt-xl-2 overflow-x'>L'artista non c'è in Midly, o hai digitato male il suo nome!</h1>
@@ -129,7 +127,7 @@ const Search2Route = () => {
                         <button className='fsize-xs-2 z-index-5 mb-xs-4 bg-acid-lime dark-900 f-w-600 top-navbar-more-1_5'>Vai al canale telegram</button>
                     </div>
                 </div>
-            )} 
+            } 
             </section>
         </ContainerDefault>
         <Appbar />
