@@ -69,15 +69,17 @@ const ProfileRoute = () => {
             </div>
             <section id='social-accounts' className='mt-xs-12'>
                 <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500 mb-xs-2'>I tuoi riconoscimenti</h4>
-                <div>
-                    <div className='bg-dark-gradient border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6'>
-                        <div className='d-flex-row align-items-center j-c-start'>
-                            <img className='w-35 no-shrink social-logo' src={IconTrophyGold} alt='Y' />
-                            <span className='font-heading fsize-xs-4 f-w-500 letter-spacing-1 no-shrink'>I tuoi badge</span>
-                        </div>
-                        <img src={IconArrowRight} alt='->'/>
-                    </div> 
-                </div>
+                <Link to='/badges'>
+                    <div>
+                        <div className='bg-dark-gradient border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6'>
+                            <div className='d-flex-row align-items-center j-c-start'>
+                                <img className='w-35 no-shrink social-logo' src={IconTrophyGold} alt='Y' />
+                                <span className='font-heading fsize-xs-4 f-w-500 letter-spacing-1 no-shrink'>I tuoi badge</span>
+                            </div>
+                            <img src={IconArrowRight} alt='->'/>
+                        </div> 
+                    </div>
+                </Link>
             </section>
         </div>
 

@@ -46,7 +46,28 @@ export const CurrentFanProvider = ({ children }) => {
             {artistId: 7},
             {artistId: 6},
             {artistId: 10}
-        ]
+        ],
+        badges: {
+            monthly: [
+                {
+                    month: 12,
+                    year: 2024,
+                    username: 'username',
+                    position: 3,
+                    points: 177,
+                    artistId: 1,
+                    artistName: 'artist name',
+                },{
+                    month: 9,
+                    year: 2024,
+                    username: 'username',
+                    position: 4,
+                    points: 109,
+                    artistId: 2,
+                    artistName: 'artist name',
+                }
+            ]
+        }
     })
 
     return (
