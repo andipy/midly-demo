@@ -31,9 +31,20 @@ const YourFavouritesRoute = () => {
     const [clickCount, setClickCount] = useState(0)
     const timeoutRef = useRef(null)
 
+    const sortArtists = (a, b) => {
+        const statusOrder = {
+            'ONGOING': 1,
+            'PENDING': 2,
+            'CLOSED_VISIBLE': 3,
+            'NONE': 4 
+        }
+
+        return (statusOrder[a.flashLeaderboard.status] || 5) - (statusOrder[b.flashLeaderboard.status] || 5)
+    }
+
     const fetchFavourites = () => {
         const favouriteArtistIds = currentFan.leaderboardsFollowed.map(artist => artist.artistId)
-        const favouriteArtists = artists.filter(artist => favouriteArtistIds.includes(artist.id))
+        const favouriteArtists = artists.filter(artist => favouriteArtistIds.includes(artist.id)).sort((a,b) => sortArtists(a,b))
         setFavourites(favouriteArtists)
     }
 

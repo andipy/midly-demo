@@ -38,7 +38,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Suspect CB',
             image: require('../images/pictures/suspect-cb.jpg'),
             flashLeaderboard: {
-                status: 'NONE',
+                status: 'ONGOING',
             },
             importance: 3
         },{
@@ -118,6 +118,150 @@ export const ArtistsProvider = ({ children }) => {
             slug: 'sfera-ebbasta',
             artistName: 'Sfera Ebbasta',
             image: require('../images/pictures/sfera-ebbasta.jpg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 14,
+            slug: 'coma-cose',
+            artistName: 'Coma_cose',
+            image: require('../images/pictures/coma_cose.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 15,
+            slug: 'salmo',
+            artistName: 'Salmo',
+            image: require('../images/pictures/salmo.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 16,
+            slug: 'mara-sattei',
+            artistName: 'Mara Sattei',
+            image: require('../images/pictures/mara-sattei.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 17,
+            slug: 'don-pero',
+            artistName: 'Don Pero',
+            image: require('../images/pictures/don-pero.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 18,
+            slug: 'olly',
+            artistName: 'Olly',
+            image: require('../images/pictures/olly.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 19,
+            slug: 'venerus',
+            artistName: 'Venerus',
+            image: require('../images/pictures/venerus.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 20,
+            slug: 'nitro',
+            artistName: 'Nitro',
+            image: require('../images/pictures/nitro.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 21,
+            slug: 'maneskin',
+            artistName: 'Maneskin',
+            image: require('../images/pictures/maneskin.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 22,
+            slug: 'gionny-scandal',
+            artistName: 'GionnyScandal',
+            image: require('../images/pictures/gionny-scandal.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 23,
+            slug: 'sadturs',
+            artistName: 'Sadturs',
+            image: require('../images/pictures/sadturs.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 24,
+            slug: 'rose-villain',
+            artistName: 'Rose Villain',
+            image: require('../images/pictures/rose-villain.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 25,
+            slug: 'mace',
+            artistName: 'MACE',
+            image: require('../images/pictures/mace.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 26,
+            slug: 'ghali',
+            artistName: 'Ghali',
+            image: require('../images/pictures/ghali.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 27,
+            slug: 'kid-yugi',
+            artistName: 'Kid Yugi',
+            image: require('../images/pictures/kid-yugi.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 28,
+            slug: 'drefgold',
+            artistName: 'DrefGold',
+            image: require('../images/pictures/drefgold.jpeg'),
+            flashLeaderboard: {
+                status: 'NONE',
+            },
+            importance: 3
+        },{
+            id: 28,
+            slug: 'miles',
+            artistName: 'MILES',
+            image: require('../images/pictures/miles.jpeg'),
             flashLeaderboard: {
                 status: 'NONE',
             },
