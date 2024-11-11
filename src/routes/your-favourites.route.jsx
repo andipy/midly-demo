@@ -44,7 +44,9 @@ const YourFavouritesRoute = () => {
 
     const fetchFavourites = () => {
         const favouriteArtistIds = currentFan.leaderboardsFollowed.map(artist => artist.artistId)
-        const favouriteArtists = artists.filter(artist => favouriteArtistIds.includes(artist.id)).sort((a,b) => sortArtists(a,b))
+        const favouriteArtists = artists
+            .filter(artist => favouriteArtistIds.includes(artist.id))
+            .sort((a,b) => sortArtists(a,b))
         setFavourites(favouriteArtists)
     }
 
@@ -88,7 +90,6 @@ const YourFavouritesRoute = () => {
             }
         }
     }, [])
-
 
     return (
         <>

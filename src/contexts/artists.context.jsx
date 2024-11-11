@@ -13,7 +13,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'PENDING',
             },
-            importance: 1
+            importance: 3
         },{
             id: 2,
             slug: 'thasup',
@@ -22,7 +22,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'CLOSED_VISIBLE',
             },
-            importance: 1
+            importance: 3
         },{
             id: 3,
             slug: 'artie-5ive',
@@ -31,16 +31,16 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'ONGOING',
             }, 
-            importance: 2
+            importance: 3
         },{
             id: 4,
             slug: 'suspect-cb',
             artistName: 'Suspect CB',
             image: require('../images/pictures/suspect-cb.jpg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 5,
             slug: 'astro',
@@ -49,7 +49,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 2
         },{
             id: 6,
             slug: 'alfa',
@@ -76,7 +76,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 2
+            importance: 1
         },{
             id: 9,
             slug: 'mezzosangue',
@@ -85,16 +85,16 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 10,
             slug: 'anna',
-            artistName: 'Anna',
+            artistName: 'ANNA',
             image: require('../images/pictures/anna.jpg'),
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 2
         },{
             id: 11,
             slug: 'gue',
@@ -112,7 +112,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 2
+            importance: 1
         },{
             id: 13,
             slug: 'sfera-ebbasta',
@@ -130,7 +130,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 15,
             slug: 'salmo',
@@ -139,7 +139,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 16,
             slug: 'mara-sattei',
@@ -148,7 +148,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 2
         },{
             id: 17,
             slug: 'don-pero',
@@ -157,7 +157,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 18,
             slug: 'olly',
@@ -166,7 +166,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 19,
             slug: 'venerus',
@@ -175,7 +175,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 2
         },{
             id: 20,
             slug: 'nitro',
@@ -184,7 +184,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 21,
             slug: 'maneskin',
@@ -193,7 +193,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 22,
             slug: 'gionny-scandal',
@@ -202,7 +202,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 23,
             slug: 'sadturs',
@@ -211,7 +211,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 24,
             slug: 'rose-villain',
@@ -220,7 +220,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 25,
             slug: 'mace',
@@ -229,7 +229,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 26,
             slug: 'ghali',
@@ -238,7 +238,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         },{
             id: 27,
             slug: 'kid-yugi',
@@ -247,7 +247,7 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 2
         },{
             id: 28,
             slug: 'drefgold',
@@ -256,16 +256,16 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 2
         },{
-            id: 28,
+            id: 29,
             slug: 'miles',
             artistName: 'MILES',
             image: require('../images/pictures/miles.jpeg'),
             flashLeaderboard: {
                 status: 'NONE',
             },
-            importance: 3
+            importance: 1
         }
     ])
 

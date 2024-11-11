@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react'
+import {useState, useContext, useRef, useEffect} from 'react'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { ArtistsContext } from '../contexts/artists.context'
@@ -10,26 +10,38 @@ import SearchInput from '../components/search-input.component'
 import Appbar from '../components/appbar.component'
 import Carousel from '../layout/carousel.layout'
 import CardArtist from '../components/card-search-artists.component'
+import CardPreferredArtist from '../components/card-preferred-artist.component'
 
 const SearchRoute = () => {
 
     const { currentFan } = useContext(CurrentFanContext)
     const { artists } = useContext(ArtistsContext)
     const [searchQuery, setSearchQuery] = useState('')
+    const [searchBarHeight, setSearchBarHeight] = useState(0)
 
     const sortArtists = (a, b) => {
         if (b.importance !== a.importance) {
-            return a.importance - b.importance
+            return b.importance - a.importance
         }            
         return a.artistName.localeCompare(b.artistName)
     }
 
     const filteredItems = artists
-    .filter(artist =>
-        artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .sort((a, b) => sortArtists(a, b))
+        .filter(artist => {
+            const isPreferred = currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
+            const matchesSearch = artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
+            if (searchQuery !== '') {
+                return matchesSearch
+            }
+            return !isPreferred && matchesSearch
+        })
+        .sort((a, b) => sortArtists(a, b))
 
+    const preferredItems = artists
+        .filter(artist => 
+        currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
+    )
+        .sort((a, b) => sortArtists(a, b))
     
     const chunkArray = (array, chunkSize) => {
         const chunks = []
@@ -40,27 +52,76 @@ const SearchRoute = () => {
     }
 
     const chunkedItems = chunkArray(filteredItems, 6)
+    const chunkPreferred = chunkArray(preferredItems, 6)
+
+    useEffect(() => {
+        const searchBar = document.getElementById('search-bar')
+        setSearchBarHeight(searchBar.offsetHeight - 1)
+    }, [])
 
     return (
         <>
         <NavbarDefault />
         <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
             <TextTitle title={'Artisti'} />
-            <SearchInput 
+            <SearchInput
                 value={searchQuery} 
                 onChange={(e) => {
                     const newValue = e.target.value
                     setSearchQuery(newValue)  
                 }}   
             />
-            <section id='artists-list' className='mt-lg-2'>
-                {filteredItems.length > 0 ? (
+            {!searchQuery && 
+                <section id='preferred-artists'>
+                    <div
+                        className='position-sticky top-0 z-index-4 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
+                        style={{ top: searchBarHeight }}
+                    >
+                        <div className='container'>
+                            <h2 className='fsize-xs-5 f-w-600 position-sticky'>I più ascoltati da te su Spotify</h2>
+                        </div>
+                    </div>
+                    {chunkPreferred.length > 0 ?
+                        <div className='d-flex-column mt-xs-2 mb-xs-0'>
+                            {chunkPreferred.map((artists, index) => (
+                                <div className='mb-xs-8' key={index}>
+                                    <Carousel>
+                                        {artists.map(artist => {                                            
+                                            return (
+                                                <CardPreferredArtist 
+                                                    artist = {artist}
+                                                    key = {artist.id}
+                                                />
+                                            )
+                                        })}
+                                    </Carousel>
+                                </div>
+                            ))}
+                        </div>
+                    :
+                        <div className='d-flex-column mt-xs-2 mb-xs-8'>
+                            <h1 className='grey-400 fsize-xs-5 mt-xs-2 mt-xl-2 overflow-x'>Non hai ancora artisti tra i tuoi preferiti!</h1>
+                        </div>
+                    }
+                </section>
+            }
+
+            <section id='more-artists' className='mt-xs-4'>
+                    <div
+                        className='position-sticky top-0 z-index-4 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
+                        style={{ top: searchBarHeight }}
+                    >
+                        <div className='container'>
+                            <h2 className='fsize-xs-5 f-w-600 position-sticky'>Altri artisti in MIDLY</h2>
+                        </div>
+                    </div>
+                {filteredItems.length > 0 ?
                 <div className='d-flex-column mt-xs-2 mb-xs-0'>
                     {chunkedItems.map((chunk, index) => (
                         <div className='mb-xs-8' key={index}>
                             <Carousel>
                                 {chunk.map(item => {
-                                    const isFollowed = currentFan.leaderboardsFollowed.some(
+                                    const isFollowed = currentFan.preferredArtists.some(
                                         (followed) => followed.artistId === item.id
                                     )
                                     return (
@@ -74,9 +135,9 @@ const SearchRoute = () => {
                             </Carousel>
                         </div>
                     ))}
-                    <p className='fsize-xs-0 f-w-300 grey-400 mt-xs-6'> * in ordine alfabetico</p>
+                    {/* <p className='fsize-xs-0 f-w-300 grey-400 mt-xs-6'> * in ordine alfabetico</p> */}
                 </div>
-            ) : (
+            :
                 <div className='d-flex-column mt-xs-2 mb-xs-0'>
                     <div className='d-flex-column mt-xs-2'>
                         <h1 className='grey-400 fsize-xs-5 mt-xs-2 mt-xl-2 overflow-x'>L'artista non c'è in Midly, o hai digitato male il suo nome!</h1>
@@ -87,7 +148,7 @@ const SearchRoute = () => {
                         <button className='fsize-xs-2 z-index-5 mb-xs-4 bg-acid-lime dark-900 f-w-600 top-navbar-more-1_5'>Vai al canale telegram</button>
                     </div>
                 </div>
-            )} 
+            } 
             </section>
         </ContainerDefault>
         <Appbar />

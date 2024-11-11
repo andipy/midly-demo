@@ -10,38 +10,26 @@ import SearchInput from '../components/search-input.component'
 import Appbar from '../components/appbar.component'
 import Carousel from '../layout/carousel.layout'
 import CardArtist from '../components/card-search-artists.component'
-import CardPreferredArtist from '../components/card-preferred-artist.component'
 
-const Search2Route = () => {
+const SearchRoute = () => {
 
     const { currentFan } = useContext(CurrentFanContext)
     const { artists } = useContext(ArtistsContext)
     const [searchQuery, setSearchQuery] = useState('')
-    const [isSearchBarClicked, setIsSearchBarClicked] = useState(false)
 
     const sortArtists = (a, b) => {
         if (b.importance !== a.importance) {
-            return a.importance - b.importance
+            return b.importance - a.importance
         }            
         return a.artistName.localeCompare(b.artistName)
     }
 
     const filteredItems = artists
-        .filter(artist => {
-            const isPreferred = currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
-            const matchesSearch = artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
-            if (searchQuery !== '') {
-                return matchesSearch
-            }
-            return !isPreferred && matchesSearch
-        })
+        .filter(artist =>
+            artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
+        )
         .sort((a, b) => sortArtists(a, b))
 
-    const preferredItems = artists
-        .filter(artist => 
-        currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
-    )
-        .sort((a, b) => sortArtists(a, b))
     
     const chunkArray = (array, chunkSize) => {
         const chunks = []
@@ -52,7 +40,6 @@ const Search2Route = () => {
     }
 
     const chunkedItems = chunkArray(filteredItems, 6)
-    const chunkPreferred = chunkArray(preferredItems, 6)
 
     return (
         <>
@@ -61,53 +48,19 @@ const Search2Route = () => {
             <TextTitle title={'Artisti'} />
             <SearchInput 
                 value={searchQuery} 
-                onChange={(e) => {
+                onChange={e => {
                     const newValue = e.target.value
-                    if (newValue !== '') {
-                        setIsSearchBarClicked(true)
-                    } else {
-                        setIsSearchBarClicked(false)
-                    }
                     setSearchQuery(newValue)  
                 }}   
             />
-            {!isSearchBarClicked && 
-                <section id='preferred-artists' className='mt-lg-2'>
-                    <h2 className='fsize-xs-5 f-w-600'>I tuoi più ascoltati</h2>
-                    {chunkPreferred.length > 0 ?
-                        <div className='d-flex-column mt-xs-2 mb-xs-0'>
-                            {chunkPreferred.map((artists, index) => (
-                                <div className='mb-xs-8' key={index}>
-                                    <Carousel>
-                                        {artists.map(artist => {                                            
-                                            return (
-                                                <CardPreferredArtist 
-                                                    artist = {artist}
-                                                    key = {artist.id}                                                
-                                                />
-                                            )
-                                        })}
-                                    </Carousel>
-                                </div>
-                            ))}
-                        </div>
-                    :
-                        <div className='d-flex-column mt-xs-2 mb-xs-8'>
-                            <h1 className='grey-400 fsize-xs-5 mt-xs-2 mt-xl-2 overflow-x'>Non hai ancora artisti tra i tuoi preferiti!</h1>
-                        </div>
-                    }
-                </section>
-            }
-
             <section id='artists-list' className='mt-lg-2'>
-                <h2 className='fsize-xs-5 f-w-600'>Altri artisti in Midly</h2>
                 {filteredItems.length > 0 ?
                 <div className='d-flex-column mt-xs-2 mb-xs-0'>
                     {chunkedItems.map((chunk, index) => (
                         <div className='mb-xs-8' key={index}>
                             <Carousel>
                                 {chunk.map(item => {
-                                    const isFollowed = currentFan.preferredArtists.some(
+                                    const isFollowed = currentFan.leaderboardsFollowed.some(
                                         (followed) => followed.artistId === item.id
                                     )
                                     return (
@@ -121,7 +74,7 @@ const Search2Route = () => {
                             </Carousel>
                         </div>
                     ))}
-                    <p className='fsize-xs-0 f-w-300 grey-400 mt-xs-6'> * in ordine alfabetico</p>
+                    {/* <p className='fsize-xs-0 f-w-300 grey-400 mt-xs-6'> * in ordine alfabetico</p> */}
                 </div>
             :
                 <div className='d-flex-column mt-xs-2 mb-xs-0'>
@@ -142,4 +95,4 @@ const Search2Route = () => {
     )
 }
 
-export default Search2Route
+export default SearchRoute

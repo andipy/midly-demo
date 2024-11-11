@@ -45,7 +45,8 @@ export const CurrentFanProvider = ({ children }) => {
             {artistId: 1},
             {artistId: 7},
             {artistId: 6},
-            {artistId: 10}
+            {artistId: 10},
+            {artistId: 11}
         ],
         badges: {
             monthly: [
@@ -65,8 +66,8 @@ export const CurrentFanProvider = ({ children }) => {
                     points: 109,
                     artistId: 2,
                     artistName: 'artist name',
-                }
-            ]
+                }
+            ]
         }
     })
 
