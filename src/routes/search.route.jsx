@@ -17,13 +17,18 @@ const SearchRoute = () => {
     const { artists } = useContext(ArtistsContext)
     const [searchQuery, setSearchQuery] = useState('')
 
-
+    const sortArtists = (a, b) => {
+        if (b.importance !== a.importance) {
+            return a.importance - b.importance
+        }            
+        return a.artistName.localeCompare(b.artistName)
+    }
 
     const filteredItems = artists
     .filter(artist =>
         artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
     )
-    .sort((a, b) => a.artistName.localeCompare(b.artistName))
+    .sort((a, b) => sortArtists(a, b))
 
     
     const chunkArray = (array, chunkSize) => {

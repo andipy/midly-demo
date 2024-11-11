@@ -19,6 +19,13 @@ const Search2Route = () => {
     const [searchQuery, setSearchQuery] = useState('')
     const [isSearchBarClicked, setIsSearchBarClicked] = useState(false)
 
+    const sortArtists = (a, b) => {
+        if (b.importance !== a.importance) {
+            return a.importance - b.importance
+        }            
+        return a.artistName.localeCompare(b.artistName)
+    }
+
     const filteredItems = artists
         .filter(artist => {
             const isPreferred = currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
@@ -28,13 +35,13 @@ const Search2Route = () => {
             }
             return !isPreferred && matchesSearch
         })
-        .sort((a, b) => a.artistName.localeCompare(b.artistName))
+        .sort((a, b) => sortArtists(a, b))
 
     const preferredItems = artists
         .filter(artist => 
         currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
     )
-        .sort((a, b) => a.artistName.localeCompare(b.artistName))
+        .sort((a, b) => sortArtists(a, b))
     
     const chunkArray = (array, chunkSize) => {
         const chunks = []
