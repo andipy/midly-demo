@@ -489,6 +489,18 @@ animation: dot-loader-after 1s infinite linear;
 }
 
 /******************************************/
+/************** BADGE TRANSITION ************/
+/******************************************/
+@keyframes badgeFadeTransition {
+  0% {opacity: 100%;}
+  50% {opacity: 0%;}
+  100% {opacity: 100%;}
+}
+.badge-fade-transition {
+  animation: badgeFadeTransition 300ms ease-out;
+}
+
+/******************************************/
 /************* FLASH ANIMATION ************/
 /******************************************/
 @keyframes flashDot {

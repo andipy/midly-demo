@@ -34,18 +34,18 @@ const FaqRoute = () => {
             </div>
             <div className='mb-xs-20'>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Con Midly posso davvero incontrare gli artisti che amo?
+                    Gli artisti su Midly vedono chi è in cima alle classifiche?
                 </h4>
                 <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Se il tuo artista preferito avrà messo in palio un incontro, fisico o virtuale, continuando ad ascoltare i suoi brani potrai provare a vincere il premio!
+                    Gli artisti che utilizzano attivamente la piattaforma possono controllare chi sono i loro Super Fan!
                 </p>
             </div>
             <div className='mb-xs-20'>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Quali premi posso trovare su Midly?
+                    Su Midly posso vincere dei premi?
                 </h4>
                 <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Ogni artista metterà in palio i premi che preferisce! Non ti resta che seguirci su Midly e scoprire i premi dei tuoi artisti preferiti mese dopo mese!
+                    No, Midly non è una piattaforma a premi. I premi non sono ammessi.
                 </p>
             </div>
             <div className='mb-xs-20'>
@@ -77,15 +77,7 @@ const FaqRoute = () => {
                     Quanto durano le classifiche?
                 </h4>
                 <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Ogni classifica dura un mese e al termine del mese si azzera Ogni mese potrai ricominciare la tua scalata verso i premi!
-                </p>
-            </div>
-            <div className='mb-xs-20'>
-                <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Vince i premi solo il primo in classifica?
-                </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Dipende dall’artista e da quanti premi metterà in palio. Per ogni premio ci sarà un vincitore.
+                    Ogni classifica dura un mese e al termine del mese si azzera e riparte: ogni mese potrai ricominciare la tua scalata!
                 </p>
             </div>
             <div className='mb-xs-20'>

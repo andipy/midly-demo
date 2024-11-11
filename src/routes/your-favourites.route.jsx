@@ -92,8 +92,8 @@ const YourFavouritesRoute = () => {
 
                 {quizzes.length > 0 &&
                     <section id='quiz' className='mt-xs-4 mb-xs-12'>
-                        <h2 className='fsize-xs-5 f-w-500'>Gioca ai quiz</h2>
-                        <p className='fsize-xs-2 f-w-200 grey-300'>Vinci ai quiz e guadagna punti nelle classifiche</p>
+                        <h2 className='fsize-xs-5 f-w-600'>Gioca ai quiz</h2>
+                        <p className='fsize-xs-2 f-w-200 grey-300'>Gioca ai quiz e ottieni punti nelle classifiche mensili.</p>
                         <Carousel>
                             {quizzes.filter(quiz => currentFan.leaderboardsFollowed.some(followed => String(followed.artistId) === String(quiz.artistId))).map(quiz => {
                                 const hasPlayed = quiz.responses.some(play => play.userId === currentFan.id);
