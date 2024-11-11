@@ -30,10 +30,10 @@ const BadgesRoute = () => {
         setTransition(true)
         setTimeout(() => {
             setTransition(false)
-        }, 300)
+        }, 600)
         setTimeout(() => {
             setSelectedBadge(badge)
-        }, 150)
+        }, 300)
         
     }
 

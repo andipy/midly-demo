@@ -497,7 +497,7 @@ animation: dot-loader-after 1s infinite linear;
   100% {opacity: 100%;}
 }
 .badge-fade-transition {
-  animation: badgeFadeTransition 300ms ease-out;
+  animation: badgeFadeTransition 600ms ease-out;
 }
 
 /******************************************/
