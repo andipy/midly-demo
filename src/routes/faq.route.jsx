@@ -1,96 +1,79 @@
 import ContainerDefault from '../layout/container-default.layout'
-import Appbar from '../components/appbar.component'
 import NavbarProfileSettings from '../components/navbar-profile-settings-component'
 
 const FaqRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'FAQ'} />
-    <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
-        <div id='faqs' className='mt-xs-8'>
-            <div className='mb-xs-20'>
+    <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-8'}>
+        <section className='mt-xs-2'>
+            <article className='mb-xs-14'>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Quanti punti si guadagnano ascoltando le canzoni su Spotify?
+                    Quanti punti si ricevono ascoltando le canzoni su Spotify?
                 </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Ogni volta che ascolti una canzone riceverai un punto per scalare la classifica dell’artista.
+                <p className='fsize-xs-2 f-w-300 grey-200 font-body letter-spacing-1'>
+                    Ogni volta che ascolti una canzone ricevi un punto per scalare la classifica mensile dell’artista, ma ci sono dei limiti, leggi le FAQ successive. In generale, MIDLY è contro l'ascolto compulsivo.
                 </p>
-            </div>
-            <div className='mb-xs-20'>
+            </article>
+            <article className='mb-xs-14'>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Posso guadagnare punti infiniti ogni giorno ascoltando canzoni su Spotify?
+                    Posso fare punti infiniti ogni giorno ascoltando canzoni su Spotify?
                 </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Lo stesso brano può farti guadagnare al massimo 3 punti al giorno. Dal quarto ascolto in poi non ti verrà riconosciuto alcun punteggio in quel giorno. Dal giorno dopo, il giro ricomincia!
+                <p className='fsize-xs-2 f-w-300 grey-200 font-body letter-spacing-1'>
+                    Puoi fare al massimo 75 punti al giorno tramite ascolti nelle classifiche mensili.
                 </p>
-            </div>
-            <div className='mb-xs-20'>
+                <p className='fsize-xs-2 f-w-300 grey-200 font-body letter-spacing-1 mt-xs-6'>
+                    Lo stesso brano può farti ottenere al massimo 3 punti al giorno nella classifica mensile. Dal quarto ascolto incluso e in avanti, non ti verrà riconosciuto alcun punteggio in quel giorno.
+                </p>
+                <p className='fsize-xs-2 f-w-300 grey-200 font-body letter-spacing-1 mt-xs-6'>
+                    Dal giorno dopo, il giro ricomincia.
+                </p>
+            </article>
+            <article className='mb-xs-14'>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Quanti punti posso totalizzare al massimo in un giorno?
+                    Gli artisti su MIDLY vedono chi è in cima alle classifiche?
                 </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Puoi guadagnare al massimo 20 punti al giorno provenienti da ascolti; non ci sono limiti sui punti che puoi guadagnare invitando amici.
+                <p className='fsize-xs-2 f-w-300 grey-200 font-body letter-spacing-1'>
+                    Gli artisti che utilizzano attivamente la piattaforma possono controllare a loro discrezione chi sono i loro Super Fan.
                 </p>
-            </div>
-            <div className='mb-xs-20'>
+            </article>
+            <article className='mb-xs-14'>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Gli artisti su Midly vedono chi è in cima alle classifiche?
+                    Su MIDLY posso vincere dei premi?
                 </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Gli artisti che utilizzano attivamente la piattaforma possono controllare chi sono i loro Super Fan!
+                <p className='fsize-xs-2 f-w-300 grey-200 font-body letter-spacing-1'>
+                    No, MIDLY non è una piattaforma a premi. I premi non sono ammessi.
                 </p>
-            </div>
-            <div className='mb-xs-20'>
+            </article>
+            <article className='mb-xs-14'>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Su Midly posso vincere dei premi?
+                    Come funziona MIDLY?
                 </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    No, Midly non è una piattaforma a premi. I premi non sono ammessi.
+                <p className='fsize-xs-2 f-w-300 grey-200 font-body letter-spacing-1'>
+                    Dopo esserti registrato al servizio, aver connesso il tuo account Spotify e aver svolto gli altri passaggi necessari, MIDLY traccia i tuoi ascolti e li trasforma in punti nelle classifiche.
                 </p>
-            </div>
-            <div className='mb-xs-20'>
+            </article>
+            <article className='mb-xs-14'>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Come funziona Midly?
+                    In quali modi posso fare punti per scalare la classifica di un artista?
                 </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    È semplice: visita https://www.midly.it/login, registrati utilizzando con il tuo nome e una mail, connetti il tuo account Spotify e segui i tuoi artisti preferiti! Ora non ti resterà che ascoltare i loro brani direttamente dall’app di Spotify per scalare le classifiche.
+                <p className='fsize-xs-2 f-w-300 grey-200 font-body letter-spacing-1'>
+                    Puoi fare punti nelle classifiche dei tuoi artisti preferiti ascoltando i loro brani su Spotify, assicurandoti di aver prima connesso il tuo account Spotify al tuo profilo MIDLY e di aver fatto gli altri passaggi su MIDLY necessari ricevere i punti degli ascolti.
                 </p>
-            </div>
-            <div className='mb-xs-20'>
-                <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    In quali modi posso guadagnare punti per scalare la classifica di un artista?
-                </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Potrai guadagnare punti per scalare le classifiche dei tuoi artisti preferiti ascoltando i loro brani su Spotify. Un altro modo è invitare i tuoi amici ad iscriversi: per ogni tuo amico che si iscrive dal tuo link di invito ed entra almeno nella classifica di un artista su Midly, riceverai 15 punti nella classifica dell’artista da cui hai mandato l'invito.
+                <p className='fsize-xs-2 f-w-300 grey-200 font-body letter-spacing-1 mt-xs-6'>
+                    Un altro modo per ottenere punti nelle classifiche mensili è invitare i tuoi amici ad iscriversi a MIDLY: per ogni persona invitata che si iscrive dal tuo link di invito ed entra almeno nella classifica di un artista su MIDLY, ricevi 15 punti nella classifica dell’artista da cui hai mandato l'invito. Ricorda, devi generare e inviare un link diverso a ogni persona che vuoi invitare, altrimenti l'assegnazione dei punti non funzionerà.
                 </p>
-            </div>
-            <div className='mb-xs-20'>
-                <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Come vengono conteggiati i punti per la classifica?
-                </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    La somma dei punti determinerà la tua posizione nella classifica del singolo artista che segui su Midly.
-                </p>
-            </div>
-            <div className='mb-xs-20'>
+            </article>
+            <article>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
                     Quanto durano le classifiche?
                 </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Ogni classifica dura un mese e al termine del mese si azzera e riparte: ogni mese potrai ricominciare la tua scalata!
+                <p className='fsize-xs-2 f-w-300 grey-200 font-body letter-spacing-1'>
+                    Le classifiche mensili durano un mese: al termine del mese si azzerano e all'inizio del mese successivo ripartno. Ogni mese potrai ricominciare la tua scalata!
                 </p>
-            </div>
-            <div className='mb-xs-20'>
-                <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
-                    Che tipo di attività viene tracciata da Midly su Spotify e con quale frequenza?
-                </h4>
-                <p className='fsize-xs-2 f-w-300 grey-300 font-body letter-spacing-1'>
-                    Midly traccia costantemente tutti i tuoi ascolti su Spotify e converte automaticamente in punti quelli degli artisti che segui. In questo modo potrai scalare le classifiche degli artisti e loro sapranno che li stai ascoltando!
-                </p>
-            </div>
-        </div>
+            </article>
+        </section>
     </ContainerDefault>
-    <Appbar />
     </>
 
   )

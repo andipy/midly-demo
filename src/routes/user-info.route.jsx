@@ -1,12 +1,11 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
 
 import ContainerDefault from '../layout/container-default.layout'
-import Appbar from '../components/appbar.component'
 import NavbarProfileSettings from '../components/navbar-profile-settings-component'
 import IconArrowRight from '../images/icons/icon-arrowright.svg'
-import { Link } from 'react-router-dom'
 
 const UserInfoRoute = () => {
 
@@ -15,10 +14,10 @@ const UserInfoRoute = () => {
     return (
         <>
         <NavbarProfileSettings title={'Informazioni personali'} />
-        <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+        <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-8'}>
             <div>
-                <div id='about-you' className='mt-xs-8'>
-                    <h4 className='fsize-xs-5 mb-xs-4 letter-spacing-2 f-w-500'>About you</h4>
+                <section id='about-you' className='mt-xs-2'>
+                    <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>About you</h4>
                     <Link to='/user-info-field' state={{ type: 'USERNAME' }}>
                     <div id='fan-username' className='mt-xs-8 mb-xs-8'>
                         <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
@@ -79,9 +78,9 @@ const UserInfoRoute = () => {
                             </a>
                         </div>
                     </Link>
-                </div>
-                <div id='contacts' className='mt-xs-24 mt-lg-1'>
-                    <h4 className='fsize-xs-5 mb-xs-4 letter-spacing-2 f-w-500'>Contatti</h4>
+                </section>
+                <section id='contacts' className='mt-xs-24 mt-lg-1'>
+                    <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>Contatti</h4>
                     <Link to='/user-info-field' state={{ type: 'EMAIL' }}>
                         <div id='fan-email' className='mt-xs-8'>
                             <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
@@ -127,14 +126,12 @@ const UserInfoRoute = () => {
                         </a>
                     </div>
                     </Link>   
-                </div>
-                <div id='deactivate-account' className='mt-xs-12 mb-xs-8'>
+                </section>
+                <section id='deactivate-account' className='mt-xs-12'>
                     <h6 className='fsize-xs-3 f-w-500 red-300 letter-spacing-1'>Disattiva il mio account</h6>
-                </div>
+                </section>
             </div>
-
         </ContainerDefault>
-        <Appbar />
         </>
     )
 }

@@ -5,12 +5,11 @@ const TermsConditionsRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'Termini e condizioni Fan'} />
-    <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+    <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-appbar'}>
       <div className='bg-white black'>
 
       </div>
     </ContainerDefault>
-    
     </>
 
   )
