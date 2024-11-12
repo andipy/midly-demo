@@ -1,8 +1,11 @@
-import { useState, createContext } from 'react'
+import { useState, createContext, useContext, useEffect } from 'react'
+import { ArtistsContext } from './artists.context'
 
 export const FlashLeaderboardsContext = createContext()
 
 export const FlashLeaderboardsProvider = ({ children }) => {
+
+    const { artists, setArtists } = useContext(ArtistsContext)
 
     const [flashLeaderboards, setFlashLeaderboards] = useState([
         {
@@ -116,7 +119,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             announceStartDate: '2024-11-07 13:00:00',
             announceEndDate: '2024-11-28 00:00:00',
             rankStartDate: '2024-11-07 14:30:00',
-            rankEndDate: '2024-11-25 14:30:00',
+            rankEndDate: '2024-11-12 18:07:00',
             participants: 18557,
             totalStreams: 390167,
             image: require('../images/pictures/artie-5ive-cover.jpg'),
@@ -376,6 +379,52 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             ]
         }
     ])
+
+    useEffect(() => {
+        const updateArtistFlashStatus = () => {
+            const currentDate = new Date();
+            const updatedArtists = artists.map(artist => {
+                const matchingLeaderboard = flashLeaderboards.find(lb => lb.artistId === artist.id);
+    
+                if (matchingLeaderboard) {
+                    const announceStartDate = new Date(matchingLeaderboard.announceStartDate);
+                    const announceEndDate = new Date(matchingLeaderboard.announceEndDate);
+                    const rankStartDate = new Date(matchingLeaderboard.rankStartDate);
+                    const rankEndDate = new Date(matchingLeaderboard.rankEndDate);
+    
+                    let status = 'NONE';
+    
+                    if (currentDate >= announceStartDate && currentDate <= rankStartDate) {
+                        status = 'PENDING';
+                    } else if (currentDate >= rankStartDate && currentDate <= rankEndDate) {
+                        status = 'ONGOING';
+                    } else if (currentDate >= rankEndDate && currentDate <= announceEndDate) {
+                        status = 'CLOSED_VISIBLE';
+                    }
+    
+                    if (artist.flashLeaderboard?.status === status) {
+                        return artist;
+                    }
+    
+                    return {
+                        ...artist,
+                        flashLeaderboard: {
+                            ...artist.flashLeaderboard,
+                            status
+                        }
+                    };
+                }
+    
+                return artist;
+            });
+    
+            setArtists(updatedArtists);
+        };
+    
+        updateArtistFlashStatus()
+    }, [flashLeaderboards, Date.now()]);
+ 
+ 
 
     return (
         <FlashLeaderboardsContext.Provider value={{ flashLeaderboards, setFlashLeaderboards }}>

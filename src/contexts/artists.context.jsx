@@ -3,7 +3,6 @@ import { useState, createContext } from 'react'
 export const ArtistsContext = createContext()
 
 export const ArtistsProvider = ({ children }) => {
-
     const [artists, setArtists] = useState([
         {
             id: 1,
@@ -11,7 +10,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Lazza',
             image: require('../images/pictures/lazza.jpeg'),
             flashLeaderboard: {
-                status: 'PENDING',
+                status: 'ONGOING',
             },
             importance: 3
         },{
@@ -20,7 +19,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'thasup',
             image: require('../images/pictures/thasup.jpg'),
             flashLeaderboard: {
-                status: 'CLOSED_VISIBLE',
+                status: 'PENDING',
             },
             importance: 3
         },{
@@ -29,7 +28,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'Artie 5ive',
             image: require('../images/pictures/artie-5ive.jpeg'),
             flashLeaderboard: {
-                status: 'ONGOING',
+                status: 'CLOSED_VISIBLE',
             }, 
             importance: 3
         },{
@@ -268,6 +267,8 @@ export const ArtistsProvider = ({ children }) => {
             importance: 1
         }
     ])
+
+    
 
     return (
         <ArtistsContext.Provider value={{ artists, setArtists }}>
