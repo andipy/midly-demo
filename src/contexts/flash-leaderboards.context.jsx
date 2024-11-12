@@ -119,7 +119,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             announceStartDate: '2024-11-07 13:00:00',
             announceEndDate: '2024-11-28 00:00:00',
             rankStartDate: '2024-11-07 14:30:00',
-            rankEndDate: '2024-11-12 18:07:00',
+            rankEndDate: '2024-11-12 18:30:00',
             participants: 18557,
             totalStreams: 390167,
             image: require('../images/pictures/artie-5ive-cover.jpg'),
@@ -382,48 +382,56 @@ export const FlashLeaderboardsProvider = ({ children }) => {
 
     useEffect(() => {
         const updateArtistFlashStatus = () => {
-            const currentDate = new Date();
+            const currentDate = new Date()
+            let hasChanges = false
             const updatedArtists = artists.map(artist => {
-                const matchingLeaderboard = flashLeaderboards.find(lb => lb.artistId === artist.id);
+                const matchingLeaderboard = flashLeaderboards.find(lb => lb.artistId === artist.id)
     
                 if (matchingLeaderboard) {
-                    const announceStartDate = new Date(matchingLeaderboard.announceStartDate);
-                    const announceEndDate = new Date(matchingLeaderboard.announceEndDate);
-                    const rankStartDate = new Date(matchingLeaderboard.rankStartDate);
-                    const rankEndDate = new Date(matchingLeaderboard.rankEndDate);
+                    const announceStartDate = new Date(matchingLeaderboard.announceStartDate)
+                    const announceEndDate = new Date(matchingLeaderboard.announceEndDate)
+                    const rankStartDate = new Date(matchingLeaderboard.rankStartDate)
+                    const rankEndDate = new Date(matchingLeaderboard.rankEndDate)
     
-                    let status = 'NONE';
+                    let status = 'NONE'
     
                     if (currentDate >= announceStartDate && currentDate <= rankStartDate) {
-                        status = 'PENDING';
+                        status = 'PENDING'
                     } else if (currentDate >= rankStartDate && currentDate <= rankEndDate) {
-                        status = 'ONGOING';
+                        status = 'ONGOING'
                     } else if (currentDate >= rankEndDate && currentDate <= announceEndDate) {
-                        status = 'CLOSED_VISIBLE';
+                        status = 'CLOSED_VISIBLE'
                     }
+
     
                     if (artist.flashLeaderboard?.status === status) {
-                        return artist;
+                        return artist
                     }
-    
+                    
+                    hasChanges = true
                     return {
                         ...artist,
                         flashLeaderboard: {
                             ...artist.flashLeaderboard,
                             status
                         }
-                    };
+                    }
                 }
+                return artist
+            })
     
-                return artist;
-            });
+            if (hasChanges) {
+                setArtists(updatedArtists)
+            }
+        }
+
+        const intervalId = setInterval(updateArtistFlashStatus, 1000)
+
+        return () => {
+            clearInterval(intervalId)
+        }
     
-            setArtists(updatedArtists);
-        };
-    
-        updateArtistFlashStatus()
-    }, [flashLeaderboards, Date.now()]);
- 
+    }, [flashLeaderboards, artists, setArtists])
  
 
     return (
