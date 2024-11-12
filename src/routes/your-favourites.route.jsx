@@ -42,6 +42,14 @@ const YourFavouritesRoute = () => {
         return (statusOrder[a.flashLeaderboard.status] || 5) - (statusOrder[b.flashLeaderboard.status] || 5)
     }
 
+    const sortQuizzes = (a,b) => {
+        const aHasFanResponse = a.responses.some(response => response.userId === currentFan.id)
+        const bHasFanResponse = b.responses.some(response => response.userId === currentFan.id)
+        if (aHasFanResponse && !bHasFanResponse) return 1
+        if (!aHasFanResponse && bHasFanResponse) return -1
+        return 0
+    }
+
     const fetchFavourites = () => {
         const favouriteArtistIds = currentFan.leaderboardsFollowed.map(artist => artist.artistId)
         const favouriteArtists = artists
@@ -51,6 +59,10 @@ const YourFavouritesRoute = () => {
     }
 
     const { quizzes } = useContext(LiveQuizContext)
+
+    const orderedQuizzes = quizzes
+    .filter(quiz => currentFan.leaderboardsFollowed.some(followed => String(followed.artistId) === String(quiz.artistId)))
+    .sort((a, b) => sortQuizzes(a,b))
 
     const [sanremo, setSanremo] = useState(false)
 
@@ -68,7 +80,7 @@ const YourFavouritesRoute = () => {
                 }
 
                 timeoutRef.current = setTimeout(() => {
-                    setClickCount(0);
+                    setClickCount(0)
                 }, 400) // Reset the count if more than 1 second passes between clicks
 
                 if (newCount >= 6) {
@@ -107,8 +119,8 @@ const YourFavouritesRoute = () => {
                         <h2 className='fsize-xs-5 f-w-600'>Gioca ai quiz</h2>
                         <p className='fsize-xs-2 f-w-200 grey-300'>Gioca ai quiz e ottieni punti nelle classifiche mensili.</p>
                         <Carousel>
-                            {quizzes.filter(quiz => currentFan.leaderboardsFollowed.some(followed => String(followed.artistId) === String(quiz.artistId))).map(quiz => {
-                                const hasPlayed = quiz.responses.some(play => play.userId === currentFan.id);
+                            {orderedQuizzes.map(quiz => {
+                                const hasPlayed = quiz.responses.some(play => play.userId === currentFan.id)
                                 return (
                                     <CardQuiz
                                         slug={quiz.artistSlug}
@@ -118,7 +130,7 @@ const YourFavouritesRoute = () => {
                                         key={quiz.quizId} 
                                         id={quiz.quizId}
                                     />
-                                );
+                                )
                             })}
                         </Carousel>
                     </section>
@@ -134,7 +146,7 @@ const YourFavouritesRoute = () => {
 
                 <section className='mt-xs-16 mt-lg-8 mb-xs-8'>
                     <h4 className='fsize-xs-5 mb-xs-1 letter-spacing-1 f-w-500'>Domande frequenti</h4>
-                    <p className='fsize-xs-2 f-w-200 grey-200'>Vuoi sapere di più su come funziona Midly? Vai alle <a className='text-underline blue-300 f-w-400'>FAQ</a> e troverai tutte le risposte alle tue domande!</p>
+                    <p className='fsize-xs-2 f-w-200 grey-200'>Vuoi sapere di più su come funziona Midly? Vai alle <a className='text-underline blue-300 f-w-400' href='/faq'>FAQ</a> e troverai tutte le risposte alle tue domande!</p>
                 </section>
             </ContainerDefault>
 

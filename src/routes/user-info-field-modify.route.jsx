@@ -58,7 +58,7 @@ const UserInfoFieldModifyRoute = () => {
             }))
         }
         
-        navigate(-2)
+        navigate(-1)
     }
 
     const handleAddressChange = (e) => {

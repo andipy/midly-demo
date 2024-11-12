@@ -15,6 +15,7 @@ import SettingsLogo from '../images/icons/icon-settings-white.svg'
 import InfoLogo from '../images/icons/icon-info-white.svg'
 import IconTerms from '../images/icons/icon-terms.svg'
 import IconCookies from '../images/icons/icon-cookie.svg'
+import IconEdit from "../images/icons/icon-edit.svg"
 import IconTrophyGold from '../images/icons/icon-trophy-gold.svg'
 import { Link } from 'react-router-dom'
 
@@ -23,6 +24,20 @@ const ProfileRoute = () => {
     const navigate = useNavigate()
 
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0]
+        /*modifica solo in locale ora*/
+        if (file && file.type.startsWith('image/')) {
+            const imageUrl = URL.createObjectURL(file)
+            setCurrentFan((prev) => ({
+                ...prev,
+                image: imageUrl,
+            }))
+        } else {
+            return
+        }
+    }
 
     const logout = () => {
         /* gestisci logout */
@@ -35,26 +50,32 @@ const ProfileRoute = () => {
         <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
         <TextTitle title={'Profilo'} />
         <div>
-            <div className='mt-xs-2 d-flex-column align-items-start mb-xs-12'>
-                <div className='d-flex-row align-items-center w-100'>
-                    {currentFan.image ? 
-                        <img
-                            src={currentFan.image}
-                            className='avatar-96 border-radius-100'
-                        />
-                    : 
-                        <div className='d-flex-row j-c-center align-items-center avatar-96 border-radius-100 bg-purple-400'>
-                            <h5 className='f-w-500 fsize-xs-6'>
-                                {currentFan.username.charAt(0).toUpperCase()}
-                            </h5>
+            <label>
+                <div className='mt-xs-2 d-flex-column align-items-start mb-xs-12'>
+                    <div className='d-flex-row align-items-center w-100'>
+                        {currentFan.image ? 
+                            <img
+                                src={currentFan.image}
+                                className='avatar-96 border-radius-100'
+                            />
+                        : 
+                            <div className='d-flex-row j-c-center align-items-center avatar-96 border-radius-100 bg-purple-400'>
+                                <h5 className='f-w-500 fsize-xs-6'>
+                                    {currentFan.username.charAt(0).toUpperCase()}
+                                </h5>
+                            </div>
+                        }
+                        <div className='d-flex-column j-c-start ml-xs-4 position-relative '>
+                            <div className='d-flex-row align-items-center j-c-start'>
+                                <h5 className='fsize-xs-5 f-w-500 letter-spacing-1'>{currentFan.username}</h5>
+                                <Link to='/user-info-field-modify' state={{ field: 'USERNAME' }}><img className='avatar-22' src={IconEdit}></img></Link>
+                            </div>
+                            <span className='fsize-xs-1 f-w-300 grey-200 letter-spacing-1 no-shrink grow-1 w-100'>Member since 2022-10-28</span>
                         </div>
-                    }
-                    <div className='d-flex-column j-c-start ml-xs-4 position-relative '>
-                        <h5 className='fsize-xs-5 f-w-500 letter-spacing-1'>{currentFan.username}</h5>
-                        <span className='fsize-xs-1 f-w-300 grey-200 letter-spacing-1 no-shrink grow-1 w-100'>Member since 2022-10-28</span>
                     </div>
                 </div>
-            </div>
+                <input type='file' accept='image/*' style={{ display: 'none' }} onChange={handleFileChange} onClick={(e) => {e.target.value = null}} />
+            </label>
         
             <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>Connetti i tuoi social</h4>
             <div className='mt-xs-4'>
