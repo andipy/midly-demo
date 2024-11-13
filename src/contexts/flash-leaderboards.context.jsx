@@ -216,13 +216,13 @@ export const FlashLeaderboardsProvider = ({ children }) => {
                     position: 14
                 }
             ]
-        }, {
+        },{
             id: 3,
             artistId: 1,
             announceMessage: 'Sta per aprire la classifica flash di Lazza',
             announceStartDate: '2024-11-07 13:00:00',
             announceEndDate: '2024-11-23 00:00:00',
-            rankStartDate: '2024-11-07 14:30:00',
+            rankStartDate: '2024-11-14 14:30:00',
             rankEndDate: '2024-11-22 14:30:00',
             participants: 4557,
             totalStreams: 39016,
@@ -377,62 +377,163 @@ export const FlashLeaderboardsProvider = ({ children }) => {
                     position: 14
                 }
             ]
+        },{
+            id: 4,
+            artistId: 5,
+            announceMessage: 'Sta per aprire la classifica flash di Astro',
+            announceStartDate: '2024-11-10 13:00:00',
+            announceEndDate: '2024-11-13 00:00:00',
+            rankStartDate: '2024-11-11 14:30:00',
+            rankEndDate: '2024-11-12 14:30:00',
+            participants: 6970,
+            totalStreams: 39016,
+            image: require('../images/pictures/astro.jpg'),
+            song: {
+                title: '1 MOMENTO (feat. ANNA)',
+                url: 'https://open.spotify.com/intl-it/track/6OCnAtM8oa0JymErlTYXxG',
+            },
+            album: null,
+            badges: [
+                {
+                    position: 1,
+                    image: require('../images/illustrations/GOLD.png')
+                },{
+                    position: 2,
+                    image: require('../images/illustrations/SILVER.png')
+                },{
+                    position: 3,
+                    image: require('../images/illustrations/BRONZE.png')
+                },{
+                    position: 4,
+                    image: require('../images/illustrations/GENERIC.png')
+                }
+            ],
+            leaderboard: [
+                {
+                    image: require('../images/pictures/fan-4.jpg'),
+                    username: 'Danny Snatch',
+                    points: 176,
+                    position: 1
+                },{
+                    image: require('../images/pictures/fan-3.jpg'),
+                    username: 'Lil kid __',
+                    points: 158,
+                    position: 2
+                },{
+                    image: require('../images/pictures/fan-5.jpg'),
+                    username: 'Polly Lolly',
+                    points: 146,
+                    position: 3
+                },{
+                    image: require('../images/pictures/fan-9.jpg'),
+                    username: 'kevin alfa',
+                    points: 121,
+                    position: 4
+                },{
+                    image: require('../images/pictures/fan-1.jpg'),
+                    username: 'The King',
+                    points: 99,
+                    position: 5
+                },{
+                    image: require('../images/pictures/fan-7.jpg'),
+                    username: '_freak 3x_',
+                    points: 82,
+                    position: 6
+                },{
+                    image: require('../images/pictures/fan-6.jpg'),
+                    username: 'Kop Kalisti',
+                    points: 74,
+                    position: 7
+                },{
+                    image: require('../images/pictures/fan-8.jpg'),
+                    username: 'craft andG',
+                    points: 54,
+                    position: 8
+                },{
+                    image: require('../images/pictures/fan-2.jpg'),
+                    username: 'Big Law ::',
+                    points: 32,
+                    position: 9
+                },{
+                    image: require('../images/pictures/fan-1.jpg'),
+                    username: 'skusku78',
+                    points: 31,
+                    position: 10
+                },{
+                    image: require('../images/pictures/fan-7.jpg'),
+                    username: '_blue_',
+                    points: 27,
+                    position: 11
+                },{
+                    image: require('../images/pictures/fan-6.jpg'),
+                    username: 'jack Mario',
+                    points: 22,
+                    position: 12
+                },{
+                    image: require('../images/pictures/fan-8.jpg'),
+                    username: 'gianfranco',
+                    points: 19,
+                    position: 13
+                },{
+                    image: require('../images/pictures/fan-2.jpg'),
+                    username: 'gremy',
+                    points: 13,
+                    position: 14
+                }
+            ]
         }
     ])
 
     useEffect(() => {
-        const updateArtistFlashStatus = () => {
-            const currentDate = new Date()
-            let hasChanges = false
-            const updatedArtists = artists.map(artist => {
-                const matchingLeaderboard = flashLeaderboards.find(lb => lb.artistId === artist.id)
-    
-                if (matchingLeaderboard) {
-                    const announceStartDate = new Date(matchingLeaderboard.announceStartDate)
-                    const announceEndDate = new Date(matchingLeaderboard.announceEndDate)
-                    const rankStartDate = new Date(matchingLeaderboard.rankStartDate)
-                    const rankEndDate = new Date(matchingLeaderboard.rankEndDate)
-    
-                    let status = 'NONE'
-    
-                    if (currentDate >= announceStartDate && currentDate <= rankStartDate) {
+        const now = Date.now()
+
+        const updateFlashLeaderboardsStatuses = () => {
+            let changesDetected = false
+
+            const updatedFlashLeaderboardsStatus = artists.map(artist => {
+                const thisFlashLeaderboard = flashLeaderboards.find(item => item.artistId === artist.id)
+                let status = 'NONE'
+                if ( thisFlashLeaderboard ) {
+                    const announceStart = new Date(thisFlashLeaderboard.announceStartDate).getTime()
+                    const rankStart = new Date(thisFlashLeaderboard.rankStartDate).getTime()
+                    const rankEnd = new Date(thisFlashLeaderboard.rankEndDate).getTime()
+                    const announceEnd = new Date(thisFlashLeaderboard.announceEndDate).getTime()                    
+            
+                    if ( now < announceStart || now > announceEnd ) {
+                        status = status
+                    } else if ( now >= announceStart && now < rankStart ) {
                         status = 'PENDING'
-                    } else if (currentDate >= rankStartDate && currentDate <= rankEndDate) {
+                    } else if ( now >= rankStart && now <= rankEnd ) {
                         status = 'ONGOING'
-                    } else if (currentDate >= rankEndDate && currentDate <= announceEndDate) {
+                    } else if ( now > rankEnd && now <= announceEnd ) {
                         status = 'CLOSED_VISIBLE'
                     }
+                }
 
-    
-                    if (artist.flashLeaderboard?.status === status) {
-                        return artist
-                    }
-                    
-                    hasChanges = true
-                    return {
-                        ...artist,
-                        flashLeaderboard: {
-                            ...artist.flashLeaderboard,
-                            status
-                        }
+                if (artist.flashLeaderboard.status !== status) {
+                    changesDetected = true
+                }
+
+                return {
+                    ...artist,
+                    flashLeaderboard: {
+                        ...artist.flashLeaderboard,
+                        status: status
                     }
                 }
-                return artist
             })
-    
-            if (hasChanges) {
-                setArtists(updatedArtists)
-            }
+            
+            changesDetected
+                && setArtists(updatedFlashLeaderboardsStatus)
         }
 
-        const intervalId = setInterval(updateArtistFlashStatus, 1000)
+        const intervalId = setInterval(updateFlashLeaderboardsStatuses, 1000)
 
         return () => {
             clearInterval(intervalId)
         }
-    
-    }, [flashLeaderboards, artists, setArtists])
- 
+
+    }, []) 
 
     return (
         <FlashLeaderboardsContext.Provider value={{ flashLeaderboards, setFlashLeaderboards }}>

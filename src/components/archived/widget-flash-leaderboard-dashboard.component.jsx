@@ -17,7 +17,7 @@ const WidgetFlashLeaderboardDashboard = ({leaderboard, type, artistName, title})
         }
         const interval = setInterval(calculateTimeRemaining, 1000)
         return () => clearInterval(interval)
-    }, [leaderboard.rankStartDate])
+    }, [])
 
     const numberFanFlashLeaderboards = leaderboard.participants
     const streamGenerated = leaderboard.totalStreams

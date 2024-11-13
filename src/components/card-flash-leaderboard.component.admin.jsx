@@ -15,7 +15,7 @@ const CardFlashLeaderboard = ({ leaderboard, artistName, onClick }) => {
 		const interval = setInterval(calculateTimeRemaining, 1000)
 
 		return () => clearInterval(interval)
-	}, [leaderboard.rankStartDate])
+	}, [])
   
 	return (    
 		<article className='d-flex-row position-relative align-items-center bg-dark-gradient border-radius-1 mb-xs-3 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 gap-0_5em' onClick={started ? () => onClick() : null}>
