@@ -49,8 +49,9 @@ const BadgesRoute = () => {
                 {/* <h2 className='fsize-xs-5 f-w-600'>Tutti i badge</h2> */}
                 <div className='mt-xs-4 d-flex-row'>
                     <Carousel>
-                        {sortedBadges?.map(badge =>
+                        {sortedBadges?.map((badge, index) =>
                             <BadgeMonthlyMiniature
+                                key={index}
                                 badge={badge}
                                 onClick={() => selectBadge(badge)}
                                 selected={selectedBadge?.month === badge.month && selectedBadge?.year === badge.year && selectedBadge?.artistName === badge.artistName}
