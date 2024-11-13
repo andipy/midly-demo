@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context'
 
 import ContainerDefault from '../layout/container-default.layout'
 
@@ -14,28 +16,55 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
 
     const navigate = useNavigate()
 
-    const [seconds, setSeconds] = useState(59)
-    const [minutes, setMinutes] = useState(37)
-    
+
+    const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
+
+    const matchingLeaderboard = flashLeaderboards.find(lb => lb.artistId === artist.id)
+
+
+    const [targetDate, setTargetDate] = useState('')
+    const [timeRemaining, setTimeRemaining] = useState({ 
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+    })
+
+    const now = new Date()
+
     useEffect(() => {
-        setTimeout(() => {
-            if (seconds > 0) {
-                setSeconds(prev => prev -1)
-            } else {
-                setSeconds(59)
+        const convAnnounceStartDate = new Date(matchingLeaderboard.announceStartDate)
+        const convRankStartDate = new Date(matchingLeaderboard.rankStartDate)
+        const convRankEndDate = new Date(matchingLeaderboard.rankEndDate)
+        const updateLabel = () => {
+            if (now > convAnnounceStartDate && now < convRankStartDate) {
+                setTargetDate(matchingLeaderboard.rankStartDate)
+            } else if (now > convAnnounceStartDate && now < convRankEndDate) {
+                setTargetDate(matchingLeaderboard.rankEndDate)
             }
-        }, 1000)    
-    }, [seconds])
-    
+        }
+
+        updateLabel()
+    }, [matchingLeaderboard.announceStartDate, matchingLeaderboard.rankStartDate, matchingLeaderboard.rankEndDate])
+
     useEffect(() => {
-        setTimeout(() => {
-            if (minutes < 0) {
-                setMinutes(prev => prev -1)
-            } else {
-                setMinutes(59)
+        const calculateTimeRemaining = () => {
+            const now = new Date()
+            const difference = new Date(targetDate) - now
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+                setTimeRemaining({ days, hours, minutes, seconds })
             }
-        }, 60000)
-    }, [minutes])
+        }
+
+        const interval = setInterval(calculateTimeRemaining, 1000)
+
+        return () => clearInterval(interval)
+    }, [targetDate])
 
     
 
@@ -64,12 +93,12 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
 
                     <ContainerDefault containerSpecificStyle={`d-flex-column align-items-center j-c-center overflow-all-hidden ${upperModalCompressed ? 'compress-up' : 'expand-up'}`}>
                         <img className='w-25' src={IllustrationTrophy} />
-                        <h4 className='fsize-xs-4 mb-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 w-80'>Sta per uscire “LOCURA” il nuovo album di {artist.artistName}! La CLASSIFICA FLASH si attiva alle 1.00.</h4>
+                        <h4 className='fsize-xs-4 mb-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 w-80'>Sta per uscire {matchingLeaderboard.album ? matchingLeaderboard.album.title : matchingLeaderboard.song.title} il nuovo {matchingLeaderboard.album ? 'album' : 'brano'} di {artist.artistName}! {matchingLeaderboard.announceMessage}</h4>
                         <div className='d-flex-row j-c-center gap-0_5em fsize-xs-2 no-shrink bg-brand-gradient pt-xs-4 pb-xs-4 border-radius-04 w-100'>
                             <span className='f-w-600 black fsize-xs-4'>SI ATTIVA TRA </span>
-                            <span className='f-w-600 black fsize-xs-4'>8<span className='f-w-300'>H</span></span>
-                            <span className='f-w-600 black fsize-xs-4'>{minutes}<span className='f-w-300'>M</span></span>
-                            <span className='f-w-600 black fsize-xs-4'>{seconds}<span className='f-w-300'>S</span></span>
+                            <span className='f-w-600 black fsize-xs-4'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
+                            <span className='f-w-600 black fsize-xs-4'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
+                            <span className='f-w-600 black fsize-xs-4'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
                         </div>
                         <Button
                             style='bg-dark-soft border-lime lime-400 border-radius-04 fsize-xs-3 f-w-500 mt-xs-4 z-index-max'
@@ -85,9 +114,9 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                             <h4 className='fsize-xs-3 f-w-500 black'>CLASSIFICA FLASH SI ATTIVA TRA:</h4>
                             <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink mt-xs-4 border-radius-04 w-100'>
                                 <span className='f-w-600 black'> </span>
-                                <span className='f-w-600 black'>8<span className='f-w-300'>h</span></span>
-                                <span className='f-w-600 black'>{minutes}<span className='f-w-300'>m</span></span>
-                                <span className='f-w-600 black'>{seconds}<span className='f-w-300'>s</span></span>
+                                <span className='f-w-600 black'>{timeRemaining.hours}<span className='f-w-300'>h</span></span>
+                                <span className='f-w-600 black'>{timeRemaining.minutes}<span className='f-w-300'>m</span></span>
+                                <span className='f-w-600 black'>{timeRemaining.seconds}<span className='f-w-300'>s</span></span>
                             </div>
                         </ContainerDefault>
                     </div>
@@ -107,10 +136,10 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                     <div className='modal-header w-100 position-absolute top-0'>
                         <img
                             className='position-absolute top-0 w-100 h-inherit object-fit-cover'
-                            src={require('../images/pictures/artie-5ive-cover.jpg')}
+                            src={matchingLeaderboard.image}
                         />
                         </div>
-                        <h4 className='pt-xs-modal-header fsize-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 mb-xs-4'>La classifica flash di "<span className='lime-400 f-w-500'>Nome dell'album</span>" è attiva: ascolta i brani e competi nella classifica dei super fan di {artist.artistName}.</h4>
+                        <h4 className='pt-xs-modal-header fsize-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 mb-xs-4'>La classifica flash di "<span className='lime-400 f-w-500'>{matchingLeaderboard.album ? matchingLeaderboard.album.title : matchingLeaderboard.song.title}</span>" è attiva: ascolta {matchingLeaderboard.album ? 'i brani' : 'il brano'} e competi nella classifica dei super fan di {artist.artistName}.</h4>
 
                         <Button
                             style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 z-index-max mb-xs-4'
@@ -120,9 +149,9 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
 
                         <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink pt-xs-4 border-radius-04 w-100'>
                             <span className='f-w-600 white'>TERMINA TRA: </span>
-                            <span className='f-w-600 white'>8<span className='f-w-300'>H</span></span>
-                            <span className='f-w-600 white'>{minutes}<span className='f-w-300'>M</span></span>
-                            <span className='f-w-600 white'>{seconds}<span className='f-w-300'>S</span></span>
+                            <span className='f-w-600 white'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
+                            <span className='f-w-600 white'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
+                            <span className='f-w-600 white'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
                         </div>
                     </ContainerDefault>
 

@@ -219,7 +219,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
         },{
             id: 3,
             artistId: 1,
-            announceMessage: 'Sta per aprire la classifica flash di Lazza',
+            announceMessage: 'La CLASSIFICA FLASH si attiverà all 1:00',
             announceStartDate: '2024-11-07 13:00:00',
             announceEndDate: '2024-11-23 00:00:00',
             rankStartDate: '2024-11-14 14:30:00',
