@@ -68,7 +68,9 @@ export const CurrentFanProvider = ({ children }) => {
                     artistName: 'artist name',
                 }
             ]
-        }
+        },
+
+        pointTank: 38,
     })
 
     return (

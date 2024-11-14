@@ -1,10 +1,8 @@
-import { useNavigate } from 'react-router-dom'
-const CardPreferredArtist = ({ artist}) => {
+const CardPreferredArtist = ({ artist, onClick}) => {
 
-    const navigate = useNavigate()
 
     return (
-        <div className='mr-xs-2 d-flex-column j-c-center align-items-center' onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state : artist })}>
+        <div className='mr-xs-2 d-flex-column j-c-center align-items-center' onClick={onClick}>
             <div className='avatar-96 border-radius-100  bg-dark-gradient position-relative'>
             {/* <div className='avatar-96 border-radius-100 overlay-card bg-dark-overlay-card z-index-1'></div> */}                
                 <img className='avatar-96 border-radius-100 object-fit-cover border-radius-06' src={artist.image} alt='' />

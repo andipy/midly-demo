@@ -41,6 +41,7 @@ import LiveQuizResultRoute from './routes/live-quiz-result.route'
 import RegistrationRoute from './routes/registration.route'
 import RecoverPasswordRoute from './routes/recover-password.route'
 import BadgesRoute from './routes/badges.route'
+import PersonalUserPointsRoute from './routes/personal-user-points.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -229,8 +230,11 @@ const router = createBrowserRouter([
     path: '/flash-leaderboards-admin/flash-leaderboard-metrics-detail',
     element: <FlashLeaderboardMetricsDetailRoute />
   },{
-    path: 'badges',
+    path: '/badges',
     element: <BadgesRoute />
+  }, {
+    path: '/personal-user-points',
+    element: <PersonalUserPointsRoute />
   }
 ])
 

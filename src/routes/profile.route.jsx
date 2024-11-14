@@ -18,6 +18,7 @@ import IconCookies from '../images/icons/icon-cookie.svg'
 import IconEdit from "../images/icons/icon-edit.svg"
 import IconTrophyGold from '../images/icons/icon-trophy-gold.svg'
 import { Link } from 'react-router-dom'
+import ProgressBar from '../components/progress-bar-points.component'
 
 const ProfileRoute = () => {
 
@@ -76,6 +77,28 @@ const ProfileRoute = () => {
                 </div>
                 <input type='file' accept='image/*' style={{ display: 'none' }} onChange={handleFileChange} onClick={(e) => {e.target.value = null}} />
             </label>
+            <section id='points'>
+                <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi punti personali</h4>
+                <div className='mt-xs-4 mb-xs-4'>
+                    <Link to='/personal-user-points'>
+                        <div className='bg-dark-gradient border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6'>
+
+                            {currentFan.pointTank === 0 ? (
+                                <>
+                                    <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Scopri come guadagnare punti</p>
+                                    <img src={IconArrowRight} alt='->'/>
+                                </>
+                            ) : (
+                                <>
+                                    <ProgressBar points={currentFan.pointTank} max={50}/>
+                                    <img src={IconArrowRight} alt='->'/>
+                                </>  
+                            )}
+                                
+                        </div>
+                    </Link>
+                </div>
+            </section>
         
             <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>Connetti i tuoi social</h4>
             <div className='mt-xs-4'>

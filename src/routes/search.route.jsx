@@ -3,6 +3,9 @@ import {useState, useContext, useRef, useEffect} from 'react'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { ArtistsContext } from '../contexts/artists.context'
 
+import { useNavigate } from 'react-router-dom'
+
+
 import NavbarDefault from '../components/navbar-default.component'
 import ContainerDefault from '../layout/container-default.layout'
 import TextTitle from '../components/text-title.component'
@@ -13,6 +16,8 @@ import CardArtist from '../components/card-search-artists.component'
 import CardPreferredArtist from '../components/card-preferred-artist.component'
 
 const SearchRoute = () => {
+
+    const navigate = useNavigate()
 
     const { currentFan } = useContext(CurrentFanContext)
     const { artists } = useContext(ArtistsContext)
@@ -91,6 +96,7 @@ const SearchRoute = () => {
                                                 <CardPreferredArtist 
                                                     artist = {artist}
                                                     key = {artist.id}
+                                                    onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state : artist })}
                                                 />
                                             )
                                         })}
