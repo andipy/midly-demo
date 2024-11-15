@@ -70,7 +70,7 @@ export const CurrentFanProvider = ({ children }) => {
             ]
         },
 
-        pointTank: 38,
+        pointTank: 20,
     })
 
     return (

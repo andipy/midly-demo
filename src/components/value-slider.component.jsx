@@ -13,7 +13,7 @@ function ValueSlider({max, onValueChange}) {
     };
 
     return (
-        <div className="d-flex-column align-items-center mt-xs-2">
+        <div className="d-flex-column align-items-center mt-xs-6 mb-xs-6">
             <input
                 type="range"
                 min={min}
@@ -21,11 +21,8 @@ function ValueSlider({max, onValueChange}) {
                 step={step}
                 value={value}
                 onChange={handleChange}
-                className="w-80 mt-xs-2"
+                className="custom-slider"
             />
-            <div className="value-display">
-                <span>Value: {value}</span>
-            </div>
         </div>
     );
 }

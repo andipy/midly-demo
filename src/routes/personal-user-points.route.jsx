@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
@@ -15,10 +15,13 @@ import FullPageCenter from '../layout/full-page-center.layout'
 import Button from '../components/button.component'
 
 import IconPoints from '../images/icons/icon-points.svg'
+import IconPointsMultiple from '../images/icons/icon-points-2.svg'
 import IconPlus from '../images/icons/icon-plus.svg'
+import IconExit from '../images/icons/icon-exit.svg'
 
 import SearchInput from '../components/search-input.component'
 import ValueSlider from '../components/value-slider.component'
+import CardLeaderboardYourPosition from '../components/card-leaderboard-your-position.component'
 
 const PersonalUserPointsRoute = () => {
     const navigate = useNavigate()
@@ -28,28 +31,40 @@ const PersonalUserPointsRoute = () => {
 
     const [searchQuery, setSearchQuery] = useState('')
     const [showComponent, setShowComponent] = useState(false)
-    const [idSelectedArtist, setIdSelectedArtist] = useState('')
+    const [idSelectedArtist, setIdSelectedArtist] = useState()
     const [valueAssigned, setValueAssigned] = useState(0)
+    const [selectedArtist, setSelectedArtist] = useState(null)
 
     const handleSliderChange = (value) => {
       setValueAssigned(value);
   }
 
     const assign = () => {
-      console.log(valueAssigned)
-      console.log('assigned')
+      setCurrentFan((prevFan) => ({
+        ...prevFan,
+        pointTank: prevFan.pointTank - valueAssigned,
+      }))
+
+      /* devo assegnare punti alla leaderboard artista */
+
       closeAssignements()
     }
 
     const showAssignments = (id) => {
       setIdSelectedArtist(id)
-      console.log(idSelectedArtist)
       setShowComponent(true)
     }
 
     const closeAssignements = () => {
       setShowComponent(false)
     }
+
+    useEffect(() => {
+      if (idSelectedArtist && artists) {
+        const foundArtist = artists.find(artist => artist.id === idSelectedArtist)
+        setSelectedArtist(foundArtist)
+      }
+    }, [idSelectedArtist])
 
 
     const filteredItems = artists
@@ -75,18 +90,18 @@ const PersonalUserPointsRoute = () => {
     <NavbarBackOnly onClick={() => navigate(-1)}/>
     <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
         <TextTitle title={'I tuoi punti'}></TextTitle>
-            <div id='points' className={`d-flex-row align-items-center j-c-space-between w-100 z-index-5 mt-xs-2`}>
-              <h2 className='fsize-xs-5 f-w-600 '>Assegna i tuoi punti</h2>
-              <div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
-                <div className='d-flex-row align-items-center'>
-                  <div className='fsize-xs-3'>{currentFan?.pointTank} </div>
-                  <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
-                </div>
-              </div>
-            </div>
+            
             {currentFan?.pointTank > 0 ?
             <>
-              
+              <div id='points' className={`d-flex-row align-items-center j-c-space-between w-100 z-index-5 mt-xs-2`}>
+                <h2 className='fsize-xs-5 f-w-600 '>Assegna i tuoi punti</h2>
+                <div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
+                  <div className='d-flex-row align-items-center'>
+                    <div className='fsize-xs-3'>{currentFan?.pointTank} </div>
+                    <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
+                  </div>
+                </div>
+              </div>
               <div id='search'>
                 <SearchInput
                   value={searchQuery} 
@@ -98,25 +113,26 @@ const PersonalUserPointsRoute = () => {
               </div>
               <div id='assignment'>
                 {chunkedItems.map((chunk, index) => (
-                          <div className='mb-xs-8' key={index}>
-                              <Carousel>
-                                  {chunk.map(item => {
-                                      return (
-                                        <CardPreferredArtist 
-                                          artist = {item}
-                                          key = {item.id}
-                                          onClick={() => showAssignments(item.id)}
-                                        />
-                                      )
-                                  })}
-                              </Carousel>
-                          </div>
-                  ))}
+                    <div className='mb-xs-8' key={index}>
+                      <Carousel>
+                        {chunk.map(item => {
+                          return (
+                            <CardPreferredArtist 
+                              artist = {item}
+                              key = {item.id}
+                              onClick={() => showAssignments(item.id)}
+                            />
+                          )
+                        })}
+                      </Carousel>
+                    </div>
+                ))}
               </div>
             </>
             :
-            <div id='no-points' className='d-flex-column mt-xs-2'>
-              <h1 className='grey-400 fsize-xs-5 mt-xs-2 mt-xl-2 overflow-x'>Non hai ancora guadagnato punti extra!</h1>
+            <div id='no-points' className='bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4 d-flex-column align-items-center j-c-center mt-xs-6 mb-xs-6'>
+              <img className='h-20 w-20' src={IconPointsMultiple}></img>
+              <h1 className='t-align-center grey-400 fsize-xs-5 mt-xs-2 mt-xl-2  overflow-x'>Non hai ancora guadagnato punti extra!</h1>
             </div>
             }
             <div id='faq' className='mt-xs-2 d-flex-column'>
@@ -176,14 +192,39 @@ const PersonalUserPointsRoute = () => {
     </ContainerDefault>
     {showComponent &&
       <FullPageCenter className={'z-index-max bg-black-transp70'}>
-        <ContainerDefault containerSpecificStyle={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
-            <section className='w-100'>
-                <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Quanti punti?</h2>
-                <ValueSlider max={currentFan.pointTank} onValueChange={handleSliderChange}/>
-                <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 mt-xs-4' label='Assegna' onClick={assign}/>
-            </section>
-                    
-            <a className='text-underline blue-300 f-w-400' onClick={closeAssignements}>Chiudi</a>
+        <ContainerDefault containerSpecificStyle={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
+          <div className='d-flex-row align-items-center j-c-space-between w-100'>
+            <div className='avatar-32'></div>
+            <img className='avatar-32 bg-black-transp50 border-radius-100' src={IconExit} onClick={closeAssignements}></img>
+          </div>
+          <h2 className='fsize-xs-4 f-w-600'>La tua posizione nella classifica di:</h2>
+          <div className='d-flex-row j-c-center'>
+            <div className='d-flex-column align-items-center w-33'>
+              <div className='first-position position-relative'>
+                <img className='object-fit-cover position-absolute-x-y podium-border-empty-image-inner z-index-2' src={selectedArtist?.image} />
+                <div className='d-flex-row j-c-center align-items-center podium-border-empty-image-inner position-absolute-x-y z-index-1'>
+                </div>
+                <div className='podium-profile-indicator p-xs-16  black f-w-600 d-flex-row align-items-center j-c-center position-absolute border-radius-100 top-0 right-10 overflow-all-hidden'>
+                  <img src={currentFan.image} className='object-fit-cover border-radius-100 avatar-36' />
+                </div>
+                <span className='position-absolute fsize-xs-1 white right-neg30 top-5'>{currentFan?.leaderboardStats.position}°</span>
+                <div className='podium-point-indicator p-xs-16  black f-w-600 d-flex-row align-items-center j-c-center position-absolute border-radius-100 top-12 right-0 overflow-all-hidden'>
+                  <img src={IconPoints} className='object-fit-cover avatar-36' />
+                </div>
+                <span className='position-absolute fsize-xs-1 white right-neg30 top-25'>{currentFan?.leaderboardStats.points}0</span>
+              </div>
+            </div>
+          </div> 
+          <h5 className='fsize-xs-2 f-w-500 letter-spacing-1'>{selectedArtist?.artistName}</h5>  
+          <h2 className='fsize-xs-4 f-w-600 mt-xs-4'>Sali di:</h2>    
+          <div className='d-flex-row align-items-center '>
+            <h4 className='fsize-xs-6'>{valueAssigned}</h4>
+            <img className='avatar-20 ml-xs-2' src={IconPoints} alt='points' />
+          </div>
+          <section className='w-100'>
+            <ValueSlider max={currentFan.pointTank} onValueChange={handleSliderChange}/>
+            <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 mt-xs-4' label='Assegna' onClick={assign}/>
+          </section>      
         </ContainerDefault>
       </FullPageCenter>
     }
