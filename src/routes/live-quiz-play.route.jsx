@@ -21,8 +21,6 @@ const LiveQuizPlayRoute = () => {
     const [timeLeft, setTimeLeft] = useState(60)
     const [userAnswer, setUserAnswer] = useState('')
 
-    console.log(id, quiz, songChunk)
-
     const correctAnswer = songChunk.correctResponse
 
     useEffect(() => {

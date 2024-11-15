@@ -16,7 +16,6 @@ const FanclubTermsRoute = () => {
     const [accepted, setAccepted] = useState(false)
     const handleCheckbox = (e) => {
         setAccepted((prev) => !prev)
-        console.log(e)
     }
 
     const outerDivRef = useRef(null); // Reference to the outer div

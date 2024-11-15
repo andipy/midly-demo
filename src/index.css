@@ -1001,9 +1001,6 @@ animation: dot-loader-after 1s infinite linear;
 .border-top-dark-01 {
   border-top: 1px solid #303340;
 }
-.border-top-dark-01 {
-  border-top: 1px solid #303340;
-}
 .border-dark-3 {
   border: 3px solid var(--color-main-bg);
 }
@@ -1041,7 +1038,6 @@ animation: dot-loader-after 1s infinite linear;
   border-bottom: 3px solid #f1cbff;
 }
 
-
 /************* BORDER RADIUS *************/
 .border-radius-01 {
   border-radius: .1rem;
@@ -1066,6 +1062,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .border-radius-08 {
   border-radius: .8rem;
+}
+.border-radius-top-08 {
+  border-radius: .8em .8em 0 0;
 }
 .border-radius-1 {
   border-radius: 1rem;
@@ -1811,6 +1810,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .h-min-100vh {
   min-height: 100vh;
+}
+.h-max-30vh {
+  max-height: 30vh;
 }
 .h-inherit {
   height: inherit;

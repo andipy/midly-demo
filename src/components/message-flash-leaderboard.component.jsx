@@ -30,8 +30,6 @@ const MessageFlashLeaderboard = ({ artist }) => {
         }, 60000)
     }, [minutes])
 
-    console.log(artist, 'artista ye ye')
-
     return (
         <>
         {/* {artist?.flashLeaderboard.status === 'ONGOING' &&

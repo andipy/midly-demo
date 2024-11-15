@@ -7,7 +7,7 @@ const CardFollowedArtist = ({ artist }) => {
 
     const statusConvert = {
         'ONGOING' : 'Classifica flash attiva',
-        'PENDING' : 'Classifica flash in apertura',
+        'PENDING' : 'Classifica flash apre tra poco',
         'CLOSED_VISIBLE': 'Classifica flash terminata'
     }
 

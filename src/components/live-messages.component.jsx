@@ -1,28 +1,29 @@
 import { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import { mockSongsThasup, mockSongsArtie5ive } from '../mock-data/songs'
+// import { mockSongsThasup, mockSongsArtie5ive } from '../mock-data/songs'
 
 import ContainerDefault from '../layout/container-default.layout'
 import LiveMessage from './live-message.component'
 import Countdown from './countdown.component'
 import Textbar from './textbar.component'
+import NavbarCommentsModal from './navbar-comments-modal.component'
 
 const LiveMessages = () => {
 
     const { pathname } = useLocation()
 
-    let mockSongs
-    const mockSongsDefiner = () => {
-        if ( pathname.includes('thasup') || pathname.includes('/artist-app/') ) {
-            mockSongs = mockSongsThasup
-        }
-        if ( pathname.includes('artie-5ive') ) {
-            mockSongs = mockSongsArtie5ive
-        }
-    }
-    useEffect(() => {
-        mockSongsDefiner()
-    }, [])
+    // let mockSongs
+    // const mockSongsDefiner = () => {
+    //     if ( pathname.includes('thasup') || pathname.includes('/artist-app/') ) {
+    //         mockSongs = mockSongsThasup
+    //     }
+    //     if ( pathname.includes('artie-5ive') ) {
+    //         mockSongs = mockSongsArtie5ive
+    //     }
+    // }
+    // useEffect(() => {
+    //     mockSongsDefiner()
+    // }, [])
 
     // const wordsToCensor = ['negro', 'negra', 'negr', 'fuck', 'coglione', 'cogliona', 'coglion', 'cazzo', 'cazz', 'caz', 'idiota', 'idioto', 'idiot', 'scemo', 'scema', 'scem', 'bastardo', 'bastarda', 'bastard', 'stronza', 'stronzo', 'stronz', 'puttana', 'puttano', 'puttan', 'putta', 'putt', 'troia', 'troi', 'bagascia', 'bagascio', 'bagasc', 'baldracca', 'baldracc', 'baldrac', 'nigga', 'bitch', 'bitc', 'muori', 'devi morire', 'devi morir', 'devi mori', 'devi mor', 'devi mo', 'testa di cazzo', 'testa di cazz', 'testa di caz', 'testa di ca', 'merda', 'merdo', 'merd', 'schifo', 'schifa', 'schif', 'cagare', 'cagara', 'cagaro', 'cagar', 'caga'];
     // const censorString = (input, wordsToCensor) => {
@@ -63,15 +64,28 @@ const LiveMessages = () => {
             // const censoredComment = { ...currentComment, content: censoredContent };
 
             if ( currentComment.user_type == 'fan' ) {
-                setComments(prev => [...prev, {...currentComment, timestamp: Date.now(), id: Math.floor(Math.random() * 123456789)}])
-                messageRecentlySent.current = true
-                setTimeout(() => {
-                    messageRecentlySent.current = false
-                }, 2500)
+                setComments(prev => 
+                    [...prev, {
+                        ...currentComment,
+                        timestamp: Date.now(),
+                        id: Math.floor(Math.random() * 123456789)
+                    }]
+                )
+                
+                // messageRecentlySent.current = true
+                // setTimeout(() => {
+                //     messageRecentlySent.current = false
+                // }, 2500)
             }
             
             if ( currentComment.user_type == 'artist' ) {
-                setArtistMessages(prev => [...prev, {...currentComment, timestamp: Date.now(), id: Math.floor(Math.random() * 123456789)}])
+                setArtistMessages(prev =>
+                    [...prev, {
+                        ...currentComment,
+                        timestamp: Date.now(),
+                        id: Math.floor(Math.random() * 123456789)
+                    }]
+                )
             }
         }
         setCurrentComment({
@@ -88,35 +102,35 @@ const LiveMessages = () => {
     // this 'currentComment' state and 'handleCurrentComment' function just handle the comment that the user is currently typing
     const [currentComment, setCurrentComment] = useState({
         type: 'COMMENT',
-        user_type: 'fan',
+        user_type: undefined,
         content: '',
         timestamp: undefined,
         id: undefined
     })
     const handleCurrentComment = (e) => {
-        setCurrentComment({
+        setCurrentComment(prev => ({
             type: 'COMMENT',
-            user_type: 'fan',
+            user_type: prev.user_type,
             content: e.target.value,
             timestamp: undefined,
             id: undefined
-        })
+        }))
     }
 
     // this 'songs' and useEffect simulate the whole list of songs coming back from the websocket, so basically it stores every single song that the backend returns throught the websocket, without number limitation
-    const [songs, setSongs] = useState([])
-    useEffect(() => {
-        for (let i = 1; i <= 100000; i++) {
-          setTimeout(() => setSongs(prev => [...prev, 
-            {
-                type: 'SONG',
-                content: mockSongs[Math.floor(Math.random() * mockSongs.length)].content,
-                timestamp: Date.now(),
-                id: Math.floor(Math.random() * 123456789)
-            }
-        ]), 800 * i);
-        }
-    }, [])
+    // const [songs, setSongs] = useState([])
+    // useEffect(() => {
+    //     for (let i = 1; i <= 100000; i++) {
+    //       setTimeout(() => setSongs(prev => [...prev, 
+    //         {
+    //             type: 'SONG',
+    //             content: mockSongs[Math.floor(Math.random() * mockSongs.length)].content,
+    //             timestamp: Date.now(),
+    //             id: Math.floor(Math.random() * 123456789)
+    //         }
+    //     ]), 800 * i);
+    //     }
+    // }, [])
 
     // IMPORTANT: this useEffect should handle the MASTER state 'liveMessages', which is described above. this useEffect is finished up, but for sure it need to be redesigned according to real stream of data coming from the backend
     useEffect(() => {
@@ -131,14 +145,13 @@ const LiveMessages = () => {
                 }
             }
             
-            if ( !messageRecentlySent.current ) {
-                setLiveMessages(prev => [...prev, songs.slice(-1)[0]])
-            }
+            // if ( !messageRecentlySent.current ) {
+            //     setLiveMessages(prev => [...prev, songs.slice(-1)[0]])
+            // }
         
-            if ( liveMessages.length >= 4 ) {
+            if ( liveMessages.length > 20 ) {
                 setLiveMessages(prev => prev.slice(1))
             }
-        
         }
 
         //this leverages the first useRef declared above and it is just to avoid this entire useEffect to run on first render of the page
@@ -146,7 +159,7 @@ const LiveMessages = () => {
             pageHasRendered.current = true
         }
         
-    }, [comments, songs])
+    }, [comments])
 
     // this useEffect has the only objective of cutting to one
     useEffect(() => {
@@ -155,38 +168,90 @@ const LiveMessages = () => {
         }
     },[artistMessages])
 
+    useEffect(() => {
+        pathname.includes('/artist-app') ?
+            setCurrentComment(prev => ({
+                ...prev,
+                user_type: 'artist'
+            }))
+        : setCurrentComment(prev => ({
+            ...prev,
+            user_type: 'fan'
+        }))
+
+    }, [])
+
     const [chatOpen, setChatOpen] = useState(true)
+    const closeModal = () => {
+        setChatOpen(false)
+    }
 
     return (
-        <div className='position-fixed bottom-0 w-100 z-index-5'>
-            <div className={`bg-dark overflow-hidden position-relative ${chatOpen ? 'pt-xs-4 border-top-dark-01' : 'h-0'}`}>
-                <span onClick={() => setChatOpen(false)} className='position-absolute bottom-0 right-0 fsize-xs-2 f-w-600 lime-400 mb-xs-4 mt-xs-4 mr-xs-2 z-index-5'>Nascondi chat</span>
-                <ContainerDefault containerSpecificStyle={'position-relative h-inherit d-flex-column j-c-end'}>
-                    {/* thel following div is there to contain the messages sent to by the ARTIST, so they are divided by the flow of songs and messages sent by the fans */}
-                    {artistMessages.length > 0 &&
-                        <div className='d-flex-column grow-1 gap-0_5em mb-xs-2 bg-dark-overlay-header-3'>
-                        {artistMessages.map((message, key) => {
-                            if ( message.user_type == 'artist' )
-                                return <LiveMessage key={key} message={message} />
-                        })}
-                    </div>
-                    }
+        <div className={`position-fixed bg-dark-soft bottom-0 w-100 z-index-5 border-radius-top-08 shadow-dark-400`}>
+            <div className={`${chatOpen ? 'd-xs-block' : 'd-none'}`}>
+                <NavbarCommentsModal closeModal={closeModal} title='Chat' />
 
-                    {/* thel following div is there to contain the messages sent to by the FANS, they are merged in the flow of the songs and divided by the artist's messages */}
-                    {liveMessages.length > 0 && 
-                        <div className='d-flex-column grow-1 gap-0_5em'>
-                            {liveMessages.map((message, key) => {
-                                if ( message.user_type == 'fan' || message.user_type == null )
+                {artistMessages.length >= 1 &&
+                    <ContainerDefault containerSpecificStyle={`${chatOpen ? 'd-flex-column j-c-end pt-xs-2 pb-xs-2' : 'd-none'}`}>
+                        {/* thel following div is there to contain the messages sent to by the ARTIST, so they are divided by the flow of songs and messages sent by the fans */}
+                        {artistMessages.length > 0 &&
+                            <div className='d-flex-column grow-1 gap-0_5em mb-xs-2 bg-dark-overlay-header-3'>
+                            {artistMessages.map((message, key) => {
+                                if ( message.user_type == 'artist' )
                                     return <LiveMessage key={key} message={message} />
                             })}
                         </div>
-                    }
+                        }
+                    </ContainerDefault>
+                }
+                
+                {liveMessages.length >= 1 &&
+                    <div className={`overflow-auto h-max-30vh ${chatOpen ? 'd-xs-block pb-xs-2' : 'd-none'}`}>
+                        <ContainerDefault containerSpecificStyle='d-flex-column j-c-end overflow-auto'>
+                            {/* the following div is there to contain the messages sent to by the FANS, they are merged in the flow of the songs and divided by the artist's messages */}
+                            {liveMessages.length > 0 && 
+                                <div className='d-flex-column grow-1 gap-0_5em'>
+                                    {liveMessages.map((message, key) => {
+                                        if ( message.user_type == 'fan' || message.user_type == null )
+                                            return <LiveMessage key={key} message={message} />
+                                    })}
+                                </div>
+                            }
+                        </ContainerDefault>
+                    </div>
+                }
+
+                {(liveMessages.length < 1 && artistMessages.length < 1) &&
+                    <div className='d-flex-row j-c-center pt-xs-4 pb-xs-8'>
+                        {pathname.includes('/artist-app') &&
+                            <p className='fsize-xs-2 grey-200'>Lascia un messaggio ai tuoi fan</p>
+                        }
+                        {!pathname.includes('/artist-app') &&
+                            <p className='fsize-xs-2 grey-200'>Chatta con gli altri fan e con l'artista</p>
+                        }
+                    </div>
+                }
+
+                <ContainerDefault containerSpecificStyle={`position-relative ${chatOpen ? 'd-flex-column j-c-end' : 'd-none'}`}>
                     <Countdown />
+                    {/* <span
+                        onClick={() => setChatOpen(false)}
+                        className='position-absolute bottom-0 right-0 fsize-xs-2 f-w-600 lime-400 mb-xs-4 mt-xs-4 mr-xs-2 z-index-5'
+                    >
+                        Nascondi chat
+                    </span> */}
                 </ContainerDefault>
             </div>
-            <Textbar onClick={() => setChatOpen(true)} currentComment={currentComment} handleCurrentComment={handleCurrentComment} handleSubmitComment={handleSubmitComment} />
+
+            <Textbar
+                onClick={() => setChatOpen(true)}
+                currentComment={currentComment}
+                handleCurrentComment={handleCurrentComment}
+                handleSubmitComment={handleSubmitComment}
+            />
+
         </div>
     )
 }
 
-export default LiveMessages;
+export default LiveMessages

@@ -51,8 +51,6 @@ const MessageFlashLeaderboardNew = ({ artist }) => {
         }, 600) 
     }, [])
 
-    console.log(artist, 'artistaaa')
-
     return (
         <>
         {artist &&
