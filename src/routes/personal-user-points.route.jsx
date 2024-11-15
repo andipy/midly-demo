@@ -56,6 +56,7 @@ const PersonalUserPointsRoute = () => {
     }
 
     const closeAssignements = () => {
+      setValueAssigned(0)
       setShowComponent(false)
     }
 
