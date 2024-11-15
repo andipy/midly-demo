@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { ArtistsContext } from '../contexts/artists.context'
+import { LeaderboardsContext } from '../contexts/leaderboards.context'
 
 import { Link } from 'react-router-dom'
 
@@ -28,12 +29,15 @@ const PersonalUserPointsRoute = () => {
 
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const { artists } = useContext(ArtistsContext)
+    const { leaderboards, setLeaderboards } = useContext(LeaderboardsContext)
 
     const [searchQuery, setSearchQuery] = useState('')
     const [showComponent, setShowComponent] = useState(false)
     const [idSelectedArtist, setIdSelectedArtist] = useState()
     const [valueAssigned, setValueAssigned] = useState(0)
-    const [selectedArtist, setSelectedArtist] = useState(null)
+    const [selectedArtist, setSelectedArtist] = useState()
+    const [selectedLeaderboard, setSelectedLeaderboard] = useState()
+    const [userPosition, setUserPosition] = useState()
 
     const handleSliderChange = (value) => {
       setValueAssigned(value);
@@ -45,7 +49,23 @@ const PersonalUserPointsRoute = () => {
         pointTank: prevFan.pointTank - valueAssigned,
       }))
 
-      /* devo assegnare punti alla leaderboard artista */
+      const updatedLeaderboards = leaderboards.map((leaderboard) => {
+        if (leaderboard?.artistId === idSelectedArtist) {
+          const updatedLeaderboard = leaderboard.leaderboard.map((user) => {
+            if (user.userId === currentFan.id) {
+              const updatedPoints = Number(user.points) + Number(valueAssigned)
+              return { ...user, points: updatedPoints }
+            }
+            return user
+          })
+    
+          return { ...leaderboard, leaderboard: updatedLeaderboard }
+        }
+      })
+    
+      setLeaderboards(updatedLeaderboards)
+
+      console.log('assigned')
 
       closeAssignements()
     }
@@ -61,12 +81,19 @@ const PersonalUserPointsRoute = () => {
     }
 
     useEffect(() => {
-      if (idSelectedArtist && artists) {
-        const foundArtist = artists.find(artist => artist.id === idSelectedArtist)
+      if (idSelectedArtist) {
+        const foundArtist = artists?.find(artist => artist.id === idSelectedArtist)
         setSelectedArtist(foundArtist)
+        
+        const foundLeaderboard = leaderboards?.find(leaderboard => leaderboard?.artistId === idSelectedArtist)
+        setSelectedLeaderboard(foundLeaderboard)
+    
+        const foundUserPosition = foundLeaderboard?.leaderboard.find(
+          user => user.userId === currentFan.id
+        )
+        setUserPosition(foundUserPosition)
       }
-    }, [idSelectedArtist])
-
+    }, [idSelectedArtist,leaderboards])
 
     const filteredItems = artists
         .filter(artist => {
@@ -208,11 +235,11 @@ const PersonalUserPointsRoute = () => {
                 <div className='podium-profile-indicator p-xs-16  black f-w-600 d-flex-row align-items-center j-c-center position-absolute border-radius-100 top-0 right-10 overflow-all-hidden'>
                   <img src={currentFan.image} className='object-fit-cover border-radius-100 avatar-36' />
                 </div>
-                <span className='position-absolute fsize-xs-1 white right-neg30 top-5'>{currentFan?.leaderboardStats.position}°</span>
+                <span className='position-absolute fsize-xs-1 white right-neg30 top-5'>{userPosition?.position}°</span>
                 <div className='podium-point-indicator p-xs-16  black f-w-600 d-flex-row align-items-center j-c-center position-absolute border-radius-100 top-12 right-0 overflow-all-hidden'>
                   <img src={IconPoints} className='object-fit-cover avatar-36' />
                 </div>
-                <span className='position-absolute fsize-xs-1 white right-neg30 top-25'>{currentFan?.leaderboardStats.points}0</span>
+                <span className='position-absolute fsize-xs-1 white right-neg30 top-25'>{userPosition?.points}</span>
               </div>
             </div>
           </div> 

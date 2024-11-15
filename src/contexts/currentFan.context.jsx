@@ -37,10 +37,6 @@ export const CurrentFanProvider = ({ children }) => {
         //     {artistId: 2}
         // ],
         fanclubsSubscribed: [],
-        leaderboardStats: {
-            position: 8,
-            points: 111
-        },
         preferredArtists : [
             {artistId: 1},
             {artistId: 7},

@@ -10,46 +10,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 1,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
                     username: 'The King @ciao',
-                    points: 3689,
-                    position: 1
-                },{
-                    image: require('../images/pictures/fan-2.jpg'),
-                    username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 2,
+                    image: require('../images/pictures/fan-2.jpg'),
+                    username: 'Big Law ::',
+                    points: 3689,
+                    position: 1
+                },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -61,97 +70,115 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 2,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
                     username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
-                    username: 'Big Laww @yahoo.it',
+                    username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
-                    username: 'DannySnatchVitoSuperBeast@gmail.com',
+                    username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
-                    username: 'PollyLollyVeryLongUsername',
+                    username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
                     position: 9
-                }
+                }           
             ]
         },{
             id: 3,
             artistId: 3,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -163,46 +190,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 4,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -214,46 +250,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 5,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -265,46 +310,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 6,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -316,46 +370,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 7,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -367,46 +430,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 8,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -418,97 +490,114 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 9,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
                     position: 9
-                }
-            ]
+                }            ]
         },{
             id: 10,
             artistId: 10,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -520,46 +609,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 11,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -571,46 +669,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 12,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -622,46 +729,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 13,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -673,46 +789,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 14,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -724,97 +849,114 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 15,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
                     position: 9
-                }
-            ]
+                }            ]
         },{
             id: 16,
             artistId: 16,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -826,46 +968,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 17,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -877,46 +1028,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 18,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -928,46 +1088,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 19,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -979,46 +1148,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 20,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -1030,46 +1208,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 21,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -1081,46 +1268,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 22,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -1132,46 +1328,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 23,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -1183,46 +1388,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 24,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -1234,46 +1448,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 25,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -1285,46 +1508,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 26,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -1336,46 +1568,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 27,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -1387,46 +1628,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 28,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
@@ -1438,46 +1688,55 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 29,
             leaderboard: [
                 {
+                    userId: 1,
                     image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King',
+                    username: 'The King @ciao',
                     points: 3689,
                     position: 1
                 },{
+                    userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3021,
                     position: 2
                 },{
+                    userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),
                     username: 'Lil kid __',
                     points: 2907,
                     position: 3
                 },{
+                    userId:4,
                     image: require('../images/pictures/fan-4.jpg'),
                     username: 'Danny Snatch',
                     points: 1984,
                     position: 4
                 },{
+                    userId:5,
                     image: require('../images/pictures/fan-5.jpg'),
                     username: 'Polly Lolly',
                     points: 1888,
                     position: 5
                 },{
+                    userId:6,
                     image: require('../images/pictures/fan-6.jpg'),
                     username: 'Kop Kalisti',
                     points: 1467,
                     position: 6
                 },{
+                    userId:7,
                     image: require('../images/pictures/fan-7.jpg'),
                     username: '_freak 3x_',
                     points: 1107,
                     position: 7
                 },{
+                    userId:8,
                     image: require('../images/pictures/fan-8.jpg'),
                     username: 'craft andG',
                     points: 467,
                     position: 8
                 },{
+                    userId:9,
                     image: require('../images/pictures/fan-9.jpg'),
                     username: 'kevin alfa',
                     points: 399,
