@@ -40,37 +40,37 @@ const Sanremo2024Route = () => {
             position: '2'
         },{
             image: Fan3,
-            username: 'Lil kid __',
+            username: 'Giulietta',
             points: 2907,
             position: '3'
         },{
             image: Fan4,
-            username: 'Danny Snatch',
+            username: 'ginger04',
             points: 1984,
             position: '4'
         },{
             image: Fan5,
-            username: 'Polly Lolly',
+            username: 'marco_09',
             points: 1888,
             position: '5'
         },{
             image: Fan6,
-            username: 'Kop Kalisti',
+            username: 'francesca.david',
             points: 1467,
             position: '6'
         },{
             image: Fan7,
-            username: '_freak 3x_',
+            username: 'davide00',
             points: 1107,
             position: '7'
         },{
             image: Fan8,
-            username: 'craft andG',
+            username: 'bob16',
             points: 467,
             position: '8'
         },{
             image: Fan9,
-            username: 'kevin alfa',
+            username: 'kevin.alfa.il.migliore',
             points: 399,
             position: '9'
         }

@@ -12,8 +12,8 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
-                    points: 3689,
+                    username: 'chiara',
+                    points: 722,
                     // position: 1
                 },{
                     userId: 1,
@@ -24,43 +24,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
-                    points: 467,
+                    username: 'bob16',
+                    points: 3008,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -72,7 +72,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 333,
                     // position: 1
                 },{
@@ -84,43 +84,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2567,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 2990,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 2106,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 766,
                     // position: 9
                 }           
@@ -132,7 +132,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -144,43 +144,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -192,7 +192,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -204,43 +204,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -252,7 +252,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -264,43 +264,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -312,7 +312,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -324,43 +324,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -372,7 +372,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -384,43 +384,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -432,7 +432,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -444,43 +444,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -492,7 +492,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -504,43 +504,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -552,8 +552,8 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
-                    points: 3689,
+                    username: 'chiara',
+                    points: 722,
                     // position: 1
                 },{
                     userId: 1,
@@ -564,43 +564,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -612,7 +612,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -624,43 +624,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -672,7 +672,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -684,43 +684,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -732,7 +732,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -744,43 +744,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -792,7 +792,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -804,43 +804,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -852,7 +852,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -864,43 +864,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -912,7 +912,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -924,43 +924,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -972,7 +972,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -984,43 +984,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1032,7 +1032,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1044,43 +1044,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1092,7 +1092,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1104,43 +1104,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1152,7 +1152,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1164,43 +1164,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1212,7 +1212,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1224,43 +1224,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1272,7 +1272,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1284,43 +1284,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1332,7 +1332,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1344,43 +1344,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1392,7 +1392,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1404,43 +1404,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1452,7 +1452,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1464,43 +1464,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1512,7 +1512,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1524,43 +1524,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1572,7 +1572,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1584,43 +1584,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1632,7 +1632,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1644,43 +1644,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }
@@ -1692,7 +1692,7 @@ export const LeaderboardsProvider = ({ children }) => {
                 {
                     userId: 2,
                     image: require('../images/pictures/ai_01.png'),
-                    username: 'marco_09',
+                    username: 'chiara',
                     points: 3689,
                     // position: 1
                 },{
@@ -1704,43 +1704,43 @@ export const LeaderboardsProvider = ({ children }) => {
                 },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
-                    username: 'Lil kid __',
+                    username: 'Giulietta',
                     points: 2907,
                     // position: 3
                 },{
                     userId: 5,
                     image: require('../images/pictures/ai_04.png'),
-                    username: 'Danny Snatch',
+                    username: 'ginger04',
                     points: 1984,
                     // position: 4
                 },{
                     userId: 4,
                     image: require('../images/pictures/ai_05.png'),
-                    username: 'Polly Lolly',
+                    username: 'marco_09',
                     points: 1888,
                     // position: 5
                 },{
                     userId: 9,
                     image: require('../images/pictures/ai_06.png'),
-                    username: 'Kop Kalisti',
+                    username: 'francesca.david',
                     points: 1467,
                     // position: 6
                 },{
                     userId: 8,
                     image: require('../images/pictures/ai_07.png'),
-                    username: '_freak 3x_',
+                    username: 'davide00',
                     points: 1107,
                     // position: 7
                 },{
                     userId: 3,
                     image: require('../images/pictures/ai_08.png'),
-                    username: 'craft andG',
+                    username: 'bob16',
                     points: 467,
                     // position: 8
                 },{
                     userId: 7,
                     image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin alfa',
+                    username: 'kevin.alfa.il.migliore',
                     points: 399,
                     // position: 9
                 }

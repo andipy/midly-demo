@@ -1490,6 +1490,9 @@ animation: dot-loader-after 1s infinite linear;
 .bottom-negative-12 {
   bottom: -12%;
 }
+.bottom-0-pure {
+  bottom: 0px;
+}
 .bottom-0 {
   bottom: -1px;
 }

@@ -35,6 +35,7 @@ const FlashLeaderboardRoute = () => {
 
     const [artist, setArtist] = useState(null)
     const [leaderboard, setLeaderboard] = useState()
+    const [chart, setChart] = useState()
     const [showComponent, setShowComponent] = useState(null)
     const [userCompeting, setUserCompeting] = useState(null)
 
@@ -86,7 +87,10 @@ const FlashLeaderboardRoute = () => {
 
     const fetchThisLeaderboard = () => {
         const thisLeaderboard = flashLeaderboards.filter(elem => artist.id === elem.artistId)
+        const thisChart = thisLeaderboard[0].leaderboard
+            .sort((a, b) => b.points - a.points)
         setLeaderboard(thisLeaderboard[0])
+        setChart(thisChart)
     }
 
     const fetchCompeting = () => {
@@ -162,7 +166,7 @@ const FlashLeaderboardRoute = () => {
             <ContainerDefault containerSpecificStyle={`mt-avatar-header-2 pb-xs-24 pb-md-8 ${artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && 'pt-xs-8'}`}>
                 <div className='d-flex-column position-sticky top-navbar z-index-max mb-xs-4'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
-                        <CardLeaderboardYourPosition currentFan={currentFan}  />  
+                        <CardLeaderboardYourPosition currentFan={currentFan} artist={artist}  />  
                     }
                     {artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' &&
                         <>
@@ -189,17 +193,17 @@ const FlashLeaderboardRoute = () => {
                                 <div className='first-position position-relative'>
                                     <img className='position-absolute-x-y first-position-graphic z-index-2' src={SpecialBadge1P} />
                                     
-                                    {leaderboard?.leaderboard[0].image ?
-                                        <img className='first-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-6 z-index-1' src={leaderboard?.leaderboard[0].image} />
+                                    {chart[0].image ?
+                                        <img className='first-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-6 z-index-1' src={chart[0].image} />
                                     :
-                                        <div className='first-position position-absolute-x-y bg-dark-soft border-radius-100 z-index-1 d-flex-row align-items-center j-c-center fsize-xs-6'>{leaderboard?.leaderboard[0].username.charAt(0)}</div>
+                                        <div className='first-position position-absolute-x-y bg-dark-soft border-radius-100 z-index-1 d-flex-row align-items-center j-c-center fsize-xs-6'>{chart[0].username.charAt(0)}</div>
                                     }
                                 </div>
 
                                 <div className='d-flex-column align-items-center'>
-                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(leaderboard, leaderboard?.leaderboard[0].username, 12)}</span>
+                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(chart, chart[0].username, 12)}</span>
                                     <div className='d-flex-row letter-spacing-1'>
-                                        <span className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard?.leaderboard[0].points}</span>
+                                        <span className='grey-400 fsize-xs-1 letter-spacing-1'>{chart[0].points}</span>
                                         <img className='avatar-12 ml-xs-2 mt-xs-5' src={IconPoints} />
                                     </div>
                                 </div>
@@ -211,17 +215,17 @@ const FlashLeaderboardRoute = () => {
                                 <div className='second-position position-relative'>
                                     <img className='position-absolute-x-y second-position-graphic z-index-2' src={SpecialBadge2P} />
 
-                                    {leaderboard?.leaderboard[1].image ?
-                                        <img className='second-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-6 z-index-1' src={leaderboard?.leaderboard[1].image} />
+                                    {chart[1].image ?
+                                        <img className='second-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-6 z-index-1' src={chart[1].image} />
                                     :
-                                        <div className='second-position position-absolute-x-y bg-dark-soft border-radius-100 z-index-1 d-flex-row align-items-center j-c-center fsize-xs-6'>{leaderboard?.leaderboard[1].username.charAt(0)}</div>
+                                        <div className='second-position position-absolute-x-y bg-dark-soft border-radius-100 z-index-1 d-flex-row align-items-center j-c-center fsize-xs-6'>{chart[1].username.charAt(0)}</div>
                                     }
                                 </div>
 
                                 <div className='d-flex-column align-items-center'>
-                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(leaderboard, leaderboard?.leaderboard[1].username, 12)}</span>
+                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(chart, chart[1].username, 12)}</span>
                                     <div className='d-flex-row letter-spacing-1'>
-                                        <span className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard?.leaderboard[1].points}</span>
+                                        <span className='grey-400 fsize-xs-1 letter-spacing-1'>{chart[1].points}</span>
                                         <img className='avatar-12 ml-xs-2 mt-xs-5' src={IconPoints} />
                                     </div>
                                 </div>
@@ -233,17 +237,17 @@ const FlashLeaderboardRoute = () => {
                                 <div className='third-position position-relative'>
                                     <img className='position-absolute-x-y third-position-graphic z-index-2' src={SpecialBadge3P} />
 
-                                    {leaderboard?.leaderboard[2].image ?
-                                        <img className='third-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-6 z-index-1' src={leaderboard?.leaderboard[2].image} />
+                                    {chart[2].image ?
+                                        <img className='third-position position-absolute-x-y object-fit-cover border-radius-100 p-xs-6 z-index-1' src={chart[2].image} />
                                     :
-                                        <div className='third-position position-absolute-x-y bg-dark-soft border-radius-100 z-index-1 d-flex-row align-items-center j-c-center fsize-xs-6'>{leaderboard?.leaderboard[2].username.charAt(0)}</div>
+                                        <div className='third-position position-absolute-x-y bg-dark-soft border-radius-100 z-index-1 d-flex-row align-items-center j-c-center fsize-xs-6'>{chart[2].username.charAt(0)}</div>
                                     }
                                 </div>
 
                                 <div className='d-flex-column align-items-center'>
-                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(leaderboard, leaderboard?.leaderboard[2].username, 12)}</span>
+                                    <span className='fsize-xs-1 t-align-center letter-spacing-1'>{handleUsername(chart, chart[2].username, 12)}</span>
                                     <div className='d-flex-row letter-spacing-1'>
-                                        <span className='grey-400 fsize-xs-1 letter-spacing-1'>{leaderboard?.leaderboard[2].points}</span>
+                                        <span className='grey-400 fsize-xs-1 letter-spacing-1'>{chart[2].points}</span>
                                         <img className='avatar-12 ml-xs-2 mt-xs-5' src={IconPoints} />
                                     </div>
                                 </div>
@@ -304,9 +308,8 @@ const FlashLeaderboardRoute = () => {
             {artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' ?
                 <LiveMessages leaderboard={leaderboard} />
             : artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
-                <div className='w-100vw bg-dark border-lime position-fixed bottom-0 z-index-max pt-xs-6 pb-xs-6 pl-xs-6 pb-xs-6'>
-                    <p className='fsize-xs-4 mb-xs-2'>CLASSIFICA FLASH {leaderboard?.song.title ? "SUL BRANO " + leaderboard?.song.title : leaderboard?.album.title && "SULL'ALBUM " + leaderboard?.song.title} TERMINATA</p>
-                    <p className='grey-200'>Puoi consultare la classifica finale, ma non puoi più fare punti. Se vedi qualche movimento è perché stiamo finendo di contare gli ascolti già fatti, ma la classifica è chiusa.</p>
+                <div className='w-100vw bg-dark border-lime position-fixed bottom-0-pure z-index-max pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
+                    <p className='fsize-xs-2 mb-xs-2'>La classifica flash per <span className='lime-400 f-w-600'> {leaderboard?.song.title ? leaderboard?.song.title : leaderboard?.album.title && leaderboard?.song.title}</span> è terminata, ma stiamo ancora contando i tuoi punti! Torna alle ore 14:00 del 22 Novembre per vedere la tua posizione finale.</p>
                 </div>
             }
             <Outlet />
