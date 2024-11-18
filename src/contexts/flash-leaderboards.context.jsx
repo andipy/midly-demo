@@ -43,7 +43,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
                 {
                     image: require('../images/pictures/ai_04.png'),
                     username: 'Danny Snatch Vito Super Beast Long Name',
-                    points: 176,
+                    points: 3,
                     position: 1
                 },{
                     image: require('../images/pictures/ai_03.png'),

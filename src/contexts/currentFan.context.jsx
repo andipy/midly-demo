@@ -34,7 +34,6 @@ export const CurrentFanProvider = ({ children }) => {
             {artistId: 4}
         ],
         fanclubsSubscribed: [],
-
         preferredArtists : [
             {artistId: 1},
             {artistId: 7},
@@ -63,8 +62,7 @@ export const CurrentFanProvider = ({ children }) => {
                 }
             ]
         },
-
-        pointTank: 20,
+        whiteLabelPoints: 20,
     })
 
     return (

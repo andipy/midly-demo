@@ -251,11 +251,14 @@ const FlashLeaderboardRoute = () => {
                         </div>
                     </div>
 
-                    {leaderboard?.leaderboard.map(fan => fan.position > 3 &&
-                        <CardLeaderboardFan
-                            fan={fan}
-                            key={fan.position}
-                        />
+                    {leaderboard?.leaderboard
+                        .sort((a, b) => b.points - a.points)
+                        .map((fan, index) => index > 2 &&
+                            <CardLeaderboardFan
+                                fan={fan}
+                                position={index + 1}
+                                key={index}
+                            />
                     )}
                 </section>
                 :
