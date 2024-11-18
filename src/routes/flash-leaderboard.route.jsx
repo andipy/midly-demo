@@ -174,7 +174,7 @@ const FlashLeaderboardRoute = () => {
                                 <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' />
                             }
                             {currentFan?.hasSpotify && userCompeting &&
-                                <CardLeaderboardYourPosition currentFan={currentFan}  />
+                                <CardLeaderboardYourPosition currentFan={currentFan} artist={artist}  />
                             }
                         </>
                     }
@@ -299,7 +299,7 @@ const FlashLeaderboardRoute = () => {
             } */}
 
             {artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' ?
-                <LiveMessages />
+                <LiveMessages leaderboard={leaderboard} />
             : artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
                 <div className='w-100vw bg-dark border-lime position-fixed bottom-0 z-index-max pt-xs-6 pb-xs-6 pl-xs-6 pb-xs-6'>
                     <p className='fsize-xs-4 mb-xs-2'>CLASSIFICA FLASH {leaderboard?.song.title ? "SUL BRANO " + leaderboard?.song.title : leaderboard?.album.title && "SULL'ALBUM " + leaderboard?.song.title} TERMINATA</p>

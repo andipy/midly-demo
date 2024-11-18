@@ -9,9 +9,13 @@ import Textbar from './textbar.component'
 import NavbarCommentsModal from './navbar-comments-modal.component'
 import CountdownFlashLeaderboards from './countdown-flash-leaderboards.component'
 
-const LiveMessages = () => {
+const LiveMessages = ({leaderboard}) => {
 
     const { pathname } = useLocation()
+
+    useEffect(() => {
+        console.log(leaderboard)
+    }, [leaderboard])
 
 
 
@@ -236,7 +240,13 @@ const LiveMessages = () => {
                 }
 
                 <ContainerDefault containerSpecificStyle={`position-relative ${chatOpen ? 'd-flex-column j-c-end' : 'd-none'}`}>
-                    <Countdown />
+                    {leaderboard && (
+                        <CountdownFlashLeaderboards 
+                            announceStartDate={leaderboard.announceStartDate} 
+                            rankStartDate={leaderboard.rankStartDate} 
+                            rankEndDate={leaderboard.rankEndDate} 
+                        />
+                    )}
                     {/* <span
                         onClick={() => setChatOpen(false)}
                         className='position-absolute bottom-0 right-0 fsize-xs-2 f-w-600 lime-400 mb-xs-4 mt-xs-4 mr-xs-2 z-index-5'

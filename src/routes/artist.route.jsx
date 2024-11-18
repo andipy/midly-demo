@@ -132,7 +132,7 @@ const ArtistRoute = () => {
                         <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' onClick={handleCompete} />
                     }
                     {userCompeting && currentFan.hasSpotify && !pathname.includes('fanclub') &&
-                        <CardLeaderboardYourPosition currentFan={currentFan} />
+                        <CardLeaderboardYourPosition currentFan={currentFan} artist={artist} />
                     }
                 </div>
                 <Outlet context={artist} />

@@ -10,17 +10,19 @@ export const LeaderboardsProvider = ({ children }) => {
             artistId: 1,
             leaderboard: [
                 {
-                    userId: 1,
-                    image: require('../images/pictures/fan-1.jpg'),
-                    username: 'The King @ciao',
-                    points: 3021,
-                    position: 2
-                },{
                     userId: 2,
                     image: require('../images/pictures/fan-2.jpg'),
                     username: 'Big Law ::',
                     points: 3689,
                     position: 1
+                    
+                },{
+                    
+                    userId: 1,
+                    image: require('../images/pictures/fan-1.jpg'),
+                    username: 'The King @ciao',
+                    points: 3681,
+                    position: 2
                 },{
                     userId: 3,
                     image: require('../images/pictures/fan-3.jpg'),

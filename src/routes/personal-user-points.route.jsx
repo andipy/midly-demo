@@ -7,7 +7,7 @@ import { LeaderboardsContext } from '../contexts/leaderboards.context'
 
 import { Link } from 'react-router-dom'
 
-import NavbarBackOnly from "../components/navbar-back-only.component"
+import NavbarBackOnly from '../components/navbar-back-only.component'
 import ContainerDefault from '../layout/container-default.layout'
 import TextTitle from '../components/text-title.component'
 import Carousel from '../layout/carousel.layout'
@@ -40,7 +40,7 @@ const PersonalUserPointsRoute = () => {
     const [userPosition, setUserPosition] = useState()
 
     const handleSliderChange = (value) => {
-      setValueAssigned(value);
+      setValueAssigned(value)
   }
 
     const assign = () => {
@@ -51,21 +51,26 @@ const PersonalUserPointsRoute = () => {
 
       const updatedLeaderboards = leaderboards.map((leaderboard) => {
         if (leaderboard?.artistId === idSelectedArtist) {
-          const updatedLeaderboard = leaderboard.leaderboard.map((user) => {
+          let updatedLeaderboard = leaderboard.leaderboard.map((user) => {
             if (user.userId === currentFan.id) {
               const updatedPoints = Number(user.points) + Number(valueAssigned)
               return { ...user, points: updatedPoints }
             }
             return user
           })
+          updatedLeaderboard.sort((a, b) => b.points - a.points)
+
+          //ridefinisco tutte le posizioni
+          updatedLeaderboard = updatedLeaderboard.map((user, index) => ({
+            ...user,
+            position: index + 1,
+          }))
     
           return { ...leaderboard, leaderboard: updatedLeaderboard }
         }
       })
     
       setLeaderboards(updatedLeaderboards)
-
-      console.log('assigned')
 
       closeAssignements()
     }
