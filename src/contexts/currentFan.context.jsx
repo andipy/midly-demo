@@ -9,7 +9,7 @@ export const CurrentFanProvider = ({ children }) => {
         type: 'FAN',
         username: 'imtheKING',
         email: 'theking@gmail.com',
-        image: require('../images/pictures/fan-8.jpg'),
+        image: require('../images/pictures/current-fan.jpg'),
         instagram: 'instagram_name',
         birthdate: '01-09-2002',
         genre: 'UOMO',
@@ -33,9 +33,6 @@ export const CurrentFanProvider = ({ children }) => {
             {artistId: 3},
             {artistId: 4}
         ],
-        // flashLeaderboardsFollowed: [
-        //     {artistId: 2}
-        // ],
         fanclubsSubscribed: [],
 
         preferredArtists : [

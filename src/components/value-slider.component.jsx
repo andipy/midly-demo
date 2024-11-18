@@ -1,16 +1,16 @@
 import { useState } from "react";
-function ValueSlider({max, onValueChange}) {
-    const [value, setValue] = useState(0);
+
+const ValueSlider = ({ max, onValueChange }) => {
+    const [value, setValue] = useState(0)
     const min = 0
     const step = 1
-
 
     const handleChange = (event) => {
         setValue(event.target.value)
         if (onValueChange) {
             onValueChange(event.target.value)
         }
-    };
+    }
 
     return (
         <div className="d-flex-column align-items-center mt-xs-6 mb-xs-6">
@@ -24,7 +24,7 @@ function ValueSlider({max, onValueChange}) {
                 className="custom-slider"
             />
         </div>
-    );
+    )
 }
 
 export default ValueSlider

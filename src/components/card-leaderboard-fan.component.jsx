@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 
 import IconPoints from '../images/icons/icon-points.svg'
 
-const CardLeaderboardFan = ({ fan }) => {
+const CardLeaderboardFan = ({ fan, position }) => {
 
     const { pathname } = useLocation()
     const handleUsername = (condition, username, limit) => {
@@ -28,7 +28,7 @@ const CardLeaderboardFan = ({ fan }) => {
                     </div>
                 </div>
             </div>
-            <span className='fsize-xs-7 f-w-300'>{fan?.position}°</span>
+            <span className='fsize-xs-7 f-w-300'>{position}°</span>
         </article>
     )
 }

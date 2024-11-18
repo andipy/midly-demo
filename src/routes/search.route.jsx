@@ -5,7 +5,6 @@ import { ArtistsContext } from '../contexts/artists.context'
 
 import { useNavigate } from 'react-router-dom'
 
-
 import NavbarDefault from '../components/navbar-default.component'
 import ContainerDefault from '../layout/container-default.layout'
 import TextTitle from '../components/text-title.component'

@@ -13,12 +13,6 @@ const LiveMessages = ({leaderboard}) => {
 
     const { pathname } = useLocation()
 
-    useEffect(() => {
-        console.log(leaderboard)
-    }, [leaderboard])
-
-
-
     // let mockSongs
     // const mockSongsDefiner = () => {
     //     if ( pathname.includes('thasup') || pathname.includes('/artist-app/') ) {
