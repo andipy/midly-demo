@@ -19,6 +19,7 @@ import IconPoints from '../images/icons/icon-points.svg'
 import IconPointsMultiple from '../images/icons/icon-points-2.svg'
 import IconPlus from '../images/icons/icon-plus.svg'
 import IconExit from '../images/icons/icon-exit.svg'
+import IconOk from '../images/icons/icon-ok.svg'
 
 import SearchInput from '../components/search-input.component'
 import ValueSlider from '../components/value-slider.component'
@@ -37,10 +38,38 @@ const PersonalUserPointsRoute = () => {
 	const [showComponent, setShowComponent] = useState(false)
     const [pointsToAssign, setPointsToAssign] = useState(0)
 
+	const fieldLabelsCompleted = {
+        'PROFILE_IMAGE_ADDED': 'Hai aggiunto una foto profilo',
+        'ADDRESS_ADDED': 'Hai aggiunto un indirizzo',
+		'TEN_ARTISTS_FOLLOWED' : 'Hai seguito 10 artisti',
+    }
+
     const selectArtist = (id) => {
 		setIdSelectedArtist(id)
 		setShowComponent(true)
   	}
+
+	const handleFileChange = (event) => {
+        const file = event.target.files[0]        
+        if (file && file.type.startsWith('image/')) {
+            const imageUrl = URL.createObjectURL(file)
+            if (currentFan.actions.some(action => action.type === 'PROFILE_IMAGE_ADDED')) {
+                setCurrentFan((prev) => ({
+                    ...prev,
+                    image: imageUrl,
+                }))
+            } else {
+                setCurrentFan((prev) => ({
+                    ...prev,
+                    image: imageUrl,
+                    whiteLabelPoints: Number(prev.whiteLabelPoints) + 5,
+                    actions: [...prev.actions, { type: 'PROFILE_IMAGE_ADDED', value: true, createdAt: Date.now().toString() }]
+                }))
+            }
+        } else {
+            return
+        }
+    }
 
 	const fetchSelectedArtistAndUserInLeaderboard = () => {
 		if (idSelectedArtist) {
@@ -177,55 +206,89 @@ const PersonalUserPointsRoute = () => {
 			<div className='mt-xs-2 d-flex-column'>
 				<h2 className='fsize-xs-5 f-w-600'>Come guadagnare punti</h2>
 				<div className='d-flex-column mt-xs-4'>
-					<Link to='/profile'>
-					{/* SE HO GIA' UNA FOTO PROFILO SCOMPARE */}
-						<div className='d-flex-row j-c-space-between mb-xs-3 bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4'>
-							<div className='d-flex-row align-items-center w-100'>
-								<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Aggiungi una foto profilo</h6>
-							</div>
-							<div className='d-flex-row align-items-center'>
-							<div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
-							<div className='d-flex-row align-items-center'>
-								<div className='fsize-xs-3'>5</div>
-								<img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
+					{
+						currentFan.actions.find(action => action.type === 'PROFILE_IMAGE_ADDED')  ? (
+							<></>
+						) : (
+							<label>
+								<div className='d-flex-row j-c-space-between mb-xs-3 bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4'>
+									<div className='d-flex-row align-items-center w-100'>
+										<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Aggiungi una foto profilo</h6>
+									</div>
+									<div className='d-flex-row align-items-center'>
+									<div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
+									<div className='d-flex-row align-items-center'>
+										<div className='fsize-xs-3'>5</div>
+										<img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
+										</div>
+									</div>
+									<img className='' src={IconPlus} alt='->'/>
+									</div>
+								</div>
+								<input type='file' accept='image/*' style={{ display: 'none' }} onChange={handleFileChange} onClick={(e) => {e.target.value = null}} />
+							</label>
+							
+						)
+					}
+					{
+						currentFan.actions.find(action => action.type === 'ADDRESS_ADDED') ? (
+							<></>
+						) : (
+							<Link to='/user-info'>
+								<div className='d-flex-row j-c-space-between mb-xs-3 bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4'>
+									<div className='d-flex-row align-items-center w-100'>
+										<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Aggiungi indirizzo</h6>
+									</div>
+									<div className='d-flex-row align-items-center'>
+									<div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
+									<div className='d-flex-row align-items-center'>
+										<div className='fsize-xs-3'>3</div>
+										<img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
+										</div>
+									</div>
+									<img className='' src={IconPlus} alt='->'/>
+									</div>
+								</div>
+							</Link>
+						)
+					}
+					{
+						currentFan.actions.find(action => action.type === 'TEN_ARTISTS_FOLLOWED') ? (
+							<></>
+						) : (
+							<Link to='/search'>
+								<div className='d-flex-row j-c-space-between mb-xs-3 bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4'>
+									<div className='d-flex-row align-items-center w-100'>
+										<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Segui almeno 10 artisti</h6>
+									</div>
+									<div className='d-flex-row align-items-center'>
+									<div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
+									<div className='d-flex-row align-items-center'>
+										<div className='fsize-xs-3'>10</div>
+										<img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
+										</div>
+									</div>
+									<img className='' src={IconPlus} alt='->'/>
+									</div>
+								</div>
+							</Link>
+						)
+					}
+					{
+						currentFan.actions
+						.map((action, index) => (
+							<div className='d-flex-row j-c-space-between mb-xs-3 bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4'>
+								<div className='d-flex-row align-items-center w-100'>
+									<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>{fieldLabelsCompleted[action.type]}</h6>
+								</div>
+								<div className='d-flex-row align-items-center'>
+										<div className='d-flex-row align-items-center'>
+											<img className='' src={IconOk} alt='points' />
+										</div>
 								</div>
 							</div>
-							<img className='' src={IconPlus} alt='->'/>
-							</div>
-						</div>
-					</Link>
-					<Link to='/user-info'>
-						<div className='d-flex-row j-c-space-between mb-xs-3 bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4'>
-							<div className='d-flex-row align-items-center w-100'>
-								<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Aggiungi indirizzo</h6>
-							</div>
-							<div className='d-flex-row align-items-center'>
-							<div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
-							<div className='d-flex-row align-items-center'>
-								<div className='fsize-xs-3'>3</div>
-								<img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
-								</div>
-							</div>
-							<img className='' src={IconPlus} alt='->'/>
-							</div>
-						</div>
-					</Link>
-					<Link to='/search'>
-						<div className='d-flex-row j-c-space-between mb-xs-3 bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4'>
-							<div className='d-flex-row align-items-center w-100'>
-								<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Segui almeno 10 artisti</h6>
-							</div>
-							<div className='d-flex-row align-items-center'>
-							<div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
-							<div className='d-flex-row align-items-center'>
-								<div className='fsize-xs-3'>10</div>
-								<img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
-								</div>
-							</div>
-							<img className='' src={IconPlus} alt='->'/>
-							</div>
-						</div>
-					</Link>
+						))
+					}
 				</div>
 			</div>
 		</ContainerDefault>
@@ -245,7 +308,16 @@ const PersonalUserPointsRoute = () => {
 
 							<div className='d-flex-column align-items-center position-absolute-y right-neg30'>
 								<div className='d-flex-row align-items-center'>
-									<img src={currentFan.image} className='object-fit-cover border-radius-100 avatar-40 border-dark-soft-4' />
+									{currentFan.image ? 
+										<img src={currentFan.image} className='object-fit-cover border-radius-100 avatar-40 border-dark-soft-4' />
+									: 
+										<div className='d-flex-row j-c-center align-items-center avatar-40 border-radius-100 bg-purple-400 border-dark-soft-4'>
+											<h5 className='f-w-500 fsize-xs-6'>
+												{currentFan.username.charAt(0).toUpperCase()}
+											</h5>
+										</div>
+									}
+									
 									<span className='fsize-xs-1 white'>{userInSelectedArtistLeaderboard?.position}°</span>
 								</div>
 

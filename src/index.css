@@ -1544,6 +1544,9 @@ animation: dot-loader-after 1s infinite linear;
 .top-50 {
   top: 50%;
 }
+.top-95 {
+  top: 95%;
+}
 .top-navbar {
   top: var(--top-bar-height);
 }
@@ -1589,6 +1592,7 @@ animation: dot-loader-after 1s infinite linear;
 .left-neg5 {
   left: 5%;
 }
+
 
 .w-music-product {
   width: calc(100% - var(--avatar-40));

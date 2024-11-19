@@ -9,7 +9,7 @@ export const CurrentFanProvider = ({ children }) => {
         type: 'FAN',
         username: 'imtheKING',
         email: 'theking@gmail.com',
-        image: require('../images/pictures/current-fan.jpg'),
+        image: '',
         instagram: 'instagram_name',
         birthdate: '01-09-2002',
         genre: 'UOMO',
@@ -63,6 +63,8 @@ export const CurrentFanProvider = ({ children }) => {
             ]
         },
         whiteLabelPoints: 20,
+        actions: [
+        ]
     })
 
     return (

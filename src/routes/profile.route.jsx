@@ -8,6 +8,7 @@ import ContainerDefault from '../layout/container-default.layout'
 import TextTitle from '../components/text-title.component'
 import Appbar from '../components/appbar.component'
 
+import IconPoints from '../images/icons/icon-points.svg'
 import SpotifyLogo from '../images/icons/icon-spotify-full-green.svg'
 import IconArrowRight from '../images/icons/icon-arrowright.svg'
 import GoldBagde from '../images/illustrations/GOLD.png'
@@ -29,12 +30,22 @@ const ProfileRoute = () => {
     const handleFileChange = (event) => {
         const file = event.target.files[0]
         /*modifica solo in locale ora*/
+        
         if (file && file.type.startsWith('image/')) {
             const imageUrl = URL.createObjectURL(file)
-            setCurrentFan((prev) => ({
-                ...prev,
-                image: imageUrl,
-            }))
+            if (currentFan.actions.some(action => action.type === 'PROFILE_IMAGE_ADDED')) {
+                setCurrentFan((prev) => ({
+                    ...prev,
+                    image: imageUrl,
+                }))
+            } else {
+                setCurrentFan((prev) => ({
+                    ...prev,
+                    image: imageUrl,
+                    whiteLabelPoints: Number(prev.whiteLabelPoints) + 5,
+                    actions: [...prev.actions, { type: 'PROFILE_IMAGE_ADDED', value: true, createdAt: Date.now().toString() }]
+                }))
+            }
         } else {
             return
         }
@@ -51,21 +62,37 @@ const ProfileRoute = () => {
         <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
         <TextTitle title={'Profilo'} />
         <div>
-            <label>
+            
                 <div className='mt-xs-2 d-flex-column align-items-start mb-xs-12'>
                     <div className='d-flex-row align-items-center w-100'>
-                        {currentFan.image ? 
-                            <img
-                                src={currentFan.image}
-                                className='avatar-96 border-radius-100'
-                            />
-                        : 
-                            <div className='d-flex-row j-c-center align-items-center avatar-96 border-radius-100 bg-purple-400'>
-                                <h5 className='f-w-500 fsize-xs-6'>
-                                    {currentFan.username.charAt(0).toUpperCase()}
-                                </h5>
-                            </div>
-                        }
+                        <label>
+                            {currentFan.image ? 
+                                <img
+                                    src={currentFan.image}
+                                    className='avatar-96 border-radius-100'
+                                />
+                            : 
+                                <div className='avatar-96 position-relative'>
+                                    <div className='d-flex-row j-c-center align-items-center avatar-96 border-radius-100 bg-purple-400'>
+                                        <h5 className='f-w-500 fsize-xs-6'>
+                                            {currentFan.username.charAt(0).toUpperCase()}
+                                        </h5>
+                                    </div>
+                                    <div className='d-flex-column align-items-center position-absolute-y right-neg5 position-absolute-x top-95 '>
+                                        <div className='d-flex-row align-items-center '>
+                                            <div className='bg-dark-gradient border-radius-100  d-flex-row j-c-center align-items-center avatar-36'>
+                                                <div className='d-flex-row align-items-center'>
+                                                    <div className='fsize-xs-3'>{5} </div>
+                                                    <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            }
+                            <input type='file' accept='image/*' style={{ display: 'none' }} onChange={handleFileChange} onClick={(e) => {e.target.value = null}} />
+                        </label>
                         <div className='d-flex-column j-c-start ml-xs-4 position-relative '>
                             <div className='d-flex-row align-items-center j-c-start'>
                                 <h5 className='fsize-xs-5 f-w-500 letter-spacing-1'>{currentFan.username}</h5>
@@ -75,8 +102,8 @@ const ProfileRoute = () => {
                         </div>
                     </div>
                 </div>
-                <input type='file' accept='image/*' style={{ display: 'none' }} onChange={handleFileChange} onClick={(e) => {e.target.value = null}} />
-            </label>
+                
+            
             <section id='points'>
                 <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi punti personali</h4>
                 <div className='mt-xs-4 mb-xs-4'>
@@ -90,7 +117,7 @@ const ProfileRoute = () => {
                                 </>
                             ) : (
                                 <>
-                                    <ProgressBar points={currentFan.pointTank} max={50}/>
+                                    <ProgressBar points={currentFan.whiteLabelPoints} max={50}/>
                                     <img src={IconArrowRight} alt='->'/>
                                 </>  
                             )}
