@@ -23,7 +23,7 @@ export const CurrentFanProvider = ({ children }) => {
             province: '',
             state: ''
         },
-        hasSpotify: true,
+        hasSpotify: false,
         hasAppleMusic: false,
         hasInstagram: false,
         hasTikTok: false,
@@ -62,7 +62,7 @@ export const CurrentFanProvider = ({ children }) => {
                 }
             ]
         },
-        whiteLabelPoints: 20,
+        whiteLabelPoints: 0,
         actions: [
         ]
     })

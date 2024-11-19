@@ -57,10 +57,20 @@ const ArtistRoute = () => {
             const newLeaderboardsFollowed = currentFan.leaderboardsFollowed.filter(leaderboard => leaderboard.artistId !== artist.id);
             setCurrentFan(prev => ({ ...prev, leaderboardsFollowed: newLeaderboardsFollowed }))
         } else {
-            setCurrentFan(prev => ({
-                ...prev,
-                leaderboardsFollowed: [...prev.leaderboardsFollowed, { artistId: artist.id }]
-            }))
+            if ((currentFan.leaderboardsFollowed.length === 4) && !currentFan.actions.some(action => action.type === 'FIVE_ARTISTS_FOLLOWED')) {
+                setCurrentFan(prev => ({
+                    ...prev,
+                    leaderboardsFollowed: [...prev.leaderboardsFollowed, { artistId: artist.id }],
+                    whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
+                    actions: [...prev.actions, { type: 'FIVE_ARTISTS_FOLLOWED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
+                }))
+            } else {
+                setCurrentFan(prev => ({
+                    ...prev,
+                    leaderboardsFollowed: [...prev.leaderboardsFollowed, { artistId: artist.id }],
+                }))
+            }
+            
         }
     }
 

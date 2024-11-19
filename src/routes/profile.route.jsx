@@ -18,6 +18,7 @@ import IconTerms from '../images/icons/icon-terms.svg'
 import IconCookies from '../images/icons/icon-cookie.svg'
 import IconEdit from "../images/icons/icon-edit.svg"
 import IconTrophyGold from '../images/icons/icon-trophy-gold.svg'
+import IconOk from '../images/icons/icon-ok.svg'
 import { Link } from 'react-router-dom'
 import ProgressBar from '../components/progress-bar-points.component'
 
@@ -26,6 +27,7 @@ const ProfileRoute = () => {
     const navigate = useNavigate()
 
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+
 
     const handleFileChange = (event) => {
         const file = event.target.files[0]
@@ -43,11 +45,29 @@ const ProfileRoute = () => {
                     ...prev,
                     image: imageUrl,
                     whiteLabelPoints: Number(prev.whiteLabelPoints) + 5,
-                    actions: [...prev.actions, { type: 'PROFILE_IMAGE_ADDED', value: true, createdAt: Date.now().toString() }]
+                    actions: [...prev.actions, { type: 'PROFILE_IMAGE_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
             }
         } else {
             return
+        }
+    }
+
+    const handleSpotifyConnect = () => {
+        //modulo connection spotify da gestire
+        if (currentFan.actions.some(action => action.type === 'SPOTIFY_ADDED')) {
+            setCurrentFan((prev) => ({
+                ...prev,
+                hasSpotify: true,
+            }))
+        } else {
+            setCurrentFan((prev) => ({
+                ...prev,
+                hasSpotify: true,
+                whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
+                actions: [...prev.actions, { type: 'SPOTIFY_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
+            }))
+
         }
     }
 
@@ -129,14 +149,24 @@ const ProfileRoute = () => {
         
             <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>Connetti i tuoi social</h4>
             <div className='mt-xs-4'>
-                <div className='bg-dark-gradient-radial border-radius-1 d-flex-column align-items-start j-c-center pt-xs-8 pb-xs-8 pr-xs-8 pl-xs-8'>
-                    <div className='d-flex-row gap-0_25em align-items-center mb-xs-4'>
-                        <img className='social-logo' src={SpotifyLogo} alt='SPOTIFY'/>
-                        <span className='fsize-xs-3'>Connetti Spotify per fare punti!</span>
-                    </div>
-                    <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Midly traccia i brani che ascolti e li converte in punti nelle classifiche degli artisti che segui!</p>
-                    <button className='bg-green-spotify dark-900 mt-xs-4 letter-spacing-1 f-w-500'>CONNETTI SPOTIFY</button>
-                </div>
+                    {currentFan.hasSpotify ? (
+                        <div className='social-card-1 bg-dark-gradient-radial border-radius-1 d-flex-column j-c-center align-items-center w-100'>
+                            <img className='avatar-40'src={SpotifyLogo} alt='SPOTIFY'></img>
+                            <div className='d-flex-row align-items-center j-c-space-between pt-xs-1 pb-xs-1 pr-xs-2 pl-xs-1 bg-greyish-800 border-radius-08 mt-xs-2'>
+                                <img className='avatar-16' src={IconOk} alt=""></img>
+                                <span className='greyish-300 fsize-xs-1 f-w-300 ml-xs-4 no-shrink'>In ascolto</span>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className='bg-dark-gradient-radial border-radius-1 d-flex-column align-items-start j-c-center pt-xs-8 pb-xs-8 pr-xs-8 pl-xs-8'>
+                            <div className='d-flex-row gap-0_25em align-items-center mb-xs-4'>
+                                <img className='social-logo' src={SpotifyLogo} alt='SPOTIFY'/>
+                                <span className='fsize-xs-3'>Connetti Spotify per fare punti!</span>
+                            </div>
+                            <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Midly traccia i brani che ascolti e li converte in punti nelle classifiche degli artisti che segui!</p>
+                            <button className='bg-green-spotify dark-900 mt-xs-4 letter-spacing-1 f-w-500' onClick={handleSpotifyConnect}>CONNETTI SPOTIFY</button>
+                        </div>
+                    )}    
             </div>
             <section id='social-accounts' className='mt-xs-12'>
                 <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500 mb-xs-2'>I tuoi riconoscimenti</h4>

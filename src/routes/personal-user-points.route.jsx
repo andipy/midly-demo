@@ -40,8 +40,8 @@ const PersonalUserPointsRoute = () => {
 
 	const fieldLabelsCompleted = {
         'PROFILE_IMAGE_ADDED': 'Hai aggiunto una foto profilo',
-        'ADDRESS_ADDED': 'Hai aggiunto un indirizzo',
-		'TEN_ARTISTS_FOLLOWED' : 'Hai seguito 10 artisti',
+        'SPOTIFY_ADDED': 'Hai aggiunto spotify',
+		'FIVE_ARTISTS_FOLLOWED' : 'Hai seguito 5 artisti',
     }
 
     const selectArtist = (id) => {
@@ -63,7 +63,7 @@ const PersonalUserPointsRoute = () => {
                     ...prev,
                     image: imageUrl,
                     whiteLabelPoints: Number(prev.whiteLabelPoints) + 5,
-                    actions: [...prev.actions, { type: 'PROFILE_IMAGE_ADDED', value: true, createdAt: Date.now().toString() }]
+                    actions: [...prev.actions, { type: 'PROFILE_IMAGE_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
             }
         } else {
@@ -231,18 +231,18 @@ const PersonalUserPointsRoute = () => {
 						)
 					}
 					{
-						currentFan.actions.find(action => action.type === 'ADDRESS_ADDED') ? (
+						currentFan.actions.find(action => action.type === 'SPOTIFY_ADDED') ? (
 							<></>
 						) : (
-							<Link to='/user-info'>
+							<Link to='/profile'>
 								<div className='d-flex-row j-c-space-between mb-xs-3 bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4'>
 									<div className='d-flex-row align-items-center w-100'>
-										<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Aggiungi indirizzo</h6>
+										<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Aggiungi spotify</h6>
 									</div>
 									<div className='d-flex-row align-items-center'>
 									<div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
 									<div className='d-flex-row align-items-center'>
-										<div className='fsize-xs-3'>3</div>
+										<div className='fsize-xs-3'>10</div>
 										<img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
 										</div>
 									</div>
@@ -253,13 +253,13 @@ const PersonalUserPointsRoute = () => {
 						)
 					}
 					{
-						currentFan.actions.find(action => action.type === 'TEN_ARTISTS_FOLLOWED') ? (
+						currentFan.actions.find(action => action.type === 'FIVE_ARTISTS_FOLLOWED') ? (
 							<></>
 						) : (
 							<Link to='/search'>
 								<div className='d-flex-row j-c-space-between mb-xs-3 bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4'>
 									<div className='d-flex-row align-items-center w-100'>
-										<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Segui almeno 10 artisti</h6>
+										<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Segui almeno 5 artisti ({currentFan.leaderboardsFollowed.length}/5)</h6>
 									</div>
 									<div className='d-flex-row align-items-center'>
 									<div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
