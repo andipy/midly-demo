@@ -158,8 +158,19 @@ const ProfileRoute = () => {
                     </Link>
                 </div>
             </section>
-        
-            <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>Connetti i tuoi social</h4>
+            <div className='d-flex-row align-items-center'>
+                {!currentFan.hasSpotify ? (
+                    <>
+                    <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>Connetti i tuoi social</h4>
+                    <div className='bg-dark-gradient border-radius-100 d-flex-row j-c-center align-items-center avatar-36 ml-xs-2'>
+                        <div className='d-flex-row align-items-center'>
+                            <div className='fsize-xs-3'>{10}</div>
+                            <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
+                        </div>
+                    </div>
+                    </>
+                ) : <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi social</h4>}
+            </div>
             <div className='mt-xs-4'>
                     {currentFan.hasSpotify ? (
                         <div className='social-card-1 bg-dark-gradient-radial border-radius-1 d-flex-column j-c-center align-items-center w-100'>
