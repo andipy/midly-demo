@@ -46,19 +46,19 @@ export const CurrentFanProvider = ({ children }) => {
                 {
                     month: 12,
                     year: 2024,
-                    username: 'username',
+                    username: 'imtheKING',
                     position: 3,
                     points: 177,
                     artistId: 1,
-                    artistName: 'artist name',
+                    artistName: 'Lazza',
                 },{
                     month: 9,
                     year: 2024,
-                    username: 'username',
+                    username: 'imtheKING',
                     position: 4,
                     points: 109,
                     artistId: 2,
-                    artistName: 'artist name',
+                    artistName: 'thasup',
                 }
             ]
         },
