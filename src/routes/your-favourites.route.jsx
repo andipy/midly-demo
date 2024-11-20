@@ -16,6 +16,7 @@ import CardQuiz from '../components/card-quiz.component'
 import CardSanremo from '../components/card-sanremo.component'
 import Appbar from '../components/appbar.component'
 import Button from '../components/button.component'
+import CardArtist from '../components/card-search-artists.component'
 
 import TextTitle from '../components/text-title.component'
 
@@ -95,6 +96,7 @@ const YourFavouritesRoute = () => {
 
         document.addEventListener('mousedown', handleMouseDown)
 
+        
         return () => {
             document.removeEventListener('mousedown', handleMouseDown)
             if (timeoutRef.current) {
@@ -103,11 +105,33 @@ const YourFavouritesRoute = () => {
         }
     }, [])
 
+    const sortAllArtists = (a, b) => {
+        if (b.importance !== a.importance) {
+            return b.importance - a.importance
+        }            
+        return a.artistName.localeCompare(b.artistName)
+    }
+
+    const sortedArtists = artists.sort((a, b) => sortAllArtists(a,b))
+
+    const chunkArray = (array, chunkSize) => {
+        const chunks = []
+        for (let i = 0; i < array.length; i += chunkSize) {
+            chunks.push(array.slice(i, i + chunkSize))
+        }
+        return chunks
+    }
+    
+    const chunkedItems = chunkArray(sortedArtists, 6)
+
+
     return (
         <>
             <NavbarDefault />
             <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
             <TextTitle title={'I tuoi preferiti'} />
+            {currentFan.hasSpotify ? (
+                <>
                 {sanremo &&
                     <section className='mb-xs-8'>
                         <CardSanremo />
@@ -143,11 +167,44 @@ const YourFavouritesRoute = () => {
                     </section>
                     <ButtonFollowMoreArtists />
                 </section>
+                                
 
                 <section className='mt-xs-16 mt-lg-8 mb-xs-8'>
                     <h4 className='fsize-xs-5 mb-xs-1 letter-spacing-1 f-w-500'>Domande frequenti</h4>
                     <p className='fsize-xs-2 f-w-200 grey-200'>Vuoi sapere di più su come funziona Midly? Vai alle <a className='text-underline blue-300 f-w-400' href='/faq'>FAQ</a> e troverai tutte le risposte alle tue domande!</p>
                 </section>
+                </>
+            ) : (
+                <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+                    <section id='followe-artists-empty-state' className='mt-xs-24 w-70 mx-xs-auto'>
+                        <h4 className='fsize-xs-5 mb-xs-4 letter-spacing-2 f-w-500 t-align-center'>
+                            Cerca e segui i tuoi artisti preferiti
+                        </h4>
+                        
+                    </section>
+                    <section className='mt-xs-24'>
+                        <div className='d-flex-column mt-xs-2 mb-xs-0'>
+                        {chunkedItems.map((chunk, index) => (
+                            <div className='mb-xs-8' key={index}>
+                                <Carousel>
+                                    {chunk.map(item => {
+                                        return (
+                                            <CardArtist 
+                                                artist={item} 
+                                                key={item.id} 
+                                                isFollowed={false}
+                                            />
+                                        )
+                                    })}
+                                </Carousel>
+                            </div>
+                        ))}
+                        </div>
+                    </section>   
+                </ContainerDefault>
+            )
+            }
+
             </ContainerDefault>
 
             {showComponent &&

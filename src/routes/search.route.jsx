@@ -75,7 +75,7 @@ const SearchRoute = () => {
                     setSearchQuery(newValue)  
                 }}   
             />
-            {!searchQuery && 
+            {!currentFan.hasSpotify || !searchQuery && 
                 <section id='preferred-artists'>
                     <div
                         className='position-sticky top-0 z-index-4 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'

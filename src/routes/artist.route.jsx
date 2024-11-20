@@ -82,6 +82,26 @@ const ArtistRoute = () => {
         }
     }
 
+    const handleSpotifyConnect = () => {
+        if (currentFan.actions.some(action => action.type === 'SPOTIFY_ADDED')) {
+            setCurrentFan((prev) => ({
+                ...prev,
+                hasSpotify: true,
+            }))
+        } else {
+            setCurrentFan((prev) => ({
+                ...prev,
+                hasSpotify: true,
+                whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
+                actions: [...prev.actions, { type: 'SPOTIFY_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
+            }))
+            setShowMessageWhitePoints(true)
+            setWhitePoints(10)
+            setMessage('Aggiungi Spotify')
+
+        }
+    }
+
     useEffect(() => {
         if ( state ) {
             fetchThisArtist()
@@ -144,7 +164,7 @@ const ArtistRoute = () => {
                         <Tab artist={artist} />
                     }
                     {!currentFan.hasSpotify &&
-                        <CardConnectSpotify />
+                        <CardConnectSpotify onClick={handleSpotifyConnect}/>
                     }
                     {currentFan.hasSpotify && !userCompeting &&
                         <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' onClick={handleCompete} />
