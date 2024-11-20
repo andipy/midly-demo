@@ -15,6 +15,7 @@ import MessageFlashLeaderboard from '../components/message-flash-leaderboard.com
 import MessageFlashLeaderboardModal from '../components/message-flash-leaderboard-modal.component'
 import CardInviteFriend from '../components/card-invite-friend.component'
 import CardConnectSpotify from '../components/card-connect-spotify.component'
+import MessageWhitePoints from '../components/message-white-points.component'
 
 
 const ArtistRoute = () => {
@@ -51,6 +52,10 @@ const ArtistRoute = () => {
             setUserCompeting(false)
         }
     }
+
+    const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
+    const [whitePoints, setWhitePoints] = useState(0)
+    const [message, setMessage] = useState('')
     
     const handleCompete = () => {
         if (userCompeting) {
@@ -64,6 +69,9 @@ const ArtistRoute = () => {
                     whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
                     actions: [...prev.actions, { type: 'FIVE_ARTISTS_FOLLOWED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
+                setShowMessageWhitePoints(true)
+                setWhitePoints(10)
+                setMessage('Segui almeno 5 artisti')
             } else {
                 setCurrentFan(prev => ({
                     ...prev,
@@ -147,6 +155,9 @@ const ArtistRoute = () => {
                 </div>
                 <Outlet context={artist} />
             </ContainerDefault>
+            {showMessageWhitePoints && 
+                <MessageWhitePoints points={whitePoints} message={message} onClick={() => setShowMessageWhitePoints(false)} />
+            }
 
             {artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING' ?
                 <MessageFlashLeaderboardModal

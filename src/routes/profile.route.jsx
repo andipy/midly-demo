@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import {useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
@@ -21,12 +21,16 @@ import IconTrophyGold from '../images/icons/icon-trophy-gold.svg'
 import IconOk from '../images/icons/icon-ok.svg'
 import { Link } from 'react-router-dom'
 import ProgressBar from '../components/progress-bar-points.component'
+import MessageWhitePoints from '../components/message-white-points.component'
 
 const ProfileRoute = () => {
 
     const navigate = useNavigate()
 
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+    const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
+    const [whitePoints, setWhitePoints] = useState(0)
+    const [message, setMessage] = useState("")
 
 
     const handleFileChange = (event) => {
@@ -47,6 +51,10 @@ const ProfileRoute = () => {
                     whiteLabelPoints: Number(prev.whiteLabelPoints) + 5,
                     actions: [...prev.actions, { type: 'PROFILE_IMAGE_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
+
+                setShowMessageWhitePoints(true)
+                setWhitePoints(5)
+                setMessage('Aggiungi immagine di profilo')
             }
         } else {
             return
@@ -67,6 +75,9 @@ const ProfileRoute = () => {
                 whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
                 actions: [...prev.actions, { type: 'SPOTIFY_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
             }))
+            setShowMessageWhitePoints(true)
+            setWhitePoints(10)
+            setMessage('Aggiungi Spotify')
 
         }
     }
@@ -81,6 +92,7 @@ const ProfileRoute = () => {
         <NavbarDefault />
         <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
         <TextTitle title={'Profilo'} />
+        
         <div>
             
                 <div className='mt-xs-2 d-flex-column align-items-start mb-xs-12'>
@@ -244,6 +256,9 @@ const ProfileRoute = () => {
             </div>
         </div>
         </ContainerDefault>
+        {showMessageWhitePoints && 
+            <MessageWhitePoints points={whitePoints} message={message} onClick={() => setShowMessageWhitePoints(false)} />
+        }
         <Appbar />
         </>
     )

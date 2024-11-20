@@ -196,7 +196,7 @@ li {
   margin: 0;
 }
 
-.centered-popup {
+ .centered-popup {
   transform: translateY(20%);
   opacity: 0;
   animation-name: positionPopup;
@@ -210,6 +210,25 @@ li {
     transform: translateY(0);
   }
 }
+
+.fade-out {
+  animation-name: hidePopup;
+  animation-duration: 400ms;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hidePopup {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+} 
+
 
 /******************************************/
 /****************** POINTS ****************/
