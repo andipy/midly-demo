@@ -2110,7 +2110,6 @@ animation: dot-loader-after 1s infinite linear;
   width: calc(var(--container) / 2.2);
   height: calc(var(--container) / 1.8);
 }
-
 .artist-card-multiple-row-challenge {
   width: calc(var(--container) / 2.3);
   height: calc(var(--container) / 2.3);
@@ -2118,6 +2117,12 @@ animation: dot-loader-after 1s infinite linear;
 .artist-card-referral {
   width: 100%;
   height: calc(var(--container) / 1.6);
+}
+.artist-card-highlight-single {
+  width: calc(var(--container) / 1);
+}
+.artist-card-highlight-multiple {
+  width: calc(var(--container) / 1.1);
 }
 .object-fit-cover {
   object-fit: cover;

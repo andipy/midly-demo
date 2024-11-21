@@ -44,6 +44,7 @@ const SearchRoute = () => {
     const fetchHighlightArtists = () => {
         const highlightArtists = artists
             .filter(artist => artist.highlight === true)
+            .sort((a, b) => sortArtists(a, b))
         setHighlightArtists(highlightArtists)
     }
     const fetchMostListenedArtists = () => {

@@ -134,7 +134,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 3,
-            highlight: false,
+            highlight: true,
         },{
             id: 14,
             slug: 'coma-cose',
@@ -284,7 +284,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 2,
-            highlight: true,
+            highlight: false,
         },{
             id: 29,
             slug: 'miles',
