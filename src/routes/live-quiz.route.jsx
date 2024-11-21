@@ -23,7 +23,7 @@ const LiveQuizRoute = () => {
     }
     return (
         <>
-            <nav id='transparent-nav' className='top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-max top-0'>
+            <nav id='transparent-nav' className='top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0'>
                 <div className='container d-flex-row align-items-center j-c-space-between'>
                     <div>
                         <div className='avatar-28'>

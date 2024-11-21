@@ -14,7 +14,7 @@ const Appbar = () => {
     const location = useLocation()
 
     return (
-        <div className='app-bar-area d-flex-row j-c-center border-top-dark-01 z-index-max'>            
+        <div className='app-bar-area d-flex-row j-c-center border-top-dark-01 z-index-999'>            
             <div className='container d-flex-row align-items-center j-c-space-between'>
                 <Link to='/artist-app/fanclub'>
                     <div className='d-flex-column align-items-center'>

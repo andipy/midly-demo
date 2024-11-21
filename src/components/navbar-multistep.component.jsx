@@ -26,7 +26,7 @@ const NavbarMultistep = ({ stepNumber, totalStepNumber, dismissable, transparent
     }
 
     return (
-        <nav className={`${transparent ? '' : 'bg-dark shadow-dark-400'} top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-max top-0 nav-multi`}>
+        <nav className={`${transparent ? '' : 'bg-dark shadow-dark-400'} top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0 nav-multi`}>
             <div className='container d-flex-row align-items-center j-c-space-between'>
                 {stepNumber !== 1 || totalStepNumber === 1 && !dismissable ?
                     <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={handleBackNavigation}>

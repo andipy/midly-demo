@@ -156,7 +156,7 @@ const ArtistRoute = () => {
             <CoverArtistPage artist={artist} userCompeting={userCompeting} handleCompete={handleCompete} currentFan={currentFan} />
 
             <ContainerDefault containerSpecificStyle={''}>
-                <div className='mt-avatar-header position-sticky top-navbar z-index-max bg-dark'>
+                <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' ?
                         <MessageFlashLeaderboard artist={artist} userCompeting={userCompeting} /> : null
                     }

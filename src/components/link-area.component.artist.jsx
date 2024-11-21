@@ -4,7 +4,7 @@ import Button from './button.component'
 
 const LinkArea = ({ showLinkArea, handleLinkAreaVisibility, handleLinkUrl, handleLinkName }) => {
     return (
-        <div className={`position-fixed bottom-hidden bg-dark-soft w-100 full-screen-modal ${showLinkArea ? 'slide-up' : 'slide-down'}`}>
+        <div className={`position-fixed bottom-hidden bg-dark-soft w-100 border-radius-top-08 z-index-1100 ${showLinkArea ? 'slide-up' : 'slide-down'}`}>
             <ContainerDefault containerSpecificStyle={'pt-xs-4 pb-xs-4'}>
                 <label className='fsize-xs-1 grey-300 letter-spacing-3 pl-xs-6 font-heading' htmlFor='link-url'>LINK</label>
                 <input id='link-url' className='bg-dark white letter-spacing-1 border-radius-04 mb-xs-10' placeholder='Incolla qui il link' onChange={handleLinkUrl} />

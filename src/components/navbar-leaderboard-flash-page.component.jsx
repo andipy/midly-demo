@@ -9,7 +9,7 @@ const NavbarLeaderboardFlashPage = ({ artist, leaderboard }) => {
     const navigate = useNavigate()
 
     return (
-        <nav className='top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-max top-0'>
+        <nav className='top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0'>
             <div className='container d-flex-row align-items-center j-c-space-between w-100'>
                 <div className='avatar-28' onClick={() => navigate(-1)}>
                     <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} />

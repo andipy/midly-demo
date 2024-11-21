@@ -26,7 +26,7 @@ function NavbarPersonalInfoField({title}) {
 
 
   return (
-    <nav className='top-bar-area-block d-flex-row align-items-center j-c-center white z-index-max'>
+    <nav className='top-bar-area-block d-flex-row align-items-center j-c-center white z-index-999'>
             <div className='container d-flex-row align-items-center j-c-center'>
                 <div className="topbar-icon-left" onClick={() => navigate(-1)}>
                     <img src={IconArrowLeft} alt='ARROW LEFT'></img>

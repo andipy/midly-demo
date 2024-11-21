@@ -133,8 +133,8 @@ li {
 /******************************************/
 /*********** MODALS & SNACKBARS ***********/
 /******************************************/
-.full-screen-modal {
-  z-index: 1200;
+.border-radius-top-08 z-index-1100 {
+  z-index: 1100;
   border-radius: .8em .8em 0 0;
 }
 .modal {
@@ -1494,8 +1494,29 @@ animation: dot-loader-after 1s infinite linear;
 .z-index-5 {
   z-index: 5;
 }
-.z-index-max {
+.z-index-6 {
+  z-index: 6;
+}
+.z-index-7 {
+  z-index: 7;
+}
+.z-index-8 {
+  z-index: 8;
+}
+.z-index-9 {
+  z-index: 9;
+}
+.z-index-10 {
+  z-index: 10;
+}
+.z-index-999 {
   z-index: 999;
+}
+.z-index-1000 {
+  z-index: 1000;
+}
+.z-index-1100 {
+  z-index: 1100;
 }
 .m-auto {
   margin: 0 auto;

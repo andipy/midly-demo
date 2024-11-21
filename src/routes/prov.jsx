@@ -56,7 +56,7 @@ const MessageFlashLeaderboardNew = ({ artist }) => {
         {artist &&
         <>
             {artist.flashLeaderboard.status === 'ONGOING' &&
-                <div className={`position-fixed bottom-hidden w-100 full-screen-modal bg-dark-soft fl-modal-border pb-xs-6 ${modalOpen && 'show-fl-message'}`}>
+                <div className={`position-fixed bottom-hidden w-100 border-radius-top-08 z-index-1100 bg-dark-soft fl-modal-border pb-xs-6 ${modalOpen && 'show-fl-message'}`}>
                     <ContainerDefault>
                         <NavbarModalFLExplanation
                             modalCompressed={modalCompressed}
@@ -91,7 +91,7 @@ const MessageFlashLeaderboardNew = ({ artist }) => {
                             <span className='f-w-600 black fsize-xs-4'>{seconds}<span className='f-w-300'>s</span></span>
                         </div>
                         <Button
-                            style='bg-dark-soft border-lime lime-400 border-radius-04 fsize-xs-3 f-w-500 mt-xs-4 z-index-max'
+                            style='bg-dark-soft border-lime lime-400 border-radius-04 fsize-xs-3 f-w-500 mt-xs-4 z-index-999'
                             label="COS'È UNA CLASSIFICA FLASH?"
                             onClick={() => navigate('/flash-leaderboard-explanation')}
                         />
@@ -111,7 +111,7 @@ const MessageFlashLeaderboardNew = ({ artist }) => {
             }
 
             {artist.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
-                <div className={`position-fixed bottom-hidden w-100 full-screen-modal bg-dark-soft fl-modal-border pb-xs-6 ${modalOpen && 'show-fl-message'}`}>
+                <div className={`position-fixed bottom-hidden w-100 border-radius-top-08 z-index-1100 bg-dark-soft fl-modal-border pb-xs-6 ${modalOpen && 'show-fl-message'}`}>
                     <ContainerDefault>
                         <div className='d-flex-row align-items-center j-c-space-between bg-dark-soft border-radius-100 border-lime-1 pl-xs-4 pr-xs-2 pt-xs-2 pb-xs-2 mb-xs-4' onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}>
                             <p className='fsize-xs-2'>CLASSIFICA FLASH TERMINATAA</p>

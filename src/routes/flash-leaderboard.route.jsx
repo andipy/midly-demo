@@ -164,7 +164,7 @@ const FlashLeaderboardRoute = () => {
             <CoverArtistPage leaderboard={leaderboard} />
 
             <ContainerDefault containerSpecificStyle={`mt-avatar-header-2 pb-xs-24 pb-md-8 ${artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && 'pt-xs-8'}`}>
-                <div className='d-flex-column position-sticky top-navbar z-index-max mb-xs-4'>
+                <div className='d-flex-column position-sticky top-navbar z-index-999 mb-xs-4'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
                         <CardLeaderboardYourPosition currentFan={currentFan} artist={artist}  />  
                     }
@@ -277,7 +277,7 @@ const FlashLeaderboardRoute = () => {
             }
 
             {/* {showComponent &&
-                <FullPageCenter className={'z-index-max bg-black-transp70'}>
+                <FullPageCenter className={'z-index-999 bg-black-transp70'}>
                     <ContainerDefault containerSpecificStyle={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                         <img className='avatar-48' src={IconInfoLime} />
                         <section className='w-100'>
@@ -308,7 +308,7 @@ const FlashLeaderboardRoute = () => {
             {artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' ?
                 <LiveMessages leaderboard={leaderboard} />
             : artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
-                <div className='w-100vw bg-dark border-lime position-fixed bottom-0-pure z-index-max pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
+                <div className='w-100vw bg-dark border-lime position-fixed bottom-0-pure z-index-999 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
                     <p className='fsize-xs-2 mb-xs-2'>La classifica flash per <span className='lime-400 f-w-600'> {leaderboard?.song.title ? leaderboard?.song.title : leaderboard?.album.title && leaderboard?.song.title}</span> è terminata, ma stiamo ancora contando i tuoi punti! Torna alle ore 14:00 del 22 Novembre per vedere la tua posizione finale.</p>
                 </div>
             }

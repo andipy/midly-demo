@@ -28,10 +28,10 @@ export const CurrentFanProvider = ({ children }) => {
         hasInstagram: false,
         hasTikTok: false,
         leaderboardsFollowed: [
-            {artistId: 1},
-            {artistId: 2},
-            {artistId: 3},
-            {artistId: 4}
+            // {artistId: 1},
+            // {artistId: 2},
+            // {artistId: 3},
+            // {artistId: 4}
         ],
         fanclubsSubscribed: [],
         preferredArtists : [
@@ -63,8 +63,7 @@ export const CurrentFanProvider = ({ children }) => {
             ]
         },
         whiteLabelPoints: 0,
-        actions: [
-        ]
+        actions: []
     })
 
     return (
