@@ -40,8 +40,8 @@ const ArtistRoute = () => {
 
     const [userCompeting, setUserCompeting] = useState(false)
     const fetchCompeting = () => {
-        if ( currentFan.leaderboardsFollowed.length > 0 ) {
-            const favouriteArtistIds = currentFan.leaderboardsFollowed.map(followed => followed.artistId)
+        if ( currentFan.followedArtists.length > 0 ) {
+            const favouriteArtistIds = currentFan.followedArtists.map(followed => followed.artistId)
 
             if (favouriteArtistIds.includes(artist.id)) {
                 setUserCompeting(true)
@@ -59,13 +59,13 @@ const ArtistRoute = () => {
     
     const handleCompete = () => {
         if (userCompeting) {
-            const newLeaderboardsFollowed = currentFan.leaderboardsFollowed.filter(leaderboard => leaderboard.artistId !== artist.id);
-            setCurrentFan(prev => ({ ...prev, leaderboardsFollowed: newLeaderboardsFollowed }))
+            const newfollowedArtists = currentFan.followedArtists.filter(leaderboard => leaderboard.artistId !== artist.id);
+            setCurrentFan(prev => ({ ...prev, followedArtists: newfollowedArtists }))
         } else {
-            if ((currentFan.leaderboardsFollowed.length === 4) && !currentFan.actions.some(action => action.type === 'FIVE_ARTISTS_FOLLOWED')) {
+            if ((currentFan.followedArtists.length === 4) && !currentFan.actions.some(action => action.type === 'FIVE_ARTISTS_FOLLOWED')) {
                 setCurrentFan(prev => ({
                     ...prev,
-                    leaderboardsFollowed: [...prev.leaderboardsFollowed, { artistId: artist.id }],
+                    followedArtists: [...prev.followedArtists, { artistId: artist.id }],
                     whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
                     actions: [...prev.actions, { type: 'FIVE_ARTISTS_FOLLOWED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
@@ -75,7 +75,7 @@ const ArtistRoute = () => {
             } else {
                 setCurrentFan(prev => ({
                     ...prev,
-                    leaderboardsFollowed: [...prev.leaderboardsFollowed, { artistId: artist.id }],
+                    followedArtists: [...prev.followedArtists, { artistId: artist.id }],
                 }))
             }
             

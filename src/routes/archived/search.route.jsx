@@ -60,7 +60,7 @@ const SearchRoute = () => {
                         <div className='mb-xs-8' key={index}>
                             <Carousel>
                                 {chunk.map(item => {
-                                    const isFollowed = currentFan.leaderboardsFollowed.some(
+                                    const isFollowed = currentFan.followedArtists.some(
                                         (followed) => followed.artistId === item.id
                                     )
                                     return (

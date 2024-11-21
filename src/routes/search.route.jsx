@@ -13,6 +13,7 @@ import Appbar from '../components/appbar.component'
 import Carousel from '../layout/carousel.layout'
 import CardArtist from '../components/card-search-artists.component'
 import CardPreferredArtist from '../components/card-preferred-artist.component'
+import CardArtistHighlight from '../components/card-search-artist-highlight.component'
 
 const SearchRoute = () => {
 
@@ -30,9 +31,13 @@ const SearchRoute = () => {
         return a.artistName.localeCompare(b.artistName)
     }
 
+    const highlightArtists = artists
+    .filter(artist => artist.highlighted === true)
+    
+
     const filteredItems = artists
         .filter(artist => {
-            const isPreferred = currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
+            const isPreferred = currentFan.mostListenedArtistsOnSpotify.some(preferred => preferred.artistId === artist.id)
             const matchesSearch = artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
             if (searchQuery !== '') {
                 return matchesSearch
@@ -43,7 +48,7 @@ const SearchRoute = () => {
 
     const preferredItems = artists
         .filter(artist => 
-        currentFan.preferredArtists.some(preferred => preferred.artistId === artist.id)
+        currentFan.mostListenedArtistsOnSpotify.some(preferred => preferred.artistId === artist.id)
     )
         .sort((a, b) => sortArtists(a, b))
     
@@ -75,6 +80,36 @@ const SearchRoute = () => {
                     setSearchQuery(newValue)  
                 }}   
             />
+            {!searchQuery && 
+            <section id='highlighted'>
+            {/* <div
+            className='position-sticky top-0 z-index-4 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
+            style={{ top: searchBarHeight }}
+            >
+                <div className='container'>
+                    <h2 className='fsize-xs-5 f-w-600 position-sticky'>Artisti in evidenza</h2>
+                </div>
+            </div> */}
+            <div className='mb-xs-8' key={''}>
+                    <Carousel>
+                        {highlightArtists.map(item => {
+                            const isFollowed = currentFan.followedArtists.some(
+                                (followed) => followed.artistId === item.id
+                            )
+                            return (
+                                <CardArtistHighlight 
+                                    artist={item} 
+                                    key={item.id} 
+                                    isFollowed={isFollowed}
+                                    length={highlightArtists.length}
+                                />
+                            )
+                        })}
+                    </Carousel>
+                </div>
+            </section>
+            }
+            
             {!currentFan.hasSpotify || !searchQuery && 
                 <section id='preferred-artists'>
                     <div
@@ -111,6 +146,8 @@ const SearchRoute = () => {
                 </section>
             }
 
+            
+
             <section id='more-artists' className='mt-xs-4'>
                     <div
                         className='position-sticky top-0 z-index-4 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
@@ -126,7 +163,7 @@ const SearchRoute = () => {
                         <div className='mb-xs-8' key={index}>
                             <Carousel>
                                 {chunk.map(item => {
-                                    const isFollowed = currentFan.preferredArtists.some(
+                                    const isFollowed = currentFan.followedArtists.some(
                                         (followed) => followed.artistId === item.id
                                     )
                                     return (

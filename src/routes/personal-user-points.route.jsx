@@ -139,7 +139,7 @@ const PersonalUserPointsRoute = () => {
     // this part of the code filters the artists favourited by the currentFan
 	const filteredItems = artists
         .filter(artist => {
-            const isPreferred = currentFan.leaderboardsFollowed.some(preferred => preferred.artistId === artist.id)
+            const isPreferred = currentFan.followedArtists.some(preferred => preferred.artistId === artist.id)
             const matchesSearch = artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
             return isPreferred && (searchQuery === '' || matchesSearch)
         })
@@ -259,7 +259,7 @@ const PersonalUserPointsRoute = () => {
 							<Link to='/search'>
 								<div className='d-flex-row j-c-space-between mb-xs-3 bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4'>
 									<div className='d-flex-row align-items-center w-100'>
-										<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Segui almeno 5 artisti ({currentFan.leaderboardsFollowed.length}/5)</h6>
+										<h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Segui almeno 5 artisti ({currentFan.followedArtists.length}/5)</h6>
 									</div>
 									<div className='d-flex-row align-items-center'>
 									<div className='bg-dark-gradient border-radius-100 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>

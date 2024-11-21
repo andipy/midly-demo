@@ -94,8 +94,8 @@ const FlashLeaderboardRoute = () => {
     }
 
     const fetchCompeting = () => {
-        if ( currentFan.leaderboardsFollowed.length > 0 ) {
-            const favouriteArtistIds = currentFan.leaderboardsFollowed.map(followed => followed.artistId)
+        if ( currentFan.followedArtists.length > 0 ) {
+            const favouriteArtistIds = currentFan.followedArtists.map(followed => followed.artistId)
 
             if (favouriteArtistIds.includes(artist.id)) {
                 setUserCompeting(true)

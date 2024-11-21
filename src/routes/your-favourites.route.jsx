@@ -52,7 +52,7 @@ const YourFavouritesRoute = () => {
     }
 
     const fetchFavourites = () => {
-        const favouriteArtistIds = currentFan.leaderboardsFollowed.map(artist => artist.artistId)
+        const favouriteArtistIds = currentFan.followedArtists.map(artist => artist.artistId)
         const favouriteArtists = artists
             .filter(artist => favouriteArtistIds.includes(artist.id))
             .sort((a,b) => sortArtists(a,b))
@@ -62,7 +62,7 @@ const YourFavouritesRoute = () => {
     const { quizzes } = useContext(LiveQuizContext)
 
     const orderedQuizzes = quizzes
-    .filter(quiz => currentFan.leaderboardsFollowed.some(followed => String(followed.artistId) === String(quiz.artistId)))
+    .filter(quiz => currentFan.followedArtists.some(followed => String(followed.artistId) === String(quiz.artistId)))
     .sort((a, b) => sortQuizzes(a,b))
 
     const [sanremo, setSanremo] = useState(false)
@@ -130,7 +130,7 @@ const YourFavouritesRoute = () => {
             <NavbarDefault />
             <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
             <TextTitle title={'I tuoi preferiti'} />
-            {currentFan.hasSpotify ?
+            {currentFan.hasSpotify && currentFan.followedArtists.length > 0  ?
                 <>
                 {sanremo &&
                     <section className='mb-xs-8'>

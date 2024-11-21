@@ -13,7 +13,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 3
+            importance: 3,
+            highlighted: false,
         },{
             id: 2,
             slug: 'thasup',
@@ -22,7 +23,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 3
+            importance: 3,
+            highlighted: false,
         },{
             id: 3,
             slug: 'artie-5ive',
@@ -31,7 +33,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             }, 
-            importance: 3
+            importance: 3,
+            highlighted: false,
         },{
             id: 4,
             slug: 'suspect-cb',
@@ -40,7 +43,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 5,
             slug: 'astro',
@@ -49,7 +53,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 2
+            importance: 2,
+            highlighted: false,
         },{
             id: 6,
             slug: 'alfa',
@@ -58,7 +63,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 2
+            importance: 2,
+            highlighted: false,
         },{
             id: 7,
             slug: 'sick-luke',
@@ -67,7 +73,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 8,
             slug: 'nabi',
@@ -76,7 +83,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 9,
             slug: 'mezzosangue',
@@ -85,7 +93,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 10,
             slug: 'anna',
@@ -94,7 +103,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 2
+            importance: 2,
+            highlighted: false,
         },{
             id: 11,
             slug: 'gue',
@@ -103,7 +113,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 12,
             slug: 'marracash',
@@ -112,7 +123,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 13,
             slug: 'sfera-ebbasta',
@@ -121,7 +133,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 3
+            importance: 3,
+            highlighted: false,
         },{
             id: 14,
             slug: 'coma-cose',
@@ -130,7 +143,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 15,
             slug: 'salmo',
@@ -139,7 +153,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 16,
             slug: 'mara-sattei',
@@ -148,7 +163,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 2
+            importance: 2,
+            highlighted: false,
         },{
             id: 17,
             slug: 'don-pero',
@@ -157,7 +173,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 18,
             slug: 'olly',
@@ -166,7 +183,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 19,
             slug: 'venerus',
@@ -175,7 +193,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 2
+            importance: 2,
+            highlighted: false,
         },{
             id: 20,
             slug: 'nitro',
@@ -184,7 +203,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 21,
             slug: 'maneskin',
@@ -193,7 +213,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 22,
             slug: 'gionny-scandal',
@@ -202,7 +223,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 23,
             slug: 'sadturs',
@@ -211,7 +233,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: true,
         },{
             id: 24,
             slug: 'rose-villain',
@@ -220,7 +243,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: true,
         },{
             id: 25,
             slug: 'mace',
@@ -229,7 +253,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         },{
             id: 26,
             slug: 'ghali',
@@ -238,7 +263,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: true,
         },{
             id: 27,
             slug: 'kid-yugi',
@@ -247,7 +273,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 2
+            importance: 2,
+            highlighted: true,
         },{
             id: 28,
             slug: 'drefgold',
@@ -256,7 +283,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 2
+            importance: 2,
+            highlighted: true,
         },{
             id: 29,
             slug: 'miles',
@@ -265,7 +293,8 @@ export const ArtistsProvider = ({ children }) => {
             flashLeaderboard: {
                 status: undefined,
             },
-            importance: 1
+            importance: 1,
+            highlighted: false,
         }
     ])
 
