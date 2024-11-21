@@ -1655,6 +1655,9 @@ animation: dot-loader-after 1s infinite linear;
 .w-100vw {
   width: 100vw;
 }
+.w-80vw {
+  width: 80vw;
+}
 .w-100 {
   width: 100%;
 }

@@ -234,7 +234,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: true,
+            highlighted: false,
         },{
             id: 24,
             slug: 'rose-villain',
@@ -264,7 +264,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: true,
+            highlighted: false,
         },{
             id: 27,
             slug: 'kid-yugi',
@@ -274,7 +274,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 2,
-            highlighted: true,
+            highlighted: false,
         },{
             id: 28,
             slug: 'drefgold',
