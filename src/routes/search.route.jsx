@@ -23,6 +23,9 @@ const SearchRoute = () => {
     const { artists } = useContext(ArtistsContext)
     const [searchQuery, setSearchQuery] = useState('')
     const [searchBarHeight, setSearchBarHeight] = useState(0)
+    const [highlightArtists, setHighlightArtists] = useState([])
+    const [mostListenedArtists, setMostListenedArtists] = useState([])
+    const [allOtherArtists, setAllOtherArtists] = useState([])
 
     const sortArtists = (a, b) => {
         if (b.importance !== a.importance) {
@@ -30,28 +33,6 @@ const SearchRoute = () => {
         }            
         return a.artistName.localeCompare(b.artistName)
     }
-
-    const highlightArtists = artists
-    .filter(artist => artist.highlighted === true)
-    
-
-    const filteredItems = artists
-        .filter(artist => {
-            const isPreferred = currentFan.mostListenedArtistsOnSpotify.some(preferred => preferred.artistId === artist.id)
-            const matchesSearch = artist.artistName.toLowerCase().includes(searchQuery.toLowerCase())
-            if (searchQuery !== '') {
-                return matchesSearch
-            }
-            return !isPreferred && matchesSearch
-        })
-        .sort((a, b) => sortArtists(a, b))
-
-    const preferredItems = artists
-        .filter(artist => 
-        currentFan.mostListenedArtistsOnSpotify.some(preferred => preferred.artistId === artist.id)
-    )
-        .sort((a, b) => sortArtists(a, b))
-    
     const chunkArray = (array, chunkSize) => {
         const chunks = []
         for (let i = 0; i < array.length; i += chunkSize) {
@@ -60,13 +41,53 @@ const SearchRoute = () => {
         return chunks
     }
 
-    const chunkedItems = chunkArray(filteredItems, 6)
-    const chunkPreferred = chunkArray(preferredItems, 6)
+    const fetchHighlightArtists = () => {
+        const highlightArtists = artists
+            .filter(artist => artist.highlight === true)
+        setHighlightArtists(highlightArtists)
+    }
+    const fetchMostListenedArtists = () => {
+        const items = artists.filter(artist => 
+            currentFan.mostListenedArtistsOnSpotify.some(mostListenedArtist => artist.id === mostListenedArtist.artistId))
+        const sortItems = items.sort((a, b) => sortArtists(a, b))
+        setMostListenedArtists(sortItems)
+    }
+    const fetchAllOtherArtists = () => {
+        const sortItems = artists.sort((a, b) => sortArtists(a, b))
+
+        if ( searchQuery === '' ) {
+            if ( mostListenedArtists.length > 0 ) {
+                const items = sortItems.filter(artist =>
+                    !mostListenedArtists.some(mostListenedArtist => artist.id === mostListenedArtist.id))
+                setAllOtherArtists(items)
+            } else {
+                setAllOtherArtists(sortItems)
+            }
+        } else {
+            const searchedArtists = sortItems.filter(artist => artist.artistName.toLowerCase().includes(searchQuery.toLowerCase()))
+            setAllOtherArtists(searchedArtists)
+        }
+    }
+
+    useEffect(() => {
+        fetchHighlightArtists()
+    }, [])
+    useEffect(() => {
+        if ( currentFan.hasSpotify ) {
+            fetchMostListenedArtists()
+        }
+    }, [currentFan.hasSpotify])
+    useEffect(() => {
+        fetchAllOtherArtists()
+    }, [mostListenedArtists, searchQuery])
 
     useEffect(() => {
         const searchBar = document.getElementById('search-bar')
         setSearchBarHeight(searchBar.offsetHeight - 1)
     }, [])
+
+    const chunkMostListenedArtists = chunkArray(mostListenedArtists, 6)
+    const chunkedItems = chunkArray(allOtherArtists, 6)
 
     return (
         <>
@@ -81,9 +102,9 @@ const SearchRoute = () => {
                 }}   
             />
             {!searchQuery && 
-            <section id='highlighted'>
+            <section id='highlight'>
             {/* <div
-            className='position-sticky top-0 z-index-4 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
+            className='position-sticky top-0 z-index-5 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
             style={{ top: searchBarHeight }}
             >
                 <div className='container'>
@@ -113,16 +134,16 @@ const SearchRoute = () => {
             {!currentFan.hasSpotify || !searchQuery && 
                 <section id='preferred-artists'>
                     <div
-                        className='position-sticky top-0 z-index-4 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
+                        className='position-sticky top-0 z-index-5 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
                         style={{ top: searchBarHeight }}
                     >
                         <div className='container'>
                             <h2 className='fsize-xs-5 f-w-600 position-sticky'>I più ascoltati da te su Spotify</h2>
                         </div>
                     </div>
-                    {chunkPreferred.length > 0 ?
+                    {chunkMostListenedArtists.length > 0 ?
                         <div className='d-flex-column mt-xs-2 mb-xs-0'>
-                            {chunkPreferred.map((artists, index) => (
+                            {chunkMostListenedArtists.map((artists, index) => (
                                 <div className='mb-xs-8' key={index}>
                                     <Carousel>
                                         {artists.map(artist => {                                            
@@ -149,15 +170,17 @@ const SearchRoute = () => {
             
 
             <section id='more-artists' className='mt-xs-4'>
+                {!searchQuery &&
                     <div
-                        className='position-sticky top-0 z-index-4 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
+                        className='position-sticky top-0 z-index-5 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
                         style={{ top: searchBarHeight }}
                     >
                         <div className='container'>
                             <h2 className='fsize-xs-5 f-w-600 position-sticky'>Altri artisti in MIDLY</h2>
                         </div>
                     </div>
-                {filteredItems.length > 0 ?
+                }
+                {allOtherArtists.length > 0 ?
                 <div className='d-flex-column mt-xs-2 mb-xs-0'>
                     {chunkedItems.map((chunk, index) => (
                         <div className='mb-xs-8' key={index}>

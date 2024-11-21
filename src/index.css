@@ -1411,6 +1411,9 @@ animation: dot-loader-after 1s infinite linear;
   overflow-x: auto;
   overflow-y: hidden;
 }
+.overflow-clip {
+  overflow: clip;
+}
 .overflow-x-clip {
   overflow-x: clip;
 }
@@ -2514,6 +2517,9 @@ nav .container {
   .h-xs-20 {
       height: 20vh;
   }
+  .h-xs-22 {
+    height: 22vh;
+  }
   .h-xs-30 {
       height: 30vh;
   }
@@ -3025,6 +3031,9 @@ nav .container {
   .h-sm-20 {
       height: 20vh;
   }
+  .h-sm-22 {
+    height: 22vh;
+  }
   .h-sm-30 {
       height: 30vh;
   }
@@ -3457,6 +3466,9 @@ nav .container {
   .h-md-20 {
       height: 20vh;
   }
+  .h-md-22 {
+    height: 22vh;
+  }
   .h-md-30 {
       height: 30vh;
   }
@@ -3886,6 +3898,9 @@ nav .container {
   .h-lg-20 {
       height: 20vh;
   }
+  .h-lg-22 {
+    height: 22vh;
+  }
   .h-lg-30 {
       height: 30vh;
   }
@@ -4312,6 +4327,9 @@ nav .container {
   }
   .h-xl-20 {
       height: 20vh;
+  }
+  .h-xl-22 {
+    height: 22vh;
   }
   .h-xl-30 {
       height: 30vh;
@@ -4742,6 +4760,9 @@ nav .container {
   }
   .h-xxl-20 {
       height: 20vh;
+  }
+  .h-xxl-22 {
+    height: 22vh;
   }
   .h-xxl-30 {
       height: 30vh;

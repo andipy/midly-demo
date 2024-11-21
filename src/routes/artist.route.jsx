@@ -158,25 +158,46 @@ const ArtistRoute = () => {
             <ContainerDefault containerSpecificStyle={''}>
                 <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' ?
-                        <MessageFlashLeaderboard artist={artist} userCompeting={userCompeting} /> : null
+                        <MessageFlashLeaderboard
+                            artist={artist}
+                            userCompeting={userCompeting}
+                        />
+                    : 
+                        null
                     }
                     {fanclub?.isActive &&
-                        <Tab artist={artist} />
+                        <Tab
+                            artist={artist}
+                        />
                     }
                     {!currentFan.hasSpotify &&
-                        <CardConnectSpotify onClick={handleSpotifyConnect}/>
+                        <CardConnectSpotify
+                            onClick={handleSpotifyConnect}
+                        />
                     }
                     {currentFan.hasSpotify && !userCompeting &&
-                        <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' onClick={handleCompete} />
+                        <Button
+                            style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4'
+                            label='Competi nella classifica'
+                            onClick={handleCompete}
+                        />
                     }
                     {userCompeting && currentFan.hasSpotify && !pathname.includes('fanclub') &&
-                        <CardLeaderboardYourPosition currentFan={currentFan} artist={artist} />
+                        <CardLeaderboardYourPosition
+                            currentFan={currentFan}
+                            artist={artist}
+                        />
                     }
                 </div>
                 <Outlet context={artist} />
             </ContainerDefault>
+            
             {showMessageWhitePoints && 
-                <MessageWhitePoints points={whitePoints} message={message} onClick={() => setShowMessageWhitePoints(false)} />
+                <MessageWhitePoints
+                    points={whitePoints}
+                    message={message}
+                    onClick={() => setShowMessageWhitePoints(false)}
+                />
             }
 
             {artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING' ?
@@ -187,7 +208,9 @@ const ArtistRoute = () => {
                     toggleModalContent={toggleModalContent}
                     upperModalCompressed={upperModalCompressed}
                     lowerModalCompressed={lowerModalCompressed}
-                /> : null
+                />
+            : 
+                null
             }
             
             {!pathname.includes('fanclub') &&

@@ -27,12 +27,7 @@ export const CurrentFanProvider = ({ children }) => {
         hasAppleMusic: false,
         hasInstagram: false,
         hasTikTok: false,
-        followedArtists: [
-            // {artistId: 1},
-            // {artistId: 2},
-            // {artistId: 3},
-            // {artistId: 4}
-        ],
+        followedArtists: [],
         fanclubsSubscribed: [],
         mostListenedArtistsOnSpotify : [
             {artistId: 1},

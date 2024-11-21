@@ -17,7 +17,7 @@ const CardArtist = ({ artist, isFollowed }) => {
                 </div>
 
                 {isFollowed && 
-                    <div className='overlay-card-followed border-radius-06 z-index-3 bg-grey-transp50 d-flex-row j-c-center align-items-center overlay-card-followed border-radius-06 z-index-4 gap-0_25em'>
+                    <div className='overlay-card-followed border-radius-06 z-index-3 bg-black-transp50 d-flex-row j-c-center align-items-center overlay-card-followed border-radius-06 z-index-4 gap-0_25em'>
                         <img src={IconSuccess} alt='Y!' />
                         <span className='t-align-center white fsize-xs-4 z-index-4'>Preferiti</span>
                     </div>

@@ -14,7 +14,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 3,
-            highlighted: false,
+            highlight: false,
         },{
             id: 2,
             slug: 'thasup',
@@ -24,7 +24,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 3,
-            highlighted: false,
+            highlight: true,
         },{
             id: 3,
             slug: 'artie-5ive',
@@ -34,7 +34,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             }, 
             importance: 3,
-            highlighted: false,
+            highlight: false,
         },{
             id: 4,
             slug: 'suspect-cb',
@@ -44,7 +44,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 5,
             slug: 'astro',
@@ -54,7 +54,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 2,
-            highlighted: false,
+            highlight: false,
         },{
             id: 6,
             slug: 'alfa',
@@ -64,7 +64,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 2,
-            highlighted: false,
+            highlight: false,
         },{
             id: 7,
             slug: 'sick-luke',
@@ -74,7 +74,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 8,
             slug: 'nabi',
@@ -84,7 +84,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 9,
             slug: 'mezzosangue',
@@ -94,7 +94,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 10,
             slug: 'anna',
@@ -104,7 +104,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 2,
-            highlighted: false,
+            highlight: false,
         },{
             id: 11,
             slug: 'gue',
@@ -114,7 +114,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 12,
             slug: 'marracash',
@@ -124,7 +124,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 13,
             slug: 'sfera-ebbasta',
@@ -134,7 +134,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 3,
-            highlighted: false,
+            highlight: false,
         },{
             id: 14,
             slug: 'coma-cose',
@@ -144,7 +144,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 15,
             slug: 'salmo',
@@ -154,7 +154,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 16,
             slug: 'mara-sattei',
@@ -164,7 +164,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 2,
-            highlighted: false,
+            highlight: false,
         },{
             id: 17,
             slug: 'don-pero',
@@ -174,7 +174,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 18,
             slug: 'olly',
@@ -184,7 +184,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 19,
             slug: 'venerus',
@@ -194,7 +194,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 2,
-            highlighted: false,
+            highlight: false,
         },{
             id: 20,
             slug: 'nitro',
@@ -204,7 +204,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 21,
             slug: 'maneskin',
@@ -214,7 +214,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 22,
             slug: 'gionny-scandal',
@@ -224,7 +224,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 23,
             slug: 'sadturs',
@@ -234,7 +234,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 24,
             slug: 'rose-villain',
@@ -244,7 +244,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 25,
             slug: 'mace',
@@ -254,7 +254,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 26,
             slug: 'ghali',
@@ -264,7 +264,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         },{
             id: 27,
             slug: 'kid-yugi',
@@ -274,7 +274,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 2,
-            highlighted: false,
+            highlight: false,
         },{
             id: 28,
             slug: 'drefgold',
@@ -284,7 +284,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 2,
-            highlighted: true,
+            highlight: true,
         },{
             id: 29,
             slug: 'miles',
@@ -294,11 +294,9 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: false,
+            highlight: false,
         }
     ])
-
-    
 
     return (
         <ArtistsContext.Provider value={{ artists, setArtists }}>
