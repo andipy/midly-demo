@@ -25,11 +25,11 @@ const CardArtistHighlight = ({ artist, isFollowed, length }) => {
                 </div>
             </div>
             ) : (
-                <div className='mr-xs-2 ' onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: artist })}>
-                    <div className=' artist-card-multiple-row bg-dark-gradient border-radius-06 position-relative'>
-                        <div className='overlay-card bg-dark-overlay-card border-radius-06 z-index-1'></div>
+                <div className='mr-xs-2 position-relative w-80 h-xs-20' onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: artist })}>
+                    <div className='object-fit-cover artist-card-multiple-row bg-dark-gradient border-radius-06 position-relative w-80 h-xs-20'>
+                        <div className='h-xs-20 w-80 overlay-card bg-dark-overlay-card border-radius-06 z-index-1'></div>
                         <img
-                            className='artist-card-multiple-row object-fit-cover border-radius-06'
+                            className='artist-card-multiple-row h-xs-20 w-80 object-fit-cover border-radius-06'
                             src={artist.image}
                             alt=''
                         />
