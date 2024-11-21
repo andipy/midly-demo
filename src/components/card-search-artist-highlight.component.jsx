@@ -27,7 +27,6 @@ const CardArtistHighlight = ({ artist, isFollowed, length }) => {
             ) : (
                 <div className='mr-xs-2 position-relative w-80vw h-xs-20 mb-xs-4' onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: artist })}>
                     <div className='overlay-card bg-dark-overlay-card border-radius-06 z-index-1'></div>
-
                     <img className='h-inherit w-80vw object-fit-cover border-radius-08' src={artist.image} />
                     <div className='d-flex-column position-absolute bottom-5 ml-xs-8 z-index-2'>
                         <h5 className='fsize-xs-2 mb-xs-2 f-w-500 letter-spacing-1'>{artist.artistName}</h5>

@@ -178,6 +178,7 @@ const PersonalUserPointsRoute = () => {
 							}}   
 						/>
 					</div>
+					{currentFan.followedArtists.length > 0 ? (
 					<div id='assignment'>
 						{chunkedItems.map((chunk, index) => (
 							<div className='mb-xs-8' key={index}>
@@ -195,6 +196,15 @@ const PersonalUserPointsRoute = () => {
 							</div>
 						))}
 					</div>
+					):(
+						<section id='' className='mt-xs-4 mb-xs-12 w-70 mx-xs-auto'>
+                        	<h4 className='grey-400 fsize-xs-5 mb-xs-4 letter-spacing-2 f-w-500 t-align-center'>
+                            	Non segui ancora nessun artista
+                        	</h4>
+                        
+                    	</section>
+					)}
+					
 				</>
 			:
 				<div id='no-points' className='bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4 d-flex-column align-items-center j-c-center mt-xs-6 mb-xs-6'>

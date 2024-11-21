@@ -244,7 +244,7 @@ export const ArtistsProvider = ({ children }) => {
                 status: undefined,
             },
             importance: 1,
-            highlighted: true,
+            highlighted: false,
         },{
             id: 25,
             slug: 'mace',
