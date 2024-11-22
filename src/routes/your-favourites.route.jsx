@@ -17,6 +17,8 @@ import CardSanremo from '../components/card-sanremo.component'
 import Appbar from '../components/appbar.component'
 import Button from '../components/button.component'
 import CardArtist from '../components/card-search-artists.component'
+import CardArtistHighlight from '../components/card-search-artist-highlight.component'
+
 
 import TextTitle from '../components/text-title.component'
 
@@ -30,6 +32,7 @@ const YourFavouritesRoute = () => {
     const [favourites, setFavourites] = useState([])
     const [showComponent, setShowComponent] = useState(false)
     const [clickCount, setClickCount] = useState(0)
+    const [highlightArtists, setHighlightArtists] = useState([])
     const timeoutRef = useRef(null)
 
     const sortArtists = (a, b) => {
@@ -43,12 +46,26 @@ const YourFavouritesRoute = () => {
         return (statusOrder[a.flashLeaderboard.status] || 5) - (statusOrder[b.flashLeaderboard.status] || 5)
     }
 
+    const sortHighlightedArtists = (a, b) => {
+        if (b.importance !== a.importance) {
+            return b.importance - a.importance
+        }            
+        return a.artistName.localeCompare(b.artistName)
+    }
+
     const sortQuizzes = (a,b) => {
         const aHasFanResponse = a.responses.some(response => response.userId === currentFan.id)
         const bHasFanResponse = b.responses.some(response => response.userId === currentFan.id)
         if (aHasFanResponse && !bHasFanResponse) return 1
         if (!aHasFanResponse && bHasFanResponse) return -1
         return 0
+    }
+
+    const fetchHighlightArtists = () => {
+        const highlightArtists = artists
+            .filter(artist => artist.highlight === true)
+            .sort((a, b) => sortHighlightedArtists(a, b))
+        setHighlightArtists(highlightArtists)
     }
 
     const fetchFavourites = () => {
@@ -124,6 +141,10 @@ const YourFavouritesRoute = () => {
     
     const chunkedItems = chunkArray(sortedArtists, 6)
 
+    useEffect(() => {
+        fetchHighlightArtists()
+    }, [])
+
 
     return (
         <>
@@ -138,7 +159,7 @@ const YourFavouritesRoute = () => {
                     </section>
                 }
 
-                {quizzes.length > 0 &&
+                {orderedQuizzes.length > 0 &&
                     <section id='quiz' className='mt-xs-4 mb-xs-12'>
                         <h2 className='fsize-xs-5 f-w-600'>Gioca ai quiz</h2>
                         <p className='fsize-xs-2 f-w-200 grey-300'>Gioca ai quiz e ottieni punti nelle classifiche mensili.</p>
@@ -182,7 +203,30 @@ const YourFavouritesRoute = () => {
                         </h4>
                         
                     </section>
-                    <section className='mt-xs-24'>
+                    
+                    <section id='highlight'>
+                        <div className='mb-xs-8 mt-xs-24' key={''}>
+                            <Carousel>
+                                {highlightArtists.map(item => {
+                                    const isFollowed = currentFan.followedArtists.some(
+                                        (followed) => followed.artistId === item.id
+                                    )
+                                    return (
+                                        <CardArtistHighlight 
+                                            artist={item} 
+                                            key={item.id} 
+                                            isFollowed={isFollowed}
+                                            length={highlightArtists.length}
+                                        />
+                                    )
+                                })}
+                            </Carousel>
+                        </div>
+                    </section>
+                    <div className='container'>
+                        <h2 className='fsize-xs-5 f-w-600 position-sticky'>Altri artisti in MIDLY</h2>
+                    </div>
+                    <section className='mt-xs-2'>
                         <div className='d-flex-column mt-xs-2 mb-xs-0'>
                         {chunkedItems.map((chunk, index) => (
                             <div className='mb-xs-8' key={index}>
