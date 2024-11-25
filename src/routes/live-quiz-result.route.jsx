@@ -38,6 +38,16 @@ const LiveQuizResultRoute = () => {
     })
     .sort((a, b) => sortQuizzes(a,b)) 
 
+    const chunkArray = (array, chunkSize) => {
+      const chunks = []
+      for (let i = 0; i < array.length; i += chunkSize) {
+          chunks.push(array.slice(i, i + chunkSize))
+      }
+      return chunks
+    }
+  
+    const chunkedQuizzes = chunkArray(orderedQuizzes, 2)
+
     /* array di punti */
     const[points, setPoints] = useState([])
 
@@ -93,8 +103,8 @@ const LiveQuizResultRoute = () => {
 
   return (
     <>
-      <ContainerDefault containerSpecificStyle={'h-100vh'}>
-        <div className="d-flex-column align-items-center j-c-center h-100">
+      <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+        <div className="d-flex-column align-items-center j-c-center mt-xs-50">
           <h3 className="t-align-center mb-xs-4 f-w-800 fsize-xs-6">
             {resultTitle}
           </h3>
@@ -117,30 +127,35 @@ const LiveQuizResultRoute = () => {
 
           
           {!(orderedQuizzes?.length === 0) ? ( 
-            <div className='d-flex-column align-items-center mt-xs-12 '>
+          <div className='d-flex-column align-items-center mt-xs-12 '>
             <h3 className="t-align-center f-w-800 fsize-xs-4">
               Gioca ai quiz che ti sei perso 
             </h3>
             <p className="t-align-center mb-xs-4 f-w-300 fsize-xs-2">
               (Non valgono punti in classifica)
             </p>
-            <section id='quiz' className='j-c-center align-items-center t-align-center '>
-            
-              <Carousel>
-                {orderedQuizzes?.map(quiz => {
-                  const hasPlayed = quiz.responses.some(play => play.userId === currentFan.id)
-                  return (
-                    <CardPassedQuiz
-                      slug={quiz.artistSlug}
-                      date={quiz.playDate}
-                      image={quiz.image}
-                      quizAlreadyPlayed={hasPlayed}
-                      key={quiz.quizId} 
-                      id={quiz.quizId}
-                    />
-                  )
-                })}
-              </Carousel>
+            <section id='quiz' className='j-c-center align-items-center'>
+              {chunkedQuizzes.map((chunk, index) => (
+                <div className='mb-xs-8 j-c-center align-items-center' key={index}>
+                  <Carousel>
+                      {chunk.map(item => {
+                        const hasPlayed = item.responses.some(play => play.userId === currentFan.id)
+                          return (
+                            <CardPassedQuiz
+                              slug={item.artistSlug}
+                              artistName={item.artistName}
+                              songName={item.songChunks[0].songName}
+                              date={item.playDate}
+                              image={item.image}
+                              quizAlreadyPlayed={hasPlayed}
+                              key={item.quizId} 
+                              id={item.quizId}
+                            />  
+                          )
+                        })}
+                  </Carousel>
+                </div>
+              ))}
             </section>
           </div>
           ):('')}

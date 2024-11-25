@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import IconSuccess from '../images/icons/icon-success-standard.svg';
 
 
-const CardPassedQuiz = ({ date, image, quizAlreadyPlayed, id }) => {
+const CardPassedQuiz = ({ date, artistName, songName, image, quizAlreadyPlayed, id }) => {
     const navigate = useNavigate();
 
     const handleNavigation = (event) => {
@@ -24,36 +24,38 @@ const CardPassedQuiz = ({ date, image, quizAlreadyPlayed, id }) => {
     return (
         <>
         {quizAlreadyPlayed ? (
-
-            <div className='d-flex-column'>
-                <div className='mt-xs-4 d-flex-column j-c-center align-items-center'>
-                    {quizAlreadyPlayed && (
-                            <div className='avatar-64 d-flex-row align-items-center j-c-center position-absolute z-index-3 border-radius-100'>
+            <a className='d-flex-column border-radius-08 j-c-space-between w-50'  href={``} onClick={handleNavigation}>
+                {quizAlreadyPlayed && (
+                            <div className='artist-card-multiple-row-challenge d-flex-row align-items-center j-c-center position-absolute z-index-3 border-radius-08'>
                                 <div className='d-flex-row align-items-center j-c-center z-index-4 gap-0_25em'>
                                     <img src={IconSuccess} alt='Y!' />
                                 </div>
-                                <div className='overlay-card-followed bg-dark-soft-transp75 border-radius-100'></div>
+                                <div className='overlay-card-followed bg-dark-soft-transp75 border-radius-08'></div>
                             </div>
-                    )}
-                    <div className='avatar-64 bg-dark-gradient border-radius-100 position-relative'>
-                        <img className='avatar-64 object-fit-cover border-radius-100' src={image} />
-                    </div>
+                )}
+                <div className='artist-card-multiple-row-challenge bg-dark-gradient border-radius-1 position-relative'>
+                    <div className='overlay-card bg-dark-overlay-card border-radius-1 z-index-1'></div>
+                    <img className='artist-card-multiple-row-challenge object-fit-cover border-radius-1' src={image} />
+
                 </div>
-                <div className='d-flex-column z-index-2'>
-                    <h5 className='fsize-xs-2 mb-xs-2 f-w-500 letter-spacing-1'>{formatNumber(day) + '/' +formatNumber(month)+ '/'+ year}</h5>
+                <div className='d-flex-columnj-c-center mt-xs-4 ml-xs-2 overflow-hidden'>
+                    <h5 className='fsize-xs-0 mb-xs-2 f-w-500 letter-spacing-0 no-shrink'>{songName}</h5>
+                    <h5 className='fsize-xs-0  f-w-500 letter-spacing-0 shrink'>{artistName}</h5>
                 </div>
-            </div>
+            </a>
             ) : (
-            <div className='d-flex-column'>
-                <a className='mt-xs-4 d-flex-column j-c-center align-items-center' href={``} onClick={handleNavigation}>
-                    <div className='avatar-64 bg-dark-gradient border-radius-100 position-relative'>
-                        <img className='avatar-64 object-fit-cover border-radius-100' src={image} />
-                    </div>
-                </a>
-                <div className='d-flex-column z-index-2'>
-                    <h5 className='fsize-xs-2 mb-xs-2 f-w-500 letter-spacing-1'>{formatNumber(day) + '/' +formatNumber(month)+ '/'+ year}</h5>
+            <a className='d-flex-column border-radius-08 j-c-space-between w-50'  href={``} onClick={handleNavigation}>
+                <div className='artist-card-multiple-row-challenge bg-dark-gradient border-radius-1 position-relative'>
+                    <div className='overlay-card bg-dark-overlay-card border-radius-1 z-index-1'></div>
+                    <img className='artist-card-multiple-row-challenge object-fit-cover border-radius-1' src={image} />
+
                 </div>
-            </div>
+                <div className='d-flex-columnj-c-center mt-xs-4 ml-xs-2 overflow-hidden'>
+                    <h5 className='fsize-xs-0 mb-xs-2 f-w-500 letter-spacing-0 no-shrink'>{songName}</h5>
+                    <h5 className='fsize-xs-0  f-w-500 letter-spacing-0 shrink'>{artistName}</h5>
+                </div>
+            </a>
+            
             )}
         </>
         
