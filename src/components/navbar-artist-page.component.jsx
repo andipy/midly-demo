@@ -9,6 +9,11 @@ const NavbarArtistPage = ({ artist }) => {
     const location = useLocation()
     const navigate = useNavigate()
     const [scrolled, setScrolled] = useState(false)
+    const [verified, setVerified] = useState(false)
+
+    useEffect(() => {
+        setVerified(artist?.verified)
+    }, [artist])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -35,7 +40,13 @@ const NavbarArtistPage = ({ artist }) => {
                 <div className={`${scrolled ? 'd-flex-row' : 'd-xs-none'} align-items-center j-c-center grow-1`}>
                     <div className='avatar-36 position-relative mr-xs-4'>
                         <img className='avatar-36 border-radius-100' src={artist?.image} alt='Artist' />
-                        <img className='artist-avatar-verified-icon avatar-12' src={IconVerifiedArtist} alt='Verified' />
+                        {verified && 
+                            <img
+                            className="artist-avatar-verified-icon avatar-12"
+                            src={IconVerifiedArtist}
+                            alt="Verified"
+                            />
+                        }                   
                     </div>
                     <h2 className='f-w-600 fsize-xs-1 letter-spacing-1'>
                         {artist?.artistName.length > 15 ? artist?.artistName.substring(0, 15) + '...' : artist?.artistName}

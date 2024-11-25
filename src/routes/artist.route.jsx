@@ -4,6 +4,7 @@ import { useLocation, Outlet } from 'react-router-dom'
 import { ArtistsContext } from '../contexts/artists.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
+import { LiveQuizContext } from '../contexts/live-quiz.context'
 
 import ContainerDefault from '../layout/container-default.layout'
 import NavbarArtistPage from '../components/navbar-artist-page.component'
@@ -25,6 +26,9 @@ const ArtistRoute = () => {
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const { artists } = useContext(ArtistsContext)
     const { fanclubs } = useContext(FanclubsContext)
+    const { quizzes } = useContext(LiveQuizContext)
+
+    
     
     const [artist, setArtist] = useState()
     const fetchThisArtist = () => {
@@ -119,6 +123,15 @@ const ArtistRoute = () => {
             fetchThisFanclub()
         }
     }, [artist])
+
+    /* recupero live quiz artista */
+    useEffect(() => {
+        if (artist){
+            const artistLiveQuizzes = quizzes?.filter(quiz => quiz.artistId === artist?.id)
+            console.log(artistLiveQuizzes)
+        }  
+
+    }, [artist?.id])
 
     // this part of the code handles the flash leaderboard pop up
     const [modalOpen, setModalOpen] = useState(false)

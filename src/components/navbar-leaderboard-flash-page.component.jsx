@@ -18,7 +18,7 @@ const NavbarLeaderboardFlashPage = ({ artist, leaderboard }) => {
                 <div className='d-flex-row align-items-center j-c-center bg-black-transp50 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-4 border-radius-100'>
                     <div className='avatar-32 position-relative mr-xs-4'>
                         <img className='avatar-32 border-radius-100' src={artist?.image} />
-                        <img className='artist-avatar-verified-icon avatar-12' src={IconVerifiedArtist} />
+                        {artist?.verified && <img className='artist-avatar-verified-icon avatar-12' src={IconVerifiedArtist} /> }
                     </div>                    
                     <h2 className='f-w-600 fsize-xs-1 letter-spacing-1 flex-no-wrap'>{artist?.artistName.length > 15 ? artist?.artistName.substring(0, 15) + '...' : artist?.artistName}</h2>
                 </div>

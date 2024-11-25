@@ -23,7 +23,7 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
                 <div className={`container w-100 position-absolute-x bottom-avatar-header z-index-2 d-flex-row ${userCompeting && currentFan.hasSpotify ? 'align-items-end' : 'align-items-center'}`}>
                     <div className='position-relative avatar-72'>
                         <img className={`avatar-72 border-radius-100 ${artist?.flashLeaderboard.status === 'ONGOING' ? 'border-lime-6' : 'border-dark-6'}`} src={artist?.image} />                       
-                        <img className='artist-avatar-verified-icon' src={IconVerifiedArtist} />
+                        {artist?.verified && <img className='artist-avatar-verified-icon' src={IconVerifiedArtist} />}
                     </div>
                     <div className='d-flex-column grow-1 no-shrink j-c-start ml-xs-2'>
                         <h5 className='fsize-xs-4 f-w-600'>{artist?.artistName}</h5>

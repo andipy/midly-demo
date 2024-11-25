@@ -15,6 +15,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 3,
             highlight: false,
+            verified: true,
         },{
             id: 2,
             slug: 'thasup',
@@ -25,6 +26,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 3,
             highlight: true,
+            verified: true,
         },{
             id: 3,
             slug: 'artie-5ive',
@@ -35,6 +37,7 @@ export const ArtistsProvider = ({ children }) => {
             }, 
             importance: 3,
             highlight: false,
+            verified: true,
         },{
             id: 4,
             slug: 'suspect-cb',
@@ -45,6 +48,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 5,
             slug: 'astro',
@@ -55,6 +59,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 2,
             highlight: false,
+            verified: true,
         },{
             id: 6,
             slug: 'alfa',
@@ -65,6 +70,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 2,
             highlight: false,
+            verified: true,
         },{
             id: 7,
             slug: 'sick-luke',
@@ -75,6 +81,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 8,
             slug: 'nabi',
@@ -85,6 +92,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 9,
             slug: 'mezzosangue',
@@ -95,6 +103,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 10,
             slug: 'anna',
@@ -105,6 +114,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 2,
             highlight: false,
+            verified: true,
         },{
             id: 11,
             slug: 'gue',
@@ -115,6 +125,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 12,
             slug: 'marracash',
@@ -125,6 +136,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 13,
             slug: 'sfera-ebbasta',
@@ -135,6 +147,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 3,
             highlight: true,
+            verified: true,
         },{
             id: 14,
             slug: 'coma-cose',
@@ -145,6 +158,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 15,
             slug: 'salmo',
@@ -155,6 +169,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 16,
             slug: 'mara-sattei',
@@ -165,6 +180,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 2,
             highlight: false,
+            verified: true,
         },{
             id: 17,
             slug: 'don-pero',
@@ -175,6 +191,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 18,
             slug: 'olly',
@@ -185,6 +202,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 19,
             slug: 'venerus',
@@ -195,6 +213,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 2,
             highlight: false,
+            verified: true,
         },{
             id: 20,
             slug: 'nitro',
@@ -205,6 +224,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 21,
             slug: 'maneskin',
@@ -215,6 +235,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 22,
             slug: 'gionny-scandal',
@@ -225,6 +246,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 23,
             slug: 'sadturs',
@@ -235,6 +257,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 24,
             slug: 'rose-villain',
@@ -245,6 +268,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 25,
             slug: 'mace',
@@ -255,6 +279,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 26,
             slug: 'ghali',
@@ -265,6 +290,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         },{
             id: 27,
             slug: 'kid-yugi',
@@ -275,6 +301,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 2,
             highlight: false,
+            verified: true,
         },{
             id: 28,
             slug: 'drefgold',
@@ -285,6 +312,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 2,
             highlight: false,
+            verified: true,
         },{
             id: 29,
             slug: 'miles',
@@ -295,6 +323,7 @@ export const ArtistsProvider = ({ children }) => {
             },
             importance: 1,
             highlight: false,
+            verified: true,
         }
     ])
 
