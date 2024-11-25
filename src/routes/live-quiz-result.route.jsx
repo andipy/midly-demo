@@ -115,7 +115,9 @@ const LiveQuizResultRoute = () => {
             {resultMessage}
           </p>
 
-          <div className='d-flex-column align-items-center mt-xs-12 '>
+          
+          {orderedQuizzes.lenght > 0 && 
+            <div className='d-flex-column align-items-center mt-xs-12 '>
             <h3 className="t-align-center f-w-800 fsize-xs-4">
               Gioca ai quiz che ti sei perso 
             </h3>
@@ -141,8 +143,9 @@ const LiveQuizResultRoute = () => {
               </Carousel>
             </section>
           </div>
+          }
         </div>       
-        <ContainerDefault containerSpecificStyle={'position-fixed bottom-5'}>
+        <ContainerDefault containerSpecificStyle={'position-fixed bottom-5 z-index-999'}>
           <button className="bg-acid-lime black font-body" onClick={closeClick}>
             <span className="fsize-xs-3 f-w-500">
               Close

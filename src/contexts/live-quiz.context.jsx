@@ -108,10 +108,10 @@ export const LiveQuizProvider = ({ children }) => {
             songChunks: [
                {
                    chunkId: 1,
-                   songName: "Altro quiz",
-                   firstLine: 'Altro quiz',
-                   secondLine: 'Altro quiz',
-                   correctResponse: 'Altro quiz'
+                   songName: "oh 90d - feat. Nayt",
+                   firstLine: 'La mia ex, que-que-quella pazza vera',
+                   secondLine: 'Ma non so come dirle "Oh no, no, no, no',
+                   correctResponse: 'Dice che vorrebbe tornare e fare la seria'
                }
             ],
             responses: []
@@ -125,10 +125,10 @@ export const LiveQuizProvider = ({ children }) => {
             songChunks: [
                {
                    chunkId: 1,
-                   songName: "Altro quiz 2",
-                   firstLine: 'Altro quiz 2',
-                   secondLine: 'Altro quiz 2',
-                   correctResponse: 'Altro quiz 2'
+                   songName: "gua10 - feat. Lazza",
+                   firstLine: 'Op-ops, che guaio, occhio al dettaglio',
+                   secondLine: 'Amerei la città',
+                   correctResponse: 'Sono il solo, il solo a notarlo'
                }
             ],
             responses: []
@@ -142,14 +142,116 @@ export const LiveQuizProvider = ({ children }) => {
             songChunks: [
                {
                    chunkId: 1,
-                   songName: "Altro quiz 3",
-                   firstLine: 'Altro quiz 3',
-                   secondLine: 'Altro quiz 3',
-                   correctResponse: 'Altro quiz 3'
+                   songName: "mar+e",
+                   firstLine: 'Lady non far come tutte le altre',
+                   secondLine: 'Questo tiro aspetto atterri su Marte',
+                   correctResponse: 'Non starò mai al posto del passeggero'
                }
             ],
             responses: []
-        },
+        },{
+            quizId: 9,
+            artistId: 5,
+            artistSlug: 'astro',
+            artistName: 'Astro',
+            playDate: '2024-09-22 00:00:00',
+            image: require('../images/pictures/astro.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: 'SPENDERE (feat. Simba La Rue)',
+                   firstLine: 'Voce del verbo spendere, spendere',
+                   secondLine: 'Spendere, spendere, spendere, spendere',
+                   correctResponse: 'Spendere, spendere, spendere (Spendere)'
+               }
+            ],
+            responses: []
+        },{
+            quizId: 10,
+            artistId: 5,
+            artistSlug: 'astro',
+            artistName: 'Astro',
+            playDate: '2024-11-23 00:00:00',
+            image: require('../images/pictures/astro.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: 'non BASTA',
+                   firstLine: 'Non basta',
+                   secondLine: 'Faccio finta di niente non passa',
+                   correctResponse: 'Dirmi quelle parole non basta'
+               }
+            ],
+            responses: []
+        },{
+            quizId: 11,
+            artistId: 3,
+            artistSlug: 'artie-5ive',
+            artistName: 'Artie 5ive',
+            playDate: '2024-11-21 00:00:00',
+            image: require('../images/pictures/artie-5ive.jpeg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: 'ANELLI E COLLANE (feat. ANNA)',
+                   firstLine: 'Non sono morto ai diciassette',
+                   secondLine: "Fotto solamente con le baddie, metto roba trendy",
+                   correctResponse: 'muoio ai ventisette'
+               }
+            ],
+            responses: []
+        },{
+            quizId: 12,
+            artistId: 3,
+            artistSlug: 'artie-5ive',
+            artistName: 'Artie 5ive',
+            playDate: '2024-10-24 00:00:00',
+            image: require('../images/pictures/artie-5ive.jpeg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: 'ALBV',
+                   firstLine: 'Aspetto la bella vita (La bella vita) (Ah)',
+                   secondLine: "E, se non twerka, non può esser la mia tipa (Oh no)",
+                   correctResponse: 'Seduto su una panchina'
+               }
+            ],
+            responses: []
+        },{
+            quizId: 13,
+            artistId: 1,
+            artistSlug: 'lazza',
+            artistName: 'Lazza',
+            playDate: '2024-11-23 00:00:00',
+             image: require('../images/pictures/lazza.jpeg'),
+             songChunks: [
+                {
+                   chunkId: 1,
+                   songName: 'CENERE',
+                   firstLine: 'Aiutami a sparire come cenere',
+                   secondLine: 'Nel buio balli da sola',
+                   correctResponse: 'Mi sento un nodo alla gola',
+                },
+             ],
+             responses: []
+         },{
+            quizId: 14,
+            artistId: 1,
+            artistSlug: 'lazza',
+            artistName: 'Lazza',
+            playDate: '2024-11-21 00:00:00',
+             image: require('../images/pictures/lazza.jpeg'),
+             songChunks: [
+                {
+                   chunkId: 1,
+                   songName: 'Morto Mai',
+                   firstLine: 'Piuttosto che la tua luce riflessa al buio',
+                   secondLine: 'Quando sei qualcuno, urlano: "71"',
+                   correctResponse: "E' un broblema mio di quanto e se fatturo",
+                },
+             ],
+             responses: []
+         }
     ])
 
     return (
