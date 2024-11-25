@@ -11,6 +11,7 @@ export const LiveQuizProvider = ({ children }) => {
             artistId: 1,
             artistSlug: 'lazza',
             artistName: 'Lazza',
+            playDate: '2024-11-25 00:00:00',
              image: require('../images/pictures/lazza.jpeg'),
              songChunks: [
                 {
@@ -34,6 +35,7 @@ export const LiveQuizProvider = ({ children }) => {
             artistId: 2,
             artistSlug: 'thasup',
             artistName: 'thasup',
+            playDate: '2024-11-25 00:00:00',
             image: require('../images/pictures/thasup.jpg'),
             songChunks: [
                {
@@ -50,6 +52,7 @@ export const LiveQuizProvider = ({ children }) => {
             artistId: 3,
             artistSlug: 'artie-5ive',
             artistName: 'Artie 5ive',
+            playDate: '2024-11-25 00:00:00',
             image: require('../images/pictures/artie-5ive.jpeg'),
             songChunks: [
                {
@@ -66,6 +69,7 @@ export const LiveQuizProvider = ({ children }) => {
             artistId: 4,
             artistSlug: 'suspect-cb',
             artistName: 'Suspect CB',
+            playDate: '2024-11-25 00:00:00',
             image: require('../images/pictures/suspect-cb.jpg'),
             songChunks: [
                {
@@ -82,6 +86,7 @@ export const LiveQuizProvider = ({ children }) => {
             artistId: 5,
             artistSlug: 'astro',
             artistName: 'Astro',
+            playDate: '2024-11-25 00:00:00',
             image: require('../images/pictures/astro.jpg'),
             songChunks: [
                {
@@ -93,7 +98,58 @@ export const LiveQuizProvider = ({ children }) => {
                }
             ],
             responses: []
-        }
+        },{
+            quizId: 6,
+            artistId: 2,
+            artistSlug: 'thasup',
+            artistName: 'thasup',
+            playDate: '2024-11-24 00:00:00',
+            image: require('../images/pictures/thasup.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: "Altro quiz",
+                   firstLine: 'Altro quiz',
+                   secondLine: 'Altro quiz',
+                   correctResponse: 'Altro quiz'
+               }
+            ],
+            responses: []
+        },{
+            quizId: 7,
+            artistId: 2,
+            artistSlug: 'thasup',
+            artistName: 'thasup',
+            playDate: '2024-11-23 00:00:00',
+            image: require('../images/pictures/thasup.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: "Altro quiz 2",
+                   firstLine: 'Altro quiz 2',
+                   secondLine: 'Altro quiz 2',
+                   correctResponse: 'Altro quiz 2'
+               }
+            ],
+            responses: []
+        },{
+            quizId: 8,
+            artistId: 2,
+            artistSlug: 'thasup',
+            artistName: 'thasup',
+            playDate: '2024-01-01 00:00:00',
+            image: require('../images/pictures/thasup.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: "Altro quiz 3",
+                   firstLine: 'Altro quiz 3',
+                   secondLine: 'Altro quiz 3',
+                   correctResponse: 'Altro quiz 3'
+               }
+            ],
+            responses: []
+        },
     ])
 
     return (

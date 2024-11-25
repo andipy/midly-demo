@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from 'react'
 
 import { LiveQuizContext } from '../contexts/live-quiz.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
+import { LeaderboardsContext } from '../contexts/leaderboards.context'
 
 import ContainerDefault from '../layout/container-default.layout'
 
@@ -12,6 +13,7 @@ const LiveQuizPlayRoute = () => {
 
     const { id } = location.state || {}
     const { currentFan } = useContext(CurrentFanContext)
+    const { leaderboards, setLeaderboards } = useContext(LeaderboardsContext)
 
     const { quizzes, setQuizzes } = useContext(LiveQuizContext)
 
@@ -38,34 +40,30 @@ const LiveQuizPlayRoute = () => {
         return () => clearInterval(timer)
     }, [])
 
-    const handleTimeout = () => {
-
-        const newResponse = {
-            userId: currentFan.id, 
-            chunkId: songChunk.chunkId,
-            response: '',
-            score: 0
-        }
-
-        const updatedQuizzes = quizzes.map(q => {
-            if (q.quizId === id) {
+    const updateLeaderboards = (points) => {
+        const updatedLeaderboards = leaderboards.map(leaderboard => {
+            if (leaderboard.artistId === quiz.artistId) {
+                const updatedLeaderboard = leaderboard.leaderboard.map(user => {
+                    if (user.userId === currentFan.id) {
+                        return {
+                            ...user,
+                            points: user.points + points 
+                        }
+                    }
+                    return user
+                })
+        
                 return {
-                    ...q,
-                    responses: [...q.responses, newResponse],
+                    ...leaderboard,
+                    leaderboard: updatedLeaderboard
                 }
             }
-            return q
-        })
-
-        setQuizzes(updatedQuizzes)
-        navigate(`/quiz-result`, { state: { id } })
+            return leaderboard
+        })        
+        setLeaderboards(updatedLeaderboards)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        
-        const points = calculateScore(correctAnswer, userAnswer)
-
+    const updateQuizzes = (points) => {
         const newResponse = {
             userId: currentFan.id, 
             chunkId: songChunk.chunkId,
@@ -82,9 +80,34 @@ const LiveQuizPlayRoute = () => {
             }
             return q
         })
-
         setQuizzes(updatedQuizzes)
+    }
+
+    const handleTimeout = () => {
+        updateQuizzes(0)
         navigate(`/quiz-result`, { state: { id } })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const playDate = new Date(quiz.playDate)
+        const today = new Date()
+        today.setHours(0, 0, 0, 0)
+
+        if(playDate.getTime() === today.getTime()) {
+            const points = calculateScore(correctAnswer, userAnswer)
+            //aggiungi anche punteggio
+            updateLeaderboards(points)
+            //aggiungi response
+            updateQuizzes(points)
+            
+            navigate(`/quiz-result`, { state: { id } })
+        } else {
+            const points = calculateScore(correctAnswer, userAnswer)
+            //aggiungi solo response
+            updateQuizzes(points)
+            navigate(`/quiz-result`, { state: { id } })
+        } 
     }
 
     /* DA RIVEDERE ALGORITMO */
@@ -103,7 +126,7 @@ const LiveQuizPlayRoute = () => {
         for (let i = 1; i <= b.length; i++) {
             for (let j = 1; j <= a.length; j++) {
                 if (b.charAt(i - 1) === a.charAt(j - 1)) {
-                    matrix[i][j] = matrix[i - 1][j - 1];
+                    matrix[i][j] = matrix[i - 1][j - 1]
                 } else {
                     matrix[i][j] = Math.min(
                         matrix[i - 1][j - 1] + 1, // substitution

@@ -79,7 +79,19 @@ const YourFavouritesRoute = () => {
     const { quizzes } = useContext(LiveQuizContext)
 
     const orderedQuizzes = quizzes
-    .filter(quiz => currentFan.followedArtists.some(followed => String(followed.artistId) === String(quiz.artistId)))
+    .filter(quiz => {
+        const isFollowed = currentFan.followedArtists.some(
+            followed => String(followed.artistId) === String(quiz.artistId)
+        )
+
+        const today = new Date()
+        today.setHours(0, 0, 0, 0)
+
+        const quizDate = new Date(quiz.playDate)
+        const isToday = quizDate >= today && quizDate < new Date(today.getTime() + 24 * 60 * 60 * 1000)
+
+        return isFollowed && isToday
+    })
     .sort((a, b) => sortQuizzes(a,b))
 
     const [sanremo, setSanremo] = useState(false)
