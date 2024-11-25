@@ -18,6 +18,8 @@ import LiveMusicProduct from '../components/live-music-product.component'
 import SimpleSpinnerLoader from '../components/simple-spinner-loader.component'
 import MultistepExplanation from '../components/multistep-explanation.component'
 import CardConnectSpotify from '../components/card-connect-spotify.component'
+import MessageWhitePoints from '../components/message-white-points.component'
+
 
 import IconPoints from '../images/icons/icon-points.svg'
 import IconInfoLime from '../images/icons/icon-info-lime.svg'
@@ -29,7 +31,7 @@ const FlashLeaderboardRoute = () => {
 
     const { state, pathname, } = useLocation()
 
-    const { currentFan } = useContext(CurrentFanContext)
+    const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const { flashLeaderboards } = useContext(FlashLeaderboardsContext)
     const { artists } = useContext(ArtistsContext)
 
@@ -158,6 +160,55 @@ const FlashLeaderboardRoute = () => {
         }
     }
 
+    const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
+    const [whitePoints, setWhitePoints] = useState(0)
+    const [message, setMessage] = useState('')
+
+    const handleSpotifyConnect = () => {
+        if (currentFan.actions.some(action => action.type === 'SPOTIFY_ADDED')) {
+            setCurrentFan((prev) => ({
+                ...prev,
+                hasSpotify: true,
+            }))
+        } else {
+            setCurrentFan((prev) => ({
+                ...prev,
+                hasSpotify: true,
+                whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
+                actions: [...prev.actions, { type: 'SPOTIFY_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
+            }))
+            setShowMessageWhitePoints(true)
+            setWhitePoints(10)
+            setMessage('Aggiungi Spotify')
+
+        }
+    }
+
+    const handleCompete = () => {
+        if (userCompeting) {
+            const newfollowedArtists = currentFan.followedArtists.filter(leaderboard => leaderboard.artistId !== artist.id);
+            setCurrentFan(prev => ({ ...prev, followedArtists: newfollowedArtists }))
+        } else {
+            if ((currentFan.followedArtists.length === 4) && !currentFan.actions.some(action => action.type === 'FIVE_ARTISTS_FOLLOWED')) {
+                setCurrentFan(prev => ({
+                    ...prev,
+                    followedArtists: [...prev.followedArtists, { artistId: artist.id }],
+                    whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
+                    actions: [...prev.actions, { type: 'FIVE_ARTISTS_FOLLOWED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
+                }))
+                setShowMessageWhitePoints(true)
+                setWhitePoints(10)
+                setMessage('Segui almeno 5 artisti')
+            } else {
+                setCurrentFan(prev => ({
+                    ...prev,
+                    followedArtists: [...prev.followedArtists, { artistId: artist.id }],
+                }))
+            }
+            
+        }
+    }
+
     return (
         <>
             <NavbarLeaderboardFlashPage artist={artist} leaderboard={leaderboard} />
@@ -172,10 +223,12 @@ const FlashLeaderboardRoute = () => {
                         <>
                             <LiveMusicProduct artist={artist} leaderboard={leaderboard} />
                             {!currentFan?.hasSpotify && !pathname.includes('/artist-app') &&
-                                <CardConnectSpotify />
+                                <CardConnectSpotify 
+                                    onClick={handleSpotifyConnect}
+                                />
                             }
                             {currentFan?.hasSpotify && !userCompeting &&
-                                <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' />
+                                <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' onClick={handleCompete}/>
                             }
                             {currentFan?.hasSpotify && userCompeting &&
                                 <CardLeaderboardYourPosition currentFan={currentFan} artist={artist}  />
@@ -271,6 +324,14 @@ const FlashLeaderboardRoute = () => {
                 </div>
                 }
             </ContainerDefault>
+
+            {showMessageWhitePoints && 
+                <MessageWhitePoints
+                    points={whitePoints}
+                    message={message}
+                    onClick={() => setShowMessageWhitePoints(false)}
+                />
+            }
 
             {showComponent &&
                 <MultistepExplanation sliderSteps={sliderSteps} leaderboard={leaderboard} artist={artist} sliderPage={sliderPage} incrementPageSlider={incrementPageSlider} decrementPageSlider={decrementPageSlider} />
