@@ -324,6 +324,94 @@ export const ArtistsProvider = ({ children }) => {
             importance: 1,
             highlight: false,
             verified: true,
+        },{
+            id: 30,
+            slug: 'billie-eilish',
+            artistName: 'Billie Eilish',
+            image: require('../images/pictures/billie_eilish.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 31,
+            slug: '21-savage',
+            artistName: '21 Savage',
+            image: require('../images/pictures/21_savage.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 32,
+            slug: 'future',
+            artistName: 'Future',
+            image: require('../images/pictures/future.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 33,
+            slug: 'travis-scott',
+            artistName: 'Travis Scott',
+            image: require('../images/pictures/travis_scott.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 34,
+            slug: 'nirvana',
+            artistName: 'Nirvana',
+            image: require('../images/pictures/nirvana.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 35,
+            slug: 'stray-kids',
+            artistName: 'Stray Kids',
+            image: require('../images/pictures/stray_kids.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 36,
+            slug: 'eminem',
+            artistName: 'Eminem',
+            image: require('../images/pictures/eminem.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 37,
+            slug: 'laura-pausini',
+            artistName: 'Laura Pausini',
+            image: require('../images/pictures/laura_pausini.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
         }
     ])
 
