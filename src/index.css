@@ -1231,20 +1231,38 @@ animation: dot-loader-after 1s infinite linear;
 .gold {
   color: gold;
 }
-.color01 {
-  color: #B974FF;
+.color-01 {
+  color: var(--color-01);
 }
-.color02 {
-  color: #FF83BA;
+.color-02 {
+  color: var(--color-02);
 }
-.color03 {
-  color: #65FFFF;
+.color-03 {
+  color: var(--color-03);
 }
-.color04 {
-  color: #52ED8A;
+.color-04 {
+  color: var(--color-04);
 }
-.color05 {
-  color: #AAE828;
+.color-05 {
+  color: var(--color-05);
+}
+.color-fill-white {
+  fill: var(--color-white);
+}
+.color-fill-01 {
+  fill: var(--color-01);
+}
+.color-fill-02 {
+  fill: var(--color-02);
+}
+.color-fill-03 {
+  fill: var(--color-03);
+}
+.color-fill-04 {
+  fill: var(--color-04);
+}
+.color-fill-05 {
+  fill: var(--color-05);
 }
 .green-fluo {
   color: #01FF2F
@@ -2388,6 +2406,12 @@ nav .container {
   --color-dark-soft: #161616;
   --color-dark-soft-transp-0: #16161600;
   --color-accent-primary: #DAEF64;
+  --color-white: #FFFFFF;
+  --color-01: #B974FF;
+  --color-02: #FF83BA;
+  --color-03: #65FFFF;
+  --color-04: #52ED8A;
+  --color-05: #AAE828;
   --avatar-6: 6px;
   --avatar-12: 12px;
   --avatar-14: 14px;

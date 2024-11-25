@@ -120,10 +120,18 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                         <ContainerDefault containerSpecificStyle={`d-flex-column align-items-center j-c-center overflow-all-hidden z-index-6 ${lowerModalCompressed ? 'compress-down' : 'expand-down'}`}>
                             <h4 className='fsize-xs-3 f-w-500 black'>CLASSIFICA FLASH SI ATTIVA TRA:</h4>
                             <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink mt-xs-4 border-radius-04 w-100'>
-                                <span className='f-w-600 black'>{timeRemaining.days}<span className='f-w-300'>G</span></span>
-                                <span className='f-w-600 black'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
-                                <span className='f-w-600 black'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
-                                <span className='f-w-600 black'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
+                                {timeRemaining.days > 0 &&
+                                    <span className='f-w-600 black'>{timeRemaining.days}<span className='f-w-300'>G</span></span>
+                                }
+                                {timeRemaining.hours > 0 &&
+                                    <span className='f-w-600 black'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
+                                }
+                                {timeRemaining.minutes > 0 &&
+                                    <span className='f-w-600 black'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
+                                }
+                                {timeRemaining.seconds > 0 &&
+                                    <span className='f-w-600 black'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
+                                }
                             </div>
                         </ContainerDefault>
                     </div>
@@ -156,10 +164,18 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
 
                         <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink pt-xs-4 border-radius-04 w-100'>
                             <span className='f-w-600 white'>TERMINA TRA: </span>
-                            <span className='f-w-600 white'>{timeRemaining.days}<span className='f-w-300'>D</span></span>
-                            <span className='f-w-600 white'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
-                            <span className='f-w-600 white'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
-                            <span className='f-w-600 white'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
+                            {timeRemaining.days > 0 &&
+                                <span className='f-w-600 white'>{timeRemaining.days}<span className='f-w-300'>D</span></span>
+                            }
+                            {timeRemaining.hours > 0 &&
+                                <span className='f-w-600 white'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
+                            }
+                            {timeRemaining.minutes > 0 &&
+                                <span className='f-w-600 white'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
+                            }
+                            {timeRemaining.seconds > 0 &&
+                                <span className='f-w-600 white'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
+                            }
                         </div>
                     </ContainerDefault>
 

@@ -13,6 +13,16 @@ const LiveMessages = ({leaderboard}) => {
 
     const { pathname } = useLocation()
 
+    const colors = [
+        { id: 1, text: 'color-01', icon: 'color-fill-01' },
+        { id: 2, text: 'color-02', icon: 'color-fill-02' },
+        { id: 3, text: 'color-03', icon: 'color-fill-03' },
+        { id: 4, text: 'color-04', icon: 'color-fill-04' },
+        { id: 5, text: 'color-05', icon: 'color-fill-05' },
+    ]
+
+    const [color, setColor] = useState({})
+
     // let mockSongs
     // const mockSongsDefiner = () => {
     //     if ( pathname.includes('thasup') || pathname.includes('/artist-app/') ) {
@@ -157,6 +167,9 @@ const LiveMessages = ({leaderboard}) => {
 
         //this leverages the first useRef declared above and it is just to avoid this entire useEffect to run on first render of the page
         if ( !pageHasRendered.current ) {
+            let i = Math.floor(Math.random() * colors.length)
+            console.log(i, 'indice')
+            setColor(colors[i])
             pageHasRendered.current = true
         }
         
@@ -214,7 +227,7 @@ const LiveMessages = ({leaderboard}) => {
                                 <div className='d-flex-column grow-1 gap-0_5em'>
                                     {liveMessages.map((message, key) => {
                                         if ( message.user_type == 'fan' || message.user_type == null )
-                                            return <LiveMessage key={key} message={message} />
+                                            return <LiveMessage key={key} message={message} color={color} />
                                     })}
                                 </div>
                             }
