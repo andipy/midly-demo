@@ -17,7 +17,7 @@ const LiveQuizPlayRoute = () => {
 
     const { quizzes, setQuizzes } = useContext(LiveQuizContext)
 
-    const quiz = quizzes.find(quiz => quiz.quizId === id)
+    const quiz = quizzes.find(quiz => quiz.id === id)
     const songChunk = quiz.songChunks.find(chunk => chunk.chunkId === 1)
 
     const [timeLeft, setTimeLeft] = useState(60)
@@ -72,7 +72,7 @@ const LiveQuizPlayRoute = () => {
         }
 
         const updatedQuizzes = quizzes.map(q => {
-            if (q.quizId === id) {
+            if (q.id === id) {
                 return {
                     ...q,
                     responses: [...q.responses, newResponse],

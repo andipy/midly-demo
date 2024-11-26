@@ -7,7 +7,7 @@ export const LiveQuizProvider = ({ children }) => {
     const [quizzes, setQuizzes] = useState([
 
         {
-            quizId: 1,
+            id: 1,
             artistId: 1,
             artistSlug: 'lazza',
             artistName: 'Lazza',
@@ -31,7 +31,7 @@ export const LiveQuizProvider = ({ children }) => {
                 }
              ]
          },{
-            quizId: 2,
+            id: 2,
             artistId: 2,
             artistSlug: 'thasup',
             artistName: 'thasup',
@@ -48,7 +48,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 3,
+            id: 3,
             artistId: 3,
             artistSlug: 'artie-5ive',
             artistName: 'Artie 5ive',
@@ -65,7 +65,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 4,
+            id: 4,
             artistId: 4,
             artistSlug: 'suspect-cb',
             artistName: 'Suspect CB',
@@ -82,7 +82,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 5,
+            id: 5,
             artistId: 5,
             artistSlug: 'astro',
             artistName: 'Astro',
@@ -99,7 +99,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 6,
+            id: 6,
             artistId: 2,
             artistSlug: 'thasup',
             artistName: 'thasup',
@@ -116,7 +116,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 7,
+            id: 7,
             artistId: 2,
             artistSlug: 'thasup',
             artistName: 'thasup',
@@ -133,7 +133,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 8,
+            id: 8,
             artistId: 2,
             artistSlug: 'thasup',
             artistName: 'thasup',
@@ -150,7 +150,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 9,
+            id: 9,
             artistId: 5,
             artistSlug: 'astro',
             artistName: 'Astro',
@@ -167,7 +167,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 10,
+            id: 10,
             artistId: 5,
             artistSlug: 'astro',
             artistName: 'Astro',
@@ -184,7 +184,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 11,
+            id: 11,
             artistId: 3,
             artistSlug: 'artie-5ive',
             artistName: 'Artie 5ive',
@@ -201,7 +201,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 12,
+            id: 12,
             artistId: 3,
             artistSlug: 'artie-5ive',
             artistName: 'Artie 5ive',
@@ -218,7 +218,7 @@ export const LiveQuizProvider = ({ children }) => {
             ],
             responses: []
         },{
-            quizId: 13,
+            id: 13,
             artistId: 1,
             artistSlug: 'lazza',
             artistName: 'Lazza',
@@ -234,8 +234,8 @@ export const LiveQuizProvider = ({ children }) => {
                 },
              ],
              responses: []
-         },{
-            quizId: 14,
+        },{
+            id: 14,
             artistId: 1,
             artistSlug: 'lazza',
             artistName: 'Lazza',
@@ -251,7 +251,109 @@ export const LiveQuizProvider = ({ children }) => {
                 },
              ],
              responses: []
-         }
+        },{
+            id: 15,
+            artistId: 2,
+            artistSlug: 'thasup',
+            artistName: 'thasup',
+            playDate: '2024-11-27 00:00:00',
+            image: require('../images/pictures/thasup.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: "Offline (feat. bbno$)",
+                   firstLine: 'Dovrei',
+                   secondLine: 'Dimmi perché sempre te, che non sei dei miei',
+                   correctResponse: 'Con la mia mente veramente staccare e andare offline'
+               }
+            ],
+            responses: []
+        },{
+            id: 16,
+            artistId: 2,
+            artistSlug: 'thasup',
+            artistName: 'thasup',
+            playDate: '2024-11-28 00:00:00',
+            image: require('../images/pictures/thasup.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: "come fa1",
+                   firstLine: 'Eh-ehi, okay, non è okay',
+                   secondLine: 'Yeah, eh-ehi, no fake, non ho fake tra gli amici, yah',
+                   correctResponse: 'Voglio stare calmo, ma no, no, non ho spazio qua'
+               }
+            ],
+            responses: []
+        },{
+            id: 17,
+            artistId: 2,
+            artistSlug: 'thasup',
+            artistName: 'thasup',
+            playDate: '2024-11-29 00:00:00',
+            image: require('../images/pictures/thasup.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: "2ollipop",
+                   firstLine: "Lollipop, sono un po' fatto coi miei bruh",
+                   secondLine: 'Per ignorarvi faccio "Ooh, ooh"',
+                   correctResponse: 'Fate "flex", "gang", "yo", già che ci stai caccia uno "skrrt"'
+               }
+            ],
+            responses: []
+        },{
+            id: 18,
+            artistId: 2,
+            artistSlug: 'thasup',
+            artistName: 'thasup',
+            playDate: '2024-11-30 00:00:00',
+            image: require('../images/pictures/thasup.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: "fuck 3x",
+                   firstLine: 'È perché voglio il dollar, dollar, dollar',
+                   secondLine: 'Vado in France, e rubo il posto al pilota',
+                   correctResponse: "E col cash, girarci tutta l'Europa"
+               }
+            ],
+            responses: []
+        },{
+            id: 19,
+            artistId: 2,
+            artistSlug: 'thasup',
+            artistName: 'thasup',
+            playDate: '2024-12-02 00:00:00',
+            image: require('../images/pictures/thasup.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: "scuol4",
+                   firstLine: 'Bro, ma aspetta un istante',
+                   secondLine: 'Per essere tuo amico devo vestirmi così?',
+                   correctResponse: 'Ma di cosa stai parlando?'
+               }
+            ],
+            responses: []
+        },{
+            id: 20,
+            artistId: 2,
+            artistSlug: 'thasup',
+            artistName: 'thasup',
+            playDate: '2024-12-03 00:00:00',
+            image: require('../images/pictures/thasup.jpg'),
+            songChunks: [
+               {
+                   chunkId: 1,
+                   songName: "LeanTro",
+                   firstLine: 'Se sono lo stesso, non è grazie a bitch (grazie a bitch)',
+                   secondLine: "Mi parlano di sesso, ma hanno l'aspetto chic",
+                   correctResponse: 'Questa è una bro persa, valla a capì (valla a capì)'
+               }
+            ],
+            responses: []
+        }
     ])
 
     return (

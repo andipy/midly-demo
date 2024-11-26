@@ -16,7 +16,7 @@ const LiveQuizRoute = () => {
     const { quizzes } = useContext(LiveQuizContext)
     const navigate = useNavigate()
 
-    const quiz = quizzes.find(quiz => quiz.quizId === id)
+    const quiz = quizzes.find(quiz => quiz.id === id)
 
     const playClick = () => {
         navigate('/quiz-play', { state: { id } })

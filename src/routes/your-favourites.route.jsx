@@ -184,8 +184,8 @@ const YourFavouritesRoute = () => {
                                         artName={quiz.artistName}
                                         image={quiz.image}
                                         quizAlreadyPlayed={hasPlayed}
-                                        key={quiz.quizId} 
-                                        id={quiz.quizId}
+                                        key={quiz.id} 
+                                        id={quiz.id}
                                     />
                                 )
                             })}

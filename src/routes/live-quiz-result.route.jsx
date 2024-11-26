@@ -14,7 +14,7 @@ const LiveQuizResultRoute = () => {
     const { quizzes } = useContext(LiveQuizContext)
     const { currentFan } = useContext(CurrentFanContext)
 
-    const quiz = quizzes.find(quiz => quiz.quizId === id)
+    const quiz = quizzes.find(quiz => quiz.id === id)
 
     const userResponse = quiz.responses.find(response => response.userId === currentFan.id)
 
@@ -148,8 +148,8 @@ const LiveQuizResultRoute = () => {
                               date={item.playDate}
                               image={item.image}
                               quizAlreadyPlayed={hasPlayed}
-                              key={item.quizId} 
-                              id={item.quizId}
+                              key={item.id} 
+                              id={item.id}
                             />  
                           )
                         })}
