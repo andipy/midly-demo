@@ -5,6 +5,7 @@ import { CurrentFanContext } from '../contexts/currentFan.context'
 import ContainerDefault from '../layout/container-default.layout'
 import Carousel from '../layout/carousel.layout'
 import CardPassedQuiz from '../components/card-passed-quiz.component'
+import ProgressBar from '../components/progress-bar-points.component'
 const LiveQuizResultRoute = () => {
 
     const navigate = useNavigate()
@@ -20,6 +21,12 @@ const LiveQuizResultRoute = () => {
 
     const result = userResponse ? userResponse.score : 0
 
+    const date = new Date(quiz.playDate)
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    console.log(date)
+    console.log(today)
+
     const sortQuizzes = (a,b) => {
       return (new Date(b.playDate) - new Date(a.playDate))
     }
@@ -27,10 +34,6 @@ const LiveQuizResultRoute = () => {
     const orderedQuizzes = quizzes
     .filter(quiz2 => {
         const isArtistQuiz = quiz2.artistId === quiz.artistId
-
-        const today = new Date()
-        today.setHours(0, 0, 0, 0)
-
         const quizDate = new Date(quiz2.playDate)
         const isToday = quizDate < today 
 
@@ -97,33 +100,48 @@ const LiveQuizResultRoute = () => {
 
     /* button funct */
     const closeClick = () => {
-      navigate(-3)
+      navigate('/your-favourites')
   }
 
 
   return (
     <>
       <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+        
         <div className="d-flex-column align-items-center j-c-center mt-xs-50">
-          <h3 className="t-align-center mb-xs-4 f-w-800 fsize-xs-6">
-            {resultTitle}
-          </h3>
-          <div className="point-indicator">
-            <p className="gold point-plus fsize-xs-5">
-              +
-            </p>
-            <div className="point-column" style={{transform: `translateY(-${translation}px)`, transition: 'all 400ms cubic-bezier(.75,-0.01,.01,1) 40ms'}} >
-            {points.map((point, index) => {
-              return (
-                <h4 key={index} className='point-dot gold'>{point}</h4>
-              )
-            })}
+        {date >= today ? (
+          <>
+            <h3 className="t-align-center mb-xs-4 f-w-800 fsize-xs-6">
+              {resultTitle}
+            </h3>
+            <div className="point-indicator">
+              <p className="gold point-plus fsize-xs-5">
+                +
+              </p>
+              <div className="point-column" style={{transform: `translateY(-${translation}px)`, transition: 'all 400ms cubic-bezier(.75,-0.01,.01,1) 40ms'}} >
+              {points.map((point, index) => {
+                return (
+                  <h4 key={index} className='point-dot gold'>{point}</h4>
+                )
+              })}
+              </div>
+              <p className="gold point-plus f-size-xs-5">punti</p>
             </div>
-            <p className="gold point-plus f-size-xs-5">punti</p>
+            <p className="t-align-center w-80 mt-xs-4">
+              {resultMessage}
+            </p>
+          </>
+        ): (
+          <div className='w-80 d-flex-column align-items-center j-c-center'>
+            <h3 className="t-align-center mb-xs-4 f-w-800 fsize-xs-6">
+              {resultTitle}
+            </h3>
+            <ProgressBar points={result} max={5}/>
+            <p className="t-align-center w-80 mt-xs-4">
+              Avresti totalizzato {result} punti. Partecipa ai quiz giornalieri per scalare la classifica dei tuoi artisti preferiti!
+            </p>
           </div>
-          <p className="t-align-center w-80 mt-xs-4">
-            {resultMessage}
-          </p>
+        )}
 
           
           {!(orderedQuizzes?.length === 0) ? ( 
