@@ -1761,6 +1761,22 @@ animation: dot-loader-after 1s infinite linear;
   height: 100%;
 }
 
+@keyframes floating-shadow {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.3), 0 0 25px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.3), 0 0 25px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.floating-shadow {
+  animation: floating-shadow 1.5s ease-in-out infinite;
+}
+
 @keyframes compressUp {
   from {
     max-height: 100vh;

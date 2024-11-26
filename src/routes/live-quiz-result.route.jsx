@@ -6,6 +6,7 @@ import ContainerDefault from '../layout/container-default.layout'
 import Carousel from '../layout/carousel.layout'
 import CardPassedQuiz from '../components/card-passed-quiz.component'
 import ProgressBar from '../components/progress-bar-points.component'
+import AudioPlayer from '../components/audio-player.component'
 const LiveQuizResultRoute = () => {
 
     const navigate = useNavigate()
@@ -138,15 +139,20 @@ const LiveQuizResultRoute = () => {
             <p className="t-align-center w-80 mt-xs-4">
               {resultMessage}
             </p>
+            {quiz.originalAudio &&
+            <section id='original-audio' className='mt-xs-8 w-100'>
+              <AudioPlayer src={quiz.originalAudio} startTime={quiz.startTime}/>
+            </section>
+            }
           </>
         ): (
           <div className='w-80 d-flex-column align-items-center j-c-center'>
             <h3 className="t-align-center mb-xs-4 f-w-800 fsize-xs-6">
-              {resultTitle}
+              {(result / 5) * 100}%
             </h3>
             <ProgressBar points={result} max={5}/>
             <p className="t-align-center w-80 mt-xs-4">
-              Avresti totalizzato {result} punti. Partecipa ai quiz giornalieri per scalare la classifica dei tuoi artisti preferiti!
+              Ci hai preso al {(result / 5) * 100}%!
             </p>
           </div>
         )}
@@ -154,16 +160,19 @@ const LiveQuizResultRoute = () => {
           
           {!(orderedQuizzes?.length === 0) ? ( 
           <div className='d-flex-column align-items-center mt-xs-12 '>
-            <h3 className="t-align-center f-w-800 fsize-xs-4">
-              Gioca ai quiz che ti sei perso 
-            </h3>
-            <p className="t-align-center mb-xs-4 f-w-300 fsize-xs-2">
-              (Non valgono punti in classifica)
-            </p>
-            <section id='quiz' className='j-c-center align-items-center'>
+            <div className='d-flex-column align-items-start w-100'>
+              <h2 className="fsize-xs-5 f-w-600 t-align-start">
+                Continua a giocare 
+              </h2>
+              <p className="t-align-start mb-xs-4 fsize-xs-2 f-w-200 grey-300">
+                Puoi fare i quiz vecchi a cui non hai ancora giocato, anche se non danno punti in classifica.
+              </p>
+            </div>
+            
+            <section id='quiz' className='j-c-center align-items-center w-100'>
               {chunkedQuizzes.map((chunk, index) => (
                 <div className='mb-xs-8 j-c-center align-items-center' key={index}>
-                  <Carousel>
+                  <div className='d-flex-row j-c-space-between mt-xs-2 mt-lg-2'>
                       {chunk.map(item => {
                         const hasPlayed = item.responses.some(play => play.userId === currentFan.id)
                           return (
@@ -179,7 +188,7 @@ const LiveQuizResultRoute = () => {
                             />  
                           )
                         })}
-                  </Carousel>
+                  </div>
                 </div>
               ))}
             </section>

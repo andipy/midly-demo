@@ -6,6 +6,7 @@ import { CurrentFanContext } from '../contexts/currentFan.context'
 import { LeaderboardsContext } from '../contexts/leaderboards.context'
 
 import ContainerDefault from '../layout/container-default.layout'
+import AudioPlayer from '../components/audio-player.component'
 
 const LiveQuizPlayRoute = () => {
     const navigate = useNavigate()
@@ -180,7 +181,13 @@ const LiveQuizPlayRoute = () => {
                         {songChunk.songName}
                     </span>
                 </div>
-                <p className='t-align-center lime-400 mt-xs-10 mb-xs-10'>{timeLeft} secondi rimanenti</p>
+                <p className='t-align-center lime-400 mt-xs-10 mb-xs-4'>{timeLeft} secondi rimanenti</p>
+                {quiz.instrumental &&
+                    <section id='song-listen' className='w-100 mb-xs-4'>
+                        <AudioPlayer src={quiz.instrumental} startTime={quiz.startTime} />
+                    </section>
+                }
+                
                 <form onSubmit={handleSubmit}>
                     <div>
                         <p className='fsize-xs-6'>{songChunk.firstLine}</p>

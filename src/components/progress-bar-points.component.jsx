@@ -8,7 +8,7 @@ const ProgressBar = ({ points, max }) => {
     if (currentPercent < targetPercent) {
       const timer = setInterval(() => {
         setCurrentPercent((prev) => Math.min(prev + 1, targetPercent))
-      }, 20)
+      }, 5)
       return () => clearInterval(timer)
     }
   }, [currentPercent, targetPercent])

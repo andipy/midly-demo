@@ -11,8 +11,11 @@ export const LiveQuizProvider = ({ children }) => {
             artistId: 1,
             artistSlug: 'lazza',
             artistName: 'Lazza',
-            playDate: '2024-11-25 00:00:00',
-             image: require('../images/pictures/lazza.jpeg'),
+            playDate: '2024-11-26 00:00:00',
+            nstrumental: require('../assets/audio/live-quiz/buio-davanti-lazza-instrum.mp3'),
+            originalAudio: require('../assets/audio/live-quiz/buio-davanti-lazza-vox.mp3'),
+            startTime: 45,
+            image: require('../images/pictures/lazza.jpeg'),
              songChunks: [
                 {
                    chunkId: 1,
@@ -37,6 +40,9 @@ export const LiveQuizProvider = ({ children }) => {
             artistName: 'thasup',
             playDate: '2024-11-26 00:00:00',
             image: require('../images/pictures/thasup.jpg'),
+            instrumental: require('../assets/audio/live-quiz/dimmi-che-ce-thasup-instrum.mp3'),
+            originalAudio: require('../assets/audio/live-quiz/dimmi-che-ce-thasup-vox.mp3'),
+            startTime: 48,
             songChunks: [
                {
                    chunkId: 1,
@@ -52,7 +58,10 @@ export const LiveQuizProvider = ({ children }) => {
             artistId: 3,
             artistSlug: 'artie-5ive',
             artistName: 'Artie 5ive',
-            playDate: '2024-11-25 00:00:00',
+            playDate: '2024-11-26 00:00:00',
+            instrumental: require('../assets/audio/live-quiz/milano-testarossa-artie-5ive-instrum.mp3'),
+            originalAudio: require('../assets/audio/live-quiz/milano-testarossa-artie-5ive-vox.mp3'),
+            startTime: 42,
             image: require('../images/pictures/artie-5ive.jpeg'),
             songChunks: [
                {
@@ -69,7 +78,7 @@ export const LiveQuizProvider = ({ children }) => {
             artistId: 4,
             artistSlug: 'suspect-cb',
             artistName: 'Suspect CB',
-            playDate: '2024-11-25 00:00:00',
+            playDate: '2024-11-26 00:00:00',
             image: require('../images/pictures/suspect-cb.jpg'),
             songChunks: [
                {
@@ -86,7 +95,7 @@ export const LiveQuizProvider = ({ children }) => {
             artistId: 5,
             artistSlug: 'astro',
             artistName: 'Astro',
-            playDate: '2024-11-25 00:00:00',
+            playDate: '2024-11-26 00:00:00',
             image: require('../images/pictures/astro.jpg'),
             songChunks: [
                {

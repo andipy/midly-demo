@@ -24,7 +24,7 @@ const CardPassedQuiz = ({ date, artistName, songName, image, quizAlreadyPlayed, 
     return (
         <>
         {quizAlreadyPlayed ? (
-            <a className='d-flex-column border-radius-08 j-c-space-between w-50'  href={``} onClick={handleNavigation}>
+            <a className='d-flex-column border-radius-08 '  href={``} onClick={handleNavigation}>
                 {quizAlreadyPlayed && (
                             <div className='artist-card-multiple-row-challenge d-flex-row align-items-center j-c-center position-absolute z-index-3 border-radius-08'>
                                 <div className='d-flex-row align-items-center j-c-center z-index-4 gap-0_25em'>
@@ -44,7 +44,7 @@ const CardPassedQuiz = ({ date, artistName, songName, image, quizAlreadyPlayed, 
                 </div>
             </a>
             ) : (
-            <a className='d-flex-column border-radius-08 j-c-space-between w-50'  href={``} onClick={handleNavigation}>
+            <a className='d-flex-column border-radius-08 '  href={``} onClick={handleNavigation}>
                 <div className='artist-card-multiple-row-challenge bg-dark-gradient border-radius-1 position-relative'>
                     <div className='overlay-card bg-dark-overlay-card border-radius-1 z-index-1'></div>
                     <img className='artist-card-multiple-row-challenge object-fit-cover border-radius-1' src={image} />
