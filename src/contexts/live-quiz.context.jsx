@@ -35,7 +35,7 @@ export const LiveQuizProvider = ({ children }) => {
             artistId: 2,
             artistSlug: 'thasup',
             artistName: 'thasup',
-            playDate: '2024-11-25 00:00:00',
+            playDate: '2024-11-26 00:00:00',
             image: require('../images/pictures/thasup.jpg'),
             songChunks: [
                {
