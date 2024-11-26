@@ -28,7 +28,15 @@ const LiveQuizResultRoute = () => {
     console.log(today)
 
     const sortQuizzes = (a,b) => {
-      return (new Date(b.playDate) - new Date(a.playDate))
+      const hasResponsesA = a.responses.some(response => response.userId === currentFan.id)
+      const hasResponsesB = b.responses.some(response => response.userId === currentFan.id)
+
+      if (hasResponsesA !== hasResponsesB) {
+          return hasResponsesA - hasResponsesB
+      }
+      const dateA = new Date(a.playDate)
+      const dateB = new Date(b.playDate)
+      return dateB - dateA
     }
 
     const orderedQuizzes = quizzes
