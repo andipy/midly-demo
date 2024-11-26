@@ -19,6 +19,7 @@ import SimpleSpinnerLoader from '../components/simple-spinner-loader.component'
 import MultistepExplanation from '../components/multistep-explanation.component'
 import CardConnectSpotify from '../components/card-connect-spotify.component'
 import MessageWhitePoints from '../components/message-white-points.component'
+import CardFlashLeaderboardYourPosition from '../components/card-flash-leaderboard-your-position.context'
 
 
 import IconPoints from '../images/icons/icon-points.svg'
@@ -26,6 +27,7 @@ import IconInfoLime from '../images/icons/icon-info-lime.svg'
 import SpecialBadge1P from '../images/illustrations/flash-podium-1.png'
 import SpecialBadge2P from '../images/illustrations/flash-podium-2.png'
 import SpecialBadge3P from '../images/illustrations/flash-podium-3.png'
+import CardFlashLeaderboard from '../components/card-flash-leaderboard.component.admin'
 
 const FlashLeaderboardRoute = () => {
 
@@ -217,7 +219,7 @@ const FlashLeaderboardRoute = () => {
             <ContainerDefault containerSpecificStyle={`mt-avatar-header-2 pb-xs-24 pb-md-8 ${artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && 'pt-xs-8'}`}>
                 <div className='d-flex-column position-sticky top-navbar z-index-999 mb-xs-4'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
-                        <CardLeaderboardYourPosition currentFan={currentFan} artist={artist}  />  
+                        <CardFlashLeaderboardYourPosition currentFan={currentFan} artist={artist}  />  
                     }
                     {artist?.flashLeaderboard.status !== 'CLOSED_VISIBLE' &&
                         <>
@@ -231,7 +233,7 @@ const FlashLeaderboardRoute = () => {
                                 <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' onClick={handleCompete}/>
                             }
                             {currentFan?.hasSpotify && userCompeting &&
-                                <CardLeaderboardYourPosition currentFan={currentFan} artist={artist}  />
+                                <CardFlashLeaderboardYourPosition currentFan={currentFan} artist={artist}  />  
                             }
                         </>
                     }
