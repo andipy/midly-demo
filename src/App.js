@@ -64,6 +64,7 @@ import FanclubTermsRoute from './routes/fanclub-terms.route.artist'
 import FanclubInfoRoute from './routes/fanclub-info.route.artist'
 import FanclubBillingInfoRoute from './routes/fanclub-billing-info.route.artist'
 import FanclubPaymentInfoRoute from './routes/fanclub-payment-info.route.artist'
+import EarningsDashboardRoute from './routes/earnings-dashboard.route.artist'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -175,6 +176,10 @@ const router = createBrowserRouter([
   },{
     path: '/artist-app/metrics',
     element: <MetricsRoute />
+  },{
+    path:'/artist-app/earnings-dashboard',
+    element: <EarningsDashboardRoute />
+
   },{
     path: '/cool/1',
     element: <Cool1Route />
