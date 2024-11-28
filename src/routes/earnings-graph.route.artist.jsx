@@ -35,58 +35,71 @@ const EarningsGraph = () => {
         const revenueDataset = currentArtist.revenueOverTime[0].dataSet.map(data => ({
             date: new Date(data.date),
             value: data.value,
-        }));
-        const margin = { top: 10, bottom: 30, right: 20, left: 40 };
-        const width = parseInt(d3.select('.container').style('width')) * 0.9 - margin.left - margin.right;
-        const height = 200 - margin.top - margin.bottom;
+        }))
+        const revenueDatasetWithFirstDay = revenueDataset.map(d => {
+            const date = new Date(d.date)
+            date.setDate(1)
+            return { date, value: d.value }
+        })
     
-        const svgContainer = d3.select(`#graph-1`);
-        svgContainer.selectAll('*').remove();
+        const allMonths = Array.from({ length: 12 }, (_, i) => new Date(2024, i, 1))
+        const completeRevenueDataset = allMonths.map(month => {
+            const existingData = revenueDatasetWithFirstDay.find(d => d.date.getMonth() === month.getMonth())
+            
+            return existingData ? existingData : { date: month, value: 0 }
+        })
+        const margin = { top: 10, bottom: 30, right: 20, left: 40 }
+        const width = parseInt(d3.select('.container').style('width')) * 0.9 - margin.left - margin.right
+        const height = 200 - margin.top - margin.bottom
+    
+        const svgContainer = d3.select(`#graph-1`)
+        svgContainer.selectAll('*').remove()
     
         const svg = svgContainer
             .append('svg')
             .attr('width', width + margin.left + margin.right)
             .attr('height', height + margin.top + margin.bottom)
             .append('g')
-            .attr('transform', `translate(${margin.left},${margin.top})`);
+            .attr('transform', `translate(${margin.left},${margin.top})`)
     
             
         // Impostazione delle scale x e y
         const x = d3.scaleBand()
             .range([0, width])
-            .domain(revenueDataset.map(d => d.date)) // Domini basati sulle date
-            .padding(0.2); // Spaziatura tra le barre
+            .domain(completeRevenueDataset.map(d => d.date)) 
+            .padding(0.2) 
     
         const y = d3.scaleLinear()
             .range([height, 0])
-            .domain([0, d3.max(revenueDataset, d => d.value)]);
+            .domain([0, d3.max(completeRevenueDataset, d => d.value)])
     
         // Aggiungi l'asse x con i ticks per ogni mese
         svg.append('g')
             .attr('transform', `translate(0,${height})`)
             .call(
                 d3.axisBottom(x)
-                    .tickFormat(d3.timeFormat('%b')) // Mostra solo il mese
+                    .tickFormat(d3.timeFormat('%b')) 
             )
             .selectAll('text')
             .attr('transform', 'rotate(-45)')
-            .style('text-anchor', 'end');
+            .style('text-anchor', 'end')
     
         // Aggiungi l'asse y
         svg.append('g')
-            .call(d3.axisLeft(y).ticks(5)); // Mostra fino a 5 tick sull'asse Y
+            .call(d3.axisLeft(y).ticks(5))
     
         // Aggiungi le barre
         svg.selectAll('.bar')
-            .data(revenueDataset)
+            .data(completeRevenueDataset)
             .enter()
             .append('rect')
             .attr('class', 'bar')
-            .attr('x', d => x(d.date)) // Posizione X della barra
-            .attr('y', d => y(d.value)) // Posizione Y della barra (in base al valore)
-            .attr('width', x.bandwidth()) // Larghezza della barra
-            .attr('height', d => height - y(d.value)) // Altezza della barra
-            .attr('fill', '#5CBBFF'); // Colore delle barre
+            .attr('x', d => x(d.date)) 
+            .attr('y', d => y(d.value)) 
+            .attr('width', x.bandwidth()) 
+            .attr('height', d => height - y(d.value))
+            .attr('fill', '#5CBBFF') 
+
     }, [])
 
 
@@ -98,6 +111,11 @@ const EarningsGraph = () => {
             date: new Date(data.date),
             value: data.value,
         }))
+        const completeSubsDataset = subsDataset.map(d => {
+            const date = new Date(d.date)
+            date.setDate(1)
+            return { date, value: d.value }
+        })
         const margin = { top: 10, bottom: 30, right: 20, left: 40 }
         const width = parseInt(d3.select('.container').style('width')) * 0.9 - margin.left - margin.right
         const height = 200 - margin.top - margin.bottom
@@ -123,7 +141,7 @@ const EarningsGraph = () => {
         x.domain([startDate, endDate])
 
         // Impostazione del dominio dell'asse y
-        y.domain([0, d3.max(subsDataset, d => d.value)])
+        y.domain([0, d3.max(completeSubsDataset, d => d.value)])
 
         // Aggiungi l'asse x con i ticks per ogni mese
         svg.append('g')
@@ -145,14 +163,14 @@ const EarningsGraph = () => {
 
         // Aggiungi il percorso della linea all'elemento SVG
         svg.append('path')
-            .datum(subsDataset)
+            .datum(completeSubsDataset)
             .attr('fill', 'none')
             .attr('stroke', '#5CBBFF')
             .attr('stroke-width', 2)
             .attr('d', line)
 
         svg.selectAll('.horizontal-line')
-            .data(subsDataset)
+            .data(completeSubsDataset)
             .enter()
             .append('line')
             .attr('class', 'horizontal-line')
