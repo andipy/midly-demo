@@ -175,8 +175,37 @@ const ArtistRoute = () => {
 
     return (
         <>
+            {showQuiz &&
+            <div className='position-absolute top-0 z-index-999 w-100 j-c-center align-items-center bg-dark-gradient border-radius-bottom-08 expand-down slide-down'>
+                <ContainerDefault containerSpecificStyle={`d-flex-column align-items-center j-c-center `}>
+                    <div className=' w-100 overflow-x mt-xs-8'>
+                    <section id='quiz' className='mt-xs-2 mb-xs-2'>
+                        <h2 className='fsize-xs-5 f-w-600'>Gioca ai quiz</h2>
+                        <Carousel>
+                            {artistLiveQuizzes.map(quiz => {
+                                const hasPlayed = quiz.responses.some(play => play.userId === currentFan.id)
+                                return (
+                                    <CardQuiz
+                                        slug={quiz.artistSlug}
+                                        artName={quiz.artistName}
+                                        image={quiz.image}
+                                        quizAlreadyPlayed={hasPlayed}
+                                        isToday={false} //da modificare
+                                        key={quiz.id} 
+                                        id={quiz.id}
+                                    />
+                                )
+                            })}
+                        </Carousel>
+                    </section>
+                    </div>
+                </ContainerDefault>
+            </div>
+
+            } 
             <NavbarArtistPage artist={artist} onClick={() => handleQuizShow()} quiz={showQuiz} />
-            <CoverArtistPage artist={artist} userCompeting={userCompeting} handleCompete={handleCompete} currentFan={currentFan} showQuiz={showQuiz} artistLiveQuizzes={artistLiveQuizzes} />
+            <CoverArtistPage artist={artist} userCompeting={userCompeting} handleCompete={handleCompete} currentFan={currentFan}  />
+            
 
             <ContainerDefault containerSpecificStyle={''}>
                 
@@ -189,6 +218,7 @@ const ArtistRoute = () => {
                     : 
                         null
                     }
+                    
                     {fanclub?.isActive &&
                         <Tab
                             artist={artist}

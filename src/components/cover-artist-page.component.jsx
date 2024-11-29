@@ -6,33 +6,13 @@ import CardQuiz from './card-quiz.component'
 
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 
-const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, currentFan, showQuiz, artistLiveQuizzes }) => {
+const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, currentFan }) => {
 
     const location = useLocation()
     
     return (
         <header className={`position-relative h-xs-20 ${location.pathname.includes('flash-leaderboard') ? 'position-fixed w-100 z-index-5 top-0' : ''}`}>
-            {/* {showQuiz &&
-                    <section id='quiz' className='mt-xs-2 mb-xs-2'>
-                        <h2 className='fsize-xs-5 f-w-600'>Gioca ai quiz</h2>
-                        <Carousel>
-                            {artistLiveQuizzes.map(quiz => {
-                                const hasPlayed = quiz.responses.some(play => play.userId === currentFan.id)
-                                return (
-                                    <CardQuiz
-                                        slug={quiz.artistSlug}
-                                        artName={quiz.artistName}
-                                        image={quiz.image}
-                                        quizAlreadyPlayed={hasPlayed}
-                                        isToday={false} //da modificare
-                                        key={quiz.id} 
-                                        id={quiz.id}
-                                    />
-                                )
-                            })}
-                        </Carousel>
-                    </section>
-            } */}
+            
             <img
                 className='w-100 h-inherit object-fit-cover'
                 src={location.pathname.includes('flash-leaderboard') ?

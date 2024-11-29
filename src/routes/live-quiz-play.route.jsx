@@ -7,6 +7,9 @@ import { LeaderboardsContext } from '../contexts/leaderboards.context'
 
 import ContainerDefault from '../layout/container-default.layout'
 import AudioPlayer from '../components/audio-player.component'
+import NavbarMultistep from '../components/navbar-multistep.component'
+import FullPageCenter from '../layout/full-page-center.layout'
+import ProgressCountdown from '../components/progress-countdown.component'
 
 const LiveQuizPlayRoute = () => {
     const navigate = useNavigate()
@@ -168,40 +171,51 @@ const LiveQuizPlayRoute = () => {
     }
     
     return (
+        
         <>
-            <header className='position-relative h-xs-10'>
-                <img className='w-100 h-inherit object-fit-cover' src={quiz.image} alt='image'></img>
-            </header>
-            <ContainerDefault containerSpecificStyle={'pb-xs-appbar mt-xs-4'}>
-                <div className='d-flex-row align-items-center mt-xs-4 gap-0_5em '>
-                    <span className='fsize-xs-3 pt-xs-2 pb-xs-2 align-self-start grey-300'>
-                        {quiz.artistName}
-                    </span>
-                    <span className='fsize-xs-3 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2 border-radius-100 bg-dark-gradient gold align-self-start'>
-                        {songChunk.songName}
-                    </span>
+        <>
+            <ContainerDefault containerSpecificStyle='pt-xs-topbar position-relative z-index-4'>
+                <div className='d-flex-row align-items-center'>
+                    <img src={quiz.image} className='avatar-36 border-radius-100' />
+                    <span className='fsize-xs-3  ml-xs-2 white'>thasup</span>
                 </div>
-                <p className='t-align-center lime-400 mt-xs-10 mb-xs-4'>{timeLeft} secondi rimanenti</p>
-                {quiz.instrumental &&
-                    <section id='song-listen' className='w-100 mb-xs-4'>
-                        <AudioPlayer src={quiz.instrumental} startTime={quiz.startTime} />
-                    </section>
-                }
-                
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <p className='fsize-xs-6'>{songChunk.firstLine}</p>
-                        <hr className=' bg-white white mt-xs-4 mb-xs-4'>
-
-                        </hr>
-                        <p className='fsize-xs-6'>{songChunk.secondLine}</p>
-                        <textarea className='bg-dark-soft white letter-spacing-1 border-radius-04 mt-xs-4 fsize-xs-3' rows='4' placeholder='Scrivi il verso mancante' value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)}></textarea>
-                    </div>
-                    <button className='bg-acid-lime black font-body mt-xs-6' type='submit'>
-                        <span className='fsize-xs-2 f-w-500'>Invia la risposta</span>
-                    </button>
-                </form>
             </ContainerDefault>
+
+            <FullPageCenter className='z-index-4 d-flex-column j-center align-items-center'>
+                <ContainerDefault containerSpecificStyle={'z-index-999'}>      
+                    <div className='d-flex-row align-items-center mt-xs-4 gap-0_5em'>
+                        <span className='fsize-xs-5 mb-xs-4 f-w-600 '>{songChunk.songName}</span>
+                    </div>
+
+                    <div className='d-flex-column align-items-center'>
+                        <p className='fsize-xs-6 f-w-600 '>{songChunk.firstLine}</p>
+
+                        <div className='w-100'>
+                            <textarea className='bg-dark-gradient border-radius-08 d-flex-column justify-content-center align-items-center w-100' rows='3' placeholder='Scrivi il verso mancante' value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)}></textarea>
+                        </div>
+                        <p className='fsize-xs-6 f-w-600 '>{songChunk.secondLine}</p>
+                    </div>
+                        
+                </ContainerDefault>
+            </FullPageCenter>
+
+            <ContainerDefault containerSpecificStyle='position-absolute-x bottom-5 z-index-4'>
+                {/* <p className='t-align-center lime-400 mb-xs-4'>{timer > 0 ? `${timer} secondi rimanenti` : 'Tempo scaduto'}</p> */}
+                <p className='fsize-xs-5 f-w-500 t-align-center white mb-xs-0'>{timeLeft} secondi rimanenti</p>
+                <ProgressCountdown points={timeLeft} max={60} />
+                <button id='start-button' className='fsize-xs-2 mt-xs-4 mb-xs-4 bg-acid-lime dark-900 f-w-600' onClick={handleSubmit}>
+                    Invia la risposta
+                </button>
+            </ContainerDefault>
+            <FullPageCenter className='z-index-3 bg-black-transp50 bg-blur' />
+            
+
+            <FullPageCenter className='z-index-1 '>
+                 <img className='w-inherit h-inherit object-fit-cover' src={quiz.image} alt='' />
+            </FullPageCenter>
+        </>  
+            
+            
         </>
     )
 }
