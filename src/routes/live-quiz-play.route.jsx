@@ -183,8 +183,9 @@ const LiveQuizPlayRoute = () => {
 
             <FullPageCenter className='z-index-4 d-flex-column j-center align-items-center'>
                 <ContainerDefault containerSpecificStyle={'z-index-999'}>      
-                    <div className='d-flex-row align-items-center mt-xs-4 gap-0_5em'>
+                    <div className='d-flex-row align-items-center mt-xs-4 gap-0_5em j-c-space-between'>
                         <span className='fsize-xs-5 mb-xs-4 f-w-600 '>{songChunk.songName}</span>
+                        <AudioPlayer src={quiz?.instrumental} startTime={quiz?.startTime} />
                     </div>
 
                     <div className='d-flex-column align-items-center'>

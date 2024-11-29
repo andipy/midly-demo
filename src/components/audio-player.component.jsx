@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import IconSpeaker from '../images/icons/icon-speaker.png'
 
 const AudioPlayer = ({ src, startTime }) => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -59,10 +60,8 @@ const AudioPlayer = ({ src, startTime }) => {
         onEnded={() => setIsPlaying(false)}
       />
       <div className="">
-        <button className={`bg-acid-lime black font-body avatar-60  border-radius-100 ${isPlaying ? 'floating-shadow' : ''}`} onClick={togglePlayPause}>
-            <span className="fsize-xs-3 f-w-500">
-                {isPlaying ? 'Pause' : 'Play'}
-            </span>
+        <button className={`bg-acid-lime black font-body avatar-32  border-radius-100 ${isPlaying ? 'floating-shadow' : ''}`} onClick={togglePlayPause}>
+            <img src={IconSpeaker}></img>
         </button>
         {/* <input
           type="range"
