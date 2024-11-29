@@ -23,11 +23,16 @@ export const CurrentFanProvider = ({ children }) => {
             province: '',
             state: ''
         },
-        hasSpotify: false,
+        hasSpotify: true,
         hasAppleMusic: false,
         hasInstagram: false,
         hasTikTok: false,
-        followedArtists: [],
+        followedArtists: [
+            {artistId: 1},
+            {artistId: 2},
+            {artistId: 3},
+            {artistId: 6},
+        ],
         fanclubsSubscribed: [],
         mostListenedArtistsOnSpotify : [
             {artistId: 1},

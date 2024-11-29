@@ -1,7 +1,7 @@
 import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate
+createBrowserRouter,
+RouterProvider,
+Navigate
 } from 'react-router-dom'
 
 import './index.css'
@@ -36,7 +36,6 @@ import CookiePolicyRoute from './routes/cookie-policy-fans.route'
 import UserInfoFieldRoute from './routes/user-info-field.route'
 import UserInfoFieldModifyRoute from './routes/user-info-field-modify.route'
 import LiveQuizRoute from './routes/live-quiz.route'
-import LiveQuizPlayRoute from './routes/live-quiz-play.route'
 import LiveQuizResultRoute from './routes/live-quiz-result.route'
 import RegistrationRoute from './routes/registration.route'
 import RecoverPasswordRoute from './routes/recover-password.route'
@@ -74,214 +73,211 @@ import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.a
 import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics-detail.route.admin'
 
 const router = createBrowserRouter([
-  {
-    path: '/loaders',
-    element: <LoadersRoute />
-  },{
-    path: '/loading',
-    element: <LoadingRoute />
-  },{
-    path: '/login',
-    element: <LoginRoute />
-  },{
-    path: '/',
-    element:<Navigate to='/your-favourites' />
-  },{
-    path: '/your-favourites',
-    element: <YourFavouritesRoute />
-  },{
-    path: '/artist/:artistSlug',
-    element: <ArtistRoute />,
-    children: [
-      {
-        path: '/artist/:artistSlug/leaderboard',
-        element: <LeaderboardRoute />
-      },{
-        path: '/artist/:artistSlug/fanclub',
-        element: <Fanclub />
-      }
-    ]
-  },{
-    path: '/artist/:artistSlug/invite-friend',
-    element: <InviteFriendRoute />
-  },{
-    path: '/artist/:artistSlug/flash-leaderboard',
-    element: <FlashLeaderboardRoute />,
-    children: [
-      {
-        path: '/artist/:artistSlug/flash-leaderboard/rules',
-        element: <FlashLeaderboardRulesRoute />
-      }
-    ]
-  },{
-    path: '/flash-leaderboard-explanation',
-    element: <FlashLeaderboardExplanationRoute />,
-  },{
-    path: '/sanremo-2024',
-    element: <Sanremo2024Route />
-  },{
-    path: '/quiz-result-unactive',
-    element: <QuizResultRoute />
-  },{
-    path: '/quiz-gameplay',
-    element: <QuizGameplayRoute />
-  },{
-    path: '/artist-app/fanclub',
-    element: <FanclubRoute />
-  },{
-    path: '/artist-app/flash-leaderboards',
-    element: <FlashLeaderboardsRoute />
-  },{
-    path: '/artist-app/flash-leaderboard',
-    element: <FlashLeaderboardRoute />,
-    children: [
-      {
-        path: '/artist-app/flash-leaderboard/rules',
-        element: <FlashLeaderboardRulesRoute />
-      }
-    ]
-  },{
-    path: '/artist-app/fanclub/terms-and-conditions',
-    element: <FanclubTermsRoute />
-  },{
-    path: '/artist-app/fanclub/info',
-    element: <FanclubInfoRoute />
-  },{
-    path: '/artist-app/fanclub/billing-info',
-    element: <FanclubBillingInfoRoute />
-  },{
-    path: '/artist-app/fanclub/payment-info',
-    element: <FanclubPaymentInfoRoute />
-  },{
-    path: '/artist-app/fanclub/name',
-    element: <FanclubNameRoute />
-  },{
-    path: '/artist-app/fanclub/cover',
-    element: <FanclubCoverRoute />
-  },{
-    path: '/artist-app/fanclub/pricing',
-    element: <FanclubPricingRoute />
-  },{
-    path: '/artist-app/fanclub/activated',
-    element: <FanclubActivatedRoute />
-  },{
-    path: '/artist-app/fanclub/settings',
-    element: <FanclubSettingsRoute />
-  },{
-    path: '/artist-app/fanclub/settings/edit',
-    element: <FanclubSettingsEditRoute />
-  },{
-    path: '/artist-app/fanclub/tips',
-    element: <FanclubTipsRoute />
-  },{
-    path: '/artist-app/content-creation',
-    element: <ContentCreationRoute />
-  },{
-    path: '/artist-app/metrics',
-    element: <MetricsRoute />
-  },{
-    path:'/artist-app/earnings-dashboard',
-    element: <EarningsDashboardRoute />,
-    children: [
-      {
-        path: '',
-        element: <Navigate to="/artist-app/earnings-dashboard/lastMonth" replace />
-      },
-      {
-        path: 'lastMonth',
-        element: <EarningsLastMonthRoute />
-      },
-      {
-        path: 'currentMonth',
-        element: <EarningsCurrentMonthRoute />
-      },
-      {
-        path: 'graph',
-        element: <EarningsGraphRoute />
-      }
-    ]
+	{
+		path: '/loaders',
+		element: <LoadersRoute />
+	},{
+		path: '/loading',
+		element: <LoadingRoute />
+	},{
+		path: '/login',
+		element: <LoginRoute />
+	},{
+		path: '/',
+		element:<Navigate to='/your-favourites' />
+	},{
+		path: '/your-favourites',
+		element: <YourFavouritesRoute />
+	},{
+		path: '/artist/:artistSlug',
+		element: <ArtistRoute />,
+		children: [
+		{
+			path: '/artist/:artistSlug/leaderboard',
+			element: <LeaderboardRoute />
+		},{
+			path: '/artist/:artistSlug/fanclub',
+			element: <Fanclub />
+		}
+		]
+	},{
+		path: '/artist/:artistSlug/invite-friend',
+		element: <InviteFriendRoute />
+	},{
+		path: '/artist/:artistSlug/flash-leaderboard',
+		element: <FlashLeaderboardRoute />,
+		children: [
+		{
+			path: '/artist/:artistSlug/flash-leaderboard/rules',
+			element: <FlashLeaderboardRulesRoute />
+		}
+		]
+	},{
+		path: '/flash-leaderboard-explanation',
+		element: <FlashLeaderboardExplanationRoute />,
+	},{
+		path: '/sanremo-2024',
+		element: <Sanremo2024Route />
+	},{
+		path: '/quiz-result-unactive',
+		element: <QuizResultRoute />
+	},{
+		path: '/quiz-gameplay',
+		element: <QuizGameplayRoute />
+	},{
+		path: '/artist-app/fanclub',
+		element: <FanclubRoute />
+	},{
+		path: '/artist-app/flash-leaderboards',
+		element: <FlashLeaderboardsRoute />
+	},{
+		path: '/artist-app/flash-leaderboard',
+		element: <FlashLeaderboardRoute />,
+		children: [
+		{
+			path: '/artist-app/flash-leaderboard/rules',
+			element: <FlashLeaderboardRulesRoute />
+		}
+		]
+	},{
+		path: '/artist-app/fanclub/terms-and-conditions',
+		element: <FanclubTermsRoute />
+	},{
+		path: '/artist-app/fanclub/info',
+		element: <FanclubInfoRoute />
+	},{
+		path: '/artist-app/fanclub/billing-info',
+		element: <FanclubBillingInfoRoute />
+	},{
+		path: '/artist-app/fanclub/payment-info',
+		element: <FanclubPaymentInfoRoute />
+	},{
+		path: '/artist-app/fanclub/name',
+		element: <FanclubNameRoute />
+	},{
+		path: '/artist-app/fanclub/cover',
+		element: <FanclubCoverRoute />
+	},{
+		path: '/artist-app/fanclub/pricing',
+		element: <FanclubPricingRoute />
+	},{
+		path: '/artist-app/fanclub/activated',
+		element: <FanclubActivatedRoute />
+	},{
+		path: '/artist-app/fanclub/settings',
+		element: <FanclubSettingsRoute />
+	},{
+		path: '/artist-app/fanclub/settings/edit',
+		element: <FanclubSettingsEditRoute />
+	},{
+		path: '/artist-app/fanclub/tips',
+		element: <FanclubTipsRoute />
+	},{
+		path: '/artist-app/content-creation',
+		element: <ContentCreationRoute />
+	},{
+		path: '/artist-app/metrics',
+		element: <MetricsRoute />
+	},{
+		path:'/artist-app/earnings-dashboard',
+		element: <EarningsDashboardRoute />,
+		children: [
+		{
+			path: '',
+			element: <Navigate to="/artist-app/earnings-dashboard/lastMonth" replace />
+		},
+		{
+			path: 'lastMonth',
+			element: <EarningsLastMonthRoute />
+		},
+		{
+			path: 'currentMonth',
+			element: <EarningsCurrentMonthRoute />
+		},
+		{
+			path: 'graph',
+			element: <EarningsGraphRoute />
+		}
+		]
 
-  },{
-    path: '/cool/1',
-    element: <Cool1Route />
-  },{
-    path: '/cool/2',
-    element: <Cool2Route />
-  },{
-    path: '/search',
-    element: <SearchRoute />
-  },{
-    path: '/profile',
-    element: <ProfileRoute />
-  },{
-    path:'/user-info',
-    element: <UserInfoRoute />
-  },{
-    path: '/faq',
-    element: <FaqRoute />
-  },{
-    path: '/terms-and-conditions-fans',
-    element: <TermsConditionsRoute />
-  },{
-    path: '/privacy-policy-fans',
-    element: <PrivacyPolicyRoute />
-  },{
-    path: '/cookie-policy-fans',
-    element: <CookiePolicyRoute />
-  },{
-    path: '/user-info-field',
-    element: <UserInfoFieldRoute />
-  },{
-    path: '/user-info-field-modify',
-    element: <UserInfoFieldModifyRoute />
-  },{
-    path: '/quiz',
-    element: <LiveQuizRoute />
-  },{
-    path: '/quiz-play',
-    element: <LiveQuizPlayRoute />
-  },{
-    path: '/quiz-result',
-    element: <LiveQuizResultRoute />
-  },{
-    path: '/signup',
-    element: <RegistrationRoute />
-  },{
-    path: '/recover-password',
-    element: <RecoverPasswordRoute />
-  },{
-    path: '/flash-leaderboards-admin',
-    element: <FlashLeaderboardsDashboardRoute />
-  },{
-    path: '/flash-leaderboards-admin/flash-leaderboard-metrics-detail',
-    element: <FlashLeaderboardMetricsDetailRoute />
-  },{
-    path: '/badges',
-    element: <BadgesRoute />
-  }, {
-    path: '/personal-user-points',
-    element: <PersonalUserPointsRoute />
-  }
+	},{
+		path: '/cool/1',
+		element: <Cool1Route />
+	},{
+		path: '/cool/2',
+		element: <Cool2Route />
+	},{
+		path: '/search',
+		element: <SearchRoute />
+	},{
+		path: '/profile',
+		element: <ProfileRoute />
+	},{
+		path:'/user-info',
+		element: <UserInfoRoute />
+	},{
+		path: '/faq',
+		element: <FaqRoute />
+	},{
+		path: '/terms-and-conditions-fans',
+		element: <TermsConditionsRoute />
+	},{
+		path: '/privacy-policy-fans',
+		element: <PrivacyPolicyRoute />
+	},{
+		path: '/cookie-policy-fans',
+		element: <CookiePolicyRoute />
+	},{
+		path: '/user-info-field',
+		element: <UserInfoFieldRoute />
+	},{
+		path: '/user-info-field-modify',
+		element: <UserInfoFieldModifyRoute />
+	},{
+		path: '/quiz',
+		element: <LiveQuizRoute />
+	},{
+		path: '/quiz-result',
+		element: <LiveQuizResultRoute />
+	},{
+		path: '/signup',
+		element: <RegistrationRoute />
+	},{
+		path: '/recover-password',
+		element: <RecoverPasswordRoute />
+	},{
+		path: '/flash-leaderboards-admin',
+		element: <FlashLeaderboardsDashboardRoute />
+	},{
+		path: '/flash-leaderboards-admin/flash-leaderboard-metrics-detail',
+		element: <FlashLeaderboardMetricsDetailRoute />
+	},{
+		path: '/badges',
+		element: <BadgesRoute />
+	},{
+		path: '/personal-user-points',
+		element: <PersonalUserPointsRoute />
+	}
 ])
 
 function App() {
-  return (
-    <ArtistsProvider>
-      <CurrentFanProvider>
-        <CurrentArtistProvider>
-          <LeaderboardsProvider>
-            <FlashLeaderboardsProvider>
-              <FanclubsProvider>
-                <LiveQuizProvider>
-                <RouterProvider router={router} />
-                </LiveQuizProvider>
-              </FanclubsProvider>
-            </FlashLeaderboardsProvider>
-          </LeaderboardsProvider>
-        </CurrentArtistProvider>
-      </CurrentFanProvider>
-    </ArtistsProvider>
-  );
+	return (
+		<ArtistsProvider>
+		<CurrentFanProvider>
+			<CurrentArtistProvider>
+			<LeaderboardsProvider>
+				<FlashLeaderboardsProvider>
+				<FanclubsProvider>
+					<LiveQuizProvider>
+					<RouterProvider router={router} />
+					</LiveQuizProvider>
+				</FanclubsProvider>
+				</FlashLeaderboardsProvider>
+			</LeaderboardsProvider>
+			</CurrentArtistProvider>
+		</CurrentFanProvider>
+		</ArtistsProvider>
+	)
 }
 
 export default App

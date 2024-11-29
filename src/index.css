@@ -27,10 +27,22 @@ p {
 .line-height-sm {
   line-height: 1.1rem;
 }
+.line-height-120 {
+  line-height: 120%;
+}
+.line-height-125 {
+  line-height: 125%;
+}
 .line-height-140 {
   line-height: 140%;
 }
+.shadow-dark-200 {
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.2);
+}
 .shadow-dark-400 {
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.4);
+}
+.shadow-dark-750 {
   box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.75);
 }
 a {
@@ -741,6 +753,10 @@ animation: dot-loader-after 1s infinite linear;
   animation-fill-mode: forwards;
 }
 
+.transition-1s {
+  transition: all 1s ease-out;
+}
+
 /******************************************/
 /************ HORIZONTAL SLIDER ***********/
 /******************************************/
@@ -791,6 +807,9 @@ animation: dot-loader-after 1s infinite linear;
 .bg-black {
   background-color: #000000;
 }
+.bg-black-transp40 {
+  background-color: rgba(0,0,0, .4);
+}
 .bg-black-transp50 {
   background-color: rgba(0,0,0, .5);
 }
@@ -799,6 +818,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .bg-black-transp70 {
   background-color: rgba(0,0,0, .7);
+}
+.bg-black-transp75 {
+  background-color: rgba(0,0,0, .75);
 }
 .bg-black-transp80 {
   background-color: rgba(0,0,0, .8);
@@ -2344,18 +2366,35 @@ nav .container {
 .blur-2_5 {
   filter: blur(2.5px);
 }
+.blur-3 {
+  filter: blur(3px)
+}
+.blur-4 {
+  filter: blur(4px)
+}
+.blur-5 {
+  filter: blur(5px)
+}
+.blur-6 {
+  filter: blur(6px)
+}
+.blur-8 {
+  filter: blur(8px)
+}
+.blur-10 {
+  filter: blur(10px)
+}
 .blur-50 {
   filter: blur(50px);
-}
-.footer-landing {
-  border-top: 1px solid #1C1E27;
 }
 
 .bg-blur {
   backdrop-filter: blur(5px);
 }
-.blur-effect {
-  filter: blur(10px)
+
+
+.footer-landing {
+  border-top: 1px solid #1C1E27;
 }
 
 /******************************************/
@@ -2553,6 +2592,9 @@ nav .container {
   textarea::placeholder {
     color: #bfbfbf;
   }
+  .white-placeholder::placeholder {
+    color: #FFFFFF;
+  }
   input[type=checkbox] {
       width: 24px;
       height: 24px;
@@ -2569,6 +2611,9 @@ nav .container {
   /***** HEIGHT *****/
   .h-xs-10 {
     height: 10vh;
+  }
+  .h-xs-15 {
+    height: 15vh;
   }
   .h-xs-18 {
     height: 18vh;

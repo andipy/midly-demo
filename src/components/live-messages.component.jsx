@@ -208,7 +208,7 @@ const LiveMessages = ({leaderboard}) => {
     }
 
     return (
-        <div className={`position-fixed bg-dark-soft bottom-0 w-100 z-index-5 border-radius-top-08 shadow-dark-400`}>
+        <div className={`position-fixed bg-dark-soft bottom-0 w-100 z-index-5 border-radius-top-08 shadow-dark-750`}>
             <div className={`${chatOpen ? 'd-xs-block' : 'd-none'}`}>
                 <NavbarCommentsModal closeModal={closeModal} title='Chat' />
 

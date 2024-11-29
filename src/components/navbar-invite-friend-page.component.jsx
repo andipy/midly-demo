@@ -8,7 +8,7 @@ const NavbarInviteFriendPage = ({ artist }) => {
     const navigate = useNavigate()
     
     return (
-        <nav className='top-bar-area-overlay-fixed bg-dark d-flex-row align-items-center j-c-center white z-index-5 top-0 shadow-dark-400'>
+        <nav className='top-bar-area-overlay-fixed bg-dark d-flex-row align-items-center j-c-center white z-index-5 top-0 shadow-dark-750'>
             <div className='container d-flex-row align-items-center j-c-center'>
                 <div className='topbar-icon-left' onClick={() => navigate(-1, { state: artist })}>
                     <img src={IconArrowLeft} alt='BACK' />

@@ -1,15 +1,15 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useContext, useState, useEffect } from 'react'
 
-import { LiveQuizContext } from '../contexts/live-quiz.context'
-import { CurrentFanContext } from '../contexts/currentFan.context'
-import { LeaderboardsContext } from '../contexts/leaderboards.context'
+import { LiveQuizContext } from '../../contexts/live-quiz.context'
+import { CurrentFanContext } from '../../contexts/currentFan.context'
+import { LeaderboardsContext } from '../../contexts/leaderboards.context'
 
-import ContainerDefault from '../layout/container-default.layout'
-import AudioPlayer from '../components/audio-player.component'
-import NavbarMultistep from '../components/navbar-multistep.component'
-import FullPageCenter from '../layout/full-page-center.layout'
-import ProgressCountdown from '../components/progress-countdown.component'
+import ContainerDefault from '../../layout/container-default.layout'
+import AudioPlayer from '../../components/audio-player.component'
+import NavbarMultistep from '../../components/navbar-multistep.component'
+import FullPageCenter from '../../layout/full-page-center.layout'
+import ProgressCountdown from '../../components/progress-countdown.component'
 
 const LiveQuizPlayRoute = () => {
     const navigate = useNavigate()
