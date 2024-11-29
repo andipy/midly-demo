@@ -184,6 +184,7 @@ const YourFavouritesRoute = () => {
                                         artName={quiz.artistName}
                                         image={quiz.image}
                                         quizAlreadyPlayed={hasPlayed}
+                                        isToday={true}
                                         key={quiz.id} 
                                         id={quiz.id}
                                     />

@@ -1,7 +1,6 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 
-import Appbar from '../components/appbar.component.artist'
 import Navbar from '../components/navbar.component.artist'
 import ContainerDefault from '../layout/container-default.layout'
 
@@ -31,7 +30,6 @@ const EarningsDashboard = () => {
         </div> 
         <Outlet />
     </ContainerDefault>
-    <Appbar />
 
     </>
   )

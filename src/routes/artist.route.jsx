@@ -163,9 +163,16 @@ const ArtistRoute = () => {
         }, 600) 
     }, [])
 
+    const [showQuiz, setShowQuiz] = useState(false)
+
+    const handleQuizShow = () => {
+        console.log('Show quiz')
+        setShowQuiz(!showQuiz)
+    }
+
     return (
         <>
-            <NavbarArtistPage artist={artist} />
+            <NavbarArtistPage artist={artist} onClick={() => handleQuizShow()} quiz={showQuiz} />
             <CoverArtistPage artist={artist} userCompeting={userCompeting} handleCompete={handleCompete} currentFan={currentFan} />
 
             <ContainerDefault containerSpecificStyle={''}>

@@ -184,13 +184,19 @@ const router = createBrowserRouter([
     element: <EarningsDashboardRoute />,
     children: [
       {
-        path: '/artist-app/earnings-dashboard/lastMonth',
+        path: '',
+        element: <Navigate to="/artist-app/earnings-dashboard/lastMonth" replace />
+      },
+      {
+        path: 'lastMonth',
         element: <EarningsLastMonthRoute />
-      },{
-        path: '/artist-app/earnings-dashboard/currentMonth',
+      },
+      {
+        path: 'currentMonth',
         element: <EarningsCurrentMonthRoute />
-      },{
-        path: '/artist-app/earnings-dashboard/graph',
+      },
+      {
+        path: 'graph',
         element: <EarningsGraphRoute />
       }
     ]

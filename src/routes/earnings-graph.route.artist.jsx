@@ -32,6 +32,7 @@ const EarningsGraph = () => {
     /*Creo dataset 1 per revenue*/
 
     useEffect(() => {
+
         const revenueDataset = currentArtist.revenueOverTime[0].dataSet.map(data => ({
             date: new Date(data.date),
             value: data.value,
@@ -42,12 +43,13 @@ const EarningsGraph = () => {
             return { date, value: d.value }
         })
     
-        const allMonths = Array.from({ length: 12 }, (_, i) => new Date(2024, i, 1))
+        const allMonths = Array.from({ length: currentMonth-1 }, (_, i) => new Date(2024, i, 1))
         const completeRevenueDataset = allMonths.map(month => {
             const existingData = revenueDatasetWithFirstDay.find(d => d.date.getMonth() === month.getMonth())
             
             return existingData ? existingData : { date: month, value: 0 }
         })
+
         const margin = { top: 10, bottom: 30, right: 20, left: 40 }
         const width = parseInt(d3.select('.container').style('width')) * 0.9 - margin.left - margin.right
         const height = 200 - margin.top - margin.bottom
@@ -106,6 +108,13 @@ const EarningsGraph = () => {
     /*Creo dataset 1 per subs*/
 
     useEffect(() => {
+
+        const currentDate = new Date();
+        const firstDayOfPreviousMonth = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth() - 1,
+            1
+        )
             
         const subsDataset = currentArtist.subsOverTime[0].dataSet.map(data => ({
             date: new Date(data.date),
@@ -116,6 +125,7 @@ const EarningsGraph = () => {
             date.setDate(1)
             return { date, value: d.value }
         })
+
         const margin = { top: 10, bottom: 30, right: 20, left: 40 }
         const width = parseInt(d3.select('.container').style('width')) * 0.9 - margin.left - margin.right
         const height = 200 - margin.top - margin.bottom
@@ -136,7 +146,7 @@ const EarningsGraph = () => {
 
         // Imposta il dominio dell'asse x in modo che inizi dal primo dato e finisca all'ultimo mese dell'anno
         const startDate = new Date('2024-01-01')  
-        const endDate = new Date('2024-12-01')           
+        const endDate =   firstDayOfPreviousMonth    
 
         x.domain([startDate, endDate])
 

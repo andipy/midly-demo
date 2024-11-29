@@ -35,7 +35,7 @@ const LiveMessage = ({ message, color }) => {
                     />
                 }
                 {message.type == 'COMMENT' && message.user_type == 'fan' &&
-                    <span className={`fsize-xs-2 f-w-700 ${color.text}`}>username:</span>
+                    <span className={`fsize-xs-2 f-w-700 ${color.text}`}>{message.username}:</span>
                 }
                 {message.type == 'COMMENT' && message.user_type == 'artist' &&
                     <span className={`fsize-xs-2 f-w-700 black no-shrink`}>thasup:</span>

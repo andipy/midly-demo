@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import IconArrowLeft from '../images/icons/icon-arrowleft.svg'
+import IconArrowUp from '../images/icons/icon-arrowup.svg'
+import IconArrowDown from '../images/icons/icon-arrowdown.svg'
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import IconPrize from '../images/icons/icon-prize-rank-card.svg'
 
-const NavbarArtistPage = ({ artist }) => {
+const NavbarArtistPage = ({ artist, onClick, quiz }) => {
     const location = useLocation()
     const navigate = useNavigate()
     const [scrolled, setScrolled] = useState(false)
@@ -53,9 +55,20 @@ const NavbarArtistPage = ({ artist }) => {
                     </h2>
                 </div>
 
-                <div className={`${scrolled ? 'd-flex-row' : 'd-xs-none'} align-items-center j-c-center border-radius-100 avatar-36 bg-dark-soft-transp75 d-flex-row`}>
-                    {/* this empty div is to keep the layout */}
-                </div>
+                {quiz === true ? (
+                    <div className='avatar-28 j-c-center align-items-center' onClick={onClick}>
+                        <img className='avatar-28 bg-dark-soft-transp75 border-radius-100 j-c-center align-items-center' src={IconArrowDown} alt='Back' />
+                    </div>
+                ): (
+                    <div className='avatar-28 j-c-center align-items-center' onClick={onClick}>
+                        <img className='avatar-28 bg-dark-soft-transp75 border-radius-100 j-c-center align-items-center' src={IconArrowUp} alt='Back' />
+                    </div>
+                )}
+
+                
+
+                {/* <div className={`${scrolled ? 'd-flex-row' : 'd-xs-none'} align-items-center j-c-center border-radius-100 avatar-36 bg-dark-soft-transp75 d-flex-row`}>
+                </div> */}
                 
                 {/* <div className={`${scrolled ? 'd-flex-row' : 'd-xs-none'} align-items-center j-c-center border-radius-100 avatar-36 bg-dark-soft-transp75 d-flex-row`}>
                     {!location.pathname.includes('sanremo') && (

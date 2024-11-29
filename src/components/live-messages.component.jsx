@@ -1,6 +1,8 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useContext } from 'react'
 import { useLocation } from 'react-router-dom'
 // import { mockSongsThasup, mockSongsArtie5ive } from '../mock-data/songs'
+
+import { CurrentFanContext } from '../contexts/currentFan.context'
 
 import ContainerDefault from '../layout/container-default.layout'
 import LiveMessage from './live-message.component'
@@ -10,6 +12,8 @@ import NavbarCommentsModal from './navbar-comments-modal.component'
 import CountdownFlashLeaderboards from './countdown-flash-leaderboards.component'
 
 const LiveMessages = ({leaderboard}) => {
+
+    const { currentFan, setCurrentFan} = useContext(CurrentFanContext)
 
     const { pathname } = useLocation()
 
@@ -102,6 +106,7 @@ const LiveMessages = ({leaderboard}) => {
         setCurrentComment({
             type: 'COMMENT',
             user_type: 'fan',
+            username: currentFan.username,
             content: '',
             timestamp: undefined,
             id: undefined
@@ -114,6 +119,7 @@ const LiveMessages = ({leaderboard}) => {
     const [currentComment, setCurrentComment] = useState({
         type: 'COMMENT',
         user_type: undefined,
+        username: '',
         content: '',
         timestamp: undefined,
         id: undefined
@@ -122,6 +128,7 @@ const LiveMessages = ({leaderboard}) => {
         setCurrentComment(prev => ({
             type: 'COMMENT',
             user_type: prev.user_type,
+            username: currentFan.username,
             content: e.target.value,
             timestamp: undefined,
             id: undefined
