@@ -183,8 +183,8 @@ const LiveQuizPlayRoute = () => {
 
             <FullPageCenter className='z-index-4 d-flex-column j-center align-items-center'>
                 <ContainerDefault containerSpecificStyle={'z-index-999'}>      
-                    <div className='d-flex-row align-items-center mt-xs-4 gap-0_5em j-c-space-between'>
-                        <span className='fsize-xs-5 mb-xs-4 f-w-600 '>{songChunk.songName}</span>
+                    <div className='d-flex-row align-items-center mt-xs-4 gap-0_5em j-c-space-between mb-xs-4'>
+                        <span className='fsize-xs-5 f-w-600 '>{songChunk.songName}</span>
                         <AudioPlayer src={quiz?.instrumental} startTime={quiz?.startTime} />
                     </div>
 
@@ -192,7 +192,7 @@ const LiveQuizPlayRoute = () => {
                         <p className='fsize-xs-6 f-w-600 '>{songChunk.firstLine}</p>
 
                         <div className='w-100'>
-                            <textarea className='bg-dark-gradient border-radius-08 d-flex-column justify-content-center align-items-center w-100' rows='3' placeholder='Scrivi il verso mancante' value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)}></textarea>
+                            <textarea className='bg-dark-gradient white border-radius-08 d-flex-column justify-content-center align-items-center w-100' rows='3' placeholder='Scrivi il verso mancante' value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)}></textarea>
                         </div>
                         <p className='fsize-xs-6 f-w-600 '>{songChunk.secondLine}</p>
                     </div>

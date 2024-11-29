@@ -60,7 +60,7 @@ const AudioPlayer = ({ src, startTime }) => {
         onEnded={() => setIsPlaying(false)}
       />
       <div className="">
-        <button className={`bg-acid-lime black font-body avatar-32  border-radius-100 ${isPlaying ? 'floating-shadow' : ''}`} onClick={togglePlayPause}>
+        <button className={`bg-acid-lime black font-body avatar-28  border-radius-100 ${isPlaying ? 'floating-shadow' : ''}`} onClick={togglePlayPause}>
             <img src={IconSpeaker}></img>
         </button>
         {/* <input
