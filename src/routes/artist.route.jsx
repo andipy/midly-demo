@@ -17,6 +17,8 @@ import MessageFlashLeaderboardModal from '../components/message-flash-leaderboar
 import CardInviteFriend from '../components/card-invite-friend.component'
 import CardConnectSpotify from '../components/card-connect-spotify.component'
 import MessageWhitePoints from '../components/message-white-points.component'
+import Carousel from '../layout/carousel.layout'
+import CardQuiz from '../components/card-quiz.component'
 
 
 const ArtistRoute = () => {
@@ -27,6 +29,7 @@ const ArtistRoute = () => {
     const { artists } = useContext(ArtistsContext)
     const { fanclubs } = useContext(FanclubsContext)
     const { quizzes } = useContext(LiveQuizContext)
+    const [ artistLiveQuizzes, setArtistLiveQuizzes] = useState()
 
     
     
@@ -127,8 +130,8 @@ const ArtistRoute = () => {
     /* recupero live quiz artista */
     useEffect(() => {
         if (artist){
-            const artistLiveQuizzes = quizzes?.filter(quiz => quiz.artistId === artist?.id)
-            console.log(artistLiveQuizzes)
+            const artistLiveQuizzesFound = quizzes?.filter(quiz => quiz.artistId === artist?.id)
+            setArtistLiveQuizzes(artistLiveQuizzesFound)
         }  
 
     }, [artist?.id])
@@ -173,9 +176,10 @@ const ArtistRoute = () => {
     return (
         <>
             <NavbarArtistPage artist={artist} onClick={() => handleQuizShow()} quiz={showQuiz} />
-            <CoverArtistPage artist={artist} userCompeting={userCompeting} handleCompete={handleCompete} currentFan={currentFan} />
+            <CoverArtistPage artist={artist} userCompeting={userCompeting} handleCompete={handleCompete} currentFan={currentFan} showQuiz={showQuiz} artistLiveQuizzes={artistLiveQuizzes} />
 
             <ContainerDefault containerSpecificStyle={''}>
+                
                 <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' ?
                         <MessageFlashLeaderboard
@@ -190,6 +194,7 @@ const ArtistRoute = () => {
                             artist={artist}
                         />
                     }
+                    
                     {!currentFan.hasSpotify &&
                         <CardConnectSpotify
                             onClick={handleSpotifyConnect}
