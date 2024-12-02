@@ -1,5 +1,5 @@
 import { useNavigate, useLocation, Link } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 
 import { LiveQuizContext } from '../contexts/live-quiz.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
@@ -29,10 +29,17 @@ const LiveQuizRoute = () => {
     const songChunk = quiz.songChunks.find(chunk => chunk.chunkId === 1)
     const correctAnswer = songChunk.correctResponse
 
-    const [timeLeft, setTimeLeft] = useState(60)
+    const [timeLeft, setTimeLeft] = useState(10)
     const [userAnswer, setUserAnswer] = useState('')
     const [userIsPlaying, setUserIsPlaying] = useState(false)
     const [placeholder, setPlaceholder] = useState('')
+
+    const userAnswerRef = useRef('')
+
+    useEffect(() => {
+        userAnswerRef.current = userAnswer;
+    }, [userAnswer])
+
 
     const playClick = () => {
         setUserIsPlaying(true)
@@ -102,7 +109,25 @@ const LiveQuizRoute = () => {
     }
 
     const handleTimeout = () => {
-        updateQuizzes(0)
+        const playDate = new Date(quiz.playDate)
+        const today = new Date()
+        today.setHours(0, 0, 0, 0)
+
+        const currentUserAnswer = userAnswerRef.current
+        if(playDate.getTime() === today.getTime()) {
+            const points = calculateScore(correctAnswer, currentUserAnswer)
+            updateLeaderboards(points)
+            updateQuizzes(points)
+                
+            navigate(`/quiz-result`, { state: { id } })
+        } else {
+            const points = calculateScore(correctAnswer, currentUserAnswer)
+            updateQuizzes(points)
+            navigate(`/quiz-result`, { state: { id } })
+        } 
+
+        
+        
         navigate(`/quiz-result`, { state: { id } })
     }
 
@@ -186,7 +211,9 @@ const LiveQuizRoute = () => {
 
     return (
         <>
-            <NavbarMultistep stepNumber={1} dismissable={true} transparent={true} />
+            {!userIsPlaying && 
+                <NavbarMultistep stepNumber={1} dismissable={true} transparent={true} />
+            }
 
             <ContainerDefault containerSpecificStyle='pt-xs-topbar position-relative z-index-4'>
                 <div className='d-flex-row align-items-center gap-0_5em'>

@@ -1024,6 +1024,9 @@ animation: dot-loader-after 1s infinite linear;
 .border-white {
   border: 2px solid #FFFFFF;
 }
+.border-grey-small {
+  border: 1px solid #8d8d8d;
+}
 .border-gold {
   border: 8px solid #e6c600;
 }

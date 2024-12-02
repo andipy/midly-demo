@@ -72,6 +72,11 @@ import EarningsGraphRoute from './routes/earnings-graph.route.artist'
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
 import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics-detail.route.admin'
 
+
+//SPOTIFY ROUTES
+import FirstPageSpotifyRoute from './routes/first-page.route.spotify'
+import SecondPageSpotifyRoute from './routes/second-page.route.spotify'
+
 const router = createBrowserRouter([
 	{
 		path: '/loaders',
@@ -257,6 +262,12 @@ const router = createBrowserRouter([
 	},{
 		path: '/personal-user-points',
 		element: <PersonalUserPointsRoute />
+	}, {
+		path: '/first-page-spotify',
+		element: <FirstPageSpotifyRoute />
+	}, {
+		path: '/second-page-spotify',
+		element: <SecondPageSpotifyRoute />
 	}
 ])
 
