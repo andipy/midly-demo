@@ -74,8 +74,8 @@ import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metri
 
 
 //SPOTIFY ROUTES
-import FirstPageSpotifyRoute from './routes/first-page.route.spotify'
-import SecondPageSpotifyRoute from './routes/second-page.route.spotify'
+import SpotifyAcceptRoute from './routes/spotify-accept.route.spotify'
+import SpotifyLoginRoute from './routes/spotify-login.route.spotify'
 
 const router = createBrowserRouter([
 	{
@@ -263,11 +263,11 @@ const router = createBrowserRouter([
 		path: '/personal-user-points',
 		element: <PersonalUserPointsRoute />
 	}, {
-		path: '/first-page-spotify',
-		element: <FirstPageSpotifyRoute />
+		path: '/spotify-accept',
+		element: <SpotifyAcceptRoute />
 	}, {
-		path: '/second-page-spotify',
-		element: <SecondPageSpotifyRoute />
+		path: '/spotify-login',
+		element: <SpotifyLoginRoute />
 	}
 ])
 

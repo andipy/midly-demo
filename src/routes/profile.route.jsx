@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
 
@@ -7,21 +7,20 @@ import NavbarDefault from '../components/navbar-default.component'
 import ContainerDefault from '../layout/container-default.layout'
 import TextTitle from '../components/text-title.component'
 import Appbar from '../components/appbar.component'
+import ProgressBar from '../components/progress-bar-points.component'
+import MessageWhitePoints from '../components/message-white-points.component'
 
 import IconPoints from '../images/icons/icon-points.svg'
-import SpotifyLogo from '../images/icons/icon-spotify-full-green.svg'
 import IconArrowRight from '../images/icons/icon-arrowright.svg'
-import GoldBagde from '../images/illustrations/GOLD.png'
-import SettingsLogo from '../images/icons/icon-settings-white.svg'
 import InfoLogo from '../images/icons/icon-info-white.svg'
 import IconTerms from '../images/icons/icon-terms.svg'
 import IconCookies from '../images/icons/icon-cookie.svg'
 import IconEdit from "../images/icons/icon-edit.svg"
 import IconTrophyGold from '../images/icons/icon-trophy-gold.svg'
 import IconOk from '../images/icons/icon-ok.svg'
-import { Link } from 'react-router-dom'
-import ProgressBar from '../components/progress-bar-points.component'
-import MessageWhitePoints from '../components/message-white-points.component'
+import SettingsLogo from '../images/icons/icon-settings-white.svg'
+import SpotifyLogo from '../images/icons/icon-spotify-full-green.svg'
+import GoldBagde from '../images/illustrations/GOLD.png'
 
 const ProfileRoute = () => {
 
@@ -87,7 +86,7 @@ const ProfileRoute = () => {
 
     const handleSpotifyConnect = () => {
         //modulo connection spotify da gestire
-        navigate('/first-page-spotify', { state: { pageFrom: '/profile' } })
+        navigate('/spotify-accept', { state: { pageFrom: '/profile' } })
     }
 
     const logout = () => {

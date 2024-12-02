@@ -170,7 +170,7 @@ const FlashLeaderboardRoute = () => {
     const [message, setMessage] = useState('')
 
     const handleSpotifyConnect = () => {
-        navigate('/first-page-spotify', { state: { pageFrom: '/profile' } })
+        navigate('/spotify-accept', { state: { pageFrom: '/profile' } })
     }
 
     useEffect(() => {

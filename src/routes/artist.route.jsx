@@ -94,7 +94,7 @@ const ArtistRoute = () => {
     }
 
     const handleSpotifyConnect = () => {
-        navigate('/first-page-spotify', { state: { pageFrom: `/profile` } })
+        navigate('/spotify-accept', { state: { pageFrom: `/profile` } })
     }
 
     useEffect(() => {

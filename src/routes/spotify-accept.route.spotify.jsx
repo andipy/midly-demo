@@ -9,7 +9,9 @@ import { CurrentFanContext } from '../contexts/currentFan.context'
 import { useContext } from 'react'
 
 import SpotiyUserImage from '../images/pictures/spotify-profile-pic.jpg'
-const FirstPageSpotify = () => {
+
+const SpotifyAcceptRoute = () => {
+
     const { currentFan, setCurrentFan} = useContext(CurrentFanContext)
     const navigate = useNavigate()
     const location = useLocation()
@@ -46,7 +48,7 @@ const FirstPageSpotify = () => {
                 <img className='avatar-24 border-radius-100' src={SpotiyUserImage}></img>
                 <h2 className='fsize-xs-1 f-w-500'>found-user-spotify</h2>
             </div>
-            <a className='fsize-xs-1 mt-xs-2 green-spotify letter-spacing-1' onClick={() => navigate('/second-page-spotify')}>
+            <a className='fsize-xs-1 mt-xs-2 green-spotify letter-spacing-1' onClick={() => navigate('/spotify-login')}>
                 Non sei tu?
             </a>
         </div>
@@ -91,7 +93,7 @@ const FirstPageSpotify = () => {
                     </li>
                 </ul>
             </div>
-            <Button style='bg-green-spotify border-radius-2 mt-xs-4' label='Accetto' onClick={() => navigate(`${location.state?.pageFrom}`, { state: { returningFromSpotify: true} })} />
+            <Button style='fsize-xs-3 f-w-600 bg-green-spotify border-radius-2 mt-xs-4' label='Accetto' onClick={() => navigate(`${location.state?.pageFrom}`, { state: { returningFromSpotify: true} })} />
             <div className='d-flex-row j-c-center align-items-center w-100 mt-xs-4'>
                 <a className='j-c-center align-items-center' onClick={() => navigate( `${location.state?.pageFrom}`, { state: { returningFromSpotify: false } })}><p className='grey-300 letter-spacing-1 fsize-xs-3 f-w-800'>Annulla</p></a>
             </div>
@@ -110,4 +112,4 @@ const FirstPageSpotify = () => {
   )
 }
 
-export default FirstPageSpotify
+export default SpotifyAcceptRoute
