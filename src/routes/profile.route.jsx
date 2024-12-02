@@ -62,6 +62,7 @@ const ProfileRoute = () => {
     }
 
     useEffect(() => {
+        localStorage.removeItem('pageFrom')
         if (location.state?.returningFromSpotify) {
             if (currentFan.actions.some(action => action.type === 'SPOTIFY_ADDED')) {
                 setCurrentFan((prev) => ({
@@ -86,7 +87,8 @@ const ProfileRoute = () => {
 
     const handleSpotifyConnect = () => {
         //modulo connection spotify da gestire
-        navigate('/spotify-accept', { state: { pageFrom: '/profile' } })
+        localStorage.setItem('pageFrom', '/profile')
+        navigate('/spotify-login')
     }
 
     const logout = () => {

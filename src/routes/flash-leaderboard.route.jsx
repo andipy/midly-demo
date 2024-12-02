@@ -170,10 +170,12 @@ const FlashLeaderboardRoute = () => {
     const [message, setMessage] = useState('')
 
     const handleSpotifyConnect = () => {
-        navigate('/spotify-accept', { state: { pageFrom: '/profile' } })
+        localStorage.setItem('pageFrom', '/profile')
+        navigate('/spotify-login')
     }
 
     useEffect(() => {
+        localStorage.removeItem('pageFrom')
         if (location.state?.returningFromSpotify) {
             if (currentFan.actions.some(action => action.type === 'SPOTIFY_ADDED')) {
                 setCurrentFan((prev) => ({

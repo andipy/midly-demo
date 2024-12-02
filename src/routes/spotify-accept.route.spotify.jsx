@@ -14,7 +14,7 @@ const SpotifyAcceptRoute = () => {
 
     const { currentFan, setCurrentFan} = useContext(CurrentFanContext)
     const navigate = useNavigate()
-    const location = useLocation()
+    const pageFrom = localStorage.getItem('pageFrom')
 
     /* const handleSpotifyConnect = () => {
         //modulo connection spotify da gestire
@@ -93,9 +93,9 @@ const SpotifyAcceptRoute = () => {
                     </li>
                 </ul>
             </div>
-            <Button style='fsize-xs-3 f-w-600 bg-green-spotify border-radius-2 mt-xs-4' label='Accetto' onClick={() => navigate(`${location.state?.pageFrom}`, { state: { returningFromSpotify: true} })} />
+            <Button style='fsize-xs-3 f-w-600 bg-green-spotify border-radius-2 mt-xs-4' label='Accetto' onClick={() => navigate(`${pageFrom}`, { state: { returningFromSpotify: true} })} />
             <div className='d-flex-row j-c-center align-items-center w-100 mt-xs-4'>
-                <a className='j-c-center align-items-center' onClick={() => navigate( `${location.state?.pageFrom}`, { state: { returningFromSpotify: false } })}><p className='grey-300 letter-spacing-1 fsize-xs-3 f-w-800'>Annulla</p></a>
+                <a className='j-c-center align-items-center' onClick={() => navigate( `${pageFrom}`, { state: { returningFromSpotify: false } })}><p className='grey-300 letter-spacing-1 fsize-xs-3 f-w-800'>Annulla</p></a>
             </div>
             <div className='d-flex-column mt-xs-4'>
                 <p className='fsize-xs-1 f-w-500'>
