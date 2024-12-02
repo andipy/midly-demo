@@ -83,11 +83,11 @@ const ProfileRoute = () => {
             }
         }
         
-    },[location.state, currentFan, setCurrentFan])
+    },[location.state])
 
     const handleSpotifyConnect = () => {
         //modulo connection spotify da gestire
-        navigate('/first-page-spotify')
+        navigate('/first-page-spotify', { state: { pageFrom: '/profile' } })
     }
 
     const logout = () => {

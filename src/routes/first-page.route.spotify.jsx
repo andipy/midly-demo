@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 
 import HeaderSpotify from '../components/header-spotify.component'
@@ -12,6 +12,7 @@ import SpotiyUserImage from '../images/pictures/spotify-profile-pic.jpg'
 const FirstPageSpotify = () => {
     const { currentFan, setCurrentFan} = useContext(CurrentFanContext)
     const navigate = useNavigate()
+    const location = useLocation()
 
     /* const handleSpotifyConnect = () => {
         //modulo connection spotify da gestire
@@ -90,9 +91,9 @@ const FirstPageSpotify = () => {
                     </li>
                 </ul>
             </div>
-            <Button style='bg-green-spotify border-radius-2 mt-xs-4' label='Accetto' onClick={() => navigate('/profile', { state: { returningFromSpotify: true } })} />
+            <Button style='bg-green-spotify border-radius-2 mt-xs-4' label='Accetto' onClick={() => navigate(`${location.state?.pageFrom}`, { state: { returningFromSpotify: true} })} />
             <div className='d-flex-row j-c-center align-items-center w-100 mt-xs-4'>
-                <a className='j-c-center align-items-center' onClick={() => navigate('/profile', { state: { returningFromSpotify: false } })}><p className='grey-300 letter-spacing-1 fsize-xs-3 f-w-800'>Annulla</p></a>
+                <a className='j-c-center align-items-center' onClick={() => navigate( `${location.state?.pageFrom}`, { state: { returningFromSpotify: false } })}><p className='grey-300 letter-spacing-1 fsize-xs-3 f-w-800'>Annulla</p></a>
             </div>
             <div className='d-flex-column mt-xs-4'>
                 <p className='fsize-xs-1 f-w-500'>

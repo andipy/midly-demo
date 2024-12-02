@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { useNavigate, Link, Outlet, useLocation } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { ArtistsContext } from '../contexts/artists.context'
@@ -30,6 +30,9 @@ import SpecialBadge3P from '../images/illustrations/flash-podium-3.png'
 import CardFlashLeaderboard from '../components/card-flash-leaderboard.component.admin'
 
 const FlashLeaderboardRoute = () => {
+
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const { state, pathname, } = useLocation()
 
@@ -167,24 +170,31 @@ const FlashLeaderboardRoute = () => {
     const [message, setMessage] = useState('')
 
     const handleSpotifyConnect = () => {
-        if (currentFan.actions.some(action => action.type === 'SPOTIFY_ADDED')) {
-            setCurrentFan((prev) => ({
-                ...prev,
-                hasSpotify: true,
-            }))
-        } else {
-            setCurrentFan((prev) => ({
-                ...prev,
-                hasSpotify: true,
-                whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
-                actions: [...prev.actions, { type: 'SPOTIFY_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
-            }))
-            setShowMessageWhitePoints(true)
-            setWhitePoints(10)
-            setMessage('Aggiungi Spotify')
-
-        }
+        navigate('/first-page-spotify', { state: { pageFrom: '/profile' } })
     }
+
+    useEffect(() => {
+        if (location.state?.returningFromSpotify) {
+            if (currentFan.actions.some(action => action.type === 'SPOTIFY_ADDED')) {
+                setCurrentFan((prev) => ({
+                    ...prev,
+                    hasSpotify: true,
+                }))
+            } else {
+                setCurrentFan((prev) => ({
+                    ...prev,
+                    hasSpotify: true,
+                    whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
+                    actions: [...prev.actions, { type: 'SPOTIFY_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
+                }))
+                setShowMessageWhitePoints(true)
+                setWhitePoints(10)
+                setMessage('Aggiungi Spotify')
+    
+            }
+        }
+        
+    },[location.state])
 
     const handleCompete = () => {
         if (userCompeting) {
