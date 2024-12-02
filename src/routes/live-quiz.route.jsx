@@ -29,7 +29,7 @@ const LiveQuizRoute = () => {
     const songChunk = quiz.songChunks.find(chunk => chunk.chunkId === 1)
     const correctAnswer = songChunk.correctResponse
 
-    const [timeLeft, setTimeLeft] = useState(10)
+    const [timeLeft, setTimeLeft] = useState(60)
     const [userAnswer, setUserAnswer] = useState('')
     const [userIsPlaying, setUserIsPlaying] = useState(false)
     const [placeholder, setPlaceholder] = useState('')
@@ -226,11 +226,14 @@ const LiveQuizRoute = () => {
                 <ContainerDefault containerSpecificStyle={'z-index-4'}>      
                     <div className={`d-flex-row align-items-center mb-xs-4 gap-0_5em j-c-space-between mb-xs-4 transition-1s ${userIsPlaying ? '' : 'blur-4'}`}>
                         <span className={`fsize-xs-5 f-w-600 transition-1s ${userIsPlaying ? '' : 'blur-4'}`}>{songChunk.songName}</span>
-                        <AudioPlayer
+                        {quiz.instrumental ? (
+                            <AudioPlayer
                             src={quiz?.instrumental}
                             startTime={quiz?.startTime}
                             userIsPlaying={userIsPlaying}
-                        />
+                            />
+                        ):('')}
+                        
                     </div>
 
                     <div className='d-flex-column align-items-start gap-0_25em'>

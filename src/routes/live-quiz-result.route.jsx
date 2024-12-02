@@ -7,6 +7,10 @@ import Carousel from '../layout/carousel.layout'
 import CardPassedQuiz from '../components/card-passed-quiz.component'
 import ProgressBar from '../components/progress-bar-points.component'
 import AudioPlayer from '../components/audio-player.component'
+import CirclePoints from '../components/circle-points.component'
+import FullPageCenter from '../layout/full-page-center.layout'
+
+import IconPoints from '../images/icons/icon-points.svg'
 const LiveQuizResultRoute = () => {
 
     const navigate = useNavigate()
@@ -61,7 +65,7 @@ const LiveQuizResultRoute = () => {
     const chunkedQuizzes = chunkArray(orderedQuizzes, 2)
 
     /* array di punti */
-    const[points, setPoints] = useState([])
+    /* const[points, setPoints] = useState([])
 
       const generatePointArray = (result) => {
           let pointArray = []
@@ -73,7 +77,7 @@ const LiveQuizResultRoute = () => {
 
       useEffect(() => {
           generatePointArray(result)        
-      }, [])
+      }, []) */
     
     /* transizione */
     const [liveCounter, setLiveCounter] = useState(0)
@@ -115,7 +119,7 @@ const LiveQuizResultRoute = () => {
 
   return (
     <>
-      <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+      <ContainerDefault containerSpecificStyle={'pb-xs-appbar z-index-4  position-relative'}>
         
         <div className="d-flex-column align-items-center j-c-center mt-xs-50">
         {date >= today ? (
@@ -123,7 +127,10 @@ const LiveQuizResultRoute = () => {
             <h3 className="t-align-center mb-xs-4 f-w-800 fsize-xs-6">
               {resultTitle}
             </h3>
-            <div className="point-indicator">
+            <div className="d-flex-row j-c-center align-items-center">
+              <CirclePoints points={result}/>
+            </div>
+            {/* <div className="point-indicator">
               <p className="gold point-plus fsize-xs-5">
                 +
               </p>
@@ -135,15 +142,38 @@ const LiveQuizResultRoute = () => {
               })}
               </div>
               <p className="gold point-plus f-size-xs-5">punti</p>
+            </div> */}
+            <div className='d-flex-column w-100 align-items-center j-c-center'>
+              <div className='d-flex-row align-items-center j-c-center w-100'>
+                <p className="t-align-center ">
+                  Hai ottenuto {result}
+                </p>
+                <img className='avatar-16 mr-xs-2' src={IconPoints} />
+                <p className="t-align-center">
+                    {'nella classifica di '}
+                </p>
+
+              </div>
+              <div className='d-flex-row w-100 align-items-center j-c-center'>
+                <p className='lime-500 '>{quiz.artistName+ ''}</p>
+                <p className="t-align-center">
+                    , continua così!
+                </p>
+              </div>
+              
+              
             </div>
-            <p className="t-align-center w-80 mt-xs-4">
-              {resultMessage}
-            </p>
-            {quiz.originalAudio &&
+            
+            
+            {/* {quiz.originalAudio &&
             <section id='original-audio' className='mt-xs-8 w-100'>
-              <AudioPlayer src={quiz.originalAudio} startTime={quiz.startTime}/>
+              <AudioPlayer
+                src={quiz?.originalAudio}
+                startTime={quiz?.startTime}
+                userIsPlaying={true}
+              />
             </section>
-            }
+            } */}
           </>
         ): (
           <div className='w-80 d-flex-column align-items-center j-c-center'>
@@ -195,14 +225,25 @@ const LiveQuizResultRoute = () => {
           </div>
           ):('')}
         </div>       
-        <ContainerDefault containerSpecificStyle={'position-fixed bottom-5 z-index-999'}>
+        <ContainerDefault containerSpecificStyle={'position-fixed bottom-5 z-index-999 w-100 '}>
           <button className="bg-acid-lime black font-body" onClick={closeClick}>
             <span className="fsize-xs-3 f-w-500">
               Close
             </span>
           </button>
-        </ContainerDefault>
       </ContainerDefault>
+        
+      </ContainerDefault>
+
+
+      
+      
+
+      <FullPageCenter className={`z-index-3 bg-blur transition-1s bg-black-transp75`} />
+
+      <FullPageCenter className='z-index-1 '>
+        <img className='w-inherit h-inherit object-fit-cover' src={quiz.image} alt='' />
+      </FullPageCenter>
     </>
   )
 }
