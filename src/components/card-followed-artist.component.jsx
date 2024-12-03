@@ -12,7 +12,7 @@ const CardFollowedArtist = ({ artist }) => {
     }
 
     return (
-        <div onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state : artist })} className='d-flex-row align-items-center bg-dark-gradient border-radius-1 mb-xs-3 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 gap-0_5em'>                        
+        <div onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state : {artist: artist} })} className='d-flex-row align-items-center bg-dark-gradient border-radius-1 mb-xs-3 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 gap-0_5em'>                        
                 <img className='followed-artist-img object-fit-cover border-radius-1' src={artist?.image} />
                 <div className='d-flex-col'>
                     <div className='mb-xs-2 d-flex-row'>

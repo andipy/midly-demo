@@ -7,7 +7,7 @@ const CardArtistHighlight = ({ artist, isFollowed, length }) => {
     const navigate = useNavigate()
 
     return (
-        <div className={`position-relative h-xs-22 overflow-clip border-radius-04 no-shrink ${length === 1 ? 'artist-card-highlight-single' : 'artist-card-highlight-multiple'}`} onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: artist })}>
+        <div className={`position-relative h-xs-22 overflow-clip border-radius-04 no-shrink ${length === 1 ? 'artist-card-highlight-single' : 'artist-card-highlight-multiple'}`} onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: {artist: artist} })}>
             <div className='position-relative w-100 h-inherit mb-xs-4'>
                 <div className='overlay-card bg-dark-overlay-card z-index-1'></div>
                 <img className='h-inherit w-100 object-fit-cover' src={artist.image} />

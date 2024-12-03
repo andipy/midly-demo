@@ -19,8 +19,9 @@ import CardConnectSpotify from '../components/card-connect-spotify.component'
 import MessageWhitePoints from '../components/message-white-points.component'
 import Carousel from '../layout/carousel.layout'
 import CardQuiz from '../components/card-quiz.component'
-
-
+import FullScreenModalLayout from '../layout/full-screen-modal.layout'
+import NavbarModalFlashLeaderboardAnnouncement from '../components/navbar-modal-flash-leaderboard-announcement.component'
+import NavbarBackOnly from '../components/navbar-back-only.component'
 const ArtistRoute = () => {
 
     const navigate = useNavigate()
@@ -39,7 +40,7 @@ const ArtistRoute = () => {
     
     const [artist, setArtist] = useState()
     const fetchThisArtist = () => {
-        const thisArtist = artists.find(artist => state.id === artist.id)
+        const thisArtist = artists.find(artist => state.artist.id === artist.id)
         setArtist(thisArtist)
     }
 
@@ -186,6 +187,8 @@ const ArtistRoute = () => {
         setShowQuiz(!showQuiz)
     }
 
+   
+
     return (
         <>
             {showQuiz &&
@@ -258,7 +261,19 @@ const ArtistRoute = () => {
                     }
                 </div>
                 <Outlet context={artist} />
+
+                
+                
             </ContainerDefault>
+            <div className='position-relative w-100 d-flex-column j-c-center align-items-center'>
+            <Outlet /> 
+            </div>
+
+
+            
+
+            
+            
             
             {showMessageWhitePoints && 
                 <MessageWhitePoints

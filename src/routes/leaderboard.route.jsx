@@ -1,13 +1,17 @@
 import { useState, useEffect, useContext } from 'react'
-import { useOutletContext } from 'react-router-dom'
+import { Outlet, useOutletContext, useNavigate } from 'react-router-dom'
 
 import { LeaderboardsContext } from '../contexts/leaderboards.context'
 
 import CardLeaderboardFan from '../components/card-leaderboard-fan.component'
 
 import IconPoints from '../images/icons/icon-points.svg'
+import FullScreenModalLayout from '../layout/full-screen-modal.layout'
+import ContainerDefault from '../layout/container-default.layout'
 
 const LeaderboardRoute = () => {
+
+    const navigate = useNavigate()
 
     const context = useOutletContext()
 
@@ -36,6 +40,9 @@ const LeaderboardRoute = () => {
             return usernameNoEmail
         }
     }
+
+
+    
 
     return (
         <>
@@ -111,10 +118,20 @@ const LeaderboardRoute = () => {
                     fan={fan}
                     position={index + 1}
                     key={index}
+                    onClick={() => navigate(`/artist/${context.slug}/leaderboard/fan`, {state: {invokedModal : true, artist: context, fan: fan}})}
                 />)
             }
+            
+            
         </section>
-    }
+
+        
+        
+
+        
+    }   
+
+    
     </>
     )
 }

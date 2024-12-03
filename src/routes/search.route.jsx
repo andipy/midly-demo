@@ -152,7 +152,7 @@ const SearchRoute = () => {
                                                 <CardPreferredArtist 
                                                     artist = {artist}
                                                     key = {artist.id}
-                                                    onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state : artist })}
+                                                    onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state :{ artist : artist} })}
                                                 />
                                             )
                                         })}

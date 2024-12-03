@@ -41,6 +41,7 @@ import RegistrationRoute from './routes/registration.route'
 import RecoverPasswordRoute from './routes/recover-password.route'
 import BadgesRoute from './routes/badges.route'
 import PersonalUserPointsRoute from './routes/personal-user-points.route'
+import LeaderboardFanModalRoute from './routes/leaderboard-fan-modal.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -76,6 +77,7 @@ import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metri
 //SPOTIFY ROUTES
 import SpotifyAcceptRoute from './routes/spotify-accept.route.spotify'
 import SpotifyLoginRoute from './routes/spotify-login.route.spotify'
+import { FansProvider } from './contexts/fans.context'
 
 const router = createBrowserRouter([
 	{
@@ -99,10 +101,16 @@ const router = createBrowserRouter([
 		children: [
 		{
 			path: '/artist/:artistSlug/leaderboard',
-			element: <LeaderboardRoute />
+			element: <LeaderboardRoute />,
+			children: [
+				
+			]
 		},{
 			path: '/artist/:artistSlug/fanclub',
 			element: <Fanclub />
+		},{
+			path: '/artist/:artistSlug/leaderboard/fan',
+			element: <LeaderboardFanModalRoute />
 		}
 		]
 	},{
@@ -280,7 +288,9 @@ function App() {
 				<FlashLeaderboardsProvider>
 				<FanclubsProvider>
 					<LiveQuizProvider>
-					<RouterProvider router={router} />
+						<FansProvider>
+							<RouterProvider router={router} />
+						</FansProvider>
 					</LiveQuizProvider>
 				</FanclubsProvider>
 				</FlashLeaderboardsProvider>
