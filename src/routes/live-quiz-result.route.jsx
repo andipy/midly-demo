@@ -11,6 +11,7 @@ import CirclePoints from '../components/circle-points.component'
 import FullPageCenter from '../layout/full-page-center.layout'
 
 import IconPoints from '../images/icons/icon-points.svg'
+import WidgetPassedQuiz from '../components/widget-passed-quiz.component'
 const LiveQuizResultRoute = () => {
 
     const navigate = useNavigate()
@@ -33,12 +34,6 @@ const LiveQuizResultRoute = () => {
     console.log(today) */
 
     const sortQuizzes = (a,b) => {
-      const hasResponsesA = a.responses.some(response => response.userId === currentFan.id)
-      const hasResponsesB = b.responses.some(response => response.userId === currentFan.id)
-
-      if (hasResponsesA !== hasResponsesB) {
-          return hasResponsesA - hasResponsesB
-      }
       const dateA = new Date(a.playDate)
       const dateB = new Date(b.playDate)
       return dateB - dateA
@@ -49,35 +44,20 @@ const LiveQuizResultRoute = () => {
         const isArtistQuiz = quiz2.artistId === quiz.artistId
         const quizDate = new Date(quiz2.playDate)
         const isToday = quizDate < today 
+        const hasPlayed = quiz2.responses.some(response => response.userId === currentFan.id)
 
-        return isArtistQuiz && isToday
+        return isArtistQuiz && isToday && !hasPlayed
     })
     .sort((a, b) => sortQuizzes(a,b)) 
 
-    const chunkArray = (array, chunkSize) => {
-      const chunks = []
-      for (let i = 0; i < array.length; i += chunkSize) {
-          chunks.push(array.slice(i, i + chunkSize))
+    const handleNextQuiz = (event) => {
+      event.preventDefault()
+      if (orderedQuizzes?.length > 0) {
+        const nextQuiz = orderedQuizzes[0].id
+        navigate('/quiz', { replace: true, state: { id: nextQuiz } })
       }
-      return chunks
+      
     }
-  
-    const chunkedQuizzes = chunkArray(orderedQuizzes, 2)
-
-    /* array di punti */
-    /* const[points, setPoints] = useState([])
-
-      const generatePointArray = (result) => {
-          let pointArray = []
-          for ( var i = 0; i <= result; i++ ) {
-              pointArray.push(i)
-          }
-          setPoints(pointArray)        
-      }
-
-      useEffect(() => {
-          generatePointArray(result)        
-      }, []) */
     
     /* transizione */
     const [liveCounter, setLiveCounter] = useState(0)
@@ -130,19 +110,6 @@ const LiveQuizResultRoute = () => {
             <div className="d-flex-row j-c-center align-items-center">
               <CirclePoints points={result}/>
             </div>
-            {/* <div className="point-indicator">
-              <p className="gold point-plus fsize-xs-5">
-                +
-              </p>
-              <div className="point-column" style={{transform: `translateY(-${translation}px)`, transition: 'all 400ms cubic-bezier(.75,-0.01,.01,1) 40ms'}} >
-              {points.map((point, index) => {
-                return (
-                  <h4 key={index} className='point-dot gold'>{point}</h4>
-                )
-              })}
-              </div>
-              <p className="gold point-plus f-size-xs-5">punti</p>
-            </div> */}
             <div className='d-flex-column w-100 align-items-center j-c-center'>
               <div className='d-flex-row align-items-center j-c-center w-100'>
                 <p className="t-align-center ">
@@ -160,10 +127,7 @@ const LiveQuizResultRoute = () => {
                     , continua così!
                 </p>
               </div>
-              
-              
             </div>
-            
             
             {/* {quiz.originalAudio &&
             <section id='original-audio' className='mt-xs-8 w-100'>
@@ -190,16 +154,12 @@ const LiveQuizResultRoute = () => {
           
           {!(orderedQuizzes?.length === 0) ? ( 
           <div className='d-flex-column align-items-center mt-xs-12 '>
-            <div className='d-flex-column align-items-start w-100'>
-              <h2 className="fsize-xs-5 f-w-600 t-align-start">
-                Continua a giocare 
-              </h2>
-              <p className="t-align-start mb-xs-4 fsize-xs-2 f-w-200 grey-300">
-                Puoi fare i quiz vecchi a cui non hai ancora giocato, anche se non danno punti in classifica.
-              </p>
-            </div>
             
-            <section id='quiz' className='j-c-center align-items-center w-100'>
+            <WidgetPassedQuiz onClick={handleNextQuiz}/>
+
+            
+            
+            {/* <section id='quiz' className='j-c-center align-items-center w-100'>
               {chunkedQuizzes.map((chunk, index) => (
                 <div className='mb-xs-8 j-c-center align-items-center' key={index}>
                   <div className='d-flex-row j-c-space-between mt-xs-2 mt-lg-2'>
@@ -221,9 +181,15 @@ const LiveQuizResultRoute = () => {
                   </div>
                 </div>
               ))}
-            </section>
+            </section> */}
           </div>
-          ):('')}
+          ):(
+              <div className='d-flex-column bg-dark-soft w-100 j-c-center align-items-center border-radius-08 pb-xs-8 pt-xs-8'>
+                <p className="t-align-center fsize-xs-1 f-w-300 ">                
+                    Live quiz terminati.
+                </p>
+              </div>
+          )}
         </div>       
         <ContainerDefault containerSpecificStyle={'position-fixed bottom-5 z-index-999 w-100 '}>
           <button className="bg-acid-lime black font-body" onClick={closeClick}>
