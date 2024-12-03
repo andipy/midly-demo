@@ -101,13 +101,13 @@ const LiveQuizResultRoute = () => {
     <>
       <ContainerDefault containerSpecificStyle={'pb-xs-appbar z-index-4  position-relative'}>
         
-        <div className="d-flex-column align-items-center j-c-center mt-xs-50">
+        <div className="d-flex-column align-items-center j-c-center pt-xs-topbar">
         {date >= today ? (
           <>
-            <h3 className="t-align-center mb-xs-4 f-w-800 fsize-xs-6">
+            <h3 className="t-align-center mb-xs-0 f-w-800 fsize-xs-6">
               {resultTitle}
             </h3>
-            <div className="d-flex-row j-c-center align-items-center">
+            <div className="d-flex-row j-c-center align-items-center ">
               <CirclePoints points={result}/>
             </div>
             <div className='d-flex-column w-100 align-items-center j-c-center'>
@@ -153,9 +153,9 @@ const LiveQuizResultRoute = () => {
 
           
           {!(orderedQuizzes?.length === 0) ? ( 
-          <div className='d-flex-column align-items-center mt-xs-12 '>
+          <div className='d-flex-column align-items-center mt-xs-8 '>
             
-            <WidgetPassedQuiz onClick={handleNextQuiz}/>
+            <WidgetPassedQuiz image={quiz.image} onClick={handleNextQuiz}/>
 
             
             

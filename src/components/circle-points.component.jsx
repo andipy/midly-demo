@@ -27,26 +27,26 @@ function CirclePoints({ points }) {
     return (
         <div className=''>
             <div className='countdown-circle'>
-                <svg width="250" height="250">
-                    <circle r="95" cx="125" cy="125" className="track" style={{ fill: 'rgba(0,0,0,0.3)', stroke: '#8d8d8d', strokeWidth: '30px'}}></circle>
+                <svg width="140" height="140">
+                    <circle r="55" cx="70" cy="70" className="track" style={{ fill: 'rgba(0,0,0,0.3)', stroke: '#8d8d8d', strokeWidth: '15px'}}></circle>
                     {/* Cerchio del progresso */}
                     <circle
-                        r="95"
-                        cx="125"
-                        cy="125"
+                        r="55"
+                        cx="70"
+                        cy="70"
                         className="progress"
                         style={{
                             fill: 'none',
                             stroke: '#DAEF64',
-                            strokeWidth: '30px',
+                            strokeWidth: '15px',
                             strokeDasharray: `${circumference} ${circumference}`,
                             strokeDashoffset: circumference - (progressPercent / 100) * circumference
                         }}
                     ></circle>
                     <text
                         x="50%"
-                        y="50%"
-                        style={{ transform: "none", fill: '#DAEF64', fontSize: '85px', fontWeight: "bold" }}
+                        y="53%"
+                        style={{ transform: "none", fill: '#DAEF64', fontSize: '55px', fontWeight: "bold" }}
                         dominantBaseline="middle"
                         textAnchor="middle"
                     >
