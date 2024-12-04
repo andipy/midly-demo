@@ -789,7 +789,7 @@ animation: dot-loader-after 1s infinite linear;
 }
 
 .transition-1s {
-  transition: all 1s ease-out;
+  transition: all 1s cubic-bezier(1, -0.31, 0.62, 0.63);
 }
 
 /******************************************/
@@ -1964,11 +1964,41 @@ animation: dot-loader-after 1s infinite linear;
 .h-min-100vh {
   min-height: 100vh;
 }
+.h-min-100 {
+  min-height: 100%;
+}
+.h-min-105 {
+  min-height: 105%;
+}
+.h-min-110 {
+  min-height: 110%;
+}
+.h-min-115 {
+  min-height: 115%;
+}
+.h-min-120 {
+  min-height: 120%;
+}
+.h-min-125 {
+  min-height: 125%;
+}
+.h-min-130 {
+  min-height: 130%;
+}
+.h-min-135 {
+  min-height: 135%;
+}
+.h-min-140 {
+  min-height: 140%;
+}
 .h-max-30vh {
   max-height: 30vh;
 }
 .h-inherit {
   height: inherit;
+}
+.w-inherit {
+  width: inherit;
 }
 .h-artist-card-full {
   height: calc(88vh - calc(var(--app-bar-height) + var(--top-bar-height)));
@@ -2639,6 +2669,12 @@ nav .container {
   }
   .white-placeholder::placeholder {
     color: #FFFFFF;
+  }
+  .visible-placeholder::placeholder {
+    color: #bfbfbf;
+  }
+  .dark-placeholder::placeholder {
+    color: #161616;
   }
   input[type=checkbox] {
       width: 24px;

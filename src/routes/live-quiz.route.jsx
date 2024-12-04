@@ -32,7 +32,6 @@ const LiveQuizRoute = () => {
     const [timeLeft, setTimeLeft] = useState(60)
     const [userAnswer, setUserAnswer] = useState('')
     const [userIsPlaying, setUserIsPlaying] = useState(false)
-    const [placeholder, setPlaceholder] = useState('')
 
     const userAnswerRef = useRef('')
 
@@ -43,9 +42,6 @@ const LiveQuizRoute = () => {
 
     const playClick = () => {
         setUserIsPlaying(true)
-        setTimeout(() => {
-            setPlaceholder('Scrivi qui il verso mancante')
-        }, 1000)
     }
 
     useEffect(() => {
@@ -224,8 +220,8 @@ const LiveQuizRoute = () => {
 
             <FullPageCenter className='z-index-4 d-flex-column j-center align-items-center'>
                 <ContainerDefault containerSpecificStyle={'z-index-4'}>      
-                    <div className={`d-flex-row align-items-center mb-xs-4 gap-0_5em j-c-space-between mb-xs-4 transition-1s ${userIsPlaying ? '' : 'blur-4'}`}>
-                        <span className={`fsize-xs-5 f-w-600 transition-1s ${userIsPlaying ? '' : 'blur-4'}`}>{songChunk.songName}</span>
+                    <div className={`d-flex-row align-items-center mb-xs-4 gap-0_5em j-c-space-between mb-xs-4 transition-1s ${userIsPlaying ? '' : 'blur-5'}`}>
+                        <span className={`fsize-xs-5 f-w-600 transition-1s ${userIsPlaying ? '' : 'blur-5'}`}>{songChunk.songName}</span>
                         {quiz.instrumental ? (
                             <AudioPlayer
                             src={quiz?.instrumental}
@@ -237,22 +233,24 @@ const LiveQuizRoute = () => {
                     </div>
 
                     <div className='d-flex-column align-items-start gap-0_25em'>
-                        <p className={`fsize-xs-7 f-w-400 line-height-125 transition-1s ${userIsPlaying ? '' : 'blur-4'}`}>{songChunk.firstLine}</p>
+                        <p className={`fsize-xs-7 f-w-400 line-height-125 transition-1s ${userIsPlaying ? '' : 'blur-5'}`}>{songChunk.firstLine}</p>
 
                         <div className='w-100 h-xs-15 position-relative'>
                             {!userIsPlaying &&
-                                <p className='d-flex-row align-items-center t-align-center w-80 h-inherit position-absolute-x top-0 z-index-5'>Hai 60 secondi per scrivere il verso mancante: fai partire il timer per scoprire la canzone da completare</p>
+                                <div className='d-flex-row align-items-center j-c-center t-align-center w-100 h-inherit position-absolute-x top-0 z-index-5 bg-dark-soft border-radius-06'>
+                                    <p className='w-85 f-w-500'>Hai 60 secondi per scrivere il verso mancante: fai partire il timer e scopri la canzone da completare</p>
+                                </div>
                             }
                             <textarea
-                                className={`bg-dark-soft white border-radius-06 fsize-xs-5 h-inherit ${userIsPlaying ? '' : 'white-placeholder t-align-center d-flex-column'}`}
-                                placeholder={userIsPlaying && placeholder}
+                                className={`bg-dark-soft white border-radius-06 fsize-xs-5 h-inherit transition-1s ${userIsPlaying ? '' : 'blur-5'}`}
+                                placeholder={'Scrivi qui il verso mancante'}
                                 value={userAnswer}
                                 onChange={(e) => setUserAnswer(e.target.value)}
                                 disabled={!userIsPlaying}
                             ></textarea>
                         </div>
 
-                        <p className={`fsize-xs-7 f-w-400 line-height-125 transition-1s ${userIsPlaying ? '' : 'blur-4'}`}>{songChunk.secondLine}</p>
+                        <p className={`fsize-xs-7 f-w-400 line-height-125 transition-1s ${userIsPlaying ? '' : 'blur-5'}`}>{songChunk.secondLine}</p>
                     </div>
                         
                 </ContainerDefault>
@@ -281,7 +279,7 @@ const LiveQuizRoute = () => {
             <FullPageCenter className={`z-index-3 bg-blur transition-1s ${userIsPlaying ? 'bg-black-transp75' : 'bg-black-transp40'}`} />
 
             <FullPageCenter className='z-index-1 '>
-                 <img className='w-inherit h-inherit object-fit-cover' src={quiz.image} alt='' />
+                 <img className={`w-inherit h-inherit object-fit-cover transition-1s ${userIsPlaying ? 'h-min-100' : 'h-min-130'}`} src={quiz.image} alt='' />
             </FullPageCenter>
         </>
     )
