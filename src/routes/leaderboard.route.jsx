@@ -118,7 +118,12 @@ const LeaderboardRoute = () => {
                     fan={fan}
                     position={index + 1}
                     key={index}
-                    onClick={() => navigate(`/artist/${context.slug}/leaderboard/fan`, {state: {invokedModal : true, artist: context, fan: fan}})}
+                    onClick={(event) => {
+                        event.preventDefault(); // Evita comportamenti indesiderati
+                        navigate(`/artist/${context.slug}/leaderboard/fan`, {
+                          state: { invokedModal: true, artist: context, fan: fan },
+                        });
+                    }}                
                 />)
             }
             
@@ -130,6 +135,10 @@ const LeaderboardRoute = () => {
 
         
     }   
+
+    <div className='position-relative w-100 d-flex-column j-c-center align-items-center'>
+        <Outlet /> 
+    </div>
 
     
     </>

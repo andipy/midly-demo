@@ -2084,6 +2084,12 @@ animation: dot-loader-after 1s infinite linear;
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
+.avatar-120 {
+  width: var(--avatar-120);
+  height: var(--avatar-120);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
 
 /******************************************/
 /*********** ARTIST PAGE HEADER ***********/
@@ -2515,6 +2521,7 @@ nav .container {
   --avatar-72: 72px;
   --avatar-80: 80px;
   --avatar-96: 96px;
+  --avatar-120: 120px;
 }
 
 .ml-input-search-center {

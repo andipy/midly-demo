@@ -63,6 +63,16 @@ function LeaderboardFanModal() {
         setLeaderboardsFan(leaderboardsWithFan)
     }, [selectedFan])
 
+    const chunkArray = (array, chunkSize) => {
+        const chunks = []
+        for (let i = 0; i < array.length; i += chunkSize) {
+            chunks.push(array.slice(i, i + chunkSize))
+        }
+        return chunks
+    }
+    
+    const chunkedLeaderboardsFan = chunkArray(leaderboardsFan, 2)
+
 
     
         
@@ -77,7 +87,7 @@ function LeaderboardFanModal() {
         <ContainerDefault containerSpecificStyle={''}>
             <div className="d-flex-column w-100 j-c-center align-items-center">
                 <div className="d-flex-column j-c-center align-items-center">
-                    <img className="avatar-96 border-radius-100" src={state.fan.image}></img>
+                    <img className="avatar-120 border-radius-100" src={state.fan.image}></img>
                     <p className="fsize-xs-3 f-w-600">{state.fan.username}</p>
                 </div>
 
@@ -89,6 +99,7 @@ function LeaderboardFanModal() {
                                     <CardPreferredArtist 
                                         artist = {artist}
                                         key = {artist.id}
+                                        size={'small'}
                                         onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state :{ artist : artist} })}
                                     />
                                 )
@@ -104,6 +115,7 @@ function LeaderboardFanModal() {
                                     <CardPreferredArtist 
                                         artist = {artist}
                                         key = {artist.id}
+                                        size={'small'}
                                         onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state :{ artist : artist} })}
                                     />
                                 )
@@ -113,19 +125,22 @@ function LeaderboardFanModal() {
                 </div>
                 <div className="d-flex-column w-100 align-items-start mt-xs-4">
                     <h2 className="fsize-xs-4 f-w-600">Nelle classifiche di:</h2>
-                    <Carousel>
-                            {leaderboardsFan.map((artist, index) => {    
-                                 
-                                return (
-                                    <WidgetPositionFan 
-                                        key={index}                  
-                                        artistId={artist.artistId}    
-                                        leaderboard={artist.leaderboard} 
-                                        fanDetails={state.fan}   
-                                    />
-                                )
-                            })}
-                    </Carousel>
+                    {chunkedLeaderboardsFan.map((chunk, chunkIndex) => (
+                    <div className="w-100" key={chunkIndex}>
+                        <Carousel>
+                            {chunk.map((artist, index) => (
+                                <WidgetPositionFan
+                                    key={index}
+                                    artistId={artist.artistId}
+                                    leaderboard={artist.leaderboard}
+                                    fanDetails={state.fan}
+                                />
+                            ))}
+                        </Carousel>
+                    </div>
+
+                    ))}
+
 
                 </div>
 

@@ -44,7 +44,7 @@ function WidgetPositionFan({ artistId, leaderboard, fanDetails }) {
 
   return (
 
-    <article className='d-flex-row position-relative align-items-start j-c-start bg-dark-gradient border-radius-1 mb-xs-3 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-6 gap-0_5em '>
+    <article className='d-flex-row w-50 position-relative align-items-start j-c-start bg-dark-gradient border-radius-1 mb-xs-3 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-6 gap-0_5em '>
 			<img className='avatar-48 object-fit-cover border-radius-08' src={artist?.image} />
 			<div className='d-flex-column mt-xs-2 no-shrink '>
                 <p className='fsize-xs-1 white'>{artist?.artistName}</p>

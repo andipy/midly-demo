@@ -265,9 +265,7 @@ const ArtistRoute = () => {
                 
                 
             </ContainerDefault>
-            <div className='position-relative w-100 d-flex-column j-c-center align-items-center'>
-            <Outlet /> 
-            </div>
+            
 
 
             

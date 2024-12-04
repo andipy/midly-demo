@@ -99,20 +99,21 @@ const router = createBrowserRouter([
 		path: '/artist/:artistSlug',
 		element: <ArtistRoute />,
 		children: [
-		{
+		  {
 			path: '/artist/:artistSlug/leaderboard',
 			element: <LeaderboardRoute />,
 			children: [
-				
-			]
-		},{
+			  {
+				path: 'fan', 
+				element: <LeaderboardFanModalRoute />,
+			  },
+			],
+		  },
+		  {
 			path: '/artist/:artistSlug/fanclub',
-			element: <Fanclub />
-		},{
-			path: '/artist/:artistSlug/leaderboard/fan',
-			element: <LeaderboardFanModalRoute />
-		}
-		]
+			element: <Fanclub />,
+		  },
+		],
 	},{
 		path: '/artist/:artistSlug/invite-friend',
 		element: <InviteFriendRoute />
