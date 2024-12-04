@@ -41,7 +41,7 @@ import RegistrationRoute from './routes/registration.route'
 import RecoverPasswordRoute from './routes/recover-password.route'
 import BadgesRoute from './routes/badges.route'
 import PersonalUserPointsRoute from './routes/personal-user-points.route'
-import LeaderboardFanModalRoute from './routes/leaderboard-fan-modal.route'
+import FanPublicProfileRoute from './routes/fan-public-profile.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -105,7 +105,7 @@ const router = createBrowserRouter([
 			children: [
 			  {
 				path: 'fan', 
-				element: <LeaderboardFanModalRoute />,
+				element: <FanPublicProfileRoute />,
 			  },
 			],
 		  },

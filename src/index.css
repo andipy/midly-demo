@@ -525,6 +525,30 @@ animation: dot-loader-after 1s infinite linear;
 }
 }
 
+.load-border {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: conic-gradient(
+    var(--color-accent-primary) 0deg,
+    var(--color-accent-primary) 170deg,
+    transparent 180deg
+  );
+}
+
+.load-border img {
+  width: 90%; /* Reduce to leave space for the border */
+  height: 90%; /* Adjust to leave space for the border */
+  border-radius: 50%;
+  display: block;
+  background: var(--color-dark-soft);
+}
+
 /******************************************/
 /************** SPINNER LOADER ************/
 /******************************************/

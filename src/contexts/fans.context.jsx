@@ -58,7 +58,7 @@ export const FansProvider = ({ children }) => {
                 {artistId: 15},
                 {artistId: 6},
             ],
-            affinityWithCurrentUser: 97,
+            affinityWithCurrentUser: 42,
         },{
             id: 4,
             image: require('../images/pictures/ai_05.png'),
@@ -94,7 +94,7 @@ export const FansProvider = ({ children }) => {
                 {artistId: 13},
                 {artistId: 6},
             ],
-            affinityWithCurrentUser: 70,
+            affinityWithCurrentUser: 57,
             
         },,{
             id: 6,
@@ -113,7 +113,7 @@ export const FansProvider = ({ children }) => {
                 {artistId: 3},
                 {artistId: 16},
             ],
-            affinityWithCurrentUser: 100,
+            affinityWithCurrentUser: 98,
         },{
             id: 7,
             image: require('../images/pictures/ai_09.png'),
@@ -149,7 +149,7 @@ export const FansProvider = ({ children }) => {
                 {artistId: 3},
                 {artistId: 6},
             ],
-            affinityWithCurrentUser: 30,
+            affinityWithCurrentUser: 36,
         },{
             id: 9,
             image: require('../images/pictures/ai_06.png'),
@@ -167,7 +167,7 @@ export const FansProvider = ({ children }) => {
                 {artistId: 3},
                 {artistId: 6},
             ],
-            affinityWithCurrentUser: 19,
+            affinityWithCurrentUser: 48,
         }
     ])
 
