@@ -30,25 +30,21 @@ function LeaderboardFanModal() {
     const [leaderboardsFan, setLeaderboardsFan] = useState([])
 
     useEffect(() => {
-        console.log('Tutti i fan: ', fans)
-        console.log('Fan selezionato: ', state.fan)
-        const foundFan = fans.find(fan => fan.id === state.fan.userId)
-        console.log('found fan: ', foundFan)
+        const foundFan = fans.find(fan => fan?.id === state.fan.userId)
         setSelectedFan(foundFan)
 
         const items = artists.filter(artist => 
             foundFan.mostListenedArtistsOnSpotify.some(mostListenedArtist => artist.id === mostListenedArtist.artistId))
-        console.log('Più ascoltati:', items)
         setMostListenedArtists(items)
+
 
         const currentFanFavouriteArtists = currentFan?.followedArtists || []
         const foundFanFavouriteArtists = foundFan?.followedArtists || []
         const common = currentFanFavouriteArtists.filter(artist =>
-            foundFanFavouriteArtists.some(fanArtist => fanArtist.id === artist.id)
+            foundFanFavouriteArtists.some(fanArtist => fanArtist.artistId === artist.artistId)
         )
         const commonUserArtists = artists.filter(artist => 
             common.some(mostListenedArtist => artist.id === mostListenedArtist.artistId))
-        
         setCommonArtists(commonUserArtists)
 
     }, [state])

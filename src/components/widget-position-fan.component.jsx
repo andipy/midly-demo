@@ -5,42 +5,33 @@ import IconPoints from '../images/icons/icon-points.svg'
 import { ArtistsContext } from "../contexts/artists.context"
 function WidgetPositionFan({ artistId, leaderboard, fanDetails }) {
 
-     const { artists } = useContext(ArtistsContext)
-    useEffect(() => {
-        console.log(artistId)
-        console.log(leaderboard)
-        console.log(fanDetails)
-    }, [artistId])
+    const { artists } = useContext(ArtistsContext)
 
     const [artist, setArtist] = useState()
 
      useEffect(() => {
-        const foundArtist = artists.find(artist => artist.id === artistId);
+        const foundArtist = artists.find(artist => artist.id === artistId)
         setArtist(foundArtist)
        
-    }, [artistId]);
+    }, [artistId])
 
     const [points, setPoints] = useState(0)
     const [fanPosition, setFanPosition] = useState(0)
 
     useEffect(() => {
         if (leaderboard && fanDetails) {
-            // Ordina la leaderboard in base ai punti, in ordine decrescente
-            const sortedLeaderboard = [...leaderboard].sort((a, b) => b.points - a.points);
+            const sortedLeaderboard = [...leaderboard].sort((a, b) => b.points - a.points)
 
-            // Trova l'entry del fan
-            const fanEntry = sortedLeaderboard.find(entry => entry.userId === fanDetails.userId);
+            const fanEntry = sortedLeaderboard.find(entry => entry.userId === fanDetails.userId)
 
-            // Se il fan è trovato, setta i punti e la posizione
             if (fanEntry) {
-                setPoints(fanEntry.points);
+                setPoints(fanEntry.points)
 
-                // Trova la posizione del fan nella leaderboard ordinata
-                const fanPosition = sortedLeaderboard.findIndex(entry => entry.userId === fanDetails.userId) + 1; // +1 per iniziare da 1
-                setFanPosition(fanPosition);
+                const fanPosition = sortedLeaderboard.findIndex(entry => entry.userId === fanDetails.userId) + 1 
+                setFanPosition(fanPosition)
             }
         }
-    }, [leaderboard, fanDetails]);  
+    }, [leaderboard, fanDetails])  
 
   return (
 
