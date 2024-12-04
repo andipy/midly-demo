@@ -1,9 +1,14 @@
-const CardPreferredArtist = ({ artist, size, onClick}) => {
+const CardPreferredArtist = ({ artist, size, onClick, index}) => {
 
 
     return (
         <div className='mr-xs-2 d-flex-column j-c-center align-items-center' onClick={onClick}>
             <div className={` ${size === 'small' ? 'avatar-56':'avatar-96'} border-radius-100  bg-dark-gradient position-relative`}>
+                {index && 
+                <div className="position-absolute top-0 right-0 bg-black white border-radius-100 pl-xs-8 avatar-20 border-radius-100">
+                    <p className="fsize-xs-1 f-w-300">{index+1}</p>
+                </div>
+                }
             {/* <div className='avatar-96 border-radius-100 overlay-card bg-dark-overlay-card z-index-1'></div> */}                
                 <img className={` ${size === 'small' ? 'avatar-56':'avatar-96'} border-radius-100 object-fit-cover border-radius-06`} src={artist.image} alt='' />
             </div>

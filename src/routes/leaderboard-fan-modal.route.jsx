@@ -12,6 +12,8 @@ import ContainerDefault from "../layout/container-default.layout"
 import Carousel from "../layout/carousel.layout"
 import CardPreferredArtist from "../components/card-preferred-artist.component"
 import WidgetPositionFan from "../components/widget-position-fan.component"
+import CardArtistHighlight from "../components/card-search-artist-highlight.component"
+import AffinityFanLevel from "../components/affinity-fan-level.component"
 function LeaderboardFanModal() {
 
     const navigate = useNavigate()
@@ -80,11 +82,17 @@ function LeaderboardFanModal() {
         <ContainerDefault containerSpecificStyle={''}>
             <div className="d-flex-column w-100 j-c-center align-items-center">
                 <div className="d-flex-column j-c-center align-items-center">
-                    <img className="avatar-120 border-radius-100" src={state.fan.image}></img>
+{/*             <img className="avatar-120 border-radius-100" src={state.fan.image}></img>*/} 
                     <p className="fsize-xs-3 f-w-600">{state.fan.username}</p>
+                    <AffinityFanLevel value={selectedFan?.affinityWithCurrentUser} max={100} image={state.fan.image} />
+                    <div className="d-flex-row align-items-center bg-dark-gradient border-radius-1 pl-xs-4 pr-xs-4 gap-0_25em mt-xs-2">
+                        <p className="fsize-xs-1 f-w-300 no-shrink">Affinità musicale:</p>
+                        <p className="fsize-xs-1 f-w-300 lime-400">{(selectedFan?.affinityWithCurrentUser / 100) * 100}%</p>
+
+                    </div>
                 </div>
 
-                <div className="d-flex-column w-100 align-items-start mt-xs-8">
+                <div className="d-flex-column w-100 align-items-start mt-xs-12">
                     <h2 className="fsize-xs-4 f-w-600">Artisti che amate entrambi:</h2>
                         <Carousel>
                             {commonArtists.map(artist => {                                            
@@ -100,23 +108,41 @@ function LeaderboardFanModal() {
                         </Carousel>
 
                 </div>
-                <div className="d-flex-column w-100 align-items-start mt-xs-8">
+                <div className="d-flex-column w-100 align-items-start mt-xs-12">
                     <h2 className="fsize-xs-4 f-w-600">A novembre ha ascoltato di più:</h2>
-                        <Carousel>
-                            {mostListenedArtists.map(artist => {                                            
-                                return (
-                                    <CardPreferredArtist 
-                                        artist = {artist}
-                                        key = {artist.id}
-                                        size={'small'}
-                                        onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state :{ artist : artist} })}
-                                    />
-                                )
-                            })}
-                        </Carousel>
+                        <div className="mt-xs-4 d-flex-column j-c-center align-items-center">
+                            {mostListenedArtists.length > 0 ? (
+                                        <CardArtistHighlight 
+                                            artist={mostListenedArtists[0]} 
+                                            key={mostListenedArtists[0]} 
+                                            length={1}
+                                            index={1}
+                                        />
+                                    ) : (
+                                        ''
+                            )}
+
+                        
+                            <div className="mt-xs-4 d-flex-row gap-1em">
+                                {mostListenedArtists.length > 1 ? (
+                                    mostListenedArtists.slice(1, 5).map((artist, index) => (
+                                        <CardPreferredArtist 
+                                            artist={artist}
+                                            key={artist.id}
+                                            size={'small'}
+                                            index={index+1}
+                                            onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: { artist: artist } })}
+                                        />
+                                    ))
+                                ) : (
+                                    ''
+                                )}
+                            </div>
+                            
+                        </div>
                     
                 </div>
-                <div className="d-flex-column w-100 align-items-start mt-xs-8">
+                <div className="d-flex-column w-100 align-items-start mt-xs-12">
                     <h2 className="fsize-xs-4 f-w-600">Nelle classifiche di:</h2>
                     {chunkedLeaderboardsFan.map((chunk, chunkIndex) => (
                     <div className="w-100" key={chunkIndex}>
