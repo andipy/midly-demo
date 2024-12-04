@@ -70,12 +70,33 @@ function LeaderboardFanModal() {
 
 
     
-        
+    
 
 
     const closeFanModal = () => {
         navigate(-1, { state : { invokedModal: false}})
     }
+
+    const [currentAffinity, setCurrentAffinity] = useState(0)
+    
+
+    useEffect(() => {
+        const duration = 1800;
+        let start = null
+        const targetValue = (selectedFan?.affinityWithCurrentUser / 100) * 100
+
+        const animate = (timestamp) => {
+            if (!start) start = timestamp
+            const progress = Math.min((timestamp - start) / duration, 1)
+            setCurrentAffinity(progress * targetValue)
+
+            if (progress < 1) {
+                requestAnimationFrame(animate)
+            }
+        };
+
+        requestAnimationFrame(animate)
+    }, [selectedFan])
   return (
    <FullScreenModalLayout>
         <NavbarBackOnly onClick={() => closeFanModal()}/>
@@ -87,7 +108,7 @@ function LeaderboardFanModal() {
                     <AffinityFanLevel value={selectedFan?.affinityWithCurrentUser} max={100} image={state.fan.image} />
                     <div className="d-flex-row align-items-center bg-dark-gradient border-radius-1 pl-xs-4 pr-xs-4 gap-0_25em mt-xs-2">
                         <p className="fsize-xs-1 f-w-300 no-shrink">Affinità musicale:</p>
-                        <p className="fsize-xs-1 f-w-300 lime-400">{(selectedFan?.affinityWithCurrentUser / 100) * 100}%</p>
+                        <p className="fsize-xs-1 f-w-300 lime-400">{Math.round(currentAffinity)}%</p>
 
                     </div>
                 </div>
