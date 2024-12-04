@@ -22,6 +22,8 @@ import CardQuiz from '../components/card-quiz.component'
 import FullScreenModalLayout from '../layout/full-screen-modal.layout'
 import NavbarModalFlashLeaderboardAnnouncement from '../components/navbar-modal-flash-leaderboard-announcement.component'
 import NavbarBackOnly from '../components/navbar-back-only.component'
+import FullPageCenter from '../layout/full-page-center.layout'
+import IconExit from '../images/icons/icon-exit.svg'
 const ArtistRoute = () => {
 
     const navigate = useNavigate()
@@ -71,7 +73,7 @@ const ArtistRoute = () => {
     
     const handleCompete = () => {
         if (userCompeting) {
-            const newfollowedArtists = currentFan.followedArtists.filter(leaderboard => leaderboard.artistId !== artist.id);
+            const newfollowedArtists = currentFan.followedArtists.filter(leaderboard => leaderboard.artistId !== artist.id)
             setCurrentFan(prev => ({ ...prev, followedArtists: newfollowedArtists }))
         } else {
             if ((currentFan.followedArtists.length === 4) && !currentFan.actions.some(action => action.type === 'FIVE_ARTISTS_FOLLOWED')) {
@@ -180,46 +182,69 @@ const ArtistRoute = () => {
         }, 600) 
     }, [])
 
-    const [showQuiz, setShowQuiz] = useState(false)
-
-    const handleQuizShow = () => {
-        console.log('Show quiz')
-        setShowQuiz(!showQuiz)
+    const sortQuizzes = (a,b) => {
+      const dateA = new Date(a.playDate)
+      const dateB = new Date(b.playDate)
+      return dateB - dateA
     }
+
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+
+    const orderedQuizzes = quizzes
+    .filter(quiz2 => {
+        const isArtistQuiz = quiz2.artistId === artist?.id
+        const quizDate = new Date(quiz2.playDate)
+        const isToday = quizDate <= today 
+        const hasPlayed = quiz2.responses.some(response => response.userId === currentFan.id)
+
+        return isArtistQuiz && isToday && !hasPlayed
+    })
+    .sort((a, b) => sortQuizzes(a,b)) 
+
+    const [quizEnded, setQuizEnded] = useState(false)
+
+    const handleQuizShow = (event) => {
+        event.preventDefault()
+      if (orderedQuizzes?.length > 0) {
+        const nextQuiz = orderedQuizzes[0].id
+        navigate('/quiz', { replace: true, state: { id: nextQuiz } })
+      } else {
+        setQuizEnded(true)
+      }
+      
+    }
+
+    const [isExiting, setIsExiting] = useState(false)
+
+    
+    useEffect(() => {
+        if (quizEnded) {
+            const exitDelay = setTimeout(() => {
+                setIsExiting(true)
+            }, 1000)
+
+            return () => clearTimeout(exitDelay)
+        }
+    }, [quizEnded])
+
+    useEffect(() => {
+        if (isExiting) {
+            const endDelay = setTimeout(() => {
+                setQuizEnded(false)
+                setIsExiting(false)
+            }, 400)
+
+            return () => clearTimeout(endDelay)
+        }
+    }, [isExiting])
+
 
    
 
     return (
         <>
-            {showQuiz &&
-            <div className='position-absolute top-0 z-index-999 w-100 j-c-center align-items-center bg-dark-gradient border-radius-bottom-08 expand-down slide-down'>
-                <ContainerDefault containerSpecificStyle={`d-flex-column align-items-center j-c-center `}>
-                    <div className=' w-100 overflow-x mt-xs-8'>
-                    <section id='quiz' className='mt-xs-2 mb-xs-2'>
-                        <h2 className='fsize-xs-5 f-w-600'>Gioca ai quiz</h2>
-                        <Carousel>
-                            {artistLiveQuizzes.map(quiz => {
-                                const hasPlayed = quiz.responses.some(play => play.userId === currentFan.id)
-                                return (
-                                    <CardQuiz
-                                        slug={quiz.artistSlug}
-                                        artName={quiz.artistName}
-                                        image={quiz.image}
-                                        quizAlreadyPlayed={hasPlayed}
-                                        isToday={false} //da modificare
-                                        key={quiz.id} 
-                                        id={quiz.id}
-                                    />
-                                )
-                            })}
-                        </Carousel>
-                    </section>
-                    </div>
-                </ContainerDefault>
-            </div>
-
-            } 
-            <NavbarArtistPage artist={artist} onClick={() => handleQuizShow()} quiz={showQuiz} />
+            <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)}  />
             <CoverArtistPage artist={artist} userCompeting={userCompeting} handleCompete={handleCompete} currentFan={currentFan}  />
             
 
@@ -265,11 +290,21 @@ const ArtistRoute = () => {
                 
                 
             </ContainerDefault>
+
+            {
+                quizEnded && 
+                <FullPageCenter className={'z-index-1100 bg-black-transp70'}>
+                    <ContainerDefault containerSpecificStyle={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+                        <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
+                            <h2 className='fsize-xs-3 f-w-300 t-align-center'>Non ci sono quiz di</h2>
+                            <h2 className='fsize-xs-3 f-w-300 t-align-center lime-400'>{artist?.artistName}</h2>
+                            <h2 className='fsize-xs-3 f-w-300 t-align-center'>disponibili per ora</h2>
+
+                        </div>
+                    </ContainerDefault>
+	            </FullPageCenter>
+            }
             
-
-
-            
-
             
             
             

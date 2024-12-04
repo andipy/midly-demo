@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 function CirclePoints({ points }) {
     const [progressPercent, setProgressPercent] = useState(0)
-    const radius = 100
+    const radius = 55
     const circumference = 2 * Math.PI * radius
 
     useEffect(() => {

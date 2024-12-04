@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import IconArrowLeft from '../images/icons/icon-arrowleft.svg'
-import IconArrowUp from '../images/icons/icon-arrowup.svg'
-import IconArrowDown from '../images/icons/icon-arrowdown.svg'
+/* import IconArrowUp from '../images/icons/icon-arrowup.svg'
+import IconArrowDown from '../images/icons/icon-arrowdown.svg'*/
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import IconPrize from '../images/icons/icon-prize-rank-card.svg'
 
@@ -55,17 +55,9 @@ const NavbarArtistPage = ({ artist, onClick, quiz }) => {
                     </h2>
                 </div>
 
-                {quiz === true ? (
-                    <div className='avatar-28 j-c-center align-items-center' onClick={onClick}>
-                        <img className='avatar-28 bg-dark-soft-transp75 border-radius-100 j-c-center align-items-center' src={IconArrowDown} alt='Back' />
-                    </div>
-                ): (
-                    <div className='avatar-28 j-c-center align-items-center' onClick={onClick}>
-                        <img className='avatar-28 bg-dark-soft-transp75 border-radius-100 j-c-center align-items-center' src={IconArrowUp} alt='Back' />
-                    </div>
-                )}
-
-                
+                <div className='bg-dark-soft-transp75 j-c-center align-items-center pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2 border-radius-1' onClick={onClick}>
+                    <h4 className={`fsize-xs-1 f-w-500 ${quiz ? 'white':'lime-400'}`}>Live quiz</h4>
+                </div>
 
                 {/* <div className={`${scrolled ? 'd-flex-row' : 'd-xs-none'} align-items-center j-c-center border-radius-100 avatar-36 bg-dark-soft-transp75 d-flex-row`}>
                 </div> */}

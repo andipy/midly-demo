@@ -17,7 +17,7 @@ export const FansProvider = ({ children }) => {
                 {artistId: 11}
             ],
             followedArtists: [
-                {artistId: 1},
+                {artistId: 1,},
                 {artistId: 2},
                 {artistId: 3},
                 {artistId: 6},

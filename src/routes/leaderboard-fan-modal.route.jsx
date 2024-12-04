@@ -50,13 +50,10 @@ function LeaderboardFanModal() {
     }, [state])
 
     useEffect(() => {
-            const leaderboardsWithFan = leaderboards.filter(leaderboard => {
-                // Controlla se il fan con selectedFan.id è presente nella leaderboard
-                return leaderboard.leaderboard.some(fan => fan.userId === selectedFan?.id);
-            })
-
-
-        setLeaderboardsFan(leaderboardsWithFan)
+        const filteredLeaderboards = leaderboards.filter(leaderboard => {
+            return selectedFan?.followedArtists.some(favArtist => favArtist.artistId === leaderboard.artistId)
+        })
+        setLeaderboardsFan(filteredLeaderboards)
     }, [selectedFan])
 
     const chunkArray = (array, chunkSize) => {
@@ -87,7 +84,7 @@ function LeaderboardFanModal() {
                     <p className="fsize-xs-3 f-w-600">{state.fan.username}</p>
                 </div>
 
-                <div className="d-flex-column w-100 align-items-start mt-xs-4">
+                <div className="d-flex-column w-100 align-items-start mt-xs-8">
                     <h2 className="fsize-xs-4 f-w-600">Artisti che amate entrambi:</h2>
                         <Carousel>
                             {commonArtists.map(artist => {                                            
@@ -103,7 +100,7 @@ function LeaderboardFanModal() {
                         </Carousel>
 
                 </div>
-                <div className="d-flex-column w-100 align-items-start mt-xs-4">
+                <div className="d-flex-column w-100 align-items-start mt-xs-8">
                     <h2 className="fsize-xs-4 f-w-600">A novembre ha ascoltato di più:</h2>
                         <Carousel>
                             {mostListenedArtists.map(artist => {                                            
@@ -119,7 +116,7 @@ function LeaderboardFanModal() {
                         </Carousel>
                     
                 </div>
-                <div className="d-flex-column w-100 align-items-start mt-xs-4">
+                <div className="d-flex-column w-100 align-items-start mt-xs-8">
                     <h2 className="fsize-xs-4 f-w-600">Nelle classifiche di:</h2>
                     {chunkedLeaderboardsFan.map((chunk, chunkIndex) => (
                     <div className="w-100" key={chunkIndex}>
