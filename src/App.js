@@ -42,7 +42,7 @@ import RecoverPasswordRoute from './routes/recover-password.route'
 import BadgesRoute from './routes/badges.route'
 import PersonalUserPointsRoute from './routes/personal-user-points.route'
 import FanPublicProfileRoute from './routes/fan-public-profile.route'
-
+import ShowCommentsRoute from './routes/show-comments.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -78,6 +78,9 @@ import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metri
 import SpotifyAcceptRoute from './routes/spotify-accept.route.spotify'
 import SpotifyLoginRoute from './routes/spotify-login.route.spotify'
 import { FansProvider } from './contexts/fans.context'
+
+//TEST ROUTES
+import NewComponentsTestRoute from './routes/new-components-test.route'
 
 const router = createBrowserRouter([
 	{
@@ -277,6 +280,15 @@ const router = createBrowserRouter([
 	}, {
 		path: '/spotify-login',
 		element: <SpotifyLoginRoute />
+	}, {
+		path: '/new-components-test',
+		element: <NewComponentsTestRoute />,
+		children: [
+			{
+				path: '/new-components-test/comments',
+				element: <ShowCommentsRoute />,
+			}
+		]
 	}
 ])
 

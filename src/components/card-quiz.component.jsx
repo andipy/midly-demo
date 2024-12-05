@@ -38,10 +38,10 @@ const CardQuiz = ({ artName, image, quizAlreadyPlayed, isToday, id }) => {
                 <div className='artist-card-multiple-row-challenge bg-dark-gradient border-radius-1 position-relative'>
                     <div className='overlay-card bg-dark-overlay-card border-radius-1 z-index-1'></div>
                     <img className='artist-card-multiple-row-challenge object-fit-cover border-radius-1' src={image} />
-                    <div className='d-flex-row position-absolute bottom-5 ml-xs-8 z-index-2 j-c-center align-items-center'>
+                    <div className='d-flex-row position-absolute bottom-5 ml-xs-8 z-index-2 j-c-start align-items-center w-100 gap-0_25em'>
                         <h5 className='fsize-xs-2 mb-xs-2 f-w-400 letter-spacing-1'>{artName}</h5>
                         {isToday &&
-                            <div className='bg-dark-gradient border-radius-100  d-flex-row j-c-center align-items-center avatar-24 ml-xs-4'>
+                            <div className='bg-dark-gradient border-radius-100  d-flex-row j-c-center align-items-center avatar-24 '>
                                 <div className='d-flex-row align-items-center'>
                                     <div className='fsize-xs-1'>{5} </div>
                                     <img className='avatar-12 ml-xs-2' src={IconPoints} alt='points' />
