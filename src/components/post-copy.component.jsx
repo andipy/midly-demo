@@ -93,7 +93,15 @@ const PostCopy = (post, hasUserSubscribed, onClick) => {
             </div>
             <div className="w-100 j-c-start d-flex-row">
                 {post.post.comments.length > 0 ? (
-                    <p className="lime-400 f-w-500 fsize-xs-1">Visualizza tutti i {post.post.comments.length} commenti</p>
+                    <p 
+                    className="lime-400 f-w-500 fsize-xs-1"
+                    onClick={(event) => {
+                        event.preventDefault()
+                        navigate(`/new-components-test/comments`, {
+                          state: { invokedModal: true},
+                      })}}>
+                        Visualizza tutti i {post.post.comments.length} commenti
+                    </p>
                 ) : (
                     <p className="grey-500 f-w-400 fsize-xs-1">Commenta per primo!</p>
                 )}
