@@ -395,23 +395,29 @@ const NewComponentsTest = () => {
 
       <h2 className="fsize-xs-5 f-w-600">Post pubblico con commenti foto multipla: </h2>
       <p>Data meno di 30 giorni fa: </p>
-      <PostCopy post={post3} hasUserSubscribed={true}/>
-      <h2 className="fsize-xs-5 f-w-600">Post privato foto: </h2>
-      <PostCopy post={post2} hasUserSubscribed={false}/>
+      <PostCopy post={post3} hasUserSubscribed={true} userType={'FAN'}/>
+      <h2 className="fsize-xs-5 f-w-600">Post privato utente non iscritto: </h2>
+      <PostCopy post={post2} hasUserSubscribed={false} userType={'FAN'}/>
       <h2 className="fsize-xs-5 f-w-600">Post pubblico foto singola: </h2>
-      <PostCopy post={post4} hasUserSubscribed={true}/>
+      <PostCopy post={post4} hasUserSubscribed={true} userType={'FAN'}/>
       <h2 className="fsize-xs-5 f-w-600">Post pubblico foto multipla e testo: </h2>
-      <PostCopy post={post5} hasUserSubscribed={true}/>
+      <PostCopy post={post5} hasUserSubscribed={true} userType={'FAN'}/>
       <h2 className="fsize-xs-5 f-w-600">Post pubblico solo testo: </h2>
-      <PostCopy post={post6} hasUserSubscribed={true}/>
+      <PostCopy post={post6} hasUserSubscribed={true} userType={'FAN'}/>
       <h2 className="fsize-xs-5 f-w-600">Post pubblico solo audio: </h2>
-      <PostCopy post={post7} hasUserSubscribed={true}/>
+      <PostCopy post={post7} hasUserSubscribed={true} userType={'FAN'}/>
       <h2 className="fsize-xs-5 f-w-600">Post pubblico con video: </h2>
-      <PostCopy post={post8} hasUserSubscribed={true}/>
+      <PostCopy post={post8} hasUserSubscribed={true} userType={'FAN'}/>
       <h2 className="fsize-xs-5 f-w-600">Post pubblico solo video: </h2>
-      <PostCopy post={post9} hasUserSubscribed={true}/>
+      <PostCopy post={post9} hasUserSubscribed={true} userType={'FAN'}/>
       <h2 className="fsize-xs-5 f-w-600">Post pubblico multi tutto: </h2>
-      <PostCopy post={post10} hasUserSubscribed={true}/>
+      <PostCopy post={post10} hasUserSubscribed={true} userType={'FAN'}/>
+      <h2 className="fsize-xs-5 f-w-600">Post privato utente iscritto: </h2>
+      <PostCopy post={post2} hasUserSubscribed={true} userType={'FAN'}/>
+      <h2 className="fsize-xs-5 f-w-600">Post artista che l'ha creato: </h2>
+      <PostCopy post={post10} hasUserSubscribed={false} userType={'ARTIST'}/>
+      <h2 className="fsize-xs-5 f-w-600">Post privato artista che l'ha creato: </h2>
+      <PostCopy post={post2} hasUserSubscribed={false} userType={'ARTIST'}/>
 
       
       

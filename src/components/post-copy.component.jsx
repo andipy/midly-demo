@@ -9,12 +9,13 @@ import IconShare from '../images/icons/icon-share-white.svg'
 import AudioPost from "./audio-post.component"
 
 
-const PostCopy = (post, hasUserSubscribed, onClick) => {
+const PostCopy = ({post, hasUserSubscribed, onClick, userType}) => {
+    console.log(hasUserSubscribed)
     const navigate = useNavigate()
     const [showCaption, setShowCaption] = useState(false)
     const [days, setDays] = useState(0)
     useEffect(() => {
-        const specificDate = new Date(post.post.createdAt) // Inserisci qui la data specifica
+        const specificDate = new Date(post.createdAt) // Inserisci qui la data specifica
         const currentDate = new Date()
 
         const timeDifference = currentDate - specificDate
@@ -24,7 +25,7 @@ const PostCopy = (post, hasUserSubscribed, onClick) => {
     }, [post])
 
     const formatDate = () => {
-        const specificDate = new Date(post.post.createdAt)
+        const specificDate = new Date(post.createdAt)
         const day = specificDate.getDate()
         const month = specificDate.toLocaleString('default', { month: 'long' })
         const formattedMonth =  month
@@ -49,16 +50,16 @@ const PostCopy = (post, hasUserSubscribed, onClick) => {
   return (
     <>
     <div className='bg-dark-gradient border-radius-01 mb-xs-8 position-relative overflow-hidden d-flex-column j-c-start align-items-center pt-xs-4 pr-xs-4 pl-xs-4 pb-xs-4'>
-        {!post.post.settings.isPrivate &&
+        {!post.settings.isPrivate && userType == 'FAN' &&
                 <p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>
         }
         {/*Post foto, video, audio e testo o foto singola o video singolo o audio singolo*/}
-        {(isImage(post.post.media[0]) || isVideo(post.post.media[0]) || isAudio(post.post.media[0])) && 
+        {(isImage(post.media[0]) || isVideo(post.media[0]) || isAudio(post.media[0])) && 
         <div className={`border-radius-04 w-100 h-100 `}>
             <div className={`w-100 h-300px j-c-center align-items-center border-radius-02 overflow-all-hidden position-relative`}>
-                <div className={`${post.post.settings.isPrivate ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
-                    {post.post.media.length > 0 ? (
-                        <SwipeCarousel images={post.post.media} text={post.post.text} />
+                <div className={`${(post.settings.isPrivate && hasUserSubscribed === false && userType === 'FAN') ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
+                    {post.media.length > 0 ? (
+                        <SwipeCarousel images={post.media} text={post.text} />
 
                     ) : (
                         <>
@@ -69,17 +70,17 @@ const PostCopy = (post, hasUserSubscribed, onClick) => {
         </div>
         }
         {/*Post solo testo*/}
-        {post.post.media.length === 0 &&
+        {post.media.length === 0 &&
         <div className={`border-radius-04 w-100 h-100 `}>
             <div className={`w-100 h-300px j-c-center align-items-center border-radius-02 overflow-all-hidden position-relative`}>
-                <div className={`${post.post.settings.isPrivate ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
-                    {post.post.media.length > 0 ? (
+                <div className={`${(post.settings.isPrivate && hasUserSubscribed === false && userType=== 'FAN') ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
+                    {post.media.length > 0 ? (
                         <>
                         </>
                     ) : (
                         <>
                         <div className="w-100 h-100 bg-black d-flex-row j-c-center align-items-center pr-xs-2 pl-xs-2">
-                            <p className="fsize-xs-8 t-align-center f-w-600">{post.post.text}</p>
+                            <p className="fsize-xs-8 t-align-center f-w-600">{post.text}</p>
                         </div>
                         </>
                     )}
@@ -87,13 +88,13 @@ const PostCopy = (post, hasUserSubscribed, onClick) => {
             </div>
         </div>
         }
-        {post.post.settings.isPrivate === false ? (
+        {(post.settings.isPrivate === false || (post.settings.isPrivate === true && hasUserSubscribed === true) || userType === 'ARTIST') ? (
             <>
             <div className="d-flex-row w-100 j-c-space-between align-items-center mt-xs-2 pl-xs-2 pr-xs-2">
                 <div className="d-flex-row align-items-center gap-0_5em">
                     <div className="d-flex-row align-items-center gap-0_25em">
                         <img className="avatar-24" src={IconLike}/>
-                        <p className="fsize-xs-1">{post.post.likes}</p>
+                        <p className="fsize-xs-1">{post.likes}</p>
                     </div>
                     <div className="d-flex-row align-items-center gap-0_25em">
                         <img className="avatar-24" src={IconComments} 
@@ -103,41 +104,43 @@ const PostCopy = (post, hasUserSubscribed, onClick) => {
                               state: { invokedModal: true},
                           })}}
                           />
-                        <p className="fsize-xs-1">{post.post.comments.length}</p>
+                        <p className="fsize-xs-1">{post.comments.length}</p>
                     </div>
                     <div className="d-flex-row align-items-center gap-0_25em">
                         <img className="avatar-24" src={IconShare}/>
-                        <p className="fsize-xs-1">{post.post.shares}</p>
+                        <p className="fsize-xs-1">{post.shares}</p>
                     </div>
                 </div>
                 <div className="d-flex-row">
-                    <img className="avatar-24" src={IconSettings}/>
+                    {userType == 'ARTIST' &&
+                        <img className="avatar-24" src={IconSettings}/>
+                    }
                 </div>
 
             </div>
             <div className="w-100 d-flex-row">
             <p className="pre-wrap mb-xs-1 grey-200 f-w-300 fsize-xs-1">
-                {post.post.caption.length > 95 
+                {post.caption.length > 95 
                 ? <>
                     {showCaption === true 
                     ?   <>
-                            {post.post.caption}
+                            {post.caption}
                             <span className="grey-400 f-w-500" onClick={() => setShowCaption(false)}>   meno</span>
                         </>
                     :
                         <>
-                        {post.post.caption.slice(0, 95)}...
+                        {post.caption.slice(0, 95)}...
                         <span className="lime-400 f-w-500" onClick={() => setShowCaption(true)}> altro</span>
                         </>
 
                     }
                     
                     </>
-                : post.post.caption}
+                : post.caption}
             </p>
             </div>
             <div className="w-100 j-c-start d-flex-row">
-                {post.post.comments.length > 0 ? (
+                {post.comments.length > 0 ? (
                     <p 
                     className="lime-400 f-w-500 fsize-xs-1"
                     onClick={(event) => {
@@ -145,7 +148,7 @@ const PostCopy = (post, hasUserSubscribed, onClick) => {
                         navigate(`/new-components-test/comments`, {
                           state: { invokedModal: true},
                       })}}>
-                        Visualizza tutti i {post.post.comments.length} commenti
+                        Visualizza tutti i {post.comments.length} commenti
                     </p>
                 ) : (
                     <p className="grey-500 f-w-400 fsize-xs-1">Commenta per primo!</p>
