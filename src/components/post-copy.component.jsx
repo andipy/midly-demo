@@ -10,7 +10,6 @@ import AudioPost from "./audio-post.component"
 
 
 const PostCopy = ({post, hasUserSubscribed, onClick, userType}) => {
-    console.log(hasUserSubscribed)
     const navigate = useNavigate()
     const [showCaption, setShowCaption] = useState(false)
     const [days, setDays] = useState(0)
