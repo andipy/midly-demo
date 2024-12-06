@@ -35,7 +35,6 @@ const ShowCommentsRoute = () => {
                 <div className='d-flex-column w-100 j-c-center align-items-center'>
                     <h4>Commenti</h4>
                 </div>
-			
 			</ContainerDefault>
 		</FullScreenModalLayout> 
 	)
