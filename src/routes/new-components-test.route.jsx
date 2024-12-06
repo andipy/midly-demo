@@ -8,6 +8,8 @@ import PostCopy from "../components/post-copy.component"
 import SwipeCarousel from "../layout/swipe-carousel.layout"
 import img1 from '../images/pictures/current-fan.jpg'
 import img2 from '../images/pictures/ai_01.png'
+import aud1 from '../assets/audio/live-quiz/dimmi-che-ce-thasup-vox.mp3'
+import vid1 from '../assets/video/video-test.MP4'
 const NewComponentsTest = () => {
 
 
@@ -121,6 +123,167 @@ const NewComponentsTest = () => {
     ],
     createdAt: '2024-12-03'
   }
+  const post5 = {
+    id: 0,
+    artistId: 2,
+    media: [img2, img1],
+    text: 'Ci vediamo a San Siro!',
+    caption: 'Caption del contenuto, scritta dall artista e trocata al massimo alla seconda riga se diventa troppo lunga',
+    link: {
+        url: '',
+        name: ''
+    },
+    settings: {
+        isPrivate: false
+    },
+    likes: 23,
+    shares: 23,
+    comments: [
+      {
+        userId: 1,
+        text: 'Ciao come stai?'
+      },
+      {
+        userId: 2,
+        text: 'Bellissimo!'
+      },
+      {
+        userId: 1,
+        text: 'Ti amo'
+      },
+      {
+        userId: 6,
+        text: 'Mi manchi '
+      },
+    ],
+    createdAt: '2024-12-03'
+  }
+
+  const post6 = {
+    id: 0,
+    artistId: 2,
+    media: [],
+    text: 'Ci vediamo a San Siro!',
+    caption: 'Caption del contenuto, scritta dall artista e trocata al massimo alla seconda riga se diventa troppo lunga',
+    link: {
+        url: '',
+        name: ''
+    },
+    settings: {
+        isPrivate: false
+    },
+    likes: 23,
+    shares: 23,
+    comments: [
+      {
+        userId: 1,
+        text: 'Ciao come stai?'
+      },
+      {
+        userId: 2,
+        text: 'Bellissimo!'
+      },
+      {
+        userId: 1,
+        text: 'Ti amo'
+      },
+      {
+        userId: 6,
+        text: 'Mi manchi '
+      },
+    ],
+    createdAt: '2024-12-03'
+  }
+
+  const post7 = {
+    id: 0,
+    artistId: 2,
+    media: [aud1],
+    text: '',
+    caption: 'Caption del contenuto, scritta dall artista e trocata al massimo alla seconda riga se diventa troppo lunga',
+    link: {
+        url: '',
+        name: ''
+    },
+    settings: {
+        isPrivate: false
+    },
+    likes: 23,
+    shares: 23,
+    comments: [
+    ],
+    createdAt: '2024-12-03'
+  }
+  const post8 = {
+    id: 0,
+    artistId: 2,
+    media: [img2, vid1],
+    text: '',
+    caption: 'Caption del contenuto, scritta dall artista e trocata al massimo alla seconda riga se diventa troppo lunga',
+    link: {
+        url: '',
+        name: ''
+    },
+    settings: {
+        isPrivate: false
+    },
+    likes: 23,
+    shares: 23,
+    comments: [
+      {
+        userId: 1,
+        text: 'Ciao come stai?'
+      },
+      {
+        userId: 2,
+        text: 'Bellissimo!'
+      },
+      {
+        userId: 1,
+        text: 'Ti amo'
+      },
+      {
+        userId: 6,
+        text: 'Mi manchi '
+      },
+    ],
+    createdAt: '2024-12-03'
+  }
+  const post9 = {
+    id: 0,
+    artistId: 2,
+    media: [vid1],
+    text: '',
+    caption: 'Caption del contenuto, scritta dall artista e trocata al massimo alla seconda riga se diventa troppo lunga',
+    link: {
+        url: '',
+        name: ''
+    },
+    settings: {
+        isPrivate: false
+    },
+    likes: 23,
+    shares: 23,
+    comments: [
+      {
+        userId: 1,
+        text: 'Ciao come stai?'
+      },
+      {
+        userId: 2,
+        text: 'Bellissimo!'
+      },
+      {
+        userId: 1,
+        text: 'Ti amo'
+      },
+      {
+        userId: 6,
+        text: 'Mi manchi '
+      },
+    ],
+    createdAt: '2024-12-03'
+  }
 
   const notification1 = {
       id: 0,
@@ -200,6 +363,17 @@ const NewComponentsTest = () => {
       <PostCopy post={post2} hasUserSubscribed={false}/>
       <h2 className="fsize-xs-5 f-w-600">Post pubblico foto singola: </h2>
       <PostCopy post={post4} hasUserSubscribed={true}/>
+      <h2 className="fsize-xs-5 f-w-600">Post pubblico foto multipla e testo: </h2>
+      <PostCopy post={post5} hasUserSubscribed={true}/>
+      <h2 className="fsize-xs-5 f-w-600">Post pubblico solo testo: </h2>
+      <PostCopy post={post6} hasUserSubscribed={true}/>
+      <h2 className="fsize-xs-5 f-w-600">Post pubblico solo audio: </h2>
+      <PostCopy post={post7} hasUserSubscribed={true}/>
+      <h2 className="fsize-xs-5 f-w-600">Post pubblico con video: </h2>
+      <PostCopy post={post8} hasUserSubscribed={true}/>
+      <h2 className="fsize-xs-5 f-w-600">Post pubblico solo video: </h2>
+      <PostCopy post={post9} hasUserSubscribed={true}/>
+
 
       
       

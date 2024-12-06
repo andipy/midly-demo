@@ -80,6 +80,37 @@ a {
   background-color: var(--color-accent-primary);
 }
 
+.audio-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.play-pause-button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.play-pause-button:hover {
+  background: #0056b3;
+}
+
+.progress-bar-container {
+  width: 100%;
+  max-width: 300px;
+}
+
+.progress-bar {
+  transition: width 0.1s linear;
+}
+
 .chat-button {
   padding: 0;
   margin: 0;
@@ -1722,6 +1753,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .right-neg5 {
   right: -5%;
+}
+.right-neg10 {
+  right: -10%;
 }
 .right-neg30 {
   right: -30%;
