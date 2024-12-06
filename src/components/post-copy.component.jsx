@@ -52,16 +52,8 @@ const PostCopy = (post, hasUserSubscribed, onClick) => {
         {!post.post.settings.isPrivate &&
                 <p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>
         }
-        {/*Post solo audio*/}
-        {isAudio(post.post.media[0]) && 
-        <div className={`border-radius-04 w-100 `}>
-                <div className={`${post.post.settings.isPrivate ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100`}>
-                    <AudioPost src={post.post.media[0]} artistId={post.post.artistId}/>
-                </div>
-        </div>
-        }
-        {/*Post foto, video e testo o foto singola o video singolo*/}
-        {(isImage(post.post.media[0]) || isVideo(post.post.media[0])) && 
+        {/*Post foto, video, audio e testo o foto singola o video singolo o audio singolo*/}
+        {(isImage(post.post.media[0]) || isVideo(post.post.media[0]) || isAudio(post.post.media[0])) && 
         <div className={`border-radius-04 w-100 h-100 `}>
             <div className={`w-100 h-300px j-c-center align-items-center border-radius-02 overflow-all-hidden position-relative`}>
                 <div className={`${post.post.settings.isPrivate ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>

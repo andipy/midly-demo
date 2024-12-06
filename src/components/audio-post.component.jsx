@@ -3,10 +3,10 @@ import { useState, useRef, useContext, useEffect } from 'react'
 
 import { ArtistsContext } from '../contexts/artists.context'
 
-import IconPlay from '../images/icons/icon-play-white.png'
-import IconPause from '../images/icons/icon-pause-white.png'
+import IconPlay from '../images/icons/icon-play.svg'
+import IconPause from '../images/icons/icon-pause.svg'
 
-const AudioPost = ({ src, artistId }) => {
+const AudioPost = ({ src }) => {
 
   const { artists } = useContext(ArtistsContext)
 
@@ -38,17 +38,26 @@ const AudioPost = ({ src, artistId }) => {
     setProgress((newTime / audioRef.current.duration) * 100)
   }
 
-  const [artistImageSrc, setArtistImageSrc] = useState()
+  const format = (seconds) => {
+    const roundedSeconds = Math.round(seconds)
+    const minutes = Math.floor(roundedSeconds / 60)
+    const remainingSeconds = roundedSeconds % 60
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`
+
+  }
+
+  /* const [artistImageSrc, setArtistImageSrc] = useState()
 
   useEffect(() => {
     const artist = artists?.find(artist => artist?.id === artistId)
     if (artist) {
         setArtistImageSrc(artist.image)
     }
-  }, [artists, artistId])
+  }, [artists, artistId]) */
 
   return (
-    <div className="w-100 d-flex-row j-c-center align-items-center bg-black pr-xs-4 pb-xs-4 pl-xs-4 pt-xs-4 border-radius-08 gap-1em">
+    <div className="w-100 h-100 d-flex-column j-c-end align-items-center bg-black pr-xs-4 pb-xs-12 pl-xs-4 pt-xs-4 border-radius-02">
+
       <audio
         ref={audioRef}
         src={src}
@@ -58,9 +67,7 @@ const AudioPost = ({ src, artistId }) => {
 
       
     
-      <button className="avatar-20 bg-black" onClick={togglePlayPause}>
-        {isPlaying ? (<img className='avatar-20' src={IconPause}/>) : (<img className='avatar-20' src={IconPlay}/>)}
-      </button>
+      
 
       <div
         className=""
@@ -84,8 +91,19 @@ const AudioPost = ({ src, artistId }) => {
           }}
         ></div>
         
+        
+        
       </div>
-      <img className='avatar-36 border-radius-100' src={artistImageSrc}/>
+      <div className='w-100 d-flex-row j-c-space-between align-items-center mb-xs-4'>
+        <p className='fsize-xs-0 f-w-300'>{format(progress)}</p>
+        <p className='fsize-xs-0 f-w-300'>-{format((audioRef?.current?.duration-progress))}</p>
+      </div>
+      <div className='w-100 d-flex-row j-c-center align-items-center'>
+        <div className="avatar-36 bg-white border-radius-100 d-flex-row j-c-center align-items-center" onClick={togglePlayPause}>
+          {isPlaying ? (<img className='avatar-20' src={IconPause}/>) : (<img className='avatar-20' src={IconPlay}/>)}
+        </div>
+      </div>
+{/*       <img className='avatar-36 border-radius-100' src={artistImageSrc}/> */}
     </div>
   )
 }

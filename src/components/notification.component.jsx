@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from 'react'
 import { FansContext } from '../contexts/fans.context'
 
 import img2 from '../images/pictures/thasup.jpg'
+import ContainerDefault from '../layout/container-default.layout'
 
 const Notification = (notification) => {
 
@@ -45,34 +46,44 @@ const Notification = (notification) => {
   return (
     <>
     {notification.notification.read === true ? (
-        <div className="d-flex-row j-c-space-between align-items-center bg-black w-100 pt-xs-1 pb-xs-1 pr-xs-2 pl-xs-2">
-        <div className="d-flex-row gap-0_5em  align-items-center j-c-center">
-        <div className='avatar-6 bg-black border-radius-100'></div>
+        <div className="d-flex-row j-c-start align-items-center bg-black w-100vw ">
+            <div className='pl-xs-2'>
+                <div className='avatar-6 bg-black border-radius-100'></div>
+            </div>
+        <ContainerDefault >
+        <div className="d-flex-row align-items-center j-c-space-between pt-xs-1 pb-xs-1 pr-xs-2">
             <img className="avatar-48 border-radius-100" src={userImage}/>
             <div className="d-flex-column j-c-start align-items-start">
                 <p className="fsize-xs-1 f-w-600">{users}</p>
                 <p className="fsize-xs-0 f-w-200">{type}</p>
             </div>
+            <div className='d-flex-row '>
+                <img className='avatar-48 border-radius-02' src={img2} />
+            </div>
         </div>
-        <div className='d-flex-row '>
-            <img className='avatar-48 border-radius-02' src={img2} />
-        </div>
+        
+        </ContainerDefault>
         
     </div>
 
     ) : (
-        <div className="d-flex-row j-c-space-between align-items-center bg-dark-soft w-100 pt-xs-1 pb-xs-1 pr-xs-2 pl-xs-2">
-        <div className="d-flex-row gap-0_5em  align-items-center j-c-center">
-            <div className='avatar-6 bg-red-300 border-radius-100'></div>
+        <div className="d-flex-row j-c-start align-items-center bg-dark-soft w-100vw">
+            <div className='pl-xs-2'>
+                <div className='avatar-6 bg-red-300 border-radius-100'></div>
+            </div>
+        <ContainerDefault>
+        <div className="d-flex-row align-items-center j-c-space-between pt-xs-1 pb-xs-1 pr-xs-2">
             <img className="avatar-48 border-radius-100" src={userImage}/>
             <div className="d-flex-column j-c-start align-items-start">
                 <p className="fsize-xs-1 f-w-600">{users}</p>
                 <p className="fsize-xs-0 f-w-200">{type}</p>
             </div>
+            <div className='d-flex-row '>
+                <img className='avatar-48 border-radius-02' src={img2} />
+            </div>
         </div>
-        <div className='d-flex-row '>
-            <img className='avatar-48 border-radius-02' src={img2} />
-        </div>
+        
+        </ContainerDefault>
         
     </div>
 

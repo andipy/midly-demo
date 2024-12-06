@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react"
 import IconSpeaker from '../images/icons/icon-speaker.png'
+import AudioPost from '../components/audio-post.component'
 
 const SwipeCarousel = ({ images, text }) => {
   const [currentIndex, setCurrentIndex] = useState(0) 
@@ -59,6 +60,9 @@ const SwipeCarousel = ({ images, text }) => {
     return /\.(jpg|jpeg|png|gif|webp)$/i.test(media)
   }
 
+  const isAudio = (media) => {
+    return /\.(mp3|wav|ogg|m4a)$/i.test(media)
+  }
 
 
   const [isMuted, setIsMuted] = useState(true)
@@ -68,7 +72,7 @@ const SwipeCarousel = ({ images, text }) => {
   }
 
   return (
-    <div className=" d-flex-column w-100  position-relative h-100 j-c-center align-items-center">
+    <div className="d-flex-column w-100  position-relative h-100 j-c-center align-items-center">
     
     <div
       className="w-100 overflow-all-hidden position-relative h-100"
@@ -81,7 +85,7 @@ const SwipeCarousel = ({ images, text }) => {
       onTouchEnd={handleDragEnd}
     >
       <div
-        className="carousel-track d-flex-row h-100"
+        className="carousel-track d-flex-row h-100 w-100"
         ref={trackRef}
         style={{
           transform: `translateX(-${currentIndex * 100}%)`, 
@@ -90,23 +94,33 @@ const SwipeCarousel = ({ images, text }) => {
         {images.map((media, index) => (
           <div
             key={index}
-            className="carousel-slide h-100"
-            style={{
-              // Aggiungi uno stile per le immagini
-              backgroundImage: isImage(media) ? `url(${media})` : 'none',
-              display: isImage(media) ? 'block' : 'flex', // Solo per immagini
-            }}
-          >
+            className="carousel-slide h-100 overflow-all-hidden w-100 d-flex-row j-c-center align-items-center">
+              {isImage(media) ? (
+              <div className="w-100">
+                <img className="w-100 h-100" src={media} />
+              </div>
+              
+            ) : null}
+            
             {isVideo(media) ? (
-              <div className="w-100 position-relative">
-              <video className="h-100 w-100" autoPlay loop muted={isMuted}>
-                <source src={media} type="video/mp4" />
-              </video>
-              <div className="avatar-16 border-radius-100 position-absolute bottom-2 right-0 bg-white">
+              <>
+              {/* <div className="avatar-16 border-radius-100 position-absolute bottom-2 right-0 bg-white z-index-999 mr-xs-2">
                 <button className={`bg-acid-lime black font-body avatar-16 border-radius-100 `} onClick={toggleVolume}>
                   <img className="avatar-12" src={IconSpeaker}></img>
                 </button>
+              </div> */}
+              <div className="w-100 position-relative">
+                <video className="w-100" autoPlay loop muted={isMuted}>
+                  <source src={media} type="video/mp4" />
+                </video>
               </div>
+              </>
+              
+              
+            ) : null}
+            {isAudio(media) ? (
+              <div className="w-100 h-100 position-relative">
+                <AudioPost src={media} />
               </div>
               
             ) : null}

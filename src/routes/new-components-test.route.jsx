@@ -285,6 +285,42 @@ const NewComponentsTest = () => {
     createdAt: '2024-12-03'
   }
 
+  const post10 = {
+    id: 0,
+    artistId: 2,
+    media: [vid1, img2, aud1],
+    text: 'Ciao questa è una prova testo',
+    caption: 'Caption del contenuto, scritta dall artista e trocata al massimo alla seconda riga se diventa troppo lunga',
+    link: {
+        url: '',
+        name: ''
+    },
+    settings: {
+        isPrivate: false
+    },
+    likes: 23,
+    shares: 23,
+    comments: [
+      {
+        userId: 1,
+        text: 'Ciao come stai?'
+      },
+      {
+        userId: 2,
+        text: 'Bellissimo!'
+      },
+      {
+        userId: 1,
+        text: 'Ti amo'
+      },
+      {
+        userId: 6,
+        text: 'Mi manchi '
+      },
+    ],
+    createdAt: '2024-12-03'
+  }
+
   const notification1 = {
       id: 0,
       postId: 1,
@@ -340,15 +376,16 @@ const NewComponentsTest = () => {
   return (
     <>
     <NavbarDefault />
+    <h2 className="fsize-xs-5 f-w-600">Notifica letta: </h2>
+    <Notification notification={notification1} />
+    <h2 className="fsize-xs-5 f-w-600">Notifica non letta: </h2>
+    <Notification notification={notification2}/>
     <ContainerDefault>
       {/* <h2>Carousel slider:</h2>
       <div className="w-100 h-96px bg-dark-gradient overflow-all-hidden">
         <SwipeCarousel images={images} />
       </div> */}
-      <h2 className="fsize-xs-5 f-w-600">Notifica letta: </h2>
-      <Notification notification={notification1} />
-      <h2 className="fsize-xs-5 f-w-600">Notifica non letta: </h2>
-      <Notification notification={notification2}/>
+
       <h2 className="fsize-xs-5 f-w-600">Post pubblico foto multipla: </h2>
       <p>Data più di 30 giorni fa: </p>
       <PostCopy 
@@ -373,7 +410,8 @@ const NewComponentsTest = () => {
       <PostCopy post={post8} hasUserSubscribed={true}/>
       <h2 className="fsize-xs-5 f-w-600">Post pubblico solo video: </h2>
       <PostCopy post={post9} hasUserSubscribed={true}/>
-
+      <h2 className="fsize-xs-5 f-w-600">Post pubblico multi tutto: </h2>
+      <PostCopy post={post10} hasUserSubscribed={true}/>
 
       
       
