@@ -36,10 +36,6 @@ const FanclubPricingRoute = () => {
     }
 
     useEffect(() => {
-        if (pricing) {
-            updateThisFanclub()
-        }
-
         // Check if all mandatory fields are filled
         if (pricing) {
             setFilledMandatory(true)
@@ -57,10 +53,25 @@ const FanclubPricingRoute = () => {
             }
         })
     }, [])
+
+    const saveThisFanclub = () => {
+        setFanclubs(prevFanclubs => 
+            prevFanclubs.map(fanclub =>
+                fanclub.artistId === currentArtist.id
+                    ? {
+                        ...fanclub,
+                        pricing: pricing,
+                        isActive: true
+                    }
+                    : fanclub
+            )
+        )
+        navigate('/artist-app/fanclub')
+    }
     
     return (
         <>
-            <NavbarMultistep stepNumber={2} totalStepNumber={4} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
+            <NavbarMultistep stepNumber={2} totalStepNumber={2} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
             <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500 white'>Prezzo mensile del tuo fanclub</h3>
@@ -81,8 +92,8 @@ const FanclubPricingRoute = () => {
                 <ContainerDefault containerSpecificStyle='position-fixed bottom-5'>
                     <Button
                         disabled={filledMandatory ? false : true}
-                        style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Continua'
-                        onClick={() => navigate('/artist-app/fanclub/billing-info')}
+                        style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Salva'
+                        onClick={saveThisFanclub}
                     />
                 </ContainerDefault>
             </ContainerDefault>

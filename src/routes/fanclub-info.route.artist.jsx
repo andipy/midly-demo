@@ -84,7 +84,7 @@ const FanclubInfoRoute = () => {
 
     return (
         <>
-            <NavbarMultistep stepNumber={1} totalStepNumber={4} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
+            <NavbarMultistep stepNumber={1} totalStepNumber={2} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
             <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500 white'>Info del tuo fanclub</h3>

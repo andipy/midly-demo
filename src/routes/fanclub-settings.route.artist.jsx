@@ -18,7 +18,6 @@ const FanclubSettingsRoute = () => {
     useEffect(() => {
         fetchThisFanclub()
     }, [fanclubs])
-    
 
     return (
         <>
@@ -30,8 +29,8 @@ const FanclubSettingsRoute = () => {
                 </section>
 
                 <section className='mb-xs-4'>
-                    <h3 className='fsize-xs-5 f-w-600'>Cover image</h3>
-                    <img className='w-100 border-radius-06' src={fanclub?.image} />
+                    <h3 className='fsize-xs-5 f-w-600'>Cover</h3>
+                    <img className='w-100 border-radius-06' src={fanclub?.cover} />
                 </section>
 
                 <section className='mb-xs-4'>

@@ -29,7 +29,7 @@ const Navbar = ({ fanclub }) => {
                             <img className='avatar-32' src={IconSettings} alt='O' />
                         </div>
 
-                        <div className='avatar-32 d-flex-row align-items-center j-c-center'>
+                        <div className='avatar-32 d-flex-row align-items-center j-c-center' onClick={() => navigate('activity')}>
                             <img className='avatar-32' src={IconInbox} alt='M' />
                         </div>
                         

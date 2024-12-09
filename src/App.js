@@ -43,13 +43,11 @@ import BadgesRoute from './routes/badges.route'
 import PersonalUserPointsRoute from './routes/personal-user-points.route'
 import FanPublicProfileRoute from './routes/fan-public-profile.route'
 import ShowCommentsRoute from './routes/show-comments.route'
+
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
-import FanclubNameRoute from './routes/fanclub-name.route.artist'
-import FanclubCoverRoute from './routes/fanclub-cover.route.artist'
 import FanclubPricingRoute from './routes/fanclub-pricing.route.artist'
-import FanclubActivatedRoute from './routes/fanclub-activated.route.artist'
 import ContentCreationRoute from './routes/content-creation.route.artist'
 import MetricsRoute from './routes/metrics.route.artist'
 import FanclubSettingsRoute from './routes/fanclub-settings.route.artist'
@@ -62,7 +60,6 @@ import Cool1Route from './routes/cool-1.route'
 import Cool2Route from './routes/cool-2.route'
 import FanclubTermsRoute from './routes/fanclub-terms.route.artist'
 import FanclubInfoRoute from './routes/fanclub-info.route.artist'
-import FanclubBillingInfoRoute from './routes/fanclub-billing-info.route.artist'
 import FanclubPaymentInfoRoute from './routes/fanclub-payment-info.route.artist'
 import EarningsDashboardRoute from './routes/earnings-dashboard.route.artist'
 import EarningsCurrentMonthRoute from './routes/earnings-current-month.route.artist'
@@ -164,23 +161,11 @@ const router = createBrowserRouter([
 		path: '/artist-app/fanclub/info',
 		element: <FanclubInfoRoute />
 	},{
-		path: '/artist-app/fanclub/billing-info',
-		element: <FanclubBillingInfoRoute />
-	},{
 		path: '/artist-app/fanclub/payment-info',
 		element: <FanclubPaymentInfoRoute />
 	},{
-		path: '/artist-app/fanclub/name',
-		element: <FanclubNameRoute />
-	},{
-		path: '/artist-app/fanclub/cover',
-		element: <FanclubCoverRoute />
-	},{
 		path: '/artist-app/fanclub/pricing',
 		element: <FanclubPricingRoute />
-	},{
-		path: '/artist-app/fanclub/activated',
-		element: <FanclubActivatedRoute />
 	},{
 		path: '/artist-app/fanclub/settings',
 		element: <FanclubSettingsRoute />
@@ -291,7 +276,7 @@ const router = createBrowserRouter([
 			}
 		]
 	}, {
-		path: '/artist-app/fanclub-notifications',
+		path: '/artist-app/fanclub/activity',
 		element: <FanclubNotificationsRoute />
 	}
 ])

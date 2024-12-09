@@ -44,20 +44,6 @@ const FanclubPaymentInfoRoute = () => {
         )
     }
 
-    const saveThisFanclub = () => {
-        setFanclubs(prevFanclubs => 
-            prevFanclubs.map(fanclub =>
-                fanclub.artistId === currentArtist.id
-                    ? {
-                        ...fanclub,
-                        isActive: true
-                    }
-                    : fanclub
-            )
-        )
-        navigate('/artist-app/fanclub/activated')
-    }
-
     useEffect(() => {
         if (beneficiary !== undefined || iban !== undefined ) {
             updateThisFanclub()
@@ -101,7 +87,7 @@ const FanclubPaymentInfoRoute = () => {
                     <Button
                         disabled={filledMandatory ? false : true}
                         style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Termina e salva'
-                        onClick={saveThisFanclub}
+                        onClick={() => navigate('/artist-app/fanclub')}
                     />
                 </ContainerDefault>
             </ContainerDefault>

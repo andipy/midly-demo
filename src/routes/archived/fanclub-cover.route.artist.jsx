@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { FanclubsContext } from '../contexts/fanclubs.context'
-import { CurrentArtistContext } from '../contexts/currentArtist.context'
+import { FanclubsContext } from '../../contexts/fanclubs.context'
+import { CurrentArtistContext } from '../../contexts/currentArtist.context'
 
-import Button from '../components/button.component'
-import NavbarMultistep from '../components/navbar-multistep.component'
+import Button from '../../components/button.component'
+import NavbarMultistep from '../../components/navbar-multistep.component'
 
-import ContainerDefault from '../layout/container-default.layout'
+import ContainerDefault from '../../layout/container-default.layout'
 
 const FanclubCoverRoute = () => {
 
