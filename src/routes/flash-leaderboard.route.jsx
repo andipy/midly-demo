@@ -384,7 +384,7 @@ const FlashLeaderboardRoute = () => {
                 <LiveMessages leaderboard={leaderboard} />
             : artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
                 <div className='w-100vw bg-dark border-lime position-fixed bottom-0-pure z-index-999 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4'>
-                    <p className='fsize-xs-2 mb-xs-2'>La classifica flash per <span className='lime-400 f-w-600'> {leaderboard?.song.title ? leaderboard?.song.title : leaderboard?.album.title && leaderboard?.song.title}</span> è terminata, ma stiamo ancora contando i tuoi punti! Torna alle ore 14:00 del 22 Novembre per vedere la tua posizione finale.</p>
+                    <p className='fsize-xs-2 mb-xs-2'>La classifica flash di <span className='lime-400 f-w-600'> {leaderboard?.song.title ? leaderboard?.song.title : leaderboard?.album.title && leaderboard?.song.title}</span> è terminata, ma stiamo ancora contando i tuoi punti! Torna alle ore 14:00 del 22 Novembre per vedere la tua posizione finale.</p>
                 </div>
             }
             <Outlet />

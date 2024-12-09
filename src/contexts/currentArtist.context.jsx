@@ -38,10 +38,8 @@ export const CurrentArtistProvider = ({ children }) => {
                 ]
             }
         ],
-        name: '',
-        surname: 'Cognomeartista',
-        iban: 'IT1234567890123456789945',
-
+        beneficiary: '',
+        iban: ''
     })
 
     return (

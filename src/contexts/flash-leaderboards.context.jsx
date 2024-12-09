@@ -14,8 +14,8 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             announceMessage: 'Sta per aprire la classifica flash di thasup',
             announceStartDate: '2024-11-07 13:00:00',
             announceEndDate: '2024-12-30 00:00:00',
-            rankStartDate: '2024-12-10 14:30:00',
-            rankEndDate: '2024-12-30 13:30:00',
+            rankStartDate: '2024-12-09 14:30:00',
+            rankEndDate: '2024-12-12 16:00:00',
             participants: 7139,
             totalStreams: 108712,
             image: require('../images/pictures/thasup-album-cover.jpeg'),
@@ -468,8 +468,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
         return () => {
             clearInterval(intervalId)
         }
-
-    }, []) 
+    }, [artists]) 
 
     return (
         <FlashLeaderboardsContext.Provider value={{ flashLeaderboards, setFlashLeaderboards }}>
