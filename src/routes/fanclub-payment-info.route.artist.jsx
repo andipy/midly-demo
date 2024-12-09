@@ -14,7 +14,7 @@ const FanclubPaymentInfoRoute = () => {
 
     const navigate = useNavigate()
 
-    const { currentArtist } = useContext(CurrentArtistContext)
+    const { currentArtist, setCurrentArtist } = useContext(CurrentArtistContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
 
     const [filledMandatory, setFilledMandatory] = useState(false)
@@ -48,27 +48,37 @@ const FanclubPaymentInfoRoute = () => {
         if (beneficiary !== undefined || iban !== undefined ) {
             updateThisFanclub()
         }
-
-        // Check if all mandatory fields are filled
-        if (beneficiary && iban) {
-            setFilledMandatory(true)
-        } else {
-            setFilledMandatory(false)
-        }
+        
+        setFilledMandatory(!!beneficiary && !!iban)
     }, [beneficiary, iban])
 
     useEffect(() => {
-        fanclubs.map(fanclub => {
-            if ( fanclub.artistId === currentArtist.id ) {
-                if ( fanclub.beneficiary ) {
-                    setBeneficiary(fanclub.beneficiary)
-                }
-                if ( fanclub.iban ) {
-                    setIban(fanclub.iban)
-                }
-            }
-        })
-    }, [fanclubs])
+        if (currentArtist?.beneficiary !== '') {
+            setBeneficiary(currentArtist?.beneficiary)
+        }
+        if (currentArtist?.iban !== '') {
+            setIban(currentArtist?.iban)
+        }
+    }, [currentArtist])
+
+    const handleSubmit = () => {
+        if (beneficiary) {
+            setCurrentArtist(prevArtist => ({
+                ...prevArtist,
+                beneficiary,
+            }))
+            console.log('Submit successful', { beneficiary, iban });
+        }
+        if (iban) {
+            setCurrentArtist(prevArtist => ({
+                ...prevArtist,
+                iban,
+            }));
+            console.log('Submit successful', { beneficiary, iban });
+        }
+
+        navigate(-1)
+    }
 
     return (
         <>
@@ -79,15 +89,15 @@ const FanclubPaymentInfoRoute = () => {
 
                 <p className='fsize-xs-3 grey-200 mt-xs-4'>Dove vuoi ricevere i tuoi ricavi.</p>
                 
-                <input className="bg-dark-soft white letter-spacing-1 border-radius-06 mt-xs-4" type="text" placeholder="Immetti il nome del beneficiario" value={beneficiary} onChange={handleBeneficiary} />
+                <input className="bg-dark-soft white letter-spacing-1 border-radius-06 mt-xs-4" type="text" placeholder={`${currentArtist?.beneficiary === '' ? 'Immetti il nome del beneficiario' : currentArtist?.beneficiary}`} value={beneficiary} onChange={handleBeneficiary} />
 
-                <input className="bg-dark-soft white letter-spacing-1 border-radius-06 mt-xs-4" type="text" placeholder="Immetti l'IBAN" value={iban} onChange={handleIban} />
+                <input className="bg-dark-soft white letter-spacing-1 border-radius-06 mt-xs-4" type="text" placeholder={`${currentArtist?.iban === '' ? "Immetti l' IBAN" : currentArtist?.iban}`} value={iban} onChange={handleIban} />
 
                 <ContainerDefault containerSpecificStyle='position-fixed bottom-5'>
                     <Button
                         disabled={filledMandatory ? false : true}
-                        style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Termina e salva'
-                        onClick={() => navigate('/artist-app/fanclub')}
+                        style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Salva'
+                        onClick={() => handleSubmit()}
                     />
                 </ContainerDefault>
             </ContainerDefault>
