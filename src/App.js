@@ -66,6 +66,10 @@ import EarningsCurrentMonthRoute from './routes/earnings-current-month.route.art
 import EarningsLastMonthRoute from './routes/earnings-last-month.route.artist'
 import EarningsGraphRoute from './routes/earnings-graph.route.artist'
 import FanclubNotificationsRoute from './routes/fanclub-notifications.route.artist'
+import ProfileArtistRoute from './routes/profile.route.artist'
+import TermsConditionsArtistsRoute from './routes/terms-and-conditions-artists.route.artist'
+import PrivacyPolicyArtistsRoute from './routes/privacy-policy-artists.route.artist'
+import CookiePolicyArtistsRoute from './routes/cookie-policy-artists.route.artist'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -278,6 +282,18 @@ const router = createBrowserRouter([
 	}, {
 		path: '/artist-app/fanclub/activity',
 		element: <FanclubNotificationsRoute />
+	}, {
+		path: '/artist-app/profile',
+		element: <ProfileArtistRoute />
+	}, {
+		path: '/artist-app/terms-and-conditions-artists',
+		element: <TermsConditionsArtistsRoute />
+	}, {
+		path: '/artist-app/privacy-policy-artists',
+		element: <PrivacyPolicyArtistsRoute />
+	},  {
+		path: '/artist-app/cookie-policy-artists',
+		element: <CookiePolicyArtistsRoute />
 	}
 ])
 

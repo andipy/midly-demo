@@ -962,6 +962,9 @@ animation: dot-loader-after 1s infinite linear;
 .bg-red-400 {
   background-color: #E94359;
 }
+.bg-red-400-transp10 {
+  background-color: rgba(233, 67, 89, 0.1);
+}
 .bg-red-900 {
   background-color: #2D1C1C;
 }

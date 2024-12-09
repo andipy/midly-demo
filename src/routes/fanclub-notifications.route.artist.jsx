@@ -72,8 +72,8 @@ const FanclubNotificationsRoute = () => {
 			</ContainerDefault>
 
 			<div id='notifications'>
-				{notifications.map((notification) => (
-					<Notification notification={notification} />
+				{notifications.map((notification, index) => (
+					<Notification notification={notification} key={index} />
 				))}
 			</div>
 		</>

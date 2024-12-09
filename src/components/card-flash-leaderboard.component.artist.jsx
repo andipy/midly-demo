@@ -22,7 +22,6 @@ const CardFlashLeaderboard = () => {
 
     const fetchThisLeaderboard = () => {
         const thisLeaderboard = flashLeaderboards.filter(elem => currentArtist.id === elem.artistId)
-        console.log(thisLeaderboard)
         setLeaderboard(thisLeaderboard[0])
     }
 
@@ -45,7 +44,7 @@ const CardFlashLeaderboard = () => {
             } else if (now > convAnnounceStartDate && now < convRankEndDate) {
                 setValue('ONGOING')
             } else {
-                setValue('ENDED')
+                setValue('CLOSED')
             }
         }
 
@@ -81,7 +80,7 @@ const CardFlashLeaderboard = () => {
                     </div>
                 </div>
 
-            :
+            : value === 'CLOSED' ?
                 <div className='d-flex-column align-items-center j-c-center'>
                     <img className='avatar-48' src={IconTrophy} />
                     <h4 className='fsize-xs-3 mb-xs-8 letter-spacing-1 f-w-400 white t-align-center mt-xs-4 w-50'>Nessuna classifica flash al momento!</h4>
@@ -90,6 +89,7 @@ const CardFlashLeaderboard = () => {
                         <a href='mailto:daniel@midly.it' className='fsize-xs-2 letter-spacing-1 f-w-400 blue-300 t-align-center'>daniel@midly.it</a>
                     </div>
                 </div>
+            : <></>
             }
         </>
     )

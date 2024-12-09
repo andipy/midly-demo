@@ -37,7 +37,10 @@ export const CurrentArtistProvider = ({ children }) => {
                     {date:'2024-10-31', value: 4244},
                 ]
             }
-        ]
+        ],
+        name: '',
+        surname: 'Cognomeartista',
+        iban: 'IT1234567890123456789945',
 
     })
 
