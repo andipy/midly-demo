@@ -345,7 +345,7 @@ const NewComponentsTest = () => {
       ],
       read: true,
 
-    }
+  }
 
   
   const notification2 = {
@@ -364,7 +364,9 @@ const NewComponentsTest = () => {
       ],
       read: false,
 
-    }
+  }
+
+  
 
   
 

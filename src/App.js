@@ -68,6 +68,7 @@ import EarningsDashboardRoute from './routes/earnings-dashboard.route.artist'
 import EarningsCurrentMonthRoute from './routes/earnings-current-month.route.artist'
 import EarningsLastMonthRoute from './routes/earnings-last-month.route.artist'
 import EarningsGraphRoute from './routes/earnings-graph.route.artist'
+import FanclubNotificationsRoute from './routes/fanclub-notifications.route.artist'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -289,6 +290,9 @@ const router = createBrowserRouter([
 				element: <ShowCommentsRoute />,
 			}
 		]
+	}, {
+		path: '/artist-app/fanclub-notifications',
+		element: <FanclubNotificationsRoute />
 	}
 ])
 

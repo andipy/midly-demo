@@ -26,8 +26,10 @@ const Notification = (notification) => {
             setType('ha messo "Mi piace" al tuo commento')
         } else if ((notification.notification.type === 'LIKE') && (notification.notification.users.length >= 1)) {
             setType('hanno messo "Mi piace" al tuo commento')
-        } else if ((notification.notification.type === 'LIKE')) {
-            setType('ha risposto al tuo commento')
+        } else if ((notification.notification.type === 'REPLY')) {
+            setType('ha risposto al tuo commento:')
+        } else if ((notification.notification.type === 'COMMENT')) {
+            setType('ha commentato il tuo contenuto:')
         }
     }, [notification])
 
@@ -42,22 +44,36 @@ const Notification = (notification) => {
         }
     }, [notification, fans])
 
+    /* const [days, setDays] = useState(0)
+    useEffect(() => {
+        const specificDate = new Date(notification.notification.date) // Inserisci qui la data specifica
+        const currentDate = new Date()
+
+        const timeDifference = currentDate - specificDate
+        const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
+
+        setDays(daysPassed)
+    }, [notification]) */
+
 
   return (
     <>
     {notification.notification.read === true ? (
-        <div className="d-flex-row j-c-start align-items-center bg-black w-100vw ">
+        <div className="d-flex-row j-c-start align-items-center bg-black w-100 ">
             <div className='pl-xs-2'>
                 <div className='avatar-6 bg-black border-radius-100'></div>
             </div>
         <ContainerDefault >
-        <div className="d-flex-row align-items-center j-c-space-between pt-xs-1 pb-xs-1 pr-xs-2">
-            <img className="avatar-48 border-radius-100" src={userImage}/>
-            <div className="d-flex-column j-c-start align-items-start">
-                <p className="fsize-xs-1 f-w-600">{users}</p>
-                <p className="fsize-xs-0 f-w-200">{type}</p>
+        <div className="d-flex-row align-items-center j-c-space-between pt-xs-2 pb-xs-2 pr-xs-2">
+            <div className='d-flex-row align-items-center  j-c-start w-100'>
+                <img className="avatar-48 border-radius-100" src={userImage}/>
+                <div className="d-flex-column j-c-start align-items-start ml-xs-4">
+                    <p className="fsize-xs-1 f-w-600">{users}</p>
+                    <p className="fsize-xs-0 f-w-200">{type} {((notification.notification.type === 'REPLY') || (notification.notification.type === 'COMMENT')) && `${notification.notification.text}`}</p>
+                </div>
             </div>
-            <div className='d-flex-row '>
+            
+            <div className='d-flex-row ml-xs-2'>
                 <img className='avatar-48 border-radius-02' src={img2} />
             </div>
         </div>
@@ -67,18 +83,21 @@ const Notification = (notification) => {
     </div>
 
     ) : (
-        <div className="d-flex-row j-c-start align-items-center bg-dark-soft w-100vw">
+        <div className="d-flex-row j-c-start align-items-center bg-dark-soft w-100">
             <div className='pl-xs-2'>
                 <div className='avatar-6 bg-red-300 border-radius-100'></div>
             </div>
         <ContainerDefault>
-        <div className="d-flex-row align-items-center j-c-space-between pt-xs-1 pb-xs-1 pr-xs-2">
-            <img className="avatar-48 border-radius-100" src={userImage}/>
-            <div className="d-flex-column j-c-start align-items-start">
-                <p className="fsize-xs-1 f-w-600">{users}</p>
-                <p className="fsize-xs-0 f-w-200">{type}</p>
+        <div className="d-flex-row align-items-center j-c-space-between pt-xs-2 pb-xs-2 pr-xs-2">
+            <div className='d-flex-row align-items-center  j-c-start'>
+                <img className="avatar-48 border-radius-100" src={userImage}/>
+                <div className="d-flex-column j-c-start align-items-start ml-xs-4">
+                    <p className="fsize-xs-1 f-w-600">{users}</p>
+                    <p className="fsize-xs-0 f-w-200">{type} {(notification.notification.type === 'REPLY') || (notification.notification.type === 'COMMENT')  && `${notification.notification.text}`}</p>
+                </div>
             </div>
-            <div className='d-flex-row '>
+            
+            <div className='d-flex-row ml-xs-2'>
                 <img className='avatar-48 border-radius-02' src={img2} />
             </div>
         </div>
