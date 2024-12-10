@@ -49,6 +49,7 @@ import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
 import FanclubPricingRoute from './routes/fanclub-pricing.route.artist'
 import ContentCreationRoute from './routes/content-creation.route.artist'
+import ContentCreationReviewRoute from './routes/content-creation-review.route.artist'
 import MetricsRoute from './routes/metrics.route.artist'
 import FanclubSettingsRoute from './routes/fanclub-settings.route.artist'
 import FanclubSettingsEditRoute from './routes/fanclub-settings-edit.route.artist'
@@ -182,6 +183,9 @@ const router = createBrowserRouter([
 	},{
 		path: '/artist-app/content-creation',
 		element: <ContentCreationRoute />
+	},{
+		path: '/artist-app/content-creation/post-review',
+		element: <ContentCreationReviewRoute />
 	},{
 		path: '/artist-app/metrics',
 		element: <MetricsRoute />

@@ -6,7 +6,6 @@ import IconSettings from '../images/icons/icon-settings-white.svg'
 import IconLikes from '../images/icons/icon-like-white-empty.svg'
 import IconComments from '../images/icons/icon-comment-white.svg'
 import IconShare from '../images/icons/icon-share-white.svg'
-import { useEffect } from 'react'
 
 const Post = ({ post, openComments, hasUserSubscribed, handleSubscription }) => {
 
@@ -17,11 +16,31 @@ const Post = ({ post, openComments, hasUserSubscribed, handleSubscription }) => 
             {!post.settings.isPrivate &&
                 <p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>
             }
-            {post.media.type === 'PHOTO' ?
-                <img className={`border-radius-04 w-100 h-100 ${!hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''}`} src={post.media?.url} alt="" />
-            : post.media.type === 'VIDEO' ?
-                <video className={`border-radius-04 w-100 h-100 ${!hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''}`} src={post.media?.url} controls={false} autoPlay={true} loop={true} />
-            : post.text &&
+            {post.media.map(media => (
+                media.type === 'IMAGE' ?
+                    <img
+                    key={media.id}
+                    className={`border-radius-04 w-100 h-100 ${
+                        !hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''
+                    }`}
+                    src={media.url}
+                    alt="Post image"
+                    />
+                : media.type === 'VIDEO' ?
+                    <video
+                    key={media.id}
+                    className={`border-radius-04 w-100 h-100 ${
+                        !hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''
+                    }`}
+                    src={media.url}
+                    controls={false}
+                    autoPlay
+                    loop
+                    />
+                : null
+            ))}
+
+            {post.text &&
                 <div className={`${!hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''}`}>
                     <p className='pre-wrap fsize-xs-5'>{post.text}</p>
                     {post.link.url && post.text &&

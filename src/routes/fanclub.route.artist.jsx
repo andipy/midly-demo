@@ -127,11 +127,11 @@ const FanclubRoute = () => {
                                         comments: [...post.comments, currentComment]
                                     }
                                 }
-                                return post;
+                                return post
                             })
                         }
                     }
-                    return fanclub;
+                    return fanclub
                 })
             )
         }
@@ -169,11 +169,11 @@ const FanclubRoute = () => {
                                     })
                                 }
                             }
-                            return post;
+                            return post
                         })
                     }
                 }
-                return fanclub;
+                return fanclub
             })
         )
         setCurrentComment({
@@ -209,7 +209,7 @@ const FanclubRoute = () => {
                 }
 
                 timeoutRef.current = setTimeout(() => {
-                    setClickCount(0);
+                    setClickCount(0)
                 }, 400) // Reset the count if more than 1 second passes between clicks
 
                 if (newCount >= 6) {
@@ -242,7 +242,7 @@ const FanclubRoute = () => {
                         <h1>Fanclub</h1>
                     </ContainerDefault>
                     
-                    {fanclub.posts.length === 0 ?
+                    {fanclub?.posts.length === 0 ?
                         <FullPageCenter>
                             <img className='w-35' src={IllustrationsFanclubEmpty} />
                             <h1 className='fsize-xs-6 f-w-500 mb-xs-2 mt-xs-4'>Il tuo fanclub è attivo!</h1>
@@ -252,7 +252,7 @@ const FanclubRoute = () => {
                         </FullPageCenter>
                     :
                         <ContainerDefault containerSpecificStyle={'pb-xs-appbar mt-xs-4'}>
-                            {fanclub.posts.map(post =>
+                            {fanclub?.posts.map(post =>
                                 <Post
                                     post={post}
                                     openComments={() => openComments(post.id)}

@@ -24,7 +24,7 @@ const ContentCreationRoute = () => {
     const navigate = useNavigate()
 
     const { currentArtist } = useContext(CurrentArtistContext)
-    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
+    const { setFanclubs } = useContext(FanclubsContext)
         
     const videoRef = useRef(null)
     const canvasRef = useRef(null)
@@ -35,13 +35,18 @@ const ContentCreationRoute = () => {
     const [video, setVideo] = useState(null)
     const [photo, setPhoto] = useState(null)
     const [textContent, setTextContent] = useState(null)
-    const [contentType, setContentType] = useState('PHOTO')
+    const [contentType, setContentType] = useState('IMAGE')
+
     const [showTextArea, setShowTextArea] = useState(false)
     const [showLinkArea, setShowLinkArea] = useState(false)
     const [showSettingsArea, setShowSettingsArea] = useState(false)
+
     const [post, setPost] = useState({
         id: undefined,
         artistId: currentArtist.id,
+        publisherId: currentArtist.id,
+        mode: undefined,
+        createdAt: undefined,
         media: [],
         text: '',
         caption: '',
@@ -50,12 +55,15 @@ const ContentCreationRoute = () => {
             name: ''
         },
         settings: {
-            isPrivate: true
+            isPrivate: true,
+            isPinned: undefined
         },
         likes: 0,
-        shares: 0,
         comments: [],
-        createdAt: undefined
+        share: {
+            shareCount: 0,
+            shareLink: undefined
+        }
     })
 
     // this useEffect sets the height of the camera viewport
@@ -69,15 +77,15 @@ const ContentCreationRoute = () => {
             const wrapperHeight = (window.innerHeight - mediaCreationControlBar.offsetHeight)
             outer.style.setProperty('height', `${outerHeight}px`)
             wrapper.style.setProperty('height', `${wrapperHeight}px`)
-        };
+        }
 
         // Initial setting of the height
-        setWrapperHeight();
+        setWrapperHeight()
 
         // Adjust height on resize
-        window.addEventListener('resize', setWrapperHeight);
+        window.addEventListener('resize', setWrapperHeight)
 
-        return () => window.removeEventListener('resize', setWrapperHeight);
+        return () => window.removeEventListener('resize', setWrapperHeight)
     }, [])
 
     useEffect(() => {
@@ -87,7 +95,7 @@ const ContentCreationRoute = () => {
                   video: { facingMode }
                 })
                 if (videoRef.current) {
-                  videoRef.current.srcObject = stream;
+                  videoRef.current.srcObject = stream
                 }
               } catch (err) {
                 setError(err.message)
@@ -124,7 +132,7 @@ const ContentCreationRoute = () => {
             const dataUrl = canvas.toDataURL('image/png')
             setPhoto({
                 id: post.media.length + 1,
-                type: 'PHOTO',
+                type: 'IMAGE',
                 url: dataUrl
             })
         }
@@ -161,7 +169,7 @@ const ContentCreationRoute = () => {
             if ( file.type.startsWith('image/') ) {
                 setPhoto({
                     id: post.media.length + 1,
-                    type: 'PHOTO',
+                    type: 'IMAGE',
                     url: dataUrl
                 })
             } else if ( file.type.startsWith('video/') ) {
@@ -171,7 +179,7 @@ const ContentCreationRoute = () => {
                     url: dataUrl
                 })
             } else {
-                console.error("Unsupported file type:", file.type);
+                console.error("Unsupported file type:", file.type)
             }
         }
     }
@@ -205,7 +213,7 @@ const ContentCreationRoute = () => {
             ...prev,
             media: [...prev.media, {
                 id: photo.id,
-                type: 'PHOTO',
+                type: 'IMAGE',
                 url: photo.url
             }]
         }))
@@ -230,7 +238,7 @@ const ContentCreationRoute = () => {
         setVideo(null)
     }
     const handlePhotoType = () => {
-        setContentType('PHOTO')
+        setContentType('IMAGE')
     }
     const handleVideoType = () => {
         setContentType('VIDEO')
@@ -286,15 +294,41 @@ const ContentCreationRoute = () => {
     const updatePosts = () => {
         let currentDate = new Date()
         let date = currentDate.toISOString().split('T')[0]
-        setFanclubs(prevFanclubs => 
-            prevFanclubs.map(fanclub =>
-                fanclub.artistId === currentArtist.id
-                    ? { ...fanclub, posts: [...fanclub.posts, { ...post, id: fanclub.posts.length + 1, createdAt: date }] }
-                    : fanclub
-            )
+    
+        let newPostId
+    
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === currentArtist.id) {
+                    
+                    newPostId = fanclub.posts.length + 1
+    
+                    return {
+                        ...fanclub,
+                        posts: [
+                            ...fanclub.posts,
+                            {
+                                ...post,
+                                id: newPostId,
+                                artistId: currentArtist.id,
+                                publisherId: currentArtist.id,
+                                mode: 'SKETCH',
+                                createdAt: date,
+                                settings: {
+                                    ...post.settings,
+                                    isPinned: false,
+                                },
+                            },
+                        ],
+                    }
+                }
+                return fanclub
+            })
         )
-        navigate('/artist-app/fanclub')
+
+        navigate('/artist-app/content-creation/post-review', { state: { postId: newPostId } })
     }
+    
 
     return (
         <>
@@ -323,7 +357,7 @@ const ContentCreationRoute = () => {
 
                 {!photo && !video &&
                     <>
-                        {contentType === 'PHOTO' || contentType === 'VIDEO' ?
+                        {contentType === 'IMAGE' || contentType === 'VIDEO' ?
                             <video className='border-radius-1 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
                         : contentType === 'TEXT' &&
                             <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-1 fsize-xs-6' placeholder='Scrivi qui...' rows='8' onChange={handleCaptureText}></textarea>
@@ -391,8 +425,8 @@ const ContentCreationRoute = () => {
                             {post.media.map(elem => {
                                 return (
                                     <>
-                                        {elem.type ==='PHOTO' &&
-                                            <img className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} alt="" />
+                                        {elem.type ==='IMAGE' &&
+                                            <img className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} />
                                         }
                                         {elem.type ==='VIDEO' &&
                                             <video className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} controls={false} autoPlay={true} playsInline loop={true} />
@@ -407,6 +441,7 @@ const ContentCreationRoute = () => {
                     <Button
                         style={`${post.media.length > 0 ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-2 f-w-600 border-radius-100 letter-spacing-1 no-shrink w-25`}
                         disabled={post.media.length > 0 ? false : true}
+                        onClick={updatePosts}
                         label={'Avanti →'}
                     ></Button>
                 </ContainerDefault>

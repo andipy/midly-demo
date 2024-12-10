@@ -26,7 +26,7 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording,
 
                 {!photo && !video &&
                     <>
-                        {contentType === 'PHOTO' ?
+                        {contentType === 'IMAGE' ?
                             <div className='d-flex-row align-items-center j-c-center gap-1em'>
                                 <div className='position-relative border-white avatar-60 border-radius-100 fsize-xs-3 f-w-600 dark-900 no-shrink' onClick={handleCapturePhoto}>
                                     <div className='position-absolute-x-y bg-white avatar-48 border-radius-100'></div>
@@ -58,7 +58,7 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording,
 
             {!photo && !video &&
                 <div className='d-flex-row align-items-center j-c-center gap-0_25em mb-xs-2'>
-                    <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'PHOTO' ? 'white' : 'grey-400'}`} onClick={handlePhotoType}>FOTO</span>
+                    <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'IMAGE' ? 'white' : 'grey-400'}`} onClick={handlePhotoType}>FOTO</span>
                     <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'VIDEO' ? 'white' : 'grey-400'}`} onClick={handleVideoType}>VIDEO</span>
                     <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'TEXT' ? 'white' : 'grey-400'}`} onClick={handleTextType}>TEXT</span>
                 </div>
