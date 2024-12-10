@@ -150,8 +150,6 @@ const FanclubSettingsEditRoute = () => {
         } 
     }, [updates])
     const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
-    const [whitePoints, setWhitePoints] = useState(0)
-    const [message, setMessage] = useState("")
     return (
         <>
             <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} editable={false} />
@@ -222,7 +220,7 @@ const FanclubSettingsEditRoute = () => {
                 </ContainerDefault>
             </ContainerDefault>
             {showMessageWhitePoints && 
-                <MessageSetPricing points={whitePoints} message={message} onClick={() => setShowMessageWhitePoints(false)} />
+                <MessageSetPricing price={updates.price} message={message} onClick={() => setShowMessageWhitePoints(false)} />
             }
         </>
     )
