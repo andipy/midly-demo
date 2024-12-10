@@ -67,14 +67,12 @@ const FanclubPaymentInfoRoute = () => {
                 ...prevArtist,
                 beneficiary,
             }))
-            console.log('Submit successful', { beneficiary, iban });
         }
         if (iban) {
             setCurrentArtist(prevArtist => ({
                 ...prevArtist,
                 iban,
-            }));
-            console.log('Submit successful', { beneficiary, iban });
+            }))
         }
 
         navigate(-1)

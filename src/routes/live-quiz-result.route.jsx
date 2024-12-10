@@ -31,8 +31,6 @@ const LiveQuizResultRoute = () => {
 	const date = new Date(quiz.playDate)
 	const today = new Date()
 	today.setHours(0, 0, 0, 0)
-	/* console.log(date)
-	console.log(today) */
 
 	const sortQuizzes = (a,b) => {
 		const dateA = new Date(a.playDate)

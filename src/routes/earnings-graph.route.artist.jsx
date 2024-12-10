@@ -49,7 +49,7 @@ const EarningsGraph = () => {
             
             return existingData ? existingData : { date: month, value: 0 }
         })
-        console.log(allMonths)
+
         const margin = { top: 10, bottom: 30, right: 20, left: 40 }
         const width = parseInt(d3.select('.container').style('width')) * 0.9 - margin.left - margin.right
         const height = 200 - margin.top - margin.bottom

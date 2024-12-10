@@ -175,7 +175,6 @@ const LiveMessages = ({leaderboard}) => {
         //this leverages the first useRef declared above and it is just to avoid this entire useEffect to run on first render of the page
         if ( !pageHasRendered.current ) {
             let i = Math.floor(Math.random() * colors.length)
-            console.log(i, 'indice')
             setColor(colors[i])
             pageHasRendered.current = true
         }

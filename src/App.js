@@ -76,14 +76,10 @@ import CookiePolicyArtistsRoute from './routes/cookie-policy-artists.route.artis
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
 import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics-detail.route.admin'
 
-
 //SPOTIFY ROUTES
 import SpotifyAcceptRoute from './routes/spotify-accept.route.spotify'
 import SpotifyLoginRoute from './routes/spotify-login.route.spotify'
 import { FansProvider } from './contexts/fans.context'
-
-//TEST ROUTES
-import NewComponentsTestRoute from './routes/new-components-test.route'
 
 const router = createBrowserRouter([
 	{
@@ -274,16 +270,7 @@ const router = createBrowserRouter([
 	}, {
 		path: '/spotify-login',
 		element: <SpotifyLoginRoute />
-	}, {
-		path: '/new-components-test',
-		element: <NewComponentsTestRoute />,
-		children: [
-			{
-				path: '/new-components-test/comments',
-				element: <ShowCommentsRoute />,
-			}
-		]
-	}, {
+	},{
 		path: '/artist-app/fanclub/activity',
 		element: <FanclubNotificationsRoute />
 	}, {

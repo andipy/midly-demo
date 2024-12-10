@@ -17,13 +17,8 @@ import MessageFlashLeaderboardModal from '../components/message-flash-leaderboar
 import CardInviteFriend from '../components/card-invite-friend.component'
 import CardConnectSpotify from '../components/card-connect-spotify.component'
 import MessageWhitePoints from '../components/message-white-points.component'
-import Carousel from '../layout/carousel.layout'
-import CardQuiz from '../components/card-quiz.component'
-import FullScreenModalLayout from '../layout/full-screen-modal.layout'
-import NavbarModalFlashLeaderboardAnnouncement from '../components/navbar-modal-flash-leaderboard-announcement.component'
-import NavbarBackOnly from '../components/navbar-back-only.component'
 import FullPageCenter from '../layout/full-page-center.layout'
-import IconExit from '../images/icons/icon-exit.svg'
+
 const ArtistRoute = () => {
 
     const navigate = useNavigate()
@@ -31,17 +26,18 @@ const ArtistRoute = () => {
 
     const { state, pathname } = useLocation()
     
-
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const { artists } = useContext(ArtistsContext)
     const { fanclubs } = useContext(FanclubsContext)
     const { quizzes } = useContext(LiveQuizContext)
     const [ artistLiveQuizzes, setArtistLiveQuizzes] = useState()
-
-    
     
     const [artist, setArtist] = useState()
     const fetchThisArtist = () => {
+        if (!state?.artist) {
+            console.error('State or state.artist is undefined')
+            return
+        }
         const thisArtist = artists.find(artist => state.artist.id === artist.id)
         setArtist(thisArtist)
     }
@@ -126,7 +122,7 @@ const ArtistRoute = () => {
     },[location.state])
 
     useEffect(() => {
-        if ( state ) {
+        if (state && artists.length > 0) {
             fetchThisArtist()
         }
     }, [artists, state, artist])
@@ -286,8 +282,6 @@ const ArtistRoute = () => {
                     }
                 </div>
                 <Outlet context={artist} />
-
-                
                 
             </ContainerDefault>
 

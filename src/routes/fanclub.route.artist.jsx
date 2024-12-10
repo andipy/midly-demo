@@ -12,11 +12,10 @@ import Comment from '../components/comment.component'
 import ContainerDefault from '../layout/container-default.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
-import PostCopy from '../components/post-copy.component'
+import Post from '../components/post.component'
 
 import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
 import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanclub-empty.svg'
-import Post from '../components/post.component'
 
 const FanclubRoute = () => {
 
@@ -255,10 +254,11 @@ const FanclubRoute = () => {
                     <>
                         <ContainerDefault containerSpecificStyle={'pb-xs-appbar mt-xs-4'}>
                             {fanclub?.posts.map(post =>
-                                <PostCopy 
-                                post={post} 
-                                hasUserSubscribed={true}
-                                userType={'ARTIST'}
+                                <Post 
+                                    post={post} 
+                                    //userType={'ARTIST'}
+                                    openComments={() => openComments(post.id)}
+                                    key={post.id}
                                 />
                             )}
                         </ContainerDefault>
