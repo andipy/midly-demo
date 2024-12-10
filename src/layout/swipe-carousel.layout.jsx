@@ -123,7 +123,7 @@ const SwipeCarousel = ({ images, text }) => {
 							</button>
 						</div> */}
 						<div className='w-100 position-relative'>
-							<video className='w-100' autoPlay loop muted={isMuted}>
+							<video className='w-100' autoPlay playsInline loop muted={!isMuted}>
 							<source src={media.url} type='video/mp4' />
 							</video>
 						</div>

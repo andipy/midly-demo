@@ -19,23 +19,24 @@ const Post = ({ post, openComments, hasUserSubscribed, handleSubscription }) => 
             {post.media.map(media => (
                 media.type === 'IMAGE' ?
                     <img
-                    key={media.id}
-                    className={`border-radius-04 w-100 h-100 ${
-                        !hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''
-                    }`}
-                    src={media.url}
-                    alt="Post image"
+                        key={media.id}
+                        className={`border-radius-04 w-100 h-100 ${
+                            !hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''
+                        }`}
+                        src={media.url}
+                        alt="Post image"
                     />
                 : media.type === 'VIDEO' ?
                     <video
-                    key={media.id}
-                    className={`border-radius-04 w-100 h-100 ${
-                        !hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''
-                    }`}
-                    src={media.url}
-                    controls={false}
-                    autoPlay
-                    loop
+                        key={media.id}
+                        className={`border-radius-04 w-100 h-100 ${
+                            !hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate ? 'blur-50' : ''
+                        }`}
+                        src={media.url}
+                        controls={false}
+                        autoPlay
+                        playsInline
+                        loop
                     />
                 : null
             ))}

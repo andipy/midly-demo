@@ -94,6 +94,7 @@ const ContentCreationReviewRoute = () => {
                                     src={media.url}
                                     controls={false}
                                     autoPlay
+                                    playsInline
                                     loop
                                 />
                             :
