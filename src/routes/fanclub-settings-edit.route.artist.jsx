@@ -90,8 +90,6 @@ const FanclubSettingsEditRoute = () => {
 
     const updatePricing = () => {
         setShowMessageWhitePoints(true)
-        setWhitePoints(10)
-        setMessage('Aggiungi Spotify')
     }
 
 
@@ -220,7 +218,7 @@ const FanclubSettingsEditRoute = () => {
                 </ContainerDefault>
             </ContainerDefault>
             {showMessageWhitePoints && 
-                <MessageSetPricing price={updates.price} message={message} onClick={() => setShowMessageWhitePoints(false)} />
+                <MessageSetPricing price={updates.pricing} onClick={() => updateThisFanclub()}  close={() => setShowMessageWhitePoints(false)} />
             }
         </>
     )
