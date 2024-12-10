@@ -62,7 +62,7 @@ const PostCopy = ({post, hasUserSubscribed, onClick, userType}) => {
 
   return (
     <>
-    <div className='bg-dark-gradient border-radius-01 mb-xs-8 position-relative overflow-hidden d-flex-column j-c-start align-items-center pt-xs-4 pr-xs-4 pl-xs-4 pb-xs-4'>
+    <div className='bg-dark-gradient border-radius-01 mb-xs-8 position-relative overflow-hidden d-flex-column j-c-start align-items-center pt-xs-4 pr-xs-4 pl-xs-4 pb-xs-4 '>
         {!post.settings.isPrivate && userType == 'FAN' &&
                 <p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>
         }

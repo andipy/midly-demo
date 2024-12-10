@@ -33,7 +33,7 @@ const EarningsGraph = () => {
 
     useEffect(() => {
 
-        const revenueDataset = currentArtist.revenueOverTime[0].dataSet.map(data => ({
+        const revenueDataset = currentArtist?.revenueOverTime[0].dataSet.map(data => ({
             date: new Date(data.date),
             value: data.value,
         }))
@@ -44,12 +44,12 @@ const EarningsGraph = () => {
         })
     
         const allMonths = Array.from({ length: currentMonth-1 }, (_, i) => new Date(2024, i, 1))
-        const completeRevenueDataset = allMonths.map(month => {
+        const completeRevenueDataset = allMonths?.map(month => {
             const existingData = revenueDatasetWithFirstDay.find(d => d.date.getMonth() === month.getMonth())
             
             return existingData ? existingData : { date: month, value: 0 }
         })
-
+        console.log(allMonths)
         const margin = { top: 10, bottom: 30, right: 20, left: 40 }
         const width = parseInt(d3.select('.container').style('width')) * 0.9 - margin.left - margin.right
         const height = 200 - margin.top - margin.bottom
@@ -102,7 +102,7 @@ const EarningsGraph = () => {
             .attr('height', d => height - y(d.value))
             .attr('fill', '#5CBBFF') 
 
-    }, [])
+    }, [currentArtist])
 
 
     /*Creo dataset 1 per subs*/

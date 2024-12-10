@@ -87,7 +87,7 @@ const SwipeCarousel = ({ images, text }) => {
 		<div className='d-flex-column w-100  position-relative h-100 j-c-center align-items-center'>
 		
 		<div
-			className='w-100 overflow-all-hidden position-relative h-100'
+			className='w-100 overflow-all-hidden position-relative h-100 '
 			onMouseDown={handleDragStart}
 			onMouseMove={isDragging ? handleDragMove : null}
 			onMouseUp={handleDragEnd}
@@ -97,7 +97,7 @@ const SwipeCarousel = ({ images, text }) => {
 			onTouchEnd={handleDragEnd}
 		>
 		<div
-			className='carousel-track d-flex-row h-100 w-100'
+			className='carousel-track d-flex-row align-items-center h-100 w-100 '
 			ref={trackRef}
 			style={{
 			transform: `translateX(-${currentIndex * 100}%)`, 

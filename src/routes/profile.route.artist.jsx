@@ -18,6 +18,10 @@ const ProfileArtistRoute = () => {
 
 	const {currentArtist } = useContext(CurrentArtistContext)
 
+	const formatNumber = (value) => {
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'").replace('.', ',')
+    }
+
 	return (
 		<>
 			<Navbar />
@@ -43,7 +47,7 @@ const ProfileArtistRoute = () => {
 							</div>
 					</div>
 				</div>
-				<div className='d-flex-column j-c-center align-items-start bg-dark-gradient border-radius-08 w-100 pt-xs-4 pb-xs-4 pr-xs-4 pl-xs-4'>
+				<div className='d-flex-column j-c-center align-items-start bg-dark-gradient border-radius-08 w-100 pt-xs-4 pb-xs-4 pr-xs-4 pl-xs-4 mb-xs-12'>
 					{currentArtist?.beneficiary === '' && currentArtist?.iban === '' ?
 						<>
 							<h1 className='fsize-xs-5 f-w-600 mb-xs-2'>Ricevi gli incassi</h1>
@@ -97,6 +101,17 @@ const ProfileArtistRoute = () => {
 							/>
 						</>
 					}
+				</div>
+
+				<div className='d-flex-column j-c-center align-items-start bg-dark-gradient border-radius-08 w-100 pt-xs-4 pb-xs-4 pr-xs-4 pl-xs-4'>
+				<>
+					<h4 className='fsize-xs-8 letter-spacing-2 f-w-500 lime-400 mb-xs-2'>€{formatNumber(currentArtist?.lastMonthRevenue)}</h4>
+					<p className='fsize-xs-2 f-w-300 mb-xs-8'>Visualizza il rendimento del tuo fanclub</p>
+					<Button
+						style={`bg-acid-lime dark-900 fsize-xs-3 f-w-600 letter-spacing-1`} label='Riscuoti'
+						onClick={() => navigate('/artist-app/earnings-dashboard')}
+					/>
+				</>
 				</div>
 
 				<div className='mt-xs-12'>
