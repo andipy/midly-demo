@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import {useNavigate } from 'react-router-dom'
+import {useNavigate, Link } from 'react-router-dom'
 
 import SwipeCarousel from '../layout/swipe-carousel.layout'
 import IconSettings from '../images/icons/icon-settings-white.svg'
@@ -10,6 +10,8 @@ import AudioPost from './audio-post.component'
 
 
 const PostCopy = ({post, hasUserSubscribed, onClick, userType}) => {
+    console.log(post)
+    console.log(post.media)
     const navigate = useNavigate()
     const [showCaption, setShowCaption] = useState(false)
     const [days, setDays] = useState(0)
@@ -35,15 +37,27 @@ const PostCopy = ({post, hasUserSubscribed, onClick, userType}) => {
     }
 
     const isImage = (media) => {
-        return /\.(jpg|jpeg|png|gif|webp)$/i.test(media)
+        if (media.type === 'IMAGE') {
+            return true
+        } else {
+            return false
+        }
     }
       
     const isAudio = (media) => {
-        return /\.(mp3|wav|ogg|m4a)$/i.test(media)
+        if (media.type === 'AUDIO') {
+            return true
+        } else {
+            return false
+        }
     }
 
     const isVideo = (media) => {
-        return /\.(MP4|mp4|webm|ogg)$/i.test(media)
+        if (media.type === 'VIDEO') {
+            return true
+        } else {
+            return false
+        }
     }
 
   return (
@@ -55,7 +69,7 @@ const PostCopy = ({post, hasUserSubscribed, onClick, userType}) => {
         {/*Post foto, video, audio e testo o foto singola o video singolo o audio singolo*/}
         {(isImage(post.media[0]) || isVideo(post.media[0]) || isAudio(post.media[0])) && 
         <div className={`border-radius-04 w-100 h-100 `}>
-            <div className={`w-100 h-300px j-c-center align-items-center border-radius-02 overflow-all-hidden position-relative`}>
+            <div className={`w-100 h-500px j-c-center align-items-center border-radius-02 overflow-all-hidden position-relative`}>
                 <div className={`${(post.settings.isPrivate && hasUserSubscribed === false && userType === 'FAN') ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
                     {post.media.length > 0 ?
                         <SwipeCarousel images={post.media} text={post.text} />
@@ -69,7 +83,7 @@ const PostCopy = ({post, hasUserSubscribed, onClick, userType}) => {
         {/*Post solo testo*/}
         {post.media.length === 0 &&
         <div className={`border-radius-04 w-100 h-100`}>
-            <div className={`w-100 h-300px j-c-center align-items-center border-radius-02 overflow-all-hidden position-relative`}>
+            <div className={`w-100 j-c-center align-items-center border-radius-02 overflow-all-hidden position-relative`}>
                 <div className={`${(post.settings.isPrivate && hasUserSubscribed === false && userType=== 'FAN') ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
                     {post.media.length > 0 ? 
                         null
@@ -133,6 +147,11 @@ const PostCopy = ({post, hasUserSubscribed, onClick, userType}) => {
                 }
             </p>
             </div>
+            {post.link.url &&
+                <div className='mb-xs-2 w-100 j-c-center align-items-start'>
+                    <Link to={post.link.url} target='blank' className='lime-400 f-w-300 fsize-xs-1'>{post.link.name ? post.link.name : 'Apri al link'}</Link>
+                </div>
+            }
             <div className='w-100 j-c-start d-flex-row'>
                 {post.comments.length > 0 ?
                     <p 

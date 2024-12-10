@@ -8,14 +8,15 @@ import Button from '../components/button.component'
 import Navbar from '../components/navbar.component.artist'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import TextbarComments from '../components/textbar-comments.component'
-import Post from '../components/post.component'
 import Comment from '../components/comment.component'
 import ContainerDefault from '../layout/container-default.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
+import PostCopy from '../components/post-copy.component'
 
 import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
 import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanclub-empty.svg'
+import Post from '../components/post.component'
 
 const FanclubRoute = () => {
 
@@ -251,15 +252,17 @@ const FanclubRoute = () => {
 
                         </FullPageCenter>
                     :
+                    <>
                         <ContainerDefault containerSpecificStyle={'pb-xs-appbar mt-xs-4'}>
                             {fanclub?.posts.map(post =>
-                                <Post
-                                    post={post}
-                                    openComments={() => openComments(post.id)}
-                                    key={post.id}
+                                <PostCopy 
+                                post={post} 
+                                hasUserSubscribed={true}
+                                userType={'ARTIST'}
                                 />
                             )}
                         </ContainerDefault>
+                    </>
                     }
                 </>
             :

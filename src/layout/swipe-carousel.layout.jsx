@@ -3,6 +3,7 @@ import IconSpeaker from '../images/icons/icon-speaker.png'
 import AudioPost from '../components/audio-post.component'
 
 const SwipeCarousel = ({ images, text }) => {
+	console.log(images)
 	const [currentIndex, setCurrentIndex] = useState(0) 
 	const [isDragging, setIsDragging] = useState(false) 
 	const trackRef = useRef(null) 
@@ -52,17 +53,29 @@ const SwipeCarousel = ({ images, text }) => {
 		trackRef.current.style.transform = `translateX(${prevTranslate.current}px)`
 	}
 
-	const isVideo = (media) => {
-		return /\.(MP4|mp4|webm|ogg)$/i.test(media);
-	}
-
 	const isImage = (media) => {
-		return /\.(jpg|jpeg|png|gif|webp)$/i.test(media)
-	}
+        if (media.type === 'IMAGE') {
+            return true
+        } else {
+            return false
+        }
+    }
+      
+    const isAudio = (media) => {
+        if (media.type === 'AUDIO') {
+            return true
+        } else {
+            return false
+        }
+    }
 
-	const isAudio = (media) => {
-		return /\.(mp3|wav|ogg|m4a)$/i.test(media)
-	}
+    const isVideo = (media) => {
+        if (media.type === 'VIDEO') {
+            return true
+        } else {
+            return false
+        }
+    }
 
 	const [isMuted, setIsMuted] = useState(true)
 
@@ -96,7 +109,7 @@ const SwipeCarousel = ({ images, text }) => {
 				className='carousel-slide h-100 overflow-all-hidden w-100 d-flex-row j-c-center align-items-center'>
 				{isImage(media) ?
 					<div className='w-100'>
-						<img className='w-100 h-100' src={media} />
+						<img className='w-100 h-100' src={media.url} />
 					</div>
 				:
 					null
@@ -111,7 +124,7 @@ const SwipeCarousel = ({ images, text }) => {
 						</div> */}
 						<div className='w-100 position-relative'>
 							<video className='w-100' autoPlay loop muted={isMuted}>
-							<source src={media} type='video/mp4' />
+							<source src={media.url} type='video/mp4' />
 							</video>
 						</div>
 					</>
@@ -120,7 +133,7 @@ const SwipeCarousel = ({ images, text }) => {
 				}
 				{isAudio(media) ?
 					<div className='w-100 h-100 position-relative'>
-						<AudioPost src={media} />
+						<AudioPost src={media.url} />
 					</div>
 				:
 					null

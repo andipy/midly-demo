@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 
@@ -11,6 +11,8 @@ import NavbarBackOnly from '../components/navbar-back-only.component'
 import IconEdit from '../images/icons/icon-edit.svg'
 
 const FanclubSettingsRoute = () => {
+
+    const navigate = useNavigate()
 
     const { currentArtist } = useContext(CurrentArtistContext)
     const { fanclubs } = useContext(FanclubsContext)
@@ -25,7 +27,7 @@ const FanclubSettingsRoute = () => {
 
     return (
         <>
-            <NavbarBackOnly />
+            <NavbarBackOnly onClick={() => navigate('/artist-app/fanclub')}/>
             <ContainerDefault containerSpecificStyle={'pt-xs-topbar'}>
                 
                 <div id='fanclub-name' className='mb-xs-8'>
