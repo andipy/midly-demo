@@ -192,12 +192,19 @@ const FanclubRoute = () => {
 
     const [fanclub, setFanclub] = useState(null)
     const fetchThisFanclub = () => {
+        if (!fanclubs || !currentArtist) {
+            console.warn("fanclubs or currentArtist is undefined")
+            return
+        }
+    
         const thisFanclub = fanclubs.find(elem => elem.artistId === currentArtist.id)
         setFanclub(thisFanclub)
     }
     useEffect(() => {
-        fetchThisFanclub()
-    }, [fanclubs])
+        if (fanclubs && currentArtist) {
+            fetchThisFanclub()
+        }
+    }, [fanclubs, currentArtist])
 
     useEffect(() => {
         const handleMouseDown = () => {

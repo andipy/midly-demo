@@ -94,7 +94,6 @@ const ContentCreationReviewRoute = () => {
                         ...fanclub,
                         posts: fanclub.posts.map(elem => {
                             if ( elem.id === postId ) {
-                                console.log(elem)
                                 return {
                                     ...elem,
                                     mode: 'PUBLISHED',
@@ -105,7 +104,7 @@ const ContentCreationReviewRoute = () => {
                                     },
                                     settings: {
                                         isPinned: post?.settings?.isPinned,
-                                        isprivate: post?.settings?.isprivate
+                                        isPrivate: post?.settings?.isPrivate
                                     }
                                 }
                             }
@@ -129,9 +128,11 @@ const ContentCreationReviewRoute = () => {
                         posts: fanclub.posts.filter(elem => elem.id !== postId)
                     }
                 }
+                
+                return fanclub
             })
         )
-    }
+    }    
 
     return (
         <>
