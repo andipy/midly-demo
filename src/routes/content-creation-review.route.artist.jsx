@@ -138,6 +138,7 @@ const ContentCreationReviewRoute = () => {
             <NavbarDismiss transparent={true} forcedExitPath={'/artist-app/fanclub'} clear={deletePost} />
 
             <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-appbar'}>
+                <h1 className='fsize-xs-5 f-w-600 mb-xs-8'>Rivedi il post e pubblica</h1>
                 <div className='position-relative'>
                 <Carousel>
                     {post?.media ?
@@ -186,7 +187,7 @@ const ContentCreationReviewRoute = () => {
                         onChange={(e) => handleCaption(e)} 
                     />
                 </div>
-                <div className='mt-xs-8 mb-xs-8'>
+                <div className='mt-xs-8 mb-xs-4'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>{'URL LINK'}</label>
                     <input
                         id={`input-caption`}
@@ -197,7 +198,7 @@ const ContentCreationReviewRoute = () => {
                         onChange={(e) => handleLink(e)} 
                     />
                 </div>
-                <div className='mt-xs-8 mb-xs-8'>
+                <div className='mt-xs-4 mb-xs-8'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>{'NOME LINK'}</label>
                     <input
                         id={`input-caption`}
