@@ -172,6 +172,13 @@ const Fanclub = () => {
         }
     }, [context, fanclubs, currentFan])
 
+    const sortPosts = (a, b) => {
+        if (a.settings.isPinned !== b.settings.isPinned) {
+            return b.settings.isPinned - a.settings.isPinned
+        }
+        return new Date(b.createdAt) - new Date(a.createdAt)
+    }
+
     return (
         <>
             {fanclub?.posts.length === 0 ?
@@ -182,7 +189,7 @@ const Fanclub = () => {
             :
             <>
                 <ContainerDefault containerSpecificStyle={'pb-xs-2 mt-xs-4'}>
-                    {fanclub?.posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(post =>
+                    {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
                         <Post
                             post={post}
                             openComments={() => openComments(post.id)}

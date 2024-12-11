@@ -69,12 +69,22 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 	return (
 		<>
 		<div className='bg-dark-gradient position-relative overflow-hidden d-flex-column j-c-center border-radius-04 mb-xs-4'>
-			{artist &&
-				<div className='d-flex-row w-100 gap-0_25em j-c-start align-items-center pl-xs-2'>
-					<img className='avatar-28 border-radius-100 mt-xs-2 mb-xs-2' src={artist?.image} />
-					<p className='fsize-xs-1 f-w-500'>{artist?.artistName}</p>
+			<div className='d-flex-row w-100 j-c-space-between align-items-center pl-xs-2 mt-xs-2 mb-xs-2'>
+				<div className='d-flex-row j-c-start align-items-center gap-0_25em'>
+					{artist &&
+						<>
+							<img className='avatar-28 border-radius-100 ' src={artist?.image} />
+							<p className='fsize-xs-1 f-w-500'>{artist?.artistName}</p>
+						</>
+					}
 				</div>
-			}
+				
+				<div className='d-flex-row j-c-end align-items-center pr-xs-2'>
+					{ post.settings.isPinned &&
+						<img className='avatar-28 border-radius-100' src={IconThunder}/>	
+					}
+				</div>
+			</div>
 
 			{!post.settings.isPrivate && !pathname.includes('/artist-app/') &&
 				<p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>

@@ -56,7 +56,7 @@ const ContentCreationRoute = () => {
         },
         settings: {
             isPrivate: true,
-            isPinned: undefined
+            isPinned: false,
         },
         likes: 0,
         comments: [],
@@ -291,6 +291,16 @@ const ContentCreationRoute = () => {
         }))
     }
 
+    const handleIsPinned = () => {
+        setPost(prev => ({
+            ...prev,
+            settings: {
+                ...prev.settings,
+                isPinned: !prev.settings.isPinned,
+            }
+        }))
+    }
+
     const updatePosts = () => {
         let currentDate = new Date()
         /* let date = currentDate.toISOString().split('T')[0] */
@@ -316,7 +326,6 @@ const ContentCreationRoute = () => {
                                 createdAt: currentDate,
                                 settings: {
                                     ...post.settings,
-                                    isPinned: false,
                                 },
                             },
                         ],
@@ -466,6 +475,8 @@ const ContentCreationRoute = () => {
             handleSettingsAreaVisibility={handleSettingsAreaVisibility}
             handleIsPrivate={handleIsPrivate}
             isPrivate={post.settings.isPrivate}
+            handleIsPinned={handleIsPinned}
+            isPinned={post.settings.isPinned}
         />
         </>
     )

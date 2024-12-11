@@ -232,6 +232,13 @@ const FanclubRoute = () => {
         }
     }, [])
 
+    const sortPosts = (a, b) => {
+        if (a.settings.isPinned !== b.settings.isPinned) {
+            return b.settings.isPinned - a.settings.isPinned
+        }
+        return new Date(b.createdAt) - new Date(a.createdAt)
+    }
+
 
 
     return (
@@ -255,7 +262,7 @@ const FanclubRoute = () => {
                     :
                     <>
                         <ContainerDefault containerSpecificStyle={'pb-xs-appbar mt-xs-4'}>
-                            {fanclub?.posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(post =>
+                            {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
                                 <Post 
                                     artistId={fanclub?.artistId}
                                     post={post} 
