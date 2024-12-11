@@ -182,7 +182,7 @@ const Fanclub = () => {
             :
             <>
                 <ContainerDefault containerSpecificStyle={'pb-xs-2 mt-xs-4'}>
-                    {fanclub?.posts.map(post =>
+                    {fanclub?.posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(post =>
                         <Post
                             post={post}
                             openComments={() => openComments(post.id)}

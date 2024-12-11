@@ -156,7 +156,7 @@ const ProfileRoute = () => {
                 
             
             <section id='points'>
-                <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi punti personali</h4>
+                {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi punti personali</h4> */}
                 <div className='mt-xs-4 mb-xs-4'>
                     <Link to='/personal-user-points'>
                         <div className='bg-dark-gradient border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6'>
@@ -178,22 +178,12 @@ const ProfileRoute = () => {
                 </div>
             </section>
             <div className='d-flex-row align-items-center'>
-                {!currentFan.hasSpotify ? (
-                    <>
-                    <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>Connetti i tuoi social</h4>
-                    <div className='bg-dark-gradient border-radius-100 d-flex-row j-c-center align-items-center avatar-36 ml-xs-2'>
-                        <div className='d-flex-row align-items-center'>
-                            <div className='fsize-xs-3'>{10}</div>
-                            <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
-                        </div>
-                    </div>
-                    </>
-                ) : <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi social</h4>}
+                
             </div>
             <div className='mt-xs-4'>
                     {currentFan.hasSpotify ? (
                         <div className='social-card-1 bg-dark-gradient-radial border-radius-1 d-flex-column j-c-center align-items-center w-100' onClick={() => setShowMessageDisconnectSpotify(true)}>
-                            <div className='bg-black pl-xs-1 pr-xs-2 pt-xs-1 pb-xs-1 d-flex-row j-c-center align-items-center border-radius-1'>
+                            <div className='bg-black pl-xs-1 pr-xs-2 pt-xs-1 pb-xs-1 d-flex-row j-c-center align-items-center border-radius-100'>
                                 <img className='avatar-36'src={SpotifyLogo} alt='SPOTIFY'></img>
                                 <p className='fsize-xs-2 f-w-500 green-spotify'>Spotify connesso</p>
                             </div>
@@ -202,18 +192,24 @@ const ProfileRoute = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className='bg-dark-gradient-radial border-radius-1 d-flex-column align-items-start j-c-center pt-xs-8 pb-xs-8 pr-xs-8 pl-xs-8'>
-                            <div className='d-flex-row gap-0_25em align-items-center mb-xs-4'>
+                        <div className='bg-dark-gradient-radial border-radius-1 d-flex-column align-items-start j-c-center pt-xs-8 pb-xs-8 pr-xs-8 pl-xs-8 position-relative'>
+                            <div className='d-flex-row gap-0_25em align-items-center mb-xs-4 mt-xs-4'>
                                 <img className='social-logo' src={SpotifyLogo} alt='SPOTIFY'/>
                                 <span className='fsize-xs-3'>Connetti Spotify per fare punti!</span>
                             </div>
                             <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Midly traccia i brani che ascolti e li converte in punti nelle classifiche degli artisti che segui!</p>
                             <button className='bg-green-spotify dark-900 mt-xs-4 letter-spacing-1 f-w-500' onClick={handleSpotifyConnect}>CONNETTI SPOTIFY</button>
+                            <div className='bg-dark-gradient border-radius-100 d-flex-row j-c-center align-items-center avatar-36 ml-xs-2 position-absolute top-2 right-2'>
+                                <div className='d-flex-row align-items-center'>
+                                    <div className='fsize-xs-3'>{10}</div>
+                                    <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
+                                </div>
+                            </div>
                         </div>
                     )}    
             </div>
-            <section id='social-accounts' className='mt-xs-12'>
-                <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500 mb-xs-2'>I tuoi riconoscimenti</h4>
+            <section id='social-accounts' className='mt-xs-8'>
+                {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500 mb-xs-2'>I tuoi riconoscimenti</h4> */}
                 <Link to='/badges'>
                     <div>
                         <div className='bg-dark-gradient border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6'>

@@ -29,14 +29,30 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 	const { pathname } = useLocation()
 	const navigate = useNavigate()
 	const [showCaption, setShowCaption] = useState(false)
+
 	const [days, setDays] = useState(0)
+	const [hours, setHours] = useState(0)
+	const [minutes, setMinutes] = useState(0)
+	const [seconds, setSeconds] = useState(0)
 	
 	useEffect(() => {
 		const specificDate = new Date(post.createdAt)
 		const currentDate = new Date()
 		const timeDifference = currentDate - specificDate
 		const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
-		setDays(daysPassed)
+	
+		if (daysPassed === 0) {
+			const hoursPassed = Math.floor(timeDifference / (1000 * 60 * 60))
+			const minutesPassed = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60))
+			const secondsPassed = Math.floor((timeDifference % (1000 * 60)) / 1000)
+	
+			setDays(0)
+			setHours(hoursPassed)
+			setMinutes(minutesPassed)
+			setSeconds(secondsPassed)
+		} else {
+			setDays(daysPassed)
+		}
 	}, [post])
 
 	const formatDate = () => {
@@ -151,9 +167,32 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 					<p className='fsize-xs-1 f-w-100 grey-300 mt-xs-2'>
 						{days > 31 ?
 							<span>{formatDate()}</span>
-						:
+						: days > 0 ?
 							<span>{days} giorni fa</span>
+						: days <= 0 ?
+						<>
+							{hours <= 0 ?
+							<>
+									{minutes <= 0 ?
+										<span>{seconds} secondi fa</span>
+									: 
+									<>
+										<span>{minutes} minuti fa</span>
+									</>
+									}
+							</>
+								: 
+								<>
+									<span>{hours} ore fa</span>
+								</>
+							}
+						</>
+						: 
+						<>
+							<span>{days} giorni fa</span>
+						</>
 						}
+						
 					</p>
 				</div>
 			:

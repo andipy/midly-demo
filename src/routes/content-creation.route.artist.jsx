@@ -293,7 +293,7 @@ const ContentCreationRoute = () => {
 
     const updatePosts = () => {
         let currentDate = new Date()
-        let date = currentDate.toISOString().split('T')[0]
+        /* let date = currentDate.toISOString().split('T')[0] */
     
         let newPostId
     
@@ -313,7 +313,7 @@ const ContentCreationRoute = () => {
                                 artistId: currentArtist.id,
                                 publisherId: currentArtist.id,
                                 mode: 'SKETCH',
-                                createdAt: date,
+                                createdAt: currentDate,
                                 settings: {
                                     ...post.settings,
                                     isPinned: false,
