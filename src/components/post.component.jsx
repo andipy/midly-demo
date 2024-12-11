@@ -1,14 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
+
+import { ArtistsContext } from '../contexts/artists.context'
 
 import SwipeCarousel from '../layout/swipe-carousel.layout'
 import IconSettings from '../images/icons/icon-settings-white.svg'
 import IconLike from '../images/icons/icon-like-white-empty.svg'
 import IconComments from '../images/icons/icon-comment-white.svg'
 import IconShare from '../images/icons/icon-share-white.svg'
-import AudioPost from './audio-post.component'
 
-const Post = ({ post, openComments, hasUserSubscribed, userType }) => {
+const Post = ({ artistId, post, openComments, hasUserSubscribed }) => {
+
+	const { artists } = useContext(ArtistsContext)
+
+	const [artist, setArtist] = useState()
+	useEffect(() => {
+		const foundArtist = artists?.find((artist) => artist.id === artistId)
+		setArtist(foundArtist)
+	}, artistId)
+
+
 
 	const { pathname } = useLocation()
 	const navigate = useNavigate()
@@ -34,171 +45,129 @@ const Post = ({ post, openComments, hasUserSubscribed, userType }) => {
 		return day + ' ' + formattedMonth + ' ' + `${year === thisYear ?  '' : year}`
 	}
 
-	const isImage = (media) => {
-		if (media.type === 'IMAGE') {
-			return true
-		} else {
-			return false
-		}
-	}
-	
-	const isAudio = (media) => {
-		if (media.type === 'AUDIO') {
-			return true
-		} else {
-			return false
-		}
-	}
-
-	const isVideo = (media) => {
-		if (media.type === 'VIDEO') {
-			return true
-		} else {
-			return false
-		}
-	}
-
 	return (
 		<>
-		<div className='bg-dark-gradient border-radius-01 mb-xs-8 position-relative overflow-hidden d-flex-column j-c-start align-items-center pt-xs-4 pr-xs-4 pl-xs-4 pb-xs-4 '>
-			{!post.settings.isPrivate && userType === 'FAN' &&
+		<div className='bg-dark-gradient position-relative overflow-hidden d-flex-column j-c-center align-items-center'>
+			<div className='d-flex-row w-100 gap-0_25em j-c-start align-items-center pl-xs-2'>
+				<img className='avatar-28 border-radius-100 mt-xs-2 mb-xs-2' src={artist?.image}></img>
+				<p className='fsize-xs-1 f-w-500'>{artist?.artistName}</p>
+			</div>
+			{!post.settings.isPrivate && !pathname.includes('/artist-app/') &&
 					<p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>
 			}
-
-			{/*Post foto, video, audio e testo o foto singola o video singolo o audio singolo*/}
-			{(isImage(post.media[0]) || isVideo(post.media[0]) || isAudio(post.media[0])) && 
-			<div className={`border-radius-04 w-100 h-100 `}>
-				<div className={`w-100 h-500px j-c-center align-items-center border-radius-02 overflow-all-hidden position-relative`}>
-					<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && userType === 'FAN') ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
-						{post.media.length > 0 ?
-							<SwipeCarousel images={post.media} text={post.text} />
-						:
-							null
-						}
-					</div>
+			<div className={`w-100 j-c-center align-items-center position-relative`}>
+				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
+					{post.media.length >= 0 ?
+						<SwipeCarousel images={post.media} text={post.text} />
+					:
+						null
+					}
 				</div>
 			</div>
-			}
 
-			{/*Post solo testo*/}
-			{post.media.length === 0 &&
-			<div className={`border-radius-04 w-100 h-100`}>
-				<div className={`w-100 j-c-center align-items-center border-radius-02 overflow-all-hidden position-relative`}>
-					<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && userType=== 'FAN') ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
-						{post.media.length > 0 ? 
-							null
-						:
-							<div className='w-100 h-100 bg-black d-flex-row j-c-center align-items-center pr-xs-2 pl-xs-2'>
-								<p className='fsize-xs-8 t-align-center f-w-600'>{post.text}</p>
+			{(post.settings.isPrivate === false || (post.settings.isPrivate === true && hasUserSubscribed === true) || pathname.includes('/artist-app/')) ?
+				<div className='w-100 pr-xs-4 pl-xs-4 mb-xs-4'>
+					<div className='d-flex-row w-100 j-c-space-between align-items-center'>
+						<div className='d-flex-row align-items-center gap-0_5em'>
+							<div className='d-flex-row align-items-center gap-0_25em'>
+								<img className='avatar-24' src={IconLike}/>
+								<p className='fsize-xs-1'>{post.likes}</p>
 							</div>
-						}
-					</div>
-				</div>
-			</div>
-			}
-			{(post.settings.isPrivate === false || (post.settings.isPrivate === true && hasUserSubscribed === true) || userType === 'ARTIST') ?
-				<>
-				<div className='d-flex-row w-100 j-c-space-between align-items-center mt-xs-2 pl-xs-2 pr-xs-2'>
-					<div className='d-flex-row align-items-center gap-0_5em'>
-						<div className='d-flex-row align-items-center gap-0_25em'>
-							<img className='avatar-24' src={IconLike}/>
-							<p className='fsize-xs-1'>{post.likes}</p>
-						</div>
-						<div 
-							className='avatar-32 d-flex-row align-items-center j-c-center' 
-							onClick={() => {
-								if ( !pathname.includes('/artist-app') ) {
-									if (hasUserSubscribed || !post.settings.isPrivate) {
+							<div 
+								className='avatar-32 d-flex-row align-items-center j-c-center' 
+								onClick={() => {
+									if ( !pathname.includes('/artist-app') ) {
+										if (hasUserSubscribed || !post.settings.isPrivate) {
+											openComments()
+										}
+									} else {
 										openComments()
 									}
-								} else {
-									openComments()
-								}
-								
-							}}
-						>
-							<img className='avatar-24' src={IconComments} />
-							<p className='fsize-xs-1'>{post.comments.length}</p>
+									
+								}}
+							>
+								<img className='avatar-24' src={IconComments} />
+								<p className='fsize-xs-1'>{post.comments.length}</p>
+							</div>
+							<div className='d-flex-row align-items-center gap-0_25em'>
+								<img className='avatar-24' src={IconShare}/>
+								<p className='fsize-xs-1'>{post.shares}</p>
+							</div>
 						</div>
-						<div className='d-flex-row align-items-center gap-0_25em'>
-							<img className='avatar-24' src={IconShare}/>
-							<p className='fsize-xs-1'>{post.shares}</p>
+						<div className='d-flex-row'>
+							{pathname.includes('/artist-app/') &&
+								<img className='avatar-24' src={IconSettings}/>
+							}
 						</div>
-					</div>
-					<div className='d-flex-row'>
-						{userType == 'ARTIST' &&
-							<img className='avatar-24' src={IconSettings}/>
-						}
-					</div>
 
-				</div>
-				<div className='w-100 d-flex-row'>
-				<p className='pre-wrap mb-xs-1 grey-200 f-w-300 fsize-xs-1'>
-					{post.caption.length > 95 ?
-					<>
-						{showCaption === true ?
-							<>
-								{post.caption}
-								<span className='grey-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
-							</>
-						:
-							<>
-								{post.caption.slice(0, 95)}...
-								<span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
-							</>
-						}
-					</>
-					:
-						post.caption
-					}
-				</p>
-				</div>
-				{post.link.url &&
-					<div className='mb-xs-2 w-100 j-c-center align-items-start'>
-						<Link to={post.link.url} target='blank' className='lime-400 f-w-300 fsize-xs-1'>{post.link.name ? post.link.name : 'Apri al link'}</Link>
 					</div>
-				}
-				<div className='w-100 j-c-start d-flex-row'>
-					{post.comments.length > 0 ?
-						<p 
-						className='lime-400 f-w-500 fsize-xs-1'
-						onClick={(event) => {
-							event.preventDefault()
-							navigate(`/new-components-test/comments`, {
-							state: { invokedModal: true},
-						})}}>
-							Visualizza tutti i {post.comments.length} commenti
+					<div className='w-100 d-flex-row'>
+					<p className='pre-wrap mb-xs-1 grey-200 f-w-300 fsize-xs-1'>
+						{post.caption.length > 95 ?
+						<>
+							{showCaption === true ?
+								<>
+									{post.caption}
+									<span className='grey-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
+								</>
+							:
+								<>
+									{post.caption.slice(0, 95)}...
+									<span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
+								</>
+							}
+						</>
+						:
+							post.caption
+						}
+					</p>
+					</div>
+					{post.link.url &&
+						<div className='mb-xs-2 w-100 j-c-center align-items-start'>
+							<Link to={post.link.url} target='blank' className='lime-400 f-w-300 fsize-xs-1'>{post.link.name ? post.link.name : 'Apri al link'}</Link>
+						</div>
+					}
+					<div className='w-100 j-c-start d-flex-row'>
+						{post.comments.length > 0 ?
+							<p 
+							className='lime-400 f-w-500 fsize-xs-1'
+							onClick={(event) => {
+								event.preventDefault()
+								navigate(`/new-components-test/comments`, {
+								state: { invokedModal: true},
+							})}}>
+								Visualizza tutti i {post.comments.length} commenti
+							</p>
+						:
+							<p className='grey-500 f-w-400 fsize-xs-1'>Commenta per primo!</p>
+						}
+
+					</div>
+					<div className='w-100 j-c-start d-flex-row mt-xs-1'>
+						<p className='fsize-xs-0 f-w-100 grey-400'>
+							{days > 31 ?
+								<span>{formatDate()}</span>
+							:
+								<span>{days} giorni fa</span>
+							}
 						</p>
-					:
-						<p className='grey-500 f-w-400 fsize-xs-1'>Commenta per primo!</p>
-					}
-
+					</div>
 				</div>
-				<div className='w-100 j-c-start d-flex-row mt-xs-1'>
-					<p className='fsize-xs-0 f-w-100 grey-400'>
-						{days > 31 ?
-							<span>{formatDate()}</span>
-						:
-							<span>{days} giorni fa</span>
-						}
-					</p>
-				</div>
-				</>
 			:
-				<>
-				<div className='w-100 j-c-start d-flex-row'>
-					<p className='fsize-xs-2 grey-200 gold'>Contenuto da sbloccare</p>
+				<div className='w-100 p-xs-4 pl-xs-4'>
+					<div className='w-100 j-c-start d-flex-row'>
+						<p className='fsize-xs-2 grey-200 gold'>Contenuto da sbloccare</p>
+					</div>
+					<div className='w-100 j-c-start d-flex-row mt-xs-1'>
+						<p className='fsize-xs-0 f-w-100 grey-400'>
+							{days > 31 ?
+								<span>{formatDate()}</span>
+							:
+								<span>{days} giorni fa</span>
+							}
+						</p>
+					</div>
 				</div>
-				<div className='w-100 j-c-start d-flex-row mt-xs-1'>
-					<p className='fsize-xs-0 f-w-100 grey-400'>
-						{days > 31 ?
-							<span>{formatDate()}</span>
-						:
-							<span>{days} giorni fa</span>
-						}
-					</p>
-				</div>
-				</>
 			}
 		</div>
 		</>

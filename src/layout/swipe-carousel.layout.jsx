@@ -53,30 +53,6 @@ const SwipeCarousel = ({ images, text }) => {
 		trackRef.current.style.transform = `translateX(${prevTranslate.current}px)`
 	}
 
-	const isImage = (media) => {
-        if (media.type === 'IMAGE') {
-            return true
-        } else {
-            return false
-        }
-    }
-      
-    const isAudio = (media) => {
-        if (media.type === 'AUDIO') {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    const isVideo = (media) => {
-        if (media.type === 'VIDEO') {
-            return true
-        } else {
-            return false
-        }
-    }
-
 	const [isMuted, setIsMuted] = useState(true)
 
 	const toggleVolume = () => {
@@ -84,87 +60,56 @@ const SwipeCarousel = ({ images, text }) => {
 	}
 
 	return (
-		<div className='d-flex-column w-100  position-relative h-100 j-c-center align-items-center'>
-		
-		<div
-			className='w-100 overflow-all-hidden position-relative h-100 '
-			onMouseDown={handleDragStart}
-			onMouseMove={isDragging ? handleDragMove : null}
-			onMouseUp={handleDragEnd}
-			onMouseLeave={isDragging ? handleDragEnd : null}
-			onTouchStart={handleDragStart}
-			onTouchMove={handleDragMove}
-			onTouchEnd={handleDragEnd}
-		>
-		<div
-			className='carousel-track d-flex-row align-items-center h-100 w-100 '
-			ref={trackRef}
-			style={{
-			transform: `translateX(-${currentIndex * 100}%)`, 
-			}}
-		>
-			{images.map((media, index) => (
+	<div className='d-flex-column j-c-center align-items-center overflow-all-hidden'
+		onMouseDown={handleDragStart}
+		onMouseMove={isDragging ? handleDragMove : null}
+		onMouseUp={handleDragEnd}
+		onMouseLeave={isDragging ? handleDragEnd : null}
+		onTouchStart={handleDragStart}
+		onTouchMove={handleDragMove}
+		onTouchEnd={handleDragEnd}>
+
 			<div
-				key={index}
-				className='carousel-slide h-100 overflow-all-hidden w-100 d-flex-row j-c-center align-items-center'>
-				{isImage(media) ?
-					<div className='w-100'>
-						<img className='w-100 h-100' src={media.url} />
-					</div>
-				:
-					null
-				}
-				
-				{isVideo(media) ?
-					<>
-						{/* <div className='avatar-16 border-radius-100 position-absolute bottom-2 right-0 bg-white z-index-999 mr-xs-2'>
-							<button className={`bg-acid-lime black font-body avatar-16 border-radius-100 `} onClick={toggleVolume}>
-							<img className='avatar-12' src={IconSpeaker}></img>
-							</button>
-						</div> */}
-						<div className='w-100 position-relative'>
-							<video className='w-100' autoPlay playsInline loop muted={!isMuted}>
-							<source src={media.url} type='video/mp4' />
+				className='carousel-track d-flex-row align-items-center object-fit-cover'
+				ref={trackRef}
+				style={{
+				transform: `translateX(-${currentIndex * 100}%)`, 
+				}}
+			>
+				{images.map((media, index) => (
+					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 objcet-fit-cover'>
+							{media.type === 'IMAGE' ?
+								<img className='w-100 objcet-fit-cover' src={media.url} />
+							: media.type === 'VIDEO' ?	
+							<video className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted={!isMuted}>
+								<source src={media.url} type='video/mp4' />
 							</video>
-						</div>
-					</>
-				:
-					null
-				}
-				{isAudio(media) ?
-					<div className='w-100 h-100 position-relative'>
-						<AudioPost src={media.url} />
+							: media.type === 'AUDIO'?
+								<AudioPost src={media.url} />
+							: <></>
+							}
 					</div>
-				:
-					null
-				}
+				))}
+				{ text && (
+					<div className='w-min-100 h-100 bg-black d-flex-row j-c-center align-items-center pr-xs-2 pl-xs-2'>
+						<p className='fsize-xs-8 t-align-center f-w-600'>{text}</p>
+					</div>
+				)}
 			</div>
-			))}
-			{
-			text && (
-				<div
-				className='carousel-slide h-100 bg-black d-flex-row j-c-center align-items-center pr-xs-2 pl-xs-2'>
-				<p className='fsize-xs-8 t-align-center f-w-600'>{text}</p>
-				</div>
-			)
-			}
-		</div>
-		
-		</div>
 		{
 			(images.length === 1 && text === '') ? (
 				<></>
 			) : (
-			<div className='d-flex-row justify-center mt-xs-2 gap-0_25em'>
-				{[...images, ...(text && text !== '' ? [text] : [])].map((_, index) => (
-				<div
-					key={index}
-					className={`indicator avatar-6 border-radius-100 ${
-					index === currentIndex ? 'active' : ''
-					}`}
-				></div>
-				))}
-			</div>
+				<div className='d-flex-row justify-center mt-xs-2 gap-0_25em'>
+					{[...images, ...(text && text !== '' ? [text] : [])].map((_, index) => (
+					<div
+						key={index}
+						className={`indicator avatar-6 border-radius-100 ${
+						index === currentIndex ? 'active' : ''
+						}`}
+					></div>
+					))}
+				</div>
 			)
 		}
 		

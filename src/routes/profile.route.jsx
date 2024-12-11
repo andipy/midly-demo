@@ -21,6 +21,7 @@ import IconOk from '../images/icons/icon-ok.svg'
 import SettingsLogo from '../images/icons/icon-settings-white.svg'
 import SpotifyLogo from '../images/icons/icon-spotify-full-green.svg'
 import GoldBagde from '../images/illustrations/GOLD.png'
+import MessageDisconnectSpotify from '../components/message-disconnect-spotify.component'
 
 const ProfileRoute = () => {
 
@@ -94,6 +95,15 @@ const ProfileRoute = () => {
     const logout = () => {
         /* gestisci logout */
         navigate('/login')
+    }
+
+    const [showMessageDisconnectSpotify, setShowMessageDisconnectSpotify] = useState(false)
+
+    const disconnectSpotify = () => {
+        setCurrentFan((prev) => ({
+            ...prev,
+            hasSpotify: false,
+        }))
     }
 
     return (
@@ -182,11 +192,13 @@ const ProfileRoute = () => {
             </div>
             <div className='mt-xs-4'>
                     {currentFan.hasSpotify ? (
-                        <div className='social-card-1 bg-dark-gradient-radial border-radius-1 d-flex-column j-c-center align-items-center w-100'>
-                            <img className='avatar-40'src={SpotifyLogo} alt='SPOTIFY'></img>
-                            <div className='d-flex-row align-items-center j-c-space-between pt-xs-1 pb-xs-1 pr-xs-2 pl-xs-1 bg-greyish-800 border-radius-08 mt-xs-2'>
-                                <img className='avatar-16' src={IconOk} alt=""></img>
-                                <span className='greyish-300 fsize-xs-1 f-w-300 ml-xs-4 no-shrink'>In ascolto</span>
+                        <div className='social-card-1 bg-dark-gradient-radial border-radius-1 d-flex-column j-c-center align-items-center w-100' onClick={() => setShowMessageDisconnectSpotify(true)}>
+                            <div className='bg-black pl-xs-1 pr-xs-2 pt-xs-1 pb-xs-1 d-flex-row j-c-center align-items-center border-radius-1'>
+                                <img className='avatar-36'src={SpotifyLogo} alt='SPOTIFY'></img>
+                                <p className='fsize-xs-2 f-w-500 green-spotify'>Spotify connesso</p>
+                            </div>
+                            <div className='d-flex-row align-items-center j-c-space-between mt-xs-4'>
+                                <p className='red-400 fsize-xs-1'>Tocca per disconnettere</p>
                             </div>
                         </div>
                     ) : (
@@ -278,6 +290,9 @@ const ProfileRoute = () => {
         </ContainerDefault>
         {showMessageWhitePoints && 
             <MessageWhitePoints points={whitePoints} message={message} onClick={() => setShowMessageWhitePoints(false)} />
+        }
+        {showMessageDisconnectSpotify && 
+            <MessageDisconnectSpotify onClick={() => disconnectSpotify()} close={() => setShowMessageDisconnectSpotify(false)} />
         }
         <Appbar />
         </>

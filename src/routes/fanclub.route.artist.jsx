@@ -255,6 +255,7 @@ const FanclubRoute = () => {
                         <ContainerDefault containerSpecificStyle={'pb-xs-appbar mt-xs-4'}>
                             {fanclub?.posts.map(post =>
                                 <Post 
+                                    artistId={fanclub?.artistId}
                                     post={post} 
                                     //userType={'ARTIST'}
                                     openComments={() => openComments(post.id)}
