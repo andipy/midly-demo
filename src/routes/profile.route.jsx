@@ -176,27 +176,29 @@ const ProfileRoute = () => {
                 {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi punti personali</h4> */}
                 <div className='mt-xs-4 mb-xs-4'>
                     <Link to='/personal-user-points'>
-                        <div className='bg-dark-gradient border-radius-1 d-flex-column j-c-start align-items-start pt-xs-4 pb-xs-4 pl-xs-6 pr-xs-6'>
-                            <div className='d-flex-row w-100 j-c-center align-items-center'>
+                        <div className='bg-dark-gradient border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-6 pr-xs-6'>
+                            <div className='d-flex-column w-100 j-c-center align-items-center'>
                                 <img className='avatar-28 border-radius-100' src={IconPoints} alt='points' />
-                            </div>
-                            <div className='d-flex-column j-c-center align-items-center mb-xs-4 mt-xs-4'>
-                                <span className='font-heading fsize-xs-4 f-w-600 letter-spacing-1 no-shrink'>I tuoi punti white label</span>
-                                <span className='grey-300 fsize-xs-1 f-w-300 letter-spacing-1 no-shrink mt-xs-2 t-align-center'>Usa questi punti nella classifica degli artisti che vuoi per scalare posizioni</span>
-                            </div>
-
-                            {currentFan.pointTank === 0 ? (
-                                <div className='d-flex-row w-100 j-c-space-between align-items-center'>
-                                    <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Scopri come guadagnare punti</p>
-                                    <img src={IconArrowRight} alt='->'/>
+                                <div className='d-flex-column j-c-center align-items-center mb-xs-4 mt-xs-4'>
+                                    <div className='d-flex-row w-100 j-c-center align-items-center'>
+                                        <span className='font-heading fsize-xs-4 f-w-600 letter-spacing-1 no-shrink'>I tuoi punti white label</span>
+                                        <img src={IconArrowRight} alt='->'/> 
+                                    </div>
+                                    <span className='grey-300 fsize-xs-1 f-w-300 letter-spacing-1 no-shrink mt-xs-2 t-align-center'>Usa questi punti nella classifica degli artisti che vuoi per scalare posizioni</span>
                                 </div>
-                            ) : (
-                                <div className='d-flex-row w-100 j-c-space-between align-items-center'>
-                                    <ProgressBar points={currentFan.whiteLabelPoints} max={50}/>
-                                    <img src={IconArrowRight} alt='->'/>
-                                </div>  
-                            )}
-                                
+                                {currentFan.pointTank === 0 ? (
+                                    <div className='d-flex-row w-100 j-c-space-between align-items-center'>
+                                        <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Scopri come guadagnare punti</p>
+                                    </div>
+                                ) : (
+                                    <div className='d-flex-row w-100 j-c-space-between align-items-center'>
+                                        <ProgressBar points={currentFan.whiteLabelPoints} max={50}/>   
+                                    </div>  
+                                )}
+                            </div>
+                            {/* <div className='d-flex-row j-c-end align-items-center'>
+                                <img src={IconArrowRight} alt='->'/>
+                            </div>  */}     
                         </div>
                     </Link>
                 </div>
@@ -205,12 +207,21 @@ const ProfileRoute = () => {
                 {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500 mb-xs-2'>I tuoi riconoscimenti</h4> */}
                 <Link to='/badges'>
                     <div>
-                        <div className='bg-dark-gradient border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6'>
-                            <div className='d-flex-row align-items-center j-c-start'>
-                                <img className='w-35 no-shrink social-logo' src={IconTrophyGold} alt='Y' />
-                                <span className='font-heading fsize-xs-4 f-w-600 letter-spacing-1 no-shrink'>I tuoi badge</span>
+                        <div className='bg-dark-gradient d-flex-row border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6'>
+                            <div className='d-flex-column w-100 j-c-center align-items-center'>
+                                <img className='avatar-32' src={IconTrophyGold} alt='Y' />
+                                <div className='d-flex-column w-100 align-items-center j-c-center mt-xs-4'>
+                                    <div className='d-flex-row w-100 j-c-center align-items-center'>
+                                        <span className='font-heading fsize-xs-4 f-w-600 letter-spacing-1 no-shrink'>I tuoi badge</span>
+                                        <img src={IconArrowRight} alt='->'/> 
+                                    </div>
+                                    
+                                    <span className='grey-300 fsize-xs-1 f-w-300 letter-spacing-1 no-shrink mt-xs-2 t-align-center'>Vedi qui il tuo andamento nel corso dei mesi nelle classifiche dei tuoi artisti preferiti</span>
+                                </div>
                             </div>
-                            <img src={IconArrowRight} alt='->'/>
+                           {/*  <div className='d-flex-row j-c-end align-items-center'>
+                                     <img src={IconArrowRight} alt='->'/> 
+                            </div> */}
                         </div> 
                     </div>
                 </Link>
