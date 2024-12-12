@@ -153,45 +153,9 @@ const ProfileRoute = () => {
                         </div>
                     </div>
                 </div>
-                
-            
-            <section id='points'>
-                {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi punti personali</h4> */}
-                <div className='mt-xs-4 mb-xs-4'>
-                    <Link to='/personal-user-points'>
-                        <div className='bg-dark-gradient border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6'>
-
-                            {currentFan.pointTank === 0 ? (
-                                <>
-                                    <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Scopri come guadagnare punti</p>
-                                    <img src={IconArrowRight} alt='->'/>
-                                </>
-                            ) : (
-                                <>
-                                    <ProgressBar points={currentFan.whiteLabelPoints} max={50}/>
-                                    <img src={IconArrowRight} alt='->'/>
-                                </>  
-                            )}
-                                
-                        </div>
-                    </Link>
-                </div>
-            </section>
-            <div className='d-flex-row align-items-center'>
-                
-            </div>
-            <div className='mt-xs-4'>
-                    {currentFan.hasSpotify ? (
-                        <div className='social-card-1 bg-dark-gradient-radial border-radius-1 d-flex-column j-c-center align-items-center w-100' onClick={() => setShowMessageDisconnectSpotify(true)}>
-                            <div className='bg-black pl-xs-1 pr-xs-2 pt-xs-1 pb-xs-1 d-flex-row j-c-center align-items-center border-radius-100'>
-                                <img className='avatar-36'src={SpotifyLogo} alt='SPOTIFY'></img>
-                                <p className='fsize-xs-2 f-w-500 green-spotify'>Spotify connesso</p>
-                            </div>
-                            <div className='d-flex-row align-items-center j-c-space-between mt-xs-4'>
-                                <p className='red-400 fsize-xs-1'>Tocca per disconnettere</p>
-                            </div>
-                        </div>
-                    ) : (
+            {
+            !currentFan.hasSpotify && 
+                <div className='mt-xs-4 mb-xs-4'>  
                         <div className='bg-dark-gradient-radial border-radius-1 d-flex-column align-items-start j-c-center pt-xs-8 pb-xs-8 pr-xs-8 pl-xs-8 position-relative'>
                             <div className='d-flex-row gap-0_25em align-items-center mb-xs-4 mt-xs-4'>
                                 <img className='social-logo' src={SpotifyLogo} alt='SPOTIFY'/>
@@ -206,23 +170,67 @@ const ProfileRoute = () => {
                                 </div>
                             </div>
                         </div>
-                    )}    
-            </div>
-            <section id='social-accounts' className='mt-xs-8'>
+                </div>  
+            }
+            <section id='points'>
+                {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi punti personali</h4> */}
+                <div className='mt-xs-4 mb-xs-4'>
+                    <Link to='/personal-user-points'>
+                        <div className='bg-dark-gradient border-radius-1 d-flex-column j-c-start align-items-start pt-xs-4 pb-xs-4 pl-xs-6 pr-xs-6'>
+                            <div className='d-flex-row w-100 j-c-center align-items-center'>
+                                <img className='avatar-28 border-radius-100' src={IconPoints} alt='points' />
+                            </div>
+                            <div className='d-flex-column j-c-center align-items-center mb-xs-4 mt-xs-4'>
+                                <span className='font-heading fsize-xs-4 f-w-600 letter-spacing-1 no-shrink'>I tuoi punti white label</span>
+                                <span className='grey-300 fsize-xs-1 f-w-300 letter-spacing-1 no-shrink mt-xs-2 t-align-center'>Usa questi punti nella classifica degli artisti che vuoi per scalare posizioni</span>
+                            </div>
+
+                            {currentFan.pointTank === 0 ? (
+                                <div className='d-flex-row w-100 j-c-space-between align-items-center'>
+                                    <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Scopri come guadagnare punti</p>
+                                    <img src={IconArrowRight} alt='->'/>
+                                </div>
+                            ) : (
+                                <div className='d-flex-row w-100 j-c-space-between align-items-center'>
+                                    <ProgressBar points={currentFan.whiteLabelPoints} max={50}/>
+                                    <img src={IconArrowRight} alt='->'/>
+                                </div>  
+                            )}
+                                
+                        </div>
+                    </Link>
+                </div>
+            </section>
+            <section id='social-accounts' className='mt-xs-4 mb-xs-4'>
                 {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500 mb-xs-2'>I tuoi riconoscimenti</h4> */}
                 <Link to='/badges'>
                     <div>
                         <div className='bg-dark-gradient border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-6 pb-xs-6 pl-xs-6 pr-xs-6'>
                             <div className='d-flex-row align-items-center j-c-start'>
                                 <img className='w-35 no-shrink social-logo' src={IconTrophyGold} alt='Y' />
-                                <span className='font-heading fsize-xs-4 f-w-500 letter-spacing-1 no-shrink'>I tuoi badge</span>
+                                <span className='font-heading fsize-xs-4 f-w-600 letter-spacing-1 no-shrink'>I tuoi badge</span>
                             </div>
                             <img src={IconArrowRight} alt='->'/>
                         </div> 
                     </div>
                 </Link>
             </section>
+            {currentFan.hasSpotify && 
+                <div className='mt-xs-4 mb-xs-4'>
+                    <div className='bg-dark-gradient-radial border-radius-1 d-flex-column j-c-center align-items-center w-100 pb-xs-4 pt-xs-4' onClick={() => setShowMessageDisconnectSpotify(true)}>
+                        <div className='bg-black pl-xs-1 pr-xs-2 pt-xs-1 pb-xs-1 d-flex-row j-c-center align-items-center border-radius-100'>
+                            <img className='avatar-36'src={SpotifyLogo} alt='SPOTIFY'></img>
+                            <p className='fsize-xs-2 f-w-500 green-spotify'>Spotify connesso</p>
+                        </div>
+                        <div className='d-flex-row align-items-center j-c-space-between mt-xs-4'>
+                            <p className='red-400 fsize-xs-1'>Tocca per disconnettere</p>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
+
+
 
         <div>
             <div id='profile-settings' className='mt-xs-12 mt-lg-5'> 
