@@ -104,6 +104,11 @@ a {
   transition: width 0.1s linear;
 }
 
+.input-lime::placeholder {
+  color: #DAEF64;
+  opacity: 1;
+}
+
 .chat-button {
   padding: 0;
   margin: 0;
@@ -4997,6 +5002,10 @@ nav .container {
       border: none;
       text-indent: 20px;
   }
+
+  .input-lime::placeholder {
+    color: #DAEF64; 
+}
 
   /***** HEIGHT *****/
   .h-xxl-10 {

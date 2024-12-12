@@ -173,6 +173,7 @@ const FanclubSettingsEditRoute = () => {
                         value={updates.description}
                         onChange={(e) => handelDescription(e)}
                         rows="4"
+                        style={{ resize: 'none' }}
                     />
                     : type === 'COVER' ?
                     <>

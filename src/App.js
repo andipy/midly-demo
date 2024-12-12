@@ -71,6 +71,7 @@ import ProfileArtistRoute from './routes/profile.route.artist'
 import TermsConditionsArtistsRoute from './routes/terms-and-conditions-artists.route.artist'
 import PrivacyPolicyArtistsRoute from './routes/privacy-policy-artists.route.artist'
 import CookiePolicyArtistsRoute from './routes/cookie-policy-artists.route.artist'
+import FanclubActivation1Route from './routes/fanclub-activation-1.route.artist'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -207,6 +208,9 @@ const router = createBrowserRouter([
 		}
 		]
 
+	}, {
+		path: '/artist-app/fanclub-activation-1',
+		element: <FanclubActivation1Route />
 	},{
 		path: '/cool/1',
 		element: <Cool1Route />

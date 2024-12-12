@@ -186,6 +186,7 @@ const ContentCreationReviewRoute = () => {
                         value={post?.caption}
                         rows={4}
                         onChange={(e) => handleCaption(e)} 
+                        style={{ resize: 'none' }}
                     />
                 </div>
                 <div className='mt-xs-8 mb-xs-4'>
