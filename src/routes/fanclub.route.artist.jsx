@@ -290,7 +290,7 @@ const FanclubRoute = () => {
                             <h4 className='fsize-xs-5 letter-spacing-1 f-w-600 white t-align-center mt-xs-4 w-80'>Apri il tuo fan club su MIDLY</h4>
                         </div>
                         <p className='letter-spacing-1 grey-300 fsize-xs-3 t-align-center w-80'>Crea un’esperienza esclusiva per i tuoi Super Fan a cui possono accedere in cambio di un abbonamento mensile.</p>
-                        <Button style='bg-acid-lime fsize-xs-3 f-w-500 black w-70' label='Inizia' onClick={() => navigate('/artist-app/fanclub/terms-and-conditions')} />
+                        <Button style='bg-acid-lime fsize-xs-3 f-w-500 black w-70' label='Inizia' onClick={() => navigate('/artist-app/fanclub/activation/terms')} />
                     </ContainerDefault>
                 </FullPageCenter>
             }

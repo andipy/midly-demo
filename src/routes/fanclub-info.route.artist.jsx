@@ -56,7 +56,7 @@ const FanclubInfoRoute = () => {
     useEffect(() => {
         if ( name || description || cover ) {
             updateThisFanclub()
-        }
+        } 
 
         // Check if all mandatory fields are filled
         if (name && description && cover) {

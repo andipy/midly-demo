@@ -89,7 +89,7 @@ const FanclubTermsRoute = () => {
                         style={`${accepted ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`}
                         label='Accetta e prosegui'
                         onClick={
-                            () => navigate('/artist-app/fanclub/info')
+                            () => navigate('/artist-app/fanclub/activation/info')
                         }
                     />
                 </ContainerDefault>

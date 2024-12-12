@@ -157,7 +157,7 @@ const router = createBrowserRouter([
 		}
 		]
 	},{
-		path: '/artist-app/fanclub/terms-and-conditions',
+		path: '/artist-app/fanclub/activation/terms',
 		element: <FanclubTermsRoute />
 	},{
 		path: '/artist-app/fanclub/info',
@@ -166,7 +166,7 @@ const router = createBrowserRouter([
 		path: '/artist-app/fanclub/payment-info',
 		element: <FanclubPaymentInfoRoute />
 	},{
-		path: '/artist-app/fanclub/pricing',
+		path: '/artist-app/fanclub/activation/pricing',
 		element: <FanclubPricingRoute />
 	},{
 		path: '/artist-app/fanclub/settings',
@@ -209,7 +209,7 @@ const router = createBrowserRouter([
 		]
 
 	}, {
-		path: '/artist-app/fanclub-activation-1',
+		path: '/artist-app/fanclub/activation/info',
 		element: <FanclubActivation1Route />
 	},{
 		path: '/cool/1',

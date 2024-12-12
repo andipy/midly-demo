@@ -1,11 +1,21 @@
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
+import { FanclubsContext } from '../contexts/fanclubs.context'
+
 import NavbarMultistep from '../components/navbar-multistep.component'
 import ContainerDefault from '../layout/container-default.layout'
 import Button from '../components/button.component'
 
 import IconPlus from '../images/icons/icon-plus-lime.svg'
 const FanclubActivation1Route = () => {
+    const navigate = useNavigate()
+
+    const { currentArtist } = useContext(CurrentArtistContext)
+    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
+
     const [name, setName] = useState('')
     const handleName = (e) => {
         e.preventDefault()
@@ -29,19 +39,40 @@ const FanclubActivation1Route = () => {
 
     const [filledMandatory, setFilledMandatory] = useState(false)
     useEffect(() => {
+        if ( name !== '' || description !== '' || file !== '' ) {
+            updateThisFanclub()
+        }
+
         if (name === '' || description === '' || !file) {
             setFilledMandatory(false)
         } else {
             setFilledMandatory(true)
         }
-    })
+    }, [name, description, file])
+
+    const updateThisFanclub = () => {
+        setFanclubs(prevFanclubs => 
+            prevFanclubs.map(fanclub =>
+                fanclub.artistId === currentArtist.id
+                    ? {
+                        ...fanclub,
+                        name: name,
+                        description: description,
+                        cover: file
+                    }
+                    : fanclub
+            )
+        )
+    }
 
     const handleSubmit = () => {
-        console.log(name, description)
+        navigate('/artist-app/fanclub/activation/pricing')
     }
     const handleClick = () => {
         document.getElementById('fileInput').click()
     }
+
+    
 
   return (
     <>

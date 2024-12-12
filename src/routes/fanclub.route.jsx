@@ -27,8 +27,11 @@ const Fanclub = () => {
     const [fanclub, setFanclub] = useState()
     const fetchThisFanclub = () => {
         const thisFanclub = fanclubs.find(elem => elem.artistId === context.id)
+        console.log(thisFanclub)
         setFanclub(thisFanclub)
     }
+
+    
 
     const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
     const checkFanclubSubscription = () => {
