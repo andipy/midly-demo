@@ -11,10 +11,12 @@ import ProgressBar from '../components/progress-bar-points.component'
 import MessageWhitePoints from '../components/message-white-points.component'
 
 import IconPoints from '../images/icons/icon-points.svg'
-import IconArrowRight from '../images/icons/icon-arrowright.svg'
+/* import IconArrowRight from '../images/icons/icon-arrowright.svg' */
+import IconArrowRight from '../images/icons-comp/arrow-right.icon'
 import InfoLogo from '../images/icons/icon-info-white.svg'
 import IconTerms from '../images/icons/icon-terms.svg'
-import IconCookies from '../images/icons/icon-cookie.svg'
+/* import IconCookies from '../images/icons/icon-cookie.svg'
+ */import IconCookie from '../images/icons-comp/cookie.icon'
 import IconEdit from "../images/icons/icon-edit.svg"
 import IconTrophyGold from '../images/icons/icon-trophy-gold.svg'
 import IconOk from '../images/icons/icon-ok.svg'
@@ -182,7 +184,7 @@ const ProfileRoute = () => {
                                 <div className='d-flex-column j-c-center align-items-center mb-xs-4 mt-xs-4'>
                                     <div className='d-flex-row w-100 j-c-center align-items-center'>
                                         <span className='font-heading fsize-xs-4 f-w-600 letter-spacing-1 no-shrink'>I tuoi punti white label</span>
-                                        <img src={IconArrowRight} alt='->'/> 
+                                        <IconArrowRight color='white' size={32} />
                                     </div>
                                     <span className='grey-300 fsize-xs-1 f-w-300 letter-spacing-1 no-shrink mt-xs-2 t-align-center'>Usa questi punti nella classifica degli artisti che vuoi per scalare posizioni</span>
                                 </div>
@@ -213,7 +215,7 @@ const ProfileRoute = () => {
                                 <div className='d-flex-column w-100 align-items-center j-c-center mt-xs-4'>
                                     <div className='d-flex-row w-100 j-c-center align-items-center'>
                                         <span className='font-heading fsize-xs-4 f-w-600 letter-spacing-1 no-shrink'>I tuoi badge</span>
-                                        <img src={IconArrowRight} alt='->'/> 
+                                        <IconArrowRight color='white' size={32} />
                                     </div>
                                     
                                     <span className='grey-300 fsize-xs-1 f-w-300 letter-spacing-1 no-shrink mt-xs-2 t-align-center'>Vedi qui il tuo andamento nel corso dei mesi nelle classifiche dei tuoi artisti preferiti</span>
@@ -253,7 +255,7 @@ const ProfileRoute = () => {
                                 <img className='mr-xs-2' src={SettingsLogo} alt='SETTINGS'></img>
                                 <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Informazioni personali</h6>
                             </div>
-                            <img className='' src={IconArrowRight} alt='->'/>
+                            <IconArrowRight color='white' size={32} />
                         </div>
                     </Link>
                     <Link to='/faq'>
@@ -262,7 +264,7 @@ const ProfileRoute = () => {
                                 <img className='mr-xs-2' src={InfoLogo} alt='SETTINGS'></img>
                                 <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>FAQs</h6>
                             </div>
-                            <img className='' src={IconArrowRight} alt='->'/>
+                            <IconArrowRight color='white' size={32} />
                         </div>
                     </Link>
                     <Link to='/terms-and-conditions-fans'>
@@ -271,7 +273,7 @@ const ProfileRoute = () => {
                                 <img className='mr-xs-2' src={IconTerms} alt='SETTINGS' />
                                 <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Termini e condizioni fan</h6>
                             </div>
-                            <img className='' src={IconArrowRight} alt='->'/>
+                            <IconArrowRight color='white' size={32} />
                         </div>
                     </Link>
                     <Link to='/privacy-policy-fans'>
@@ -280,16 +282,16 @@ const ProfileRoute = () => {
                                 <img className='mr-xs-2' src={IconTerms} alt='O' />
                                 <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Privacy e policy fan</h6>
                             </div>
-                            <img className='' src={IconArrowRight} alt='->'/>
+                            <IconArrowRight color='white' size={32} />
                         </div>
                     </Link>
                     <Link to='/cookie-policy-fans'>
                         <div className='d-flex-row j-c-space-between mb-xs-3'>
                             <div className='d-flex-row align-items-center w-100'>
-                                <img className='mr-xs-2' src={IconCookies} alt='O' />
+                                <IconCookie color='white' size={32} />
                                 <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Cookie policy</h6>
                             </div>
-                            <img className='' src={IconArrowRight} alt='->'/>
+                            <IconArrowRight color='white' size={32} />
                         </div>
                     </Link>
                 </div>
