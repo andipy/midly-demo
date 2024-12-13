@@ -8,6 +8,8 @@ import Button from '../components/button.component'
 import NavbarMultistep from '../components/navbar-multistep.component'
 
 import ContainerDefault from '../layout/container-default.layout'
+import FullScreenModalLayout from '../layout/full-screen-modal.layout'
+import NavbarBackOnly from '../components/navbar-back-only.component'
 
 const FanclubTermsRoute = () => {
 
@@ -48,10 +50,10 @@ const FanclubTermsRoute = () => {
     }, []);
 
     return (
-        <>
-            <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={false} forcedExitPath={'/artist-app/fanclub'} />
+        <FullScreenModalLayout>
+            <NavbarBackOnly  onClick={() => navigate(-1, { state : {invokedModal: false}})}/>
 
-            <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
+            <ContainerDefault containerSpecificStyle=''>
                 <h3 className='fsize-xs-6 f-w-500 white'>Termini & condizioni e Privacy policy del fanclub</h3>
 
                 <div className='bg-dark-soft border-radius-04 mt-xs-4 overflow-auto fsize-xs-2 f-w-400 grey-100 line-height-140 h-50vh position-relative' ref={outerDivRef}>
@@ -94,7 +96,7 @@ const FanclubTermsRoute = () => {
                     />
                 </ContainerDefault>
             </ContainerDefault>
-        </>
+        </FullScreenModalLayout>
     )
 }
 

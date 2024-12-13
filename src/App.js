@@ -143,7 +143,19 @@ const router = createBrowserRouter([
 		element: <QuizGameplayRoute />
 	},{
 		path: '/artist-app/fanclub',
-		element: <FanclubRoute />
+		element: <FanclubRoute />,
+		children: [
+			{
+				path: '/artist-app/fanclub/activation/terms',
+				element: <FanclubTermsRoute />
+			}
+		]
+	},{
+		path: '/artist-app/fanclub/activation/info',
+		element: <FanclubActivation1Route />
+	},{
+		path: '/artist-app/fanclub/activation/pricing',
+		element: <FanclubPricingRoute />
 	},{
 		path: '/artist-app/flash-leaderboards',
 		element: <FlashLeaderboardsRoute />
@@ -157,17 +169,11 @@ const router = createBrowserRouter([
 		}
 		]
 	},{
-		path: '/artist-app/fanclub/activation/terms',
-		element: <FanclubTermsRoute />
-	},{
 		path: '/artist-app/fanclub/info',
 		element: <FanclubInfoRoute />
 	},{
 		path: '/artist-app/fanclub/payment-info',
 		element: <FanclubPaymentInfoRoute />
-	},{
-		path: '/artist-app/fanclub/activation/pricing',
-		element: <FanclubPricingRoute />
 	},{
 		path: '/artist-app/fanclub/settings',
 		element: <FanclubSettingsRoute />
@@ -208,9 +214,6 @@ const router = createBrowserRouter([
 		}
 		]
 
-	}, {
-		path: '/artist-app/fanclub/activation/info',
-		element: <FanclubActivation1Route />
 	},{
 		path: '/cool/1',
 		element: <Cool1Route />
