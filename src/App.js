@@ -13,6 +13,7 @@ import { FlashLeaderboardsProvider } from './contexts/flash-leaderboards.context
 import { LeaderboardsProvider } from './contexts/leaderboards.context'
 import { FanclubsProvider } from './contexts/fanclubs.context'
 import { LiveQuizProvider } from './contexts/live-quiz.context'
+import { FansProvider } from './contexts/fans.context'
 
 //FAN ROUTES
 import InviteFriendRoute from './routes/invite-friend.route'
@@ -42,7 +43,6 @@ import RecoverPasswordRoute from './routes/recover-password.route'
 import BadgesRoute from './routes/badges.route'
 import PersonalUserPointsRoute from './routes/personal-user-points.route'
 import FanPublicProfileRoute from './routes/fan-public-profile.route'
-import ShowCommentsRoute from './routes/show-comments.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -80,7 +80,9 @@ import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metri
 //SPOTIFY ROUTES
 import SpotifyAcceptRoute from './routes/spotify-accept.route.spotify'
 import SpotifyLoginRoute from './routes/spotify-login.route.spotify'
-import { FansProvider } from './contexts/fans.context'
+
+import IconTestRoute from './routes/icon-test'
+
 
 const router = createBrowserRouter([
 	{
@@ -289,9 +291,12 @@ const router = createBrowserRouter([
 	}, {
 		path: '/artist-app/privacy-policy-artists',
 		element: <PrivacyPolicyArtistsRoute />
-	},  {
+	},{
 		path: '/artist-app/cookie-policy-artists',
 		element: <CookiePolicyArtistsRoute />
+	},{
+		path: '/test',
+		element: <IconTestRoute />
 	}
 ])
 

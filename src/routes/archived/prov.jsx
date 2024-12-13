@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import ContainerDefault from '../layout/container-default.layout'
+import ContainerDefault from '../../layout/container-default.layout'
 
 import Button from './button.component'
 import NavbarModalFLExplanation from './navbar-modal-flash-leaderboard-explanation.component'
