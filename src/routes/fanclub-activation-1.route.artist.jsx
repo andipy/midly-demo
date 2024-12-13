@@ -85,6 +85,7 @@ const FanclubActivation1Route = () => {
     const handleSubmit = () => {
         navigate('/artist-app/fanclub/activation/pricing')
     }
+    
     const handleClick = () => {
         document.getElementById('fileInput').click()
     }
@@ -95,32 +96,37 @@ const FanclubActivation1Route = () => {
     <>
     <NavbarMultistep stepNumber={1} totalStepNumber={2} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
     <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-appbar'}>
-        <div id='cover' className='bg-dark-soft d-flex-row align-items-center j-c-center overflow-all-hidden h-300px border-radius-1 mt-xs-2 gap-0_5em position-relative' onClick={handleClick}>
+        <div id='cover' className='bg-dark-soft d-flex-row align-items-center j-c-center overflow-all-hidden h-300px border-radius-1 mt-xs-2 gap-0_5em position-relative' >
             {
                 file ?
                 <>
                 <img className='w-100 h-100 object-fit-cover' src={file} />
-                <div className='position-absolute top-2 right-2 bg-dark-gradient border-radius-100' onClick={() => setFile('')}>
+                <div className='position-absolute top-2 right-2 bg-dark-gradient border-radius-100 d-flex-row j-c-center align-items-center' onClick={() => setFile('')}>
                     <img className='avatar-28 border-radius-100' src={IconExit}/>
                 </div>
                 </>
+
                 
                 : 
-                <div className='bg-dark-soft d-flex-row align-items-center pt-xs-20 pb-xs-20 j-c-center '>
+                <>
+                <div className='bg-dark-soft d-flex-row align-items-center pt-xs-20 pb-xs-20 j-c-center w-100 h-100' onClick={handleClick}>
                     <div className='bg-acid-lime-op-10 d-flex-row j-c-center align-items-center pb-xs-2 pt-xs-2 pl-xs-2 pr-xs-2 border-radius-02'>
                         <img src={IconPlus}/>
                     </div>
                     <p className='fsize-xs-2 f-w-500 lime-400 no-shrink'>Aggiungi una cover</p>
                 </div>
-                
-            }
-            
-            <input
+                <input
                     id='fileInput'
                     type='file'
                     style={{ display: 'none' }} 
                     onChange={handleFileChange} 
-            />
+                />
+                </>
+                
+                
+            }
+            
+            
         </div>
         <input
             id={`input-name`}

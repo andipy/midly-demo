@@ -21,10 +21,12 @@ const FanclubPricingRoute = () => {
     const setRecommendedPricing = () => {
         setPricing(3.99)
     }
+
     const handlePricing = (e) => {
         e.preventDefault()
         setPricing(e.target.value)
     }
+
     const updateThisFanclub = () => {
         setFanclubs(prevFanclubs => 
             prevFanclubs.map(fanclub =>
@@ -36,6 +38,9 @@ const FanclubPricingRoute = () => {
     }
 
     useEffect(() => {
+        if ( pricing ) {
+            updateThisFanclub()
+        }
         // Check if all mandatory fields are filled
         if (pricing) {
             setFilledMandatory(true)
@@ -52,7 +57,7 @@ const FanclubPricingRoute = () => {
                 }
             }
         })
-    }, [])
+    }, [fanclubs])
 
     const saveThisFanclub = () => {
         setFanclubs(prevFanclubs => 

@@ -28,7 +28,7 @@ const FanclubSettingsRoute = () => {
     return (
         <>
             <NavbarBackOnly onClick={() => navigate('/artist-app/fanclub')}/>
-            <ContainerDefault containerSpecificStyle={'pt-xs-topbar'}>
+            <ContainerDefault containerSpecificStyle={''}>
                 
                 <div id='fanclub-name' className='mb-xs-8'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
@@ -72,7 +72,7 @@ const FanclubSettingsRoute = () => {
                         </Link>
                     </div>
                     <a className='d-flex-row j-c-space-between mb-xs-3 w-100' href=''>
-                        <div className='position-relative w-100 h-xs-20 mb-xs-4'>
+                        <div className='position-relative w-100 h-300px mb-xs-4'>
                             <img className='h-inherit w-100 object-fit-cover border-radius-08' src={fanclub?.cover} />
                         </div>                        
                     </a>
