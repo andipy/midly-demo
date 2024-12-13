@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
@@ -14,6 +14,7 @@ import NavbarBackOnly from '../components/navbar-back-only.component'
 const FanclubTermsRoute = () => {
 
     const navigate = useNavigate()
+    const { state, pathname } = useLocation()
 
     const [accepted, setAccepted] = useState(false)
     const handleCheckbox = (e) => {
@@ -49,9 +50,13 @@ const FanclubTermsRoute = () => {
         };
     }, []);
 
+    const onClick = () => {
+        navigate(-1, { state : {...state, invokedModal: false}})
+    }
+
     return (
         <FullScreenModalLayout>
-            <NavbarBackOnly  onClick={() => navigate(-1, { state : {invokedModal: false}})}/>
+            <NavbarBackOnly  onClick={onClick}/>
 
             <ContainerDefault containerSpecificStyle=''>
                 <h3 className='fsize-xs-6 f-w-500 white'>Termini & condizioni e Privacy policy del fanclub</h3>
