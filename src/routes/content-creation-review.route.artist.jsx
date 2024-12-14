@@ -29,7 +29,7 @@ const ContentCreationReviewRoute = () => {
                 thisPost = fanclub.posts.find(elem => elem.id === postId)
             }
         })
-        setPost(thisPost || {})
+        setPost(thisPost || { media: [], text: '', link: {}, settings: {} })
     }
 
     useEffect(() => {
@@ -142,8 +142,8 @@ const ContentCreationReviewRoute = () => {
                 <h1 className='fsize-xs-5 f-w-600 mb-xs-8'>Rivedi il post e pubblica</h1>
                 <div className='position-relative'>
                     <Carousel>
-                        {post?.media ?
-                            post.media.map(media => (
+                        {post?.media &&
+                            post.media?.map(media => (
                                 media.type === 'IMAGE' ?
                                     <img
                                         key={media.id}
@@ -160,19 +160,16 @@ const ContentCreationReviewRoute = () => {
                                         playsInline
                                         loop
                                     />
-                                :
-                                    null
+                                : null
                             ))
-                        :
-                            <p>No media available for this post.</p>
                         }
-                        {post?.text &&
+                        {post?.text?.length > 0 &&
                             <div className='d-flex-row align-items-center bg-dark-soft pt-xs-6 pb-xs-6 border-radius-04 w-min-100'>
                                 <p className='fsize-xs-8 t-align-center f-w-600 pl-xs-4 pr-xs-4 line-height-140'>{post.text}</p>
                             </div>
                         }
 
-                        {(post?.media.length > 1 || (post?.media.length > 0 && post.text.length > 0)) &&
+                        {(post?.media?.length > 1 || (post?.media?.length > 0 && post?.text?.length > 0)) &&
                             <div className='d-flex-row position-absolute bottom-2 right-2 bg-black-transp70 pr-xs-2 pl-xs-1 border-radius-100 j-c-center align-items-center'>
                                 <img className='avatar-28' src={IconCopy}></img>
                                 <p className='fsize-xs-2 f-w-500'>Riordina</p>
