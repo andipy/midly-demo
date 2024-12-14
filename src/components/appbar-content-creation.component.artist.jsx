@@ -4,10 +4,13 @@ import ContainerDefault from '../layout/container-default.layout'
 
 import IconMedia from '../images/icons/icon-picture.svg'
 import IconFlip from '../images/icons/icon-flip.svg'
+import Button from './button.component'
 
-const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording, contentType, photo, video, handlePhotoType, handleVideoType, handleTextType, switchCamera, facingMode, handleFileChange }) => {
+const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording, contentType, photo, video, textContent, handlePhotoType, handleVideoType, handleTextType, switchCamera, facingMode, handleFileChange }) => {
 
     const location = useLocation()
+
+    console.log(textContent)
 
     return (
         <section className='app-bar-content-creation-area d-flex-column j-c-center align-items-center gap-0_5em'>
@@ -41,8 +44,15 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, recording,
                                     <div className={`position-absolute-x-y bg-red-300 ${recording ? 'avatar-24 border-radius-04' : 'avatar-48 border-radius-100'}`}></div>
                                 </div>
                             </div>
-                        : contentType === 'TEXT' &&
-                            <p className='grey-500'>Scrivi un testo per pubblicare</p>
+                        : null
+                        // contentType === 'TEXT' &&
+                        //     <div className='d-flex-row align-items-center j-c-center w-100'>
+                        //         <Button
+                        //             style={`w-60 fsize-xs-2 f-w-500 mb-xs-2 ${textContent.length > 0 ? 'bg-acid-lime black' : 'bg-dark-soft grey-400'}`}
+                        //             label='Aggiungi al contenuto'
+                        //             disabled={textContent.length > 0}
+                        //         />
+                        //     </div>
                         }
                     </>
                 }

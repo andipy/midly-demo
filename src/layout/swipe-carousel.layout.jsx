@@ -22,8 +22,8 @@ const SwipeCarousel = ({ images, text }) => {
 		if (!isDragging) return
 
 		const currentX = event.touches
-		? event.touches[0].clientX
-		: event.clientX
+			? event.touches[0].clientX
+			: event.clientX
 		const diffX = currentX - startX.current
 
 		currentTranslate.current = prevTranslate.current + diffX
@@ -41,9 +41,9 @@ const SwipeCarousel = ({ images, text }) => {
 		const totalSlides = text ? images.length + 1 : images.length
 
 		if (movedBy < -width / 2 && currentIndex < totalSlides - 1) {
-		newIndex = currentIndex + 1
+			newIndex = currentIndex + 1
 		} else if (movedBy > width / 2 && currentIndex > 0) {
-		newIndex = currentIndex - 1
+			newIndex = currentIndex - 1
 		}
 
 		setCurrentIndex(newIndex)
@@ -60,14 +60,15 @@ const SwipeCarousel = ({ images, text }) => {
 	}
 
 	return (
-	<div className='d-flex-column j-c-center align-items-center overflow-all-hidden'
-		onMouseDown={handleDragStart}
-		onMouseMove={isDragging ? handleDragMove : null}
-		onMouseUp={handleDragEnd}
-		onMouseLeave={isDragging ? handleDragEnd : null}
-		onTouchStart={handleDragStart}
-		onTouchMove={handleDragMove}
-		onTouchEnd={handleDragEnd}>
+		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden'
+			onMouseDown={handleDragStart}
+			onMouseMove={isDragging ? handleDragMove : null}
+			onMouseUp={handleDragEnd}
+			onMouseLeave={isDragging ? handleDragEnd : null}
+			onTouchStart={handleDragStart}
+			onTouchMove={handleDragMove}
+			onTouchEnd={handleDragEnd}
+		>
 
 			<div
 				className='carousel-track d-flex-row align-items-center object-fit-cover'
@@ -90,16 +91,11 @@ const SwipeCarousel = ({ images, text }) => {
 							}
 					</div>
 				))}
-				{ text && (
-					<div className='w-min-100 h-100 bg-black d-flex-row j-c-center align-items-center pr-xs-2 pl-xs-2'>
-						<p className='fsize-xs-8 t-align-center f-w-600'>{text}</p>
-					</div>
-				)}
+				{text &&
+					<p className='w-min-100 fsize-xs-8 t-align-center f-w-600 pl-xs-4 pr-xs-4 line-height-140'>{text}</p>
+				}
 			</div>
-		{
-			(images.length === 1 && text === '') ? (
-				<></>
-			) : (
+			{((images.length > 0 && text.length > 0) || images.length > 1 ) &&
 				<div className='d-flex-row justify-center mt-xs-2 gap-0_25em'>
 					{[...images, ...(text && text !== '' ? [text] : [])].map((_, index) => (
 					<div
@@ -110,10 +106,8 @@ const SwipeCarousel = ({ images, text }) => {
 					></div>
 					))}
 				</div>
-			)
-		}
-		
-	</div>
+			}
+		</div>
 	)
 }
 

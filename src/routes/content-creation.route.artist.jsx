@@ -34,7 +34,7 @@ const ContentCreationRoute = () => {
     const [facingMode, setFacingMode] = useState('user')
     const [video, setVideo] = useState(null)
     const [photo, setPhoto] = useState(null)
-    const [textContent, setTextContent] = useState(null)
+    const [textContent, setTextContent] = useState('')
     const [contentType, setContentType] = useState('IMAGE')
 
     const [showTextArea, setShowTextArea] = useState(false)
@@ -156,12 +156,10 @@ const ContentCreationRoute = () => {
         mediaRecorderRef.current.start()
         setRecording(true)
     }
-
     const handleStopRecording = () => {
         mediaRecorderRef.current.stop()
         setRecording(false)
     }
-
     const handleFileChange = (e) => {
         const file = e.target.files[0]
         if (file) {
@@ -347,21 +345,17 @@ const ContentCreationRoute = () => {
             
             <div className='camera-frame-wrapper position-relative'>
                 {!video && !photo &&
-                    <ContainerDefault containerSpecificStyle={'h-inherit d-flex-row align-items-center j-c-end position-absolute left-0 right-0'}>
-                        <div className='d-flex-column gap-0_5em'>
-                            {contentType !== 'TEXT' &&
-                                <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
-                                    <img className='avatar-32' src={IconText} />
-                                </div>
-                            }
-                            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
-                                <img className='avatar-32' src={IconLink} />
-                            </div>
-                            <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                                <img className='avatar-32' src={IconSettings} onClick={handleSettingsAreaVisibility} />
-                            </div>
+                    <div className='d-flex-column gap-0_5em position-absolute-y right-5'>
+                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
+                            <img className='avatar-32' src={IconText} />
                         </div>
-                    </ContainerDefault>
+                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
+                            <img className='avatar-32' src={IconLink} />
+                        </div>
+                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
+                            <img className='avatar-32' src={IconSettings} onClick={handleSettingsAreaVisibility} />
+                        </div>
+                    </div>
                 }
 
                 {!photo && !video &&
@@ -369,7 +363,7 @@ const ContentCreationRoute = () => {
                         {contentType === 'IMAGE' || contentType === 'VIDEO' ?
                             <video className='border-radius-1 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
                         : contentType === 'TEXT' &&
-                            <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-1 fsize-xs-6' placeholder='Scrivi qui...' rows='8' onChange={handleCaptureText}></textarea>
+                            <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-1 fsize-xs-8 f-w-600 h-100' placeholder='Scrivi qui...' onChange={handleCaptureText}></textarea>
                         }
                     </>
                 }
@@ -429,9 +423,9 @@ const ContentCreationRoute = () => {
         {!video && !photo &&
             <div className='media-creation-control-bar d-flex-row j-c-space-between align-items-center h-96px'>
                 <ContainerDefault containerSpecificStyle={'d-flex-row j-c-space-between align-items-center gap-0_5em'}>
-                    {post.media.length > 0 ?
+                    {(post.media.length > 0 || post.text.length > 0 ) ?
                         <div className='d-flex-row align-items-center gap-0_25em overflow-x shrink-1'>
-                            {post.media.map(elem => {
+                            {post.media?.map(elem => {
                                 return (
                                     <>
                                         {elem.type ==='IMAGE' &&
@@ -443,13 +437,16 @@ const ContentCreationRoute = () => {
                                     </>
                                 )
                             })}
+                            {post.text.length > 0 &&
+                                <div className='d-flex-row align-items-center j-c-center border-radius-04 object-fit-cover avatar-60 bg-dark-soft-2 grey-300 f-w-600'>Text</div>
+                            }
                         </div>
                     :
                         <p>Aggiungi almeno un media o un testo stand-alone per procedere alla pubblicazione del post</p>
                     }
                     <Button
-                        style={`${post.media.length > 0 ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-2 f-w-600 border-radius-100 letter-spacing-1 no-shrink w-25`}
-                        disabled={post.media.length > 0 ? false : true}
+                        style={`${(post.media.length > 0 || post.text.length > 0 ) ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-2 f-w-600 border-radius-100 letter-spacing-1 no-shrink w-25`}
+                        disabled={(post.media.length > 0 || post.text.length > 0 ) ? false : true}
                         onClick={updatePosts}
                         label={'Avanti →'}
                     ></Button>
