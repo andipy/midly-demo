@@ -106,7 +106,7 @@ const FanclubActivationInfoRoute = () => {
         <NavbarMultistep stepNumber={1} totalStepNumber={2} dismissable={true} forcedExitPath={'/artist-app/fanclub'} transparent={true} />
 
         {file?.url ?
-            <div className='bg-dark-soft d-flex-row align-items-center j-c-center overflow-all-hidden h-xs-25 gap-0_5em position-relative'>
+            <div className='bg-dark-soft d-flex-row align-items-center j-c-center overflow-all-hidden h-xs-30 gap-0_5em position-relative'>
                 {file.type === 'IMAGE'?
                     <img className='w-100 h-100 object-fit-cover' src={file.url} />
                 : file.type === 'VIDEO' &&
@@ -121,7 +121,7 @@ const FanclubActivationInfoRoute = () => {
                 </div>
             </div>
         : 
-            <div className='bg-dark-soft d-flex-column align-items-center j-c-center overflow-all-hidden h-xs-25 gap-0_25em position-relative'>
+            <div className='bg-dark-soft d-flex-column align-items-center j-c-center overflow-all-hidden h-xs-30 gap-0_25em position-relative'>
                 <div className='d-flex-row align-items-center j-c-center gap-0_5em mt-xs-10'>
                     <div className='bg-acid-lime-op-10 d-flex-row j-c-center align-items-center pb-xs-4 pt-xs-4 pl-xs-4 pr-xs-4 border-radius-02'>
                         <img className='avatar-20' src={IconPlus}/>

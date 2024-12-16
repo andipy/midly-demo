@@ -2786,8 +2786,14 @@ nav .container {
   .h-xs-22 {
     height: 22vh;
   }
+  .h-xs-23 {
+    height: 23vh;
+  }
   .h-xs-25 {
     height: 25vh;
+  }
+  .h-xs-27 {
+    height: 27vh;
   }
   .h-xs-30 {
       height: 30vh;

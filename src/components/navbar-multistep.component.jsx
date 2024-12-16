@@ -37,7 +37,7 @@ const NavbarMultistep = ({ stepNumber, totalStepNumber, dismissable, transparent
                 }
 
                 {totalStepNumber > 1 &&
-                    <span className='fsize-xs-2 bg-black-transp50 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 border-radius-100'>Step {stepNumber} di {totalStepNumber}</span>
+                    <span className='fsize-xs-2 bg-black-transp50 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 border-radius-100 no-shirnk'>Step {stepNumber} di {totalStepNumber}</span>
                 }
 
                 <div className='d-flex-row gap-0_5em'>

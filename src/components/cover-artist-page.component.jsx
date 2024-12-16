@@ -11,7 +11,7 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
     const location = useLocation()
     
     return (
-        <header className={`position-relative h-xs-20 ${location.pathname.includes('flash-leaderboard') ? 'position-fixed w-100 z-index-5 top-0' : ''}`}>
+        <header className={`position-relative h-xs-30 ${location.pathname.includes('flash-leaderboard') ? 'position-fixed w-100 z-index-5 top-0' : ''}`}>
             
             <img
                 className='w-100 h-inherit object-fit-cover'
