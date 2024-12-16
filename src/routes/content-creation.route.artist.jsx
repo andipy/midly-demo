@@ -230,7 +230,7 @@ const ContentCreationRoute = () => {
             
             audioRecorderRef.current.ondataavailable = (e) => chunks.push(e.data)
             audioRecorderRef.current.onstop = () => {
-                const blob = new Blob(chunks, { type: 'audio/webm' })
+                const blob = new Blob(chunks, { type: 'audio/mp3' })
                 const dataUrl = URL.createObjectURL(blob)
                 setAudio({
                     id: post.media.length + 1,
