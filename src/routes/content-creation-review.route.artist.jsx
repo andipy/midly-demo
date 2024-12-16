@@ -11,6 +11,7 @@ import NavbarDismiss from '../components/navbar-dismiss.component'
 import Button from '../components/button.component'
 
 import IconCopy from "../images/icons/icon-copy.svg"
+import AudioPost from '../components/audio-post.component'
 
 const ContentCreationReviewRoute = () => {
 
@@ -140,7 +141,7 @@ const ContentCreationReviewRoute = () => {
 
             <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-appbar'}>
                 <h1 className='fsize-xs-5 f-w-600 mb-xs-8'>Rivedi il post e pubblica</h1>
-                <div className='position-relative'>
+                <div className='position-relative '>
                     <Carousel>
                         {post?.media &&
                             post.media?.map(media => (
@@ -149,17 +150,24 @@ const ContentCreationReviewRoute = () => {
                                         key={media.id}
                                         className={`border-radius-04 w-100 h-100`}
                                         src={media.url}
+                                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                                     />
                                 : media.type === 'VIDEO' ?
                                     <video
                                         key={media.id}
                                         className={`border-radius-04 w-100 h-100`}
                                         src={media.url}
+                                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                                         controls={false}
                                         autoPlay
                                         playsInline
                                         loop
                                     />
+                                : media.type === 'AUDIO' ?
+                                    <div className='d-flex-row j-c-center align-items-center w-min-100 h-min-100  objcet-fit-cover bg-dark-gradient border-radius-04'
+                                    >
+                                        <AudioPost src={media.url} />
+                                    </div>
                                 : null
                             ))
                         }

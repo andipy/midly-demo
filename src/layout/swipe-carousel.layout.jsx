@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import IconSpeaker from '../images/icons/icon-speaker.png'
 import AudioPost from '../components/audio-post.component'
 
 const SwipeCarousel = ({ images, text }) => {
+
 
 	const [currentIndex, setCurrentIndex] = useState(0) 
 	const [isDragging, setIsDragging] = useState(false) 
@@ -78,15 +79,21 @@ const SwipeCarousel = ({ images, text }) => {
 				}}
 			>
 				{images.map((media, index) => (
-					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 objcet-fit-cover'>
+					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 objcet-fit-cover'
+						style={{
+							width: '300px', 
+							height: `300px`, 
+							overflow: 'hidden', 
+						}}
+					>
 						{media.type === 'IMAGE' ?
-							<img className='w-100 objcet-fit-cover' src={media.url} />
+							<img  className='object-fit-cover w-100 h-100' src={media.url} />
 						: media.type === 'VIDEO' ?	
-						<video className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted={!isMuted}>
+						<video  className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted={!isMuted}>
 							<source src={media.url} type='video/mp4' />
 						</video>
 						: media.type === 'AUDIO'?
-							<div className='w-100'>
+							<div  className='object-fit-cover w-100 h-100 d-flex-row j-c-center align-items-center'>
 								<AudioPost src={media.url} />
 							</div>
 						: null

@@ -14,6 +14,7 @@ const AudioPost = ({ src }) => {
 	const [progress, setProgress] = useState(0)
 	const audioRef = useRef(null)
 
+
 	const togglePlayPause = () => {
 		if (isPlaying) {
 		audioRef.current.pause()
@@ -25,9 +26,10 @@ const AudioPost = ({ src }) => {
 
 	const handleTimeUpdate = () => {
 		const audio = audioRef?.current;
-		const currentTime = audioRef?.current.currentTime;
-		const duration = audioRef?.current.duration
-		if (!audio) return
+		console.log(audio)
+		const currentTime = audio?.currentTime;
+		const duration = audio?.duration
+		if (!audio || !duration) return
 		setTimeElapsed(formatTime(currentTime))
 		const remainingTime = duration - currentTime
 		setTimeRemaining(formatTime(remainingTime))
@@ -56,13 +58,18 @@ const AudioPost = ({ src }) => {
 	}
 
 	return (
-		<div className="w-100  d-flex-column j-c-end align-items-center pr-xs-4 pb-xs-4 pl-xs-4 pt-xs-4 border-radius-02">
+		<div className="d-flex-column j-c-end align-items-center pr-xs-4 pb-xs-4 pl-xs-4 pt-xs-4 border-radius-02 w-100">
 			<audio
 				ref={audioRef}
 				src={src}
 				onTimeUpdate={handleTimeUpdate}
 				onEnded={() => setIsPlaying(false)}
-			/>
+			>
+				<source src={src} type="audio/mp3" />
+				<source src={src.replace('.mp3', '.wav')} type="audio/wav" />
+			</audio>
+				
+			
 
 			<div
 				onClick={handleProgressClick}
