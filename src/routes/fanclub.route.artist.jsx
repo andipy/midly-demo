@@ -256,7 +256,7 @@ const FanclubRoute = () => {
                     <ContainerDefault style={'mt-xs-2'}>
                         <h2 className='fsize-xs-5 f-w-600'>{fanclub.name}</h2>
                         <p className='fsize-xs-2 f-w-200 grey-300'>{fanclub.description}</p>
-                        <p className='fsize-xs-2 f-w-200 grey-300'>{fanclub.subscribers} iscritti</p>
+                        <p className='fsize-xs-1 f-w-200 grey-300'>{fanclub.subscribers} {fanclub.subscribers !== 1 ? 'iscritti' : 'iscritto'}</p>
                     </ContainerDefault>
                 </>
             }
@@ -264,7 +264,7 @@ const FanclubRoute = () => {
             {fanclub?.isActive &&
                 <>
                     {fanclub?.posts.length === 0 ?
-                        <ContainerDefault style={'d-flex-column align-items-center mt-xs-24'}>
+                        <ContainerDefault style={'d-flex-column align-items-center mt-xs-20'}>
                             <h2 className='fsize-xs-5 f-w-600 grey-200 mb-xs-3'>Il tuo fanclub è attivo!</h2>
                             <p className='fsize-xs-3 f-w-400 grey-300 w-70 t-align-center mb-xs-4'>Pubblica contenuti a pagamento per i tuoi fan.</p>
                             <Button

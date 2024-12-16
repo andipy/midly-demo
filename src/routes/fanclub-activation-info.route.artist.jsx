@@ -31,44 +31,39 @@ const FanclubActivationInfoRoute = () => {
         setDescription(e.target.value)
     }
 
-    const [file, setFile] = useState(null)
-
+    const [file, setFile] = useState({
+        id: undefined,
+        url: undefined,
+        type: undefined
+    })
     const handleFileChange = (e) => {
         const selectedfile = e.target.files[0]
         if (selectedfile) {
+            let fileType
+            if ( selectedfile.type.split("/")[0] === 'image' ) {
+                fileType = 'IMAGE'
+            }
+            if ( selectedfile.type.split("/")[0] === 'video' ) {
+                fileType = 'VIDEO'
+            }
             const imageUrl = URL.createObjectURL(selectedfile)
-            setFile(imageUrl)
+            setFile({
+                id: 1,
+                url: imageUrl,
+                type: fileType
+            })
         }
     }
 
     const [filledMandatory, setFilledMandatory] = useState(false)
     useEffect(() => {
-        if ( name !== '' || description !== '' || file !== '' ) {
-            updateThisFanclub()
-        }
-
-        if (name === '' || description === '' || !file) {
+        if ( name === '' || description === '' || file.url === undefined ) {
             setFilledMandatory(false)
         } else {
             setFilledMandatory(true)
         }
     }, [name, description, file])
-
-    const updateThisFanclub = () => {
-        setFanclubs(prevFanclubs => 
-            prevFanclubs.map(fanclub =>
-                fanclub.artistId === currentArtist.id
-                    ? {
-                        ...fanclub,
-                        name: name,
-                        description: description,
-                        cover: file
-                    }
-                    : fanclub
-            )
-        )
-    }
-
+    
     useEffect(() => {
         fanclubs.map(fanclub => {
             if ( fanclub.artistId === currentArtist.id ) {
@@ -85,7 +80,24 @@ const FanclubActivationInfoRoute = () => {
         })
     }, [fanclubs])
 
+    const updateThisFanclub = () => {
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub =>
+                fanclub.artistId === currentArtist.id &&
+                (fanclub.name !== name || fanclub.description !== description || fanclub.cover.url !== file.url)
+                    ? {
+                        ...fanclub,
+                        name: name,
+                        description: description,
+                        cover: file
+                    }
+                    : fanclub
+            )
+        )
+    }
+
     const handleSubmit = () => {
+        updateThisFanclub()
         navigate('/artist-app/fanclub/activation/pricing')
     }
 
@@ -93,10 +105,16 @@ const FanclubActivationInfoRoute = () => {
         <>
         <NavbarMultistep stepNumber={1} totalStepNumber={2} dismissable={true} forcedExitPath={'/artist-app/fanclub'} transparent={true} />
 
-        {file ?
+        {file?.url ?
             <div className='bg-dark-soft d-flex-row align-items-center j-c-center overflow-all-hidden h-xs-25 gap-0_5em position-relative'>
-                <img className='w-100 h-100 object-fit-cover' src={file} />
-                <div className='bg-black-transp50 d-flex-row j-c-center align-items-center  border-radius-04 position-absolute bottom-5 right-5 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 gap-0_25em' onClick={() => setFile('')}>
+                {file.type === 'IMAGE'?
+                    <img className='w-100 h-100 object-fit-cover' src={file.url} />
+                : file.type === 'VIDEO' &&
+                    <video className='w-100 h-100 object-fit-cover' autoPlay playsInline>
+                        <source src={file.url} type='video/mp4' />
+                    </video>
+                }
+                <div className='bg-black-transp50 d-flex-row j-c-center align-items-center  border-radius-04 position-absolute bottom-5 right-5 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 gap-0_25em' onClick={() => setFile({})}>
                     <img className='avatar-24' src={IconEdit}/>
                     <span className='fsize-xs-2'>Modifica</span>
                     {/* <IconEdit size={32} viewBox={32} color='white' strokeWidth={2} /> */}
@@ -114,7 +132,6 @@ const FanclubActivationInfoRoute = () => {
 
                 <input
                     className='position-absolute-x-y w-100 h-100 opacity-0'
-                    id='fileInput'
                     type='file'
                     accept='image/png, image/jpeg, image/jpg, video/mp4, video/mov'
                     onChange={handleFileChange} 

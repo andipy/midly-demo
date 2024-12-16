@@ -24,8 +24,6 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 		setArtist(foundArtist)
 	}, artistId)
 
-
-
 	const { pathname } = useLocation()
 	const navigate = useNavigate()
 	const [showCaption, setShowCaption] = useState(false)
