@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 import IconExit from '../images/icons/icon-exit.svg'
 import IconSettings from '../images/icons/icon-settings-white.svg'
@@ -627,7 +627,7 @@ const ContentCreationRoute = () => {
 
         {!video && !photo && !audio &&
             <div className='media-creation-control-bar d-flex-row j-c-space-between align-items-center h-96px'>
-                <ContainerDefault style={'d-flex-row j-c-space-between align-items-center gap-0_5em'}>
+                <Container style={'d-flex-row j-c-space-between align-items-center gap-0_5em'}>
                     {(post.media.length > 0 || post.text.length > 0 ) ?
                         <div className='d-flex-row align-items-center gap-0_25em overflow-x shrink-1'>
                             {post.media?.map(elem => {
@@ -660,7 +660,7 @@ const ContentCreationRoute = () => {
                         onClick={updatePosts}
                         label={'Avanti →'}
                     ></Button>
-                </ContainerDefault>
+                </Container>
             </div>
         }
 

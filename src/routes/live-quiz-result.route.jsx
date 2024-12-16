@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { LiveQuizContext } from '../contexts/live-quiz.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 
 import ProgressBar from '../components/progress-bar-points.component'
@@ -95,7 +95,7 @@ const LiveQuizResultRoute = () => {
 
 	return (
 		<>
-		<ContainerDefault style={'pb-xs-appbar z-index-4  position-relative'}>
+		<Container style={'pb-xs-appbar z-index-4  position-relative'}>
 			
 			<div className='d-flex-column align-items-center j-c-center pt-xs-topbar'>
 			{date >= today ?
@@ -158,10 +158,10 @@ const LiveQuizResultRoute = () => {
 				</div>
 			}
 			</div>       
-			<ContainerDefault style={'position-fixed bottom-5 z-index-999 w-100 '}>
+			<Container style={'position-fixed bottom-5 z-index-999 w-100 '}>
 				<Button style='bg-acid-lime black fsize-xs-3 f-w-600 black' onClick={closeClick} label='Chiudi' />
-			</ContainerDefault>
-		</ContainerDefault>
+			</Container>
+		</Container>
 
 		<FullPageCenter className={`z-index-3 bg-blur transition-1s bg-black-transp75`} />
 

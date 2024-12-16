@@ -7,7 +7,7 @@ import CardLeaderboardFan from '../components/card-leaderboard-fan.component'
 
 import IconPoints from '../images/icons/icon-points.svg'
 import FullScreenModalLayout from '../layout/full-screen-modal.layout'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 const LeaderboardRoute = () => {
 

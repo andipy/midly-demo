@@ -1692,6 +1692,9 @@ animation: dot-loader-after 1s infinite linear;
 .bottom-avatar-header {
   bottom: calc(var(--avatar-72) * -0.9);
 }
+.bottom-avatar-header-fanclub {
+  bottom: calc(calc(var(--avatar-72) * 2 * 0.9) * -0.9);
+}
 .mt-avatar-header {
   margin-top: calc(var(--avatar-72) * 1.1);
 }

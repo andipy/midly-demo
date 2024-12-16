@@ -5,7 +5,7 @@ import { ArtistsContext } from '../contexts/artists.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { LiveQuizContext } from '../contexts/live-quiz.context'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Carousel from '../layout/carousel.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 
@@ -161,7 +161,7 @@ const YourFavouritesRoute = () => {
     return (
         <>
             <NavbarDefault />
-            <ContainerDefault style={'pb-xs-appbar'}>
+            <Container style={'pb-xs-appbar'}>
             <TextTitle title={'I tuoi preferiti'} />
             {currentFan.hasSpotify && currentFan.followedArtists.length > 0  ?
                 <>
@@ -174,7 +174,7 @@ const YourFavouritesRoute = () => {
                 {orderedQuizzes.length > 0 &&
                     <section id='quiz' className='mt-xs-4 mb-xs-12'>
                         <h2 className='fsize-xs-5 f-w-600'>Gioca ai quiz</h2>
-                        <p className='fsize-xs-2 f-w-200 grey-300'>Gioca ai quiz e ottieni punti nelle classifiche mensili.</p>
+                        <p className='fsize-xs-2 f-w-400 grey-300'>Gioca ai quiz e ottieni punti nelle classifiche mensili.</p>
                         <Carousel>
                             {orderedQuizzes.map(quiz => {
                                 const hasPlayed = quiz.responses.some(play => play.userId === currentFan.id)
@@ -261,17 +261,17 @@ const YourFavouritesRoute = () => {
                 </div>
             }
 
-            </ContainerDefault>
+            </Container>
 
             {showComponent &&
                 <FullPageCenter className={'z-index-999 bg-black-transp70'}>
-                    <ContainerDefault style={'centered-popup position-absolute bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
+                    <Container style={'centered-popup position-absolute bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                         <h4 className='fsize-xs-5 grey-200 f-w-300'>Ehi, mi hai scoperto.</h4>
                         <p className='fsize-xs-3 grey-200 f-w-300 mt-xs-4'>Vuoi visitare la demo dell'app artisti?</p>
                         <Button style='bg-blue-600 dark-900 border-radius-02 fsize-xs-3 f-w-500 mt-xs-4' label='Vai alla demo artisti' onClick={() => navigate('/artist-app/fanclub')} />
                         <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-4' label='Rimani qui' onClick={() => setShowComponent(false)} />
                         <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-4' label='Dashboard admin' onClick={() => navigate('/flash-leaderboards-admin')} />
-                    </ContainerDefault>
+                    </Container>
                 </FullPageCenter>
             }
 

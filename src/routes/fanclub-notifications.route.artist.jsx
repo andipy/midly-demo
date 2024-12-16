@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import NavbarBackOnly from '../components/navbar-back-only.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Notification from '../components/notification.component'
 
 const FanclubNotificationsRoute = () => {
@@ -67,9 +67,9 @@ const FanclubNotificationsRoute = () => {
 		<>
 			<NavbarBackOnly onClick={() => navigate(-1)} />
 
-			<ContainerDefault style={'mb-xs-2'}>
+			<Container style={'mb-xs-2'}>
 				<h4 className="fsize-xs-6 f-w-500">Attività</h4>
-			</ContainerDefault>
+			</Container>
 
 			<div id='notifications'>
 				{notifications.map((notification, index) => (

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import ContainerDefault from '../layout/container-default.layout';
+import Container from '../layout/container.layout';
 
 import NavbarArtistPage from '../components/navbar-artist-page.component';
 import CoverArtistPage from '../components/cover-artist-page.component';
@@ -81,7 +81,7 @@ const Sanremo2024Route = () => {
             <NavbarArtistPage smallTitle={'Sanremo 2024'} avatarImage={Sanremo2024} />
             <CoverArtistPage artName={'Sanremo 2024'} image={Sanremo2024} />
 
-            <ContainerDefault style={'pb-xs-8 pb-lg-2'}>
+            <Container style={'pb-xs-8 pb-lg-2'}>
 
             <div className='container mt-avatar-header'>
                 {spotifyConnected ?
@@ -145,7 +145,7 @@ const Sanremo2024Route = () => {
                     {leaderboard.map(fan => fan.position > 3 && <CardLeaderboardFan fanImage={fan.image}  fanUsername={fan.username} fanPoints={fan.points} fanPosition={fan.position} key={fan.position} />)}
                 </section>
             </div>
-            </ContainerDefault>
+            </Container>
         </>
     )
 }

@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context'
 
 import NavbarBackOnly from '../components/navbar-back-only.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import TextTitle from '../components/text-title.component'
 
 
@@ -29,7 +29,7 @@ const FlashLeaderboardMetricsDetailRoute = () => {
     return (
         <>
         <NavbarBackOnly onClick={() => navigate(-1)} />
-        <ContainerDefault style={'pb-xs-6'}>
+        <Container style={'pb-xs-6'}>
             <TextTitle title={`${leaderboard.album ? leaderboard.album.title : leaderboard.song.title} - ${artistName}`} />
             <p className='fsize-xs-6 f-w-500 lime-400 letter-spacing-1 mt-xs-2'>Split per brano</p>
             <section className='mt-xs-4 mx-xs-auto'>
@@ -44,7 +44,7 @@ const FlashLeaderboardMetricsDetailRoute = () => {
                 ))}
                 
             </section>
-        </ContainerDefault>
+        </Container>
         </>
     )
 }

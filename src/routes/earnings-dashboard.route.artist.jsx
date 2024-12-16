@@ -2,7 +2,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 
 import Navbar from '../components/navbar.component.artist'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import NavbarBackOnly from '../components/navbar-back-only.component'
 
 const EarningsDashboard = () => {
@@ -14,7 +14,7 @@ const EarningsDashboard = () => {
   return (
     <>
     <NavbarBackOnly onClick={() => navigate('/artist-app/profile')} />
-    <ContainerDefault style={'pb-xs-appbar'}>
+    <Container style={'pb-xs-appbar'}>
         <div className='d-flex-row bg-dark-900'>                
             <div className='d-flex-column grow-1 align-items-center' onClick={() => navigate(`/artist-app/earnings-dashboard/lastMonth`)}>
                 <span className={`${location.pathname.includes('lastMonth') ? 'lime-400 f-w-600' : 'grey-300'} fsize-xs-2 mb-xs-2`}>Riscuoti</span>
@@ -30,7 +30,7 @@ const EarningsDashboard = () => {
             </div>
         </div> 
         <Outlet />
-    </ContainerDefault>
+    </Container>
 
     </>
   )

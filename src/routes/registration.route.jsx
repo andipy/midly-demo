@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 import NavbarDefault from '../components/navbar-default.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 
 
@@ -68,7 +68,7 @@ const RegistrationRoute =() => {
   return (
     <>
     <NavbarDefault />
-    <ContainerDefault style={'pb-xs-appbar'}>
+    <Container style={'pb-xs-appbar'}>
     <div id='top'>
         <h2 className='fsize-xs-9 mb-xs-1 white'>Crea account!</h2>
         <p className='fsize-xs-2 f-w-200 grey-200 letter-spacing-1'>
@@ -148,7 +148,7 @@ const RegistrationRoute =() => {
         </div>
 
     </div>
-    </ContainerDefault>
+    </Container>
     </>
     
   )

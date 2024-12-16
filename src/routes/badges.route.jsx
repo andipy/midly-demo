@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import NavbarBackOnly from '../components/navbar-back-only.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import BadgeMonthly from '../components/badge-monthly.component'
 import TextTitle from '../components/text-title.component'
 import BadgeMonthlyMiniature from '../components/badge-monthly-miniature.component'
@@ -40,7 +40,7 @@ const BadgesRoute = () => {
     return (
         <>
             <NavbarBackOnly onClick={() => navigate(-1)}/>
-            <ContainerDefault style={'pb-xs-8'}>
+            <Container style={'pb-xs-8'}>
                 {/* <TextTitle title={'In evidenza'} /> */}
                 <div className='mt-xs-4 d-flex-column'>
                     <BadgeMonthly badge={selectedBadge} transition={transition} />
@@ -59,7 +59,7 @@ const BadgesRoute = () => {
                         )}
                     </Carousel>
                 </div>
-            </ContainerDefault>
+            </Container>
         </>
         
     )

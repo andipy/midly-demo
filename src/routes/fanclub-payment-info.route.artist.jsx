@@ -7,7 +7,7 @@ import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import Button from '../components/button.component'
 import NavbarMultistep from '../components/navbar-multistep.component'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import { isCursorAtEnd } from '@testing-library/user-event/dist/utils'
 
 const FanclubPaymentInfoRoute = () => {
@@ -82,7 +82,7 @@ const FanclubPaymentInfoRoute = () => {
         <>
             <NavbarMultistep stepNumber={4} totalStepNumber={4} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
-            <ContainerDefault style='pt-xs-topbar'>
+            <Container style='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500 white'>Dati di pagamento</h3>
 
                 <p className='fsize-xs-3 grey-200 mt-xs-4'>Dove vuoi ricevere i tuoi ricavi.</p>
@@ -91,14 +91,14 @@ const FanclubPaymentInfoRoute = () => {
 
                 <input className="bg-dark-soft white letter-spacing-1 border-radius-06 mt-xs-4" type="text" placeholder={`${currentArtist?.iban === '' ? "Immetti l' IBAN" : currentArtist?.iban}`} value={iban} onChange={handleIban} />
 
-                <ContainerDefault style='position-fixed bottom-5'>
+                <Container style='position-fixed bottom-5'>
                     <Button
                         disabled={filledMandatory ? false : true}
                         style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Salva'
                         onClick={() => handleSubmit()}
                     />
-                </ContainerDefault>
-            </ContainerDefault>
+                </Container>
+            </Container>
         </>
     )
 }

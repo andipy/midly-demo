@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import NavbarProfileSettings from '../components/navbar-profile-settings-component'
 import IconArrowRight from '../images/icons/icon-arrowright.svg'
 
@@ -14,7 +14,7 @@ const UserInfoRoute = () => {
     return (
         <>
         <NavbarProfileSettings title={'Informazioni personali'} />
-        <ContainerDefault style={'pt-xs-topbar pb-xs-8'}>
+        <Container style={'pt-xs-topbar pb-xs-8'}>
             <div>
                 <section id='about-you' className='mt-xs-2'>
                     <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>About you</h4>
@@ -131,7 +131,7 @@ const UserInfoRoute = () => {
                     <h6 className='fsize-xs-3 f-w-500 red-300 letter-spacing-1'>Disattiva il mio account</h6>
                 </section>
             </div>
-        </ContainerDefault>
+        </Container>
         </>
     )
 }

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 import Button from './button.component'
 import NavbarModalFlashLeaderboardAnnouncement from './navbar-modal-flash-leaderboard-announcement.component'
@@ -72,11 +72,11 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
         <>
             {/* {artist.flashLeaderboard.status === 'ONGOING' &&
                 <div className={`position-fixed bottom-hidden w-100 border-radius-top-08 z-index-1100 bg-brand-gradient pb-xs-4 pt-xs-4 ${modalOpen && 'show-fl-message'}`} onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}>
-                    <ContainerDefault>
+                    <Container>
                         <p className='fsize-xs-5 f-w-600 black'>CLASSIFICA FLASH ATTIVA</p>
 
                         <Button style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='ENTRA' />
-                    </ContainerDefault>
+                    </Container>
                 </div>
             } */}
 
@@ -91,7 +91,7 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                         />
                     }
 
-                    <ContainerDefault style={`d-flex-column align-items-center j-c-center overflow-all-hidden ${upperModalCompressed ? 'compress-up' : 'expand-up'}`}>
+                    <Container style={`d-flex-column align-items-center j-c-center overflow-all-hidden ${upperModalCompressed ? 'compress-up' : 'expand-up'}`}>
                         <img className='w-25' src={IllustrationTrophy} />
                         <h4 className='fsize-xs-4 mb-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 w-80'>Sta per uscire {matchingLeaderboard.album ? matchingLeaderboard.album.title : matchingLeaderboard.song.title} il nuovo {matchingLeaderboard.album ? 'album' : 'brano'} di {artist.artistName}! {matchingLeaderboard.announceMessage}</h4>
                         <div className='d-flex-row j-c-center gap-0_5em fsize-xs-2 no-shrink bg-brand-gradient pt-xs-4 pb-xs-4 border-radius-04 w-100'>
@@ -114,10 +114,10 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                             label="COS'È UNA CLASSIFICA FLASH?"
                             onClick={() => navigate('/flash-leaderboard-explanation')}
                         />
-                    </ContainerDefault>
+                    </Container>
 
                     <div className={`bg-brand-gradient w-100 position-sticky bottom-0 z-index-999 ${lowerModalCompressed ? 'compress-down' : 'expand-down pt-xs-3 pb-xs-3'}`} onClick={toggleModalContent}>
-                        <ContainerDefault style={`d-flex-column align-items-center j-c-center overflow-all-hidden z-index-6 ${lowerModalCompressed ? 'compress-down' : 'expand-down'}`}>
+                        <Container style={`d-flex-column align-items-center j-c-center overflow-all-hidden z-index-6 ${lowerModalCompressed ? 'compress-down' : 'expand-down'}`}>
                             <h4 className='fsize-xs-3 f-w-500 black'>CLASSIFICA FLASH SI ATTIVA TRA:</h4>
                             <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink mt-xs-4 border-radius-04 w-100'>
                                 {timeRemaining.days > 0 &&
@@ -133,7 +133,7 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                                     <span className='f-w-600 black'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
                                 }
                             </div>
-                        </ContainerDefault>
+                        </Container>
                     </div>
                 </div>
             }
@@ -147,7 +147,7 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                         />
                     }
 
-                    <ContainerDefault style={`d-flex-column align-items-center j-c-center overflow-all-hidden ${upperModalCompressed ? 'compress-up' : 'expand-up pb-xs-8'}`}>
+                    <Container style={`d-flex-column align-items-center j-c-center overflow-all-hidden ${upperModalCompressed ? 'compress-up' : 'expand-up pb-xs-8'}`}>
                     <div className='modal-header w-100 position-absolute top-0'>
                         <img
                             className='position-absolute top-0 w-100 h-inherit object-fit-cover'
@@ -177,28 +177,28 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                                 <span className='f-w-600 white'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
                             }
                         </div>
-                    </ContainerDefault>
+                    </Container>
 
                     <div className={`bg-brand-gradient w-100 position-sticky bottom-0 z-index-999 ${lowerModalCompressed ? 'compress-down' : 'expand-down pt-xs-6 pb-xs-6'}`} onClick={toggleModalContent}>
-                        <ContainerDefault style={'d-flex-row align-items-center j-c-space-between'}>
+                        <Container style={'d-flex-row align-items-center j-c-space-between'}>
                                 <div className='d-flex-row align-items-center gap-0_5em'>
                                     <img src={IconThunderBlack} />
                                     <h4 className='fsize-xs-4 f-w-500 black'>CLASSIFICA FLASH ATTIVA</h4>
                                 </div>
                                 <img className='avatar-24 bg-white border-radius-100' src={IconRightDark} alt='GO!' />
-                        </ContainerDefault>
+                        </Container>
                     </div>
                 </div>
             }
 
             {/* {artist.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
                 <div className={`position-fixed bottom-hidden w-100 border-radius-top-08 z-index-999 bg-dark-soft fl-modal-border pb-xs-6 ${modalOpen && 'show-fl-message'}`}>
-                    <ContainerDefault>
+                    <Container>
                         <div className='d-flex-row align-items-center j-c-space-between bg-dark-soft border-radius-100 border-lime-1 pl-xs-4 pr-xs-2 pt-xs-2 pb-xs-2 mb-xs-4' onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}>
                             <p className='fsize-xs-2'>CLASSIFICA FLASH TERMINATAA</p>
                             <img className='avatar-24 bg-brand-gradient border-radius-100' src={IconRightDark} alt='GO!' />
                         </div>
-                    </ContainerDefault>
+                    </Container>
                 </div>
             } */}
             </>

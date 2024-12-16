@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 import Navbar from '../components/navbar.component.artist'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Appbar from '../components/appbar.component.artist'
 import Button from '../components/button.component'
 
@@ -26,7 +26,7 @@ const ProfileArtistRoute = () => {
 		<>
 			<Navbar />
 
-			<ContainerDefault style='pt-xs-topbar pb-xs-appbar'>
+			<Container style='pt-xs-topbar pb-xs-appbar'>
 				<h1>Profilo</h1>
 				<div className='mt-xs-2 d-flex-column align-items-start mb-xs-12'>
 					<div className='d-flex-row align-items-center w-100'>
@@ -147,7 +147,7 @@ const ProfileArtistRoute = () => {
 				<div className='mt-xs-8 mb-xs-4'>
 					<p className='fsize-xs-3 f-w-500 blue-400'>Log out</p>
 				</div>
-			</ContainerDefault>
+			</Container>
 
 			<Appbar />
 

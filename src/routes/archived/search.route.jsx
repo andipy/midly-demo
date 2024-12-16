@@ -4,7 +4,7 @@ import { CurrentFanContext } from '../contexts/currentFan.context'
 import { ArtistsContext } from '../contexts/artists.context'
 
 import NavbarDefault from '../components/navbar-default.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import TextTitle from '../components/text-title.component'
 import SearchInput from '../components/search-input.component'
 import Appbar from '../components/appbar.component'
@@ -44,7 +44,7 @@ const SearchRoute = () => {
     return (
         <>
         <NavbarDefault />
-        <ContainerDefault style={'pb-xs-appbar'}>
+        <Container style={'pb-xs-appbar'}>
             <TextTitle title={'Artisti'} />
             <SearchInput 
                 value={searchQuery} 
@@ -89,7 +89,7 @@ const SearchRoute = () => {
                 </div>
             } 
             </section>
-        </ContainerDefault>
+        </Container>
         <Appbar />
         </>
     )

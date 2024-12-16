@@ -6,7 +6,7 @@ import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 import Button from '../components/button.component'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 const FanclubActivatedRoute = () => {
 
@@ -30,7 +30,7 @@ const FanclubActivatedRoute = () => {
                 <img className='w-100 object-fit-cover h-inherit' src={fanclub?.image} />
             </div>
             
-            <ContainerDefault style='mt-xs-4'>
+            <Container style='mt-xs-4'>
                 <h3 className='fsize-xs-4 f-w-200'>Il tuo fanclub è attivo:</h3>
                 <h1 className='fsize-xs-8 f-w-500'>{fanclub?.name}</h1>
                 <p className='fsize-xs-5 f-w-200 grey-200'>Puoi iniziare a pubblicare contenuti per i tuoi fan 🎉</p>
@@ -43,7 +43,7 @@ const FanclubActivatedRoute = () => {
                     <Button style='bg-none border-lime lime-400 fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Lo faccio più tardi' onClick={() => navigate('/artist-app/fanclub')} />
                 </section>
 
-            </ContainerDefault>
+            </Container>
         </>
     )
 }

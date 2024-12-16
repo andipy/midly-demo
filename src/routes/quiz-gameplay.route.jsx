@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import thasup from '../images/pictures/thasup.jpg'
-import ContainerDefault from '../layout/container-default.layout';
+import Container from '../layout/container.layout';
 
 import Button from '../components/button.component';
 
@@ -24,7 +24,7 @@ const QuizGameplayRoute = () => {
             <img className='w-100 h-inherit object-fit-cover' src={thasup} alt='' />              
         </header>
 
-        <ContainerDefault>
+        <Container>
             <div className='d-flex-row align-items-center mt-xs-4 gap-0_5em'>
                 <span className='fsize-xs-3 pt-xs-2 pb-xs-2 align-self-start grey-300'>thasup</span>
                 <span className='fsize-xs-3 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2 border-radius-100 bg-dark-gradient gold align-self-start'>song name</span>
@@ -41,7 +41,7 @@ const QuizGameplayRoute = () => {
             <Link to='/quiz-result'>
                 <Button style={'bg-acid-lime black font-body mt-xs-6'} label={'Invia la risposta'}></Button>
             </Link>
-        </ContainerDefault>
+        </Container>
         </>
     )
 }

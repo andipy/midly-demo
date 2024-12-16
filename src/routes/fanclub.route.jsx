@@ -8,7 +8,7 @@ import Post from '../components/post.component'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import Comment from '../components/comment.component'
 import TextbarComments from '../components/textbar-comments.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
 
 const Fanclub = () => {
@@ -27,11 +27,8 @@ const Fanclub = () => {
     const [fanclub, setFanclub] = useState()
     const fetchThisFanclub = () => {
         const thisFanclub = fanclubs.find(elem => elem.artistId === context.id)
-        console.log(thisFanclub)
         setFanclub(thisFanclub)
     }
-
-    
 
     const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
     const checkFanclubSubscription = () => {
@@ -166,7 +163,6 @@ const Fanclub = () => {
             fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: context.id }]
         }))
     }
-    
 
     useEffect(() => {
         if ( context ) {
@@ -184,14 +180,16 @@ const Fanclub = () => {
 
     return (
         <>
+            <div className='d-flex-column j-c-start mt-xs-4'>
+                <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
+                <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
+            </div>
             {fanclub?.posts.length === 0 ?
-                <ContainerDefault style={'d-flex-column align-items-center mt-xs-16'}>
-                    <p className='fsize-xs-4 f-w-500 w-70 mb-xs-2 t-align-center mt-xs-4'>L'artista non ha ancora pubblicato contenuti!</p>
-                    <p className='fsize-xs-3 f-w-200 grey-200 w-70 t-align-center mt-xs-4'>Rimani sincronizzato, il suo fanclub è già attivo 🎉</p>
-                </ContainerDefault>
+                <div className='d-flex-column align-items-center mt-xs-16'>
+                    <p className='fsize-xs-2 f-w-200 grey-200 w-70 t-align-center mt-xs-4'>L'artista ha già attivato il suo fanclub! Resta sincronizzato e sii il primo a vedere i primi contenuti appena usciranno.</p>
+                </div>
             :
-            <>
-                <ContainerDefault style={'pb-xs-2 mt-xs-4'}>
+                <Container style={'pb-xs-2 mt-xs-4'}>
                     {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
                         <Post
                             post={post}
@@ -201,8 +199,7 @@ const Fanclub = () => {
                             handleSubscription={handleSubscription}
                         />
                     )}
-                </ContainerDefault>
-                </>
+                </Container>
             }
 
             <CommentsModalLayout
@@ -212,7 +209,7 @@ const Fanclub = () => {
                 <NavbarCommentsModal
                     closeModal={closeModal}
                 />
-                <ContainerDefault style={'pb-xs-12 pb-sm-2'}>
+                <Container style={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
                         return (
                             <Comment
@@ -223,7 +220,7 @@ const Fanclub = () => {
                             />
                         )
                     })}
-                </ContainerDefault>
+                </Container>
 
                 <TextbarComments
                     handleCurrentComment={handleCurrentComment}

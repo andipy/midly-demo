@@ -6,7 +6,7 @@ import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 
 import NavbarMultistep from '../components/navbar-multistep.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Button from '../components/button.component'
 
 import IconEdit from '../images/icons/icon-edit.svg'
@@ -106,7 +106,7 @@ const FanclubActivationInfoRoute = () => {
         <NavbarMultistep stepNumber={1} totalStepNumber={2} dismissable={true} forcedExitPath={'/artist-app/fanclub'} transparent={true} />
 
         {file?.url ?
-            <div className='bg-dark-soft d-flex-row align-items-center j-c-center overflow-all-hidden h-xs-30 gap-0_5em position-relative'>
+            <div className='bg-dark-soft d-flex-row align-items-center j-c-center overflow-all-hidden h-xs-27 gap-0_5em position-relative'>
                 {file.type === 'IMAGE'?
                     <img className='w-100 h-100 object-fit-cover' src={file.url} />
                 : file.type === 'VIDEO' &&
@@ -121,7 +121,7 @@ const FanclubActivationInfoRoute = () => {
                 </div>
             </div>
         : 
-            <div className='bg-dark-soft d-flex-column align-items-center j-c-center overflow-all-hidden h-xs-30 gap-0_25em position-relative'>
+            <div className='bg-dark-soft d-flex-column align-items-center j-c-center overflow-all-hidden h-xs-27 gap-0_25em position-relative'>
                 <div className='d-flex-row align-items-center j-c-center gap-0_5em mt-xs-10'>
                     <div className='bg-acid-lime-op-10 d-flex-row j-c-center align-items-center pb-xs-4 pt-xs-4 pl-xs-4 pr-xs-4 border-radius-02'>
                         <img className='avatar-20' src={IconPlus}/>
@@ -139,7 +139,7 @@ const FanclubActivationInfoRoute = () => {
             </div>
         }
         
-            <ContainerDefault style={'d-flex-column gap-0_5em mt-xs-4'}>
+            <Container style={'d-flex-column gap-0_5em mt-xs-4'}>
                 <input
                     className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04'
                     type='text'
@@ -156,15 +156,15 @@ const FanclubActivationInfoRoute = () => {
                     rows={3}
                     style={{ resize: 'none' }}
                 />
-            </ContainerDefault>
+            </Container>
 
-            <ContainerDefault style='position-fixed bottom-5 right-0 left-0'>
+            <Container style='position-fixed bottom-5 right-0 left-0'>
                 <Button
                     disabled={filledMandatory ? false : true}
                     style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Continua'
                     onClick={() => handleSubmit()}
                 />
-            </ContainerDefault>
+            </Container>
         </>
     )
 }

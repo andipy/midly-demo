@@ -6,7 +6,7 @@ import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 
 import FullPageCenter from '../layout/full-page-center.layout'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Button from './button.component'
 
 
@@ -53,7 +53,7 @@ const MessageSetPricing = ({ price, onClick, close }) => {
 
   return (
     <FullPageCenter className={'z-index-1100 bg-black-transp70'}>
-		<ContainerDefault style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+		<Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
             <div className='d-flex-column align-items-center gap-0_5em'>
                 <p className='t-align-center w-80 grey-200'>
                     L'abbonamento mensile al tuo fanclub passerà da €{fanclub?.pricing ? fanclub?.pricing : '0.00'} a €{price} a partire dal 1 {nextMonthCalc}.
@@ -63,7 +63,7 @@ const MessageSetPricing = ({ price, onClick, close }) => {
 
             <Button style={'bg-acid-lime black font-body fsize-xs-3 f-w-600 mt-xs-4'} label={'Conferma'} onClick={() => onClick()}/>
             <Button style={'bg-dark-gradient lime-400 border-lime-1 black font-body fsize-xs-3 f-w-600 mt-xs-4'} label={'Annulla'} onClick={() => setIsExiting(true)}/>
-	    </ContainerDefault>
+	    </Container>
 	</FullPageCenter>
   )
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import ContainerDefault from '../../layout/container-default.layout'
+import Container from '../../layout/container.layout'
 
 import Button from './button.component'
 import NavbarModalFLExplanation from './navbar-modal-flash-leaderboard-explanation.component'
@@ -57,7 +57,7 @@ const MessageFlashLeaderboardNew = ({ artist }) => {
         <>
             {artist.flashLeaderboard.status === 'ONGOING' &&
                 <div className={`position-fixed bottom-hidden w-100 border-radius-top-08 z-index-1100 bg-dark-soft fl-modal-border pb-xs-6 ${modalOpen && 'show-fl-message'}`}>
-                    <ContainerDefault>
+                    <Container>
                         <NavbarModalFLExplanation
                             modalCompressed={modalCompressed}
                             compressModal={compressModal}
@@ -74,7 +74,7 @@ const MessageFlashLeaderboardNew = ({ artist }) => {
 
                             <Button style={'button-flash-leaderboard-live d-flex-row align-items-center j-c-center bg-acid-lime border-radius-100 black w-auto pl-xs-4 pr-xs-4 pt-xs-2 pb-xs-2 fsize-xs-1 f-w-600'} label='ENTRA' />
                         </div>
-                    </ContainerDefault>
+                    </Container>
                 </div>
             }
 
@@ -112,12 +112,12 @@ const MessageFlashLeaderboardNew = ({ artist }) => {
 
             {artist.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
                 <div className={`position-fixed bottom-hidden w-100 border-radius-top-08 z-index-1100 bg-dark-soft fl-modal-border pb-xs-6 ${modalOpen && 'show-fl-message'}`}>
-                    <ContainerDefault>
+                    <Container>
                         <div className='d-flex-row align-items-center j-c-space-between bg-dark-soft border-radius-100 border-lime-1 pl-xs-4 pr-xs-2 pt-xs-2 pb-xs-2 mb-xs-4' onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}>
                             <p className='fsize-xs-2'>CLASSIFICA FLASH TERMINATAA</p>
                             <img className='avatar-24 bg-brand-gradient border-radius-100' src={IconRightDark} alt='GO!' />
                         </div>
-                    </ContainerDefault>
+                    </Container>
                 </div>
             }
             </>

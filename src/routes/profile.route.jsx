@@ -4,7 +4,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 
 import NavbarDefault from '../components/navbar-default.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import TextTitle from '../components/text-title.component'
 import Appbar from '../components/appbar.component'
 import ProgressBar from '../components/progress-bar-points.component'
@@ -111,7 +111,7 @@ const ProfileRoute = () => {
     return (
         <>
         <NavbarDefault />
-        <ContainerDefault style={'pb-xs-appbar'}>
+        <Container style={'pb-xs-appbar'}>
         <TextTitle title={'Profilo'} />
         
         <div>
@@ -304,7 +304,7 @@ const ProfileRoute = () => {
                 <span className='grey-300 fsize-xs-1'>© Midly Srl 2024 - DEMO</span>
             </div>
         </div>
-        </ContainerDefault>
+        </Container>
         {showMessageWhitePoints && 
             <MessageWhitePoints points={whitePoints} message={message} onClick={() => setShowMessageWhitePoints(false)} />
         }

@@ -1,12 +1,12 @@
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import NavbarProfileSettings from '../components/navbar-profile-settings-component'
 
 const PrivacyPolicyRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'Informativa privacy Fan'} />
-    <ContainerDefault style={'pt-xs-topbar pb-xs-appbar'}>
-    </ContainerDefault>
+    <Container style={'pt-xs-topbar pb-xs-appbar'}>
+    </Container>
     </>
 
   )

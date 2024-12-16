@@ -1,4 +1,4 @@
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 import Navbar from '../components/navbar.component.artist'
 import Appbar from '../components/appbar.component.artist'
@@ -153,7 +153,7 @@ const MetricsRoute = () => {
         <>
             <Navbar />
 
-            <ContainerDefault style={'pt-xs-topbar pb-xs-appbar'}>
+            <Container style={'pt-xs-topbar pb-xs-appbar'}>
                 <div>
                     <h1>{getCurrentMonthAndYear()}</h1>
                     <p className='fsize-xs-3 f-w-300 grey-200 letter-spacing-1 mt-xs-2'>Da inizio mese ad oggi:</p>
@@ -172,7 +172,7 @@ const MetricsRoute = () => {
                         )
                     })}
                 </section>
-            </ContainerDefault>
+            </Container>
 
             <Appbar />
         </>

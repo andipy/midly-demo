@@ -7,7 +7,7 @@ import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import Button from '../components/button.component'
 import NavbarMultistep from '../components/navbar-multistep.component'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import FullScreenModalLayout from '../layout/full-screen-modal.layout'
 import NavbarBackOnly from '../components/navbar-back-only.component'
 
@@ -58,7 +58,7 @@ const FanclubTermsRoute = () => {
         <FullScreenModalLayout>
             <NavbarBackOnly  onClick={onClick}/>
 
-            <ContainerDefault style=''>
+            <Container style=''>
                 <h3 className='fsize-xs-6 f-w-500 white'>Termini & condizioni e Privacy policy del fanclub</h3>
 
                 <div className='bg-dark-soft border-radius-04 mt-xs-4 overflow-auto fsize-xs-2 f-w-400 grey-100 line-height-140 h-50vh position-relative' ref={outerDivRef}>
@@ -90,7 +90,7 @@ const FanclubTermsRoute = () => {
                     <p className='fsize-xs-2 ml-xs-2'>Ho preso visione e accetto i <span className='f-w-600 lime-400'>Termini e condizioni</span> e la <span className='f-w-600 lime-400'>Privacy policy</span> del fanclub di MIDLY</p>
                 </div>
 
-                <ContainerDefault style='position-absolute bottom-5'>
+                <Container style='position-absolute bottom-5'>
                     <Button
                         disabled={accepted ? false : true}
                         style={`${accepted ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`}
@@ -99,8 +99,8 @@ const FanclubTermsRoute = () => {
                             () => navigate('/artist-app/fanclub/activation/info')
                         }
                     />
-                </ContainerDefault>
-            </ContainerDefault>
+                </Container>
+            </Container>
         </FullScreenModalLayout>
     )
 }

@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 
 import NavbarBackOnly from '../components/navbar-back-only.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import WidgetFlashLeaderboardMetric from '../components/widget-flash-leaderboard-metric.component.admin'
 import SongMetricDetailFlashLeaderboard from '../components/song-metric-detail-flash-leaderboard.component.admin'
 
@@ -36,7 +36,7 @@ const FlashLeaderboardMetricsDetailRoute = () => {
     return (
         <>
         <NavbarBackOnly onClick={() => navigate(-1)} />
-        <ContainerDefault style={'pb-xs-6'}>
+        <Container style={'pb-xs-6'}>
             <div className='position-relative w-100 h-xs-20 mb-xs-4'>
                 <img className='h-inherit w-100 object-fit-cover border-radius-08' src={leaderboard.image} />
             </div>
@@ -72,7 +72,7 @@ const FlashLeaderboardMetricsDetailRoute = () => {
                     ))}
                 </section>
             }
-        </ContainerDefault>
+        </Container>
         </>
     )
 }

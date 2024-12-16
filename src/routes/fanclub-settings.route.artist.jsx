@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 import NavbarMultistep from '../components/navbar-multistep.component'
 import NavbarBackOnly from '../components/navbar-back-only.component'
@@ -28,7 +28,7 @@ const FanclubSettingsRoute = () => {
     return (
         <>
             <NavbarBackOnly onClick={() => navigate('/artist-app/fanclub')}/>
-            <ContainerDefault style={''}>
+            <Container style={''}>
                 
                 <div id='fanclub-name' className='mb-xs-8'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
@@ -108,7 +108,7 @@ const FanclubSettingsRoute = () => {
                     </a>
                 </div>
                 
-            </ContainerDefault>
+            </Container>
         </>
     )
 }

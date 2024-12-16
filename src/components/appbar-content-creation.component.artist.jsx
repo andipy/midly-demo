@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 import IconMedia from '../images/icons/icon-picture.svg'
 import IconAudioMedia from '../images/icons/icon-audio-rec.png'
@@ -14,7 +14,7 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, toggleReco
 
     return (
         <section className='app-bar-content-creation-area d-flex-column j-c-center align-items-center gap-0_5em'>
-            <ContainerDefault style={'d-flex-row j-c-space-between align-items-center z-index-999'}>
+            <Container style={'d-flex-row j-c-space-between align-items-center z-index-999'}>
                 {!photo && !video && !audio && contentType !== 'TEXT' &&
                     <section className='d-flex-row j-c-center grow-1'>
                         <div className='d-flex-column align-items-center gap-0_25em'>
@@ -73,7 +73,7 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, toggleReco
                         </div>
                     </section>
                 }
-            </ContainerDefault>
+            </Container>
 
             {!photo && !video && !audio &&
                 <div className='d-flex-row align-items-center j-c-center gap-0_25em mb-xs-2'>

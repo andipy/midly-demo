@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from 'react'
 import { FansContext } from '../contexts/fans.context'
 
 import img2 from '../images/pictures/thasup.jpg'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 const Notification = (notification) => {
 
@@ -63,7 +63,7 @@ const Notification = (notification) => {
             <div className='pl-xs-2'>
                 <div className='avatar-6 bg-black border-radius-100'></div>
             </div>
-        <ContainerDefault >
+        <Container >
         <div className="d-flex-row align-items-center j-c-space-between pt-xs-2 pb-xs-2 pr-xs-2">
             <div className='d-flex-row align-items-center  j-c-start w-100'>
                 <img className="avatar-48 border-radius-100" src={userImage}/>
@@ -78,7 +78,7 @@ const Notification = (notification) => {
             </div>
         </div>
         
-        </ContainerDefault>
+        </Container>
         
     </div>
 
@@ -87,7 +87,7 @@ const Notification = (notification) => {
             <div className='pl-xs-2'>
                 <div className='avatar-6 bg-red-300 border-radius-100'></div>
             </div>
-        <ContainerDefault>
+        <Container>
         <div className="d-flex-row align-items-center j-c-space-between pt-xs-2 pb-xs-2 pr-xs-2">
             <div className='d-flex-row align-items-center  j-c-start'>
                 <img className="avatar-48 border-radius-100" src={userImage}/>
@@ -102,7 +102,7 @@ const Notification = (notification) => {
             </div>
         </div>
         
-        </ContainerDefault>
+        </Container>
         
     </div>
 

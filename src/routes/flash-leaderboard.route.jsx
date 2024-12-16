@@ -5,7 +5,7 @@ import { CurrentFanContext } from '../contexts/currentFan.context'
 import { ArtistsContext } from '../contexts/artists.context'
 import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 
 import NavbarLeaderboardFlashPage from '../components/navbar-leaderboard-flash-page.component'
@@ -228,7 +228,7 @@ const FlashLeaderboardRoute = () => {
             <NavbarLeaderboardFlashPage artist={artist} leaderboard={leaderboard} />
             <CoverArtistPage leaderboard={leaderboard} />
 
-            <ContainerDefault style={`mt-avatar-header-2 pb-xs-24 pb-md-8 ${artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && 'pt-xs-8'}`}>
+            <Container style={`mt-avatar-header-2 pb-xs-24 pb-md-8 ${artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && 'pt-xs-8'}`}>
                 <div className='d-flex-column position-sticky top-navbar z-index-999 mb-xs-4'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
                         <CardFlashLeaderboardYourPosition currentFan={currentFan} artist={artist}  />  
@@ -337,7 +337,7 @@ const FlashLeaderboardRoute = () => {
                     <SimpleSpinnerLoader />
                 </div>
                 }
-            </ContainerDefault>
+            </Container>
 
             {showMessageWhitePoints && 
                 <MessageWhitePoints
@@ -353,7 +353,7 @@ const FlashLeaderboardRoute = () => {
 
             {/* {showComponent &&
                 <FullPageCenter className={'z-index-999 bg-black-transp70'}>
-                    <ContainerDefault style={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
+                    <Container style={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                         <img className='avatar-48' src={IconInfoLime} />
                         <section className='w-100'>
                             <h3 className='fsize-xs-5 grey-200 f-w-600 mt-xs-4 lime-400'>Come guadagnare punti?</h3>
@@ -376,7 +376,7 @@ const FlashLeaderboardRoute = () => {
                         </section>
                         
                         <Button style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 mt-xs-4' label='Ho capito' onClick={closePopup} />
-                    </ContainerDefault>
+                    </Container>
                 </FullPageCenter>
             } */}
 

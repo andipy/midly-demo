@@ -6,7 +6,7 @@ import InviteFriendCover from '../components/invite-friend-cover.component';
 import ReferralLink from '../components/referral-link.component';
 import Snackbar from '../components/snackbar.component';
 
-import ContainerDefault from '../layout/container-default.layout';
+import Container from '../layout/container.layout';
 import Button from '../components/button.component';
 
 const InviteFriendRoute = () => {
@@ -27,7 +27,7 @@ const InviteFriendRoute = () => {
             <InviteFriendCover />
             <Snackbar message={'Link copied to clipboard'} triggered={triggered} />
 
-            <ContainerDefault style={'pb-xs-8 pb-lg-2'}>
+            <Container style={'pb-xs-8 pb-lg-2'}>
                 <section className='mt-xs-4'>
                     <h4 className='fsize-xs-5 mb-xs-1 letter-spacing-2 f-w-500'>Invita tutti i tuoi amici!</h4>
                     <p className='fsize-xs-2 f-w-200 grey-200 letter-spacing-1'>For each of them who signs up and joins an artist's leaderboard, you will earn 15 points! <strong>Careful! Send a different link to each person you want to invite; if more than one person signs up from the same invitation link, you'll earn only 15 points for the first person who used it!</strong></p>
@@ -46,7 +46,7 @@ const InviteFriendRoute = () => {
 
                 <Button disabled={false} label={'Invita tramite whatsapp'} style={'bg-green-whatsapp fsize-xs-3 f-w-500'} />
 
-            </ContainerDefault>
+            </Container>
         </>
     )
 }

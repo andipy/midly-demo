@@ -7,7 +7,7 @@ import { CurrentArtistContext } from '../../contexts/currentArtist.context'
 import Button from '../../components/button.component'
 import NavbarMultistep from '../../components/navbar-multistep.component'
 
-import ContainerDefault from '../../layout/container-default.layout'
+import Container from '../../layout/container.layout'
 
 const FanclubCoverRoute = () => {
 
@@ -47,16 +47,16 @@ const FanclubCoverRoute = () => {
         <>
             <NavbarMultistep stepNumber={2} totalStepNumber={3} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
-            <ContainerDefault style='pt-xs-topbar'>
+            <Container style='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500'>Carica una immagine di copertina per il tuo fanclub</h3>
                 <input className="bg-dark-soft white letter-spacing-1 border-radius-06 mt-xs-4" type="file" placeholder="Scrivi qui il nome" onChange={handleFileChange} />
 
                 <img className='w-100' src={currentImage && currentImage} />
 
-                <ContainerDefault style='position-absolute bottom-5'>
+                <Container style='position-absolute bottom-5'>
                     <Button style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1' label='Next' onClick={() => navigate('/artist-app/fanclub/pricing')} />
-                </ContainerDefault>
-            </ContainerDefault>
+                </Container>
+            </Container>
         </>
     )
 }

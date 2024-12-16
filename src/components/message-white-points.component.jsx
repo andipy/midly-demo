@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import FullPageCenter from '../layout/full-page-center.layout'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Button from './button.component'
 
 import IconExit from '../images/icons/icon-exit.svg'
@@ -26,7 +26,7 @@ const MessageWhitePoints = ({ points, onClick, message }) => {
 
   return (
     <FullPageCenter className={'z-index-1100 bg-black-transp70'}>
-		<ContainerDefault style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+		<Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
             <div className='d-flex-row align-items-center j-c-end w-100'>
 				<img className='avatar-32 bg-black-transp50 border-radius-100' src={IconExit} onClick={() => setIsExiting(true)}></img>
 			</div>
@@ -44,7 +44,7 @@ const MessageWhitePoints = ({ points, onClick, message }) => {
             </div>
 
             <Button style={'bg-acid-lime black font-body fsize-xs-3 f-w-600 mt-xs-4'} label={'Vai ai tuoi punti'} onClick={() => navigate('/personal-user-points')}/>
-	    </ContainerDefault>
+	    </Container>
 	</FullPageCenter>
   )
 }

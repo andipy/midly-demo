@@ -42,7 +42,7 @@ const CardLeaderboardYourPosition = ({ currentFan, artist }) => {
     }, [])
 
     return (
-        <article className={`d-flex-row align-items-center j-c-space-between w-100 position-sticky z-index-5 pr-xs-4 pl-xs-2 mb-xs-4 mt-xs-2 ${pathname.includes('flash-leaderboard') ? `${scrolled ? 'bg-black-transp50' : 'bg-dark-soft'} border-radius-100 pb-xs-2 pt-xs-2` : 'bg-dark-soft border-radius-08 pb-xs-2 pt-xs-2'}`}>
+        <article className={`d-flex-row align-items-center j-c-space-between w-100 position-sticky z-index-5 pr-xs-4 pl-xs-2 mb-xs-4 mt-xs-4 ${pathname.includes('flash-leaderboard') ? `${scrolled ? 'bg-black-transp50' : 'bg-dark-soft'} border-radius-100 pb-xs-2 pt-xs-2` : 'bg-dark-soft border-radius-08 pb-xs-2 pt-xs-2'}`}>
             {currentUserInLeaderboard.points > 0 ?
             <>
                 <div className='d-flex-row align-items-center j-c-start no-shrink'>

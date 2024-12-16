@@ -8,7 +8,7 @@ import { LeaderboardsContext } from '../contexts/leaderboards.context'
 
 import FullScreenModalLayout from '../layout/full-screen-modal.layout'
 import NavbarBackOnly from '../components/navbar-back-only.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Carousel from '../layout/carousel.layout'
 import CardPreferredArtist from '../components/card-preferred-artist.component'
 import WidgetPositionFan from '../components/widget-position-fan.component'
@@ -101,7 +101,7 @@ const FanPublicProfileRoute = () => {
 	return (
 		<FullScreenModalLayout>
 			<NavbarBackOnly onClick={() => closeFanModal()}/>
-			<ContainerDefault style={''}>
+			<Container style={''}>
 				<div className='d-flex-column w-100 j-c-center align-items-center'>
 					<div className='d-flex-column j-c-center align-items-center'>
 	{/*             <img className='avatar-120 border-radius-100' src={state.fan.image}></img>*/} 
@@ -186,7 +186,7 @@ const FanPublicProfileRoute = () => {
 
 				</div>
 				
-			</ContainerDefault>
+			</Container>
 		</FullScreenModalLayout> 
 	)
 }

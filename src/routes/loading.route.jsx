@@ -1,4 +1,4 @@
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 
 import SimpleSpinnerLoader from '../components/simple-spinner-loader.component'

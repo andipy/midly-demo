@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 import LogoSpotify from '../images/icons/icon-spotify-full-white.svg'
 import Button from '../components/button.component'
@@ -15,7 +15,7 @@ const SpotifyLoginRoute = () => {
 
 	return (
 		<>
-		<ContainerDefault style={'pb-xs-appbar mt-xs-12'}>
+		<Container style={'pb-xs-appbar mt-xs-12'}>
 			<div className='d-flex-column j-c-start align-items-center'>
 				<img className='avatar-40' src={LogoSpotify} alt='MIDLY' />     
 				<h4 className='fsize-xs-8 f-w-800'>Accedi a Spotify</h4> 
@@ -84,7 +84,7 @@ const SpotifyLoginRoute = () => {
 			</div>
 			
 
-		</ContainerDefault>
+		</Container>
 		</>
 	)
 }

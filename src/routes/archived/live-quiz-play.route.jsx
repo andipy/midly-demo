@@ -5,7 +5,7 @@ import { LiveQuizContext } from '../../contexts/live-quiz.context'
 import { CurrentFanContext } from '../../contexts/currentFan.context'
 import { LeaderboardsContext } from '../../contexts/leaderboards.context'
 
-import ContainerDefault from '../../layout/container-default.layout'
+import Container from '../../layout/container.layout'
 import AudioPlayer from '../../components/audio-player.component'
 import NavbarMultistep from '../../components/navbar-multistep.component'
 import FullPageCenter from '../../layout/full-page-center.layout'
@@ -174,15 +174,15 @@ const LiveQuizPlayRoute = () => {
         
         <>
         <>
-            <ContainerDefault style='pt-xs-topbar position-relative z-index-4'>
+            <Container style='pt-xs-topbar position-relative z-index-4'>
                 <div className='d-flex-row align-items-center'>
                     <img src={quiz.image} className='avatar-36 border-radius-100' />
                     <span className='fsize-xs-3  ml-xs-2 white'>thasup</span>
                 </div>
-            </ContainerDefault>
+            </Container>
 
             <FullPageCenter className='z-index-4 d-flex-column j-center align-items-center'>
-                <ContainerDefault style={'z-index-999'}>      
+                <Container style={'z-index-999'}>      
                     <div className='d-flex-row align-items-center mt-xs-4 gap-0_5em j-c-space-between mb-xs-4'>
                         <span className='fsize-xs-5 f-w-600 '>{songChunk.songName}</span>
                         <AudioPlayer src={quiz?.instrumental} startTime={quiz?.startTime} />
@@ -197,17 +197,17 @@ const LiveQuizPlayRoute = () => {
                         <p className='fsize-xs-6 f-w-600 '>{songChunk.secondLine}</p>
                     </div>
                         
-                </ContainerDefault>
+                </Container>
             </FullPageCenter>
 
-            <ContainerDefault style='position-absolute-x bottom-5 z-index-4'>
+            <Container style='position-absolute-x bottom-5 z-index-4'>
                 {/* <p className='t-align-center lime-400 mb-xs-4'>{timer > 0 ? `${timer} secondi rimanenti` : 'Tempo scaduto'}</p> */}
                 <p className='fsize-xs-5 f-w-500 t-align-center white mb-xs-0'>{timeLeft} secondi rimanenti</p>
                 <ProgressCountdown points={timeLeft} max={60} />
                 <button id='start-button' className='fsize-xs-2 mt-xs-4 mb-xs-4 bg-acid-lime dark-900 f-w-600' onClick={handleSubmit}>
                     Invia la risposta
                 </button>
-            </ContainerDefault>
+            </Container>
             <FullPageCenter className='z-index-3 bg-black-transp50 bg-blur' />
             
 

@@ -1,7 +1,7 @@
 import Appbar from '../components/appbar.component.artist'
 import CardFlashLeaderboard from '../components/card-flash-leaderboard.component.artist'
 import Navbar from '../components/navbar.component.artist'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 
 const FlashLeaderboardsRoute = () => {
@@ -11,9 +11,9 @@ const FlashLeaderboardsRoute = () => {
             <Navbar />
             
             <FullPageCenter>
-                <ContainerDefault>
+                <Container>
                     <CardFlashLeaderboard />
-                </ContainerDefault>
+                </Container>
             </FullPageCenter>
 
             <Appbar />

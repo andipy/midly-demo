@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Carousel from '../layout/carousel.layout'
 
 import NavbarDismiss from '../components/navbar-dismiss.component'
@@ -139,7 +139,7 @@ const ContentCreationReviewRoute = () => {
         <>
             <NavbarDismiss transparent={true} forcedExitPath={'/artist-app/fanclub'} clear={deletePost} />
 
-            <ContainerDefault style={'pt-xs-topbar pb-xs-appbar'}>
+            <Container style={'pt-xs-topbar pb-xs-appbar'}>
                 <h1 className='fsize-xs-5 f-w-600 mb-xs-8'>Rivedi il post e pubblica</h1>
                 <div className='position-relative '>
                     <Carousel>
@@ -245,16 +245,16 @@ const ContentCreationReviewRoute = () => {
                         <div className={`toggle-dot ${post?.settings?.isPinned ? 'toggle-on' : 'toggle-off'}`}></div>
                     </div>
                 </div>
-            </ContainerDefault>
+            </Container>
 
             <div className='position-fixed bottom-0 w-100 pt-xs-4 pb-xs-4 bg-dark'>
-                <ContainerDefault>
+                <Container>
                     <Button
                         style='bg-acid-lime black fsize-xs-3 f-w-600'
                         onClick={updatePosts}
                         label='Pubblica'
                     />
-                </ContainerDefault>
+                </Container>
             </div>
         </>
     )

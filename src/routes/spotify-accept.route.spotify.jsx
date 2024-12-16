@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 
 import HeaderSpotify from '../components/header-spotify.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Button from '../components/button.component'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
@@ -40,7 +40,7 @@ const SpotifyAcceptRoute = () => {
   return (
     <>
     <HeaderSpotify />
-    <ContainerDefault style={'pb-xs-appbar mt-xs-20'}>
+    <Container style={'pb-xs-appbar mt-xs-20'}>
         <div className='d-flex-column j-c-center align-items-center t-align-center'> 
             <h2 className='fsize-xs-3'>Consenti a spotify di connettersi a:</h2>
             <h4 className='fsize-xs-8 mt-xs-2 f-w-800'>Midly</h4>
@@ -107,7 +107,7 @@ const SpotifyAcceptRoute = () => {
             </div>
         </div>
 
-    </ContainerDefault>
+    </Container>
     </>
   )
 }

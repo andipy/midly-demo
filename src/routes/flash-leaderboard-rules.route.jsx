@@ -4,7 +4,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context'
 
 import FullScreenModalLayout from '../layout/full-screen-modal.layout'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Carousel from '../layout/carousel.layout'
 import NavbarBackOnly from '../components/navbar-back-only.component'
 import BadgeSpecialPreview from '../components/badge-special-preview.component'
@@ -35,7 +35,7 @@ const FlashLeaderboardRulesRoute = () => {
     return (
         <FullScreenModalLayout>
             <NavbarBackOnly onClick={onClick} />
-            <ContainerDefault>
+            <Container>
                 <h3 className='fsize-xs-4 grey-200 f-w-600 mb-xs-2'>C'è qualcosa che non va?</h3>
                 <p className='fsize-xs-1 grey-300'>Scrivici per assitenza su telegram:</p>
                 <Link to='https://t.me/midlyofficial'>
@@ -76,7 +76,7 @@ const FlashLeaderboardRulesRoute = () => {
                     <span className='fsize-xs-4 f-w-600 grey-200'>x1</span>
                     <p className='fsize-xs-1 grey-300'>Ogni altro brano di {state.artistName} ti fa fare 1 punto.</p>
                 </div>
-            </ContainerDefault>
+            </Container>
         </FullScreenModalLayout>
     )
 }

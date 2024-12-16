@@ -5,7 +5,7 @@ import { LiveQuizContext } from '../contexts/live-quiz.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { LeaderboardsContext } from '../contexts/leaderboards.context'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 
 import IconArrowLeft from '../images/icons/icon-arrowleft.svg'
@@ -211,15 +211,15 @@ const LiveQuizRoute = () => {
                 <NavbarMultistep stepNumber={1} dismissable={true} transparent={true} />
             }
 
-            <ContainerDefault style='pt-xs-topbar position-relative z-index-4'>
+            <Container style='pt-xs-topbar position-relative z-index-4'>
                 <div className='d-flex-row align-items-center gap-0_5em'>
                     <img src={quiz.image} className='avatar-64 border-radius-100 shadow-dark-400' />
                     <span className='fsize-xs-4 f-w-500 white'>thasup</span>
                 </div>
-            </ContainerDefault>
+            </Container>
 
             <FullPageCenter className='z-index-4 d-flex-column j-center align-items-center'>
-                <ContainerDefault style={'z-index-4'}>      
+                <Container style={'z-index-4'}>      
                     <div className={`d-flex-row align-items-center mb-xs-4 gap-0_5em j-c-space-between mb-xs-4 transition-1s ${userIsPlaying ? '' : 'blur-5'}`}>
                         <span className={`fsize-xs-5 f-w-600 transition-1s ${userIsPlaying ? '' : 'blur-5'}`}>{songChunk.songName}</span>
                         {quiz.instrumental ? (
@@ -253,10 +253,10 @@ const LiveQuizRoute = () => {
                         <p className={`fsize-xs-7 f-w-400 line-height-125 transition-1s ${userIsPlaying ? '' : 'blur-5'}`}>{songChunk.secondLine}</p>
                     </div>
                         
-                </ContainerDefault>
+                </Container>
             </FullPageCenter>
 
-            <ContainerDefault style='position-absolute-x bottom-2 z-index-4'>
+            <Container style='position-absolute-x bottom-2 z-index-4'>
                 {/* <p className='t-align-center lime-400 mb-xs-4'>{timer > 0 ? `${timer} secondi rimanenti` : 'Tempo scaduto'}</p> */}
                 <p className='fsize-xs-9 f-w-500 t-align-center white mb-xs-0'>{userIsPlaying ? timeLeft : '60'}</p>
                 <ProgressCountdown points={userIsPlaying ? timeLeft : 60} max={60} />
@@ -274,7 +274,7 @@ const LiveQuizRoute = () => {
                         onClick={handleSubmit}
                     />
                 }
-            </ContainerDefault>
+            </Container>
 
             <FullPageCenter className={`z-index-3 bg-blur transition-1s ${userIsPlaying ? 'bg-black-transp75' : 'bg-black-transp40'}`} />
 

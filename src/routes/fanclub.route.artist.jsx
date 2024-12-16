@@ -3,14 +3,14 @@ import { useNavigate, Outlet } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 
-import CoverFanclub from '../components/cover-fanclub.component'
+import CoverFanclub from '../components/cover-fanclub.component.artist'
 import Appbar from '../components/appbar.component.artist'
 import Button from '../components/button.component'
 import Navbar from '../components/navbar.component.artist'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import TextbarComments from '../components/textbar-comments.component'
 import Comment from '../components/comment.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
 import Post from '../components/post.component'
@@ -253,18 +253,18 @@ const FanclubRoute = () => {
             {fanclub?.isActive &&
                 <>
                     <CoverFanclub fanclub={fanclub}  />
-                    <ContainerDefault style={'mt-xs-2'}>
+                    <Container style={'mt-xs-2'}>
                         <h2 className='fsize-xs-5 f-w-600'>{fanclub.name}</h2>
                         <p className='fsize-xs-2 f-w-200 grey-300'>{fanclub.description}</p>
                         <p className='fsize-xs-1 f-w-200 grey-300'>{fanclub.subscribers} {fanclub.subscribers !== 1 ? 'iscritti' : 'iscritto'}</p>
-                    </ContainerDefault>
+                    </Container>
                 </>
             }
 
             {fanclub?.isActive &&
                 <>
                     {fanclub?.posts.length === 0 ?
-                        <ContainerDefault style={'d-flex-column align-items-center mt-xs-20'}>
+                        <Container style={'d-flex-column align-items-center mt-xs-20'}>
                             <h2 className='fsize-xs-5 f-w-600 grey-200 mb-xs-3'>Il tuo fanclub è attivo!</h2>
                             <p className='fsize-xs-3 f-w-400 grey-300 w-70 t-align-center mb-xs-4'>Pubblica contenuti a pagamento per i tuoi fan.</p>
                             <Button
@@ -272,9 +272,9 @@ const FanclubRoute = () => {
                                 label='Crea un contenuto'
                                 onClick={() => navigate('/artist-app/content-creation')}
                             />
-                        </ContainerDefault >
+                        </Container >
                     :
-                        <ContainerDefault style={'pb-xs-appbar mt-xs-4'}>
+                        <Container style={'pb-xs-appbar mt-xs-4'}>
                             {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
                                 <Post 
                                     artistId={fanclub?.artistId}
@@ -283,21 +283,21 @@ const FanclubRoute = () => {
                                     key={post.id}
                                 />
                             )}
-                        </ContainerDefault>
+                        </Container>
                     }
                 </>
             }
 
             {!fanclub?.isActive &&
                 <FullPageCenter>
-                    <ContainerDefault style='d-flex-column align-items-center j-c-center gap-1em'>
+                    <Container style='d-flex-column align-items-center j-c-center gap-1em'>
                         <div className='d-flex-column align-items-center j-c-center'>
                             <img className='avatar-48' src={IconFanclub} />
                             <h4 className='fsize-xs-5 letter-spacing-1 f-w-600 white t-align-center mt-xs-4 w-80'>Apri il tuo fan club su MIDLY</h4>
                         </div>
                         <p className='letter-spacing-1 grey-300 fsize-xs-3 t-align-center w-80'>Crea un’esperienza esclusiva per i tuoi Super Fan a cui possono accedere in cambio di un abbonamento mensile.</p>
                         <Button style='bg-acid-lime fsize-xs-3 f-w-600 black w-70' label='Inizia' onClick={(event) => {event.preventDefault(); navigate(`activation/terms`, { state : {invokedModal: true}})}} />
-                    </ContainerDefault>
+                    </Container>
                 </FullPageCenter>
             }
 
@@ -308,7 +308,7 @@ const FanclubRoute = () => {
                 <NavbarCommentsModal
                     closeModal={closeModal}
                 />
-                <ContainerDefault style={'pb-xs-12 pb-sm-2'}>
+                <Container style={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
                         return (
                             <Comment
@@ -319,7 +319,7 @@ const FanclubRoute = () => {
                             />
                         )
                     })}
-                </ContainerDefault>
+                </Container>
 
                 <TextbarComments
                     handleCurrentComment={handleCurrentComment}
@@ -337,12 +337,12 @@ const FanclubRoute = () => {
 
             {showComponent &&
                 <FullPageCenter className={'z-index-999 bg-black-transp70'}>
-                    <ContainerDefault style={'centered-popup position-absolute bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
+                    <Container style={'centered-popup position-absolute bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                         <h4 className='fsize-xs-5 grey-200 f-w-300'>Ehi, mi hai scoperto.</h4>
                         <p className='fsize-xs-3 grey-200 f-w-300 mt-xs-4'>Vuoi visitare la demo dell'app fan?</p>
                         <Button style='bg-blue-600 dark-900 border-radius-02 fsize-xs-3 f-w-500 mt-xs-4' label='Vai alla demo fan' onClick={() => navigate('/your-favourites')} />
                         <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-4' label='Rimani qui' onClick={() => setShowComponent(false)} />
-                    </ContainerDefault>
+                    </Container>
                 </FullPageCenter>
             }
         </>

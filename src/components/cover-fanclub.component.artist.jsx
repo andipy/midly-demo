@@ -1,6 +1,6 @@
 const CoverFanclub = ({ fanclub }) => {
     return (
-        <header className={`position-relative h-xs-30`}>
+        <header className={`position-relative h-xs-27`}>
             {fanclub?.cover.type === 'IMAGE' ?
                 <img
                     className='w-100 h-inherit object-fit-cover'

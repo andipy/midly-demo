@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import NavbarPersonalInfoFieldModify from '../components/navbar-personal-info-modify.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 const UserInfoFieldModifyRoute = () => {
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
@@ -143,7 +143,7 @@ const UserInfoFieldModifyRoute = () => {
     return (
         <>
             <NavbarPersonalInfoFieldModify title={field} />
-            <ContainerDefault style='pb-xs-appbar'>
+            <Container style='pb-xs-appbar'>
                 <form onSubmit={handleSubmit}>
                     <div className='mt-xs-8 mb-xs-8'>
                         <label className='fsize-xs-1 grey-300 letter-spacing-3 pl-xs-6'>{fieldLabels[field]}</label>
@@ -155,7 +155,7 @@ const UserInfoFieldModifyRoute = () => {
                         </button>
                     </div>
                 </form>
-            </ContainerDefault>
+            </Container>
         </>
     )
 }

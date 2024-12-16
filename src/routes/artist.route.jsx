@@ -6,7 +6,7 @@ import { CurrentFanContext } from '../contexts/currentFan.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { LiveQuizContext } from '../contexts/live-quiz.context'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import NavbarArtistPage from '../components/navbar-artist-page.component'
 import CoverArtistPage from '../components/cover-artist-page.component'
 import CardLeaderboardYourPosition from '../components/card-leaderboard-your-position.component'
@@ -139,13 +139,14 @@ const ArtistRoute = () => {
         }
     }, [artist])
 
+    console.log(fanclub, 'fancblu from artist page')
+
     /* recupero live quiz artista */
     useEffect(() => {
-        if (artist){
+        if (artist) {
             const artistLiveQuizzesFound = quizzes?.filter(quiz => quiz.artistId === artist?.id)
             setArtistLiveQuizzes(artistLiveQuizzesFound)
-        }  
-
+        }
     }, [artist?.id])
 
     // this part of the code handles the flash leaderboard pop up
@@ -213,7 +214,6 @@ const ArtistRoute = () => {
 
     const [isExiting, setIsExiting] = useState(false)
 
-    
     useEffect(() => {
         if (quizEnded) {
             const exitDelay = setTimeout(() => {
@@ -235,24 +235,25 @@ const ArtistRoute = () => {
         }
     }, [isExiting])
 
-
-   
-
     return (
         <>
             <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)}  />
-            <CoverArtistPage artist={artist} userCompeting={userCompeting} handleCompete={handleCompete} currentFan={currentFan}  />
 
-            <ContainerDefault style={''}>
-                
+            <CoverArtistPage
+                fanclub={fanclub}
+                artist={artist}
+                userCompeting={userCompeting}
+                handleCompete={handleCompete}
+                currentFan={currentFan}
+            />
+
+            <Container style={''}>
                 <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark'>
-                    {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' ?
+                    {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && !location.pathname.includes('/fanclub') &&
                         <MessageFlashLeaderboard
                             artist={artist}
                             userCompeting={userCompeting}
                         />
-                    : 
-                        null
                     }
                     
                     {fanclub?.isActive &&
@@ -281,26 +282,21 @@ const ArtistRoute = () => {
                     }
                 </div>
                 <Outlet context={artist} />
-                
-            </ContainerDefault>
+            </Container>
 
-            {
-                quizEnded && 
+            {quizEnded && 
                 <FullPageCenter className={'z-index-1100 bg-black-transp70'}>
-                    <ContainerDefault style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+                    <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
                         <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
                             <h2 className='fsize-xs-3 f-w-300 t-align-center'>Non ci sono quiz di</h2>
                             <h2 className='fsize-xs-3 f-w-300 t-align-center lime-400'>{artist?.artistName}</h2>
                             <h2 className='fsize-xs-3 f-w-300 t-align-center'>disponibili per ora</h2>
 
                         </div>
-                    </ContainerDefault>
+                    </Container>
 	            </FullPageCenter>
             }
-            
-            
-            
-            
+
             {showMessageWhitePoints && 
                 <MessageWhitePoints
                     points={whitePoints}
@@ -309,7 +305,7 @@ const ArtistRoute = () => {
                 />
             }
 
-            {artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING' ?
+            {(artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING') && !location.pathname.includes('/fanclub') ?
                 <MessageFlashLeaderboardModal
                     artist={artist}
                     userCompeting={userCompeting}
@@ -321,11 +317,11 @@ const ArtistRoute = () => {
             : 
                 null
             }
-            
+
             {!pathname.includes('fanclub') &&
-                <ContainerDefault style={`position-sticky z-index-5 ${upperModalCompressed ? 'bottom-14' : 'bottom-2'}`}>
+                <Container style={`position-sticky z-index-5 ${upperModalCompressed ? 'bottom-14' : 'bottom-2'}`}>
                     <CardInviteFriend artist={artist} />
-                </ContainerDefault>
+                </Container>
             }
         </>
     )

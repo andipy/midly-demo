@@ -5,7 +5,7 @@ import { FlashLeaderboardsContext } from '../contexts/flash-leaderboards.context
 import { ArtistsContext } from '../contexts/artists.context'
 
 import NavbarDefault from '../components/navbar-default.component'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import TextTitle from '../components/text-title.component'
 import CardFlashLeaderboard from '../components/card-flash-leaderboard.component.admin.jsx'
 
@@ -32,7 +32,7 @@ const FlashLeaderboardsDashboardRoute = () => {
     return (
         <>
             <NavbarDefault />
-            <ContainerDefault style={'pb-xs-12'}>
+            <Container style={'pb-xs-12'}>
                 <TextTitle title={'Dashboard admin classifiche flash'} />
                 <p className='fsize-xs-2 mt-xs-4 red-300'><span className='f-w-700'>⚠️ ATTENZIONE</span>: non divulgare questo link per alcun motivo a nessuno fuori dal team stretto di MIDLY.</p>
                 <section id='leaderboards' className='mt-xs-4'>
@@ -58,7 +58,7 @@ const FlashLeaderboardsDashboardRoute = () => {
                 <Link to='/'>
                     <p className='lime-400 t-align-center mt-xs-10 w-100'>Navigate back</p>
                 </Link>
-            </ContainerDefault>
+            </Container>
         </>
     )
 }

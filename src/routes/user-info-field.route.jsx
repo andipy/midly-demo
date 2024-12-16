@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import Appbar from '../components/appbar.component'
 import NavbarPersonalInfoField from '../components/navbar-personal-info-field.component'
 
@@ -64,11 +64,11 @@ const UserInfoFieldRoute = () => {
     return (
         <>
             <NavbarPersonalInfoField title={type} />
-            <ContainerDefault style={'pb-xs-appbar'}>
+            <Container style={'pb-xs-appbar'}>
                 <div>
                     {renderFieldContent(type)}
                 </div>
-            </ContainerDefault>
+            </Container>
             <Appbar />
         </>
     )

@@ -7,7 +7,7 @@ import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import Button from '../components/button.component'
 import NavbarMultistep from '../components/navbar-multistep.component'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import MessageSetPricing from '../components/message-set-pricing.component'
 
 const FanclubSettingsEditRoute = () => {
@@ -152,7 +152,7 @@ const FanclubSettingsEditRoute = () => {
         <>
             <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} editable={false} />
 
-            <ContainerDefault style='pt-xs-topbar'>
+            <Container style='pt-xs-topbar'>
                 <div className='mt-xs-8 mb-xs-8 d-flex-column align-items-start j-c-start'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-2'>{labelName[type]}</label>
                     {type === 'NAME' ?
@@ -210,14 +210,14 @@ const FanclubSettingsEditRoute = () => {
                     : <></>
                     }
                 </div>
-                <ContainerDefault style='position-fixed bottom-5'>
+                <Container style='position-fixed bottom-5'>
                     <Button
                         disabled={filledMandatory ? false : true}
                         style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Salva'
                         onClick={() => {if (type === 'PRICING') {updatePricing()} else {updateThisFanclub()}}}
                     />
-                </ContainerDefault>
-            </ContainerDefault>
+                </Container>
+            </Container>
             {showMessageWhitePoints && 
                 <MessageSetPricing price={updates.pricing} onClick={() => updateThisFanclub()}  close={() => setShowMessageWhitePoints(false)} />
             }

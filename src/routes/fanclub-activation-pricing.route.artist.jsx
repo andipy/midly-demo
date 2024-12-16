@@ -7,7 +7,7 @@ import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import Button from '../components/button.component'
 import NavbarMultistep from '../components/navbar-multistep.component'
 
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 
 const FanclubActivationPricingRoute = () => {
 
@@ -79,7 +79,7 @@ const FanclubActivationPricingRoute = () => {
         <>
             <NavbarMultistep stepNumber={2} totalStepNumber={2} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
-            <ContainerDefault style='pt-xs-topbar'>
+            <Container style='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500 white'>Prezzo mensile del tuo fanclub</h3>
 
                 <div className='d-flex-column gap-0_5em mt-xs-4'>
@@ -95,14 +95,14 @@ const FanclubActivationPricingRoute = () => {
                     
                 </div>
 
-                <ContainerDefault style='position-fixed bottom-5'>
+                <Container style='position-fixed bottom-5'>
                     <Button
                         disabled={filledMandatory ? false : true}
                         style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Salva'
                         onClick={saveThisFanclub}
                     />
-                </ContainerDefault>
-            </ContainerDefault>
+                </Container>
+            </Container>
         </>
     )
 }

@@ -1,11 +1,11 @@
-import ContainerDefault from '../layout/container-default.layout'
+import Container from '../layout/container.layout'
 import NavbarProfileSettings from '../components/navbar-profile-settings-component'
 
 const FaqRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'FAQ'} />
-    <ContainerDefault style={'pt-xs-topbar pb-xs-8'}>
+    <Container style={'pt-xs-topbar pb-xs-8'}>
         <section className='mt-xs-2'>
             <article className='mb-xs-14'>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>
@@ -73,7 +73,7 @@ const FaqRoute = () => {
                 </p>
             </article>
         </section>
-    </ContainerDefault>
+    </Container>
     </>
 
   )
