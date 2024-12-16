@@ -40,7 +40,7 @@ const BadgesRoute = () => {
     return (
         <>
             <NavbarBackOnly onClick={() => navigate(-1)}/>
-            <ContainerDefault containerSpecificStyle={'pb-xs-8'}>
+            <ContainerDefault style={'pb-xs-8'}>
                 {/* <TextTitle title={'In evidenza'} /> */}
                 <div className='mt-xs-4 d-flex-column'>
                     <BadgeMonthly badge={selectedBadge} transition={transition} />

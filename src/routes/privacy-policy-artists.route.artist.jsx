@@ -5,7 +5,7 @@ const PrivacyPolicyArtistsRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'Informativa privacy Artisti'} />
-    <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-appbar'}>
+    <ContainerDefault style={'pt-xs-topbar pb-xs-appbar'}>
     </ContainerDefault>
     </>
 

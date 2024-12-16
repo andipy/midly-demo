@@ -152,7 +152,7 @@ const FanclubSettingsEditRoute = () => {
         <>
             <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} editable={false} />
 
-            <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
+            <ContainerDefault style='pt-xs-topbar'>
                 <div className='mt-xs-8 mb-xs-8 d-flex-column align-items-start j-c-start'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-2'>{labelName[type]}</label>
                     {type === 'NAME' ?
@@ -210,7 +210,7 @@ const FanclubSettingsEditRoute = () => {
                     : <></>
                     }
                 </div>
-                <ContainerDefault containerSpecificStyle='position-fixed bottom-5'>
+                <ContainerDefault style='position-fixed bottom-5'>
                     <Button
                         disabled={filledMandatory ? false : true}
                         style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Salva'

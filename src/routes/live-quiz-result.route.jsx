@@ -95,7 +95,7 @@ const LiveQuizResultRoute = () => {
 
 	return (
 		<>
-		<ContainerDefault containerSpecificStyle={'pb-xs-appbar z-index-4  position-relative'}>
+		<ContainerDefault style={'pb-xs-appbar z-index-4  position-relative'}>
 			
 			<div className='d-flex-column align-items-center j-c-center pt-xs-topbar'>
 			{date >= today ?
@@ -158,7 +158,7 @@ const LiveQuizResultRoute = () => {
 				</div>
 			}
 			</div>       
-			<ContainerDefault containerSpecificStyle={'position-fixed bottom-5 z-index-999 w-100 '}>
+			<ContainerDefault style={'position-fixed bottom-5 z-index-999 w-100 '}>
 				<Button style='bg-acid-lime black fsize-xs-3 f-w-600 black' onClick={closeClick} label='Chiudi' />
 			</ContainerDefault>
 		</ContainerDefault>

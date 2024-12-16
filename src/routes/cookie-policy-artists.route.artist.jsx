@@ -5,7 +5,7 @@ const CookiePolicyArtistsRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'Cookie Policy'} />
-    <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-appbar'}>
+    <ContainerDefault style={'pt-xs-topbar pb-xs-appbar'}>
     </ContainerDefault>
     </>
 

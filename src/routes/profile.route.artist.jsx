@@ -26,7 +26,7 @@ const ProfileArtistRoute = () => {
 		<>
 			<Navbar />
 
-			<ContainerDefault containerSpecificStyle='pt-xs-topbar pb-xs-appbar'>
+			<ContainerDefault style='pt-xs-topbar pb-xs-appbar'>
 				<h1>Profilo</h1>
 				<div className='mt-xs-2 d-flex-column align-items-start mb-xs-12'>
 					<div className='d-flex-row align-items-center w-100'>

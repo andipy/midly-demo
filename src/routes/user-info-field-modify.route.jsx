@@ -143,7 +143,7 @@ const UserInfoFieldModifyRoute = () => {
     return (
         <>
             <NavbarPersonalInfoFieldModify title={field} />
-            <ContainerDefault containerSpecificStyle='pb-xs-appbar'>
+            <ContainerDefault style='pb-xs-appbar'>
                 <form onSubmit={handleSubmit}>
                     <div className='mt-xs-8 mb-xs-8'>
                         <label className='fsize-xs-1 grey-300 letter-spacing-3 pl-xs-6'>{fieldLabels[field]}</label>

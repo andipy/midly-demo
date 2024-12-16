@@ -185,13 +185,13 @@ const Fanclub = () => {
     return (
         <>
             {fanclub?.posts.length === 0 ?
-                <ContainerDefault containerSpecificStyle={'d-flex-column align-items-center mt-xs-16'}>
+                <ContainerDefault style={'d-flex-column align-items-center mt-xs-16'}>
                     <p className='fsize-xs-4 f-w-500 w-70 mb-xs-2 t-align-center mt-xs-4'>L'artista non ha ancora pubblicato contenuti!</p>
                     <p className='fsize-xs-3 f-w-200 grey-200 w-70 t-align-center mt-xs-4'>Rimani sincronizzato, il suo fanclub è già attivo 🎉</p>
                 </ContainerDefault>
             :
             <>
-                <ContainerDefault containerSpecificStyle={'pb-xs-2 mt-xs-4'}>
+                <ContainerDefault style={'pb-xs-2 mt-xs-4'}>
                     {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
                         <Post
                             post={post}
@@ -212,7 +212,7 @@ const Fanclub = () => {
                 <NavbarCommentsModal
                     closeModal={closeModal}
                 />
-                <ContainerDefault containerSpecificStyle={'pb-xs-12 pb-sm-2'}>
+                <ContainerDefault style={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
                         return (
                             <Comment

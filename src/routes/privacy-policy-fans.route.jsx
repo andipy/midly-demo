@@ -5,7 +5,7 @@ const PrivacyPolicyRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'Informativa privacy Fan'} />
-    <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-appbar'}>
+    <ContainerDefault style={'pt-xs-topbar pb-xs-appbar'}>
     </ContainerDefault>
     </>
 

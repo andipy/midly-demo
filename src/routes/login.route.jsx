@@ -51,7 +51,7 @@ const LoginRoute = () => {
         <>
         <NavbarDefault />
         
-        <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+        <ContainerDefault style={'pb-xs-appbar'}>
             <div>
                 <h2 className='fsize-xs-9 mb-xs-1 white'>Bentornatə!</h2>
                 <p className='fsize-xs-2 f-w-200 grey-200 letter-spacing-1'>Accedi al tuo account Midly con mail e password.</p>
@@ -101,7 +101,7 @@ const LoginRoute = () => {
 
         {showComponent &&
             <FullPageCenter className={'z-index-999 bg-black-transp70'}>
-                <ContainerDefault containerSpecificStyle={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
+                <ContainerDefault style={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                     <section className='w-100'>
                         <h3 className='fsize-xs-4 grey-200 f-w-500 mt-xs-4 lime-400 t-align-center'>Stiamo avendo un traffico enorme che potrebbe rallentare il sito!</h3>
                         <p className='fsize-xs-2 grey-100 f-w-300 mt-xs-2 t-align-center'>Se non riesci a registrarti o accedere, riprova tra pochissimo! Se proprio non riesci dopo vari tentativi, scrivici per assitenza su telegram:</p>

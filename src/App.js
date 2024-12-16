@@ -47,7 +47,6 @@ import FanPublicProfileRoute from './routes/fan-public-profile.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
-import FanclubPricingRoute from './routes/fanclub-pricing.route.artist'
 import ContentCreationRoute from './routes/content-creation.route.artist'
 import ContentCreationReviewRoute from './routes/content-creation-review.route.artist'
 import MetricsRoute from './routes/metrics.route.artist'
@@ -60,7 +59,6 @@ import LoginRoute from './routes/login.route'
 import Cool1Route from './routes/cool-1.route'
 import Cool2Route from './routes/cool-2.route'
 import FanclubTermsRoute from './routes/fanclub-terms.route.artist'
-import FanclubInfoRoute from './routes/fanclub-info.route.artist'
 import FanclubPaymentInfoRoute from './routes/fanclub-payment-info.route.artist'
 import EarningsDashboardRoute from './routes/earnings-dashboard.route.artist'
 import EarningsCurrentMonthRoute from './routes/earnings-current-month.route.artist'
@@ -71,7 +69,8 @@ import ProfileArtistRoute from './routes/profile.route.artist'
 import TermsConditionsArtistsRoute from './routes/terms-and-conditions-artists.route.artist'
 import PrivacyPolicyArtistsRoute from './routes/privacy-policy-artists.route.artist'
 import CookiePolicyArtistsRoute from './routes/cookie-policy-artists.route.artist'
-import FanclubActivation1Route from './routes/fanclub-activation-1.route.artist'
+import FanclubActivationInfoRoute from './routes/fanclub-activation-info.route.artist'
+import FanclubActivationPricingRoute from './routes/fanclub-activation-pricing.route.artist'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -154,10 +153,10 @@ const router = createBrowserRouter([
 		]
 	},{
 		path: '/artist-app/fanclub/activation/info',
-		element: <FanclubActivation1Route />
+		element: <FanclubActivationInfoRoute />
 	},{
 		path: '/artist-app/fanclub/activation/pricing',
-		element: <FanclubPricingRoute />
+		element: <FanclubActivationPricingRoute />
 	},{
 		path: '/artist-app/flash-leaderboards',
 		element: <FlashLeaderboardsRoute />
@@ -170,9 +169,6 @@ const router = createBrowserRouter([
 			element: <FlashLeaderboardRulesRoute />
 		}
 		]
-	},{
-		path: '/artist-app/fanclub/info',
-		element: <FanclubInfoRoute />
 	},{
 		path: '/artist-app/fanclub/payment-info',
 		element: <FanclubPaymentInfoRoute />

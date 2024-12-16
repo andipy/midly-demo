@@ -82,7 +82,7 @@ const FanclubPaymentInfoRoute = () => {
         <>
             <NavbarMultistep stepNumber={4} totalStepNumber={4} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
-            <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
+            <ContainerDefault style='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500 white'>Dati di pagamento</h3>
 
                 <p className='fsize-xs-3 grey-200 mt-xs-4'>Dove vuoi ricevere i tuoi ricavi.</p>
@@ -91,7 +91,7 @@ const FanclubPaymentInfoRoute = () => {
 
                 <input className="bg-dark-soft white letter-spacing-1 border-radius-06 mt-xs-4" type="text" placeholder={`${currentArtist?.iban === '' ? "Immetti l' IBAN" : currentArtist?.iban}`} value={iban} onChange={handleIban} />
 
-                <ContainerDefault containerSpecificStyle='position-fixed bottom-5'>
+                <ContainerDefault style='position-fixed bottom-5'>
                     <Button
                         disabled={filledMandatory ? false : true}
                         style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`} label='Salva'

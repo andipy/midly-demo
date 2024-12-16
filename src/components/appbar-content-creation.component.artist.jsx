@@ -14,7 +14,7 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, toggleReco
 
     return (
         <section className='app-bar-content-creation-area d-flex-column j-c-center align-items-center gap-0_5em'>
-            <ContainerDefault containerSpecificStyle={'d-flex-row j-c-space-between align-items-center z-index-999'}>
+            <ContainerDefault style={'d-flex-row j-c-space-between align-items-center z-index-999'}>
                 {!photo && !video && !audio && contentType !== 'TEXT' &&
                     <section className='d-flex-row j-c-center grow-1'>
                         <div className='d-flex-column align-items-center gap-0_25em'>

@@ -101,7 +101,7 @@ const FanPublicProfileRoute = () => {
 	return (
 		<FullScreenModalLayout>
 			<NavbarBackOnly onClick={() => closeFanModal()}/>
-			<ContainerDefault containerSpecificStyle={''}>
+			<ContainerDefault style={''}>
 				<div className='d-flex-column w-100 j-c-center align-items-center'>
 					<div className='d-flex-column j-c-center align-items-center'>
 	{/*             <img className='avatar-120 border-radius-100' src={state.fan.image}></img>*/} 

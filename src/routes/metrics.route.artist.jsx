@@ -153,7 +153,7 @@ const MetricsRoute = () => {
         <>
             <Navbar />
 
-            <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-appbar'}>
+            <ContainerDefault style={'pt-xs-topbar pb-xs-appbar'}>
                 <div>
                     <h1>{getCurrentMonthAndYear()}</h1>
                     <p className='fsize-xs-3 f-w-300 grey-200 letter-spacing-1 mt-xs-2'>Da inizio mese ad oggi:</p>

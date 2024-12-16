@@ -111,7 +111,7 @@ const ProfileRoute = () => {
     return (
         <>
         <NavbarDefault />
-        <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+        <ContainerDefault style={'pb-xs-appbar'}>
         <TextTitle title={'Profilo'} />
         
         <div>

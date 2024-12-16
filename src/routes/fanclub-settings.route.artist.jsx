@@ -28,7 +28,7 @@ const FanclubSettingsRoute = () => {
     return (
         <>
             <NavbarBackOnly onClick={() => navigate('/artist-app/fanclub')}/>
-            <ContainerDefault containerSpecificStyle={''}>
+            <ContainerDefault style={''}>
                 
                 <div id='fanclub-name' className='mb-xs-8'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>

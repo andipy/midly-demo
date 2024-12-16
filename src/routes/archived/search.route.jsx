@@ -44,7 +44,7 @@ const SearchRoute = () => {
     return (
         <>
         <NavbarDefault />
-        <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+        <ContainerDefault style={'pb-xs-appbar'}>
             <TextTitle title={'Artisti'} />
             <SearchInput 
                 value={searchQuery} 

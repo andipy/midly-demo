@@ -32,7 +32,7 @@ const FlashLeaderboardsDashboardRoute = () => {
     return (
         <>
             <NavbarDefault />
-            <ContainerDefault containerSpecificStyle={'pb-xs-12'}>
+            <ContainerDefault style={'pb-xs-12'}>
                 <TextTitle title={'Dashboard admin classifiche flash'} />
                 <p className='fsize-xs-2 mt-xs-4 red-300'><span className='f-w-700'>⚠️ ATTENZIONE</span>: non divulgare questo link per alcun motivo a nessuno fuori dal team stretto di MIDLY.</p>
                 <section id='leaderboards' className='mt-xs-4'>

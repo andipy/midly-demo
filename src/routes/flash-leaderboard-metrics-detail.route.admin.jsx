@@ -36,7 +36,7 @@ const FlashLeaderboardMetricsDetailRoute = () => {
     return (
         <>
         <NavbarBackOnly onClick={() => navigate(-1)} />
-        <ContainerDefault containerSpecificStyle={'pb-xs-6'}>
+        <ContainerDefault style={'pb-xs-6'}>
             <div className='position-relative w-100 h-xs-20 mb-xs-4'>
                 <img className='h-inherit w-100 object-fit-cover border-radius-08' src={leaderboard.image} />
             </div>

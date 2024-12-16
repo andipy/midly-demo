@@ -81,7 +81,7 @@ const Sanremo2024Route = () => {
             <NavbarArtistPage smallTitle={'Sanremo 2024'} avatarImage={Sanremo2024} />
             <CoverArtistPage artName={'Sanremo 2024'} image={Sanremo2024} />
 
-            <ContainerDefault containerSpecificStyle={'pb-xs-8 pb-lg-2'}>
+            <ContainerDefault style={'pb-xs-8 pb-lg-2'}>
 
             <div className='container mt-avatar-header'>
                 {spotifyConnected ?

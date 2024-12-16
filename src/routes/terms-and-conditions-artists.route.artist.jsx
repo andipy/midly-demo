@@ -5,7 +5,7 @@ const TermsConditionsArtistsRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'Termini e condizioni Artisti'} />
-    <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-appbar'}>
+    <ContainerDefault style={'pt-xs-topbar pb-xs-appbar'}>
       <div className='bg-white black'>
 
       </div>

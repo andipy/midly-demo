@@ -212,7 +212,7 @@ const LiveMessages = ({leaderboard}) => {
                 <NavbarCommentsModal closeModal={closeModal} title='Chat' />
 
                 {artistMessages.length >= 1 &&
-                    <ContainerDefault containerSpecificStyle={`${chatOpen ? 'd-flex-column j-c-end pt-xs-2 pb-xs-2' : 'd-none'}`}>
+                    <ContainerDefault style={`${chatOpen ? 'd-flex-column j-c-end pt-xs-2 pb-xs-2' : 'd-none'}`}>
                         {/* thel following div is there to contain the messages sent to by the ARTIST, so they are divided by the flow of songs and messages sent by the fans */}
                         {artistMessages.length > 0 &&
                             <div className='d-flex-column grow-1 gap-0_5em mb-xs-2 bg-dark-overlay-header-3'>
@@ -227,7 +227,7 @@ const LiveMessages = ({leaderboard}) => {
                 
                 {liveMessages.length >= 1 &&
                     <div className={`overflow-auto h-max-30vh ${chatOpen ? 'd-xs-block pb-xs-2' : 'd-none'}`}>
-                        <ContainerDefault containerSpecificStyle='d-flex-column j-c-end overflow-auto'>
+                        <ContainerDefault style='d-flex-column j-c-end overflow-auto'>
                             {/* the following div is there to contain the messages sent to by the FANS, they are merged in the flow of the songs and divided by the artist's messages */}
                             {liveMessages.length > 0 && 
                                 <div className='d-flex-column grow-1 gap-0_5em'>
@@ -252,7 +252,7 @@ const LiveMessages = ({leaderboard}) => {
                     </div>
                 }
 
-                <ContainerDefault containerSpecificStyle={`position-relative ${chatOpen ? 'd-flex-column j-c-end' : 'd-none'}`}>
+                <ContainerDefault style={`position-relative ${chatOpen ? 'd-flex-column j-c-end' : 'd-none'}`}>
                     {leaderboard && (
                         <CountdownFlashLeaderboards 
                             announceStartDate={leaderboard.announceStartDate} 

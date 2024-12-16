@@ -61,7 +61,7 @@ const QuizResultRoute = () => {
 
     return (
         <>
-        <ContainerDefault containerSpecificStyle={'h-100vh'}>
+        <ContainerDefault style={'h-100vh'}>
             <div className='d-flex-column align-items-center j-c-center h-100'>
                 <h3 className='t-align-center mb-xs-4 f-w-500 fsize-xs-6'>{resultTitle}</h3>
                 <div className={`point-indicator ${indicatorWidth}`}>
@@ -79,7 +79,7 @@ const QuizResultRoute = () => {
                 <p className='t-align-center w-80 mt-xs-4'>{resultMessage}</p>
             </div>
 
-            <ContainerDefault containerSpecificStyle={'position-fixed bottom-5'}>
+            <ContainerDefault style={'position-fixed bottom-5'}>
                 <Button style={'bg-acid-lime black font-body'} label={'Close'} />
             </ContainerDefault>
         </ContainerDefault>

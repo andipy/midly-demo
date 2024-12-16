@@ -5,7 +5,7 @@ import Button from './button.component'
 const SettingsArea = ({ showSettingsArea, handleSettingsAreaVisibility, handleIsPrivate, isPrivate, isPinned, handleIsPinned }) => {
     return (
         <div className={`position-fixed bottom-hidden bg-dark-soft w-100 border-radius-top-08 z-index-1100 ${showSettingsArea ? 'slide-up' : 'slide-down'}`}>
-            <ContainerDefault containerSpecificStyle={'pt-xs-4 pb-xs-4'}>
+            <ContainerDefault style={'pt-xs-4 pb-xs-4'}>
                 <div className='d-flex-row align-items-center j-c-space-between mb-xs-4 mt-xs-2'>
                     <p className='fsize-xs-4'>Contenuto a pagamento</p>
                     <div className={`toggle-area ${isPrivate ? 'toggle-area-on' : 'toggle-area-off'}`} onClick={handleIsPrivate}>

@@ -228,7 +228,7 @@ const FlashLeaderboardRoute = () => {
             <NavbarLeaderboardFlashPage artist={artist} leaderboard={leaderboard} />
             <CoverArtistPage leaderboard={leaderboard} />
 
-            <ContainerDefault containerSpecificStyle={`mt-avatar-header-2 pb-xs-24 pb-md-8 ${artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && 'pt-xs-8'}`}>
+            <ContainerDefault style={`mt-avatar-header-2 pb-xs-24 pb-md-8 ${artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && 'pt-xs-8'}`}>
                 <div className='d-flex-column position-sticky top-navbar z-index-999 mb-xs-4'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
                         <CardFlashLeaderboardYourPosition currentFan={currentFan} artist={artist}  />  
@@ -353,7 +353,7 @@ const FlashLeaderboardRoute = () => {
 
             {/* {showComponent &&
                 <FullPageCenter className={'z-index-999 bg-black-transp70'}>
-                    <ContainerDefault containerSpecificStyle={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
+                    <ContainerDefault style={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                         <img className='avatar-48' src={IconInfoLime} />
                         <section className='w-100'>
                             <h3 className='fsize-xs-5 grey-200 f-w-600 mt-xs-4 lime-400'>Come guadagnare punti?</h3>

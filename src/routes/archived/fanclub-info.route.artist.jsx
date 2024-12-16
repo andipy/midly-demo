@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { FanclubsContext } from '../contexts/fanclubs.context'
-import { CurrentArtistContext } from '../contexts/currentArtist.context'
+import { FanclubsContext } from '../../contexts/fanclubs.context'
+import { CurrentArtistContext } from '../../contexts/currentArtist.context'
 
-import Button from '../components/button.component'
-import NavbarMultistep from '../components/navbar-multistep.component'
+import Button from '../../components/button.component'
+import NavbarMultistep from '../../components/navbar-multistep.component'
 
-import ContainerDefault from '../layout/container-default.layout'
+import ContainerDefault from '../../layout/container-default.layout'
 
 const FanclubInfoRoute = () => {
 
@@ -86,7 +86,7 @@ const FanclubInfoRoute = () => {
         <>
             <NavbarMultistep stepNumber={1} totalStepNumber={2} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
-            <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
+            <ContainerDefault style='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500 white'>Info del tuo fanclub</h3>
                 
                 <input className="bg-dark-soft white letter-spacing-1 border-radius-06 mt-xs-4" type="text" placeholder="Dai un nome al tuo fanclub" value={name} onChange={handleName} />
@@ -97,7 +97,7 @@ const FanclubInfoRoute = () => {
 
                 <img className='w-100' src={cover && cover} />
 
-                <ContainerDefault containerSpecificStyle='position-fixed bottom-5'>
+                <ContainerDefault style='position-fixed bottom-5'>
                     <Button
                         disabled={filledMandatory ? false : true}
                         style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`}

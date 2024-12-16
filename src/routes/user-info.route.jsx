@@ -14,7 +14,7 @@ const UserInfoRoute = () => {
     return (
         <>
         <NavbarProfileSettings title={'Informazioni personali'} />
-        <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-8'}>
+        <ContainerDefault style={'pt-xs-topbar pb-xs-8'}>
             <div>
                 <section id='about-you' className='mt-xs-2'>
                     <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>About you</h4>

@@ -627,7 +627,7 @@ const ContentCreationRoute = () => {
 
         {!video && !photo && !audio &&
             <div className='media-creation-control-bar d-flex-row j-c-space-between align-items-center h-96px'>
-                <ContainerDefault containerSpecificStyle={'d-flex-row j-c-space-between align-items-center gap-0_5em'}>
+                <ContainerDefault style={'d-flex-row j-c-space-between align-items-center gap-0_5em'}>
                     {(post.media.length > 0 || post.text.length > 0 ) ?
                         <div className='d-flex-row align-items-center gap-0_25em overflow-x shrink-1'>
                             {post.media?.map(elem => {

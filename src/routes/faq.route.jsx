@@ -5,7 +5,7 @@ const FaqRoute = () => {
   return (
     <>
     <NavbarProfileSettings title={'FAQ'} />
-    <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-8'}>
+    <ContainerDefault style={'pt-xs-topbar pb-xs-8'}>
         <section className='mt-xs-2'>
             <article className='mb-xs-14'>
                 <h4 className='fsize-xs-4 mb-xs-2 letter-spacing-2 f-w-500'>

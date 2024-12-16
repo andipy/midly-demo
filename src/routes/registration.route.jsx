@@ -68,7 +68,7 @@ const RegistrationRoute =() => {
   return (
     <>
     <NavbarDefault />
-    <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+    <ContainerDefault style={'pb-xs-appbar'}>
     <div id='top'>
         <h2 className='fsize-xs-9 mb-xs-1 white'>Crea account!</h2>
         <p className='fsize-xs-2 f-w-200 grey-200 letter-spacing-1'>

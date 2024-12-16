@@ -126,7 +126,7 @@ const FanclubBillingInfoRoute = () => {
         <>
             <NavbarMultistep stepNumber={3} totalStepNumber={4} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
-            <ContainerDefault containerSpecificStyle='pt-xs-topbar'>
+            <ContainerDefault style='pt-xs-topbar'>
                 <h3 className='fsize-xs-6 f-w-500 white'>Dati di fatturazione</h3>
 
                 <p className='fsize-xs-3 grey-200 mt-xs-4'>Ci servono per generare le tue fatture.</p>
@@ -150,7 +150,7 @@ const FanclubBillingInfoRoute = () => {
                     <input className="bg-dark-soft white letter-spacing-1 border-radius-06 mt-xs-4 mb-xs-4" type="text" placeholder="Provincia" value={province} onChange={handleProvince} />
                 </div>
 
-                <ContainerDefault containerSpecificStyle='position-fixed bottom-5'>
+                <ContainerDefault style='position-fixed bottom-5'>
                     <Button
                         disabled={filledMandatory ? false : true}
                         style={`${filledMandatory ? 'bg-acid-lime dark-900' : 'bg-dark-soft grey-400'} fsize-xs-3 f-w-600 letter-spacing-1`}

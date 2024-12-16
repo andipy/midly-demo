@@ -50,7 +50,7 @@ const  RecoverPasswordRoute = () => {
   return (
     <>
         <NavbarDefault />
-        <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+        <ContainerDefault style={'pb-xs-appbar'}>
             <h3 className='fsize-xs-6 f-w-500 mb-xs-1 white'>Facci sapere la tua email</h3>
             <p className='fsize-xs-2 f-w-200 grey-200 letter-spacing-1 mt-xs-4'>
                 Riceverai un link via mail per resettare la tua password, inserisci e conferma la tua email!

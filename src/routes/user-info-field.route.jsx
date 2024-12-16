@@ -64,7 +64,7 @@ const UserInfoFieldRoute = () => {
     return (
         <>
             <NavbarPersonalInfoField title={type} />
-            <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+            <ContainerDefault style={'pb-xs-appbar'}>
                 <div>
                     {renderFieldContent(type)}
                 </div>

@@ -67,7 +67,7 @@ const FanclubNotificationsRoute = () => {
 		<>
 			<NavbarBackOnly onClick={() => navigate(-1)} />
 
-			<ContainerDefault containerSpecificStyle={'mb-xs-2'}>
+			<ContainerDefault style={'mb-xs-2'}>
 				<h4 className="fsize-xs-6 f-w-500">Attività</h4>
 			</ContainerDefault>
 

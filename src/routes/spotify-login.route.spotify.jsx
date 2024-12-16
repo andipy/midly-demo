@@ -15,7 +15,7 @@ const SpotifyLoginRoute = () => {
 
 	return (
 		<>
-		<ContainerDefault containerSpecificStyle={'pb-xs-appbar mt-xs-12'}>
+		<ContainerDefault style={'pb-xs-appbar mt-xs-12'}>
 			<div className='d-flex-column j-c-start align-items-center'>
 				<img className='avatar-40' src={LogoSpotify} alt='MIDLY' />     
 				<h4 className='fsize-xs-8 f-w-800'>Accedi a Spotify</h4> 

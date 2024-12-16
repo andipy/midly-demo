@@ -14,7 +14,7 @@ const EarningsDashboard = () => {
   return (
     <>
     <NavbarBackOnly onClick={() => navigate('/artist-app/profile')} />
-    <ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+    <ContainerDefault style={'pb-xs-appbar'}>
         <div className='d-flex-row bg-dark-900'>                
             <div className='d-flex-column grow-1 align-items-center' onClick={() => navigate(`/artist-app/earnings-dashboard/lastMonth`)}>
                 <span className={`${location.pathname.includes('lastMonth') ? 'lime-400 f-w-600' : 'grey-300'} fsize-xs-2 mb-xs-2`}>Riscuoti</span>

@@ -29,7 +29,7 @@ const FlashLeaderboardMetricsDetailRoute = () => {
     return (
         <>
         <NavbarBackOnly onClick={() => navigate(-1)} />
-        <ContainerDefault containerSpecificStyle={'pb-xs-6'}>
+        <ContainerDefault style={'pb-xs-6'}>
             <TextTitle title={`${leaderboard.album ? leaderboard.album.title : leaderboard.song.title} - ${artistName}`} />
             <p className='fsize-xs-6 f-w-500 lime-400 letter-spacing-1 mt-xs-2'>Split per brano</p>
             <section className='mt-xs-4 mx-xs-auto'>

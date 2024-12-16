@@ -139,7 +139,7 @@ const ContentCreationReviewRoute = () => {
         <>
             <NavbarDismiss transparent={true} forcedExitPath={'/artist-app/fanclub'} clear={deletePost} />
 
-            <ContainerDefault containerSpecificStyle={'pt-xs-topbar pb-xs-appbar'}>
+            <ContainerDefault style={'pt-xs-topbar pb-xs-appbar'}>
                 <h1 className='fsize-xs-5 f-w-600 mb-xs-8'>Rivedi il post e pubblica</h1>
                 <div className='position-relative '>
                     <Carousel>

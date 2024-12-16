@@ -155,7 +155,7 @@ const PersonalUserPointsRoute = () => {
 	return (
 		<>
 		<NavbarBackOnly onClick={() => navigate(-1)}/>
-		<ContainerDefault containerSpecificStyle={'pb-xs-appbar'}>
+		<ContainerDefault style={'pb-xs-appbar'}>
 			<TextTitle title={'I tuoi punti'} />
 				
 			{currentFan?.whiteLabelPoints > 0 ?
@@ -305,7 +305,7 @@ const PersonalUserPointsRoute = () => {
 
 		{showComponent &&
 			<FullPageCenter className={'z-index-999 bg-black-transp70'}>
-				<ContainerDefault containerSpecificStyle={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
+				<ContainerDefault style={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
 					<div className='d-flex-row align-items-center j-c-end w-100'>
 						<img className='avatar-32 bg-black-transp50 border-radius-100' src={IconExit} onClick={closeAssignements}></img>
 					</div>

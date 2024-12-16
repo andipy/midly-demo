@@ -91,7 +91,7 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                         />
                     }
 
-                    <ContainerDefault containerSpecificStyle={`d-flex-column align-items-center j-c-center overflow-all-hidden ${upperModalCompressed ? 'compress-up' : 'expand-up'}`}>
+                    <ContainerDefault style={`d-flex-column align-items-center j-c-center overflow-all-hidden ${upperModalCompressed ? 'compress-up' : 'expand-up'}`}>
                         <img className='w-25' src={IllustrationTrophy} />
                         <h4 className='fsize-xs-4 mb-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 w-80'>Sta per uscire {matchingLeaderboard.album ? matchingLeaderboard.album.title : matchingLeaderboard.song.title} il nuovo {matchingLeaderboard.album ? 'album' : 'brano'} di {artist.artistName}! {matchingLeaderboard.announceMessage}</h4>
                         <div className='d-flex-row j-c-center gap-0_5em fsize-xs-2 no-shrink bg-brand-gradient pt-xs-4 pb-xs-4 border-radius-04 w-100'>
@@ -117,7 +117,7 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                     </ContainerDefault>
 
                     <div className={`bg-brand-gradient w-100 position-sticky bottom-0 z-index-999 ${lowerModalCompressed ? 'compress-down' : 'expand-down pt-xs-3 pb-xs-3'}`} onClick={toggleModalContent}>
-                        <ContainerDefault containerSpecificStyle={`d-flex-column align-items-center j-c-center overflow-all-hidden z-index-6 ${lowerModalCompressed ? 'compress-down' : 'expand-down'}`}>
+                        <ContainerDefault style={`d-flex-column align-items-center j-c-center overflow-all-hidden z-index-6 ${lowerModalCompressed ? 'compress-down' : 'expand-down'}`}>
                             <h4 className='fsize-xs-3 f-w-500 black'>CLASSIFICA FLASH SI ATTIVA TRA:</h4>
                             <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink mt-xs-4 border-radius-04 w-100'>
                                 {timeRemaining.days > 0 &&
@@ -147,7 +147,7 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                         />
                     }
 
-                    <ContainerDefault containerSpecificStyle={`d-flex-column align-items-center j-c-center overflow-all-hidden ${upperModalCompressed ? 'compress-up' : 'expand-up pb-xs-8'}`}>
+                    <ContainerDefault style={`d-flex-column align-items-center j-c-center overflow-all-hidden ${upperModalCompressed ? 'compress-up' : 'expand-up pb-xs-8'}`}>
                     <div className='modal-header w-100 position-absolute top-0'>
                         <img
                             className='position-absolute top-0 w-100 h-inherit object-fit-cover'
@@ -180,7 +180,7 @@ const MessageFlashLeaderboardModal = ({ artist, modalOpen, toggleModalContent, u
                     </ContainerDefault>
 
                     <div className={`bg-brand-gradient w-100 position-sticky bottom-0 z-index-999 ${lowerModalCompressed ? 'compress-down' : 'expand-down pt-xs-6 pb-xs-6'}`} onClick={toggleModalContent}>
-                        <ContainerDefault containerSpecificStyle={'d-flex-row align-items-center j-c-space-between'}>
+                        <ContainerDefault style={'d-flex-row align-items-center j-c-space-between'}>
                                 <div className='d-flex-row align-items-center gap-0_5em'>
                                     <img src={IconThunderBlack} />
                                     <h4 className='fsize-xs-4 f-w-500 black'>CLASSIFICA FLASH ATTIVA</h4>

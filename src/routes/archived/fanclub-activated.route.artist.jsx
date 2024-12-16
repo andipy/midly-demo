@@ -30,7 +30,7 @@ const FanclubActivatedRoute = () => {
                 <img className='w-100 object-fit-cover h-inherit' src={fanclub?.image} />
             </div>
             
-            <ContainerDefault containerSpecificStyle='mt-xs-4'>
+            <ContainerDefault style='mt-xs-4'>
                 <h3 className='fsize-xs-4 f-w-200'>Il tuo fanclub è attivo:</h3>
                 <h1 className='fsize-xs-8 f-w-500'>{fanclub?.name}</h1>
                 <p className='fsize-xs-5 f-w-200 grey-200'>Puoi iniziare a pubblicare contenuti per i tuoi fan 🎉</p>

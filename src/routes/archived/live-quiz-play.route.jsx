@@ -174,7 +174,7 @@ const LiveQuizPlayRoute = () => {
         
         <>
         <>
-            <ContainerDefault containerSpecificStyle='pt-xs-topbar position-relative z-index-4'>
+            <ContainerDefault style='pt-xs-topbar position-relative z-index-4'>
                 <div className='d-flex-row align-items-center'>
                     <img src={quiz.image} className='avatar-36 border-radius-100' />
                     <span className='fsize-xs-3  ml-xs-2 white'>thasup</span>
@@ -182,7 +182,7 @@ const LiveQuizPlayRoute = () => {
             </ContainerDefault>
 
             <FullPageCenter className='z-index-4 d-flex-column j-center align-items-center'>
-                <ContainerDefault containerSpecificStyle={'z-index-999'}>      
+                <ContainerDefault style={'z-index-999'}>      
                     <div className='d-flex-row align-items-center mt-xs-4 gap-0_5em j-c-space-between mb-xs-4'>
                         <span className='fsize-xs-5 f-w-600 '>{songChunk.songName}</span>
                         <AudioPlayer src={quiz?.instrumental} startTime={quiz?.startTime} />
@@ -200,7 +200,7 @@ const LiveQuizPlayRoute = () => {
                 </ContainerDefault>
             </FullPageCenter>
 
-            <ContainerDefault containerSpecificStyle='position-absolute-x bottom-5 z-index-4'>
+            <ContainerDefault style='position-absolute-x bottom-5 z-index-4'>
                 {/* <p className='t-align-center lime-400 mb-xs-4'>{timer > 0 ? `${timer} secondi rimanenti` : 'Tempo scaduto'}</p> */}
                 <p className='fsize-xs-5 f-w-500 t-align-center white mb-xs-0'>{timeLeft} secondi rimanenti</p>
                 <ProgressCountdown points={timeLeft} max={60} />
