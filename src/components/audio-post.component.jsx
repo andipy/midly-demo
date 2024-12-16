@@ -26,9 +26,9 @@ const AudioPost = ({ src }) => {
 
 	const handleTimeUpdate = () => {
 		const audio = audioRef?.current;
-		console.log(audio)
+	
 		const currentTime = audio?.currentTime;
-		const duration = audio?.duration
+
 		if (!audio || !duration) return
 		setTimeElapsed(formatTime(currentTime))
 		const remainingTime = duration - currentTime
@@ -57,6 +57,64 @@ const AudioPost = ({ src }) => {
 		return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`
 	}
 
+	const [duration, setDuration] = useState(0)
+
+	const handleLoadedMetadata = () => {
+		const audio = audioRef.current
+		console.log('loadedmetadata triggered', audio)
+		if (audio) {
+		  const audioDuration = audio.duration
+		  if (audioDuration === Infinity || isNaN(audioDuration)) {
+			setDuration(0)
+		  } else {
+			setDuration(audioDuration)
+			setTimeRemaining(formatTime(audioDuration))
+		  }
+		}
+	  }
+	
+	  const handleLoadedData = () => {
+		console.log('loadeddata triggered')
+		const audio = audioRef.current
+		if (audio) {
+		  const audioDuration = audio.duration
+		  if (audioDuration !== Infinity && !isNaN(audioDuration)) {
+			setDuration(audioDuration)
+			setTimeRemaining(formatTime(audioDuration))
+		  }
+		}
+	  }
+	
+	  const handleCanPlayThrough = () => {
+		console.log('canplaythrough triggered')
+		const audio = audioRef.current
+		if (audio) {
+		  const audioDuration = audio.duration
+		  if (audioDuration !== Infinity && !isNaN(audioDuration)) {
+			setDuration(audioDuration)
+			setTimeRemaining(formatTime(audioDuration))
+		  }
+		}
+	  }
+	
+	  useEffect(() => {
+		const audio = audioRef.current
+		if (audio) {
+	
+		  audio.addEventListener('loadedmetadata', handleLoadedMetadata)
+		  audio.addEventListener('loadeddata', handleLoadedData)
+		  audio.addEventListener('canplaythrough', handleCanPlayThrough)
+	
+		  return () => {
+			audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
+			audio.removeEventListener('loadeddata', handleLoadedData)
+			audio.removeEventListener('canplaythrough', handleCanPlayThrough)
+		  }
+		}
+	  }, [src])
+
+
+	  
 	return (
 		<div className="d-flex-column j-c-end align-items-center pr-xs-4 pb-xs-4 pl-xs-4 pt-xs-4 border-radius-02 w-100">
 			<audio

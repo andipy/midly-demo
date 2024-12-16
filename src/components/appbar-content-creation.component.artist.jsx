@@ -11,7 +11,6 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, toggleReco
 
     const location = useLocation()
 
-    console.log(textContent)
 
     return (
         <section className='app-bar-content-creation-area d-flex-column j-c-center align-items-center gap-0_5em'>
