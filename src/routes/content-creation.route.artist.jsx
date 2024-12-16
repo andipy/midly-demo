@@ -202,7 +202,11 @@ const ContentCreationRoute = () => {
     const [recordingAudio, setRecordingAudio] = useState(false)
     const [audio, setAudio] = useState(null)
     const audioRecorderRef = useRef(null)
-    const [elapsedTime, setElapsedTime] = useState(0)
+    const [elapsedTime, setElapsedTime] = useState({
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+    })
     const [audioData, setAudioData] = useState(new Uint8Array(0)) // Dati per la forma d'onda
     const animationRef = useRef(null)
     const analyserRef = useRef(null)
@@ -214,6 +218,8 @@ const ContentCreationRoute = () => {
             const source = audioContext.createMediaStreamSource(stream)
             const analyser = audioContext.createAnalyser()
             analyser.fftSize = 256 // Maggiore è il valore, più dettagliata sarà la forma d'onda
+            analyser.minDecibels = -90
+            analyser.maxDecibels = -10
             const dataArray = new Uint8Array(analyser.frequencyBinCount)
     
             source.connect(analyser)
@@ -238,11 +244,17 @@ const ContentCreationRoute = () => {
             setRecordingAudio(true)
     
             // Aggiorna forma d'onda e timer
-            const startTime = Date.now();
+            const startTime = Date.now()
             const update = () => {
                 analyser.getByteTimeDomainData(dataArray)
                 setAudioData([...dataArray])
-                setElapsedTime(((Date.now() - startTime) / 1000).toFixed(1))
+
+                const elapsedTimeMs = Date.now() - startTime
+                const hours = Math.floor(elapsedTimeMs / (1000 * 60 * 60))
+                const minutes = Math.floor((elapsedTimeMs % (1000 * 60 * 60)) / (1000 * 60))
+                const seconds = Math.floor((elapsedTimeMs % (1000 * 60)) / 1000)
+                setElapsedTime({ hours, minutes, seconds })
+
                 animationRef.current = requestAnimationFrame(update)
             }
             update()
@@ -260,7 +272,7 @@ const ContentCreationRoute = () => {
             setElapsedTime(0)
             setAudioData(new Uint8Array(0))
         }
-    };
+    }
 
     const toggleRecordingAudio = () => {
         if (recordingAudio) {
@@ -443,46 +455,42 @@ const ContentCreationRoute = () => {
     //FORMA D'ONDA DURANTE REC AUDIO
 
     useEffect(() => {
-        if (!recordingAudio || audioData.length === 0) return;
+        if (!recordingAudio || audioData.length === 0) return
     
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
+        const canvas = canvasRef.current
+        const context = canvas.getContext('2d')
     
         const drawWaveformBars = () => {
-            if (!context || !canvas) return;
+            if (!context || !canvas) return
     
             // Pulisce il canvas
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.clearRect(0, 0, canvas.width, canvas.height)
     
             // Calcola i dati smussati
             const smoothedData = audioData.map((value, i) => {
-                const previous = i > 0 ? audioData[i - 1] : 0;
-                return (previous + value) / 2; // Media con il valore precedente
-            });
+                const previous = i > 0 ? audioData[i - 1] : 0
+                return (previous + value) / 1.5 // Media con il valore precedente
+            })
     
             // Configura lo stile delle barre
-            const barWidth = canvas.width / smoothedData.length;
-            const barColor = '#DAEF64'; // Colore delle barre
+            const barWidth = canvas.width / smoothedData.length
+            const barColor = '#FFFFFF' // Colore delle barre
     
             for (let i = 0; i < smoothedData.length; i++) {
                 // Calcola l'ampiezza della barra con effetto non lineare
-                const amplitude = Math.pow(smoothedData[i] / 255, 2); // Più reattivo alle variazioni
-                const barHeight = amplitude * canvas.height; // Altezza proporzionale
-                const x = i * barWidth; // Posizione orizzontale
-                const y = (canvas.height - barHeight) / 2; // Centra le barre verticalmente
+                const amplitude = Math.pow(smoothedData[i] / 256, 2) // Più reattivo alle variazioni
+                const barHeight = amplitude * canvas.height // Altezza proporzionale
+                const x = i * barWidth // Posizione orizzontale
+                const y = (canvas.height - barHeight) / 2 // Centra le barre verticalmente
     
                 // Disegna ogni barretta
-                context.fillStyle = barColor;
-                context.fillRect(x, y, barWidth * 0.1, barHeight); // Aggiungi spazi tra barre
+                context.fillStyle = barColor
+                context.fillRect(x, y, barWidth * 0.2, barHeight) // Aggiungi spazi tra barre
             }
-        };
+        }
     
-        drawWaveformBars();
-    }, [audioData]);
-
-    
-    
-    
+        drawWaveformBars()
+    }, [audioData])
 
     return (
         <>
@@ -519,10 +527,18 @@ const ContentCreationRoute = () => {
                 {recordingAudio ? 
                     <>
                         <div className='d-flex-column j-c-center align-items-center w-100 h-100'>
-                        <canvas className='w-100' ref={canvasRef}></canvas>
-                        <span className='fsize-xs-3 f-w-600'>
-                            {elapsedTime}s
-                        </span>
+                            <canvas className='w-100' ref={canvasRef}></canvas>
+                            <div className='d-flex-row align-items-center j-c-center gap-1em'>
+                                <span className='fsize-xs-3 f-w-600'>
+                                    {elapsedTime.hours}h
+                                </span>
+                                <span className='fsize-xs-3 f-w-600'>
+                                    {elapsedTime.minutes}m
+                                </span>
+                                <span className='fsize-xs-3 f-w-600'>
+                                    {elapsedTime.seconds}s
+                                </span>
+                            </div>
                         </div>
                     </>
                 : !recordingAudio && contentType === 'AUDIO' && !audio &&

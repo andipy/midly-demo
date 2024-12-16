@@ -78,18 +78,18 @@ const SwipeCarousel = ({ images, text }) => {
 				}}
 			>
 				{images.map((media, index) => (
-					<div id='carousel-slide  ' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 objcet-fit-cover'>
-							{media.type === 'IMAGE' ?
-								<img className='w-100 objcet-fit-cover' src={media.url} />
-							: media.type === 'VIDEO' ?	
-							<video className='w-100  h-100 object-fit-cover' autoPlay playsInline loop muted={!isMuted}>
-								<source src={media.url} type='video/mp4' />
-							</video>
-							: media.type === 'AUDIO'?
-								<div className='w-100'>
-									<AudioPost src={media.url} />
-								</div>
-							: <></>
+					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 objcet-fit-cover'>
+						{media.type === 'IMAGE' ?
+							<img className='w-100 objcet-fit-cover' src={media.url} />
+						: media.type === 'VIDEO' ?	
+						<video className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted={!isMuted}>
+							<source src={media.url} type='video/mp4' />
+						</video>
+						: media.type === 'AUDIO'?
+							<div className='w-100'>
+								<AudioPost src={media.url} />
+							</div>
+						: null
 							}
 					</div>
 				))}
