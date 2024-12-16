@@ -10,13 +10,16 @@ import IconExit from '../images/icons/icon-exit.svg'
 import IconSettings from '../images/icons/icon-settings-white.svg'
 import IconLink from '../images/icons/icon-link.svg'
 import IconText from '../images/icons/icon-text.svg'
+import IconWaveform from '../images/icons/icon-waveform.png'
 import IconOk from '../images/icons/icon-ok.svg'
+import IconPlay from '../images/icons/icon-play.svg'
 import NavbarMultistep from '../components/navbar-multistep.component'
 import AppbarContentCreation from '../components/appbar-content-creation.component.artist'
 import TextAreaCaption from '../components/textarea-caption.component.artist'
 import LinkArea from '../components/link-area.component.artist'
 import SettingsArea from '../components/settings-area.component.artist'
 import Button from '../components/button.component'
+import AudioPost from '../components/audio-post.component'
 
 
 const ContentCreationRoute = () => {
@@ -176,6 +179,12 @@ const ContentCreationRoute = () => {
                     type: 'VIDEO',
                     url: dataUrl
                 })
+            } else if ( file.type.startsWith('audio/') ) {
+                setAudio({
+                    id: post.media.length + 1,
+                    type: 'AUDIO',
+                    url: dataUrl
+                })
             } else {
                 console.error("Unsupported file type:", file.type)
             }
@@ -187,6 +196,77 @@ const ContentCreationRoute = () => {
             handleStopRecording()
         } else {
             handleStartRecording()
+        }
+    }
+
+    const [recordingAudio, setRecordingAudio] = useState(false)
+    const [audio, setAudio] = useState(null)
+    const audioRecorderRef = useRef(null)
+    const [elapsedTime, setElapsedTime] = useState(0)
+    const [audioData, setAudioData] = useState(new Uint8Array(0)) // Dati per la forma d'onda
+    const animationRef = useRef(null)
+    const analyserRef = useRef(null)
+
+    const handleStartRecordingAudio = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+            const source = audioContext.createMediaStreamSource(stream)
+            const analyser = audioContext.createAnalyser()
+            analyser.fftSize = 256 // Maggiore è il valore, più dettagliata sarà la forma d'onda
+            const dataArray = new Uint8Array(analyser.frequencyBinCount)
+    
+            source.connect(analyser)
+            analyserRef.current = analyser
+    
+            audioRecorderRef.current = new MediaRecorder(stream)
+            const chunks = []
+            
+            audioRecorderRef.current.ondataavailable = (e) => chunks.push(e.data)
+            audioRecorderRef.current.onstop = () => {
+                const blob = new Blob(chunks, { type: 'audio/webm' })
+                const dataUrl = URL.createObjectURL(blob)
+                setAudio({
+                    id: post.media.length + 1,
+                    type: 'AUDIO',
+                    url: dataUrl
+                })
+            }
+    
+            // Avvio della registrazione
+            audioRecorderRef.current.start()
+            setRecordingAudio(true)
+    
+            // Aggiorna forma d'onda e timer
+            const startTime = Date.now();
+            const update = () => {
+                analyser.getByteTimeDomainData(dataArray)
+                setAudioData([...dataArray])
+                setElapsedTime(((Date.now() - startTime) / 1000).toFixed(1))
+                animationRef.current = requestAnimationFrame(update)
+            }
+            update()
+        } catch (err) {
+            console.error('Errore nella registrazione audio:', err.message)
+            setError(err.message)
+        }
+    }
+    
+    const handleStopRecordingAudio = () => {
+        if (audioRecorderRef.current) {
+            audioRecorderRef.current.stop()
+            setRecordingAudio(false)
+            cancelAnimationFrame(animationRef.current)
+            setElapsedTime(0)
+            setAudioData(new Uint8Array(0))
+        }
+    };
+
+    const toggleRecordingAudio = () => {
+        if (recordingAudio) {
+            handleStopRecordingAudio()
+        } else {
+            handleStartRecordingAudio()
         }
     }
 
@@ -235,11 +315,35 @@ const ContentCreationRoute = () => {
         }))
         setVideo(null)
     }
+
+    const clearAudio = (id) => {
+        setAudio(null)
+        setPost(prev => ({
+            ...prev,
+            media: prev.media.filter(mediaItem => mediaItem.id !== id)
+        }))
+    }
+
+    const keepAudio = () => {
+        setPost(prev => ({
+            ...prev,
+            media: [...prev.media, {
+                id: audio.id,
+                type: 'AUDIO',
+                url: audio.url
+            }]
+        }))
+        setAudio(null)
+    }
+
     const handlePhotoType = () => {
         setContentType('IMAGE')
     }
     const handleVideoType = () => {
         setContentType('VIDEO')
+    }
+    const handleAudioType = () => {
+        setContentType('AUDIO')
     }
     const handleTextType = () => {
         setContentType('TEXT')
@@ -335,6 +439,49 @@ const ContentCreationRoute = () => {
 
         navigate('/artist-app/content-creation/post-review', { state: { postId: newPostId } })
     }
+
+    //FORMA D'ONDA DURANTE REC AUDIO
+
+    useEffect(() => {
+        if (!recordingAudio || audioData.length === 0) return;
+    
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
+    
+        const drawWaveformBars = () => {
+            if (!context || !canvas) return;
+    
+            // Pulisce il canvas
+            context.clearRect(0, 0, canvas.width, canvas.height);
+    
+            // Calcola i dati smussati
+            const smoothedData = audioData.map((value, i) => {
+                const previous = i > 0 ? audioData[i - 1] : 0;
+                return (previous + value) / 2; // Media con il valore precedente
+            });
+    
+            // Configura lo stile delle barre
+            const barWidth = canvas.width / smoothedData.length;
+            const barColor = '#DAEF64'; // Colore delle barre
+    
+            for (let i = 0; i < smoothedData.length; i++) {
+                // Calcola l'ampiezza della barra con effetto non lineare
+                const amplitude = Math.pow(smoothedData[i] / 255, 2); // Più reattivo alle variazioni
+                const barHeight = amplitude * canvas.height; // Altezza proporzionale
+                const x = i * barWidth; // Posizione orizzontale
+                const y = (canvas.height - barHeight) / 2; // Centra le barre verticalmente
+    
+                // Disegna ogni barretta
+                context.fillStyle = barColor;
+                context.fillRect(x, y, barWidth * 0.1, barHeight); // Aggiungi spazi tra barre
+            }
+        };
+    
+        drawWaveformBars();
+    }, [audioData]);
+
+    
+    
     
 
     return (
@@ -344,7 +491,7 @@ const ContentCreationRoute = () => {
             {error && <p className='pt-xs-topbar'>Error accessing the camera: {error}</p>}
             
             <div className='camera-frame-wrapper position-relative'>
-                {!video && !photo &&
+                {!video && !photo && !audio &&
                     <div className='d-flex-column gap-0_5em position-absolute-y right-5'>
                         <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
                             <img className='avatar-32' src={IconText} />
@@ -358,13 +505,32 @@ const ContentCreationRoute = () => {
                     </div>
                 }
 
-                {!photo && !video &&
+                {!photo && !video && 
                     <>
                         {contentType === 'IMAGE' || contentType === 'VIDEO' ?
                             <video className='border-radius-1 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
                         : contentType === 'TEXT' &&
                             <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-1 fsize-xs-8 f-w-600 h-100' placeholder='Scrivi qui...' onChange={handleCaptureText}></textarea>
                         }
+                    </>
+                }
+
+                {/* registrazione audio forma d'onda durante */}
+                {recordingAudio ? 
+                    <>
+                        <div className='d-flex-column j-c-center align-items-center w-100 h-100'>
+                        <canvas className='w-100' ref={canvasRef}></canvas>
+                        <span className='fsize-xs-3 f-w-600'>
+                            {elapsedTime}s
+                        </span>
+                        </div>
+                    </>
+                : !recordingAudio && contentType === 'AUDIO' && !audio &&
+                    <>
+                        <div className='d-flex-column j-c-center align-items-center w-100 h-100'>
+                            <h1 className='fsize-xs-3 f-w-600'>Avvia una registrazione</h1>
+                            <img className='avatar-32 mt-xs-4' src={IconWaveform} alt="X" />
+                        </div>
                     </>
                 }
 
@@ -382,7 +548,7 @@ const ContentCreationRoute = () => {
                         </div>
                         <img className='border-radius-04 object-fit-cover w-100 h-100' src={photo?.url} />
                     </div>
-                : video &&
+                : video ?
                     <div className='position-relative' style={{ width: '100%', height: '100%' }}>
                         <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-2 gap-0_5em'>
                             <div className='d-flex-row align-items-center j-c-center bg-dark-soft-transp75 border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-4' onClick={() => clearVideo(video.id)}>
@@ -396,19 +562,42 @@ const ContentCreationRoute = () => {
                         </div>
                         <video className='border-radius-04 object-fit-cover w-100 h-100' src={video?.url} controls={false} autoPlay={true} playsInline loop={true} />
                     </div>
+                : audio && 
+                <div className='position-relative d-flex-row j-c-center align-items-center ' style={{ width: '100%', height: '100%' }}>
+                    <AudioPost src={audio.url}/>
+                    <div className='d-flex-row align-items-center j-c-center position-absolute-x z-index-3 bottom-2 gap-0_5em'>
+                        <div className='d-flex-row align-items-center j-c-center bg-dark-soft-transp75 border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-4' onClick={() => clearAudio(audio.id)}>
+                            <img className='avatar-32' src={IconExit} alt="X" />
+                            <span>Elimina</span>
+                        </div>
+                        <div className='d-flex-row align-items-center j-c-center bg-dark-soft-transp75 border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-4' onClick={() => keepAudio(audio.id)}>
+                            <img className='avatar-32' src={IconOk} alt="X" />
+                            <span>Tieni</span>
+                        </div>
+                    </div>
+                    {/* <audio controls>
+                        <source src={audio.url} type="audio/webm" />
+                        Il tuo browser non supporta l'audio HTML5.
+                    </audio> */}
+                    
+                </div>
                 }
 
                 <AppbarContentCreation
                     handleCapturePhoto={handleCapturePhoto}
                     toggleRecording={toggleRecording}
+                    toggleRecordingAudio={toggleRecordingAudio}
                     recording={recording}
+                    recordingAudio={recordingAudio}
                     contentType={contentType}
                     photo={photo}
                     video={video}
+                    audio={audio}
                     textContent={textContent}
                     updatePosts={updatePosts}
                     handlePhotoType={handlePhotoType}
                     handleVideoType={handleVideoType}
+                    handleAudioType={handleAudioType}
                     handleTextType={handleTextType}
                     facingMode={facingMode}
                     switchCamera={switchCamera}
@@ -420,7 +609,7 @@ const ContentCreationRoute = () => {
 
         </div>
 
-        {!video && !photo &&
+        {!video && !photo && !audio &&
             <div className='media-creation-control-bar d-flex-row j-c-space-between align-items-center h-96px'>
                 <ContainerDefault containerSpecificStyle={'d-flex-row j-c-space-between align-items-center gap-0_5em'}>
                     {(post.media.length > 0 || post.text.length > 0 ) ?
@@ -433,6 +622,11 @@ const ContentCreationRoute = () => {
                                         }
                                         {elem.type ==='VIDEO' &&
                                             <video className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} controls={false} autoPlay={true} playsInline loop={true} />
+                                        }
+                                        {elem.type ==='AUDIO' &&
+                                            <div className='border-radius-04 object-fit-cover avatar-60 bg-dark-soft d-flex-row j-c-center align-items-center'>
+                                                <img className='avatar-20' src={IconPlay}/>
+                                            </div>
                                         }
                                     </>
                                 )

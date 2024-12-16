@@ -90,7 +90,7 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 				<p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>
 			}
 
-			<div className={`w-100 j-c-center align-items-center position-relative`}>
+			<div className={`w-100  j-c-center align-items-center position-relative`}>
 				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
 					{post.media.length >= 0 ?
 						<SwipeCarousel images={post.media} text={post.text} />

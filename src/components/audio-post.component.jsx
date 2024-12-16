@@ -24,8 +24,15 @@ const AudioPost = ({ src }) => {
   }
 
   const handleTimeUpdate = () => {
-    const currentProgress = (audioRef.current.currentTime / audioRef.current.duration) * 100
-    setProgress(currentProgress)
+    const audio = audioRef?.current;
+    const currentTime = audioRef?.current.currentTime;
+    const duration = audioRef?.current.duration
+    if (!audio) return;
+    setTimeElapsed(formatTime(currentTime))
+    const remainingTime = duration - currentTime
+    setTimeRemaining(formatTime(remainingTime))
+    const currentProgress = (currentTime / duration) * 100
+    setProgress(currentProgress || 0)
   }
 
   const handleProgressClick = (e) => {
@@ -38,25 +45,18 @@ const AudioPost = ({ src }) => {
     setProgress((newTime / audioRef.current.duration) * 100)
   }
 
-  const format = (seconds) => {
+  const [timeElapsed, setTimeElapsed] = useState('0:00')
+  const [timeRemaining, setTimeRemaining] = useState('0:00')
+
+  const formatTime = (seconds) => {
     const roundedSeconds = Math.round(seconds)
     const minutes = Math.floor(roundedSeconds / 60)
     const remainingSeconds = roundedSeconds % 60
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`
-
   }
 
-  /* const [artistImageSrc, setArtistImageSrc] = useState()
-
-  useEffect(() => {
-    const artist = artists?.find(artist => artist?.id === artistId)
-    if (artist) {
-        setArtistImageSrc(artist.image)
-    }
-  }, [artists, artistId]) */
-
   return (
-    <div className="w-100 h-100 d-flex-column j-c-end align-items-center bg-black pr-xs-4 pb-xs-12 pl-xs-4 pt-xs-4 border-radius-02">
+    <div className="w-100  d-flex-column j-c-end align-items-center bg-black pr-xs-4 pb-xs-4 pl-xs-4 pt-xs-4 border-radius-02">
 
       <audio
         ref={audioRef}
@@ -95,8 +95,8 @@ const AudioPost = ({ src }) => {
         
       </div>
       <div className='w-100 d-flex-row j-c-space-between align-items-center mb-xs-4'>
-        <p className='fsize-xs-0 f-w-300'>{format(progress)}</p>
-        <p className='fsize-xs-0 f-w-300'>-{format((audioRef?.current?.duration-progress))}</p>
+        <p className='fsize-xs-0 f-w-300'>{timeElapsed}</p>
+        <p className='fsize-xs-0 f-w-300'>-{timeRemaining}</p>
       </div>
       <div className='w-100 d-flex-row j-c-center align-items-center'>
         <div className="avatar-36 bg-white border-radius-100 d-flex-row j-c-center align-items-center" onClick={togglePlayPause}>

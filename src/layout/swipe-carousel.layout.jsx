@@ -60,7 +60,7 @@ const SwipeCarousel = ({ images, text }) => {
 	}
 
 	return (
-		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden'
+		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden w-100'
 			onMouseDown={handleDragStart}
 			onMouseMove={isDragging ? handleDragMove : null}
 			onMouseUp={handleDragEnd}
@@ -71,22 +71,24 @@ const SwipeCarousel = ({ images, text }) => {
 		>
 
 			<div
-				className='carousel-track d-flex-row align-items-center object-fit-cover'
+				className='carousel-track d-flex-row align-items-center object-fit-cover w-100'
 				ref={trackRef}
 				style={{
 				transform: `translateX(-${currentIndex * 100}%)`, 
 				}}
 			>
 				{images.map((media, index) => (
-					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 objcet-fit-cover'>
+					<div id='carousel-slide  ' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 objcet-fit-cover'>
 							{media.type === 'IMAGE' ?
 								<img className='w-100 objcet-fit-cover' src={media.url} />
 							: media.type === 'VIDEO' ?	
-							<video className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted={!isMuted}>
+							<video className='w-100  h-100 object-fit-cover' autoPlay playsInline loop muted={!isMuted}>
 								<source src={media.url} type='video/mp4' />
 							</video>
 							: media.type === 'AUDIO'?
-								<AudioPost src={media.url} />
+								<div className='w-100'>
+									<AudioPost src={media.url} />
+								</div>
 							: <></>
 							}
 					</div>
