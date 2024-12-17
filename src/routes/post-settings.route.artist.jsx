@@ -79,7 +79,7 @@ const PostSettingsRoute = () => {
                     <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>{'CAPTION'}</label>
                     <textarea
                         id={`input-caption`}
-                        className='bg-dark white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 border-radius-02 mt-xs-2'
+                        className='bg-dark white fsize-xs-2 f-w-500 white letter-spacing-1 border-radius-02 mt-xs-2'
                         type='text'
                         placeholder={`${state?.caption ? state?.caption : 'Scrivi una didascalia per il tuo post'}`}
                         value={state?.caption}
@@ -94,7 +94,7 @@ const PostSettingsRoute = () => {
                         <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>{'URL LINK'}</label>
                         <input
                             id={`input-caption`}
-                            className='bg-dark white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 border-radius-02 mt-xs-2'
+                            className='bg-dark white fsize-xs-2 f-w-500 white letter-spacing-1 border-radius-02 mt-xs-2'
                             type='text'
                             placeholder={`${state?.link?.url ? state?.link?.url : 'https://...'}`}
                             value={state?.link?.url}
@@ -105,7 +105,7 @@ const PostSettingsRoute = () => {
                         <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>{'NOME LINK'}</label>
                         <input
                             id={`input-caption`}
-                            className='bg-dark white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 border-radius-02 mt-xs-2'
+                            className='bg-dark white fsize-xs-2 f-w-500 white letter-spacing-1 border-radius-02 mt-xs-2'
                             type='text'
                             placeholder={`${state?.link?.name ? state?.link?.name : 'Dai un nome al link'}`}
                             value={state?.link?.name}

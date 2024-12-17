@@ -190,7 +190,7 @@ const ContentCreationReviewRoute = () => {
                     <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>{'CAPTION'}</label>
                     <textarea
                         id={`input-caption`}
-                        className='bg-dark-soft white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 border-radius-02 mt-xs-2'
+                        className='bg-dark-soft white fsize-xs-2 f-w-500 white letter-spacing-1 border-radius-02 mt-xs-2'
                         type='text'
                         placeholder={`${post?.caption ? post?.caption : 'Scrivi una didascalia per il tuo post'}`}
                         value={post?.caption}
@@ -205,7 +205,7 @@ const ContentCreationReviewRoute = () => {
                         <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>{'URL LINK'}</label>
                         <input
                             id={`input-caption`}
-                            className='bg-dark-soft white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 border-radius-02 mt-xs-2'
+                            className='bg-dark-soft white fsize-xs-2 f-w-500 white letter-spacing-1 border-radius-02 mt-xs-2'
                             type='text'
                             placeholder={`${post?.link?.url ? post?.link?.url : 'https://...'}`}
                             value={post?.link?.url}
@@ -216,7 +216,7 @@ const ContentCreationReviewRoute = () => {
                         <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>{'NOME LINK'}</label>
                         <input
                             id={`input-caption`}
-                            className='bg-dark-soft white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 border-radius-02 mt-xs-2'
+                            className='bg-dark-soft white fsize-xs-2 f-w-500 white letter-spacing-1 border-radius-02 mt-xs-2'
                             type='text'
                             placeholder={`${post?.link?.name ? post?.link?.name : 'Dai un nome al link'}`}
                             value={post?.link?.name}
