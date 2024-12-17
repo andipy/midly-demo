@@ -173,7 +173,7 @@ const FanclubActivationInfoRoute = () => {
                         <source src={file.url} type='video/mp4' />
                     </video>
                 }
-                <div className='bg-black-transp50 d-flex-row j-c-center align-items-center  border-radius-04 position-absolute bottom-5 right-5 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 gap-0_25em' onClick={handleIconClick}>
+                <div className='bg-black-transp50 d-flex-row j-c-center align-items-center  border-radius-100 position-absolute bottom-5 right-5 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 gap-0_25em' onClick={handleIconClick}>
                     <img className='avatar-24' src={IconEdit}/>
                     <span className='fsize-xs-2'>Modifica</span>
                     {/* <IconEdit size={32} viewBox={32} color='white' strokeWidth={2} /> */}

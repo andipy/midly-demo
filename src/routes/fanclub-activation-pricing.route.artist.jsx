@@ -71,8 +71,6 @@ const FanclubActivationPricingRoute = () => {
         }
     }, [pricing, subscribers, isLimited])
 
-    
-
     useEffect(() => {
         fanclubs.map(fanclub => {
             if ( fanclub.artistId === currentArtist.id ) {
@@ -107,39 +105,40 @@ const FanclubActivationPricingRoute = () => {
             <NavbarMultistep stepNumber={2} totalStepNumber={2} dismissable={true} forcedExitPath={'/artist-app/fanclub'} />
 
             <Container style='pt-xs-topbar'>
-                <h3 className='fsize-xs-6 f-w-500 white'>Prezzo mensile del tuo fanclub</h3>
-
-                <div className='d-flex-column gap-0_5em mt-xs-4'>
-                    <p className='fsize-xs-3 grey-200'>Quanto deve pagare ogni mese un tuo fan per accedere al tuo fan club?</p>
-                    <p className='fsize-xs-3 grey-200'>Minimo €2.99, massimo €11.99. Consigliato €3.99.</p>
+                <section className='d-flex-column gap-0_5em mt-xs-4'>
+                    <h3 className='fsize-xs-5 f-w-600 white'>Prezzo mensile del tuo fanclub</h3>
+                    <p className='fsize-xs-2 f-w-400 grey-300'>Quanto deve pagare ogni mese un tuo fan per accedere al tuo fan club?</p>
+                    <p className='fsize-xs-2 f-w-400 grey-300'>Minimo €2.99, massimo €11.99.</p>
                     <span
-                        className='fsize-xs-2 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 bg-green-900 border-radius-04 green-400 align-self-start'
+                        className='fsize-xs-2 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 bg-green-900 border-radius-100 green-400 align-self-start'
                         onClick={setRecommendedPricing}
                     >
                         Imposta consigliato €3.99 al mese
                     </span>
                     <input className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04' type='number' onChange={handlePricing} value={pricing} placeholder='Inserisci il prezzo mensile' min='2.99' max='11.99' />
+                </section>
+
+                <section className='mt-xs-20'>
+                    <div className='d-flex-row align-items-start j-c-space-between mb-xs-4 mt-xs-2'>
+                        <div className='d-flex-column'>
+                            <h3 className='fsize-xs-5 f-w-600 white'>Limita numero di posti nel fanclub</h3>
+                            <p className='fsize-xs-2 f-w-400 grey-300'>Potrai modificare questo limite quando vuoi</p>
+                        </div>
                     
-                </div>
-                <div className='d-flex-row align-items-start j-c-space-between mb-xs-4 mt-xs-2'>
-                    <div className='d-flex-column'>
-                        <p className='fsize-xs-3 f-w-500'>Limita numero di posti nel fanclub</p>
-                        <p className='fsize-xs-1 f-w-300'>Potrai modificare questo limite quando vuoi</p>
+                        <div className={`toggle-area ${isLimited ? 'toggle-area-on' : 'toggle-area-off'}`} onClick={handleIsLimited}>
+                            <div className={`toggle-dot ${isLimited ? 'toggle-on' : 'toggle-off'}`}></div>
+                        </div>
                     </div>
-                   
-                    <div className={`toggle-area ${isLimited ? 'toggle-area-on' : 'toggle-area-off'}`} onClick={handleIsLimited}>
-                        <div className={`toggle-dot ${isLimited ? 'toggle-on' : 'toggle-off'}`}></div>
-                    </div>
-                </div>
-                {isLimited &&
-                    <input
-                        className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04'
-                        type='text'
-                        placeholder={`${'Numero massimo di iscritti'}`}
-                        value={subscribers}
-                        onChange={(e) => handleSubscribers(e)}
-                    />
-                }
+                    {isLimited &&
+                        <input
+                            className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04'
+                            type='text'
+                            placeholder={`${'Numero massimo di iscritti'}`}
+                            value={subscribers}
+                            onChange={(e) => handleSubscribers(e)}
+                        />
+                    }
+                </section>
 
                 <Container style='position-fixed bottom-5'>
                     <Button
