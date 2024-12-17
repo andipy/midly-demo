@@ -363,12 +363,15 @@ const ContentCreationRoute = () => {
 
     const handleTextAreaVisibility = () => {
         setShowTextArea(prev => !prev)
+        console.log('dai')
     }
     const handleLinkAreaVisibility = () => {
         setShowLinkArea(prev => !prev)
+        console.log('dai')
     }
     const handleSettingsAreaVisibility = () => {
         setShowSettingsArea(prev => !prev)
+        console.log('dai')
     }
 
     const handleCaption = (e) => {
@@ -417,8 +420,6 @@ const ContentCreationRoute = () => {
 
     const updatePosts = () => {
         let currentDate = new Date()
-        /* let date = currentDate.toISOString().split('T')[0] */
-    
         let newPostId
     
         setFanclubs(prevFanclubs =>
@@ -453,7 +454,6 @@ const ContentCreationRoute = () => {
     }
 
     //FORMA D'ONDA DURANTE REC AUDIO
-
     useEffect(() => {
         if (!recordingAudio || audioData.length === 0) return
     
@@ -500,15 +500,15 @@ const ContentCreationRoute = () => {
             
             <div className='camera-frame-wrapper position-relative'>
                 {!video && !photo && !audio &&
-                    <div className='d-flex-column gap-0_5em position-absolute-y right-5'>
-                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
+                    <div className='d-flex-column gap-0_5em position-absolute-y right-5 z-index-5'>
+                        <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleTextAreaVisibility}>
                             <img className='avatar-32' src={IconText} />
                         </div>
-                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
+                        <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleLinkAreaVisibility}>
                             <img className='avatar-32' src={IconLink} />
                         </div>
-                        <div className='d-flex-row align-items-center j-c-center z-index-3 bottom-0 avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                            <img className='avatar-32' src={IconSettings} onClick={handleSettingsAreaVisibility} />
+                        <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={handleSettingsAreaVisibility}>
+                            <img className='avatar-32' src={IconSettings} />
                         </div>
                     </div>
                 }

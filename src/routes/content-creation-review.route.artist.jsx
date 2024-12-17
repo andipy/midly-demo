@@ -141,7 +141,7 @@ const ContentCreationReviewRoute = () => {
 
             <Container style={'pt-xs-topbar pb-xs-appbar'}>
                 <h1 className='fsize-xs-5 f-w-600 mb-xs-8'>Rivedi il post e pubblica</h1>
-                <div className='position-relative '>
+                <div className='position-relative'>
                     <Carousel>
                         {post?.media &&
                             post.media?.map(media => (
@@ -192,7 +192,7 @@ const ContentCreationReviewRoute = () => {
                         id={`input-caption`}
                         className='bg-dark-soft white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 border-radius-02 mt-xs-2'
                         type='text'
-                        placeholder={`${ post?.caption ? post?.caption : 'Scrivi una didascalia per il tuo post'}`}
+                        placeholder={`${post?.caption ? post?.caption : 'Scrivi una didascalia per il tuo post'}`}
                         value={post?.caption}
                         rows={4}
                         onChange={(e) => handleCaption(e)} 
@@ -207,7 +207,7 @@ const ContentCreationReviewRoute = () => {
                             id={`input-caption`}
                             className='bg-dark-soft white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 border-radius-02 mt-xs-2'
                             type='text'
-                            placeholder={`${ post?.link?.url ? post?.link?.url : 'https://...'}`}
+                            placeholder={`${post?.link?.url ? post?.link?.url : 'https://...'}`}
                             value={post?.link?.url}
                             onChange={(e) => handleLink(e)} 
                         />
@@ -218,7 +218,7 @@ const ContentCreationReviewRoute = () => {
                             id={`input-caption`}
                             className='bg-dark-soft white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 border-radius-02 mt-xs-2'
                             type='text'
-                            placeholder={`${ post?.link?.name ? post?.link?.name : 'Dai un nome al link'}`}
+                            placeholder={`${post?.link?.name ? post?.link?.name : 'Dai un nome al link'}`}
                             value={post?.link?.name}
                             onChange={(e) => handleLinkName(e)} 
                         />

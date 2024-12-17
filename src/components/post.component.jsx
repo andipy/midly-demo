@@ -14,7 +14,7 @@ import IconComments from '../images/icons/icon-comment-white.svg'
 import IconShare from '../images/icons/icon-share-white.svg'
 import IconLink from '../images/icons/icon-link.svg'
 
-const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscription }) => {
+const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscription, focusPostSettings }) => {
 
 	const { artists } = useContext(ArtistsContext)
 
@@ -25,7 +25,6 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 	}, artistId)
 
 	const { pathname } = useLocation()
-	const navigate = useNavigate()
 	const [showCaption, setShowCaption] = useState(false)
 
 	const [days, setDays] = useState(0)
@@ -131,7 +130,7 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 						</div>
 
 						{pathname.includes('/artist-app/') &&
-							<div className='d-flex-row'>
+							<div className='d-flex-row' onClick={() => focusPostSettings()}>
 								<img className='avatar-28 bg-dark-soft-2 border-radius-04' src={IconSettings}/>
 							</div>
 						}

@@ -3,6 +3,10 @@ import { useNavigate, Outlet, Link } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 
+import Container from '../layout/container.layout'
+import FullPageCenter from '../layout/full-page-center.layout'
+import CommentsModalLayout from '../layout/comments-modal.layout'
+
 import CoverFanclub from '../components/cover-fanclub.component.artist'
 import Appbar from '../components/appbar.component.artist'
 import Button from '../components/button.component'
@@ -10,10 +14,8 @@ import Navbar from '../components/navbar.component.artist'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import TextbarComments from '../components/textbar-comments.component'
 import Comment from '../components/comment.component'
-import Container from '../layout/container.layout'
-import FullPageCenter from '../layout/full-page-center.layout'
-import CommentsModalLayout from '../layout/comments-modal.layout'
 import Post from '../components/post.component'
+import SettingsArea from '../components/settings-area.component.artist'
 
 import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
 import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanclub-empty.svg'
@@ -26,6 +28,22 @@ const FanclubRoute = () => {
 
     const { currentArtist } = useContext(CurrentArtistContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
+
+    const [fanclub, setFanclub] = useState(null)
+    const fetchThisFanclub = () => {
+        if (!fanclubs || !currentArtist) {
+            console.warn("fanclubs or currentArtist is undefined")
+            return
+        }
+    
+        const thisFanclub = fanclubs.find(elem => elem.artistId === currentArtist.id)
+        setFanclub(thisFanclub)
+    }
+    useEffect(() => {
+        if (fanclubs && currentArtist) {
+            fetchThisFanclub()
+        }
+    }, [fanclubs, currentArtist])
 
     const [showComponent, setShowComponent] = useState(false)
     const [clickCount, setClickCount] = useState(0)
@@ -43,6 +61,15 @@ const FanclubRoute = () => {
         setCommentsInFocus(null)
         setCommentInFocus(null)
     }
+    
+    const [postInFocus, setPostInFocus] = useState(undefined)
+    const focusPostSettings = (id) => {
+        const thisPost = fanclub.posts.find(post => post.id === id)
+        setPostInFocus(thisPost)
+        navigate(`/artist-app/fanclub/${id}`, { state: { ...thisPost, invokedModal: true } })
+        console.log(id, 'post id')
+    }
+
     const [commentInFocus, setCommentInFocus] = useState(null)
     const spotCommentToReply = (id) => {
         setCommentInFocus(id)
@@ -193,21 +220,7 @@ const FanclubRoute = () => {
         
     }
 
-    const [fanclub, setFanclub] = useState(null)
-    const fetchThisFanclub = () => {
-        if (!fanclubs || !currentArtist) {
-            console.warn("fanclubs or currentArtist is undefined")
-            return
-        }
     
-        const thisFanclub = fanclubs.find(elem => elem.artistId === currentArtist.id)
-        setFanclub(thisFanclub)
-    }
-    useEffect(() => {
-        if (fanclubs && currentArtist) {
-            fetchThisFanclub()
-        }
-    }, [fanclubs, currentArtist])
 
     useEffect(() => {
         const handleMouseDown = () => {
@@ -384,6 +397,7 @@ const FanclubRoute = () => {
                                     post={post}
                                     openComments={() => openComments(post.id)}
                                     key={post.id}
+                                    focusPostSettings={() => focusPostSettings(post.id)}
                                 />
                             )}
                         </Container>
@@ -408,9 +422,7 @@ const FanclubRoute = () => {
                 modalOpen={modalOpen}
                 closeModal={closeModal}
             >
-                <NavbarCommentsModal
-                    closeModal={closeModal}
-                />
+                <NavbarCommentsModal closeModal={closeModal} />
                 <Container style={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
                         return (
@@ -432,7 +444,6 @@ const FanclubRoute = () => {
                     modalOpen={modalOpen}
                     inputRef={inputRef}
                 />
-
             </CommentsModalLayout>
 
             <Appbar />
