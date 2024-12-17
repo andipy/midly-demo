@@ -175,7 +175,7 @@ const FanclubSettingsEditRoute = () => {
                     <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-2'>{'NOME'}</label>
                     <input
                         id={`input-${type.toLowerCase()}`}
-                        className='bg-dark-soft white fsize-xs-2 f-w-500 grey-400 letter-spacing-1 mt-xs-2 mt-xs-4'
+                        className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04 mt-xs-2 mt-xs-4'
                         type='text'
                         placeholder={`${ updates.name ? updates.name : 'Aggiungi il nome del tuo fanclub!'}`}
                         value={updates.name}
@@ -184,7 +184,7 @@ const FanclubSettingsEditRoute = () => {
                     <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-2 mt-xs-4'>{'DESCRIZIONE'}</label>
                     <textarea
                         id={`input-${type.toLowerCase()}`}
-                        className='bg-dark-soft white fsize-xs-2 f-w-500 grey-400 letter-spacing-1 mt-xs-2 mt-xs-4'
+                        className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04 mt-xs-2 mt-xs-4'
                         type='text'
                         placeholder={`${ updates.description ? updates.description : 'Aggiungi la descrizione del tuo fanclub!'}`}
                         value={updates.description}
@@ -200,7 +200,7 @@ const FanclubSettingsEditRoute = () => {
                     <span class="fsize-xs-2 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 bg-green-900 border-radius-04 green-400 align-self-start  mt-xs-2" onClick={() => setRecommendedPricing()}>Imposta consigliato €3.99 al mese</span>
                     <input
                         id={`input-${type.toLowerCase()}`}
-                        className='bg-dark-soft white fsize-xs-2 f-w-500 grey-400 letter-spacing-1 mt-xs-2 mt-xs-4'
+                        className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04 mt-xs-2 mt-xs-4'
                         type='text'
                         placeholder={`${ updates.pricing ? updates.pricing : 'Aggiungi un prezzo per il tuo fanclub!'}`}
                         value={updates.pricing}

@@ -27,33 +27,60 @@ const FanclubActivationPricingRoute = () => {
         setPricing(e.target.value)
     }
 
+    const [isLimited, setIsLimited] = useState(true)
+    const handleIsLimited = () => {
+        setIsLimited(!isLimited)
+    }
+
+    useEffect(() => {
+        if (isLimited === false) {
+            setSubscribers(null)
+        }
+    }, [isLimited])
+
+    const [subscribers, setSubscribers] = useState(null)
+    const handleSubscribers = (e) => {
+        e.preventDefault()
+        setSubscribers(e.target.value)
+    }
+
+    
+
     const updateThisFanclub = () => {
-        setFanclubs(prevFanclubs => 
+        setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub =>
-                fanclub.artistId === currentArtist.id
-                    ? { ...fanclub, pricing: pricing }
+                fanclub.artistId === currentArtist.id &&
+                (fanclub.pricing !== pricing || fanclub.maxSubscribers !== subscribers )
+                    ? {
+                        ...fanclub,
+                        pricing: pricing,
+                        maxSubscribers: subscribers
+                    }
                     : fanclub
             )
         )
     }
 
     useEffect(() => {
-        if ( pricing ) {
-            updateThisFanclub()
-        }
+        updateThisFanclub()
         // Check if all mandatory fields are filled
-        if (pricing) {
+        if (pricing && (!isLimited || subscribers > 0)) {
             setFilledMandatory(true)
         } else {
             setFilledMandatory(false)
         }
-    }, [pricing])
+    }, [pricing, subscribers, isLimited])
+
+    
 
     useEffect(() => {
         fanclubs.map(fanclub => {
             if ( fanclub.artistId === currentArtist.id ) {
                 if ( fanclub.pricing ) {
                     setPricing(fanclub.pricing)
+                }
+                if (fanclub.maxSubscribers) {
+                    setSubscribers(fanclub.maxSubscribers)
                 }
             }
         })
@@ -91,9 +118,28 @@ const FanclubActivationPricingRoute = () => {
                     >
                         Imposta consigliato €3.99 al mese
                     </span>
-                    <input className='bg-dark-soft white letter-spacing-1 border-radius-06' type='number' onChange={handlePricing} value={pricing} placeholder='Inserisci il prezzo mensile' min='2.99' max='11.99' />
+                    <input className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04' type='number' onChange={handlePricing} value={pricing} placeholder='Inserisci il prezzo mensile' min='2.99' max='11.99' />
                     
                 </div>
+                <div className='d-flex-row align-items-start j-c-space-between mb-xs-4 mt-xs-2'>
+                    <div className='d-flex-column'>
+                        <p className='fsize-xs-3 f-w-500'>Limita numero di posti nel fanclub</p>
+                        <p className='fsize-xs-1 f-w-300'>Potrai modificare questo limite quando vuoi</p>
+                    </div>
+                   
+                    <div className={`toggle-area ${isLimited ? 'toggle-area-on' : 'toggle-area-off'}`} onClick={handleIsLimited}>
+                        <div className={`toggle-dot ${isLimited ? 'toggle-on' : 'toggle-off'}`}></div>
+                    </div>
+                </div>
+                {isLimited &&
+                    <input
+                        className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04'
+                        type='text'
+                        placeholder={`${'Numero massimo di iscritti'}`}
+                        value={subscribers}
+                        onChange={(e) => handleSubscribers(e)}
+                    />
+                }
 
                 <Container style='position-fixed bottom-5'>
                     <Button
