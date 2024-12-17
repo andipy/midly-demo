@@ -2,8 +2,7 @@ import * as d3 from 'd3'
 import { useContext, useState, useEffect } from 'react'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
-
-const EarningsGraph = () => {
+const FanclubDashboardGraph = () => {
     const { currentArtist } = useContext(CurrentArtistContext)
     const [currentMonth, setCurrentMonth] = useState(1)
 
@@ -221,4 +220,4 @@ const EarningsGraph = () => {
   )
 }
 
-export default EarningsGraph
+export default FanclubDashboardGraph

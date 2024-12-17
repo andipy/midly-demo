@@ -115,66 +115,66 @@ const ProfileRoute = () => {
         <TextTitle title={'Profilo'} />
         
         <div>
-            
-                <div className='mt-xs-2 d-flex-column align-items-start mb-xs-12'>
-                    <div className='d-flex-row align-items-center w-100'>
-                        <label>
-                            {currentFan.image ? 
-                                <img
-                                    src={currentFan.image}
-                                    className='avatar-96 border-radius-100'
-                                />
-                            : 
-                                <div className='avatar-96 position-relative'>
-                                    <div className='d-flex-row j-c-center align-items-center avatar-96 border-radius-100 bg-purple-400'>
-                                        <h5 className='f-w-500 fsize-xs-6'>
-                                            {currentFan.username.charAt(0).toUpperCase()}
-                                        </h5>
-                                    </div>
-                                    <div className='d-flex-column align-items-center position-absolute-y right-neg5 position-absolute-x top-95 '>
-                                        <div className='d-flex-row align-items-center '>
-                                            <div className='bg-dark-gradient border-radius-100  d-flex-row j-c-center align-items-center avatar-36'>
-                                                <div className='d-flex-row align-items-center'>
-                                                    <div className='fsize-xs-3'>{5} </div>
-                                                    <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
-                                                </div>
+            <div className='mt-xs-2 d-flex-column align-items-start mb-xs-12'>
+                <div className='d-flex-row align-items-center w-100'>
+                    <label>
+                        {currentFan.image ? 
+                            <img
+                                src={currentFan.image}
+                                className='avatar-96 border-radius-100'
+                            />
+                        : 
+                            <div className='avatar-96 position-relative'>
+                                <div className='d-flex-row j-c-center align-items-center avatar-96 border-radius-100 bg-purple-400'>
+                                    <h5 className='f-w-500 fsize-xs-6'>
+                                        {currentFan.username.charAt(0).toUpperCase()}
+                                    </h5>
+                                </div>
+                                <div className='d-flex-column align-items-center position-absolute-y right-neg5 position-absolute-x top-95 '>
+                                    <div className='d-flex-row align-items-center '>
+                                        <div className='bg-dark-gradient border-radius-100  d-flex-row j-c-center align-items-center avatar-36'>
+                                            <div className='d-flex-row align-items-center'>
+                                                <div className='fsize-xs-3'>{5} </div>
+                                                <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
-                            }
-                            <input type='file' accept='image/*' style={{ display: 'none' }} onChange={handleFileChange} onClick={(e) => {e.target.value = null}} />
-                        </label>
-                        <div className='d-flex-column j-c-start ml-xs-4 position-relative '>
-                            <div className='d-flex-row align-items-center j-c-start'>
-                                <h5 className='fsize-xs-5 f-w-500 letter-spacing-1'>{currentFan.username}</h5>
-                                <Link to='/user-info-field-modify' state={{ field: 'USERNAME' }}><img className='avatar-22' src={IconEdit}></img></Link>
                             </div>
-                            <span className='fsize-xs-1 f-w-300 grey-200 letter-spacing-1 no-shrink grow-1 w-100'>Member since 2022-10-28</span>
+                            
+                        }
+                        <input type='file' accept='image/*' style={{ display: 'none' }} onChange={handleFileChange} onClick={(e) => {e.target.value = null}} />
+                    </label>
+                    <div className='d-flex-column j-c-start ml-xs-4 position-relative '>
+                        <div className='d-flex-row align-items-center j-c-start'>
+                            <h5 className='fsize-xs-5 f-w-500 letter-spacing-1'>{currentFan.username}</h5>
+                            <Link to='/user-info-field-modify' state={{ field: 'USERNAME' }}><img className='avatar-22' src={IconEdit}></img></Link>
                         </div>
+                        <span className='fsize-xs-1 f-w-300 grey-200 letter-spacing-1 no-shrink grow-1 w-100'>Member since 2022-10-28</span>
                     </div>
                 </div>
-            {
-            !currentFan.hasSpotify && 
+            </div>
+
+            {!currentFan.hasSpotify && 
                 <div className='mt-xs-4 mb-xs-4'>  
-                        <div className='bg-dark-gradient-radial border-radius-1 d-flex-column align-items-start j-c-center pt-xs-8 pb-xs-8 pr-xs-8 pl-xs-8 position-relative'>
-                            <div className='d-flex-row gap-0_25em align-items-center mb-xs-4 mt-xs-4'>
-                                <img className='social-logo' src={SpotifyLogo} alt='SPOTIFY'/>
-                                <span className='fsize-xs-3'>Connetti Spotify per fare punti!</span>
-                            </div>
-                            <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Midly traccia i brani che ascolti e li converte in punti nelle classifiche degli artisti che segui!</p>
-                            <button className='bg-green-spotify dark-900 mt-xs-4 letter-spacing-1 f-w-500' onClick={handleSpotifyConnect}>CONNETTI SPOTIFY</button>
-                            <div className='bg-dark-gradient border-radius-100 d-flex-row j-c-center align-items-center avatar-36 ml-xs-2 position-absolute top-2 right-2'>
-                                <div className='d-flex-row align-items-center'>
-                                    <div className='fsize-xs-3'>{10}</div>
-                                    <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
-                                </div>
+                    <div className='bg-dark-gradient-radial border-radius-1 d-flex-column align-items-start j-c-center pt-xs-8 pb-xs-8 pr-xs-8 pl-xs-8 position-relative'>
+                        <div className='d-flex-row gap-0_25em align-items-center mb-xs-4 mt-xs-4'>
+                            <img className='social-logo' src={SpotifyLogo} alt='SPOTIFY'/>
+                            <span className='fsize-xs-3'>Connetti Spotify per fare punti!</span>
+                        </div>
+                        <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Midly traccia i brani che ascolti e li converte in punti nelle classifiche degli artisti che segui!</p>
+                        <button className='bg-green-spotify dark-900 mt-xs-4 letter-spacing-1 f-w-500' onClick={handleSpotifyConnect}>CONNETTI SPOTIFY</button>
+                        <div className='bg-dark-gradient border-radius-100 d-flex-row j-c-center align-items-center avatar-36 ml-xs-2 position-absolute top-2 right-2'>
+                            <div className='d-flex-row align-items-center'>
+                                <div className='fsize-xs-3'>{10}</div>
+                                <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
                             </div>
                         </div>
+                    </div>
                 </div>  
             }
-            <section id='points'>
+
+            <section>
                 {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi punti personali</h4> */}
                 <div className='mt-xs-4 mb-xs-4'>
                     <Link to='/personal-user-points'>
@@ -205,7 +205,8 @@ const ProfileRoute = () => {
                     </Link>
                 </div>
             </section>
-            <section id='social-accounts' className='mt-xs-4 mb-xs-4'>
+
+            <section className='mt-xs-4 mb-xs-4'>
                 {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500 mb-xs-2'>I tuoi riconoscimenti</h4> */}
                 <Link to='/badges'>
                     <div>
@@ -228,6 +229,7 @@ const ProfileRoute = () => {
                     </div>
                 </Link>
             </section>
+
             {currentFan.hasSpotify && 
                 <div className='mt-xs-4 mb-xs-4'>
                     <div className='bg-dark-gradient-radial border-radius-1 d-flex-column j-c-center align-items-center w-100 pb-xs-4 pt-xs-4' onClick={() => setShowMessageDisconnectSpotify(true)}>
@@ -243,9 +245,7 @@ const ProfileRoute = () => {
             }
         </div>
 
-
-
-        <div>
+        <section>
             <div id='profile-settings' className='mt-xs-12 mt-lg-5'> 
                 <h4 className='fsize-xs-5 mb-xs-4 mb-lg-2 letter-spacing-2 f-w-500'>Impostazioni</h4>
                 <div className='d-flex-column'>
@@ -303,7 +303,8 @@ const ProfileRoute = () => {
             <div className='t-align-center mt-xs-5 mb-xs-2 mt-lg-2 mb-lg-1'>
                 <span className='grey-300 fsize-xs-1'>© Midly Srl 2024 - DEMO</span>
             </div>
-        </div>
+        </section>
+
         </Container>
         {showMessageWhitePoints && 
             <MessageWhitePoints points={whitePoints} message={message} onClick={() => setShowMessageWhitePoints(false)} />

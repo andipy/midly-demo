@@ -13,7 +13,7 @@ const Navbar = ({ fanclub, background }) => {
     const { pathname } = useLocation()
 
     return (
-        <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0 ${background === 'transparent50' ? 'bg-black-transp50 shadow-dark-750' : background === 'transparent100' && ''}`}>
+        <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0 ${background === 'transparent50' ? 'bg-black-transp50 shadow-dark-750' : background === 'transparent100' ? '' : background === 'solid-black' && 'bg-dark'}`}>
             <div className='container d-flex-row align-items-center j-c-space-between'>
                 <div className='d-flex-row align-items-center j-c-center'>
                     <img src={Logo} alt='MIDLY' />

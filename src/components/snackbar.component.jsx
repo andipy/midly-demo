@@ -1,6 +1,6 @@
 import IconSuccessStandard from '../images/icons/icon-success-standard.svg'
 
-const Snackbar = ({message, triggered}) => {
+const Snackbar = ({ message, triggered }) => {
     return (
         <div className={`container position-fixed z-index-999 snackbar ${triggered ? 'snackbar-appear-animation' : ''}`}>
             <div className='d-flex-row align-items-center pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4 bg-green-300 border-radius-08'>

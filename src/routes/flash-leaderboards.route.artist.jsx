@@ -8,7 +8,7 @@ const FlashLeaderboardsRoute = () => {
 
     return (
         <>
-            <Navbar />
+            <Navbar background='solid-black' />
             
             <FullPageCenter>
                 <Container>

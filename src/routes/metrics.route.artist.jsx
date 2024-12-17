@@ -151,7 +151,7 @@ const MetricsRoute = () => {
 
     return (
         <>
-            <Navbar />
+            <Navbar background='solid-black' />
 
             <Container style={'pt-xs-topbar pb-xs-appbar'}>
                 <div>

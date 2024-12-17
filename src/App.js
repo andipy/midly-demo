@@ -60,10 +60,10 @@ import Cool1Route from './routes/cool-1.route'
 import Cool2Route from './routes/cool-2.route'
 import FanclubTermsRoute from './routes/fanclub-terms.route.artist'
 import FanclubPaymentInfoRoute from './routes/fanclub-payment-info.route.artist'
-import EarningsDashboardRoute from './routes/earnings-dashboard.route.artist'
-import EarningsCurrentMonthRoute from './routes/earnings-current-month.route.artist'
-import EarningsLastMonthRoute from './routes/earnings-last-month.route.artist'
-import EarningsGraphRoute from './routes/earnings-graph.route.artist'
+import FanclubDashboardRoute from './routes/fanclub-dashboard.route.artist'
+import FanclubDashboardCurrentMonthRoute from './routes/fanclub-dashboard-current-month.route.artist'
+import FanclubDashboardLastMonthRoute from './routes/fanclub-dashboard-last-month.route.artist'
+import FanclubDashboardGraphRoute from './routes/fanclub-dashboard-graph.route.artist'
 import FanclubNotificationsRoute from './routes/fanclub-notifications.route.artist'
 import ProfileArtistRoute from './routes/profile.route.artist'
 import TermsConditionsArtistsRoute from './routes/terms-and-conditions-artists.route.artist'
@@ -191,24 +191,24 @@ const router = createBrowserRouter([
 		path: '/artist-app/metrics',
 		element: <MetricsRoute />
 	},{
-		path:'/artist-app/earnings-dashboard',
-		element: <EarningsDashboardRoute />,
+		path:'/artist-app/fanclub-dashboard',
+		element: <FanclubDashboardRoute />,
 		children: [
 		{
 			path: '',
-			element: <Navigate to="/artist-app/earnings-dashboard/lastMonth" replace />
+			element: <Navigate to='/artist-app/fanclub-dashboard/last-month' replace />
 		},
 		{
-			path: 'lastMonth',
-			element: <EarningsLastMonthRoute />
+			path: 'last-month',
+			element: <FanclubDashboardLastMonthRoute />
 		},
 		{
-			path: 'currentMonth',
-			element: <EarningsCurrentMonthRoute />
+			path: 'current-month',
+			element: <FanclubDashboardCurrentMonthRoute />
 		},
 		{
 			path: 'graph',
-			element: <EarningsGraphRoute />
+			element: <FanclubDashboardGraphRoute />
 		}
 		]
 
