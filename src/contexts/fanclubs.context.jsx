@@ -18,6 +18,7 @@ export const FanclubsProvider = ({ children }) => {
                 url: undefined,
                 type: undefined
             },
+            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -42,6 +43,7 @@ export const FanclubsProvider = ({ children }) => {
                 url: undefined,
                 type: undefined
             },
+            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -66,6 +68,7 @@ export const FanclubsProvider = ({ children }) => {
                 url: undefined,
                 type: undefined
             },
+            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,

@@ -31,38 +31,77 @@ const FanclubActivationInfoRoute = () => {
         setDescription(e.target.value)
     }
 
+    const [isLimited, setIsLimited] = useState(true)
+    const handleIsLimited = () => {
+        setIsLimited(!isLimited)
+    }
+
+    useEffect(() => {
+        if (isLimited === false) {
+            setSubscribers(null)
+        }
+    }, [isLimited])
+
+    const [subscribers, setSubscribers] = useState(null)
+    const handleSubscribers = (e) => {
+        e.preventDefault()
+        setSubscribers(e.target.value)
+    }
+
     const [file, setFile] = useState({
         id: undefined,
         url: undefined,
         type: undefined
     })
     const handleFileChange = (e) => {
-        const selectedfile = e.target.files[0]
-        if (selectedfile) {
-            let fileType
-            if ( selectedfile.type.split("/")[0] === 'image' ) {
+        const selectedFile = e.target.files[0]
+        
+        if (selectedFile) {
+            let fileType = ''
+            if (selectedFile.type.split("/")[0] === 'image') {
                 fileType = 'IMAGE'
+                const imageUrl = URL.createObjectURL(selectedFile)
+                setFile({
+                    id: 1,
+                    url: imageUrl,
+                    type: fileType
+                })
             }
-            if ( selectedfile.type.split("/")[0] === 'video' ) {
+            
+            if (selectedFile.type.split("/")[0] === 'video') {
                 fileType = 'VIDEO'
+                const video = document.createElement('video')
+                video.preload = 'metadata'
+    
+                video.onloadedmetadata = () => {
+                    window.URL.revokeObjectURL(video.src)
+                    const duration = video.duration
+    
+                    if (duration > 15) {
+                        console.log('Il video deve essere massimo di 15 secondi.')
+                        return
+                    }
+                    const videoUrl = URL.createObjectURL(selectedFile)
+                    setFile({
+                        id: 1,
+                        url: videoUrl,
+                        type: fileType
+                    })
+                }
+    
+                video.src = URL.createObjectURL(selectedFile)
             }
-            const imageUrl = URL.createObjectURL(selectedfile)
-            setFile({
-                id: 1,
-                url: imageUrl,
-                type: fileType
-            })
         }
     }
 
     const [filledMandatory, setFilledMandatory] = useState(false)
     useEffect(() => {
-        if ( name === '' || description === '' || file.url === undefined ) {
+        if ( name === '' || description === '' || file.url === undefined || (isLimited && subscribers === null ) ) {
             setFilledMandatory(false)
         } else {
             setFilledMandatory(true)
         }
-    }, [name, description, file])
+    }, [name, description, file, isLimited, subscribers])
     
     useEffect(() => {
         fanclubs.map(fanclub => {
@@ -75,6 +114,9 @@ const FanclubActivationInfoRoute = () => {
                 }
                 if ( fanclub.cover ) {
                     setFile(fanclub.cover)
+                }
+                if (fanclub.maxSubscribers) {
+                    setSubscribers(fanclub.maxSubscribers)
                 }
             }
         })
@@ -89,7 +131,8 @@ const FanclubActivationInfoRoute = () => {
                         ...fanclub,
                         name: name,
                         description: description,
-                        cover: file
+                        cover: file,
+                        maxSubscribers: subscribers
                     }
                     : fanclub
             )
@@ -100,6 +143,8 @@ const FanclubActivationInfoRoute = () => {
         updateThisFanclub()
         navigate('/artist-app/fanclub/activation/pricing')
     }
+
+    
 
     return (
         <>
@@ -128,7 +173,7 @@ const FanclubActivationInfoRoute = () => {
                     </div>
                     <span className='fsize-xs-2 f-w-500 lime-400 no-shrink'>Aggiungi una cover</span>
                 </div>
-                <p className='fsize-xs-2 grey-300'>(Immagine o video, max 5MB)</p>
+                <p className='fsize-xs-2 grey-300'>(Immagine o video (max 15s), max 5MB)</p>
 
                 <input
                     className='position-absolute-x-y w-100 h-100 opacity-0'
@@ -156,6 +201,25 @@ const FanclubActivationInfoRoute = () => {
                     rows={3}
                     style={{ resize: 'none' }}
                 />
+                <div className='d-flex-row align-items-start j-c-space-between mb-xs-4 mt-xs-2'>
+                    <div className='d-flex-column'>
+                        <p className='fsize-xs-3 f-w-500'>Limita numero di posti nel fanclub</p>
+                        <p className='fsize-xs-1 f-w-300'>Potrai modificare questo limite quando vuoi</p>
+                    </div>
+                   
+                    <div className={`toggle-area ${isLimited ? 'toggle-area-on' : 'toggle-area-off'}`} onClick={handleIsLimited}>
+                        <div className={`toggle-dot ${isLimited ? 'toggle-on' : 'toggle-off'}`}></div>
+                    </div>
+                </div>
+                {isLimited &&
+                    <input
+                        className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04'
+                        type='text'
+                        placeholder={`${'Numero massimo di iscritti'}`}
+                        value={subscribers}
+                        onChange={(e) => handleSubscribers(e)}
+                    />
+                }
             </Container>
 
             <Container style='position-fixed bottom-5 right-0 left-0'>

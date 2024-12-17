@@ -107,6 +107,21 @@ const FanclubSettingsRoute = () => {
                         </Link>
                     </a>
                 </div>
+                <div id='fanclub-maxSubscribers' className='mb-xs-8'>
+                    <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-maxSubscribers'>
+                        LIMITE ISCRITTI
+                    </label>
+                    <a className='d-flex-row j-c-space-between mb-xs-3 w-100' href=''>
+                        {fanclub?.maxSubscribers ? 
+                            <h6 className='fsize-xs-2 f-w-300 grey-50 letter-spacing-1 mt-xs-2'>{fanclub?.maxSubscribers}</h6>
+                        : 
+                            <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Limita gli utenti che possono iscriversi al tuo fanclub!</h6>
+                        }
+                        <Link to='/artist-app/fanclub/settings/edit' state={{ type: 'MAX_SUBSCRIBERS' }}>
+                            <img className='avatar-28' src={IconEdit} alt='->'/>
+                        </Link>
+                    </a>
+                </div>
                 
             </Container>
         </>

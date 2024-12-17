@@ -35,6 +35,7 @@ const FanclubSettingsEditRoute = () => {
         name: null,
         description: null,
         pricing: null,
+        maxSubscribers: null,
     })
 
     useEffect(() => {
@@ -44,13 +45,7 @@ const FanclubSettingsEditRoute = () => {
                 name: fanclub.name,
                 description: fanclub.description,
                 pricing: fanclub.pricing,
-            }))
-
-            setFile(prev => ({
-                ...prev,
-                id: fanclub.cover.id,
-                url: fanclub.cover.url,
-                type: fanclub.cover.type,
+                maxSubscribers: fanclub.maxSubscribers
             }))
         }
     }, [fanclub])
@@ -63,36 +58,40 @@ const FanclubSettingsEditRoute = () => {
         }))
     }
 
+    const handleMaxSubscribers = (e) => {
+        e.preventDefault()
+        setUpdates(prev => ({
+            ...prev,
+            maxSubscribers: e.target.value
+        }))
+    }
+
+    const handleMaxSubscribersOn = (e) => {
+
+        if (updates.maxSubscribers === null) {
+            e.preventDefault()
+            setUpdates(prev => ({
+                ...prev,
+                maxSubscribers: 0
+            }))
+        } else {
+            e.preventDefault()
+            setUpdates(prev => ({
+                ...prev,
+                maxSubscribers: null
+            }))
+        }
+        
+    }
+
+    
+
     const handelDescription = (e) => {
         e.preventDefault()
         setUpdates(prev => ({
             ...prev,
             description: e.target.value
         }))
-    }
-
-    const [file, setFile] = useState({
-            id: undefined,
-            url: undefined,
-            type: undefined
-        })
-    const handleFileChange = (e) => {
-        const selectedfile = e.target.files[0]
-        if (selectedfile) {
-                let fileType
-                if ( selectedfile.type.split("/")[0] === 'image' ) {
-                    fileType = 'IMAGE'
-                }
-                if ( selectedfile.type.split("/")[0] === 'video' ) {
-                    fileType = 'VIDEO'
-                }
-                const imageUrl = URL.createObjectURL(selectedfile)
-                setFile({
-                    id: 1,
-                    url: imageUrl,
-                    type: fileType
-                })
-        }
     }
     const setRecommendedPricing = () => {
         setUpdates(prev => ({
@@ -118,7 +117,7 @@ const FanclubSettingsEditRoute = () => {
         setFanclubs(prevFanclubs => 
             prevFanclubs.map(fanclub =>
                 fanclub.artistId === currentArtist.id
-                    ? { ...fanclub, name: updates.name, description: updates.description, cover: file, pricing: updates.pricing }
+                    ? { ...fanclub, name: updates.name, description: updates.description, pricing: updates.pricing, maxSubscribers: updates.maxSubscribers }
                     : fanclub
             )
         )
@@ -133,8 +132,8 @@ const FanclubSettingsEditRoute = () => {
     const [filledMandatory, setFilledMandatory] = useState(false)
 
     useEffect(() => { 
-        if (type === 'NAME') {
-            if (updates.name === fanclub?.name || updates.name ==='') {
+        if (type === 'NAME_DESCRIPTION') {
+            if ((updates.name === fanclub?.name || updates.name ==='') && (updates.description === fanclub?.description || updates.description ==='')) {
                 setFilledMandatory(false)
             } else {
                 setFilledMandatory(true)
@@ -152,81 +151,40 @@ const FanclubSettingsEditRoute = () => {
                 }
             } 
         }
-        if (type === 'COVER') {
-            console.log(file.url)
-            if (file.url === fanclub?.cover.url  ||file.url === undefined) {
-                setFilledMandatory(false)
-            } else {
+        if (type === 'MAX_SUBSCRIBERS') {
+            if (updates.maxSubscribers === null || updates.maxSubscribers !== null && updates.maxSubscribers > 0) {
                 setFilledMandatory(true)
+            } else {
+                setFilledMandatory(false)
             } 
         }
-        
-        if (type === 'DESCRIPTION') {
-            if (updates.description === fanclub?.description || updates.description ==='') {
-                setFilledMandatory(false)
-            } else {
-                setFilledMandatory(true)
-            }
-        } 
-    }, [updates, file])
+
+    }, [updates])
+
+    
+
+
     const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
     return (
         <>
             <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} editable={false} transparent={true}/>
-
-            {type === 'COVER' &&
-                    <>
-                    {file?.url ?
-                        <div className='bg-dark-soft d-flex-row align-items-center j-c-center overflow-all-hidden h-xs-27 gap-0_5em position-relative w-100'>
-                            {file.type === 'IMAGE'?
-                                <img className='w-100 h-100 object-fit-cover' src={file?.url} />
-                            : file.type === 'VIDEO' &&
-                                <video className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted>
-                                    <source src={file?.url} type='video/mp4' />
-                                </video>
-                            }
-                            <div className='bg-black-transp50 d-flex-row j-c-center align-items-center  border-radius-04 position-absolute bottom-5 right-5 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 gap-0_25em' onClick={() => setFile({})}>
-                                <img className='avatar-24' src={IconEdit}/>
-                                <span className='fsize-xs-2'>Modifica</span>
-                                {/* <IconEdit size={32} viewBox={32} color='white' strokeWidth={2} /> */}
-                            </div>
-                        </div>
-                    : 
-                        <div className='bg-dark-soft d-flex-column align-items-center j-c-center overflow-all-hidden h-xs-27 gap-0_25em position-relative'>
-                            <div className='d-flex-row align-items-center j-c-center gap-0_5em mt-xs-10'>
-                                <div className='bg-acid-lime-op-10 d-flex-row j-c-center align-items-center pb-xs-4 pt-xs-4 pl-xs-4 pr-xs-4 border-radius-02'>
-                                    <img className='avatar-20' src={IconPlus}/>
-                                </div>
-                                <span className='fsize-xs-2 f-w-500 lime-400 no-shrink'>Aggiungi una cover</span>
-                            </div>
-                            <p className='fsize-xs-2 grey-300'>(Immagine o video, max 5MB)</p>
-
-                            <input
-                                className='position-absolute-x-y w-100 h-100 opacity-0'
-                                type='file'
-                                accept='image/png, image/jpeg, image/jpg, video/mp4, video/mov'
-                                onChange={handleFileChange} 
-                            />
-                        </div>
-                    }
-            </>
-            }
             <Container style='pt-xs-topbar'>
                 <div className='mt-xs-8 mb-xs-8 d-flex-column align-items-start j-c-start'>
-                    {type !== 'COVER' &&<label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-2'>{labelName[type]}</label>}
-                    {type === 'NAME' ?
+                    {type === 'NAME_DESCRIPTION' ?
+                    <>
+                    <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-2'>{'NOME'}</label>
                     <input
                         id={`input-${type.toLowerCase()}`}
-                        className='bg-dark-soft white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2 mt-xs-4'
+                        className='bg-dark-soft white fsize-xs-2 f-w-500 grey-400 letter-spacing-1 mt-xs-2 mt-xs-4'
                         type='text'
                         placeholder={`${ updates.name ? updates.name : 'Aggiungi il nome del tuo fanclub!'}`}
                         value={updates.name}
                         onChange={(e) => handleName(e)}
                     />
-                    : type === 'DESCRIPTION' ?
+                    <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-2 mt-xs-4'>{'DESCRIZIONE'}</label>
                     <textarea
                         id={`input-${type.toLowerCase()}`}
-                        className='bg-dark-soft white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2 mt-xs-4'
+                        className='bg-dark-soft white fsize-xs-2 f-w-500 grey-400 letter-spacing-1 mt-xs-2 mt-xs-4'
                         type='text'
                         placeholder={`${ updates.description ? updates.description : 'Aggiungi la descrizione del tuo fanclub!'}`}
                         value={updates.description}
@@ -234,18 +192,41 @@ const FanclubSettingsEditRoute = () => {
                         rows="4"
                         style={{ resize: 'none' }}
                     />
+                    </>
                     : type === 'PRICING' ?
                     <>
+                    <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-2'>{'PREZZO MENSILE'}</label>
                     <p class="fsize-xs-1 grey-300 ml-xs-2">Min €2.99 al mese, max €11.99 al mese</p>
                     <span class="fsize-xs-2 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 bg-green-900 border-radius-04 green-400 align-self-start  mt-xs-2" onClick={() => setRecommendedPricing()}>Imposta consigliato €3.99 al mese</span>
                     <input
                         id={`input-${type.toLowerCase()}`}
-                        className='bg-dark-soft white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2 mt-xs-4'
+                        className='bg-dark-soft white fsize-xs-2 f-w-500 grey-400 letter-spacing-1 mt-xs-2 mt-xs-4'
                         type='text'
                         placeholder={`${ updates.pricing ? updates.pricing : 'Aggiungi un prezzo per il tuo fanclub!'}`}
                         value={updates.pricing}
                         onChange={(e) => handlePricing(e)}
                     />
+                    </>
+                    : type === 'MAX_SUBSCRIBERS' ?
+                    <>
+                    <div className='d-flex-row align-items-start j-c-space-between w-100 mb-xs-4 mt-xs-2'>
+                        <div className='d-flex-column'>
+                            <p className='fsize-xs-3 f-w-500'>Limita numero di posti nel fanclub</p>
+                            <p className='fsize-xs-1 f-w-300'>Potrai modificare questo limite quando vuoi</p>
+                        </div>
+                        <div className={`toggle-area ${updates.maxSubscribers !== null ? 'toggle-area-on' : 'toggle-area-off'}`} onClick={handleMaxSubscribersOn}>
+                            <div className={`toggle-dot ${updates.maxSubscribers !== null ? 'toggle-on' : 'toggle-off'}`}></div>
+                        </div>
+                    </div>
+                    {updates.maxSubscribers !== null &&
+                        <input
+                            className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-04'
+                            type='text'
+                            placeholder={`${'Numero massimo di iscritti'}`}
+                            value={updates.maxSubscribers}
+                            onChange={(e) => handleMaxSubscribers(e)}
+                        />
+                    }
                     </>
                     : <></>
                     }

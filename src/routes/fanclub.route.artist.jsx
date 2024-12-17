@@ -249,6 +249,91 @@ const FanclubRoute = () => {
         return new Date(b.createdAt) - new Date(a.createdAt)
     }
 
+    const [err, setErr] = useState(false)
+    const [errMsg, setErrMsg] = useState('')
+
+    const fileInputRef = useRef(null)
+
+    const handleIconClick = () => {
+        fileInputRef.current.click()
+    }
+
+    const handleFileChange = (e) => {
+        const selectedfile = e.target.files[0]
+        
+        if (selectedfile) {
+            let fileType = ''
+            if (selectedfile.type.split("/")[0] === 'image') {
+                fileType = 'IMAGE'
+                updateCover(selectedfile, fileType)
+            }
+    
+            if (selectedfile.type.split("/")[0] === 'video') {
+                fileType = 'VIDEO'
+                const video = document.createElement('video')
+                video.preload = 'metadata'
+                video.onloadedmetadata = () => {
+                    window.URL.revokeObjectURL(video.src)
+                    const duration = video.duration
+    
+
+                    if (duration > 15) {
+                       setErr(true)
+                       setErrMsg('Il video deve essere lungo al massimo 5 secondi')
+                        return
+                    }
+    
+                    updateCover(selectedfile, fileType)
+                }
+    
+                video.src = URL.createObjectURL(selectedfile)
+            }
+        }
+    }
+
+    const [isExiting, setIsExiting] = useState(false)
+
+    useEffect(() => {
+        if (err) {
+            const exitDelay = setTimeout(() => {
+                setIsExiting(true)
+            }, 1000)
+
+            return () => clearTimeout(exitDelay)
+        }
+    }, [err])
+
+    useEffect(() => {
+        if (isExiting) {
+            const endDelay = setTimeout(() => {
+                setErr(false)
+                setIsExiting(false)
+            }, 400)
+
+            return () => clearTimeout(endDelay)
+        }
+    }, [isExiting])
+
+    const updateCover = (file, fileType) => {
+        const imageUrl = URL.createObjectURL(file)
+    
+        const newCover = {
+            id: 1,
+            url: imageUrl, 
+            type: fileType
+        }
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub =>
+                fanclub.artistId === currentArtist.id
+                    ? { 
+                        ...fanclub,  
+                        cover: newCover
+                    }
+                    : fanclub
+            )
+        )
+    }
+
     return (
         <>
             <Navbar fanclub={fanclub} background={'transparent100'} />
@@ -256,17 +341,23 @@ const FanclubRoute = () => {
                 <>
                     <div className='position-relative'>
                         <CoverFanclub fanclub={fanclub}  />
-                        <Link to='settings/edit' state={{ type: 'COVER' }} ><div className='avatar-32 position-absolute bottom-2 right-2 mr-xs-4 bg-black-transp50 border-radius-100 d-flex-row j-c-center align-items-center'><img className='avatar-32 ' src={IconEdit}></img></div></Link>
+                        <div onClick={handleIconClick} className='avatar-32 position-absolute bottom-2 right-2  bg-black-transp50 border-radius-100 d-flex-row j-c-center align-items-center pl-xs-2 pr-xs-2'><img className='avatar-24' src={IconEdit}/><span className='fsize-xs-2'>Modifica</span></div>
+                        <input
+                            className='d-none'
+                            type='file'
+                            ref={fileInputRef}
+                            accept='image/png, image/jpeg, image/jpg, video/mp4, video/mov'
+                            onChange={handleFileChange} 
+                        />
                     </div>
                     
                     <Container style={'mt-xs-2'}>
                         <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
                             <h2 className='fsize-xs-5 f-w-600'>{fanclub.name}</h2>
-                            <Link to='settings/edit' state={{ type: 'NAME' }} ><div className='avatar-22 border-radius-100 d-flex-row j-c-center align-items-center'><img className='avatar-22 ' src={IconEdit}></img></div></Link>
+                            <Link to='settings/edit' state={{ type: 'NAME_DESCRIPTION' }} ><div className='avatar-22 border-radius-100 d-flex-row j-c-center align-items-center'><img className='avatar-22 ' src={IconEdit}></img></div></Link>
                         </div>
                         <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
                             <p className='fsize-xs-2 f-w-200 grey-300'>{fanclub.description}</p>
-                            <Link to='settings/edit' state={{ type: 'DESCRIPTION' }}><div className='avatar-16 border-radius-100 d-flex-row j-c-center align-items-center'><img className='avatar-16 ' src={IconEdit}></img></div></Link>
                         </div>
                         <p className='fsize-xs-1 f-w-200 grey-300'>{fanclub.subscribers} {fanclub.subscribers !== 1 ? 'iscritti' : 'iscritto'}</p>
                     </Container>
@@ -346,6 +437,16 @@ const FanclubRoute = () => {
 
             <Appbar />
             <Outlet />
+
+            {err && 
+                <FullPageCenter className={'z-index-1100 bg-black-transp70'}>
+                    <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+                        <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
+                            <h2 className='fsize-xs-2 f-w-300 t-align-center'>Il video non può superare i 15 secondi di durata</h2>
+                        </div>
+                    </Container>
+	            </FullPageCenter>
+            }
 
             {showComponent &&
                 <FullPageCenter className={'z-index-999 bg-black-transp70'}>
