@@ -110,7 +110,7 @@ const FanclubActivationInfoRoute = () => {
                 {file.type === 'IMAGE'?
                     <img className='w-100 h-100 object-fit-cover' src={file.url} />
                 : file.type === 'VIDEO' &&
-                    <video className='w-100 h-100 object-fit-cover' autoPlay playsInline>
+                    <video className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted>
                         <source src={file.url} type='video/mp4' />
                     </video>
                 }

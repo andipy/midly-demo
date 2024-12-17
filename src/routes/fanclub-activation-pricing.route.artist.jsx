@@ -84,7 +84,7 @@ const FanclubActivationPricingRoute = () => {
 
                 <div className='d-flex-column gap-0_5em mt-xs-4'>
                     <p className='fsize-xs-3 grey-200'>Quanto deve pagare ogni mese un tuo fan per accedere al tuo fan club?</p>
-                    <p className='fsize-xs-3 grey-200'>Minimo €2.99, massimo €11.99. Consigliato €4.99.</p>
+                    <p className='fsize-xs-3 grey-200'>Minimo €2.99, massimo €11.99. Consigliato €3.99.</p>
                     <span
                         className='fsize-xs-2 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 bg-green-900 border-radius-04 green-400 align-self-start'
                         onClick={setRecommendedPricing}

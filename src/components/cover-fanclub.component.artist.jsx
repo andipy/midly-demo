@@ -7,7 +7,7 @@ const CoverFanclub = ({ fanclub }) => {
                     src={fanclub?.cover.url && fanclub.cover.url}
                 />
             : fanclub?.cover.type === 'VIDEO' &&
-                <video className='w-100 h-100 object-fit-cover' autoPlay playsInline>
+                <video className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted>
                     <source src={fanclub?.cover.url && fanclub.cover.url} type='video/mp4' />
                 </video>
             }

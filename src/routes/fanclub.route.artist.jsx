@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef } from 'react'
-import { useNavigate, Outlet } from 'react-router-dom'
+import { useNavigate, Outlet, Link } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 
@@ -17,6 +17,8 @@ import Post from '../components/post.component'
 
 import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
 import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanclub-empty.svg'
+import IconEdit from "../images/icons/icon-edit.svg"
+
 
 const FanclubRoute = () => {
 
@@ -252,10 +254,20 @@ const FanclubRoute = () => {
             <Navbar fanclub={fanclub} background={'transparent100'} />
             {fanclub?.isActive &&
                 <>
-                    <CoverFanclub fanclub={fanclub}  />
+                    <div className='position-relative'>
+                        <CoverFanclub fanclub={fanclub}  />
+                        <Link to='settings/edit' state={{ type: 'COVER' }} ><div className='avatar-32 position-absolute bottom-2 right-2 mr-xs-4 bg-black-transp50 border-radius-100 d-flex-row j-c-center align-items-center'><img className='avatar-32 ' src={IconEdit}></img></div></Link>
+                    </div>
+                    
                     <Container style={'mt-xs-2'}>
-                        <h2 className='fsize-xs-5 f-w-600'>{fanclub.name}</h2>
-                        <p className='fsize-xs-2 f-w-200 grey-300'>{fanclub.description}</p>
+                        <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
+                            <h2 className='fsize-xs-5 f-w-600'>{fanclub.name}</h2>
+                            <Link to='settings/edit' state={{ type: 'NAME' }} ><div className='avatar-22 border-radius-100 d-flex-row j-c-center align-items-center'><img className='avatar-22 ' src={IconEdit}></img></div></Link>
+                        </div>
+                        <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
+                            <p className='fsize-xs-2 f-w-200 grey-300'>{fanclub.description}</p>
+                            <Link to='settings/edit' state={{ type: 'DESCRIPTION' }}><div className='avatar-16 border-radius-100 d-flex-row j-c-center align-items-center'><img className='avatar-16 ' src={IconEdit}></img></div></Link>
+                        </div>
                         <p className='fsize-xs-1 f-w-200 grey-300'>{fanclub.subscribers} {fanclub.subscribers !== 1 ? 'iscritti' : 'iscritto'}</p>
                     </Container>
                 </>

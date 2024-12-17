@@ -7,6 +7,7 @@ import CardQuiz from './card-quiz.component'
 import Button from './button.component'
 
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
+import CoverFanclub from './cover-fanclub.component.artist'
 
 const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, currentFan, fanclub }) => {
 
@@ -14,15 +15,18 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
     
     return (
         <header className={`position-relative ${pathname.includes('flash-leaderboard') ? 'position-fixed w-100 z-index-5 top-0 h-xs-20' : 'h-xs-27'}`}>
-            
+            { pathname.includes('/fanclub') ?
+            <CoverFanclub fanclub={fanclub}/>
+            :
             <img
                 className='w-100 h-inherit object-fit-cover'
                 src={
                     pathname.includes('/flash-leaderboard') ? leaderboard?.image
-                    : pathname.includes('/fanclub') ? fanclub?.cover.url
                     : artist?.image
                 }
             />
+            }
+            
 
             {pathname.includes('/fanclub') &&
                 <Container style={'w-100 position-absolute-x bottom-avatar-header z-index-2 d-flex-row align-items-center gap-0_5em'}>

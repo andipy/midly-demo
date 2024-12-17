@@ -9,6 +9,9 @@ import NavbarMultistep from '../components/navbar-multistep.component'
 
 import Container from '../layout/container.layout'
 import MessageSetPricing from '../components/message-set-pricing.component'
+import IconEdit from '../images/icons/icon-edit.svg'
+// import IconEdit from '../images/icons-comp/edit.icon'
+import IconPlus from '../images/icons/icon-plus-lime.svg'
 
 const FanclubSettingsEditRoute = () => {
 
@@ -32,7 +35,6 @@ const FanclubSettingsEditRoute = () => {
         name: null,
         description: null,
         pricing: null,
-        cover: null,
     })
 
     useEffect(() => {
@@ -42,7 +44,13 @@ const FanclubSettingsEditRoute = () => {
                 name: fanclub.name,
                 description: fanclub.description,
                 pricing: fanclub.pricing,
-                cover: fanclub.cover,
+            }))
+
+            setFile(prev => ({
+                ...prev,
+                id: fanclub.cover.id,
+                url: fanclub.cover.url,
+                type: fanclub.cover.type,
             }))
         }
     }, [fanclub])
@@ -63,14 +71,27 @@ const FanclubSettingsEditRoute = () => {
         }))
     }
 
+    const [file, setFile] = useState({
+            id: undefined,
+            url: undefined,
+            type: undefined
+        })
     const handleFileChange = (e) => {
-        const file = e.target.files[0]
-        if (file) {
-            const imageUrl = URL.createObjectURL(file)
-            setUpdates(prev => ({
-                ...prev,
-                cover: imageUrl
-            }))
+        const selectedfile = e.target.files[0]
+        if (selectedfile) {
+                let fileType
+                if ( selectedfile.type.split("/")[0] === 'image' ) {
+                    fileType = 'IMAGE'
+                }
+                if ( selectedfile.type.split("/")[0] === 'video' ) {
+                    fileType = 'VIDEO'
+                }
+                const imageUrl = URL.createObjectURL(selectedfile)
+                setFile({
+                    id: 1,
+                    url: imageUrl,
+                    type: fileType
+                })
         }
     }
     const setRecommendedPricing = () => {
@@ -97,11 +118,11 @@ const FanclubSettingsEditRoute = () => {
         setFanclubs(prevFanclubs => 
             prevFanclubs.map(fanclub =>
                 fanclub.artistId === currentArtist.id
-                    ? { ...fanclub, name: updates.name, description: updates.description, cover: updates.cover, pricing: updates.pricing }
+                    ? { ...fanclub, name: updates.name, description: updates.description, cover: file, pricing: updates.pricing }
                     : fanclub
             )
         )
-        navigate('/artist-app/fanclub/settings')
+        navigate(-1)
     }
     const labelName = {
         'NAME' : 'NOME',
@@ -132,7 +153,8 @@ const FanclubSettingsEditRoute = () => {
             } 
         }
         if (type === 'COVER') {
-            if (updates.cover === fanclub?.cover || updates.cover ===null) {
+            console.log(file.url)
+            if (file.url === fanclub?.cover.url  ||file.url === undefined) {
                 setFilledMandatory(false)
             } else {
                 setFilledMandatory(true)
@@ -146,15 +168,52 @@ const FanclubSettingsEditRoute = () => {
                 setFilledMandatory(true)
             }
         } 
-    }, [updates])
+    }, [updates, file])
     const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
     return (
         <>
-            <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} editable={false} />
+            <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} editable={false} transparent={true}/>
 
+            {type === 'COVER' &&
+                    <>
+                    {file?.url ?
+                        <div className='bg-dark-soft d-flex-row align-items-center j-c-center overflow-all-hidden h-xs-27 gap-0_5em position-relative w-100'>
+                            {file.type === 'IMAGE'?
+                                <img className='w-100 h-100 object-fit-cover' src={file?.url} />
+                            : file.type === 'VIDEO' &&
+                                <video className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted>
+                                    <source src={file?.url} type='video/mp4' />
+                                </video>
+                            }
+                            <div className='bg-black-transp50 d-flex-row j-c-center align-items-center  border-radius-04 position-absolute bottom-5 right-5 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 gap-0_25em' onClick={() => setFile({})}>
+                                <img className='avatar-24' src={IconEdit}/>
+                                <span className='fsize-xs-2'>Modifica</span>
+                                {/* <IconEdit size={32} viewBox={32} color='white' strokeWidth={2} /> */}
+                            </div>
+                        </div>
+                    : 
+                        <div className='bg-dark-soft d-flex-column align-items-center j-c-center overflow-all-hidden h-xs-27 gap-0_25em position-relative'>
+                            <div className='d-flex-row align-items-center j-c-center gap-0_5em mt-xs-10'>
+                                <div className='bg-acid-lime-op-10 d-flex-row j-c-center align-items-center pb-xs-4 pt-xs-4 pl-xs-4 pr-xs-4 border-radius-02'>
+                                    <img className='avatar-20' src={IconPlus}/>
+                                </div>
+                                <span className='fsize-xs-2 f-w-500 lime-400 no-shrink'>Aggiungi una cover</span>
+                            </div>
+                            <p className='fsize-xs-2 grey-300'>(Immagine o video, max 5MB)</p>
+
+                            <input
+                                className='position-absolute-x-y w-100 h-100 opacity-0'
+                                type='file'
+                                accept='image/png, image/jpeg, image/jpg, video/mp4, video/mov'
+                                onChange={handleFileChange} 
+                            />
+                        </div>
+                    }
+            </>
+            }
             <Container style='pt-xs-topbar'>
                 <div className='mt-xs-8 mb-xs-8 d-flex-column align-items-start j-c-start'>
-                    <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-2'>{labelName[type]}</label>
+                    {type !== 'COVER' &&<label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-2'>{labelName[type]}</label>}
                     {type === 'NAME' ?
                     <input
                         id={`input-${type.toLowerCase()}`}
@@ -175,25 +234,6 @@ const FanclubSettingsEditRoute = () => {
                         rows="4"
                         style={{ resize: 'none' }}
                     />
-                    : type === 'COVER' ?
-                    <>
-                    <input
-                        id={`input-${type.toLowerCase()}`}
-                        className="bg-dark-soft white fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2 mt-xs-4 mb-xs-8"
-                        type="file"
-                        accept="image/*"
-                        placeholder={`${updates.cover ? updates.cover : 'Aggiungi una cover per il tuo fanclub!'}`}
-                        onChange={(e) => handleFileChange(e)}
-                    />
-                    {
-                        updates?.cover &&
-                        (
-                        <div className='position-relative w-100 h-xs-20 mb-xs-4'>
-                            <img className='h-inherit w-100 object-fit-cover border-radius-08' src={updates?.cover} />
-                        </div> 
-                        )
-                    }
-                    </>
                     : type === 'PRICING' ?
                     <>
                     <p class="fsize-xs-1 grey-300 ml-xs-2">Min €2.99 al mese, max €11.99 al mese</p>

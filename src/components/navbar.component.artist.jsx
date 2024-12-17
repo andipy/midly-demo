@@ -25,7 +25,7 @@ const Navbar = ({ fanclub, background }) => {
                             <img className='avatar-32' src={IconInfo} alt='?' />
                         </div>
 
-                        <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate('settings')}>
+                        <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate('settings', { state: {field: 'FANCLUB_PRICING' }})}>
                             <img className='avatar-32' src={IconSettings} alt='O' />
                         </div>
 

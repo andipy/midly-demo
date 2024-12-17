@@ -30,7 +30,7 @@ const FanclubSettingsRoute = () => {
             <NavbarBackOnly onClick={() => navigate('/artist-app/fanclub')}/>
             <Container style={''}>
                 
-                <div id='fanclub-name' className='mb-xs-8'>
+                {/* <div id='fanclub-name' className='mb-xs-8'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
                         NOME
                     </label>
@@ -59,8 +59,8 @@ const FanclubSettingsRoute = () => {
                             <img className='avatar-28' src={IconEdit} alt='->'/>
                         </Link>
                     </a>
-                </div>
-                <div id='fanclub-cover' className='mb-xs-8'>
+                </div> */}
+                {/* <div id='fanclub-cover' className='mb-xs-8'>
                 {fanclub?.cover ?
                 <>
                     <div className='d-flex-row j-c-space-between w-100 align-items-center'>
@@ -90,8 +90,8 @@ const FanclubSettingsRoute = () => {
                         </Link>  
                     </a>
                 </>
-                }
-                </div>
+                } 
+                </div>*/}
                 <div id='fanclub-pricing' className='mb-xs-8'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-price'>
                         PREZZO MENSILE
