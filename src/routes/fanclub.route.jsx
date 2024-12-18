@@ -10,6 +10,8 @@ import Comment from '../components/comment.component'
 import TextbarComments from '../components/textbar-comments.component'
 import Container from '../layout/container.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
+import FullPageCenter from '../layout/full-page-center.layout'
+import UserModeration from '../components/user-moderation.component'
 
 const Fanclub = () => {
 
@@ -178,6 +180,18 @@ const Fanclub = () => {
         return new Date(b.createdAt) - new Date(a.createdAt)
     }
 
+    const [modalUserModeration, setModalUserModeration] = useState(false)
+    const [userToModerate, setUserToModerate] = useState(null)
+    const openModalUserModeration = (userId) => {
+        setUserToModerate(userId)
+        setModalUserModeration(true)
+    }
+
+    const closeModalUserModeration = () => {
+        setUserToModerate(null)
+        setModalUserModeration(false)
+    }
+
     return (
         <>
             <div className='d-flex-column j-c-start mt-xs-4'>
@@ -217,6 +231,7 @@ const Fanclub = () => {
                                 spotCommentToReply={() => spotCommentToReply(comment.id)}
                                 inputRef={inputRef}
                                 key={comment.id}
+                                modalUserModeration={() => openModalUserModeration(comment.userId)}
                             />
                         )
                     })}
@@ -232,6 +247,12 @@ const Fanclub = () => {
                 />
 
             </CommentsModalLayout>
+
+            {modalUserModeration && 
+                <FullPageCenter className={'z-index-1100 bg-black-transp70 w-100'}>
+                    <UserModeration modalUserModeration={closeModalUserModeration} user={userToModerate}/>
+	            </FullPageCenter>
+            }
         </>
     )
 }

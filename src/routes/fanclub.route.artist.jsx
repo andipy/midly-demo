@@ -20,6 +20,7 @@ import SettingsArea from '../components/settings-area.component.artist'
 import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
 import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanclub-empty.svg'
 import IconEdit from "../images/icons/icon-edit.svg"
+import UserModeration from '../components/user-moderation.component'
 
 
 const FanclubRoute = () => {
@@ -347,6 +348,18 @@ const FanclubRoute = () => {
         )
     }
 
+    const [modalUserModeration, setModalUserModeration] = useState(false)
+    const [userToModerate, setUserToModerate] = useState(null)
+    const openModalUserModeration = (userId) => {
+        setUserToModerate(userId)
+        setModalUserModeration(true)
+    }
+
+    const closeModalUserModeration = () => {
+        setUserToModerate(null)
+        setModalUserModeration(false)
+    }
+
     return (
         <>
             <Navbar fanclub={fanclub} background={'transparent100'} />
@@ -431,6 +444,7 @@ const FanclubRoute = () => {
                                 key={comment.id}
                                 inputRef={inputRef}
                                 spotCommentToReply={() => spotCommentToReply(comment.id)}
+                                modalUserModeration={() => navigate('/artist-app/fanclub/user-moderation', {state: { userId: comment.userId }})}
                             />
                         )
                     })}

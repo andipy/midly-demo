@@ -72,6 +72,9 @@ import CookiePolicyArtistsRoute from './routes/cookie-policy-artists.route.artis
 import FanclubActivationInfoRoute from './routes/fanclub-activation-info.route.artist'
 import FanclubActivationPricingRoute from './routes/fanclub-activation-pricing.route.artist'
 import PostSettingsRoute from './routes/post-settings.route.artist'
+import UserModerationRoute from './routes/user-moderation.route'
+import UserModerationBlockRoute from './routes/user-moderation-block.route'
+import UserModerationReportRoute from './routes/user-moderation-report.route'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -153,6 +156,15 @@ const router = createBrowserRouter([
 			},{
 				path: '/artist-app/fanclub/:postId',
 				element: <PostSettingsRoute />
+			},{
+				path: '/artist-app/fanclub/user-moderation',
+				element: <UserModerationRoute />,
+			},{
+				path: '/artist-app/fanclub/user-moderation/block',
+				element: <UserModerationBlockRoute />,
+			},{
+				path: '/artist-app/fanclub/user-moderation/report',
+				element: <UserModerationReportRoute />,
 			}
 		]
 	},{

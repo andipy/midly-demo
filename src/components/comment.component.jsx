@@ -1,15 +1,26 @@
 import CommentReply from './comment-reply.component'
 
 import IconLikes from '../images/icons/icon-like-white-empty.svg'
+import IconPoints from '../images/icons/icon-points.svg'
 
-const Comment = ({ comment, spotCommentToReply, inputRef }) => {
+const Comment = ({ comment, spotCommentToReply, inputRef, modalUserModeration }) => {
     return (
         <div className={`d-flex-column mb-xs-6`}>
             <div className={`d-flex-row gap-0_5em mb-xs-3`} key={comment.id}>
-                <img src={comment.userImage} className='avatar-36 border-radius-100' />
+                {comment.userImage !== '' ?
+                    <img src={comment.userImage} className='avatar-36 border-radius-100' onClick={modalUserModeration}/>
+                :
+                    <div className='avatar-36 position-relative'>
+                        <div className='d-flex-row j-c-center align-items-center avatar-36 border-radius-100 bg-purple-400' onClick={modalUserModeration}>
+                            <h5 className='f-w-500 fsize-xs-3'>
+                                {comment.username.charAt(0).toUpperCase()}
+                            </h5>
+                        </div>
+                    </div>
+                }
                 <div className='d-flex-column w-100'>
                     <div className='d-flex-row align-items-center gap-0_5em'>
-                        <span className='fsize-xs-3 f-w-600 grey-250'>{comment.username}</span>
+                        <span className='fsize-xs-3 f-w-600 grey-250' onClick={modalUserModeration}>{comment.username}</span>
                         {comment.userType === 'ARTIST' &&
                             <span className='fsize-xs-1 gold'>Artista</span>
                         }
