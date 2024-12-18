@@ -42,7 +42,7 @@ function WidgetPositionFan({ artistId, leaderboard, fanDetails }) {
                 <div className="d-flex-row j-c-space-between gap-1em">
                     <div className="d-flex-row j-c-center align-items-center">
 			        <p className='fsize-xs-1 white no-shrink'>{points}  </p>
-                    <img className="avatar-12 ml-xs-2" src={IconPoints}></img>
+                    <img className="avatar-12 ml-xs-2" src={IconPoints} />
 
                     </div>
                     <p className='fsize-xs-1 white no-shrink'>{fanPosition}°</p>

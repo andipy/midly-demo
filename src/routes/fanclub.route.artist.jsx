@@ -380,7 +380,7 @@ const FanclubRoute = () => {
                     <Container style={'mt-xs-2'}>
                         <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
                             <h2 className='fsize-xs-5 f-w-600'>{fanclub.name}</h2>
-                            <Link to='settings/edit' state={{ type: 'NAME_DESCRIPTION' }} ><div className='avatar-22 border-radius-100 d-flex-row j-c-center align-items-center'><img className='avatar-22 ' src={IconEdit}></img></div></Link>
+                            <Link to='settings/edit' state={{ type: 'NAME_DESCRIPTION' }} ><div className='avatar-22 border-radius-100 d-flex-row j-c-center align-items-center'><img className='avatar-22 ' src={IconEdit} /></div></Link>
                         </div>
                         <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
                             <p className='fsize-xs-2 f-w-200 grey-300'>{fanclub.description}</p>
@@ -464,7 +464,7 @@ const FanclubRoute = () => {
             <Outlet />
 
             {err && 
-                <FullPageCenter className={'z-index-1100 bg-black-transp70'}>
+                <FullPageCenter style='z-index-1100 bg-black-transp70'>
                     <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
                         <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
                             <h2 className='fsize-xs-2 f-w-300 t-align-center'>Il video non può superare i 15 secondi di durata</h2>
@@ -474,7 +474,7 @@ const FanclubRoute = () => {
             }
 
             {showComponent &&
-                <FullPageCenter className={'z-index-999 bg-black-transp70'}>
+                <FullPageCenter style='z-index-999 bg-black-transp70'>
                     <Container style={'centered-popup position-absolute bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                         <h4 className='fsize-xs-5 grey-200 f-w-300'>Ehi, mi hai scoperto.</h4>
                         <p className='fsize-xs-3 grey-200 f-w-300 mt-xs-4'>Vuoi visitare la demo dell'app fan?</p>

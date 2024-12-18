@@ -75,7 +75,7 @@ const LoginRoute = () => {
                     { error && (
                         <div id='error-message-card' className='error-message mb-xs-4 mt-xs-4'>
                         <div className='d-flex-row align-items-center pl-xs-4 pt-xs-4 pb-xs-4 pr-xs-4 bg-red-300 border-radius-08'>
-                            <img className='mr-xs-4' src={Icon} alt='ALT!'></img>
+                            <img className='mr-xs-4' src={Icon} alt='ALT!' />
                             <p className='fsize-xs-1 f-w-400 white letter-spacing-1 line-height-sm mr-xs-2'>
                                 {errorMessage}
                             </p>
@@ -100,7 +100,7 @@ const LoginRoute = () => {
         </Container>          
 
         {showComponent &&
-            <FullPageCenter className={'z-index-999 bg-black-transp70'}>
+            <FullPageCenter style='z-index-999 bg-black-transp70'>
                 <Container style={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                     <section className='w-100'>
                         <h3 className='fsize-xs-4 grey-200 f-w-500 mt-xs-4 lime-400 t-align-center'>Stiamo avendo un traffico enorme che potrebbe rallentare il sito!</h3>

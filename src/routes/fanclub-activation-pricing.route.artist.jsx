@@ -27,7 +27,7 @@ const FanclubActivationPricingRoute = () => {
         setPricing(e.target.value)
     }
 
-    const [isLimited, setIsLimited] = useState(true)
+    const [isLimited, setIsLimited] = useState(false)
     const handleIsLimited = () => {
         setIsLimited(!isLimited)
     }

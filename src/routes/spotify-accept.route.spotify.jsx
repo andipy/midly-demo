@@ -45,7 +45,7 @@ const SpotifyAcceptRoute = () => {
             <h2 className='fsize-xs-3'>Consenti a spotify di connettersi a:</h2>
             <h4 className='fsize-xs-8 mt-xs-2 f-w-800'>Midly</h4>
             <div className='d-flex-row j-c-center align-items-center gap-0_5em mt-xs-4'>
-                <img className='avatar-24 border-radius-100' src={SpotiyUserImage}></img>
+                <img className='avatar-24 border-radius-100' src={SpotiyUserImage} />
                 <h2 className='fsize-xs-1 f-w-500'>found-user-spotify</h2>
             </div>
             <a className='fsize-xs-1 mt-xs-2 green-spotify letter-spacing-1' onClick={() => navigate('/spotify-login')}>

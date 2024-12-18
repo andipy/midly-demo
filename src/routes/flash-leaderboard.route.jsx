@@ -352,7 +352,7 @@ const FlashLeaderboardRoute = () => {
             }
 
             {/* {showComponent &&
-                <FullPageCenter className={'z-index-999 bg-black-transp70'}>
+                <FullPageCenter style='z-index-999 bg-black-transp70'>
                     <Container style={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-6 pb-xs-6 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
                         <img className='avatar-48' src={IconInfoLime} />
                         <section className='w-100'>

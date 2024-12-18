@@ -235,7 +235,7 @@ const FanclubActivationInfoRoute = () => {
             </Container>
 
             {err && 
-                <FullPageCenter className={'z-index-1100 bg-black-transp70'}>
+                <FullPageCenter style='z-index-1100 bg-black-transp70'>
                     <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
                         <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
                             <h2 className='fsize-xs-2 f-w-300 t-align-center'>Il video non può superare i 15 secondi di durata</h2>

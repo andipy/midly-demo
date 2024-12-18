@@ -10,8 +10,6 @@ import Comment from '../components/comment.component'
 import TextbarComments from '../components/textbar-comments.component'
 import Container from '../layout/container.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
-import FullPageCenter from '../layout/full-page-center.layout'
-import UserModeration from '../components/user-moderation.component'
 
 const Fanclub = () => {
     const navigate = useNavigate()

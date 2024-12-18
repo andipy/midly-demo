@@ -29,11 +29,11 @@ function NavbarPersonalInfoField({title}) {
     <nav className='top-bar-area-block d-flex-row align-items-center j-c-center white z-index-999'>
             <div className='container d-flex-row align-items-center j-c-center'>
                 <div className="topbar-icon-left" onClick={() => navigate(-1)}>
-                    <img src={IconArrowLeft} alt='ARROW LEFT'></img>
+                    <img src={IconArrowLeft} alt='ARROW LEFT' />
                 </div>
                 <h5 className='f-w-500 fsize-xxl-4 fsize-xl-4 fsize-lg-4 fsize-md-4 fsize-sm-4 fsize-xs-4 letter-spacing-1 j-c-center'>{changedTitle}</h5>
                 <div className='topbar-icon-right' onClick={handleEditClick}>
-                    <img src={IconEdit} alt='EDIT'></img>
+                    <img src={IconEdit} alt='EDIT' />
                 </div>
             </div>
     </nav>

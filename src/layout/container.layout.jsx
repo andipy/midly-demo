@@ -1,4 +1,4 @@
-const Container = ({children, style}) => {
+const Container = ({ children, style }) => {
     return (
         <div className={`container ${style}`}>{children}</div>
     )

@@ -148,7 +148,7 @@ const ProfileRoute = () => {
                     <div className='d-flex-column j-c-start ml-xs-4 position-relative '>
                         <div className='d-flex-row align-items-center j-c-start'>
                             <h5 className='fsize-xs-5 f-w-500 letter-spacing-1'>{currentFan.username}</h5>
-                            <Link to='/user-info-field-modify' state={{ field: 'USERNAME' }}><img className='avatar-22' src={IconEdit}></img></Link>
+                            <Link to='/user-info-field-modify' state={{ field: 'USERNAME' }}><img className='avatar-22' src={IconEdit} /></Link>
                         </div>
                         <span className='fsize-xs-1 f-w-300 grey-200 letter-spacing-1 no-shrink grow-1 w-100'>Member since 2022-10-28</span>
                     </div>
@@ -234,7 +234,7 @@ const ProfileRoute = () => {
                 <div className='mt-xs-4 mb-xs-4'>
                     <div className='bg-dark-gradient-radial border-radius-1 d-flex-column j-c-center align-items-center w-100 pb-xs-4 pt-xs-4' onClick={() => setShowMessageDisconnectSpotify(true)}>
                         <div className='bg-black pl-xs-1 pr-xs-2 pt-xs-1 pb-xs-1 d-flex-row j-c-center align-items-center border-radius-100'>
-                            <img className='avatar-36'src={SpotifyLogo} alt='SPOTIFY'></img>
+                            <img className='avatar-36'src={SpotifyLogo} alt='SPOTIFY' />
                             <p className='fsize-xs-2 f-w-500 green-spotify'>Spotify connesso</p>
                         </div>
                         <div className='d-flex-row align-items-center j-c-space-between mt-xs-4'>
@@ -252,7 +252,7 @@ const ProfileRoute = () => {
                     <Link to='/user-info'>
                         <div className='d-flex-row j-c-space-between mb-xs-3'>
                             <div className='d-flex-row align-items-center w-100'>
-                                <img className='mr-xs-2' src={SettingsLogo} alt='SETTINGS'></img>
+                                <img className='mr-xs-2' src={SettingsLogo} alt='SETTINGS' />
                                 <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Informazioni personali</h6>
                             </div>
                             <IconArrowRight color='white' size={32} viewBox={32} strokeWidth={2} />
@@ -261,7 +261,7 @@ const ProfileRoute = () => {
                     <Link to='/faq'>
                         <div className='d-flex-row j-c-space-between mb-xs-3'>
                             <div className='d-flex-row align-items-center w-100'>
-                                <img className='mr-xs-2' src={InfoLogo} alt='SETTINGS'></img>
+                                <img className='mr-xs-2' src={InfoLogo} alt='SETTINGS' />
                                 <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>FAQs</h6>
                             </div>
                             <IconArrowRight color='white' size={32} viewBox={32} strokeWidth={2} />

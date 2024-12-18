@@ -181,7 +181,7 @@ const LiveQuizPlayRoute = () => {
                 </div>
             </Container>
 
-            <FullPageCenter className='z-index-4 d-flex-column j-center align-items-center'>
+            <FullPageCenter style='z-index-4 d-flex-column j-center align-items-center'>
                 <Container style={'z-index-999'}>      
                     <div className='d-flex-row align-items-center mt-xs-4 gap-0_5em j-c-space-between mb-xs-4'>
                         <span className='fsize-xs-5 f-w-600 '>{songChunk.songName}</span>
@@ -208,10 +208,10 @@ const LiveQuizPlayRoute = () => {
                     Invia la risposta
                 </button>
             </Container>
-            <FullPageCenter className='z-index-3 bg-black-transp50 bg-blur' />
+            <FullPageCenter style='z-index-3 bg-black-transp50 bg-blur' />
             
 
-            <FullPageCenter className='z-index-1 '>
+            <FullPageCenter style='z-index-1 '>
                  <img className='w-inherit h-inherit object-fit-cover' src={quiz.image} alt='' />
             </FullPageCenter>
         </>  

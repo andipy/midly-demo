@@ -163,9 +163,9 @@ const LiveQuizResultRoute = () => {
 			</Container>
 		</Container>
 
-		<FullPageCenter className={`z-index-3 bg-blur transition-1s bg-black-transp75`} />
+		<FullPageCenter style='z-index-3 bg-blur transition-1s bg-black-transp75' />
 
-		<FullPageCenter className='z-index-1 '>
+		<FullPageCenter style='z-index-1 '>
 			<img className='w-inherit h-inherit object-fit-cover' src={quiz.image} alt='' />
 		</FullPageCenter>
 		</>

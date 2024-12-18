@@ -6,7 +6,7 @@ import Button from './button.component'
 
 const MultistepExplanation = ({ sliderSteps, leaderboard, artist, sliderPage, incrementPageSlider, decrementPageSlider }) => {
     return (
-        <FullPageCenter className={'z-index-999 bg-black-transp80'}>
+        <FullPageCenter style='z-index-999 bg-black-transp80'>
             <Container style={'d-flex-row j-c-space-between'}>
                 <h2 className='fsize-xs-9 f-w-600 t-align-center mb-xs-12 mx-xs-auto'>Regole della <br /> CLASSIFICA FLASH <br /> di {artist?.artistName}</h2>
             </Container>

@@ -104,7 +104,7 @@ const FanPublicProfileRoute = () => {
 			<Container style={''}>
 				<div className='d-flex-column w-100 j-c-center align-items-center'>
 					<div className='d-flex-column j-c-center align-items-center'>
-	{/*             <img className='avatar-120 border-radius-100' src={state.fan.image}></img>*/} 
+	{/*             <img className='avatar-120 border-radius-100' src={state.fan.image} />*/} 
 						<p className='fsize-xs-5 f-w-600'>{state.fan.username}</p>
 						<AffinityFanLevel value={selectedFan?.affinityWithCurrentUser} max={100} image={state.fan.image} />
 						<div className='d-flex-row align-items-center bg-dark-gradient border-radius-1 pl-xs-4 pr-xs-4 gap-0_25em mt-xs-2'>

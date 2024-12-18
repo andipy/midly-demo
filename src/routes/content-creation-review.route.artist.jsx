@@ -179,7 +179,7 @@ const ContentCreationReviewRoute = () => {
 
                         {(post?.media?.length > 1 || (post?.media?.length > 0 && post?.text?.length > 0)) &&
                             <div className='d-flex-row position-absolute bottom-2 right-2 bg-black-transp70 pr-xs-2 pl-xs-1 border-radius-100 j-c-center align-items-center'>
-                                <img className='avatar-28' src={IconCopy}></img>
+                                <img className='avatar-28' src={IconCopy} />
                                 <p className='fsize-xs-2 f-w-500'>Riordina</p>
                             </div>
                         }

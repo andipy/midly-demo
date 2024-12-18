@@ -129,7 +129,7 @@ const RegistrationRoute =() => {
             { error && (
                 <div id='error-message-card' className='error-message mb-xs-4 mt-xs-4'>
                 <div className='d-flex-row align-items-center pl-xs-4 pt-xs-4 pb-xs-4 pr-xs-4 bg-red-300 border-radius-08'>
-                    <img className='mr-xs-4' src={Icon} alt='ALT!'></img>
+                    <img className='mr-xs-4' src={Icon} alt='ALT!' />
                     <p className='fsize-xs-1 f-w-400 white letter-spacing-1 line-height-sm mr-xs-2'>
                         {errorMessage}
                     </p>

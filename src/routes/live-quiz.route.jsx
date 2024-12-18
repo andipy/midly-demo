@@ -218,7 +218,7 @@ const LiveQuizRoute = () => {
                 </div>
             </Container>
 
-            <FullPageCenter className='z-index-4 d-flex-column j-center align-items-center'>
+            <FullPageCenter style='z-index-4 d-flex-column j-center align-items-center'>
                 <Container style={'z-index-4'}>      
                     <div className={`d-flex-row align-items-center mb-xs-4 gap-0_5em j-c-space-between mb-xs-4 transition-1s ${userIsPlaying ? '' : 'blur-5'}`}>
                         <span className={`fsize-xs-5 f-w-600 transition-1s ${userIsPlaying ? '' : 'blur-5'}`}>{songChunk.songName}</span>
@@ -276,9 +276,9 @@ const LiveQuizRoute = () => {
                 }
             </Container>
 
-            <FullPageCenter className={`z-index-3 bg-blur transition-1s ${userIsPlaying ? 'bg-black-transp75' : 'bg-black-transp40'}`} />
+            <FullPageCenter style={`z-index-3 bg-blur transition-1s ${userIsPlaying ? 'bg-black-transp75' : 'bg-black-transp40'}`} />
 
-            <FullPageCenter className='z-index-1 '>
+            <FullPageCenter style='z-index-1'>
                  <img className={`w-inherit h-inherit object-fit-cover transition-1s ${userIsPlaying ? 'h-min-100' : 'h-min-130'}`} src={quiz.image} alt='' />
             </FullPageCenter>
         </>

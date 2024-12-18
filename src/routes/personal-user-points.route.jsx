@@ -208,7 +208,7 @@ const PersonalUserPointsRoute = () => {
 				</>
 			:
 				<div id='no-points' className='bg-dark-gradient border-radius-08 pl-xs-4 pr-xs-4 pt-xs-4 pb-xs-4 d-flex-column align-items-center j-c-center mt-xs-6 mb-xs-6'>
-				<img className='h-20 w-20' src={IconPointsMultiple}></img>
+				<img className='h-20 w-20' src={IconPointsMultiple} />
 				<h1 className='t-align-center grey-400 fsize-xs-5 mt-xs-2 mt-xl-2  overflow-x'>Non hai ancora guadagnato punti extra!</h1>
 				</div>
 			}
@@ -304,10 +304,10 @@ const PersonalUserPointsRoute = () => {
 		</Container>
 
 		{showComponent &&
-			<FullPageCenter className={'z-index-999 bg-black-transp70'}>
+			<FullPageCenter style='z-index-999 bg-black-transp70'>
 				<Container style={'centered-popup position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'}>
 					<div className='d-flex-row align-items-center j-c-end w-100'>
-						<img className='avatar-32 bg-black-transp50 border-radius-100' src={IconExit} onClick={closeAssignements}></img>
+						<img className='avatar-32 bg-black-transp50 border-radius-100' src={IconExit} onClick={closeAssignements} />
 					</div>
 
 					<h2 className='fsize-xs-4 f-w-600'>La tua posizione nella classifica di:</h2>
