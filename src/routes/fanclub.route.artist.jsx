@@ -444,7 +444,7 @@ const FanclubRoute = () => {
                                 key={comment.id}
                                 inputRef={inputRef}
                                 spotCommentToReply={() => spotCommentToReply(comment.id)}
-                                modalUserModeration={() => navigate('/artist-app/fanclub/user-moderation', {state: { userId: comment.userId }})}
+                                modalUserModeration={() => navigate('/artist-app/fanclub/user-moderation', {state: { userId: comment.userId, comment: comment.id, fanclub: fanclub?.id, post: fanclub?.posts[commentsInFocus - 1].id }})}
                             />
                         )
                     })}

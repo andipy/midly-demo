@@ -3,22 +3,33 @@ import { useContext, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { FansContext } from '../contexts/fans.context'
+import { FanclubsContext } from '../contexts/fanclubs.context'
 
 import Container from "../layout/container.layout"
 import Button from './button.component'
-const UserModeration = ({modalUserModeration, user}) => {
+const UserModeration = ({modalUserModeration, user, post, fanclub, comment}) => {
 
     const { pathname } = useLocation()
     const navigate = useNavigate()
 
     const { fans } = useContext(FansContext)
+    const { fanclubs } = useContext(FanclubsContext)
 
     const [ userFound, setUserFound] = useState()
+    const [artistId, setArtistId] = useState()
 
     useEffect(() => {
         const matchedFan = fans?.find((fan) => fan.id === user)
         setUserFound(matchedFan)
     }, [user])
+
+    useEffect(() => {
+        const matchedFanclub = fanclubs?.find((fc) => fc.id === fanclub)
+        if (matchedFanclub) {
+            setArtistId(matchedFanclub.artistId)
+        }
+    }, [fanclub])
+
 
 
   return (
@@ -54,7 +65,7 @@ const UserModeration = ({modalUserModeration, user}) => {
                     disabled={false}
                     style={`fsize-xs-3 f-w-300 letter-spacing-1 bg-red-400-transp10 red-300 border-radius-01 mt-xs-2`} 
                     label='Segnala utente'
-                    onClick={() => navigate('report',{state: { userId: user, reported:false }})}
+                    onClick={() => navigate('report',{state: { userId: user, commentId: comment, fanclubId: fanclub, postId: post, artistId: artistId, reported:false }})}
 
                 />
                 <Button

@@ -14,6 +14,7 @@ import { LeaderboardsProvider } from './contexts/leaderboards.context'
 import { FanclubsProvider } from './contexts/fanclubs.context'
 import { LiveQuizProvider } from './contexts/live-quiz.context'
 import { FansProvider } from './contexts/fans.context'
+import { ReportsProvider } from './contexts/reports.context'
 
 //FAN ROUTES
 import InviteFriendRoute from './routes/invite-friend.route'
@@ -322,7 +323,9 @@ function App() {
 				<FanclubsProvider>
 					<LiveQuizProvider>
 						<FansProvider>
-							<RouterProvider router={router} />
+							<ReportsProvider>
+								<RouterProvider router={router} />
+							</ReportsProvider>
 						</FansProvider>
 					</LiveQuizProvider>
 				</FanclubsProvider>

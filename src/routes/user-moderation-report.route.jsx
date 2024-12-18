@@ -2,6 +2,8 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { useContext, useState, useEffect } from "react"
 
 import { FansContext } from "../contexts/fans.context"
+import { ReportsContext } from '../contexts/reports.context'
+import { CurrentArtistContext } from "../contexts/currentArtist.context"
 
 import FullPageCenter from "../layout/full-page-center.layout"
 import Container from "../layout/container.layout"
@@ -9,12 +11,20 @@ import Button from "../components/button.component"
 
 function UserModerationReportRoute() {
     const location = useLocation()
+    const { pathname } = useLocation()
     const navigate = useNavigate()
     const userId = location.state?.userId
+    const postId = location.state?.postId
+    const fanclubId = location.state?.fanclubId
+    const commentId = location.state?.commentId
+    const artistId = location.state?.artistId
     const reported = location.state?.reported
 
     
     const { fans } = useContext(FansContext)
+    const { reports, setReports } = useContext(ReportsContext)
+    const { currentArtist } = useContext(CurrentArtistContext)
+
     
     const [ userFound, setUserFound] = useState()
     
@@ -27,6 +37,28 @@ function UserModerationReportRoute() {
     const handleDescription = (e) => {
         e.preventDefault()
         setDescription(e.target.value)
+    }
+
+    const reportUser = () => {
+        if (pathname.includes('/artist-app/')) {
+            const newReport = {
+                reportedUserId: userId,
+                reportingUser: {
+                    id: currentArtist.id,
+                    userType: 'ARTIST'
+                },
+                description: description,
+                postId: postId,
+                commentId: commentId,
+                fanclubId: fanclubId,
+                fanclubArtistId: artistId,
+                createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0]
+            }
+            setReports([...reports, newReport])
+            navigate('/artist-app/fanclub/user-moderation/report',{state: { userId: userId, reported: true }})
+        }
+
+        
     }
     return (
         <FullPageCenter className={'z-index-1100 bg-black-transp70'}>
@@ -90,7 +122,7 @@ function UserModerationReportRoute() {
                             disabled={false}
                             style={`fsize-xs-3 f-w-600 letter-spacing-1 bg-red-300 black border-radius-01 mb-xs-4`} 
                             label='Segnala'
-                            onClick={() => navigate('/artist-app/fanclub/user-moderation/report',{state: { userId: userId, reported: true }})}
+                            onClick={() => reportUser()}
                         />
                         <Button
                             disabled={false}
