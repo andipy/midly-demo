@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { FansContext } from '../contexts/fans.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
+import { ModerationsContext } from '../contexts/moderations.context'
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 import Container from "../layout/container.layout"
 import Button from './button.component'
@@ -14,6 +16,8 @@ const UserModeration = ({modalUserModeration, user, post, fanclub, comment}) => 
 
     const { fans } = useContext(FansContext)
     const { fanclubs } = useContext(FanclubsContext)
+    const { blocked } = useContext(ModerationsContext)
+    const {currentArtist} = useContext(CurrentArtistContext)
 
     const [ userFound, setUserFound] = useState()
     const [artistId, setArtistId] = useState()
@@ -29,6 +33,17 @@ const UserModeration = ({modalUserModeration, user, post, fanclub, comment}) => 
             setArtistId(matchedFanclub.artistId)
         }
     }, [fanclub])
+
+    const [isUserBlocked, setIsUserBlocked] = useState()
+
+    useEffect(() => {
+        if (pathname.includes('/artist-app/')) {
+            const UserBlocked = blocked.some(block => 
+                block.blockedUserId === user && block.blockingUser.id === currentArtist.id
+            )
+            setIsUserBlocked(UserBlocked)
+        }
+    }, [user])
 
 
 
@@ -54,12 +69,25 @@ const UserModeration = ({modalUserModeration, user, post, fanclub, comment}) => 
 
             <div className='w-100 d-flex-column mt-xs-8'>
             {pathname.includes('/artist-app/') &&
-                <Button
-                    disabled={false}
-                    style={`fsize-xs-3 f-w-300 letter-spacing-1 bg-red-400-transp10 red-300 border-radius-01 mb-xs-2`} 
-                    label='Blocca utente'
-                    onClick={() => navigate('block',{state: { userId: user, blocked:false }})}
-                />
+            
+                <>
+                {isUserBlocked ?
+                        <Button
+                        disabled={false}
+                        style={`fsize-xs-3 f-w-300 letter-spacing-1 bg-dark-soft-2 black border-dark-muted border-radius-01 mb-xs-2`} 
+                        label='Utente bloccato'
+                        
+                        />
+                    :
+                    <Button
+                        disabled={false}
+                        style={`fsize-xs-3 f-w-300 letter-spacing-1 bg-red-400-transp10 red-300 border-radius-01 mb-xs-2`} 
+                        label='Blocca utente'
+                        onClick={() => navigate('block',{state: { userId: user, commentId: comment, fanclubId: fanclub, postId: post, artistId: artistId, blocked:false }})}
+                    />
+                    }
+                </>
+                
             }
                 <Button
                     disabled={false}

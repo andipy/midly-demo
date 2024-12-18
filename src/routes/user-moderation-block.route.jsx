@@ -2,6 +2,8 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { useContext, useState, useEffect } from "react"
 
 import { FansContext } from "../contexts/fans.context"
+import { ModerationsContext } from '../contexts/moderations.context'
+import { CurrentArtistContext } from "../contexts/currentArtist.context"
 
 import FullPageCenter from "../layout/full-page-center.layout"
 import Container from "../layout/container.layout"
@@ -10,24 +12,61 @@ import Button from "../components/button.component"
 function UserModerationBlockRoute() {
 
     const location = useLocation()
+    const { pathname } = useLocation()
     const navigate = useNavigate()
     const userId = location.state?.userId
-    const blocked = location.state?.blocked
+    const postId = location.state?.postId
+    const fanclubId = location.state?.fanclubId
+    const commentId = location.state?.commentId
+    const artistId = location.state?.artistId
+    const isBlocked = location.state?.blocked
 
 
     const { fans } = useContext(FansContext)
-
+    const { blocked, setBlocked } = useContext(ModerationsContext)
+    const { currentArtist } = useContext(CurrentArtistContext)
     const [ userFound, setUserFound] = useState()
 
     useEffect(() => {
         const matchedFan = fans?.find((fan) => fan?.id === userId)
         setUserFound(matchedFan)
     }, [userId])
+
+    const blockUser = () => {
+        if (pathname.includes('/artist-app/')) {
+            const newBlock = {
+                blockedUserId: userId,
+                blockingUser: {
+                    id: currentArtist.id,
+                    userType: 'ARTIST'
+                },
+                postId: postId,
+                commentId: commentId,
+                fanclubId: fanclubId,
+                fanclubArtistId: artistId,
+                createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0]
+            }
+            setBlocked([...blocked, newBlock])
+            navigate('/artist-app/fanclub/user-moderation/block',{state: { userId: userId, blocked: true }})
+        }  
+    }
+
+    const unlockUser = () => {
+        if (pathname.includes('/artist-app/')) {
+
+            const updatedBlocked = blocked.filter(block => 
+                !(block.blockedUserId === userId && block.blockingUser.id === currentArtist.id)
+            )
+            setBlocked(updatedBlocked)
+            
+            navigate(-3)
+        }  
+    }
   return (
     <FullPageCenter className={'z-index-1100 bg-black-transp70'}>
         <Container style={`centered-popup  position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft-2 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>   
         {
-            blocked === true ?
+            isBlocked === true ?
             <div className='d-flex-column align-items-center j-c-start w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2' >
                 <div className='d-flex-row j-c-start align-items-center mb-xs-4'>
                     {userFound?.image ?
@@ -50,7 +89,7 @@ function UserModerationBlockRoute() {
                             disabled={false}
                             style={`fsize-xs-3 f-w-300 letter-spacing-1 bg-dark-soft-2 lime-400 border-lime-1 border-radius-01 mb-xs-4`} 
                             label='Sblocca'
-                            onClick={() => navigate(-3)}
+                            onClick={() => unlockUser()}
                         />
                         <Button
                             disabled={false}
@@ -82,7 +121,7 @@ function UserModerationBlockRoute() {
                         disabled={false}
                         style={`fsize-xs-3 f-w-600 letter-spacing-1 bg-red-300 black border-radius-01 mb-xs-4`} 
                         label='Blocca'
-                        onClick={() => navigate('/artist-app/fanclub/user-moderation/block',{state: { userId: userId, blocked:true }})}
+                        onClick={() => blockUser()}
                     />
                     <Button
                         disabled={false}

@@ -2,8 +2,9 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { useContext, useState, useEffect } from "react"
 
 import { FansContext } from "../contexts/fans.context"
-import { ReportsContext } from '../contexts/reports.context'
+import { ModerationsContext } from '../contexts/moderations.context'
 import { CurrentArtistContext } from "../contexts/currentArtist.context"
+import { CurrentFanContext } from "../contexts/currentFan.context"
 
 import FullPageCenter from "../layout/full-page-center.layout"
 import Container from "../layout/container.layout"
@@ -22,8 +23,9 @@ function UserModerationReportRoute() {
 
     
     const { fans } = useContext(FansContext)
-    const { reports, setReports } = useContext(ReportsContext)
+    const { reports, setReports } = useContext(ModerationsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
+    const { currentFan } = useContext(CurrentFanContext)
 
     
     const [ userFound, setUserFound] = useState()
@@ -55,7 +57,24 @@ function UserModerationReportRoute() {
                 createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0]
             }
             setReports([...reports, newReport])
-            navigate('/artist-app/fanclub/user-moderation/report',{state: { userId: userId, reported: true }})
+            navigate('.',{state: { userId: userId, reported: true }})
+        } else {
+            const newReport = {
+                reportedUserId: userId,
+                reportingUser: {
+                    id: currentFan.id,
+                    userType: 'FAN'
+                },
+                description: description,
+                postId: postId,
+                commentId: commentId,
+                fanclubId: fanclubId,
+                fanclubArtistId: artistId,
+                createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0]
+            }
+
+            setReports([...reports, newReport])
+            navigate('.',{state: { userId: userId, reported: true }})
         }
 
         

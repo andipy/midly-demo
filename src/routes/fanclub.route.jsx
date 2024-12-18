@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useRef } from 'react'
-import { useOutletContext } from 'react-router-dom'
+import { useOutletContext, Outlet, useNavigate } from 'react-router-dom'
 
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
@@ -14,7 +14,7 @@ import FullPageCenter from '../layout/full-page-center.layout'
 import UserModeration from '../components/user-moderation.component'
 
 const Fanclub = () => {
-
+    const navigate = useNavigate()
     const context = useOutletContext()
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
@@ -215,6 +215,7 @@ const Fanclub = () => {
                     )}
                 </Container>
             }
+            
 
             <CommentsModalLayout
                 modalOpen={modalOpen}
@@ -231,8 +232,7 @@ const Fanclub = () => {
                                 spotCommentToReply={() => spotCommentToReply(comment.id)}
                                 inputRef={inputRef}
                                 key={comment.id}
-                                modalUserModeration={() => openModalUserModeration(comment.userId)}
-                            />
+                                modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, comment: comment.id, fanclub: fanclub?.id, post: fanclub?.posts[commentsInFocus - 1].id }})}/>
                         )
                     })}
                 </Container>
@@ -248,11 +248,8 @@ const Fanclub = () => {
 
             </CommentsModalLayout>
 
-            {modalUserModeration && 
-                <FullPageCenter className={'z-index-1100 bg-black-transp70 w-100'}>
-                    <UserModeration modalUserModeration={closeModalUserModeration} user={userToModerate}/>
-	            </FullPageCenter>
-            }
+            <Outlet />
+            
         </>
     )
 }

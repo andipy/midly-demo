@@ -14,7 +14,7 @@ import { LeaderboardsProvider } from './contexts/leaderboards.context'
 import { FanclubsProvider } from './contexts/fanclubs.context'
 import { LiveQuizProvider } from './contexts/live-quiz.context'
 import { FansProvider } from './contexts/fans.context'
-import { ReportsProvider } from './contexts/reports.context'
+import { ModerationsProvider } from './contexts/moderations.context'
 
 //FAN ROUTES
 import InviteFriendRoute from './routes/invite-friend.route'
@@ -121,6 +121,18 @@ const router = createBrowserRouter([
 		  {
 			path: '/artist/:artistSlug/fanclub',
 			element: <Fanclub />,
+			children: [
+				{
+					path: '/artist/:artistSlug/fanclub/user-moderation',
+					element: <UserModerationRoute />,
+				},{
+					path: '/artist/:artistSlug/fanclub/user-moderation/block',
+					element: <UserModerationBlockRoute />,
+				},{
+					path: '/artist/:artistSlug/fanclub/user-moderation/report',
+					element: <UserModerationReportRoute />,
+				}
+			]
 		  },
 		],
 	},{
@@ -323,9 +335,9 @@ function App() {
 				<FanclubsProvider>
 					<LiveQuizProvider>
 						<FansProvider>
-							<ReportsProvider>
+							<ModerationsProvider>
 								<RouterProvider router={router} />
-							</ReportsProvider>
+							</ModerationsProvider>
 						</FansProvider>
 					</LiveQuizProvider>
 				</FanclubsProvider>
