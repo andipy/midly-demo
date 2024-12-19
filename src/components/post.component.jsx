@@ -14,7 +14,7 @@ import IconComments from '../images/icons/icon-comment-white.svg'
 import IconShare from '../images/icons/icon-share-white.svg'
 import IconLink from '../images/icons/icon-link.svg'
 
-const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscription, focusPost }) => {
+const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost }) => {
 
 	const { artists } = useContext(ArtistsContext)
 
@@ -166,9 +166,9 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 					}
 
 					{post.comments.length > 0 ?
-						<p className='lime-400 f-w-500 fsize-xs-1' onClick={() => openComments()}>Visualizza {post.comments.length} commenti</p>
+						<p className='lime-400 f-w-500 fsize-xs-1' onClick={() => focusPost(post.id, 'OPEN_COMMENTS')}>Visualizza {post.comments.length} commenti</p>
 					: !pathname.includes('/artist-app/') &&
-						<p className='f-w-400 grey-200 fsize-xs-2' onClick={() => openComments()}>Commenta per primo</p>
+						<p className='f-w-400 grey-200 fsize-xs-2' onClick={() => focusPost(post.id, 'OPEN_COMMENTS')}>Commenta per primo</p>
 					}
 
 					<p className='fsize-xs-1 f-w-100 grey-300 mt-xs-2'>
