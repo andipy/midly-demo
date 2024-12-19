@@ -230,7 +230,7 @@ const Fanclub = () => {
                                 spotCommentToReply={() => spotCommentToReply(comment.id)}
                                 inputRef={inputRef}
                                 key={comment.id}
-                                modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, comment: comment.id, fanclub: fanclub?.id, post: fanclub?.posts[commentsInFocus - 1].id }})}/>
+                                modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: fanclub?.posts[commentsInFocus - 1].id }})}/>
                         )
                     })}
                 </Container>
