@@ -23,7 +23,7 @@ function UserModerationBlockRoute() {
 
 
     const { fans } = useContext(FansContext)
-    const { blocked, setBlocked } = useContext(ModerationsContext)
+    const { blocked, setBlocked, reports, setReports } = useContext(ModerationsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const [ userFound, setUserFound] = useState()
 
@@ -46,6 +46,13 @@ function UserModerationBlockRoute() {
                 fanclubArtistId: artistId,
                 createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0]
             }
+            const updatedReports = reports.map((report) => 
+                report.reportedUserId === userId && report.fanclubId === fanclubId
+                    ? { ...report, archived: true }
+                    : report
+            )
+
+            setReports(updatedReports)
             setBlocked([...blocked, newBlock])
             navigate('/artist-app/fanclub/user-moderation/block',{state: { userId: userId, blocked: true }})
         }  

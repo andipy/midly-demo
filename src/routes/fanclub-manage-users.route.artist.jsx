@@ -10,7 +10,7 @@ import Container from "../layout/container.layout"
 import FullPageCenter from "../layout/full-page-center.layout"
 const FanclubManageUsersRoute = () => {
     const navigate = useNavigate()
-    const { reports, blocked, setBlocked} = useContext(ModerationsContext)
+    const { reports, blocked, setBlocked, setReports} = useContext(ModerationsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const {fans} = useContext(FansContext)
 
@@ -23,6 +23,7 @@ const FanclubManageUsersRoute = () => {
         const filteredBlockedUsers = blocked.filter(block => block.blockingUser.id === currentArtist.id)
         const unblockedUsers = filteredReports.filter(report => 
             !filteredBlockedUsers.some(block => block.blockedUserId === report.reportedUserId)
+            && report.archived === false
         )
         const uniqueReportedUsers = unblockedUsers.filter((report, index, self) =>
             index === self.findIndex((t) => (
@@ -49,6 +50,13 @@ const FanclubManageUsersRoute = () => {
             fanclubArtistId: reportedUser.artistId,
             createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0]
         }
+        const updatedReports = reports.map((report) => 
+            report.reportedUserId === reportedUser.reportedUserId && report.fanclubId === reportedUser.fanclubId
+                ? { ...report, archived: true }
+                : report
+        )
+
+        setReports(updatedReports)
         setBlocked([...blocked, newBlock])
     }
 
@@ -104,6 +112,7 @@ const FanclubManageUsersRoute = () => {
 
                     const userReportsCount = allReports.filter(
                         (report) => report.reportedUserId === reportedUser.reportedUserId
+                        && report.archived === false
                     ).length
                     return(
 					<div className="d-flex-row j-c-space-between align-items-center w-100 mt-xs-2 mb-xs-2">

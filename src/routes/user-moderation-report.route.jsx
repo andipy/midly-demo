@@ -27,7 +27,6 @@ const UserModerationReportRoute = () => {
     const { currentArtist } = useContext(CurrentArtistContext)
     const { currentFan } = useContext(CurrentFanContext)
 
-    console.log(reports)
     
     const [ userFound, setUserFound] = useState()
     
@@ -55,7 +54,8 @@ const UserModerationReportRoute = () => {
                 commentId: commentId,
                 fanclubId: fanclubId,
                 fanclubArtistId: artistId,
-                createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0]
+                createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0],
+                archived: false,
             }
             setReports([...reports, newReport])
             navigate('.',{state: { userId: userId, reported: true }})
@@ -71,7 +71,8 @@ const UserModerationReportRoute = () => {
                 commentId: commentId,
                 fanclubId: fanclubId,
                 fanclubArtistId: artistId,
-                createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0]
+                createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0],
+                archived: false,
             }
 
             setReports([...reports, newReport])
