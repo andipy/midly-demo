@@ -22,7 +22,7 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 	useEffect(() => {
 		const foundArtist = artists?.find((artist) => artist.id === artistId)
 		setArtist(foundArtist)
-	}, artistId)
+	}, [artistId])
 
 	const { pathname } = useLocation()
 	const [showCaption, setShowCaption] = useState(false)
