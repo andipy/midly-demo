@@ -47,7 +47,7 @@ const ContentCreationRoute = () => {
     const [post, setPost] = useState({
         id: undefined,
         artistId: currentArtist.id,
-        publisherId: currentArtist.id,
+        publisher: {},
         mode: undefined,
         createdAt: undefined,
         media: [],
@@ -363,15 +363,12 @@ const ContentCreationRoute = () => {
 
     const handleTextAreaVisibility = () => {
         setShowTextArea(prev => !prev)
-        console.log('dai')
     }
     const handleLinkAreaVisibility = () => {
         setShowLinkArea(prev => !prev)
-        console.log('dai')
     }
     const handleSettingsAreaVisibility = () => {
         setShowSettingsArea(prev => !prev)
-        console.log('dai')
     }
 
     const handleCaption = (e) => {
@@ -436,7 +433,11 @@ const ContentCreationRoute = () => {
                                 ...post,
                                 id: newPostId,
                                 artistId: currentArtist.id,
-                                publisherId: currentArtist.id,
+                                publisher: {
+                                    ...post.publisher,
+                                    id: currentArtist.id,
+                                    type: 'ARTIST'
+                                },
                                 mode: 'SKETCH',
                                 createdAt: currentDate,
                                 settings: {

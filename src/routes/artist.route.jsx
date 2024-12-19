@@ -139,8 +139,6 @@ const ArtistRoute = () => {
         }
     }, [artist])
 
-    console.log(fanclub, 'fancblu from artist page')
-
     /* recupero live quiz artista */
     useEffect(() => {
         if (artist) {

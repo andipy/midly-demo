@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useRef } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useOutletContext } from 'react-router-dom'
 
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
@@ -17,13 +17,16 @@ import IconCopy from '../images/icons/icon-copy.svg'
 const PostSettingsRoute = () => {
 
     const navigate = useNavigate()
-    const { state, pathname } = useLocation()
+    const { setPostInFocus } = useOutletContext()
+    const { state } = useLocation()
     const onClick = () => {
-        navigate(-1, { state : {...state, invokedModal: false}})
+        navigate(-1, { state : { ...state, invokedModal: false }})
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
     }
-
-    console.log(state, 'post dallo state')
-    console.log(state.media.map(media => media.url))
 
     return (
         <FullScreenModalLayout background='bg-dark-soft'>

@@ -61,7 +61,6 @@ const AudioPost = ({ src }) => {
 
 	const handleLoadedMetadata = () => {
 		const audio = audioRef.current
-		console.log('loadedmetadata triggered', audio)
 		if (audio) {
 		  const audioDuration = audio.duration
 		  if (audioDuration === Infinity || isNaN(audioDuration)) {
@@ -74,7 +73,6 @@ const AudioPost = ({ src }) => {
 	  }
 	
 	  const handleLoadedData = () => {
-		console.log('loadeddata triggered')
 		const audio = audioRef.current
 		if (audio) {
 		  const audioDuration = audio.duration
@@ -86,7 +84,6 @@ const AudioPost = ({ src }) => {
 	  }
 	
 	  const handleCanPlayThrough = () => {
-		console.log('canplaythrough triggered')
 		const audio = audioRef.current
 		if (audio) {
 		  const audioDuration = audio.duration

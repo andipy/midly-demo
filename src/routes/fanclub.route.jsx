@@ -17,20 +17,21 @@ const Fanclub = () => {
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
 
-    const [commentInFocus, setCommentInFocus] = useState(null)
-    const inputRef = useRef(null)
-    const spotCommentToReply = (id) => {
-        setCommentInFocus(id)
-        inputRef.current.focus()
-    }
-    
+    // fetch the fanclub
     const [fanclub, setFanclub] = useState()
     const fetchThisFanclub = () => {
         const thisFanclub = fanclubs.find(elem => elem.artistId === context.id)
         setFanclub(thisFanclub)
     }
 
+    // handle and check current fan's subscription
     const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
+    const handleSubscription = () => {
+        setCurrentFan(prev => ({
+            ...prev,
+            fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: context.id }]
+        }))
+    }
     const checkFanclubSubscription = () => {
         let isSubscribed
         if ( currentFan.fanclubsSubscribed.find(sub => sub.artistId === context.id) ) {
@@ -41,6 +42,22 @@ const Fanclub = () => {
         setHasUserSubscribed(isSubscribed)
     }
 
+    // handle post actions
+    const [postInFocus, setPostInFocus] = useState({
+        id: undefined,
+        action: undefined,
+        post: undefined
+    })
+    const focusPost = (id, action) => {
+        const thisPost = fanclub.posts.find(post => post.id === id)
+        setPostInFocus({
+            id: thisPost.id,
+            action: action,
+            post: thisPost
+        })
+    }
+
+    // handle comment section
     const [currentComment, setCurrentComment] = useState({
         id: undefined,
         userId: undefined,
@@ -53,16 +70,29 @@ const Fanclub = () => {
         comments: []
     })
     const [modalOpen, setModalOpen] = useState(false)
-    const [commentsInFocus, setCommentsInFocus] = useState(null)
     const openComments = (id) => {
         setModalOpen(true)
-        setCommentsInFocus(id)
     }
     const closeModal = () => {
         setModalOpen(false)
-        setCommentsInFocus(null)
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
         setCommentInFocus(null)
     }
+
+    useEffect(() => {
+        if ( postInFocus.id ) {
+            if ( postInFocus.action === 'OPEN_COMMENTS' ) {
+                openComments(postInFocus.id)
+            }
+            if ( postInFocus.action === 'OPEN_SETTINGS' ) {
+                navigate(`/artist-app/fanclub/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
+            }
+        }
+    }, [postInFocus])
 
     const handleCurrentComment = (e) => {
         e.preventDefault()
@@ -72,7 +102,7 @@ const Fanclub = () => {
         fanclubs.map(fanclub => {
             if ( fanclub.artistId === context.id ) {
                 fanclub.posts.map(post => {
-                    if ( post.id === commentsInFocus ) {
+                    if ( post.id === postInFocus.id ) {
                         commentsNumber = post.comments.length + 1
                     }
                 })
@@ -100,7 +130,7 @@ const Fanclub = () => {
                         return {
                             ...fanclub,
                             posts: fanclub.posts.map(post => {
-                                if (post.id === commentsInFocus) {
+                                if (post.id === postInFocus.id) {
                                     return {
                                         ...post,
                                         comments: post.comments.map(comment => {
@@ -129,7 +159,7 @@ const Fanclub = () => {
                         return {
                             ...fanclub,
                             posts: fanclub.posts.map(post => {
-                                if (post.id === commentsInFocus) {
+                                if (post.id === postInFocus.id) {
                                     return {
                                         ...post,
                                         comments: [...post.comments, currentComment]
@@ -157,11 +187,11 @@ const Fanclub = () => {
         })
     }
 
-    const handleSubscription = () => {
-        setCurrentFan(prev => ({
-            ...prev,
-            fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: context.id }]
-        }))
+    const [commentInFocus, setCommentInFocus] = useState(null)
+    const inputRef = useRef(null)
+    const spotCommentToReply = (id) => {
+        setCommentInFocus(id)
+        inputRef.current.focus()
     }
 
     useEffect(() => {
@@ -204,9 +234,9 @@ const Fanclub = () => {
                 <Container style={'pb-xs-2 mt-xs-4'}>
                     {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
                         <Post
-                            post={post}
-                            openComments={() => openComments(post.id)}
                             key={post.id}
+                            post={post}
+                            focusPost={focusPost}
                             hasUserSubscribed={hasUserSubscribed}
                             handleSubscription={handleSubscription}
                         />
@@ -223,16 +253,21 @@ const Fanclub = () => {
                     closeModal={closeModal}
                 />
                 <Container style={'pb-xs-12 pb-sm-2'}>
-                    {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
-                        return (
-                            <Comment
-                                comment={comment}
-                                spotCommentToReply={() => spotCommentToReply(comment.id)}
-                                inputRef={inputRef}
-                                key={comment.id}
-                                modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: fanclub?.posts[commentsInFocus - 1].id }})}/>
-                        )
-                    })}
+                    {fanclub?.posts.map(post => {
+                        if ( post.id ===  postInFocus.id) {
+                            return post.comments.map(comment => {
+                                return (
+                                    <Comment
+                                        comment={comment}
+                                        key={comment.id}
+                                        inputRef={inputRef}
+                                        spotCommentToReply={() => spotCommentToReply(comment.id)}
+                                        modalUserModeration={() => navigate('/artist-app/fanclub/user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: fanclub?.posts[postInFocus.id - 1].id }})}
+                                    />
+                                )
+                            })
+                        }})
+                    }
                 </Container>
 
                 <TextbarComments

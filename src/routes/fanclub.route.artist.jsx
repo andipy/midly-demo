@@ -50,26 +50,44 @@ const FanclubRoute = () => {
     const [clickCount, setClickCount] = useState(0)
     const timeoutRef = useRef(null)
 
+    const [postInFocus, setPostInFocus] = useState({
+        id: undefined,
+        action: undefined,
+        post: undefined
+    })
+    const focusPost = (id, action) => {
+        const thisPost = fanclub.posts.find(post => post.id === id)
+        setPostInFocus({
+            id: thisPost.id,
+            action: action,
+            post: thisPost
+        })
+    }
     const [modalOpen, setModalOpen] = useState(false)
-    const [commentsInFocus, setCommentsInFocus] = useState(null)
     const inputRef = useRef(null)
     const openComments = (id) => {
         setModalOpen(true)
-        setCommentsInFocus(id)
     }
     const closeModal = () => {
         setModalOpen(false)
-        setCommentsInFocus(null)
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
         setCommentInFocus(null)
     }
     
-    const [postInFocus, setPostInFocus] = useState(undefined)
-    const focusPostSettings = (id) => {
-        const thisPost = fanclub.posts.find(post => post.id === id)
-        setPostInFocus(thisPost)
-        navigate(`/artist-app/fanclub/${id}`, { state: { ...thisPost, invokedModal: true } })
-        console.log(id, 'post id')
-    }
+    useEffect(() => {
+        if ( postInFocus.id ) {
+            if ( postInFocus.action === 'OPEN_COMMENTS' ) {
+                openComments(postInFocus.id)
+            }
+            if ( postInFocus.action === 'OPEN_SETTINGS' ) {
+                navigate(`/artist-app/fanclub/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
+            }
+        }
+    }, [postInFocus])
 
     const [commentInFocus, setCommentInFocus] = useState(null)
     const spotCommentToReply = (id) => {
@@ -95,7 +113,7 @@ const FanclubRoute = () => {
         fanclubs.map(fanclub => {
             if ( fanclub.artistId === currentArtist.id ) {
                 fanclub.posts.map(post => {
-                    if ( post.id === commentsInFocus ) {
+                    if ( post.id === postInFocus.id ) {
                         commentsNumber = post.comments.length + 1
                     }
                 })
@@ -123,7 +141,7 @@ const FanclubRoute = () => {
                         return {
                             ...fanclub,
                             posts: fanclub.posts.map(post => {
-                                if (post.id === commentsInFocus) {
+                                if (post.id === postInFocus.id) {
                                     return {
                                         ...post,
                                         comments: post.comments.map(comment => {
@@ -152,7 +170,7 @@ const FanclubRoute = () => {
                         return {
                             ...fanclub,
                             posts: fanclub.posts.map(post => {
-                                if (post.id === commentsInFocus) {
+                                if (post.id === postInFocus.id) {
                                     return {
                                         ...post,
                                         comments: [...post.comments, currentComment]
@@ -188,7 +206,7 @@ const FanclubRoute = () => {
                     return {
                         ...fanclub,
                         posts: fanclub.posts.map(post => {
-                            if (post.id === commentsInFocus) {
+                            if (post.id === postInFocus.id) {
                                 return {
                                     ...post,
                                     comments: post.comments.map(comment => {
@@ -405,12 +423,11 @@ const FanclubRoute = () => {
                     :
                         <Container style={'pb-xs-appbar mt-xs-4'}>
                             {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
-                                <Post 
+                                <Post
+                                    key={post.id}
                                     artistId={fanclub?.artistId}
                                     post={post}
-                                    openComments={() => openComments(post.id)}
-                                    key={post.id}
-                                    focusPostSettings={() => focusPostSettings(post.id)}
+                                    focusPost={focusPost}
                                 />
                             )}
                         </Container>
@@ -437,18 +454,21 @@ const FanclubRoute = () => {
             >
                 <NavbarCommentsModal closeModal={closeModal} />
                 <Container style={'pb-xs-12 pb-sm-2'}>
-                    {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
-
-                        return (
-                            <Comment
-                                comment={comment}
-                                key={comment.id}
-                                inputRef={inputRef}
-                                spotCommentToReply={() => spotCommentToReply(comment.id)}
-                                modalUserModeration={() => navigate('/artist-app/fanclub/user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: fanclub?.posts[commentsInFocus - 1].id }})}
-                            />
-                        )
-                    })}
+                    {fanclub?.posts.map(post => {
+                        if ( post.id ===  postInFocus.id) {
+                            return post.comments.map(comment => {
+                                return (
+                                    <Comment
+                                        comment={comment}
+                                        key={comment.id}
+                                        inputRef={inputRef}
+                                        spotCommentToReply={() => spotCommentToReply(comment.id)}
+                                        modalUserModeration={() => navigate('/artist-app/fanclub/user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: fanclub?.posts[postInFocus.id - 1].id }})}
+                                    />
+                                )
+                            })
+                        }})
+                    }
                 </Container>
 
                 <TextbarComments
@@ -462,7 +482,7 @@ const FanclubRoute = () => {
             </CommentsModalLayout>
 
             <Appbar />
-            <Outlet />
+            <Outlet context={{ postInFocus, setPostInFocus }} />
 
             {err && 
                 <FullPageCenter style='z-index-1100 bg-black-transp70'>

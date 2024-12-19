@@ -14,7 +14,7 @@ import IconComments from '../images/icons/icon-comment-white.svg'
 import IconShare from '../images/icons/icon-share-white.svg'
 import IconLink from '../images/icons/icon-link.svg'
 
-const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscription, focusPostSettings }) => {
+const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscription, focusPost }) => {
 
 	const { artists } = useContext(ArtistsContext)
 
@@ -111,10 +111,10 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 								onClick={() => {
 									if ( !pathname.includes('/artist-app') ) {
 										if (hasUserSubscribed || !post.settings.isPrivate) {
-											openComments()
+											focusPost(post.id, 'OPEN_COMMENTS')
 										}
 									} else {
-										openComments()
+										focusPost(post.id, 'OPEN_COMMENTS')
 									}
 									
 								}}
@@ -130,7 +130,7 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 						</div>
 
 						{pathname.includes('/artist-app/') &&
-							<div className='d-flex-row' onClick={() => focusPostSettings()}>
+							<div className='d-flex-row' onClick={() => focusPost(post.id, 'OPEN_SETTINGS')}>
 								<img className='avatar-28 bg-dark-soft-2 border-radius-04' src={IconSettings}/>
 							</div>
 						}
@@ -182,22 +182,16 @@ const Post = ({ artistId, post, openComments, hasUserSubscribed, handleSubscript
 							<>
 									{minutes <= 0 ?
 										<span>{seconds} secondi fa</span>
-									: 
-									<>
+									:
 										<span>{minutes} minuti fa</span>
-									</>
 									}
 							</>
-								: 
-								<>
+								:
 									<span>{hours} ore fa</span>
-								</>
 							}
 						</>
-						: 
-						<>
+						:
 							<span>{days} giorni fa</span>
-						</>
 						}
 						
 					</p>
