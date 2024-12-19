@@ -23,7 +23,7 @@ const UserModerationReportRoute = () => {
     const reported = location.state?.reported
     
     const { fans } = useContext(FansContext)
-    const { reports, setReports } = useContext(ModerationsContext)
+    const { blocked, reports, setReports } = useContext(ModerationsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const { currentFan } = useContext(CurrentFanContext)
 
@@ -42,6 +42,10 @@ const UserModerationReportRoute = () => {
     }
 
     const reportUser = () => {
+        const isUserBlocked = blocked.some(
+            (block) => block.blockedUserId === userId && block.fanclubId === fanclubId
+        )
+
         if (pathname.includes('/artist-app/')) {
             const newReport = {
                 reportedUserId: userId,
@@ -55,7 +59,7 @@ const UserModerationReportRoute = () => {
                 fanclubId: fanclubId,
                 fanclubArtistId: artistId,
                 createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0],
-                archived: false,
+                archived: isUserBlocked,
             }
             setReports([...reports, newReport])
             navigate('.',{state: { userId: userId, reported: true }})
@@ -72,7 +76,7 @@ const UserModerationReportRoute = () => {
                 fanclubId: fanclubId,
                 fanclubArtistId: artistId,
                 createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0],
-                archived: false,
+                archived: isUserBlocked,
             }
 
             setReports([...reports, newReport])
