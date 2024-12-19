@@ -9,6 +9,7 @@ import NavbarMultistep from '../components/navbar-multistep.component'
 import NavbarBackOnly from '../components/navbar-back-only.component'
 
 import IconEdit from '../images/icons/icon-edit.svg'
+import IconArrowRight from '../images/icons/icon-arrowright.svg'
 
 const FanclubSettingsRoute = () => {
 
@@ -29,6 +30,7 @@ const FanclubSettingsRoute = () => {
         <>
             <NavbarBackOnly onClick={() => navigate('/artist-app/fanclub')}/>
             <Container style={''}>
+            <h4 className="fsize-xs-6 f-w-500 mb-xs-4">Impostazioni</h4>
                 
                 {/* <div id='fanclub-name' className='mb-xs-8'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
@@ -119,6 +121,18 @@ const FanclubSettingsRoute = () => {
                         }
                         <Link to='/artist-app/fanclub/settings/edit' state={{ type: 'MAX_SUBSCRIBERS' }}>
                             <img className='avatar-28' src={IconEdit} alt='->'/>
+                        </Link>
+                    </a>
+                </div>
+                <div id='fanclub-maxSubscribers' className='mb-xs-8'>
+                    <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-maxSubscribers'>
+                        GESTISCI UTENTI
+                    </label>
+                    <a className='d-flex-row j-c-space-between mb-xs-3 w-100' href=''>
+                        <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Qui puoi bloccare o sbloccare gli utenti che vengono segnalati</h6>
+
+                        <Link to='manage-users'>
+                            <img className='avatar-28' src={IconArrowRight} alt='->'/>
                         </Link>
                     </a>
                 </div>
