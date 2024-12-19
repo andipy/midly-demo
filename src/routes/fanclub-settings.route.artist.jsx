@@ -30,7 +30,7 @@ const FanclubSettingsRoute = () => {
         <>
             <NavbarBackOnly onClick={() => navigate('/artist-app/fanclub')}/>
             <Container style={''}>
-            <h4 className="fsize-xs-6 f-w-500 mb-xs-4">Impostazioni</h4>
+            <h3 className='fsize-xs-6 f-w-500 white mb-xs-4'>Impostazioni</h3>
                 
                 {/* <div id='fanclub-name' className='mb-xs-8'>
                     <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-name'>
@@ -124,18 +124,14 @@ const FanclubSettingsRoute = () => {
                         </Link>
                     </a>
                 </div>
-                <div id='fanclub-maxSubscribers' className='mb-xs-8'>
-                    <label className='fsize-xs-1 grey-300 letter-spacing-3' for='input-maxSubscribers'>
-                        GESTISCI UTENTI
-                    </label>
-                    <a className='d-flex-row j-c-space-between mb-xs-3 w-100' href=''>
-                        <h6 className='fsize-xs-2 f-w-300 grey-400 letter-spacing-1 mt-xs-2'>Qui puoi bloccare o sbloccare gli utenti che vengono segnalati</h6>
 
-                        <Link to='manage-users'>
-                            <img className='avatar-28' src={IconArrowRight} alt='->'/>
-                        </Link>
-                    </a>
-                </div>
+                <Link className='mb-xs-8' to='/artist-app/fanclub/settings/manage-users'>
+                    <h3 className='fsize-xs-5 f-w-500 white mb-xs-2'>Gestisci utenti</h3>
+                    <div className='d-flex-row j-c-space-between mb-xs-3 w-100'>
+                        <p className='fsize-xs-2 f-w-400 grey-300'>Qui puoi bloccare o sbloccare gli utenti che vengono segnalati</p>
+                        <img className='avatar-28' src={IconArrowRight} alt='->'/>
+                    </div>
+                </Link>
                 
             </Container>
         </>
