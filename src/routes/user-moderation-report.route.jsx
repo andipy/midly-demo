@@ -26,6 +26,8 @@ const UserModerationReportRoute = () => {
     const { reports, setReports } = useContext(ModerationsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const { currentFan } = useContext(CurrentFanContext)
+
+    console.log(reports)
     
     const [ userFound, setUserFound] = useState()
     
