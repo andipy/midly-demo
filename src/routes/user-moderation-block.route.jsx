@@ -59,7 +59,7 @@ function UserModerationBlockRoute() {
             )
             setBlocked(updatedBlocked)
             
-            navigate(-3)
+            navigate('/artist-app/fanclub')
         }  
     }
     

@@ -438,13 +438,14 @@ const FanclubRoute = () => {
                 <NavbarCommentsModal closeModal={closeModal} />
                 <Container style={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts[commentsInFocus - 1]?.comments.map(comment => {
+
                         return (
                             <Comment
                                 comment={comment}
                                 key={comment.id}
                                 inputRef={inputRef}
                                 spotCommentToReply={() => spotCommentToReply(comment.id)}
-                                modalUserModeration={() => navigate('/artist-app/fanclub/user-moderation', {state: { userId: comment.userId, comment: comment.id, fanclub: fanclub?.id, post: fanclub?.posts[commentsInFocus - 1].id }})}
+                                modalUserModeration={() => navigate('/artist-app/fanclub/user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: fanclub?.posts[commentsInFocus - 1].id }})}
                             />
                         )
                     })}

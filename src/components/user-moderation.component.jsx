@@ -70,6 +70,7 @@ const UserModeration = ({ modalUserModeration, user, post, fanclub, comment }) =
                                 disabled={false}
                                 style='fsize-xs-3 f-w-500 letter-spacing-1 bg-black grey-500 border-radius-04'
                                 label='Utente già bloccato'
+                                onClick={() => navigate('block',{state: { userId: user, blocked: true }})}
                             />
                         :
                             <Button
