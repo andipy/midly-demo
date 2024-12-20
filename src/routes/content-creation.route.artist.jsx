@@ -61,7 +61,7 @@ const ContentCreationRoute = () => {
             isPrivate: true,
             isPinned: false,
         },
-        likes: 0,
+        likes: [],
         comments: [],
         share: {
             shareCount: 0,

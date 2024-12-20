@@ -220,6 +220,32 @@ const Fanclub = () => {
         setModalUserModeration(false)
     }
 
+    const likePost = (id) => {
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === context.id) {
+                    return {
+                        ...fanclub,
+                        posts: fanclub.posts.map(post => {
+                            if (post.id === id) {
+                                const hasLiked = post.likes.some(like => like.userId === currentFan.id)
+                                return {
+                                    ...post,
+                                    likes: hasLiked
+                                        ? post.likes.filter(like => like.userId !== currentFan.id) // Rimuove il like
+                                        : [...post.likes, { userId: currentFan.id }] // Aggiunge il like
+                                }
+                            }
+                            return post
+                        })
+                    }
+                }
+                return fanclub
+            })
+        )
+    }
+    
+
     return (
         <>
             <div className='d-flex-column j-c-start mt-xs-4'>
@@ -237,6 +263,7 @@ const Fanclub = () => {
                             key={post.id}
                             post={post}
                             focusPost={focusPost}
+                            likePost={likePost}
                             hasUserSubscribed={hasUserSubscribed}
                             handleSubscription={handleSubscription}
                         />

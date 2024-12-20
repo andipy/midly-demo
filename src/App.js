@@ -145,10 +145,13 @@ const router = createBrowserRouter([
 		path: '/artist/:artistSlug/flash-leaderboard',
 		element: <FlashLeaderboardRoute />,
 		children: [
-		{
-			path: '/artist/:artistSlug/flash-leaderboard/rules',
-			element: <FlashLeaderboardRulesRoute />
-		}
+			{
+				path: '/artist/:artistSlug/flash-leaderboard/rules',
+				element: <FlashLeaderboardRulesRoute />
+			},{
+				path: 'fan', 
+				element: <FanPublicProfileRoute />,
+			}
 		]
 	},{
 		path: '/flash-leaderboard-explanation',

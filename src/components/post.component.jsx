@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
 
 import { ArtistsContext } from '../contexts/artists.context'
+import { CurrentFanContext } from '../contexts/currentFan.context'
 
 import Button from '../components/button.component'
 
@@ -10,13 +11,15 @@ import SwipeCarousel from '../layout/swipe-carousel.layout'
 import IconSettings from '../images/icons/icon-settings-white.svg'
 // import IconLike from '../images/icons/icon-like-white-empty.svg'
 import IconThunder from '../images/icons/icon-thunder.svg'
+import IconThunderActive from '../images/icons/icon-thunder-active.svg'
 import IconComments from '../images/icons/icon-comment-white.svg'
 import IconShare from '../images/icons/icon-share-white.svg'
 import IconLink from '../images/icons/icon-link.svg'
 
-const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost }) => {
+const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost, likePost }) => {
 
 	const { artists } = useContext(ArtistsContext)
+	const { currentFan	} = useContext(CurrentFanContext)
 
 	const [artist, setArtist] = useState()
 	useEffect(() => {
@@ -26,6 +29,14 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 	const { pathname } = useLocation()
 	const [showCaption, setShowCaption] = useState(false)
+
+	const [isLiked, setIsLiked] = useState(false)
+	useEffect(() => {
+		if (post && post.likes && !pathname.includes('/artist-app')) {
+			const likedByUser = post.likes.some(like => like.userId === currentFan.id)
+			setIsLiked(likedByUser)
+		}
+	}, [post])
 
 	const [days, setDays] = useState(0)
 	const [hours, setHours] = useState(0)
@@ -62,6 +73,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 		const thisYear = today.getFullYear()
 		return day + ' ' + formattedMonth + ' ' + `${year === thisYear ?  '' : year}`
 	}
+
 
 	return (
 		<>
@@ -101,13 +113,42 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 				<div className='w-100 pr-xs-4 pl-xs-4 mb-xs-4'>
 					<div className='d-flex-row w-100 j-c-space-between align-items-center mt-xs-2'>
 						<div className='d-flex-row align-items-center gap-1em'>
-							<div className='d-flex-row align-items-center gap-0_25em'>
-								<img className='avatar-28 bg-dark-soft-2 border-radius-04' src={IconThunder}/>
-								<p className='fsize-xs-1'>{post.likes}</p>
+							<div className='d-flex-row align-items-center gap-0_25em'
+								onClick={() => {
+									if ( !pathname.includes('/artist-app') ) {
+										if (hasUserSubscribed || !post.settings.isPrivate) {
+											likePost(post.id)
+										}
+									}
+									
+								}}>
+								{!pathname.includes('/artist-app') ? (
+									isLiked ? (
+										<img
+											className="avatar-28 bg-dark-soft-2 border-radius-04"
+											src={IconThunderActive}
+											alt="Liked"
+										/>
+									) : (
+										<img
+											className="avatar-28 bg-dark-soft-2 border-radius-04"
+											src={IconThunder}
+											alt="Not Liked"
+										/>
+									)
+								) : (
+									<img
+										className="avatar-28 bg-dark-soft-2 border-radius-04"
+										src={IconThunder}
+										alt="Thunder"
+									/>
+								)}
+									
+								<p className='fsize-xs-1'>{post.likes.length}</p>
 							</div>
 
 							<div 
-								className='avatar-32 d-flex-row align-items-center j-c-center' 
+								className='avatar-32 d-flex-row align-items-center j-c-center gap-0_25em' 
 								onClick={() => {
 									if ( !pathname.includes('/artist-app') ) {
 										if (hasUserSubscribed || !post.settings.isPrivate) {

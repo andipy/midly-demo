@@ -257,7 +257,7 @@ const FlashLeaderboardRoute = () => {
                     <div className='mb-xs-4'>
                         <div className='d-flex-row j-c-center'>
                             <div className='d-flex-column align-items-center w-33 position-relative gap-0_5em'>
-                                <div className='first-position position-relative'>
+                                <div className='first-position position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${artist.slug}/flash-leaderboard/fan`, {state: { invokedModal: true, artist: artist, fan: chart[0] }});}}>
                                     <img className='position-absolute-x-y first-position-graphic z-index-2' src={SpecialBadge1P} />
                                     
                                     {chart[0].image ?
@@ -279,7 +279,7 @@ const FlashLeaderboardRoute = () => {
 
                         <div className='d-flex-row j-c-start mt-xs-negative10'>
                             <div className='d-flex-column align-items-center w-33 position-relative gap-0_5em'>
-                                <div className='second-position position-relative'>
+                                <div className='second-position position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${artist.slug}/flash-leaderboard/fan`, {state: { invokedModal: true, artist: artist, fan: chart[1] }});}}>
                                     <img className='position-absolute-x-y second-position-graphic z-index-2' src={SpecialBadge2P} />
 
                                     {chart[1].image ?
@@ -301,7 +301,7 @@ const FlashLeaderboardRoute = () => {
 
                         <div className='d-flex-row j-c-end mt-xs-negative35'>
                             <div className='d-flex-column align-items-center w-33 position-relative gap-0_5em'>
-                                <div className='third-position position-relative'>
+                                <div className='third-position position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${artist.slug}/flash-leaderboard/fan`, {state: { invokedModal: true, artist: artist, fan: chart[2] }});}}>
                                     <img className='position-absolute-x-y third-position-graphic z-index-2' src={SpecialBadge3P} />
 
                                     {chart[2].image ?
@@ -329,6 +329,12 @@ const FlashLeaderboardRoute = () => {
                                 fan={fan}
                                 position={index + 1}
                                 key={index}
+                                onClick={(event) => {
+                                    event.preventDefault(); // Evita comportamenti indesiderati
+                                    navigate(`/artist/${artist.slug}/flash-leaderboard/fan`, {
+                                      state: { invokedModal: true, artist: artist, fan: fan },
+                                    });
+                                }} 
                             />
                     )}
                 </section>
@@ -387,7 +393,9 @@ const FlashLeaderboardRoute = () => {
                     <p className='fsize-xs-2 mb-xs-2'>La classifica flash di <span className='lime-400 f-w-600'> {leaderboard?.song.title ? leaderboard?.song.title : leaderboard?.album.title && leaderboard?.song.title}</span> è terminata, ma stiamo ancora contando i tuoi punti! Torna alle ore 14:00 del 22 Novembre per vedere la tua posizione finale.</p>
                 </div>
             }
-            <Outlet />
+            <div className='position-relative w-100 d-flex-column j-c-center align-items-center'>
+                <Outlet /> 
+            </div>
         </>
     )
 }
