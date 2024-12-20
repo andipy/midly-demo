@@ -68,16 +68,18 @@ const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentR
                         <span className='fsize-xs-1 f-w-200 grey-400'>{comment.createdAt}</span>
                         {/* <span className='fsize-xs-2 f-w-600 grey-300' onClick={spotCommentToReply}>Reply</span> */}
                     </div>
-                    <div className='d-flex-row align-items-center gap-0_5em'
-                    onClick={() => {
-                        likeReply(comment.id, commentReplied, postId)
-                        
-                    }}>
-                        <span>{comment.likes.length > 0 ? comment.likes.length : ''}</span>
+                    <div className='d-flex-row align-items-center gap-0_5em'>
+                        <span className='fsize-xs-1'>{comment.likes.length > 0 ? comment.likes.length : ''}</span>
                         { isLiked ? 
-                            <img className='avatar-24' src={IconThunderActive} alt='♡' />
+                            <img className='avatar-24' src={IconThunderActive} alt='♡' onClick={() => {
+                                likeReply(comment.id, commentReplied, postId)
+                                
+                            }}/>
                             :
-                            <img className='avatar-24' src={IconThunder} alt='♡'/>
+                            <img className='avatar-24' src={IconThunder} alt='♡'onClick={() => {
+                                likeReply(comment.id, commentReplied, postId)
+                                
+                            }}/>
                         }
                         
                     </div>

@@ -10,7 +10,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
     const [flashLeaderboards, setFlashLeaderboards] = useState([
         {
             id: 1,
-            artistId: 2,
+            artistId: 'a3p8',
             announceMessage: 'Sta per aprire la classifica flash di thasup',
             announceStartDate: '2024-12-14 12:00:00',
             announceEndDate: '2024-12-22 00:00:00',

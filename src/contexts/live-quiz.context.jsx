@@ -28,7 +28,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 2,
-			artistId: 2,
+			artistId: 'a3p8',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-12-04 00:00:00',
@@ -102,7 +102,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 6,
-			artistId: 2,
+			artistId: 'a3p8',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-24 00:00:00',
@@ -119,7 +119,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 7,
-			artistId: 2,
+			artistId: 'a3p8',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-23 00:00:00',
@@ -136,7 +136,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 8,
-			artistId: 2,
+			artistId: 'a3p8',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-01-01 00:00:00',
@@ -255,7 +255,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 15,
-			artistId: 2,
+			artistId: 'a3p8',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-27 00:00:00',
@@ -272,7 +272,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 16,
-			artistId: 2,
+			artistId: 'a3p8',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-28 00:00:00',
@@ -289,7 +289,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 17,
-			artistId: 2,
+			artistId: 'a3p8',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-30 00:00:00',
@@ -306,7 +306,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 18,
-			artistId: 2,
+			artistId: 'a3p8',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-30 00:00:00',
@@ -323,7 +323,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 19,
-			artistId: 2,
+			artistId: 'a3p8',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-12-05 00:00:00',
@@ -340,7 +340,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 20,
-			artistId: 2,
+			artistId: 'a3p8',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-12-03 00:00:00',

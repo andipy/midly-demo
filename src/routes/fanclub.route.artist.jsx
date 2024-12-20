@@ -377,8 +377,32 @@ const FanclubRoute = () => {
         setUserToModerate(null)
         setModalUserModeration(false)
     }
+    const likePost = (id) => {
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === currentArtist.id) {
+                    return {
+                        ...fanclub,
+                        posts: fanclub.posts.map(post => {
+                            if (post.id === id) {
+                                const hasLiked = post.likes.some(like => like.userId === currentArtist.id)
+                                return {
+                                    ...post,
+                                    likes: hasLiked
+                                        ? post.likes.filter(like => like.userId !== currentArtist.id) // Rimuove il like
+                                        : [...post.likes, { userId: currentArtist.id }] // Aggiunge il like
+                                }
+                            }
+                            return post
+                        })
+                    }
+                }
+                return fanclub
+            })
+        )
+    }
+
     const likeComment = (commentId, postId) => {
-        console.log(commentId, postId)
         setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub => {
                 if (fanclub.artistId === currentArtist.id) {
@@ -412,7 +436,6 @@ const FanclubRoute = () => {
     }
 
     const likeReply = (replyId, commentId, postId) => {
-        console.log(replyId, commentId, postId)
         setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub => {
                 if (fanclub.artistId === currentArtist.id) {
@@ -503,6 +526,7 @@ const FanclubRoute = () => {
                                     artistId={fanclub?.artistId}
                                     post={post}
                                     focusPost={focusPost}
+                                    likePost={likePost}
                                 />
                             )}
                         </Container>

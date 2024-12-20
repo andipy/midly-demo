@@ -246,7 +246,6 @@ const Fanclub = () => {
     }
 
     const likeComment = (commentId, postId) => {
-        console.log(commentId, postId)
         setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub => {
                 if (fanclub.artistId === context.id) {
@@ -280,7 +279,6 @@ const Fanclub = () => {
     }
 
     const likeReply = (replyId, commentId, postId) => {
-        console.log(replyId, commentId, postId)
         setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub => {
                 if (fanclub.artistId === context.id) {

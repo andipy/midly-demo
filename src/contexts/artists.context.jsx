@@ -17,7 +17,7 @@ export const ArtistsProvider = ({ children }) => {
             highlight: false,
             verified: true,
         },{
-            id: 2,
+            id: 'a3p8',
             slug: 'thasup',
             artistName: 'thasup',
             image: require('../images/pictures/thasup.jpg'),

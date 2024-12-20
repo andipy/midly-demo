@@ -12,7 +12,6 @@ import { FansContext } from '../contexts/fans.context'
 
 
 const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment, postId, likeReply }) => {
-    console.log(comment)
 
     const { currentFan	} = useContext(CurrentFanContext)
     const { currentArtist } = useContext(CurrentArtistContext)
@@ -26,7 +25,6 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
 			setIsLiked(likedByUser)
 		}
         if (comment && comment.likes && pathname.includes('/artist-app')) {
-            console.log('artista')
 			const likedByUser = comment.likes.some(like => like.userId === currentArtist.id && like.type === 'ARTIST');
 			setIsLiked(likedByUser)
 		}
@@ -74,7 +72,7 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
                             <span className='fsize-xs-2 f-w-600 grey-300' onClick={spotCommentToReply}>Reply</span>
                         </div>
                         <div className='d-flex-row align-items-center gap-0_5em'>
-                            <span>{comment.likes.length > 0 ? comment.likes.length : ''}</span>
+                            <span className='fsize-xs-1'>{comment.likes.length > 0 ? comment.likes.length : ''}</span>
                             { isLiked ? 
                                 <img className='avatar-24' src={IconThunderActive} alt='♡' onClick={likeComment}/>
                                 :

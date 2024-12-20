@@ -32,7 +32,7 @@ export const FanclubsProvider = ({ children }) => {
             posts: []
         },{
             id: 2,
-            artistId: 2,
+            artistId: 'a3p8',
             isActive: false,
             subscribers: null,
             name: null,

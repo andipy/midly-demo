@@ -5,7 +5,7 @@ export const CurrentArtistContext = createContext()
 export const CurrentArtistProvider = ({ children }) => {
 
     const [currentArtist, setCurrentArtist] = useState({
-        id: 2,
+        id: 'a3p8',
         type: 'ARTIST',
         slug: 'thasup',
         artistName: 'thasup',

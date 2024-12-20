@@ -3,6 +3,7 @@ import { useNavigate, Link, useLocation } from 'react-router-dom'
 
 import { ArtistsContext } from '../contexts/artists.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 import Button from '../components/button.component'
 
@@ -20,6 +21,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 	const { artists } = useContext(ArtistsContext)
 	const { currentFan	} = useContext(CurrentFanContext)
+	const { currentArtist } = useContext(CurrentArtistContext)
 
 	const [artist, setArtist] = useState()
 	useEffect(() => {
@@ -34,6 +36,10 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 	useEffect(() => {
 		if (post && post.likes && !pathname.includes('/artist-app')) {
 			const likedByUser = post.likes.some(like => like.userId === currentFan.id)
+			setIsLiked(likedByUser)
+		}
+		if (post && post.likes && pathname.includes('/artist-app')) {
+			const likedByUser = post.likes.some(like => like.userId === currentArtist.id)
 			setIsLiked(likedByUser)
 		}
 	}, [post])
@@ -119,6 +125,8 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 										if (hasUserSubscribed || !post.settings.isPrivate) {
 											likePost(post.id)
 										}
+									} else {
+										likePost(post.id)
 									}
 									
 								}}>
@@ -137,11 +145,19 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 										/>
 									)
 								) : (
-									<img
-										className="avatar-28 bg-dark-soft-2 border-radius-04"
-										src={IconThunder}
-										alt="Thunder"
-									/>
+									isLiked ? (
+										<img
+											className="avatar-28 bg-dark-soft-2 border-radius-04"
+											src={IconThunderActive}
+											alt="Liked"
+										/>
+									) : (
+										<img
+											className="avatar-28 bg-dark-soft-2 border-radius-04"
+											src={IconThunder}
+											alt="Not Liked"
+										/>
+									)
 								)}
 									
 								<p className='fsize-xs-1'>{post.likes.length}</p>

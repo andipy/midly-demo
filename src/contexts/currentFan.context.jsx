@@ -29,7 +29,7 @@ export const CurrentFanProvider = ({ children }) => {
         hasTikTok: false,
         followedArtists: [
             {artistId: 1},
-            {artistId: 2},
+            {artistId: 'a3p8'},
             {artistId: 3},
             {artistId: 6},
         ],
