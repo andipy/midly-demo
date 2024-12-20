@@ -3,6 +3,7 @@ import { useOutletContext, Outlet, useNavigate } from 'react-router-dom'
 
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
+import { ArtistsContext } from '../contexts/artists.context'
 
 import Post from '../components/post.component'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
@@ -10,12 +11,14 @@ import Comment from '../components/comment.component'
 import TextbarComments from '../components/textbar-comments.component'
 import Container from '../layout/container.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
+import FullPageCenter from '../layout/full-page-center.layout'
 
 const Fanclub = () => {
     const navigate = useNavigate()
     const context = useOutletContext()
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+    const {artists} = useContext(ArtistsContext)
 
     // fetch the fanclub
     const [fanclub, setFanclub] = useState()
@@ -24,13 +27,26 @@ const Fanclub = () => {
         setFanclub(thisFanclub)
     }
 
+    const [err, setErr] = useState(false)
     // handle and check current fan's subscription
     const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
     const handleSubscription = () => {
-        setCurrentFan(prev => ({
-            ...prev,
-            fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: context.id }]
-        }))
+        if (fanclub?.maxSubscribers <= fanclub?.subscribers && fanclub?.maxSubscribers) {
+            setErr(true)
+            return
+        } else {
+            setFanclubs(prevFanclubs =>
+                prevFanclubs.map(fanclub =>
+                    fanclub.artistId === context.id
+                        ? { ...fanclub, subscribers: (fanclub.subscribers || 0) + 1 }
+                        : fanclub
+                )
+            )
+            setCurrentFan(prev => ({
+                ...prev,
+                fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: context.id }]
+            }))
+        }  
     }
     const checkFanclubSubscription = () => {
         let isSubscribed
@@ -318,6 +334,29 @@ const Fanclub = () => {
             })
         )
     }
+
+    const [isExiting, setIsExiting] = useState(false)
+
+    useEffect(() => {
+        if (err) {
+            const exitDelay = setTimeout(() => {
+                setIsExiting(true)
+            }, 1000)
+
+            return () => clearTimeout(exitDelay)
+        }
+    }, [err])
+
+    useEffect(() => {
+        if (isExiting) {
+            const endDelay = setTimeout(() => {
+                setErr(false)
+                setIsExiting(false)
+            }, 400)
+
+            return () => clearTimeout(endDelay)
+        }
+    }, [isExiting])
     
 
     return (
@@ -325,6 +364,7 @@ const Fanclub = () => {
             <div className='d-flex-column j-c-start mt-xs-4'>
                 <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
                 <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
+                <p className='fsize-xs-1 f-w-200 grey-300'>{fanclub?.subscribers} {fanclub?.maxSubscribers? `/ ${fanclub?.maxSubscribers}` : ''} {fanclub?.subscribers !== 1 ? 'membri' : 'membro'}</p>
             </div>
             {fanclub?.posts.length === 0 ?
                 <div className='d-flex-column align-items-center mt-xs-16'>
@@ -386,6 +426,15 @@ const Fanclub = () => {
             </CommentsModalLayout>
 
             <Outlet />
+            {err && 
+                <FullPageCenter style='z-index-1100 bg-black-transp70'>
+                    <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+                        <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
+                            <h2 className='fsize-xs-2 f-w-300 t-align-center'>Il fanclub di {artists.find(artist => artist.id === fanclub?.artistId).artistName} è al completo</h2>
+                        </div>
+                    </Container>
+	            </FullPageCenter>
+            }
             
         </>
     )
