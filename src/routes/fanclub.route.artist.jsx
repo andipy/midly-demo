@@ -102,7 +102,7 @@ const FanclubRoute = () => {
         username: undefined,
         createdAt: undefined,
         comment: '',
-        likes: 0,
+        likes: [],
         comments: []
     })
     const handleCurrentComment = (e) => {
@@ -193,7 +193,7 @@ const FanclubRoute = () => {
             username: undefined,
             createdAt: undefined,
             comment: '',
-            likes: 0,
+            likes: [],
             comments: []
         })
     }
@@ -233,7 +233,7 @@ const FanclubRoute = () => {
             username: undefined,
             createdAt: undefined,
             comment: '',
-            likes: 0,
+            likes: [],
             comments: []
         })
         
@@ -377,6 +377,81 @@ const FanclubRoute = () => {
         setUserToModerate(null)
         setModalUserModeration(false)
     }
+    const likeComment = (commentId, postId) => {
+        console.log(commentId, postId)
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === currentArtist.id) {
+                    return {
+                        ...fanclub,
+                        posts: fanclub.posts.map(post => {
+                            if (post.id === postId) {
+                                return {
+                                    ...post,
+                                    comments: post.comments.map(comment => {
+                                        if (comment.id === commentId) {
+                                            const hasLiked = comment.likes.some(like => like.userId === currentArtist.id && (like.type === 'ARTIST'))
+                                            return {
+                                                ...comment,
+                                                likes: hasLiked
+                                                    ? comment.likes.filter(like => !(like.userId === currentArtist.id && like.type === 'ARTIST')) // Rimuove il like
+                                                    : [...comment.likes, { userId: currentArtist.id, type: 'ARTIST' }] // Aggiunge il like
+                                            }
+                                        }
+                                        return comment
+                                    })
+                                }
+                            }
+                            return post
+                        })
+                    }
+                }
+                return fanclub
+            })
+        )
+    }
+
+    const likeReply = (replyId, commentId, postId) => {
+        console.log(replyId, commentId, postId)
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === currentArtist.id) {
+                    return {
+                        ...fanclub,
+                        posts: fanclub.posts.map(post => {
+                            if (post.id === postId) {
+                                return {
+                                    ...post,
+                                    comments: post.comments.map(comment => {
+                                        if (comment.id === commentId) {
+                                            return {
+                                                ...comment,
+                                                comments: comment.comments.map(reply => {
+                                                    if (reply.id === replyId) {
+                                                        const hasLiked = reply.likes.some(like => like.userId === currentArtist.id && (like.type === 'ARTIST'))
+                                                        return {
+                                                            ...reply,
+                                                            likes: hasLiked
+                                                                ? reply.likes.filter(like => !(like.userId === currentArtist.id && like.type === 'ARTIST')) //rimuove like
+                                                                : [...reply.likes, { userId: currentArtist.id, type: 'ARTIST' }] // Aggiunge il like
+                                                        }
+                                                    }
+                                                    return reply
+                                                })
+                                            }
+                                        }
+                                        return comment
+                                    })
+                                }
+                            }
+                            return post
+                        })
+                    }
+                }
+                return fanclub
+            })
+        )
+    }
 
     return (
         <>
@@ -464,6 +539,9 @@ const FanclubRoute = () => {
                                         inputRef={inputRef}
                                         spotCommentToReply={() => spotCommentToReply(comment.id)}
                                         modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id }})}
+                                        likeComment = {() => likeComment(comment.id, post.id)}
+                                        postId={post.id}
+                                        likeReply={likeReply}
                                     />
                                 )
                             })
