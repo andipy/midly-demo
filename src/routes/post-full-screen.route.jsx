@@ -5,6 +5,8 @@ import Container from "../layout/container.layout"
 import NavbarMultistep from "../components/navbar-multistep.component"
 import SwipeCarousel from "../layout/swipe-carousel.layout"
 import SwipeCarouselFull from "../layout/swipe-carousel-full.layout"
+import FullPageCenter from "../layout/full-page-center.layout"
+import NavbarCloseOnly from "../components/navbar-close-only.component"
 const  PostFullScreenRoute = () => {
     const navigate = useNavigate()
     const { state } = useLocation()
@@ -26,8 +28,8 @@ const  PostFullScreenRoute = () => {
             }
     }, [post])
   return (
-    <div className="h-100vh d-flex-row j-c-center align-items-center">
-        <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} transparent={true}  />
+    <FullPageCenter>
+        <NavbarCloseOnly />
         <div className="d-flex-row j-c-center align-items-center w-100 h-100" >
             {post?.media?.length >= 0 ?
                 <SwipeCarouselFull images={post.media} text={post.text} />
@@ -35,7 +37,7 @@ const  PostFullScreenRoute = () => {
                 null
             }
         </div>
-    </div>
+    </FullPageCenter>
   )
 }
 

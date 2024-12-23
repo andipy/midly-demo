@@ -59,7 +59,7 @@ const SwipeCarouselFull = ({ images, text }) => {
 	const canSlide = images.length + (text ? 1 : 0) > 1
 
 	return (
-		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden w-100'
+		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden'
 			onMouseDown={canSlide ? handleDragStart : undefined}
 			onMouseMove={isDragging && canSlide ? handleDragMove : undefined}
 			onMouseUp={canSlide ? handleDragEnd : undefined}
@@ -69,7 +69,7 @@ const SwipeCarouselFull = ({ images, text }) => {
 			onTouchEnd={canSlide ? handleDragEnd : undefined}
 		>
 			<div
-				className='carousel-track d-flex-row align-items-center object-fit-cover w-100 h-100'
+				className='carousel-track d-flex-row align-items-center object-fit-cover'
 				ref={trackRef}
 				style={{
 					transform: `translateX(-${currentIndex * 100}%)`,
