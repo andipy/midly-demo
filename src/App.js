@@ -195,7 +195,7 @@ const router = createBrowserRouter([
 		element: <PostFullScreenRoute />,
 		children: [
 			{
-				path: '/edit-post',
+				path: '/artist-app/fanclub/:postId/edit-post',
 				element: <PostSettingsRoute />
 			}
 		]
