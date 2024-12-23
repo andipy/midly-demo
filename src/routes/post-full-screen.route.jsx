@@ -471,7 +471,11 @@ const  PostFullScreenRoute = () => {
     <>
     
     <FullPageCenter style={''}>
-        <NavbarCloseOnly transparent={true} onClick={() => navigate(-1, { state: {artist:  artist} })}/>
+        { pathname.includes('/artist-app') ?
+        <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
+        :
+        <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}/fanclub`, { state : {artist: artist} })}/>
+        }
         <div className="d-flex-row j-c-center align-items-center w-100 h-100" >
             {post?.media?.length >= 0 ?
                 <SwipeCarouselFull images={post.media} text={post.text} />
