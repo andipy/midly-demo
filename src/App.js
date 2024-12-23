@@ -135,9 +135,6 @@ const router = createBrowserRouter([
 				},{
 					path: '/artist/:artistSlug/fanclub/user-moderation/report',
 					element: <UserModerationReportRoute />,
-				},{
-					path: '/artist/:artistSlug/fanclub/:postId',
-					element: <PostFullScreenRoute />,
 				}
 			]
 		  },
@@ -157,6 +154,9 @@ const router = createBrowserRouter([
 				element: <FanPublicProfileRoute />,
 			}
 		]
+	},{
+		path: '/artist/:artistSlug/fanclub/:postId',
+		element: <PostFullScreenRoute />,
 	},{
 		path: '/flash-leaderboard-explanation',
 		element: <FlashLeaderboardExplanationRoute />,
@@ -193,6 +193,12 @@ const router = createBrowserRouter([
 	},{
 		path: '/artist-app/fanclub/:postId',
 		element: <PostFullScreenRoute />,
+		children: [
+			{
+				path: '/edit-post',
+				element: <PostSettingsRoute />
+			}
+		]
 	},{
 		path: '/artist-app/fanclub/activation/info',
 		element: <FanclubActivationInfoRoute />

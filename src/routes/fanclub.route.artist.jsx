@@ -91,7 +91,11 @@ const FanclubRoute = () => {
                 triggerSnackbar('Link al post copiato negli appunti')
             }
             if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
-                navigate(`/artist-app/fanclub/${postInFocus.post.id}`, { state: { ...postInFocus.post} })
+                navigate(`/artist-app/fanclub/${postInFocus.post.id}`, {
+                    state: {
+                        ...postInFocus.post,
+                    }
+                });
             }
         }
     }, [postInFocus])
@@ -492,6 +496,8 @@ const FanclubRoute = () => {
 			setTriggered(false)
 		}, 2000)
 	}
+
+    
     return (
         <>
             <Navbar fanclub={fanclub} background={'transparent100'} />

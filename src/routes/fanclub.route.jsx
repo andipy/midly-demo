@@ -111,6 +111,9 @@ const Fanclub = () => {
             if ( postInFocus.action === 'SHARE_POST' ) {
                 triggerSnackbar('Link al post copiato negli appunti')
             }
+            if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
+                navigate(`${postInFocus.post.id}`, { state: { ...postInFocus.post, artist: context} })
+            }
         }
     }, [postInFocus])
 
