@@ -287,16 +287,16 @@ const PostSettingsRoute = () => {
                 </div>
 
                 <Button
-                    style='fsize-xs-3 f-w-600 letter-spacing-1 bg-red-300 black border-radius-04'
-                    onClick={deletePost}
-                    label='Elimina post'
-                />
-
-                <Button
                     style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1 mt-xs-4'
                     onClick={updatePosts}
                     label='Salva'
                 />
+
+                <Button
+                    style='fsize-xs-3 f-w-600 letter-spacing-1 border-red-1 red-400 border-radius-04'
+                    onClick={deletePost}
+                    label='Elimina post'
+                />                
             </Container>
             {modal && 
                 <FullPageCenter style='z-index-1100 bg-black-transp70'>

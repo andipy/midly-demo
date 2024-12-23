@@ -1140,6 +1140,9 @@ animation: dot-loader-after 1s infinite linear;
 .border-red-6 {
   border: 6px solid #E94359;
 }
+.border-red-1 {
+  border: 1px solid #E94359;
+}
 .border-lime-6 {
   border: 6px solid var(--color-accent-primary);
 }
