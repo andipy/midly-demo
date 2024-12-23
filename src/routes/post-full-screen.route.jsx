@@ -1,26 +1,26 @@
-import { useNavigate, useLocation, Link, Outlet } from "react-router-dom"
-import { useState, useEffect, useContext, useRef } from "react"
+import { useNavigate, useLocation, Link, Outlet } from 'react-router-dom'
+import { useState, useEffect, useContext, useRef } from 'react'
 
-import { CurrentArtistContext } from "../contexts/currentArtist.context"
-import { CurrentFanContext } from "../contexts/currentFan.context"
-import { FanclubsContext } from "../contexts/fanclubs.context"
-import { ArtistsContext } from "../contexts/artists.context"
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
+import { CurrentFanContext } from '../contexts/currentFan.context'
+import { FanclubsContext } from '../contexts/fanclubs.context'
+import { ArtistsContext } from '../contexts/artists.context'
 
-import SwipeCarouselFull from "../layout/swipe-carousel-full.layout"
-import FullPageCenter from "../layout/full-page-center.layout"
-import NavbarCloseOnly from "../components/navbar-close-only.component"
+import SwipeCarouselFull from '../layout/swipe-carousel-full.layout'
+import FullPageCenter from '../layout/full-page-center.layout'
+import NavbarCloseOnly from '../components/navbar-close-only.component'
 import IconSettings from '../images/icons/icon-settings-white.svg'
 import IconLink from '../images/icons/icon-link.svg'
 import IconThunder from '../images/icons/icon-thunder.svg'
 import IconThunderActive from '../images/icons/icon-thunder-active.svg'
 import IconComments from '../images/icons/icon-comment-white.svg'
 import IconShare from '../images/icons/icon-share-white.svg'
-import CommentsModalLayout from "../layout/comments-modal.layout"
-import NavbarCommentsModal from "../components/navbar-comments-modal.component"
-import Container from "../layout/container.layout"
-import Comment from "../components/comment.component"
-import TextbarComments from "../components/textbar-comments.component"
-import Snackbar from "../components/snackbar.component"
+import CommentsModalLayout from '../layout/comments-modal.layout'
+import NavbarCommentsModal from '../components/navbar-comments-modal.component'
+import Container from '../layout/container.layout'
+import Comment from '../components/comment.component'
+import TextbarComments from '../components/textbar-comments.component'
+import Snackbar from '../components/snackbar.component'
 
 const  PostFullScreenRoute = () => {
     const navigate = useNavigate()
@@ -33,7 +33,6 @@ const  PostFullScreenRoute = () => {
     const { artists } = useContext(ArtistsContext)
 
     const [post, setPost] = useState({})
-    
     
     const [artist, setArtist] = useState()
     const fetchThisArtist = () => {
@@ -54,7 +53,7 @@ const  PostFullScreenRoute = () => {
     const [thisFanclub, setThisFanclub] = useState(null)
     const fetchThisFanclub = () => {
         if (!fanclubs || !currentArtist) {
-            console.warn("fanclubs or currentArtist is undefined")
+            console.warn('fanclubs or currentArtist is undefined')
             return
         }
     
@@ -454,7 +453,7 @@ const  PostFullScreenRoute = () => {
                 })
             )
         }
-        }
+    }
 
     const [triggered, setTriggered] = useState(false)
 	const [messageSnackbar, setMessageSnackbar] = useState('')
@@ -465,130 +464,187 @@ const  PostFullScreenRoute = () => {
 			setTriggered(false)
 		}, 2000)
 	}
-    
 
-  return (
-    <>
+    const [days, setDays] = useState(0)
+	const [hours, setHours] = useState(0)
+	const [minutes, setMinutes] = useState(0)
+	const [seconds, setSeconds] = useState(0)
+
+    useEffect(() => {
+		const specificDate = new Date(post.createdAt)
+		const currentDate = new Date()
+		const timeDifference = currentDate - specificDate
+		const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
+	
+		if (daysPassed === 0) {
+			const hoursPassed = Math.floor(timeDifference / (1000 * 60 * 60))
+			const minutesPassed = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60))
+			const secondsPassed = Math.floor((timeDifference % (1000 * 60)) / 1000)
+	
+			setDays(0)
+			setHours(hoursPassed)
+			setMinutes(minutesPassed)
+			setSeconds(secondsPassed)
+		} else {
+			setDays(daysPassed)
+		}
+	}, [post])
+
+    const formatDate = () => {
+		const specificDate = new Date(post.createdAt)
+		const day = specificDate.getDate()
+		const month = specificDate.toLocaleString('default', { month: 'long' })
+		const formattedMonth =  month
+		const year = specificDate.getFullYear()
+		const today = new Date()
+		const thisYear = today.getFullYear()
+		return day + ' ' + formattedMonth + ' ' + `${year === thisYear ?  '' : year}`
+	}
     
-    <FullPageCenter style={''}>
-        { pathname.includes('/artist-app') ?
-        <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
-        :
-        <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}/fanclub`, { state : {artist: artist} })}/>
-        }
-        <div className="d-flex-row j-c-center align-items-center w-100 h-100" >
-            {post?.media?.length >= 0 ?
-                <SwipeCarouselFull images={post.media} text={post.text} />
+    return (
+        <>
+        
+        <FullPageCenter style=''>
+            { pathname.includes('/artist-app') ?
+            <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
+            :
+            <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}/fanclub`, { state : {artist: artist} })}/>
+            }
+            <div className='d-flex-row j-c-center align-items-center w-100 h-100' >
+                {post?.media?.length >= 0 ?
+                    <SwipeCarouselFull images={post.media} text={post.text} />
+                        :
+                    null
+                }
+            </div>
+            <div className='d-flex-column gap-0_5em position-absolute-y right-5 z-index-5'>
+                <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => likePost(post.id)}>
+                    {isLiked ?		
+                        <img
+                            className='avatar-32 border-radius-100'
+                            src={IconThunderActive}
+                            alt='Liked'
+                        />
                     :
-                null
-            }
-        </div>
-        <div className='d-flex-column gap-0_5em position-absolute-y right-5 z-index-5'>
-            <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => likePost(post.id)}>
-                {isLiked ? (
-										
-                    <img
-						className="avatar-32 border-radius-100"
-						src={IconThunderActive}
-						alt="Liked"
-					/>
-				) : (
-					<img
-						className="avatar-32 border-radius-100"
-						src={IconThunder}
-						alt="Not Liked"
-					/>
-				)}
-            </div>
-            <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                <img className='avatar-32' src={IconComments} onClick={() => focusPost(state.id, 'OPEN_COMMENTS')}/>
-            </div>
-            <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                <img className='avatar-32' src={IconShare} onClick={() => focusPost(post.id, 'SHARE_POST')}/>
-            </div>
-            {pathname.includes('/artist-app') && 
-            <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                <img className='avatar-32' src={IconSettings} onClick={() => focusPost(post.id, 'OPEN_SETTINGS')}/>
-            </div>
-            }
-        </div>
-        {post?.link && post?.caption && 
-            <div className="d-flex-column w-100 position-absolute-x bottom-0 j-c-center align-items-center bg-dark-soft-transp75">
-                {
-                    post?.caption !== '' &&
-                    <div className='w-100 d-flex-row j-c-center align-items-center'>
-						<p className='pre-wrap mb-xs-2 grey-100 f-w-400 fsize-xs-2 t-align-center'>
-							{post?.caption.length > 95 ?
-							<>
-								{showCaption ?
-									<>
-										{post?.caption}
-										<span className='lime-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
-									</>
-								:
-									<>
-										{post?.caption.slice(0, 95)}...
-										<span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
-									</>
-								}
-							</>
-							:
-								post?.caption
-							}
-						</p>
-					</div>
-                }
-                
-                {post?.link.url !== '' &&
-                <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post?.link.url} target='blank'>
-                    <img className='avatar-20' src={IconLink} />
-                    <span>{post?.link.name ? post.link.name : 'Apri il link'}</span>
-                </Link>
+                        <img
+                            className='avatar-32 border-radius-100'
+                            src={IconThunder}
+                            alt='Not Liked'
+                        />
+                    }
+                </div>
+                <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
+                    <img className='avatar-32' src={IconComments} onClick={() => focusPost(state.id, 'OPEN_COMMENTS')} />
+                </div>
+                <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
+                    <img className='avatar-32' src={IconShare} onClick={() => focusPost(post.id, 'SHARE_POST')} />
+                </div>
+                {pathname.includes('/artist-app') && 
+                <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
+                    <img className='avatar-32' src={IconSettings} onClick={() => focusPost(post.id, 'OPEN_SETTINGS')} />
+                </div>
                 }
             </div>
-        }
-    </FullPageCenter>
-    <CommentsModalLayout
-        modalOpen={modalOpen}
-        closeModal={closeModal}
-    >
-        <NavbarCommentsModal closeModal={closeModal} />
-        <Container style={'pb-xs-12 pb-sm-2'}>
-            {thisFanclub?.posts.map(post => {
-                if ( post.id ===  postInFocus.id) {
-                    return post.comments.map(comment => {
-                        return (
-                            <Comment
-                                comment={comment}
-                                key={comment.id}
-                                inputRef={inputRef}
-                                spotCommentToReply={() => spotCommentToReply(comment.id)}
-                                modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id }})}
-                                likeComment = {() => likeComment(comment.id, post.id)}
-                                postId={post.id}
-                                likeReply={likeReply}
-                            />
-                        )
-                    })
-                }})
-            }
-        </Container>
+            {post?.link && post?.caption && 
+                <div className='d-flex-column j-c-center w-100 position-absolute-x bottom-0 bg-dark-soft-transp75 pt-xs-4 pb-xs-4 pl-xs-6 pr-xs-6'>
+                    {post?.caption !== '' &&
+                        <p className='pre-wrap mb-xs-2 grey-100 f-w-400 fsize-xs-2'>
+                            {post?.caption.length > 95 ?
+                            <>
+                                {showCaption ?
+                                    <>
+                                        {post?.caption}
+                                        <span className='lime-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
+                                    </>
+                                :
+                                    <>
+                                        {post?.caption.slice(0, 95)}...
+                                        <span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
+                                    </>
+                                }
+                            </>
+                            :
+                                post?.caption
+                            }
+                        </p>
+                    }
+                    
+                    {post?.link.url !== '' &&
+                        <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post?.link.url} target='blank'>
+                            <img className='avatar-20' src={IconLink} />
+                            <span>{post?.link.name ? post.link.name : 'Apri il link'}</span>
+                        </Link>
+                    }
 
-        <TextbarComments
-            handleCurrentComment={handleCurrentComment}
-            handleSubmitComment={handleSubmitComment}
-            currentComment={currentComment}
-            setCurrentComment={setCurrentComment}
+                    <p className='fsize-xs-1 f-w-100 grey-300 mt-xs-2'>
+                        {days > 31 ?
+                            <span>{formatDate()}</span>
+                        : days > 0 ?
+                            <span>{days} giorni fa</span>
+                        : days <= 0 ?
+                        <>
+                            {hours <= 0 ?
+                            <>
+                                    {minutes <= 0 ?
+                                        <span>{seconds} secondi fa</span>
+                                    :
+                                        <span>{minutes} minuti fa</span>
+                                    }
+                            </>
+                                :
+                                    <span>{hours} ore fa</span>
+                            }
+                        </>
+                        :
+                            <span>{days} giorni fa</span>
+                        }
+                    </p>
+                </div>
+            }
+        </FullPageCenter>
+
+
+        <CommentsModalLayout
             modalOpen={modalOpen}
-            inputRef={inputRef}
-        />
-    </CommentsModalLayout>
+            closeModal={closeModal}
+        >
+            <NavbarCommentsModal closeModal={closeModal} />
+            <Container style={'pb-xs-12 pb-sm-2'}>
+                {thisFanclub?.posts.map(post => {
+                    if ( post.id ===  postInFocus.id) {
+                        return post.comments.map(comment => {
+                            return (
+                                <Comment
+                                    comment={comment}
+                                    key={comment.id}
+                                    inputRef={inputRef}
+                                    spotCommentToReply={() => spotCommentToReply(comment.id)}
+                                    modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id }})}
+                                    likeComment = {() => likeComment(comment.id, post.id)}
+                                    postId={post.id}
+                                    likeReply={likeReply}
+                                />
+                            )
+                        })
+                    }})
+                }
+            </Container>
 
-    <Outlet context={{ postInFocus, setPostInFocus }} />
+            <TextbarComments
+                handleCurrentComment={handleCurrentComment}
+                handleSubmitComment={handleSubmitComment}
+                currentComment={currentComment}
+                setCurrentComment={setCurrentComment}
+                modalOpen={modalOpen}
+                inputRef={inputRef}
+            />
+        </CommentsModalLayout>
 
-    <Snackbar message={messageSnackbar} triggered={triggered} />
-    </>
-  )
+        <Outlet context={{ postInFocus, setPostInFocus }} />
+
+        <Snackbar message={messageSnackbar} triggered={triggered} />
+        </>
+    )
 }
 
 export default PostFullScreenRoute

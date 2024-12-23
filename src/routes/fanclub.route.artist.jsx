@@ -92,10 +92,8 @@ const FanclubRoute = () => {
             }
             if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
                 navigate(`/artist-app/fanclub/${postInFocus.post.id}`, {
-                    state: {
-                        ...postInFocus.post,
-                    }
-                });
+                    state: { ...postInFocus.post }
+                })
             }
         }
     }, [postInFocus])

@@ -172,7 +172,7 @@ const ContentCreationReviewRoute = () => {
                             ))
                         }
                         {post?.text?.length > 0 &&
-                            <div className='d-flex-row align-items-center bg-dark-soft pt-xs-6 pb-xs-6 border-radius-04 w-min-100'>
+                            <div className='d-flex-row align-items-center j-c-center bg-dark-soft pt-xs-6 pb-xs-6 border-radius-04 w-min-100'>
                                 <p className='fsize-xs-8 t-align-center f-w-600 pl-xs-4 pr-xs-4 line-height-140'>{post.text}</p>
                             </div>
                         }

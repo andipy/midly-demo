@@ -80,7 +80,6 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 		return day + ' ' + formattedMonth + ' ' + `${year === thisYear ?  '' : year}`
 	}
 
-
 	return (
 		<>
 		<div className='bg-dark-soft position-relative overflow-hidden d-flex-column j-c-center border-radius-04 mb-xs-4'>
