@@ -243,55 +243,57 @@ const  PostFullScreenRoute = () => {
     
         const handleSubmitComment = (e) => {
             e.preventDefault()
-            if ( commentInFocus ) {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub => {
-                        if (fanclub.artistId === thisFanclub.artistId) {
-                            return {
-                                ...fanclub,
-                                posts: fanclub.posts.map(post => {
-                                    if (post.id === postInFocus.id) {
-                                        return {
-                                            ...post,
-                                            comments: post.comments.map(comment => {
-                                                if (comment.id === commentInFocus) {
-                                                    return {
-                                                        ...comment,
-                                                        comments: [...comment.comments, currentComment]
+            if ( currentComment.comment !== '' ) {
+                if ( commentInFocus ) {
+                    setFanclubs(prevFanclubs =>
+                        prevFanclubs.map(fanclub => {
+                            if (fanclub.artistId === thisFanclub.artistId) {
+                                return {
+                                    ...fanclub,
+                                    posts: fanclub.posts.map(post => {
+                                        if (post.id === postInFocus.id) {
+                                            return {
+                                                ...post,
+                                                comments: post.comments.map(comment => {
+                                                    if (comment.id === commentInFocus) {
+                                                        return {
+                                                            ...comment,
+                                                            comments: [...comment.comments, currentComment]
+                                                        }
                                                     }
-                                                }
-                                                return comment
-                                            })
+                                                    return comment
+                                                })
+                                            }
                                         }
-                                    }
-                                    return post
-                                })
+                                        return post
+                                    })
+                                }
                             }
-                        }
-                        return fanclub
-                    })
-                )
-                setCommentInFocus(null)
-            } else if ( !commentInFocus ) {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub => {
-                        if (fanclub.artistId === thisFanclub.artistId) {
-                            return {
-                                ...fanclub,
-                                posts: fanclub.posts.map(post => {
-                                    if (post.id === postInFocus.id) {
-                                        return {
-                                            ...post,
-                                            comments: [...post.comments, currentComment]
+                            return fanclub
+                        })
+                    )
+                    setCommentInFocus(null)
+                } else if ( !commentInFocus ) {
+                    setFanclubs(prevFanclubs =>
+                        prevFanclubs.map(fanclub => {
+                            if (fanclub.artistId === thisFanclub.artistId) {
+                                return {
+                                    ...fanclub,
+                                    posts: fanclub.posts.map(post => {
+                                        if (post.id === postInFocus.id) {
+                                            return {
+                                                ...post,
+                                                comments: [...post.comments, currentComment]
+                                            }
                                         }
-                                    }
-                                    return post
-                                })
+                                        return post
+                                    })
+                                }
                             }
-                        }
-                        return fanclub
-                    })
-                )
+                            return fanclub
+                        })
+                    )
+                }
             }
             
             setCurrentComment({

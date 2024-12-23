@@ -146,55 +146,57 @@ const Fanclub = () => {
 
     const handleSubmitComment = (e) => {
         e.preventDefault()
-        if ( commentInFocus ) {
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub => {
-                    if (fanclub.artistId === context.id) {
-                        return {
-                            ...fanclub,
-                            posts: fanclub.posts.map(post => {
-                                if (post.id === postInFocus.id) {
-                                    return {
-                                        ...post,
-                                        comments: post.comments.map(comment => {
-                                            if (comment.id === commentInFocus) {
-                                                return {
-                                                    ...comment,
-                                                    comments: [...comment.comments, currentComment]
+        if ( currentComment.comment !== '' ) {
+            if ( commentInFocus ) {
+                setFanclubs(prevFanclubs =>
+                    prevFanclubs.map(fanclub => {
+                        if (fanclub.artistId === context.id) {
+                            return {
+                                ...fanclub,
+                                posts: fanclub.posts.map(post => {
+                                    if (post.id === postInFocus.id) {
+                                        return {
+                                            ...post,
+                                            comments: post.comments.map(comment => {
+                                                if (comment.id === commentInFocus) {
+                                                    return {
+                                                        ...comment,
+                                                        comments: [...comment.comments, currentComment]
+                                                    }
                                                 }
-                                            }
-                                            return comment
-                                        })
+                                                return comment
+                                            })
+                                        }
                                     }
-                                }
-                                return post
-                            })
+                                    return post
+                                })
+                            }
                         }
-                    }
-                    return fanclub
-                })
-            )
-            setCommentInFocus(null)
-        } else if ( !commentInFocus ) {
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub => {
-                    if (fanclub.artistId === context.id) {
-                        return {
-                            ...fanclub,
-                            posts: fanclub.posts.map(post => {
-                                if (post.id === postInFocus.id) {
-                                    return {
-                                        ...post,
-                                        comments: [...post.comments, currentComment]
+                        return fanclub
+                    })
+                )
+                setCommentInFocus(null)
+            } else if ( !commentInFocus ) {
+                setFanclubs(prevFanclubs =>
+                    prevFanclubs.map(fanclub => {
+                        if (fanclub.artistId === context.id) {
+                            return {
+                                ...fanclub,
+                                posts: fanclub.posts.map(post => {
+                                    if (post.id === postInFocus.id) {
+                                        return {
+                                            ...post,
+                                            comments: [...post.comments, currentComment]
+                                        }
                                     }
-                                }
-                                return post;
-                            })
+                                    return post;
+                                })
+                            }
                         }
-                    }
-                    return fanclub;
-                })
-            )
+                        return fanclub;
+                    })
+                )
+            }
         }
         
         setCurrentComment({
@@ -374,14 +376,12 @@ const Fanclub = () => {
 			setTriggered(false)
 		}, 2000)
 	}
-    
 
     return (
         <>
             <div className='d-flex-column j-c-start mt-xs-4'>
                 <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
                 <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
-                <p className='fsize-xs-1 f-w-200 grey-300'>{fanclub?.subscribers} {fanclub?.maxSubscribers? `/ ${fanclub?.maxSubscribers}` : ''} {fanclub?.subscribers !== 1 ? 'membri' : 'membro'}</p>
             </div>
             {fanclub?.posts.length === 0 ?
                 <div className='d-flex-column align-items-center mt-xs-16'>
@@ -401,7 +401,6 @@ const Fanclub = () => {
                     )}
                 </Container>
             }
-            
 
             <CommentsModalLayout
                 modalOpen={modalOpen}
