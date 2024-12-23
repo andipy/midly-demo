@@ -96,7 +96,7 @@ const SwipeCarouselFull = ({ images, text }) => {
 					<p className='w-min-100 fsize-xs-8 t-align-center f-w-600 pl-xs-4 pr-xs-4 line-height-140'>{text}</p>
 				}
 			</div>
-			{((images.length > 0 && text.length > 0) || images.length > 1) &&
+			{/* {((images.length > 0 && text.length > 0) || images.length > 1) &&
 				<div className='d-flex-row justify-center mt-xs-2 gap-0_25em'>
 					{[...images, ...(text && text !== '' ? [text] : [])].map((_, index) => (
 					<div
@@ -107,7 +107,7 @@ const SwipeCarouselFull = ({ images, text }) => {
 					></div>
 					))}
 				</div>
-			}
+			} */}
 		</div>
 	)
 }
