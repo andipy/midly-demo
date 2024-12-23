@@ -16,6 +16,7 @@ import TextbarComments from '../components/textbar-comments.component'
 import Comment from '../components/comment.component'
 import Post from '../components/post.component'
 import SettingsArea from '../components/settings-area.component.artist'
+import Snackbar from '../components/snackbar.component'
 
 import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
 import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanclub-empty.svg'
@@ -85,6 +86,12 @@ const FanclubRoute = () => {
             }
             if ( postInFocus.action === 'OPEN_SETTINGS' ) {
                 navigate(`/artist-app/fanclub/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
+            }
+            if ( postInFocus.action === 'SHARE_POST' ) {
+                triggerSnackbar('Link al post copiato negli appunti')
+            }
+            if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
+                navigate(`/artist-app/fanclub/focus/${postInFocus.post.id}`, { state: { ...postInFocus.post} })
             }
         }
     }, [postInFocus])
@@ -476,6 +483,16 @@ const FanclubRoute = () => {
         )
     }
 
+    const [triggered, setTriggered] = useState(false)
+	const [messageSnackbar, setMessageSnackbar] = useState('')
+	const triggerSnackbar = (message) => {
+		setMessageSnackbar(message)
+		setTriggered(true)
+		setTimeout(() => {
+			setTriggered(false)
+		}, 2000)
+	}
+
     return (
         <>
             <Navbar fanclub={fanclub} background={'transparent100'} />
@@ -606,6 +623,8 @@ const FanclubRoute = () => {
                     </Container>
                 </FullPageCenter>
             }
+
+            <Snackbar message={messageSnackbar} triggered={triggered} />
         </>
     )
 }

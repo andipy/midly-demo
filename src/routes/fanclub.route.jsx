@@ -12,6 +12,7 @@ import TextbarComments from '../components/textbar-comments.component'
 import Container from '../layout/container.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
+import Snackbar from '../components/snackbar.component'
 
 const Fanclub = () => {
     const navigate = useNavigate()
@@ -106,6 +107,9 @@ const Fanclub = () => {
             }
             if ( postInFocus.action === 'OPEN_SETTINGS' ) {
                 navigate(`/artist-app/fanclub/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
+            }
+            if ( postInFocus.action === 'SHARE_POST' ) {
+                triggerSnackbar('Link al post copiato negli appunti')
             }
         }
     }, [postInFocus])
@@ -357,6 +361,16 @@ const Fanclub = () => {
             return () => clearTimeout(endDelay)
         }
     }, [isExiting])
+
+    const [triggered, setTriggered] = useState(false)
+	const [messageSnackbar, setMessageSnackbar] = useState('')
+	const triggerSnackbar = (message) => {
+		setMessageSnackbar(message)
+		setTriggered(true)
+		setTimeout(() => {
+			setTriggered(false)
+		}, 2000)
+	}
     
 
     return (
@@ -435,6 +449,8 @@ const Fanclub = () => {
                     </Container>
 	            </FullPageCenter>
             }
+
+            <Snackbar message={messageSnackbar} triggered={triggered} />
             
         </>
     )

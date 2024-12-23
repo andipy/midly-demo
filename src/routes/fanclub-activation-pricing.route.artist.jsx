@@ -92,7 +92,7 @@ const FanclubActivationPricingRoute = () => {
                         ...fanclub,
                         pricing: pricing,
                         isActive: true,
-                        subscribers: 10
+                        subscribers: 0
                     }
                     : fanclub
             )

@@ -106,7 +106,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 			}
 
 			<div className={`w-100  j-c-center align-items-center position-relative`}>
-				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`}>
+				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} onClick={() => focusPost(post.id, 'FULL_SCREEN_POST')}>
 					{post.media.length >= 0 ?
 						<SwipeCarousel images={post.media} text={post.text} />
 					:
@@ -180,9 +180,9 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 								<p className='fsize-xs-1'>{post.comments.length}</p>
 							</div>
 
-							<div className='d-flex-row align-items-center gap-0_25em'>
+							<div className='d-flex-row align-items-center gap-0_25em' onClick={() => focusPost(post.id, 'SHARE_POST')}>
 								<img className='avatar-28 bg-dark-soft-2 border-radius-04' src={IconShare}/>
-								<p className='fsize-xs-1'>{post.shares}</p>
+								{/* <p className='fsize-xs-1'>{post.shares}</p> */}
 							</div>
 						</div>
 

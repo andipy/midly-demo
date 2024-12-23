@@ -79,6 +79,7 @@ import FanclubManageUsersRoute from './routes/fanclub-manage-users.route.artist'
 import UserModerationRoute from './routes/user-moderation.route'
 import UserModerationBlockRoute from './routes/user-moderation-block.route'
 import UserModerationReportRoute from './routes/user-moderation-report.route'
+import PostFullScreenRoute from './routes/post-full-screen.route'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -134,6 +135,9 @@ const router = createBrowserRouter([
 				},{
 					path: '/artist/:artistSlug/fanclub/user-moderation/report',
 					element: <UserModerationReportRoute />,
+				},{
+					path: '/artist/:artistSlug/fanclub/:postId',
+					element: <PostFullScreenRoute />,
 				}
 			]
 		  },
@@ -186,6 +190,9 @@ const router = createBrowserRouter([
 				element: <UserModerationReportRoute />,
 			}
 		]
+	},, {
+		path: '/artist-app/fanclub/focus/:postId',
+		element: <PostFullScreenRoute />,
 	},{
 		path: '/artist-app/fanclub/activation/info',
 		element: <FanclubActivationInfoRoute />
