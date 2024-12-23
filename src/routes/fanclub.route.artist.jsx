@@ -492,7 +492,6 @@ const FanclubRoute = () => {
 			setTriggered(false)
 		}, 2000)
 	}
-
     return (
         <>
             <Navbar fanclub={fanclub} background={'transparent100'} />

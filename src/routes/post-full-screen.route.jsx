@@ -29,7 +29,7 @@ const  PostFullScreenRoute = () => {
     }, [post])
   return (
     <FullPageCenter>
-        <NavbarCloseOnly />
+        <NavbarCloseOnly transparent={true}/>
         <div className="d-flex-row j-c-center align-items-center w-100 h-100" >
             {post?.media?.length >= 0 ?
                 <SwipeCarouselFull images={post.media} text={post.text} />
