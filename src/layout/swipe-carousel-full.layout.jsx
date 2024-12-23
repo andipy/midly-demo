@@ -69,7 +69,7 @@ const SwipeCarouselFull = ({ images, text }) => {
 			onTouchEnd={canSlide ? handleDragEnd : undefined}
 		>
 			<div
-				className='carousel-track d-flex-row align-items-center object-fit-cover w-100 h-min-100'
+				className='carousel-track d-flex-row align-items-center object-fit-cover w-100 h-100'
 				ref={trackRef}
 				style={{
 					transform: `translateX(-${currentIndex * 100}%)`,

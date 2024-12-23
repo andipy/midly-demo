@@ -26,9 +26,9 @@ const  PostFullScreenRoute = () => {
             }
     }, [post])
   return (
-    <div className={'d-flex-row j-c-center align-items-center'}>
-        <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} transparent={true} forcedExitPath={'/artist-app/fanclub'} />
-        <div className="d-flex-row j-c-center align-items-center">
+    <div className="h-100vh d-flex-row j-c-center align-items-center">
+        <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} transparent={true}  />
+        <div className="d-flex-row j-c-center align-items-center w-100 h-100" >
             {post?.media?.length >= 0 ?
                 <SwipeCarouselFull images={post.media} text={post.text} />
                     :
