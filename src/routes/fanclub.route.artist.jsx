@@ -85,13 +85,13 @@ const FanclubRoute = () => {
                 openComments(postInFocus.id)
             }
             if ( postInFocus.action === 'OPEN_SETTINGS' ) {
-                navigate(`/artist-app/fanclub/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
+                navigate(`/artist-app/fanclub/edit-post/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
             }
             if ( postInFocus.action === 'SHARE_POST' ) {
                 triggerSnackbar('Link al post copiato negli appunti')
             }
             if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
-                navigate(`/artist-app/fanclub/focus/${postInFocus.post.id}`, { state: { ...postInFocus.post} })
+                navigate(`/artist-app/fanclub/${postInFocus.post.id}`, { state: { ...postInFocus.post} })
             }
         }
     }, [postInFocus])

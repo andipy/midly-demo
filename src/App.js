@@ -177,7 +177,7 @@ const router = createBrowserRouter([
 				path: '/artist-app/fanclub/activation/terms',
 				element: <FanclubTermsRoute />
 			},{
-				path: '/artist-app/fanclub/:postId',
+				path: '/artist-app/fanclub/edit-post/:postId',
 				element: <PostSettingsRoute />
 			},{
 				path: '/artist-app/fanclub/user-moderation',
@@ -190,8 +190,8 @@ const router = createBrowserRouter([
 				element: <UserModerationReportRoute />,
 			}
 		]
-	},, {
-		path: '/artist-app/fanclub/focus/:postId',
+	},{
+		path: '/artist-app/fanclub/:postId',
 		element: <PostFullScreenRoute />,
 	},{
 		path: '/artist-app/fanclub/activation/info',
@@ -311,22 +311,22 @@ const router = createBrowserRouter([
 	},{
 		path: '/personal-user-points',
 		element: <PersonalUserPointsRoute />
-	}, {
+	},{
 		path: '/spotify-accept',
 		element: <SpotifyAcceptRoute />
-	}, {
+	},{
 		path: '/spotify-login',
 		element: <SpotifyLoginRoute />
 	},{
 		path: '/artist-app/fanclub/activity',
 		element: <FanclubNotificationsRoute />
-	}, {
+	},{
 		path: '/artist-app/profile',
 		element: <ProfileArtistRoute />
-	}, {
+	},{
 		path: '/artist-app/terms-and-conditions-artists',
 		element: <TermsConditionsArtistsRoute />
-	}, {
+	},{
 		path: '/artist-app/privacy-policy-artists',
 		element: <PrivacyPolicyArtistsRoute />
 	},{
@@ -335,7 +335,7 @@ const router = createBrowserRouter([
 	},{
 		path: '/test',
 		element: <IconTestRoute />
-	}, {
+	},{
 		path: '/artist-app/fanclub/settings/manage-users',
 		element: <FanclubManageUsersRoute />
 	}

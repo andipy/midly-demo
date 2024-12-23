@@ -19,7 +19,7 @@ const NavbarArtistPage = ({ artist, onClick, quiz }) => {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.pageYOffset >= 100) {
+            if (window.pageYOffset >= 165) {
                 setScrolled(true);
             } else {
                 setScrolled(false);
