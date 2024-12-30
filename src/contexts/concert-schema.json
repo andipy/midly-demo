@@ -31,7 +31,14 @@
     share: {
         shareCount: 0,
         shareLink: undefined
-    }
+    },
+    participants: [
+        {
+            userId: 1
+        },{
+            userId: 2
+        }
+    ]
 }
 
 // TOUR
@@ -86,5 +93,12 @@
     share: {
         shareCount: 0,
         shareLink: undefined
-    }
+    },
+    participants: [
+        {
+            userId: 1
+        },{
+            userId: 2
+        }
+    ]
 }
