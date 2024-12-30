@@ -1,0 +1,90 @@
+// SINGLE DATE CONCERT
+{
+    id: 1,
+    artistId: currentArtist.id,
+    publisher: {
+        type: '',
+        id: 1
+    },
+    type: 'CONCERT',
+    createdAt: timestamp,
+    cover: {
+        type: //'IMAGE' or 'VIDEO',
+        url: ''
+    },
+    name: '',
+    date: timestamp,
+    place: {
+        mainPlace: '',
+        city: '',
+        address: '',
+        province: '',
+        zipCode: ''
+    }
+    buyLinks: ['', ''],
+    settings: {
+        isPrivate: true,
+        isPinned: false,
+    },
+    likes: [],
+    comments: [],
+    share: {
+        shareCount: 0,
+        shareLink: undefined
+    }
+}
+
+// TOUR
+{
+    id: 1,
+    artistId: currentArtist.id,
+    publisher: {
+        type: '',
+        id: 1
+    },
+    type: 'TOUR',
+    createdAt: timestamp,
+    cover: {
+        type: //'IMAGE' or 'VIDEO',
+        url: ''
+    },
+    name: '',
+    buyLinks: ['', ''],
+    dates: [
+        {
+            id: 1,
+            cover: {
+                type: //'IMAGE' or 'VIDEO',
+                url: ''
+            },
+            date: timestamp,
+            mainPlace: '',
+            city: '',
+            address: '',
+            province: '',
+            zipCode: ''
+        },{
+            id: 2,
+            cover: {
+                type: //'IMAGE' or 'VIDEO',
+                url: ''
+            },
+            date: timestamp,
+            mainPlace: '',
+            city: '',
+            address: '',
+            province: '',
+            zipCode: ''
+        }
+    ],
+    settings: {
+        isPrivate: true,
+        isPinned: false,
+    },
+    likes: [],
+    comments: [],
+    share: {
+        shareCount: 0,
+        shareLink: undefined
+    }
+}
