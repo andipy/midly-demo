@@ -23,7 +23,7 @@ const ConcertCreationRoute = () => {
     //STATE
     const [typeSelected, setTypeSelected] = useState(0)
 
-   /*  useEffect(() => {
+    useEffect(() => {
         setFile({url: undefined,type: undefined})
         setEventName('')
         setEventDate('')
@@ -37,7 +37,7 @@ const ConcertCreationRoute = () => {
         setIsPinned(false)
         setTourStops([])
 
-    }, [typeSelected]) */
+    }, [typeSelected])
 
 
     //COVER
