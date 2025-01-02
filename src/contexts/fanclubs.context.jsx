@@ -29,7 +29,8 @@ export const FanclubsProvider = ({ children }) => {
             province: null,
             beneficiary: null,
             iban: null,
-            posts: []
+            posts: [],
+            concerts: []
         },{
             id: 2,
             artistId: 'a3p8',
@@ -54,7 +55,8 @@ export const FanclubsProvider = ({ children }) => {
             province: null,
             beneficiary: null,
             iban: null,
-            posts: []
+            posts: [],
+            concerts: []
         },{
             id: 3,
             artistId: 3,
@@ -79,7 +81,8 @@ export const FanclubsProvider = ({ children }) => {
             province: null,
             beneficiary: null,
             iban: null,
-            posts: []
+            posts: [],
+            concerts: []
         }
     ])
 

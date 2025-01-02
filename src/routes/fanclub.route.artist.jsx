@@ -22,6 +22,7 @@ import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
 import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanclub-empty.svg'
 import IconEdit from "../images/icons/icon-edit.svg"
 import UserModeration from '../components/user-moderation.component'
+import PostType from '../components/post-type-popup.component'
 
 
 const FanclubRoute = () => {
@@ -497,10 +498,12 @@ const FanclubRoute = () => {
 		}, 2000)
 	}
 
+    const [createContent, setCreateContent] = useState(false)
+
     
     return (
         <>
-            <Navbar fanclub={fanclub} background={'transparent100'} />
+            <Navbar fanclub={fanclub} background={'transparent100'} create={() => setCreateContent(true)}/>
             {fanclub?.isActive &&
                 <>
                     <div className='position-relative'>
@@ -537,7 +540,7 @@ const FanclubRoute = () => {
                             <Button
                                 style='bg-dark lime-400 border-lime fsize-xs-3 f-w-600 black w-70'
                                 label='Crea un contenuto'
-                                onClick={() => navigate('/artist-app/content-creation')}
+                                onClick={() => /* navigate('/artist-app/content-creation') */ setCreateContent(true)}
                             />
                         </Container >
                     :
@@ -627,6 +630,10 @@ const FanclubRoute = () => {
                         <Button style='bg-none border-blue-bright-600 blue-bright-600 border-radius-02 fsize-xs-3 f-w-500 mt-xs-4' label='Rimani qui' onClick={() => setShowComponent(false)} />
                     </Container>
                 </FullPageCenter>
+            }
+
+            {createContent &&
+                <PostType close={() => setCreateContent(false)} createPost={() => navigate('/artist-app/content-creation')} createConcert={() => navigate('/artist-app/concert-creation')}/>
             }
 
             <Snackbar message={messageSnackbar} triggered={triggered} />

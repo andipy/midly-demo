@@ -74,6 +74,8 @@ import FanclubActivationInfoRoute from './routes/fanclub-activation-info.route.a
 import FanclubActivationPricingRoute from './routes/fanclub-activation-pricing.route.artist'
 import PostSettingsRoute from './routes/post-settings.route.artist'
 import FanclubManageUsersRoute from './routes/fanclub-manage-users.route.artist'
+import ConcertCreationRoute from './routes/concert-creation.route.artist'
+import AddStopRoute from './routes/add-stop.route.artist'
 
 
 import UserModerationRoute from './routes/user-moderation.route'
@@ -232,6 +234,15 @@ const router = createBrowserRouter([
 	},{
 		path: '/artist-app/content-creation',
 		element: <ContentCreationRoute />
+	},{
+		path: '/artist-app/concert-creation',
+		element: <ConcertCreationRoute />,
+		children: [
+			{
+				path: '/artist-app/concert-creation/add-stop',
+				element: <AddStopRoute />
+			}
+		]
 	},{
 		path: '/artist-app/content-creation/post-review',
 		element: <ContentCreationReviewRoute />

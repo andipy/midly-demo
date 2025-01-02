@@ -7,13 +7,13 @@ import IconSettings from '../images/icons/icon-settings-white.svg'
 import IconInfo from '../images/icons/icon-info-white.svg'
 import IconInbox from '../images/icons/icon-inbox-white.svg'
 
-const Navbar = ({ fanclub, background }) => {
+const Navbar = ({ fanclub, background, create }) => {
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
 
     return (
-        <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0 ${background === 'transparent50' ? 'bg-black-transp50 shadow-dark-750' : background === 'transparent100' ? '' : background === 'solid-black' && 'bg-dark'}`}>
+        <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0 ${background === 'transparent50' ? 'bg-black-transp50 shadow-dark-750' : background === 'transparent100' && ''}`}>
             <div className='container d-flex-row align-items-center j-c-space-between'>
                 <div className='d-flex-row align-items-center j-c-center'>
                     <img src={Logo} alt='MIDLY' />
@@ -33,7 +33,7 @@ const Navbar = ({ fanclub, background }) => {
                             <img className='avatar-32' src={IconInbox} alt='M' />
                         </div>
                         
-                        <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32 border-radius-100' onClick={() => navigate('/artist-app/content-creation')}>
+                        <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32 border-radius-100' onClick={() => create()}>
                             <img src={IconPlus} alt='+' />
                         </button>
                     </div>
