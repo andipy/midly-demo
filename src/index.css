@@ -2678,6 +2678,12 @@ nav .container {
   height: 32px;
 }
 
+.image-wrapper {
+  width: 100vw; /* L'immagine occupa tutta la larghezza del viewport */
+  margin-left: calc((100vw - var(--container)) / -2); /* Allinea al bordo del viewport */
+  position: relative;
+}
+
 @media (min-width: 0px){
   :root {
       --container: 88vw;

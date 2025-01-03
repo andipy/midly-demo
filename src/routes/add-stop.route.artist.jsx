@@ -54,9 +54,15 @@ const AddStopRoute = () => {
 
     //EVENT DATE
     const [eventDate, setEventDate] = useState('')
+    const [eventDateNotFormatted, setEventDateNotFormatted] = useState('')
     const handleEventDate = (e) => {
+        const isoDate = e.target.value
+        const [year, month, day] = isoDate.split('-')
+        const formattedDate = `${day}-${month}-${year}`
+        console.log(formattedDate)
         e.preventDefault()
-        setEventDate(e.target.value)
+        setEventDateNotFormatted(e.target.value)
+        setEventDate(formattedDate)
     }
 
     //EVENT PLACE
@@ -186,9 +192,9 @@ const AddStopRoute = () => {
             <h1 className='fsize-xs-5 f-w-600 mb-xs-4 '>Quando sarà questa tappa?</h1>
             <input
                 className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-02 mt-xs-4'
-                type='text'
+                type='date'
                 placeholder={`${'Data evento'}`}
-                value={eventDate}
+                value={eventDateNotFormatted}
                 onChange={(e) => handleEventDate(e)}
             />
             <h1 className='fsize-xs-5 f-w-600 mb-xs-4 mt-xs-12'>Dove sarà questa tappa?</h1>

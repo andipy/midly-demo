@@ -13,6 +13,7 @@ import Container from '../layout/container.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 import Snackbar from '../components/snackbar.component'
+import PostConcert from '../components/post-concert.component'
 
 const Fanclub = () => {
     const navigate = useNavigate()
@@ -270,6 +271,31 @@ const Fanclub = () => {
         )
     }
 
+    const newPartecipation = (id) => {
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === context.id) {
+                    return {
+                        ...fanclub,
+                        concerts: fanclub.concerts.map(concert => {
+                            if (concert.id === id) {
+                                const partecipate = concert.participants.some(p => p.userId === currentFan.id)
+                                return {
+                                    ...concert,
+                                    participants: partecipate
+                                        ? concert.participants.filter(c => c.userId !== currentFan.id) // Rimuove il like
+                                        : [...concert.participants, { userId: currentFan.id }] // Aggiunge il like
+                                }
+                            }
+                            return concert
+                        })
+                    }
+                }
+                return fanclub
+            })
+        )
+    }
+
     const likeComment = (commentId, postId) => {
         setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub => {
@@ -377,18 +403,63 @@ const Fanclub = () => {
 		}, 2000)
 	}
 
+    const [mixedPosts, setMixedPosts] = useState([])
+    useEffect(() => {
+        const concerts = Array.isArray(fanclub?.concerts) ? fanclub.concerts : []
+        const posts = Array.isArray(fanclub?.posts) ? fanclub.posts : []
+        const mixed = [
+            ...concerts,
+            ...posts
+        ]
+        const sortedMixed = mixed.sort((a, b) => sortPosts(a,b))
+        setMixedPosts(sortedMixed)
+    }, [fanclub])
+
     return (
         <>
             <div className='d-flex-column j-c-start mt-xs-4'>
                 <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
                 <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
             </div>
-            {fanclub?.posts.length === 0 ?
+            {fanclub?.posts.length === 0 && fanclub?.concerts.lenght === 0 ?
                 <div className='d-flex-column align-items-center mt-xs-16'>
                     <p className='fsize-xs-2 f-w-200 grey-200 w-70 t-align-center mt-xs-4'>L'artista ha già attivato il suo fanclub! Resta sincronizzato e sii il primo a vedere i primi contenuti appena usciranno.</p>
                 </div>
             :
                 <Container style={'pb-xs-2 mt-xs-4'}>
+                    {
+                        mixedPosts.map(item => {
+                        if (item.type === 'CONCERT' || item.type === 'TOUR' ) {
+                            return (
+                                <PostConcert 
+                                concert={item}
+                                newPartecipation={newPartecipation}
+                                hasUserSubscribed={hasUserSubscribed}
+                                handleSubscription={handleSubscription}
+                            />
+                            )
+                        } else {
+                            return (
+                                <Post
+                                key={item.id}
+                                post={item}
+                                focusPost={focusPost}
+                                likePost={likePost}
+                                hasUserSubscribed={hasUserSubscribed}
+                                handleSubscription={handleSubscription}
+                            />
+                            )
+                        }
+                        })
+                    }
+                    {/* {fanclub?.concerts.map(concert =>
+                        <PostConcert 
+                            concert={concert}
+                            newPartecipation={newPartecipation}
+                            hasUserSubscribed={hasUserSubscribed}
+                            handleSubscription={handleSubscription}
+                        />
+                    )}
                     {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
                         <Post
                             key={post.id}
@@ -398,7 +469,7 @@ const Fanclub = () => {
                             hasUserSubscribed={hasUserSubscribed}
                             handleSubscription={handleSubscription}
                         />
-                    )}
+                    )} */}
                 </Container>
             }
 

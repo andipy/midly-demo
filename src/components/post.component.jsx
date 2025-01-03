@@ -82,7 +82,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 	return (
 		<>
-		<div className='bg-dark-soft position-relative overflow-hidden d-flex-column j-c-center border-radius-04 mb-xs-4'>
+		<div className='bg-dark-soft position-relative overflow-hidden d-flex-column j-c-center border-radius-04 mb-xs-8'>
 			<div className='d-flex-row w-100 j-c-space-between align-items-center pl-xs-2 mt-xs-2 mb-xs-2'>
 				<div className='d-flex-row j-c-start align-items-center gap-0_25em'>
 					{artist &&

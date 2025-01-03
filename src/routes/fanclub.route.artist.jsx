@@ -23,6 +23,7 @@ import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanc
 import IconEdit from "../images/icons/icon-edit.svg"
 import UserModeration from '../components/user-moderation.component'
 import PostType from '../components/post-type-popup.component'
+import PostConcert from '../components/post-concert.component'
 
 
 const FanclubRoute = () => {
@@ -500,7 +501,18 @@ const FanclubRoute = () => {
 
     const [createContent, setCreateContent] = useState(false)
 
-    
+    const [mixedPosts, setMixedPosts] = useState([])
+    useEffect(() => {
+        const concerts = Array.isArray(fanclub?.concerts) ? fanclub.concerts : []
+        const posts = Array.isArray(fanclub?.posts) ? fanclub.posts : []
+        const mixed = [
+            ...concerts,
+            ...posts
+        ]
+        const sortedMixed = mixed.sort((a, b) => sortPosts(a,b))
+        setMixedPosts(sortedMixed)
+    }, [fanclub])
+   
     return (
         <>
             <Navbar fanclub={fanclub} background={'transparent100'} create={() => setCreateContent(true)}/>
@@ -533,7 +545,7 @@ const FanclubRoute = () => {
 
             {fanclub?.isActive &&
                 <>
-                    {fanclub?.posts.length === 0 ?
+                    {fanclub?.posts.length === 0 && fanclub?.concerts.length === 0 ?
                         <Container style={'d-flex-column align-items-center mt-xs-20'}>
                             <h2 className='fsize-xs-5 f-w-600 grey-200 mb-xs-3'>Il tuo fanclub è attivo!</h2>
                             <p className='fsize-xs-3 f-w-400 grey-300 w-70 t-align-center mb-xs-4'>Pubblica contenuti a pagamento per i tuoi fan.</p>
@@ -543,8 +555,34 @@ const FanclubRoute = () => {
                                 onClick={() => /* navigate('/artist-app/content-creation') */ setCreateContent(true)}
                             />
                         </Container >
-                    :
+                    :   
                         <Container style={'pb-xs-appbar mt-xs-4'}>
+                            {
+                               mixedPosts.map(item => {
+                                if (item.type === 'CONCERT' || item.type === 'TOUR' ) {
+                                  return (
+                                    <PostConcert 
+                                        concert={item}
+                                    />
+                                  );
+                                } else {
+                                  return (
+                                    <Post
+                                        key={item.id}
+                                        artistId={fanclub?.artistId}
+                                        post={item}
+                                        focusPost={focusPost}
+                                        likePost={likePost}
+                                    />
+                                  );
+                                }
+                                })
+                            }
+                            {/* {fanclub?.concerts.map(concert =>
+                                <PostConcert 
+                                    concert={concert}
+                                />
+                            )}
                             {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
                                 <Post
                                     key={post.id}
@@ -553,7 +591,7 @@ const FanclubRoute = () => {
                                     focusPost={focusPost}
                                     likePost={likePost}
                                 />
-                            )}
+                            )} */}
                         </Container>
                     }
                 </>

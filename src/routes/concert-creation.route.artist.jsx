@@ -101,9 +101,15 @@ const ConcertCreationRoute = () => {
 
     //EVENT DATE
     const [eventDate, setEventDate] = useState('')
+    const [eventDateNotFormatted, setEventDateNotFormatted] = useState('')
     const handleEventDate = (e) => {
+        const isoDate = e.target.value
+        const [year, month, day] = isoDate.split('-')
+        const formattedDate = `${day}-${month}-${year}`
+        console.log(formattedDate)
         e.preventDefault()
-        setEventDate(e.target.value)
+        setEventDateNotFormatted(e.target.value)
+        setEventDate(formattedDate)
     }
 
     //EVENT PLACE
@@ -416,9 +422,8 @@ const ConcertCreationRoute = () => {
                     />
                     <input
                         className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-02 mt-xs-2'
-                        type='text'
-                        placeholder={`${'Data evento'}`}
-                        value={eventDate}
+                        type='date'
+                        value={eventDateNotFormatted}
                         onChange={(e) => handleEventDate(e)}
                     />
 
