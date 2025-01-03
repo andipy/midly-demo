@@ -47,11 +47,17 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
     <div className="mb-xs-8 position-relative">
     {concert.type === 'CONCERT' ?
     <>
-    <div className="position-relative h-xs-27 image-wrapper">
-        <img
-            className='w-100 h-inherit object-fit-cover'
-            src={concert.cover.url}
-        />
+    <div className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} position-relative h-xs-27 image-wrapper`}>
+        {concert?.cover.type === 'IMAGE' ?
+            <img
+                className='w-100 h-inherit object-fit-cover'
+                src={concert?.cover.url && concert.cover.url}
+            />
+        : concert?.cover.type === 'VIDEO' &&
+            <video className='w-100 h-inherit object-fit-cover' autoPlay playsInline loop muted>
+                <source src={concert?.cover.url && concert.cover.url} type='video/mp4' />
+            </video>
+        }
         <p className='grey-100 f-w-400 fsize-xs-2 position-absolute bottom-0 ml-xs-6'>{formatDate(concert.date)}</p>
         {!pathname.includes('/artist-app/') &&
             <div className='d-flex-row position-absolute bottom-0 right-0 mr-xs-2 mb-xs-2' onClick={() => newPartecipation(concert.id)}>
@@ -92,11 +98,17 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
     
     :
     <>
-    <div className="position-relative h-xs-27 image-wrapper">
-        <img
-            className='w-100 h-inherit object-fit-cover'
-            src={concert.cover.url}
-        />
+    <div className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} position-relative h-xs-27 image-wrapper`}>
+        {concert?.cover.type === 'IMAGE' ?
+            <img
+                className='w-100 h-inherit object-fit-cover'
+                src={concert?.cover.url && concert.cover.url}
+            />
+        : concert?.cover.type === 'VIDEO' &&
+            <video className='w-100 h-inherit object-fit-cover' autoPlay playsInline loop muted>
+                <source src={concert?.cover.url && concert.cover.url} type='video/mp4' />
+            </video>
+        }
         <p className='grey-100 f-w-400 fsize-xs-2 position-absolute bottom-0 ml-xs-6'>Tour</p>
         {!pathname.includes('/artist-app/') &&
             <div className='d-flex-row position-absolute bottom-0 right-0  mr-xs-2 mb-xs-2 ' onClick={() => newPartecipation(concert.id)}>
@@ -126,7 +138,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
             <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
         </div>
         {concert.dates.length > 0 &&
-            <section id='quiz' className='mt-xs-4'>
+            <section id='quiz' className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} mt-xs-4`}>
                 <h2 className='fsize-xs-5 f-w-600'>Tutte le tappe del tour</h2>
                 <Carousel>
                     {concert.dates.map(date => {
