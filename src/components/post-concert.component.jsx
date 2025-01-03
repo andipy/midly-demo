@@ -13,12 +13,13 @@ import Button from './button.component'
 import IconNotFav from '../images/icons/icon-favourites-inactive.svg'
 import IconFav from '../images/icons/icon-favourites-active.svg'
 import IconThunder from '../images/icons/icon-thunder.svg'
+import IconMessage from '../images/icons/icon-message.svg'
 
 
-const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscription}) => {
+const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscription, slug}) => {
     const { pathname } = useLocation()
     const { currentFan} = useContext(CurrentFanContext)
-
+    const navigate = useNavigate()
     const formatDate = (date) => {
         const months = [
             "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", 
@@ -60,19 +61,34 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
         }
         <p className='grey-100 f-w-400 fsize-xs-2 position-absolute bottom-0 ml-xs-6'>{formatDate(concert.date)}</p>
         {!pathname.includes('/artist-app/') &&
-            <div className='d-flex-row position-absolute bottom-0 right-0 mr-xs-2 mb-xs-2' onClick={() => newPartecipation(concert.id)}>
+            <div className='d-flex-row position-absolute bottom-0 right-0 mr-xs-2 mb-xs-2 '>
                 {partecipate ? (
-                    <img
-                        className="avatar-20"
-                        src={IconFav}
-                        alt="Liked"
-                    />
+                    <>
+                    <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center'  onClick={() => newPartecipation(concert.id)}> 
+                        <img
+                            className="avatar-16"
+                            src={IconFav}
+                            alt="Liked"
+                        />
+                    </div>
+                    <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center' onClick={() => navigate(`/artist/${slug}/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
+                        <img
+                            className="avatar-28"
+                            src={IconMessage}
+                            alt="Liked"
+                        />
+                    </div>
+                    </>
+                    
+                    
                 ) : (
+                    <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center'  onClick={() => newPartecipation(concert.id)}> 
                     <img
-                        className="avatar-20"
+                        className="avatar-16"
                         src={IconNotFav}
                         alt="Not Liked"
                     />
+                    </div>
             )}
             </div>
         }
@@ -111,20 +127,35 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
         }
         <p className='grey-100 f-w-400 fsize-xs-2 position-absolute bottom-0 ml-xs-6'>Tour</p>
         {!pathname.includes('/artist-app/') &&
-            <div className='d-flex-row position-absolute bottom-0 right-0  mr-xs-2 mb-xs-2 ' onClick={() => newPartecipation(concert.id)}>
+            <div className='d-flex-row position-absolute bottom-0 right-0 mr-xs-2 mb-xs-2 '>
                 {partecipate ? (
-                    <img
-                        className="avatar-20"
-                        src={IconFav}
-                        alt="Liked"
-                    />
+                    <>
+                    <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center'  onClick={() => newPartecipation(concert.id)}> 
+                        <img
+                            className="avatar-16"
+                            src={IconFav}
+                            alt="Liked"
+                        />
+                    </div>
+                    <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center'> 
+                        <img
+                            className="avatar-28"
+                            src={IconMessage}
+                            alt="Liked"
+                        />
+                    </div>
+                    </>
+                    
+                    
                 ) : (
+                    <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center'  onClick={() => newPartecipation(concert.id)}> 
                     <img
-                        className="avatar-20"
+                        className="avatar-16"
                         src={IconNotFav}
                         alt="Not Liked"
                     />
-                )}
+                    </div>
+            )}
             </div>
         }
         <div className='d-flex-row position-absolute top-0 right-0 mt-xs-2'>

@@ -436,6 +436,7 @@ const Fanclub = () => {
                                 newPartecipation={newPartecipation}
                                 hasUserSubscribed={hasUserSubscribed}
                                 handleSubscription={handleSubscription}
+                                slug={context.slug}
                             />
                             )
                         } else {

@@ -82,6 +82,7 @@ import UserModerationRoute from './routes/user-moderation.route'
 import UserModerationBlockRoute from './routes/user-moderation-block.route'
 import UserModerationReportRoute from './routes/user-moderation-report.route'
 import PostFullScreenRoute from './routes/post-full-screen.route'
+import ChatConcertRoute from './routes/chat-concert.route'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -140,7 +141,11 @@ const router = createBrowserRouter([
 				}
 			]
 		  },
+		  
 		],
+	},{
+		path: '/artist/:artistSlug/concert/chat',
+		element: <ChatConcertRoute />
 	},{
 		path: '/artist/:artistSlug/invite-friend',
 		element: <InviteFriendRoute />
