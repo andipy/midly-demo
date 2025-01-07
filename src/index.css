@@ -1467,6 +1467,11 @@ animation: dot-loader-after 1s infinite linear;
   display:-webkit-flex;
   flex-direction: column;
 }
+.d-grid-countdown {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: min-content;
+}
 .j-c-space-between {
   justify-content: space-between;
 }

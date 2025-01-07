@@ -11,13 +11,13 @@ import CountdownConcert from '../components/countdown-concert.component'
 import MessageChatConcert from '../components/message-chat-concert.component'
 import FullPageCenter from '../layout/full-page-center.layout'
 
-const ChatConcertRoute =() => {
+const ChatConcertRoute = () => {
 
-    const location = useLocation();
+    const location = useLocation()
     const { pathname } = useLocation()
     const { artistId, id } = location.state || {}
     const { currentFan } = useContext(CurrentFanContext)
-    const {fanclubs, setFanclubs} = useContext(FanclubsContext)
+    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const { artists } = useContext(ArtistsContext)
 
@@ -34,25 +34,44 @@ const ChatConcertRoute =() => {
         setArtist(foundArtist)
     }, [id])
 
+    // const formatDate = (date) => {
+    //     const months = [
+    //         "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", 
+    //         "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+    //     ]
 
-    const formatDate = (date) => {
-        const months = [
-            "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", 
-            "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
-        ]
+    //     if ( date ) {
+    //         const [day, month, year] = date?.split('-')
+    //         const formattedDay = day.startsWith('0') ? day.slice(1) : day
+    //         const monthName = months[parseInt(month, 10) - 1]
+    //         return `${formattedDay} ${monthName} ${year}`
+    //     }   
+    // }
 
-        if (date) {
-            const [day, month, year] = date?.split('-')
-
-            const formattedDay = day.startsWith('0') ? day.slice(1) : day
-
-            const monthName = months[parseInt(month, 10) - 1]
-            
-            return `${formattedDay} ${monthName} ${year}`
-        }   
+    const getDay = (date) => {
+        if ( date ) {
+            const [day] = date.split('-')
+            return day.padStart(2, '0')
+        }
     }
 
-    
+    const getMonth = (date) => {
+        if ( date ) {
+            const [, month] = date.split('-')
+            const monthNames = [
+                "GEN", "FEB", "MAR", "APR", "MAG", "GIU", 
+                "LUG", "AGO", "SET", "OTT", "NOV", "DIC"
+            ]
+            return monthNames[parseInt(month, 10) - 1]
+        }
+    }
+
+    const getYear = (date) => {
+        if ( date ) {
+            const [, , year] = date.split('-')
+            return year
+        }
+    }
 
     const [currentComment, setCurrentComment] = useState({
         type: 'COMMENT',
@@ -144,71 +163,71 @@ const ChatConcertRoute =() => {
         setChatOpen(false)
     }
 
-    
-    
+    return (
+        <>
+            <NavbarConcertChat id={artistId} concertId={id}/>
 
-  return (
-    <>
-        <NavbarConcertChat id={artistId} concertId={id}/>
-       {/*  <Container style={'pt-xs-topbar d-flex-column align-items-center j-c-center'}>
-            <CountdownConcert date ={concert?.date}/>
-        </Container> */}
-        <div className='w-100 d-flex-column j-c-center align-items-center bg-black pt-xs-topbar position-fixed z-index-999'>
-            <div className='d-flex-row j-c-space-between align-items-center w-80'>
-                <p>{artist?.artistName}</p>
-                <p>{concert?.name}</p>
+            <div className='w-100 pt-xs-topbar z-index-999'>
+                <div className='w-100 d-flex-column j-c-center align-items-center  bg-acid-lime pt-xs-2 pb-xs-2'>
+                    <Container style='d-flex-row gap-0_5em'>
+                        <div className='d-flex-column align-items-center j-c-center bg-dark border-radius-04 avatar-80'>
+                            <p className='fsize-xs-9 line-height-1'>{getDay(concert?.date)}</p>
+                            <p className='fsize-xs-3 line-height-1'>{getMonth(concert?.date)}</p>
+                            <p className='fsize-xs-2 line-height-1'>{getYear(concert?.date)}</p>
+                        </div>
+                        <div className='d-flex-column align-items-start j-c-center'>
+                            <p className='fsize-xs-5 f-w-700 black'>{artist?.artistName}</p>
+                            <p className='fsize-xs-5 f-w-700 black'>{concert?.place.mainPlace}</p>
+                        </div>
+                        {/* <CountdownConcert date ={concert?.date}/> */}
+                    </Container>
+                </div>
             </div>
-            <div className='d-flex-row j-c-space-between align-items-center w-80'>
-                <p>{formatDate(concert?.date)}</p>
-                <p>{concert?.place.mainPlace}</p>
-            </div>
-            <CountdownConcert date ={concert?.date}/>
-        </div>
+
             {!pathname.includes('/artist-app/') && 
-                <Container style={'pt-xs-chat pb-xs-appbar'}>
-                    {concert?.messages && concert?.messages.length > 0 ? (
+                <Container style='pt-xs-8 pb-xs-appbar'>
+                    {concert?.messages && concert?.messages.length > 0 ?
                         concert?.messages.map((mess, index) => (
                             <MessageChatConcert 
                                 message={mess}
                                 currentUserId={currentFan?.id}
                             />
                         ))
-                    ) : (
+                    :
                         <FullPageCenter>
                             <h3 className='t-align-center grey-200 fsize-xs-6 f-w-400 w-80 line-height-140'>Avvia la chat!</h3>
                         </FullPageCenter>
-                    )}
+                    }
                 </Container>
             }
+
             {pathname.includes('/artist-app/') && 
-                <Container style={'pt-xs-chat pb-xs-appbar'}>
-                    {concert?.messages && concert?.messages.length > 0 ? (
+                <Container style='mt-xs-4 pb-xs-appbar'>
+                    {concert?.messages && concert?.messages.length > 0 ?
                         concert?.messages.map((mess, index) => (
                             <MessageChatConcert 
                                 message={mess}
                                 currentUserId={currentArtist?.id}
                             />
                         ))
-                    ) : (
+                    :
                         <FullPageCenter>
                             <h3 className='t-align-center grey-200 fsize-xs-6 f-w-400 w-80 line-height-140'>Avvia la chat!</h3>
                         </FullPageCenter>
-                        
-                    )}
+                    }
                 </Container>
             }
-        
-        <div className={`position-fixed bg-dark-soft bottom-0 w-100 z-index-5 border-radius-top-08 shadow-dark-750`}>
-    
-        <Textbar
-                onClick={() => setChatOpen(true)}
-                currentComment={currentComment}
-                handleCurrentComment={handleCurrentComment}
-                handleSubmitComment={handleSubmitComment} 
-            />
-        </div>
-    </>
-  )
+            
+            <div className='position-fixed bg-dark-soft bottom-0 w-100 z-index-5 border-radius-top-08 shadow-dark-750'>
+                <Textbar
+                    onClick={() => setChatOpen(true)}
+                    currentComment={currentComment}
+                    handleCurrentComment={handleCurrentComment}
+                    handleSubmitComment={handleSubmitComment} 
+                />
+            </div>
+        </>
+    )
 }
 
 export default ChatConcertRoute

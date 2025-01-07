@@ -3,7 +3,7 @@ import IconTime from '../images/icons/icon-time.svg'
 
 const CountdownConcert = ({date}) => {
     const [text, setText] = useState(null)
-    const [label, setLabel] = useState('')
+    // const [label, setLabel] = useState('')
     const [ended, setEnded] = useState(false)
     const [targetDate, setTargetDate] = useState('')
     const [timeRemaining, setTimeRemaining] = useState({ 
@@ -16,21 +16,18 @@ const CountdownConcert = ({date}) => {
     const now = new Date()
 
     useEffect(() => {
-        if (date) {
+        if ( date ) {
             const [day, month, year] = date.split('-')
             const formattedDate = `${year}-${month}-${day}`
             const founddate = new Date(formattedDate)
             const updateLabel = () => {
                 if (now < founddate ) {
                     setTargetDate(founddate)
-                    setLabel('Il live inizia tra: ')
+                    //setLabel('Il live inizia tra: ')
                 } 
             }
             updateLabel()
         }
-        
-
-        
     }, [date])
 
     useEffect(() => {
@@ -52,37 +49,93 @@ const CountdownConcert = ({date}) => {
         return () => clearInterval(interval)
     }, [targetDate])
 
-    useEffect(() => {
-        setText(label)
-    }, [label])
+    // useEffect(() => {
+    //     setText(label)
+    // }, [label])
 
-  return (
-    <div className={`d-flex-row align-items-center pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-2 mb-xs-2 mt-xs-2 bg-white-transp15 border-radius-100 w-max-content no-shrink ${ended ? 'pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4' : ''}`}>
+    return (
+        <div className='d-grid-countdown align-items-center gap-0_5em'>
+            {/* <span className='f-w-600'>{text}</span> */}
             {!ended &&
-                <img className='avatar-28' src={IconTime} />
+                <>
+                    {timeRemaining.days > 0 &&
+                        <div className='d-inline-flex-row j-c-center align-items-start gap-0_25em'>
+                            {timeRemaining.days
+                                .toString()
+                                .padStart(2, '0')
+                                .split('')
+                                .map((digit, index) => (
+                                    <p
+                                        key={index}
+                                        className='f-w-400 bg-white-transp15 fsize-xs-8 pt-xs-4 pb-xs-4 pl-xs-10 pr-xs-10 no-shrink border-radius-03'
+                                    >
+                                        {digit}
+                                    </p>
+                                ))}
+                        </div>
+                    }
+                    <p className='f-w-400 fsize-xs-8'>:</p>
+                    {timeRemaining.days > 0 &&
+                        <div className='d-inline-flex-row j-c-center align-items-start gap-0_25em'>
+                            {timeRemaining.hours
+                                .toString()
+                                .padStart(2, '0')
+                                .split('')
+                                .map((digit, index) => (
+                                    <p
+                                        key={index}
+                                        className='f-w-400 bg-white-transp15 fsize-xs-8 pt-xs-4 pb-xs-4 pl-xs-10 pr-xs-10 no-shrink border-radius-03'
+                                    >
+                                        {digit}
+                                    </p>
+                                ))}
+                        </div>
+                    }
+                    <p className='f-w-400 fsize-xs-8'>:</p>
+                    {timeRemaining.hours > 0 &&
+                        <div className='d-inline-flex-row j-c-center align-items-start gap-0_25em'>
+                            {timeRemaining.minutes
+                                .toString()
+                                .padStart(2, '0')
+                                .split('')
+                                .map((digit, index) => (
+                                    <p
+                                        key={index}
+                                        className='f-w-400 bg-white-transp15 fsize-xs-8 pt-xs-4 pb-xs-4 pl-xs-10 pr-xs-10 no-shrink border-radius-03'
+                                    >
+                                        {digit}
+                                    </p>
+                                ))}
+                        </div>
+                    }
+                    <p className='f-w-400 fsize-xs-8'>:</p>
+                    {timeRemaining.minutes > 0 &&
+                        <div className='d-inline-flex-row j-c-center align-items-start gap-0_25em'>
+                            {timeRemaining.seconds
+                                .toString()
+                                .padStart(2, '0')
+                                .split('')
+                                .map((digit, index) => (
+                                    <p
+                                        key={index}
+                                        className='f-w-400 bg-white-transp15 fsize-xs-8 pt-xs-4 pb-xs-4 pl-xs-10 pr-xs-10 no-shrink border-radius-03'
+                                    >
+                                        {digit}
+                                    </p>
+                                ))}
+                        </div>
+                    }
+                    <span>giorni</span>
+                    <span></span>
+                    <span>ore</span>
+                    <span></span>
+                    <span>minuti</span>
+                    <span></span>
+                    <span>secondi</span>
+                </>
             }
-
-            <div className='d-flex-row gap-0_5em fsize-xs-1 no-shrink'>
-                <span className='f-w-600'>{text}</span>
-                {!ended &&
-                    <>
-                        {timeRemaining.days !== 0 &&
-                            <span className='f-w-600'>{timeRemaining.days}<span className='f-w-300'>d</span></span>
-                        }
-                        {timeRemaining.hours !== 0 &&
-                            <span className='f-w-600'>{timeRemaining.hours}<span className='f-w-300'>h</span></span>
-                        }
-                        {timeRemaining.minutes !== 0 &&
-                            <span className='f-w-600'>{timeRemaining.minutes}<span className='f-w-300'>m</span></span>
-                        }
-                        {timeRemaining.seconds !== 0 &&
-                            <span className='f-w-600'>{timeRemaining.seconds}<span className='f-w-300'>s</span></span>
-                        }
-                    </>
-                }
-            </div>
         </div>
-  )
+    )
 }
 
 export default CountdownConcert
