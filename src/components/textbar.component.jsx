@@ -13,6 +13,8 @@ const Textbar = ({ currentComment, handleCurrentComment, handleSubmitComment, on
                     type='text'
                     name='user-message'
                     placeholder={
+                        pathname.includes('concert') ?
+                        "Messaggio" :
                         !pathname.includes('artist-app') ?
                             'Lascia un commento'
                         :

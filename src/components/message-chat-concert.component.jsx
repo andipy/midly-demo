@@ -4,7 +4,7 @@ const MessageChatConcert = ({message, currentUserId}) => {
     <>
     {message?.userId === currentUserId ?
     <div className="d-flex-column j-c-center align-items-end mb-xs-4 ">
-        <div className="bg-acid-lime-op-75 border-radius-08 pt-xs-2 pb-xs-2 pl-xs-4 pr-xs-4 ml-xs-20"> 
+        <div className="bg-dark-soft-2 border-radius-08 pt-xs-2 pb-xs-2 pl-xs-4 pr-xs-4 ml-xs-20"> 
             {/* <div className="d-flex-row j-c-start align-items-center ">
                 {message?.userImage ? 
                     <img
