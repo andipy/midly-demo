@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from 'react'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
+import { ArtistsContext } from '../contexts/artists.context'
 import NavbarConcertChat from '../components/navbar-concert-chat.component'
 import Textbar from '../components/textbar.component'
 import Container from '../layout/container.layout'
@@ -18,6 +19,7 @@ const ChatConcertRoute =() => {
     const { currentFan } = useContext(CurrentFanContext)
     const {fanclubs, setFanclubs} = useContext(FanclubsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
+    const { artists } = useContext(ArtistsContext)
 
     const [concert, setConcert] = useState()
     useEffect(() =>{
@@ -25,6 +27,30 @@ const ChatConcertRoute =() => {
         const foundConcert = foundFanclub?.concerts.find(concert => concert?.id === id)
         setConcert(foundConcert)
     }, [id, fanclubs])
+
+    const [artist, setArtist] = useState()
+    useEffect(() =>{
+        const foundArtist = artists.find(artist => artist.id === artistId)
+        setArtist(foundArtist)
+    }, [id])
+
+
+    const formatDate = (date) => {
+        const months = [
+            "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", 
+            "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+        ]
+
+        if (date) {
+            const [day, month, year] = date?.split('-')
+
+            const formattedDay = day.startsWith('0') ? day.slice(1) : day
+
+            const monthName = months[parseInt(month, 10) - 1]
+            
+            return `${formattedDay} ${monthName} ${year}`
+        }   
+    }
 
     
 
@@ -127,11 +153,19 @@ const ChatConcertRoute =() => {
        {/*  <Container style={'pt-xs-topbar d-flex-column align-items-center j-c-center'}>
             <CountdownConcert date ={concert?.date}/>
         </Container> */}
-        <div className='w-100 d-flex-row j-c-center align-items-center bg-black pt-xs-topbar position-fixed z-index-999'>
+        <div className='w-100 d-flex-column j-c-center align-items-center bg-black pt-xs-topbar position-fixed z-index-999'>
+            <div className='d-flex-row j-c-space-between align-items-center w-80'>
+                <p>{artist?.artistName}</p>
+                <p>{concert?.name}</p>
+            </div>
+            <div className='d-flex-row j-c-space-between align-items-center w-80'>
+                <p>{formatDate(concert?.date)}</p>
+                <p>{concert?.place.mainPlace}</p>
+            </div>
             <CountdownConcert date ={concert?.date}/>
         </div>
             {!pathname.includes('/artist-app/') && 
-                <Container style={'pt-xs-32 pb-xs-appbar'}>
+                <Container style={'pt-xs-chat pb-xs-appbar'}>
                     {concert?.messages && concert?.messages.length > 0 ? (
                         concert?.messages.map((mess, index) => (
                             <MessageChatConcert 
@@ -147,7 +181,7 @@ const ChatConcertRoute =() => {
                 </Container>
             }
             {pathname.includes('/artist-app/') && 
-                <Container style={'pt-xs-32 pb-xs-appbar'}>
+                <Container style={'pt-xs-chat pb-xs-appbar'}>
                     {concert?.messages && concert?.messages.length > 0 ? (
                         concert?.messages.map((mess, index) => (
                             <MessageChatConcert 

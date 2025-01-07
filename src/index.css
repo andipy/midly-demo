@@ -3063,7 +3063,10 @@ nav .container {
   }
   .pt-xs-32 {
     padding-top: 32%;
-}
+  }
+  .pt-xs-chat {
+    padding-top: 50%;
+  }
   .pt-xs-topbar {
       padding-top: calc(var(--top-bar-height) * 1.05);
   }

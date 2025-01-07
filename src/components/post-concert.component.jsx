@@ -17,6 +17,7 @@ import IconMessage from '../images/icons/icon-message.svg'
 import IconGroup from '../images/icons/icon-group.svg'
 import IconGroupBlack from '../images/icons/icon-group-black.svg'
 import IconOkBlack from '../images/icons/icon-ok-black.svg'
+import IconSettings from '../images/icons/icon-settings-white.svg'
 
 
 const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscription, slug}) => {
@@ -73,8 +74,13 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
         </div>
     </div>
     <Container>
-        <div className="d-flex-column">
-            <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
+        <div className="d-flex-column mt-xs-2">
+            <div className='d-flex-row j-c-space-between align-items-center'>
+                <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
+                {pathname.includes('/artist-app/') &&
+                    <img className='avatar-20' src={IconSettings}></img>
+                }
+            </div>
             <p className='grey-100 f-w-400 fsize-xs-2'>{concert.place.mainPlace}</p>
         </div>
         {!pathname.includes('/artist-app/') &&
@@ -184,8 +190,13 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
         </div>
     </div>
     <Container>
-        <div className="d-flex-column">
-            <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
+        <div className="d-flex-column mt-xs-2">
+            <div className='d-flex-row j-c-space-between align-items-center'>
+                <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
+                {pathname.includes('/artist-app/') &&
+                    <img className='avatar-20' src={IconSettings}></img>
+                }
+            </div>
         </div>
         {concert.dates.length > 0 &&
             <section id='quiz' className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} mt-xs-4`}>

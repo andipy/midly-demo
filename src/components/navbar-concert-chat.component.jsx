@@ -61,7 +61,7 @@ function NavbarConcertChat({id, concertId}) {
             </div>
             }
             <div className={`d-flex-row  align-items-center j-c-center gap-0_25em w-100`}>
-                <div className='avatar-36 position-relative mr-xs-4'>
+                {/* <div className='avatar-36 position-relative mr-xs-4'>
                     <img className='avatar-36 border-radius-100' src={artist?.image} alt='Artist' />
                     {verified && 
                         <img
@@ -70,7 +70,7 @@ function NavbarConcertChat({id, concertId}) {
                         alt="Verified"
                         />
                     }                   
-                </div>
+                </div> */}
                 <div className='avatar-36 position-relative mr-xs-4'>
                     <img className='avatar-36 border-radius-100' src={concert?.cover.url} alt='cover' />                 
                 </div>
