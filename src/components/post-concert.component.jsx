@@ -14,6 +14,9 @@ import IconNotFav from '../images/icons/icon-favourites-inactive.svg'
 import IconFav from '../images/icons/icon-favourites-active.svg'
 import IconThunder from '../images/icons/icon-thunder.svg'
 import IconMessage from '../images/icons/icon-message.svg'
+import IconGroup from '../images/icons/icon-group.svg'
+import IconGroupBlack from '../images/icons/icon-group-black.svg'
+import IconOkBlack from '../images/icons/icon-ok-black.svg'
 
 
 const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscription, slug}) => {
@@ -59,50 +62,10 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                 <source src={concert?.cover.url && concert.cover.url} type='video/mp4' />
             </video>
         }
-        <p className='grey-100 f-w-400 fsize-xs-2 position-absolute bottom-0 ml-xs-6'>{formatDate(concert.date)}</p>
-        {!pathname.includes('/artist-app/') &&
-            <div className='d-flex-row position-absolute bottom-0 right-0 mr-xs-2 mb-xs-2 '>
-                {partecipate ? (
-                    <>
-                    <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center'  onClick={() => newPartecipation(concert.id)}> 
-                        <img
-                            className="avatar-16"
-                            src={IconFav}
-                            alt="Liked"
-                        />
-                    </div>
-                    <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center' onClick={() => navigate(`/artist/${slug}/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
-                        <img
-                            className="avatar-28"
-                            src={IconMessage}
-                            alt="Liked"
-                        />
-                    </div>
-                    </>
-                    
-                    
-                ) : (
-                    <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center'  onClick={() => newPartecipation(concert.id)}> 
-                    <img
-                        className="avatar-16"
-                        src={IconNotFav}
-                        alt="Not Liked"
-                    />
-                    </div>
-            )}
-            </div>
-        }
-        {pathname.includes('/artist-app/') &&
-            <div className='d-flex-row position-absolute bottom-0 right-0 mr-xs-2 mb-xs-2 '>
-                <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center' onClick={() => navigate(`/artist-app/fanclub/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
-                    <img
-                        className="avatar-28"
-                        src={IconMessage}
-                        alt="Liked"
-                    />
-                </div>
-            </div>
-        }
+        <div className='position-absolute bottom-0 ml-xs-6 mb-xs-2 bg-dark-soft-2 border-radius-08 pl-xs-2 pr-xs-2'>
+            <p className='grey-100 f-w-400 fsize-xs-2 '>{formatDate(concert.date)}</p>
+        </div>
+        
         <div className='d-flex-row position-absolute top-0 right-0 mt-xs-2'>
             { concert.settings.isPinned &&
                 <img className='avatar-30 border-radius-100' src={IconThunder}/>	
@@ -114,9 +77,52 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
             <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
             <p className='grey-100 f-w-400 fsize-xs-2'>{concert.place.mainPlace}</p>
         </div>
+        {!pathname.includes('/artist-app/') &&
+            <div className='d-flex-row j-c-space-between align-items-center gap-0_5em mt-xs-2 mb-xs-2'>
+                {partecipate ? (
+                    <>
+                    <div className='bg-acid-lime-op-10 border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
+                        <div className='avatar-16 bg-acid-lime border-lime d-flex-row j-c-center align-items-center border-radius-100'>
+                            <img src={IconOkBlack}></img>
+                        </div>
+                        <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
+                    </div>
+                    <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => navigate(`/artist/${slug}/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
+                        <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
+                            <img src={IconGroupBlack}></img>
+                        </div>
+                        <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
+                    </div>
+                    </>
+                    
+                    
+                ) : (
+                    <>
+                    <div className='bg-dark-gradient border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
+                        <div className='avatar-16 bg-dark-gradient border-lime d-flex-row border-radius-100'></div>
+                        <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
+                    </div>
+                    <div className='bg-dark-gradient  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  > 
+                        <div className='avatar-16 bg-dark-gradient  d-flex-row j-c-center align-items-center border-radius-100'>
+                            <img src={IconGroup}></img>
+                        </div>
+                        <p className='grey-400 fsize-xs-2 f-w-500'>Chat di gruppo</p>
+                    </div>
+                    </>
+                )}
+            </div>
+        }
+        {pathname.includes('/artist-app/') &&
+            <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-50 mt-xs-2 mb-xs-2'  onClick={() => navigate(`/artist-app/fanclub/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
+                <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
+                    <img src={IconGroupBlack}></img>
+                </div>
+                <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
+            </div>
+        }
         {concert.buyLinks[0] &&
             <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={concert.buyLinks[0]} target='blank'>
-                <img className='avatar-20' src={IconLink} />
+                {/* <img className='avatar-20' src={IconLink} /> */}
                 <span>{'Acquista qui i biglietti'}</span>
             </Link>
         }
@@ -136,7 +142,9 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                 <source src={concert?.cover.url && concert.cover.url} type='video/mp4' />
             </video>
         }
-        <p className='grey-100 f-w-400 fsize-xs-2 position-absolute bottom-0 ml-xs-6'>Tour</p>
+        <div className='position-absolute bottom-0 ml-xs-6 mb-xs-2 bg-dark-soft-2 border-radius-08 pl-xs-2 pr-xs-2'>
+            <p className='grey-100 f-w-400 fsize-xs-2 '>Tour</p>
+        </div>
         {!pathname.includes('/artist-app/') &&
             <div className='d-flex-row position-absolute bottom-0 right-0 mr-xs-2 mb-xs-2 '>
                 {/* {partecipate ? (

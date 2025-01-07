@@ -22,13 +22,13 @@ const CardConcertStop = ({date}) => {
         <div className='artist-card-multiple-row-challenge bg-dark-gradient position-relative'>
                 <div className='overlay-card bg-dark-overlay-card z-index-1'></div>
                 <img className='artist-card-multiple-row-challenge object-fit-cover' src={date.cover.url} />
-                <div className='d-flex-row position-absolute bottom-5 z-index-2 j-c-start align-items-center w-100'>
-                    <p className='grey-100 f-w-400 fsize-xs-1 position-absolute bottom-0 ml-xs-2'>{formatDate(date.date)}</p>
+                <div className='d-flex-row position-absolute bottom-5 z-index-2 j-c-start align-items-center ml-xs-2 bg-dark-soft border-radius-08 pl-xs-2 pr-xs-2'>
+                    <p className='grey-100 f-w-400 fsize-xs-1 '>{formatDate(date.date)}</p>
                 </div>        
         </div>
         <p className='grey-100 f-w-400 fsize-xs-1 ml-xs-2'>{date.mainPlace}</p>
         <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3 ml-xs-2' to={''} target='blank'>
-            <img className='avatar-20' src={IconLink} />
+            {/* <img className='avatar-20' src={IconLink} /> */}
             <span>{'Vedi dettagli'}</span>
         </Link>
     </div>

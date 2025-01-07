@@ -140,7 +140,9 @@ const ChatConcertRoute =() => {
                             />
                         ))
                     ) : (
-                        <p className="no-messages">Nessun messaggio disponibile.</p>
+                        <FullPageCenter>
+                            <h3 className='t-align-center grey-200 fsize-xs-6 f-w-400 w-80 line-height-140'>Avvia la chat!</h3>
+                        </FullPageCenter>
                     )}
                 </Container>
             }
