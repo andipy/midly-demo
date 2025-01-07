@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 function NavbarConcertChat({id, concertId}) {
     const location = useLocation()
+    const { pathname } = useLocation()
     const navigate = useNavigate()
     const { artists } = useContext(ArtistsContext)
     const { fanclubs } = useContext(FanclubsContext)
@@ -47,12 +48,18 @@ function NavbarConcertChat({id, concertId}) {
         }
     }, [])
   return (
-    <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-start white z-index-999 top-0 `}>
+    <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-start white z-index-1000 top-0 `}>
         <div className='container d-flex-row align-items-center j-c-start w-100 gap-1em'>
+            {!pathname.includes('/artist-app/') &&
             <div className='avatar-28' onClick={() =>  navigate(`/artist/${artist?.slug}/fanclub`, { state : {artist: artist} })}>
                 <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} alt='Back' />
             </div>
-
+            }
+            {pathname.includes('/artist-app/') &&
+            <div className='avatar-28' onClick={() =>  navigate(`/artist-app/fanclub`, { state : {artist: artist} })}>
+                <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} alt='Back' />
+            </div>
+            }
             <div className={`d-flex-row  align-items-center j-c-center gap-0_25em w-100`}>
                 <div className='avatar-36 position-relative mr-xs-4'>
                     <img className='avatar-36 border-radius-100' src={artist?.image} alt='Artist' />

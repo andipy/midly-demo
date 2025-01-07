@@ -2679,8 +2679,8 @@ nav .container {
 }
 
 .image-wrapper {
-  width: 100vw; /* L'immagine occupa tutta la larghezza del viewport */
-  margin-left: calc((100vw - var(--container)) / -2); /* Allinea al bordo del viewport */
+  width: 100vw; 
+  margin-left: calc((100vw - var(--container)) / -2); 
   position: relative;
 }
 
@@ -2946,6 +2946,9 @@ nav .container {
   .mr-xs-10 {
       margin-right: 10%;
   }
+  .mr-xs-20 {
+    margin-right: 20%;
+}
   /* MARGIN LEFT */
   .ml-xs-2 {
       margin-left: 2%;
@@ -3058,6 +3061,9 @@ nav .container {
   .pt-xs-24 {
       padding-top: 24%;
   }
+  .pt-xs-32 {
+    padding-top: 32%;
+}
   .pt-xs-topbar {
       padding-top: calc(var(--top-bar-height) * 1.05);
   }

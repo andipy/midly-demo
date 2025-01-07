@@ -257,7 +257,8 @@ const ConcertCreationRoute = () => {
                                         shareCount: 0,
                                         shareLink: undefined
                                     },
-                                    participants: []
+                                    participants: [],
+                                    messages: []
                                 },
                             ],
                         }
@@ -300,8 +301,7 @@ const ConcertCreationRoute = () => {
                                     share: {
                                         shareCount: 0,
                                         shareLink: undefined
-                                    },
-                                    participants: []
+                                    }
                                 }
                             ],
                         }

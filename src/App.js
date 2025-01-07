@@ -207,6 +207,9 @@ const router = createBrowserRouter([
 			}
 		]
 	},{
+		path: '/artist-app/fanclub/concert/chat',
+		element: <ChatConcertRoute />
+	},{
 		path: '/artist-app/fanclub/activation/info',
 		element: <FanclubActivationInfoRoute />
 	},{

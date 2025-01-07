@@ -92,6 +92,17 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
             )}
             </div>
         }
+        {pathname.includes('/artist-app/') &&
+            <div className='d-flex-row position-absolute bottom-0 right-0 mr-xs-2 mb-xs-2 '>
+                <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center' onClick={() => navigate(`/artist-app/fanclub/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
+                    <img
+                        className="avatar-28"
+                        src={IconMessage}
+                        alt="Liked"
+                    />
+                </div>
+            </div>
+        }
         <div className='d-flex-row position-absolute top-0 right-0 mt-xs-2'>
             { concert.settings.isPinned &&
                 <img className='avatar-30 border-radius-100' src={IconThunder}/>	
@@ -128,7 +139,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
         <p className='grey-100 f-w-400 fsize-xs-2 position-absolute bottom-0 ml-xs-6'>Tour</p>
         {!pathname.includes('/artist-app/') &&
             <div className='d-flex-row position-absolute bottom-0 right-0 mr-xs-2 mb-xs-2 '>
-                {partecipate ? (
+                {/* {partecipate ? (
                     <>
                     <div className='bg-black border-radius-100 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 avatar-24 d-flex-row j-c-center align-items-center'  onClick={() => newPartecipation(concert.id)}> 
                         <img
@@ -155,7 +166,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                         alt="Not Liked"
                     />
                     </div>
-            )}
+            )} */}
             </div>
         }
         <div className='d-flex-row position-absolute top-0 right-0 mt-xs-2'>
