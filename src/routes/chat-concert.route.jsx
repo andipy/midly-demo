@@ -15,7 +15,8 @@ const ChatConcertRoute = () => {
 
     const location = useLocation()
     const { pathname } = useLocation()
-    const { artistId, id } = location.state || {}
+    const { state } = location
+    const { artistId, id, dateId } = state || {}
     const { currentFan } = useContext(CurrentFanContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
@@ -23,10 +24,17 @@ const ChatConcertRoute = () => {
 
     const [concert, setConcert] = useState()
     useEffect(() =>{
-        const foundFanclub = fanclubs?.find(fanclub => fanclub?.artistId === artistId)
-        const foundConcert = foundFanclub?.concerts.find(concert => concert?.id === id)
-        setConcert(foundConcert)
-    }, [id, fanclubs])
+        if (dateId) {
+            const foundFanclub = fanclubs?.find(fanclub => fanclub?.artistId === artistId)
+            const foundConcert = foundFanclub?.concerts.find(concert => concert?.id === id)
+            const foundDate = foundConcert?.dates.find(date => date?.id === dateId)
+            setConcert(foundDate)
+        } else {
+            const foundFanclub = fanclubs?.find(fanclub => fanclub?.artistId === artistId)
+            const foundConcert = foundFanclub?.concerts.find(concert => concert?.id === id)
+            setConcert(foundConcert)
+        }
+    }, [id, fanclubs, dateId])
 
     const [artist, setArtist] = useState()
     useEffect(() =>{
@@ -135,15 +143,30 @@ const ChatConcertRoute = () => {
                         return {
                             ...fanclub,
                             concerts: fanclub.concerts.map(c => {
-                                if (c.id === concert.id) {
-                                    return {
-                                        ...c,
-                                        messages: [...c.messages, currentComment]
-                                    };
+                                if (c.id === id) {
+                                    if (dateId) {
+                                        return {
+                                            ...c,
+                                            dates: c.dates.map(date => {
+                                                if (date.id === dateId) {
+                                                    return {
+                                                        ...date,
+                                                        messages: [...date.messages, currentComment]
+                                                    }
+                                                }
+                                                return date
+                                            })
+                                        };
+                                    } else {
+                                        return {
+                                            ...c,
+                                            messages: [...c.messages, currentComment]
+                                        }
+                                    }
                                 }
                                 return c
                             })
-                        };
+                        }
                     }
                     return fanclub
                 })
@@ -165,7 +188,13 @@ const ChatConcertRoute = () => {
 
     return (
         <>
-            <NavbarConcertChat id={artistId} concertId={id}/>
+            {
+                dateId ? 
+                <NavbarConcertChat id={artistId} concertId={id} dateId={dateId}/>
+                :
+                <NavbarConcertChat id={artistId} concertId={id} />
+            }
+            
 
             <div className='w-100 pt-xs-topbar z-index-999'>
                 <div className='w-100 d-flex-column j-c-center align-items-center  bg-acid-lime pt-xs-2 pb-xs-2'>
@@ -177,7 +206,11 @@ const ChatConcertRoute = () => {
                         </div>
                         <div className='d-flex-column align-items-start j-c-center'>
                             <p className='fsize-xs-5 f-w-700 black'>{artist?.artistName}</p>
-                            <p className='fsize-xs-5 f-w-700 black'>{concert?.place.mainPlace}</p>
+                            {dateId ?
+                                <p className='fsize-xs-5 f-w-700 black'>{concert?.mainPlace}</p>
+                                :
+                                <p className='fsize-xs-5 f-w-700 black'>{concert?.place.mainPlace}</p>
+                            }
                         </div>
                         {/* <CountdownConcert date ={concert?.date}/> */}
                     </Container>

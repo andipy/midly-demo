@@ -113,7 +113,7 @@ const AddStopRoute = () => {
 
     //AGGIUNGI TAPPA
     const addTourStop = () => {
-        setTourStops([...tourStops, { id: tourStops.length +1, cover: file, date: eventDate, mainPlace: eventPlace, city: eventCity, address: eventAddress, province: eventProvince, zipCode: eventCap, participants: [], messages: [] }])
+        setTourStops([...tourStops, { id: tourStops.length +1, cover: file, date: eventDate, mainPlace: eventPlace, city: eventCity, address: eventAddress, province: eventProvince, zipCode: eventCap, messages: [] }])
         navigate(-1)
     }
     
