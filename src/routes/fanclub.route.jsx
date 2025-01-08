@@ -14,6 +14,7 @@ import CommentsModalLayout from '../layout/comments-modal.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 import Snackbar from '../components/snackbar.component'
 import PostConcert from '../components/post-concert.component'
+import Button from '../components/button.component'
 
 const Fanclub = () => {
     const navigate = useNavigate()
@@ -33,22 +34,44 @@ const Fanclub = () => {
     // handle and check current fan's subscription
     const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
     const handleSubscription = () => {
-        if (fanclub?.maxSubscribers <= fanclub?.subscribers && fanclub?.maxSubscribers) {
-            setErr(true)
-            return
-        } else {
+        let currentDate = new Date()
+        let date = currentDate.toISOString().split('T')[0]
+        if (hasUserSubscribed) {
             setFanclubs(prevFanclubs =>
                 prevFanclubs.map(fanclub =>
                     fanclub.artistId === context.id
-                        ? { ...fanclub, subscribers: (fanclub.subscribers || 0) + 1 }
+                        ? { ...fanclub, subscribers: (fanclub.subscribers || 0) - 1 }
                         : fanclub
                 )
-            )
+            );
             setCurrentFan(prev => ({
                 ...prev,
-                fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: context.id }]
+                fanclubsSubscribed: prev.fanclubsSubscribed.filter(fanclub => fanclub.artistId !== context.id),
+                removedSubscriptions: [
+                    ...prev.removedSubscriptions,
+                    { artistId: context.id, createdAt: date }
+                ]
             }))
-        }  
+        } else {
+            if (fanclub?.maxSubscribers <= fanclub?.subscribers && fanclub?.maxSubscribers) {
+                setErr(true)
+                return
+            } else {
+                setFanclubs(prevFanclubs =>
+                    prevFanclubs.map(fanclub =>
+                        fanclub.artistId === context.id
+                            ? { ...fanclub, subscribers: (fanclub.subscribers || 0) + 1 }
+                            : fanclub
+                    )
+                )
+                setCurrentFan(prev => ({
+                    ...prev,
+                    fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: context.id, createdAt: date }],
+                    removedSubscriptions: prev.removedSubscriptions.filter(fanclub => fanclub.artistId !== context.id)
+                }))
+            }  
+        }
+        
     }
     const checkFanclubSubscription = () => {
         let isSubscribed
@@ -418,7 +441,21 @@ const Fanclub = () => {
     return (
         <>
             <div className='d-flex-column j-c-start mt-xs-4'>
-                <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
+                <div className='d-flex-row j-c-space-between align-items-center'>
+                    <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
+                    {
+                        !hasUserSubscribed ?
+                        <div className='bg-acid-lime pt-xs-1 pl-xs-2 pr-xs-2 pb-xs-1 border-radius-02' onClick={handleSubscription}>
+                            <p className='fsize-xs-1 f-w-300 black'>Abbonati</p>
+                        </div>
+                        :
+                        <div className='bg-black border-grey-small pt-xs-1 pl-xs-2 pr-xs-2 pb-xs-1 border-radius-02' onClick={handleSubscription}>
+                            <p className='fsize-xs-1 f-w-300 grey-400'>Rimuovi abbonamento</p>
+                        </div>
+                    }
+                    
+                </div>
+                
                 <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
             </div>
             {fanclub?.posts.length === 0 && fanclub?.concerts.lenght === 0 ?

@@ -44,6 +44,8 @@ import RecoverPasswordRoute from './routes/recover-password.route'
 import BadgesRoute from './routes/badges.route'
 import PersonalUserPointsRoute from './routes/personal-user-points.route'
 import FanPublicProfileRoute from './routes/fan-public-profile.route'
+import SubscriptionsSettingsRoute from './routes/subscriptions-settings.route'
+import PaymentsInfoRoute from './routes/payments-info.route'
 
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
@@ -370,6 +372,12 @@ const router = createBrowserRouter([
 	},{
 		path: '/artist-app/fanclub/settings/manage-users',
 		element: <FanclubManageUsersRoute />
+	}, {
+		path: '/subscriptions',
+		element: <SubscriptionsSettingsRoute />
+	}, {
+		path: '/payments-info',
+		element: <PaymentsInfoRoute />
 	}
 ])
 

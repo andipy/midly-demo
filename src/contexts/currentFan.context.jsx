@@ -34,6 +34,7 @@ export const CurrentFanProvider = ({ children }) => {
             {artistId: 6},
         ],
         fanclubsSubscribed: [],
+        removedSubscriptions: [],
         mostListenedArtistsOnSpotify : [
             {artistId: 1},
             {artistId: 7},

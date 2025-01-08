@@ -258,6 +258,24 @@ const ProfileRoute = () => {
                             <IconArrowRight color='white' size={32} viewBox={32} strokeWidth={2} />
                         </div>
                     </Link>
+                    <Link to='/payments-info'>
+                        <div className='d-flex-row j-c-space-between mb-xs-3'>
+                            <div className='d-flex-row align-items-center w-100'>
+                                <div className='avatar-32 bg-dark-gradient mr-xs-2'></div>
+                                <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Informazioni di pagamento</h6>
+                            </div>
+                            <IconArrowRight color='white' size={32} viewBox={32} strokeWidth={2} />
+                        </div>
+                    </Link>
+                    <Link to='/subscriptions'>
+                        <div className='d-flex-row j-c-space-between mb-xs-3'>
+                            <div className='d-flex-row align-items-center w-100'>
+                            <div className='avatar-32 bg-dark-gradient mr-xs-2'></div>
+                                <h6 className='fsize-xs-3 f-w-300 letter-spacing-1'>Abbonamenti</h6>
+                            </div>
+                            <IconArrowRight color='white' size={32} viewBox={32} strokeWidth={2} />
+                        </div>
+                    </Link>
                     <Link to='/faq'>
                         <div className='d-flex-row j-c-space-between mb-xs-3'>
                             <div className='d-flex-row align-items-center w-100'>
