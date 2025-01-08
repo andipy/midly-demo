@@ -103,7 +103,7 @@ function NavbarConcertChat({id, concertId, dateId}) {
                     <div className='avatar-36 position-relative mr-xs-4'>
                         {
                             date ?
-                            <img className='avatar-36 border-radius-100' src={date?.cover.url} alt='cover' /> 
+                            <img className='avatar-36 border-radius-100' src={concert?.cover.url} alt='cover' /> 
                             :
                             <img className='avatar-36 border-radius-100' src={concert?.cover.url} alt='cover' /> 
 

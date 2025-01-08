@@ -3,28 +3,38 @@ import IconLink from '../images/icons/icon-link.svg'
 
 
 const CardConcertStop = ({date}) => {
-    const formatDate = (date) => {
-        const months = [
-            "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", 
-            "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
-        ]
+    const getDay = (date) => {
+        if ( date ) {
+            const [day] = date.split('-')
+            return day.padStart(2, '0')
+        }
+    }
 
-        const [day, month, year] = date.split('-')
+    const getMonth = (date) => {
+        if ( date ) {
+            const [, month] = date.split('-')
+            const monthNames = [
+                "GEN", "FEB", "MAR", "APR", "MAG", "GIU", 
+                "LUG", "AGO", "SET", "OTT", "NOV", "DIC"
+            ]
+            return monthNames[parseInt(month, 10) - 1]
+        }
+    }
 
-        const formattedDay = day.startsWith('0') ? day.slice(1) : day
-
-        const monthName = months[parseInt(month, 10) - 1]
-
-        return `${formattedDay} ${monthName} ${year}`
+    const getYear = (date) => {
+        if ( date ) {
+            const [, , year] = date.split('-')
+            return year
+        }
     }
   return (
     <div className="d-flex-column j-c-start align-items-start">
-        <div className='artist-card-multiple-row-challenge bg-dark-gradient position-relative'>
-                <div className='overlay-card bg-dark-overlay-card z-index-1'></div>
-                <img className='artist-card-multiple-row-challenge object-fit-cover' src={date.cover.url} />
-                <div className='d-flex-row position-absolute bottom-5 z-index-2 j-c-start align-items-center ml-xs-2 bg-dark-soft border-radius-08 pl-xs-2 pr-xs-2'>
-                    <p className='grey-100 f-w-400 fsize-xs-1 '>{formatDate(date.date)}</p>
-                </div>        
+        <div className="avatar-80 d-flex-row j-c-center align-items-center bg-acid-lime">
+            <div className='d-flex-column align-items-center j-c-center bg-dark border-radius-04 avatar-80'>
+                <p className='fsize-xs-9 line-height-1'>{getDay(date?.date)}</p>
+                <p className='fsize-xs-3 line-height-1'>{getMonth(date?.date)}</p>
+                <p className='fsize-xs-2 line-height-1'>{getYear(date?.date)}</p>
+            </div>
         </div>
         <p className='grey-100 f-w-400 fsize-xs-1 ml-xs-2'>{date.mainPlace}</p>
         <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3 ml-xs-2' to={''} target='blank'>

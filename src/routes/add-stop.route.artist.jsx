@@ -20,7 +20,7 @@ const AddStopRoute = () => {
 
     //IMAGE
 
-    const fileInputRef = useRef(null)
+    /* const fileInputRef = useRef(null)
     
     const handleIconClick = () => {
         fileInputRef.current.click()
@@ -50,7 +50,7 @@ const AddStopRoute = () => {
                 setErrMsg('Il video deve essere lungo al massimo 5 secondi')        
             }
         }
-    }
+    } */
 
     //EVENT DATE
     const [eventDate, setEventDate] = useState('')
@@ -103,17 +103,17 @@ const AddStopRoute = () => {
     //BUTTON ACTIVE
     const [filledMandatory, setFilledMandatory] = useState(false)
     useEffect(() => {
-        if (file.url === undefined ||  eventDate === '' ||  eventPlace === '' ||  eventProvince === '' ||  eventAddress === '' ||  eventCap === '' ||  eventCity === '' ) {
+        if (  eventDate === '' ||  eventPlace === '' ||  eventProvince === '' ||  eventAddress === '' ||  eventCap === '' ||  eventCity === '' ) {
             setFilledMandatory(false)
         } else {
             setFilledMandatory(true)
         }
         
-    }, [eventDate, file, eventCap, eventProvince, eventPlace, eventAddress, eventCity])
+    }, [eventDate, eventCap, eventProvince, eventPlace, eventAddress, eventCity])
 
     //AGGIUNGI TAPPA
     const addTourStop = () => {
-        setTourStops([...tourStops, { id: tourStops.length +1, cover: file, date: eventDate, mainPlace: eventPlace, city: eventCity, address: eventAddress, province: eventProvince, zipCode: eventCap, messages: [] }])
+        setTourStops([...tourStops, { id: tourStops.length +1, date: eventDate, mainPlace: eventPlace, city: eventCity, address: eventAddress, province: eventProvince, zipCode: eventCap, messages: [] }])
         navigate(-1)
     }
     
@@ -150,7 +150,7 @@ const AddStopRoute = () => {
   return (
     <FullScreenModalLayout background='bg-black'>
         <NavbarCommentsModal closeModal={() => navigate(-1)} title={'Dettagli tappa'} />
-        <div className="w-100">
+        {/* <div className="w-100">
             {file?.url ?
                 <div className='bg-dark-soft d-flex-row align-items-center j-c-center overflow-all-hidden h-xs-27 gap-0_5em position-relative'>
                     {file.type === 'IMAGE' &&
@@ -159,7 +159,6 @@ const AddStopRoute = () => {
                     <div className='bg-black-transp50 d-flex-row j-c-center align-items-center  border-radius-100 position-absolute bottom-5 right-5 pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 gap-0_25em' onClick={handleIconClick}>
                         <img className='avatar-24' src={IconEdit}/>
                         <span className='fsize-xs-2'>Modifica</span>
-                        {/* <IconEdit size={32} viewBox={32} color='white' strokeWidth={2} /> */}
                     </div>
                     <input
                         className='d-none'
@@ -187,8 +186,8 @@ const AddStopRoute = () => {
                 </div>
             }
 
-        </div>
-        <Container style={'pb-xs-appbar mt-xs-12'}>
+        </div> */}
+        <Container style={'pb-xs-appbar mt-xs-2'}>
             <h1 className='fsize-xs-5 f-w-600 mb-xs-4 '>Quando sarà questa tappa?</h1>
             <input
                 className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-02 mt-xs-4'

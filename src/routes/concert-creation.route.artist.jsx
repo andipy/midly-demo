@@ -11,6 +11,7 @@ import IconEdit from '../images/icons/icon-edit.svg'
 import IconPlus from '../images/icons/icon-plus-lime.svg'
 import FullPageCenter from "../layout/full-page-center.layout"
 import IconOk from '../images/icons/icon-ok.svg'
+import Carousel from "../layout/carousel.layout"
 const ConcertCreationRoute = () => {
 
     //NAVIGATE
@@ -193,7 +194,7 @@ const ConcertCreationRoute = () => {
     const [filledMandatory, setFilledMandatory] = useState(false)
     useEffect(() => {
         if (typeSelected === 0) {
-            if (file.url === undefined || eventName === '' || eventDate === '' ||  eventPlace === '' ||  eventProvince === '' ||  eventAddress === '' ||  eventCap === '' ||  eventCity === '' ||  links[0] === '') {
+            if (file.url === undefined || eventName === '' || eventDate === '' ||  eventPlace === '' ||  eventProvince === '' ||  eventAddress === '' ||  eventCap === '' ||  eventCity === '') {
                 setFilledMandatory(false)
             } else {
                 setFilledMandatory(true)
@@ -313,6 +314,32 @@ const ConcertCreationRoute = () => {
             )
         }
         navigate(-1)
+    }
+
+    //STOPS DISPLAY
+    const getDay = (date) => {
+        if ( date ) {
+            const [day] = date.split('-')
+            return day.padStart(2, '0')
+        }
+    }
+
+    const getMonth = (date) => {
+        if ( date ) {
+            const [, month] = date.split('-')
+            const monthNames = [
+                "GEN", "FEB", "MAR", "APR", "MAG", "GIU", 
+                "LUG", "AGO", "SET", "OTT", "NOV", "DIC"
+            ]
+            return monthNames[parseInt(month, 10) - 1]
+        }
+    }
+
+    const getYear = (date) => {
+        if ( date ) {
+            const [, , year] = date.split('-')
+            return year
+        }
     }
 
 
@@ -596,8 +623,10 @@ const ConcertCreationRoute = () => {
                     />
 
                     <h1 className='fsize-xs-5 f-w-600 mb-xs-4 mt-xs-12'>Aggiungi ogni tappa</h1>
+                    <Carousel>
                     {tourStops.map((stop, index) => (
-                        <div key={index} className=' position-relative bg-dark-soft white border-radius-02 mt-xs-2 d-flex-row j-c-start align-items-center pt-xs-3 pb-xs-3 pl-xs-2 pr-xs-2' style={{ backgroundImage: `url(${stop.cover.url})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                        <>
+                        {/* <div key={index} className=' position-relative bg-dark-soft white border-radius-02 mt-xs-2 d-flex-row j-c-start align-items-center pt-xs-3 pb-xs-3 pl-xs-2 pr-xs-2' style={{ backgroundImage: `url(${stop.cover.url})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                             <div className='position-absolute top-0 left-0 right-0 bottom-0 bg-black-transp60 z-index-1'></div>  
                             <div className="d-flex-row j-c-space-between align-items-center z-index-2">
                                 <div className="z-index-2 d-flex-row j-c-start align-items-center gap-1em">
@@ -608,8 +637,21 @@ const ConcertCreationRoute = () => {
                                     <p>-</p>
                                 </div>
                             </div> 
+                        </div> */}
+                        <div className="d-flex-column j-c-start align-items-start">
+                            <div className="avatar-80 d-flex-row j-c-center align-items-center bg-acid-lime">
+                                <div className='d-flex-column align-items-center j-c-center bg-dark border-radius-04 avatar-80'>
+                                    <p className='fsize-xs-9 line-height-1'>{getDay(stop?.date)}</p>
+                                    <p className='fsize-xs-3 line-height-1'>{getMonth(stop?.date)}</p>
+                                    <p className='fsize-xs-2 line-height-1'>{getYear(stop?.date)}</p>
+                                </div>
+                            </div>
+                            <p className='grey-100 f-w-400 fsize-xs-1 mt-xs-2'>{stop?.mainPlace}</p>
                         </div>
+                        
+                        </>   
                     ))}
+                    </Carousel>
 
                     <Button
                         style='bg-black border-lime lime-400 black fsize-xs-3 f-w-600 mt-xs-4'

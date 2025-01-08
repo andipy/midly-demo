@@ -214,7 +214,13 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
             <section id='quiz' className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} mt-xs-4`}>
                 <h2 className='fsize-xs-5 f-w-600'>Tutte le tappe del tour</h2>
                 <Carousel>
-                    {concert.dates.map(date => {
+                    {concert.dates
+                    .sort((a, b) => {
+                        const dateA = new Date(a.date.split('-').reverse().join('-'))
+                        const dateB = new Date(b.date.split('-').reverse().join('-'))
+                        return dateA - dateB
+                    })
+                    .map(date => {
                         return (
                            <CardConcertStop 
                             date={date}
