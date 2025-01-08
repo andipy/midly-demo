@@ -638,13 +638,17 @@ const ConcertCreationRoute = () => {
                                 </div>
                             </div> 
                         </div> */}
-                        <div className="d-flex-column j-c-start align-items-start">
-                            <div className="avatar-80 d-flex-row j-c-center align-items-center bg-acid-lime">
-                                <div className='d-flex-column align-items-center j-c-center bg-dark border-radius-04 avatar-80'>
+                        <div className="d-flex-column j-c-start align-items-start position-relative">
+                            <div className="avatar-80 d-flex-row j-c-center align-items-center bg-acid-lime ">
+                                <div className='d-flex-column align-items-center j-c-center bg-dark border-radius-04 avatar-80 '>
                                     <p className='fsize-xs-9 line-height-1'>{getDay(stop?.date)}</p>
                                     <p className='fsize-xs-3 line-height-1'>{getMonth(stop?.date)}</p>
                                     <p className='fsize-xs-2 line-height-1'>{getYear(stop?.date)}</p>
                                 </div>
+                                
+                            </div>
+                            <div className="avatar-20 bg-dark-gradient position-absolute top-0 right-2 border-radius-100 j-c-center align-items-center d-flex-row" onClick={() => removeTourStop(stop.id)}>
+                                    <p>-</p>
                             </div>
                             <p className='grey-100 f-w-400 fsize-xs-1 mt-xs-2'>{stop?.mainPlace}</p>
                         </div>
