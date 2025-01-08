@@ -200,7 +200,7 @@ const ConcertCreationRoute = () => {
                 setFilledMandatory(true)
             }
         } else {
-            if (file.url === undefined || eventName === '' || links[0] === '' || tourStops.length <= 0) {
+            if (file.url === undefined || eventName === '' ||  tourStops.length <= 0) {
                 setFilledMandatory(false)
             } else {
                 setFilledMandatory(true)
@@ -596,32 +596,6 @@ const ConcertCreationRoute = () => {
                         onChange={(e) => handleEventName(e)}
                     />
 
-                    <h1 className='fsize-xs-5 f-w-600 mb-xs-4 mt-xs-12'>Link acquisto biglietti</h1>
-                    {links.map((link, index) => (
-                        
-                        <div className="position-relative d-flex-row align-items-center j-c-center">
-                            <input
-                            key={index}
-                            className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-02 mt-xs-2'
-                            type='text'
-                            placeholder='Incolla qui il link'
-                            value={link}
-                            onChange={(e) => handleLinkChange(index, e.target.value)}
-                            />
-                            {index > 0 &&
-                            <div className="avatar-20 position-absolute-y right-2 bottom-2 bg-black border-radius-100 j-c-center align-items-center d-flex-row" onClick={() => handleRemoveLink(index)}>
-                                <p>-</p>
-                            </div>
-                            }
-                        </div>
-                    ))}
-
-                    <Button
-                        style='bg-black border-lime lime-400 black fsize-xs-3 f-w-600 mt-xs-4'
-                        onClick={addNewLink} 
-                        label='Aggiungi altro link'
-                    />
-
                     <h1 className='fsize-xs-5 f-w-600 mb-xs-4 mt-xs-12'>Aggiungi ogni tappa</h1>
                     <Carousel>
                     {tourStops.map((stop, index) => (
@@ -661,6 +635,32 @@ const ConcertCreationRoute = () => {
                         style='bg-black border-lime lime-400 black fsize-xs-3 f-w-600 mt-xs-4'
                         onClick={() => navigate(`/artist-app/concert-creation/add-stop`, { state: { invokedModal: true } })} 
                         label='Aggiungi tappa'
+                    />
+
+                    <h1 className='fsize-xs-5 f-w-600 mb-xs-4 mt-xs-12'>Link acquisto biglietti</h1>
+                    {links.map((link, index) => (
+                        
+                        <div className="position-relative d-flex-row align-items-center j-c-center">
+                            <input
+                            key={index}
+                            className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-02 mt-xs-2'
+                            type='text'
+                            placeholder='Incolla qui il link'
+                            value={link}
+                            onChange={(e) => handleLinkChange(index, e.target.value)}
+                            />
+                            {index > 0 &&
+                            <div className="avatar-20 position-absolute-y right-2 bottom-2 bg-black border-radius-100 j-c-center align-items-center d-flex-row" onClick={() => handleRemoveLink(index)}>
+                                <p>-</p>
+                            </div>
+                            }
+                        </div>
+                    ))}
+
+                    <Button
+                        style='bg-black border-lime lime-400 black fsize-xs-3 f-w-600 mt-xs-4'
+                        onClick={addNewLink} 
+                        label='Aggiungi altro link'
                     />
 
                     <h1 className='fsize-xs-5 f-w-600 mb-xs-4 mt-xs-12'>Settings del post</h1>

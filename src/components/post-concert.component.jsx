@@ -167,8 +167,28 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                 }
             </div>
         </div>
+        {concert.dates.length > 0 &&
+            <section id='quiz' className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} mt-xs-2`}>
+                <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Tutte le tappe del tour</h2>
+                <Carousel>
+                    {concert.dates
+                    .sort((a, b) => {
+                        const dateA = new Date(a.date.split('-').reverse().join('-'))
+                        const dateB = new Date(b.date.split('-').reverse().join('-'))
+                        return dateA - dateB
+                    })
+                    .map(date => {
+                        return (
+                           <CardConcertStop 
+                            date={date}
+                           />
+                        )
+                    })}
+                </Carousel>
+            </section>
+        }
         {!pathname.includes('/artist-app/') &&
-            <div className='d-flex-row j-c-space-between align-items-center gap-0_5em mt-xs-2 mb-xs-2'>
+            <div className='d-flex-row j-c-space-between align-items-center gap-0_5em mt-xs-4 mb-xs-2'>
                 {partecipate ? (
                     <>
                     <div className='bg-acid-lime-op-10 border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
@@ -203,33 +223,14 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
             </div>
         }
         {pathname.includes('/artist-app/') &&
-            <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-50 mt-xs-2 mb-xs-2'  onClick={() => navigate(`/artist-app/fanclub/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
+            <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-50 mt-xs-4 mb-xs-2'  onClick={() => navigate(`/artist-app/fanclub/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
                 <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
                     <img src={IconGroupBlack}></img>
                 </div>
                 <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
             </div>
         }
-        {concert.dates.length > 0 &&
-            <section id='quiz' className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} mt-xs-4`}>
-                <h2 className='fsize-xs-5 f-w-600'>Tutte le tappe del tour</h2>
-                <Carousel>
-                    {concert.dates
-                    .sort((a, b) => {
-                        const dateA = new Date(a.date.split('-').reverse().join('-'))
-                        const dateB = new Date(b.date.split('-').reverse().join('-'))
-                        return dateA - dateB
-                    })
-                    .map(date => {
-                        return (
-                           <CardConcertStop 
-                            date={date}
-                           />
-                        )
-                    })}
-                </Carousel>
-            </section>
-        }
+        
         
     </Container>
     </>
