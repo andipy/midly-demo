@@ -349,11 +349,10 @@ const ArtistRoute = () => {
                 artist={artist}
                 userCompeting={userCompeting}
                 handleCompete={handleCompete}
-                currentFan={currentFan}
             />
 
             <Container style={''}>
-                <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark'>
+                <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark pb-xs-2'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && !location.pathname.includes('/fanclub') &&
                         <MessageFlashLeaderboard
                             artist={artist}
@@ -372,13 +371,32 @@ const ArtistRoute = () => {
                             onClick={handleSpotifyConnect}
                         />
                     }
-                    {currentFan.hasSpotify && !userCompeting &&
-                        <Button
-                            style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4'
-                            label='Competi nella classifica'
-                            onClick={handleCompete}
-                        />
-                    }
+                    <div className='w-100 d-flex-column j-c-space-between align-items-center'>
+                        {pathname.includes('leaderboard') &&
+                            <>
+                                {currentFan.hasSpotify && !userCompeting &&
+                                    <Button
+                                        style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4'
+                                        label='Competi nella classifica'
+                                        onClick={handleCompete}
+                                    />
+                                }
+                            </>
+                            
+                        }
+                        {pathname.includes('fanclub') &&
+                        <>
+                            {!hasUserSubscribed && fanclub?.isActive &&
+                                <Button
+                                    style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4'
+                                    label='Abbonati'
+                                    onClick={handleSubscription}
+                                />
+                            }
+                        </>
+                        }
+                    </div>
+                    
                     {userCompeting && currentFan.hasSpotify && !pathname.includes('fanclub') &&
                         <CardLeaderboardYourPosition
                             currentFan={currentFan}

@@ -9,7 +9,7 @@ import Button from './button.component'
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import CoverFanclub from './cover-fanclub.component.artist'
 
-const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, currentFan, fanclub }) => {
+const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, currentFan, fanclub, }) => {
 
     const { pathname } = useLocation()
     
@@ -46,9 +46,13 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
                     </div>
                     <div className='d-flex-column grow-1 no-shrink j-c-start'>
                         <h2 className='fsize-xs-4 f-w-600'>{artist?.artistName}</h2>
+                        <div className='d-flex-row j-c-space-between w-100 align-items-center'>
                         {userCompeting && currentFan.hasSpotify &&
                             <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 align-self-start w-auto'} label={'Esci dalla classifica'} onClick={handleCompete} />
                         }
+
+                        </div>
+                        
                     </div>                    
                 </Container>
             }              
