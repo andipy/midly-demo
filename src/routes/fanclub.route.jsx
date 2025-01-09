@@ -443,7 +443,7 @@ const Fanclub = () => {
             <div className='d-flex-column j-c-start mt-xs-4'>
                 <div className='d-flex-row j-c-space-between align-items-center'>
                     <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
-                    {
+                    {/* {
                         !hasUserSubscribed ?
                         <div className='bg-acid-lime pt-xs-1 pl-xs-2 pr-xs-2 pb-xs-1 border-radius-02' onClick={handleSubscription}>
                             <p className='fsize-xs-1 f-w-300 black'>Abbonati</p>
@@ -452,7 +452,7 @@ const Fanclub = () => {
                         <div className='bg-black border-grey-small pt-xs-1 pl-xs-2 pr-xs-2 pb-xs-1 border-radius-02' onClick={handleSubscription}>
                             <p className='fsize-xs-1 f-w-300 grey-400'>Rimuovi abbonamento</p>
                         </div>
-                    }
+                    } */}
                     
                 </div>
                 

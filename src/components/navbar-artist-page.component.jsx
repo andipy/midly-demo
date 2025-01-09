@@ -6,8 +6,9 @@ import IconArrowLeft from '../images/icons/icon-arrowleft.svg'
 import IconArrowDown from '../images/icons/icon-arrowdown.svg'*/
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import IconPrize from '../images/icons/icon-prize-rank-card.svg'
+import SettingsLogo from '../images/icons/icon-settings-white.svg'
 
-const NavbarArtistPage = ({ artist, onClick, quiz }) => {
+const NavbarArtistPage = ({ artist, onClick, quiz, fanclub, openSettings }) => {
     const location = useLocation()
     const navigate = useNavigate()
     const [scrolled, setScrolled] = useState(false)
@@ -55,9 +56,19 @@ const NavbarArtistPage = ({ artist, onClick, quiz }) => {
                     </h2>
                 </div>
 
-                <div className='bg-dark-soft-transp75 j-c-center align-items-center pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2 border-radius-1' onClick={onClick}>
-                    <h4 className={`fsize-xs-1 f-w-500 ${quiz ? 'white':'lime-400'}`}>Live quiz</h4>
+                <div className='d-flex-row j-c-end align-items-center w-100'>
+                    {fanclub && 
+                        <div className='avatar-32 bg-dark-soft-transp75 pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-1 border-radius-100 d-flex-row j-c-center align-items-center mr-xs-2' onClick={openSettings}>
+                            <img className='avatar-32' src={SettingsLogo}/>
+                        </div>
+                    }
+                    <div className='bg-dark-soft-transp75 j-c-center align-items-center pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2 border-radius-1' onClick={onClick}>
+                        <h4 className={`fsize-xs-1 f-w-500 ${quiz ? 'white':'lime-400'}`}>Live quiz</h4>
+                    </div>
+                
                 </div>
+
+                
 
                 {/* <div className={`${scrolled ? 'd-flex-row' : 'd-xs-none'} align-items-center j-c-center border-radius-100 avatar-36 bg-dark-soft-transp75 d-flex-row`}>
                 </div> */}

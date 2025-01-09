@@ -28,7 +28,7 @@ const ArtistRoute = () => {
     
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const { artists } = useContext(ArtistsContext)
-    const { fanclubs } = useContext(FanclubsContext)
+    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { quizzes } = useContext(LiveQuizContext)
     const [ artistLiveQuizzes, setArtistLiveQuizzes] = useState()
     
@@ -210,6 +210,11 @@ const ArtistRoute = () => {
       
     }
 
+    const [settings, setSettings] = useState(false)
+    const openSettings= () => {
+        setSettings(true)
+    }
+
     const [isExiting, setIsExiting] = useState(false)
 
     useEffect(() => {
@@ -233,10 +238,112 @@ const ArtistRoute = () => {
         }
     }, [isExiting])
 
+    const [isExitingSettings, setIsExitingSettings] = useState(false)
+    useEffect(() => {
+        if (isExitingSettings) {
+            const endDelay = setTimeout(() => {
+                setSettings(false)
+                setIsExitingSettings(false)
+            }, 400)
+
+            return () => clearTimeout(endDelay)
+        }
+    }, [isExitingSettings])
+
+    const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
+
+    const checkFanclubSubscription = () => {
+        let isSubscribed
+        if ( currentFan.fanclubsSubscribed.find(sub => sub.artistId === artist.id) ) {
+            isSubscribed = true
+        } else {
+            isSubscribed = false
+        }
+        setHasUserSubscribed(isSubscribed)
+    }
+
+    useEffect(() => {
+        if ( artist ) {
+            fetchThisFanclub()
+            checkFanclubSubscription()
+        }
+    }, [artist, fanclubs, currentFan])
+
+    const handleSubscription = () => {
+        let currentDate = new Date()
+        let date = currentDate.toISOString().split('T')[0]
+        if (hasUserSubscribed) {
+            setFanclubs(prevFanclubs =>
+                prevFanclubs.map(fanclub =>
+                    fanclub.artistId === artist.id
+                        ? { ...fanclub, subscribers: (fanclub.subscribers || 0) - 1 }
+                        : fanclub
+                )
+            );
+            setCurrentFan(prev => ({
+                ...prev,
+                fanclubsSubscribed: prev.fanclubsSubscribed.filter(fanclub => fanclub.artistId !== artist.id),
+                removedSubscriptions: [
+                    ...prev.removedSubscriptions,
+                    { artistId: artist.id, createdAt: date }
+                ]
+            }))
+        } else {
+            if (fanclub?.maxSubscribers <= fanclub?.subscribers && fanclub?.maxSubscribers) {
+                setErr(true)
+                return
+            } else {
+                setFanclubs(prevFanclubs =>
+                    prevFanclubs.map(fanclub =>
+                        fanclub.artistId === artist.id
+                            ? { ...fanclub, subscribers: (fanclub.subscribers || 0) + 1 }
+                            : fanclub
+                    )
+                )
+                setCurrentFan(prev => ({
+                    ...prev,
+                    fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: artist.id, createdAt: date }],
+                    removedSubscriptions: prev.removedSubscriptions.filter(fanclub => fanclub.artistId !== artist.id)
+                }))
+            }  
+        }
+
+        setIsExitingSettings(true)
+        
+    }
+
+    const [err, setErr] = useState(false)
+    const [isExitingErr, setIsExitingErr] = useState(false)
+
+    useEffect(() => {
+        if (err) {
+            const exitDelay = setTimeout(() => {
+                setIsExitingErr(true)
+            }, 1000)
+
+            return () => clearTimeout(exitDelay)
+        }
+    }, [err])
+
+    useEffect(() => {
+        if (isExitingErr) {
+            const endDelay = setTimeout(() => {
+                setErr(false)
+                setIsExitingErr(false)
+            }, 400)
+
+            return () => clearTimeout(endDelay)
+        }
+    }, [isExitingErr])
+
     return (
         <>
-            <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)}  />
-
+            {
+                pathname.includes("fanclub") ?
+                <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={true} openSettings={() => openSettings()}  />
+                :
+                <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)}  />
+            }
             <CoverArtistPage
                 fanclub={fanclub}
                 artist={artist}
@@ -314,6 +421,48 @@ const ArtistRoute = () => {
                 />
             : 
                 null
+            }
+
+            {settings &&
+            <FullPageCenter style='z-index-1000 bg-black-transp70'>
+                <Container style={`centered-popup ${isExitingSettings ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+                    <div className='w-100 d-flex-column mt-xs-4 gap-1em'>
+                                {
+                                    !hasUserSubscribed ?
+                                    <Button
+                                        disabled={false}
+                                        style='fsize-xs-3 f-w-600 letter-spacing-1 bg-acid-lime black border-lime border-radius-04'
+                                        label='Abbonati'
+                                        onClick={handleSubscription}
+                                    />
+                                    :
+                                    <Button
+                                        disabled={false}
+                                        style='fsize-xs-3 f-w-400 letter-spacing-1 bg-dark-soft-2 grey-400  border-radius-04'
+                                        label='Disattiva abbonamento'
+                                        onClick={handleSubscription}
+                                    />
+                                }
+                                
+                                <Button
+                                    disabled={false}
+                                    style='fsize-xs-3 f-w-400 letter-spacing-1 bg-dark-soft-2 white  border-radius-04'
+                                    label='Chiudi'
+                                    onClick={() => setIsExitingSettings(true)} 
+                                />
+                    </div>
+                </Container>
+            </FullPageCenter>
+            }
+
+            {err && 
+                <FullPageCenter style='z-index-1100 bg-black-transp70'>
+                    <Container style={`centered-popup ${isExitingErr ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+                        <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
+                            <h2 className='fsize-xs-2 f-w-300 t-align-center'>Il fanclub di {artists.find(artist => artist.id === fanclub?.artistId).artistName} è al completo</h2>
+                        </div>
+                    </Container>
+	            </FullPageCenter>
             }
 
             {!pathname.includes('fanclub') &&
