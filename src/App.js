@@ -78,6 +78,7 @@ import PostSettingsRoute from './routes/post-settings.route.artist'
 import FanclubManageUsersRoute from './routes/fanclub-manage-users.route.artist'
 import ConcertCreationRoute from './routes/concert-creation.route.artist'
 import AddStopRoute from './routes/add-stop.route.artist'
+import ConcertSettingsRoute from './routes/concert-settings.route.artist'
 
 
 import UserModerationRoute from './routes/user-moderation.route'
@@ -192,6 +193,9 @@ const router = createBrowserRouter([
 			},{
 				path: '/artist-app/fanclub/edit-post/:postId',
 				element: <PostSettingsRoute />
+			},{
+				path: '/artist-app/fanclub/edit-post-concert/:concertId',
+				element: <ConcertSettingsRoute />
 			},{
 				path: '/artist-app/fanclub/user-moderation',
 				element: <UserModerationRoute />,

@@ -100,6 +100,10 @@ const FanclubRoute = () => {
         }
     }, [postInFocus])
 
+    const openSettingsConcert = (concert) => {
+        navigate(`/artist-app/fanclub/edit-post-concert/${concert.id}`, { state: { ...concert, invokedModal: true } })
+    }
+
     const [commentInFocus, setCommentInFocus] = useState(null)
     const spotCommentToReply = (id) => {
         setCommentInFocus(id)
@@ -563,6 +567,7 @@ const FanclubRoute = () => {
                                   return (
                                     <PostConcert 
                                         concert={item}
+                                        openSettings={openSettingsConcert}
                                     />
                                   );
                                 } else {

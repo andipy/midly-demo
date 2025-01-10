@@ -287,7 +287,7 @@ const PostSettingsRoute = () => {
                 </div>
 
                 <Button
-                    style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1 mt-xs-4'
+                    style='bg-acid-lime fsize-xs-3 f-w-600 dark-900 letter-spacing-1 mt-xs-4 mb-xs-4'
                     onClick={updatePosts}
                     label='Salva'
                 />

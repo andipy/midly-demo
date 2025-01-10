@@ -39,7 +39,7 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
             }
 
             {!pathname.includes('/flash-leaderboard') && !pathname.includes('/fanclub') &&
-                <Container style={`w-100 position-absolute-x bottom-avatar-header z-index-2 d-flex-row gap-0_5em ${userCompeting && currentFan.hasSpotify && !pathname.includes('/fanclub') ? 'align-items-end' : 'align-items-center'}`}>
+                <Container style={`w-100 position-absolute-x bottom-avatar-header z-index-2 d-flex-row gap-0_5em ${userCompeting /* && currentFan?.hasSpotify */ && !pathname.includes('/fanclub') ? 'align-items-end' : 'align-items-center'}`}>
                     <div className='position-relative avatar-72'>
                         <img className={`avatar-72 border-radius-100 ${artist?.flashLeaderboard.status === 'ONGOING' ? 'border-lime-6' : 'border-dark-6'}`} src={artist?.image} />                       
                         {artist?.verified && <img className='artist-avatar-verified-icon' src={IconVerifiedArtist} />}
@@ -47,7 +47,7 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
                     <div className='d-flex-column grow-1 no-shrink j-c-start'>
                         <h2 className='fsize-xs-4 f-w-600'>{artist?.artistName}</h2>
                         <div className='d-flex-row j-c-space-between w-100 align-items-center'>
-                        {userCompeting && currentFan.hasSpotify &&
+                        {userCompeting  && /* && currentFan?.hasSpotify */
                             <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 align-self-start w-auto'} label={'Esci dalla classifica'} onClick={handleCompete} />
                         }
 

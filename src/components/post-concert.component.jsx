@@ -20,7 +20,7 @@ import IconOkBlack from '../images/icons/icon-ok-black.svg'
 import IconSettings from '../images/icons/icon-settings-white.svg'
 
 
-const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscription, slug}) => {
+const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscription, slug, openSettings}) => {
     const { pathname } = useLocation()
     const { currentFan} = useContext(CurrentFanContext)
     const navigate = useNavigate()
@@ -78,7 +78,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
             <div className='d-flex-row j-c-space-between align-items-center'>
                 <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
                 {pathname.includes('/artist-app/') &&
-                    <img className='avatar-20' src={IconSettings}></img>
+                    <img className='avatar-20' src={IconSettings} onClick={() => openSettings(concert)}></img>
                 }
             </div>
             <p className='grey-100 f-w-400 fsize-xs-2'>{concert.place.mainPlace}</p>
@@ -163,7 +163,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
             <div className='d-flex-row j-c-space-between align-items-center'>
                 <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
                 {pathname.includes('/artist-app/') &&
-                    <img className='avatar-20' src={IconSettings}></img>
+                    <img className='avatar-20' src={IconSettings} onClick={() => openSettings(concert)}></img>
                 }
             </div>
         </div>
