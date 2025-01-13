@@ -15,6 +15,7 @@ import { FanclubsProvider } from './contexts/fanclubs.context'
 import { LiveQuizProvider } from './contexts/live-quiz.context'
 import { FansProvider } from './contexts/fans.context'
 import { ModerationsProvider } from './contexts/moderations.context'
+import { ChatsProvider } from './contexts/chats.context'
 
 //FAN ROUTES
 import InviteFriendRoute from './routes/invite-friend.route'
@@ -80,6 +81,7 @@ import ConcertCreationRoute from './routes/concert-creation.route.artist'
 import AddStopRoute from './routes/add-stop.route.artist'
 import ConcertSettingsRoute from './routes/concert-settings.route.artist'
 import ConcertSettingsStopsRoute from './routes/concert-settings-stops.route.artist'
+import ChatsRoute from './routes/chats.route.artist'
 
 
 import UserModerationRoute from './routes/user-moderation.route'
@@ -88,6 +90,7 @@ import UserModerationReportRoute from './routes/user-moderation-report.route'
 import PostFullScreenRoute from './routes/post-full-screen.route'
 import ChatConcertRoute from './routes/chat-concert.route'
 import ChatTourRoute from './routes/chat-tour.route'
+import ChatPrivateRoute from './routes/chat-private.route'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -145,9 +148,12 @@ const router = createBrowserRouter([
 					element: <UserModerationReportRoute />,
 				}
 			]
-		  },
+		  }
 		  
 		],
+	},{
+		path: '/artist/:artistSlug/chat',
+		element: <ChatPrivateRoute />,
 	},{
 		path: '/artist/:artistSlug/concert/chat',
 		element: <ChatConcertRoute />
@@ -363,6 +369,12 @@ const router = createBrowserRouter([
 		path: '/artist-app/fanclub/activity',
 		element: <FanclubNotificationsRoute />
 	},{
+		path: '/artist-app/fanclub/chats',
+		element: <ChatsRoute />
+	},{
+		path: '/artist-app/fanclub/chats/chat',
+		element: <ChatPrivateRoute />,
+	},{
 		path: '/artist-app/profile',
 		element: <ProfileArtistRoute />
 	},{
@@ -400,7 +412,9 @@ function App() {
 					<LiveQuizProvider>
 						<FansProvider>
 							<ModerationsProvider>
-								<RouterProvider router={router} />
+								<ChatsProvider>
+									<RouterProvider router={router} />
+								</ChatsProvider>
 							</ModerationsProvider>
 						</FansProvider>
 					</LiveQuizProvider>

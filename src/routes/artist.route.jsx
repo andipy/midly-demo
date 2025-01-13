@@ -312,6 +312,10 @@ const ArtistRoute = () => {
         
     }
 
+    const openMessages = () => {
+       navigate(`/artist/${artist.slug}/chat`, { state: artist })
+    }
+
     const [err, setErr] = useState(false)
     const [isExitingErr, setIsExitingErr] = useState(false)
 
@@ -349,6 +353,7 @@ const ArtistRoute = () => {
                 artist={artist}
                 userCompeting={userCompeting}
                 handleCompete={handleCompete}
+                openMessages={openMessages}
             />
 
             <Container style={''}>
