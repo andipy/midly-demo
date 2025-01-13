@@ -27,7 +27,7 @@ const ContentCreationRoute = () => {
     const navigate = useNavigate()
 
     const { currentArtist } = useContext(CurrentArtistContext)
-    const { setFanclubs } = useContext(FanclubsContext)
+    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
         
     const videoRef = useRef(null)
     const canvasRef = useRef(null)
@@ -68,6 +68,29 @@ const ContentCreationRoute = () => {
             shareLink: undefined
         }
     })
+
+    useEffect(() => {
+        let newPostId
+        const foundPost = fanclubs
+          .map(fanclub => {
+            newPostId = fanclub.posts.length + 1
+            if (fanclub.artistId === currentArtist.id) {
+              return fanclub.posts.find(post => post.mode === 'SKETCH')
+            }
+            return null
+          })
+          .find(post => post !== null)
+    
+        if (foundPost) {
+          setPost(foundPost)
+        } else {
+            setPost(prevPost => ({
+                ...prevPost,
+                id: newPostId, 
+                mode: 'SKETCH', 
+              }))
+        }
+      }, [fanclubs])
 
     // this useEffect sets the height of the camera viewport
     useEffect(() => {
@@ -418,38 +441,80 @@ const ContentCreationRoute = () => {
     const updatePosts = () => {
         let currentDate = new Date()
         let newPostId
+        const foundPost = fanclubs
+          .map(fanclub => {
+            newPostId = fanclub.posts.length + 1
+            if (fanclub.artistId === currentArtist.id) {
+              return fanclub.posts.find(post => post.mode === 'SKETCH')
+            }
+            return null
+          })
+          .find(post => post !== null)
     
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === currentArtist.id) {
-                    
-                    newPostId = fanclub.posts.length + 1
-    
-                    return {
-                        ...fanclub,
-                        posts: [
-                            ...fanclub.posts,
-                            {
-                                ...post,
-                                id: newPostId,
-                                artistId: currentArtist.id,
-                                publisher: {
-                                    ...post.publisher,
-                                    id: currentArtist.id,
-                                    type: 'ARTIST'
-                                },
-                                mode: 'SKETCH',
-                                createdAt: currentDate,
-                                settings: {
-                                    ...post.settings,
-                                },
-                            },
-                        ],
+        if (foundPost) {
+          setFanclubs(prevFanclubs =>
+                prevFanclubs.map(fanclub => {
+                    if (fanclub.artistId === currentArtist.id) {
+                        const updatedPosts = fanclub.posts.map(p => {
+                            if (p.id === foundPost.id) {
+                                return {
+                                    ...post,
+                                    artistId: currentArtist.id,
+                                    publisher: {
+                                        ...post.publisher,
+                                        id: currentArtist.id,
+                                        type: 'ARTIST'
+                                    },
+                                    mode: 'SKETCH',
+                                    createdAt: currentDate,
+                                    settings: {
+                                        ...post.settings,
+                                    },
+                                }
+                            }
+                            return post
+                        })
+
+                        return {
+                            ...fanclub,
+                            posts: updatedPosts, 
+                        }
                     }
-                }
-                return fanclub
-            })
-        )
+                    return fanclub
+                })
+            )
+        } else {
+            setFanclubs(prevFanclubs =>
+                prevFanclubs.map(fanclub => {
+                    if (fanclub.artistId === currentArtist.id) {        
+                        return {
+                            ...fanclub,
+                            posts: [
+                                ...fanclub.posts,
+                                {
+                                    ...post,
+                                    id: post.id,
+                                    artistId: currentArtist.id,
+                                    publisher: {
+                                        ...post.publisher,
+                                        id: currentArtist.id,
+                                        type: 'ARTIST'
+                                    },
+                                    mode: 'SKETCH',
+                                    createdAt: currentDate,
+                                    settings: {
+                                        ...post.settings,
+                                    },
+                                },
+                            ],
+                        }
+                    }
+                    return fanclub
+                })
+            )
+        }
+        
+        
 
         navigate('/artist-app/content-creation/post-review', { state: { postId: newPostId } })
     }
@@ -667,6 +732,7 @@ const ContentCreationRoute = () => {
 
         <TextAreaCaption
             showTextArea={showTextArea}
+            caption={post?.caption}
             handleTextAreaVisibility={handleTextAreaVisibility}
             handleCaption={handleCaption}
         />
@@ -676,6 +742,8 @@ const ContentCreationRoute = () => {
             handleLinkAreaVisibility={handleLinkAreaVisibility}
             handleLinkUrl={handleLinkUrl}
             handleLinkName={handleLinkName}
+            url={post?.link.url}
+            name={post?.link.name}
         />
 
         <SettingsArea

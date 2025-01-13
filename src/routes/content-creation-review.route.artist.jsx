@@ -37,7 +37,7 @@ const ContentCreationReviewRoute = () => {
         if (postId) {
             fetchThisPost()
         }
-    }, [postId, fanclubs, currentArtist])
+    }, [postId, currentArtist])
 
     const handleCaption = (e) => {
         e.preventDefault()
@@ -87,6 +87,36 @@ const ContentCreationReviewRoute = () => {
         }))
     }
 
+    useEffect(() => {
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === currentArtist.id) {
+                    return {
+                        ...fanclub,
+                        posts: fanclub.posts.map(elem => {
+                            if ( elem.id === postId ) {
+                                return {
+                                    ...elem,                                    
+                                    caption: post?.caption,
+                                    link: {
+                                        name: post?.link?.name,
+                                        url: post?.link?.url
+                                    },
+                                    settings: {
+                                        isPinned: post?.settings?.isPinned,
+                                        isPrivate: post?.settings?.isPrivate
+                                    }
+                                }
+                            }
+                            return elem
+                        })
+                    }
+                }
+                return fanclub
+            })
+        )
+    }, [post])
+
     const updatePosts = () => {
         setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub => {
@@ -98,15 +128,6 @@ const ContentCreationReviewRoute = () => {
                                 return {
                                     ...elem,
                                     mode: 'PUBLISHED',
-                                    caption: post?.caption,
-                                    link: {
-                                        name: post?.link?.name,
-                                        url: post?.link.url
-                                    },
-                                    settings: {
-                                        isPinned: post?.settings?.isPinned,
-                                        isPrivate: post?.settings?.isPrivate
-                                    }
                                 }
                             }
                             return elem
