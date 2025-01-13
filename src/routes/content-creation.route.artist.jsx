@@ -37,6 +37,7 @@ const ContentCreationRoute = () => {
     const [facingMode, setFacingMode] = useState('user')
     const [video, setVideo] = useState(null)
     const [photo, setPhoto] = useState(null)
+    const [audio, setAudio] = useState(null)
     const [textContent, setTextContent] = useState('')
     const [contentType, setContentType] = useState('IMAGE')
 
@@ -140,7 +141,7 @@ const ContentCreationRoute = () => {
                 tracks.forEach((track) => track.stop())
             }
         }
-    }, [photo, video, facingMode, contentType])
+    }, [photo, video, facingMode, contentType, audio])
 
     const switchCamera = () => {
         setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'))
@@ -222,7 +223,7 @@ const ContentCreationRoute = () => {
     }
 
     const [recordingAudio, setRecordingAudio] = useState(false)
-    const [audio, setAudio] = useState(null)
+    
     const audioRecorderRef = useRef(null)
     const [elapsedTime, setElapsedTime] = useState({
         hours: 0,
@@ -285,6 +286,34 @@ const ContentCreationRoute = () => {
             setError(err.message)
         }
     }
+
+    const handleModifyPhoto = (id, url) => {
+        setPhoto({
+            id: id,
+            type: 'IMAGE',
+            url: url
+        })
+    }
+
+    const handleModifyVideo = (id, url) => {
+        setVideo({
+            id: id,
+            type: 'VIDEO',
+            url: url
+        })
+    }
+
+    const handleModifyAudio = (id, url) => {
+        setAudio({
+            id: id,
+            type: 'AUDIO',
+            url: url
+        })
+    }
+
+    const handleModifyText = () => {
+        handleTextType()
+    }
     
     const handleStopRecordingAudio = () => {
         if (audioRecorderRef.current) {
@@ -321,15 +350,21 @@ const ContentCreationRoute = () => {
         }))
     }
     const keepPhoto = () => {
-        setPost(prev => ({
-            ...prev,
-            media: [...prev.media, {
-                id: photo.id,
-                type: 'IMAGE',
-                url: photo.url
-            }]
-        }))
-        setPhoto(null)
+        const foundMedia = post.media?.find(elem => elem.id === photo.id)
+        if (foundMedia) {
+            setPhoto(null)
+        } else {
+            setPost(prev => ({
+                ...prev,
+                media: [...prev.media, {
+                    id: photo.id,
+                    type: 'IMAGE',
+                    url: photo.url
+                }]
+            }))
+            setPhoto(null)
+        }
+        
     }
     const clearVideo = (id) => {
         setVideo(null)
@@ -339,15 +374,21 @@ const ContentCreationRoute = () => {
         }))
     }
     const keepVideo = () => {
-        setPost(prev => ({
-            ...prev,
-            media: [...prev.media, {
-                id: video.id,
-                type: 'VIDEO',
-                url: video.url
-            }]
-        }))
-        setVideo(null)
+        const foundMedia = post.media?.find(elem => elem.id === video.id)
+        if (foundMedia) {
+            setVideo(null)
+        } else {
+            setPost(prev => ({
+                ...prev,
+                media: [...prev.media, {
+                    id: video.id,
+                    type: 'VIDEO',
+                    url: video.url
+                }]
+            }))
+            setVideo(null)
+        }
+        
     }
 
     const clearAudio = (id) => {
@@ -359,15 +400,20 @@ const ContentCreationRoute = () => {
     }
 
     const keepAudio = () => {
-        setPost(prev => ({
-            ...prev,
-            media: [...prev.media, {
-                id: audio.id,
-                type: 'AUDIO',
-                url: audio.url
-            }]
-        }))
-        setAudio(null)
+        const foundMedia = post.media?.find(elem => elem.id === audio.id)
+        if (foundMedia) {
+            setAudio(null)
+        } else {
+            setPost(prev => ({
+                ...prev,
+                media: [...prev.media, {
+                    id: audio.id,
+                    type: 'AUDIO',
+                    url: audio.url
+                }]
+            }))
+            setAudio(null)
+        }
     }
 
     const handlePhotoType = () => {
@@ -591,12 +637,12 @@ const ContentCreationRoute = () => {
                     </div>
                 }
 
-                {!photo && !video && 
+                {!photo && !video && !audio &&
                     <>
                         {contentType === 'IMAGE' || contentType === 'VIDEO' ?
                             <video className='border-radius-1 overflow-clip object-fit-cover' ref={videoRef} autoPlay playsInline style={{ width: '100%', height: '100%' }} />
                         : contentType === 'TEXT' &&
-                            <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-1 fsize-xs-8 f-w-600 h-100' placeholder='Scrivi qui...' onChange={handleCaptureText}></textarea>
+                            <textarea className='bg-dark-soft-2 white letter-spacing-1 border-radius-1 fsize-xs-8 f-w-600 h-100' placeholder='Scrivi qui...' value={post?.text} onChange={handleCaptureText}></textarea>
                         }
                     </>
                 }
@@ -619,7 +665,7 @@ const ContentCreationRoute = () => {
                             </div>
                         </div>
                     </>
-                : !recordingAudio && contentType === 'AUDIO' && !audio &&
+                : !recordingAudio && contentType === 'AUDIO' && !audio && !video && !photo &&
                     <>
                         <div className='d-flex-column j-c-center align-items-center w-100 h-100'>
                             <h1 className='fsize-xs-3 f-w-600'>Avvia una registrazione</h1>
@@ -712,13 +758,13 @@ const ContentCreationRoute = () => {
                                 return (
                                     <>
                                         {elem.type ==='IMAGE' &&
-                                            <img className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} />
+                                            <img className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} onClick={() => handleModifyPhoto(elem.id, elem.url)} />
                                         }
                                         {elem.type ==='VIDEO' &&
-                                            <video className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} controls={false} autoPlay={true} playsInline loop={true} />
+                                            <video className='border-radius-04 object-fit-cover avatar-60' key={elem.id} src={elem.url} controls={false} autoPlay={true} playsInline loop={true} onClick={() => handleModifyVideo(elem.id, elem.url)}/>
                                         }
                                         {elem.type ==='AUDIO' &&
-                                            <div className='border-radius-04 object-fit-cover avatar-60 bg-dark-soft d-flex-row j-c-center align-items-center'>
+                                            <div className='border-radius-04 object-fit-cover avatar-60 bg-dark-soft d-flex-row j-c-center align-items-center' onClick={() => handleModifyAudio(elem.id, elem.url)}>
                                                 <img className='avatar-20' src={IconPlay}/>
                                             </div>
                                         }
@@ -726,7 +772,7 @@ const ContentCreationRoute = () => {
                                 )
                             })}
                             {post.text.length > 0 &&
-                                <div className='d-flex-row align-items-center j-c-center border-radius-04 object-fit-cover avatar-60 bg-dark-soft-2 grey-300 f-w-600'>Text</div>
+                                <div className='d-flex-row align-items-center j-c-center border-radius-04 object-fit-cover avatar-60 bg-dark-soft-2 grey-300 f-w-600'onClick={() => handleModifyText()}>Text</div>
                             }
                         </div>
                     :
