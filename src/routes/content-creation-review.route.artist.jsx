@@ -7,7 +7,7 @@ import { FanclubsContext } from '../contexts/fanclubs.context'
 import Container from '../layout/container.layout'
 import Carousel from '../layout/carousel.layout'
 
-import NavbarDismiss from '../components/navbar-dismiss.component'
+import NavbarMultistep from '../components/navbar-multistep.component'
 import Button from '../components/button.component'
 
 import IconCopy from "../images/icons/icon-copy.svg"
@@ -137,7 +137,7 @@ const ContentCreationReviewRoute = () => {
 
     return (
         <>
-            <NavbarDismiss transparent={true} forcedExitPath={'/artist-app/fanclub'} clear={deletePost} />
+            <NavbarMultistep transparent={false} forcedExitPath={'/artist-app/fanclub'} stepNumber={2} dismissable={true} clear={deletePost} />
 
             <Container style={'pt-xs-topbar pb-xs-appbar'}>
                 <h1 className='fsize-xs-5 f-w-600 mb-xs-8'>Rivedi il post e pubblica</h1>

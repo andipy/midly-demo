@@ -4,7 +4,7 @@ import IconBack from '../images/icons/icon-arrowleft.svg'
 import IconExit from '../images/icons/icon-exit.svg'
 import IconEdit from '../images/icons/icon-edit.svg'
 
-const NavbarMultistep = ({ stepNumber, totalStepNumber, dismissable, transparent, editable, editPath, forcedBackPath, forcedExitPath }) => {
+const NavbarMultistep = ({ stepNumber, totalStepNumber, dismissable, transparent, editable, editPath, forcedBackPath, forcedExitPath, clear }) => {
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
@@ -19,6 +19,9 @@ const NavbarMultistep = ({ stepNumber, totalStepNumber, dismissable, transparent
 
     const handleExit = () => {
         if ( forcedExitPath ) {
+            if ( pathname.includes('/artist-app/content-creation/post-review') ) {
+                clear()
+            }
             navigate(forcedExitPath)
         } else {
             navigate(-1)
