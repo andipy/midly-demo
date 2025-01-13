@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useRef } from 'react'
-import { useNavigate, useLocation, useOutletContext } from 'react-router-dom'
+import { useNavigate, useLocation, useOutletContext, Outlet } from 'react-router-dom'
 
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
@@ -10,8 +10,11 @@ import FullScreenModalLayout from '../layout/full-screen-modal.layout'
 import Button from '../components/button.component'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import FullPageCenter from '../layout/full-page-center.layout'
+import Carousel from '../layout/carousel.layout'
 
 import IconCopy from '../images/icons/icon-copy.svg'
+import IconEdit from '../images/icons/icon-edit.svg'
+
 
 const ConcertSettingsRoute = () => {
 
@@ -26,15 +29,18 @@ const ConcertSettingsRoute = () => {
 
     const [post, setPost] = useState({})
     const [links, setLinks] = useState([''])
+    const [tourStops, setTourStops] = useState([])
 
     const fetchThisPost = () => {
         console.log(state)
         setPost(state)
-        if (state.type === 'CONCERT') {
-            setLinks(state.buyLinks)
+        setLinks(state.buyLinks)  
+
+        if (state?.type === 'TOUR') {
+            setTourStops(state.dates)
         }
-        
     }
+
     useEffect(() => {
             if (state) {
                 fetchThisPost()
@@ -151,6 +157,7 @@ const ConcertSettingsRoute = () => {
     }
 
     const updatePosts = () => {
+        
         setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub => {
                 if (fanclub.artistId === post.artistId) {
@@ -158,17 +165,30 @@ const ConcertSettingsRoute = () => {
                         ...fanclub,
                         concerts: fanclub.concerts.map(elem => {
                             if ( elem.id === post.id ) {
-                                return {
-                                    ...elem,
-                                    name: post?.name,
-                                    settings: {
-                                        isPinned: post?.settings?.isPinned,
-                                        isPrivate: post?.settings?.isPrivate
-                                    },
-                                    buyLinks: links,
-                                    place: post.place,
-                                    date: post.date
+                                if (post?.type === 'CONCERT') {
+                                    return {
+                                        ...elem,
+                                        name: post?.name,
+                                        settings: {
+                                            isPinned: post?.settings?.isPinned,
+                                            isPrivate: post?.settings?.isPrivate
+                                        },
+                                        buyLinks: links,
+                                        place: post.place,
+                                        date: post.date
+                                    }
+                                } else {
+                                    return {
+                                        ...elem,
+                                        name: post?.name,
+                                        settings: {
+                                            isPinned: post?.settings?.isPinned,
+                                            isPrivate: post?.settings?.isPrivate
+                                        },
+                                        buyLinks: links,
+                                    }
                                 }
+                                
                             }
                             return elem
                         })
@@ -214,6 +234,31 @@ const ConcertSettingsRoute = () => {
             })
         )
         navigate(-1)
+    }
+
+    const getDay = (date) => {
+        if ( date ) {
+            const [day] = date.split('-')
+            return day.padStart(2, '0')
+        }
+    }
+
+    const getMonth = (date) => {
+        if ( date ) {
+            const [, month] = date.split('-')
+            const monthNames = [
+                "GEN", "FEB", "MAR", "APR", "MAG", "GIU", 
+                "LUG", "AGO", "SET", "OTT", "NOV", "DIC"
+            ]
+            return monthNames[parseInt(month, 10) - 1]
+        }
+    }
+
+    const getYear = (date) => {
+        if ( date ) {
+            const [, , year] = date.split('-')
+            return year
+        }
     }
 
   return (
@@ -301,7 +346,65 @@ const ConcertSettingsRoute = () => {
                     </div>
                 </>
                 :
-                <></>
+                <>
+                <div className='mt-xs-10'>
+                    <h1 className='fsize-xs-5 f-w-600 mb-xs-4 mt-xs-12'>Modifica ogni tappa</h1>
+                    <Carousel>
+                    {post?.dates?.map((stop, index) => (
+                        <>
+                        <div className="d-flex-column j-c-start align-items-start ">
+                            <div className="avatar-80 d-flex-row j-c-center align-items-center position-relative">
+                                <div className='d-flex-column align-items-center j-c-center bg-dark border-radius-04 avatar-80 '>
+                                    <p className='fsize-xs-9 line-height-1'>{getDay(stop?.date)}</p>
+                                    <p className='fsize-xs-3 line-height-1'>{getMonth(stop?.date)}</p>
+                                    <p className='fsize-xs-2 line-height-1'>{getYear(stop?.date)}</p>
+                                </div>
+
+                                <div className='overlay-card-followed bg-dark-overlay-card bg-dark d-flex-row j-c-center align-items-center border-radius-04' onClick={() => navigate(`edit-stops`, { state: { invokedModal: true, action: 'EDIT', id: stop?.id, artistId: state?.artistId, postId: state?.id } })} >
+                                    <img src={IconEdit}></img>
+                                </div>
+                                
+                            </div>
+                            {/* <div className="avatar-20 bg-dark-gradient position-absolute top-0 right-2 border-radius-100 j-c-center align-items-center d-flex-row" onClick={() => removeTourStop(stop.id)}>
+                                    <p>-</p>
+                            </div> */}
+                            <p className='grey-100 f-w-400 fsize-xs-1 mt-xs-2'>{stop?.mainPlace}</p>
+                            
+                        </div>
+                        
+                        
+                        </>   
+                    ))}
+                    </Carousel>
+
+                    {/* <Button
+                        style='bg-black border-lime lime-400 black fsize-xs-3 f-w-600 mt-xs-4'
+                        onClick={() => navigate(`/artist-app/fanclub/edit-post-concert/add-stop`, { state: { invokedModal: true } })} 
+                        label='Aggiungi tappa'
+                    /> */}
+
+                </div>
+                <div className='mt-xs-10'>
+                    <h1 className='fsize-xs-5 f-w-600 mb-xs-4 mt-xs-10'>Link acquisto biglietti</h1>
+                    <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>{'LINK'}</label>
+                    {links.map((link, index) => (       
+                        <input
+                        key={index}
+                        className='bg-dark white fsize-xs-2 f-w-500 white letter-spacing-1 border-radius-02 mt-xs-2'
+                        type='text'
+                        placeholder='Incolla qui il link'
+                        value={link}
+                        onChange={(e) => handleLinkChange(index, e.target.value)}
+                        />
+                    ))}
+
+                    <Button
+                        style='bg-black border-lime lime-400 black fsize-xs-3 f-w-600 mt-xs-4'
+                        onClick={addNewLink} 
+                        label='Aggiungi altro link'
+                    />
+                </div>
+                </>
         }
         <h1 className='fsize-xs-5 f-w-600 mb-xs-4 mt-xs-10'>Impostazioni</h1>
         
@@ -362,6 +465,7 @@ const ConcertSettingsRoute = () => {
                 </Container>
             </FullPageCenter>
         }
+        <Outlet context={[tourStops, setTourStops]}/>
         
     </FullScreenModalLayout>
 
