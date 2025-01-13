@@ -96,7 +96,8 @@ const ContentCreationReviewRoute = () => {
                         posts: fanclub.posts.map(elem => {
                             if ( elem.id === postId ) {
                                 return {
-                                    ...elem,                                    
+                                    ...elem, 
+                                    mode: 'SKETCH',                                   
                                     caption: post?.caption,
                                     link: {
                                         name: post?.link?.name,

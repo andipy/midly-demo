@@ -558,10 +558,25 @@ const ContentCreationRoute = () => {
         drawWaveformBars()
     }, [audioData])
 
+    const deletePost = () => {
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === currentArtist.id) {
+                    return {
+                        ...fanclub,
+                        posts: fanclub.posts.filter(elem => elem.mode === 'PUBLISHED')
+                    }
+                }
+                
+                return fanclub
+            })
+        )
+    }  
+
     return (
         <>
         <div className='d-flex-column j-c-center outer'>
-            <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} transparent={true} forcedExitPath={'/artist-app/fanclub'} />
+            <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} transparent={true} forcedExitPath={'/artist-app/fanclub'} clear={deletePost}/>
             {error && <p className='pt-xs-topbar'>Error accessing the camera: {error}</p>}
             
             <div className='camera-frame-wrapper position-relative'>
