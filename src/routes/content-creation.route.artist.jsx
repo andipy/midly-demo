@@ -118,27 +118,26 @@ const ContentCreationRoute = () => {
         const getCameraStream = async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({
-                  video: { facingMode }
+                    video: { facingMode },
                 })
+                
                 if (videoRef.current) {
-                  videoRef.current.srcObject = stream
+                    videoRef.current.srcObject = stream
+                    videoRef.current.play() // Explicitly call play() to ensure the stream starts
                 }
-              } catch (err) {
+            } catch (err) {
                 setError(err.message)
-              }
             }
-
-        const handleUserAction = () => {
-            getCameraStream()
         }
-      
-        // Adding event listener to handle user interaction
-        document.addEventListener('click', handleUserAction, { once: true })
-
+    
+        // Start the camera stream
+        getCameraStream()
+    
+        // Cleanup function to stop all tracks
         return () => {
             if (videoRef.current && videoRef.current.srcObject) {
-                let tracks = videoRef.current.srcObject.getTracks()
-                tracks.forEach(track => track.stop())
+                const tracks = videoRef.current.srcObject.getTracks()
+                tracks.forEach((track) => track.stop())
             }
         }
     }, [photo, video, facingMode, contentType])
@@ -513,8 +512,6 @@ const ContentCreationRoute = () => {
                 })
             )
         }
-        
-        
 
         navigate('/artist-app/content-creation/post-review', { state: { postId: newPostId } })
     }

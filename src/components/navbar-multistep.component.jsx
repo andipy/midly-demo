@@ -19,16 +19,11 @@ const NavbarMultistep = ({ stepNumber, totalStepNumber, dismissable, transparent
 
     const handleExit = () => {
         if ( forcedExitPath ) {
-            if ( pathname.includes('/artist-app/content-creation/post-review') ) {
-                clear()
-            }
             if ( pathname.includes('/artist-app/content-creation') ) {
-                console.log('delete')
                 clear()
             }
             navigate(forcedExitPath)
         } else {
-            console.log('non deleet')
             navigate(-1)
         }
     }
