@@ -51,7 +51,23 @@ const ConcertSettingsStopsRoute = () => {
     }
 
     const onClick = () => {
-        navigate(-1)
+        let concert
+        fanclubs.map(fanclub => {
+            if (fanclub.artistId === state?.artistId) {
+                return {
+                    ...fanclub,
+                    concerts: fanclub.concerts.map(elem => {
+                        if ( elem.id === state?.postId ) {
+                            concert = elem
+                        }
+                        return elem
+                    })
+                }
+            }
+            return fanclub
+        })
+        console.log(concert)
+        navigate(`/artist-app/fanclub/edit-post-concert/${state?.postId}`, { state: { ...concert, invokedModal: true } })
     }
 
     const handleEventPlace = (e) => {
@@ -173,7 +189,7 @@ const ConcertSettingsStopsRoute = () => {
                 return fanclub
             })
         )
-        navigate(-1)
+        onClick()
     }
   return (
     <FullScreenModalLayout background='bg-dark-soft'>
