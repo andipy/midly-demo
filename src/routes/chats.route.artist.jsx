@@ -42,7 +42,7 @@ const ChatsRoute = () => {
                     const user = fans?.find(fan => fan.id === chat.fanId)
 
                     return (
-                        <div key={chat.id} className="d-flex-row align-items-center j-c-space-between pt-xs-2 pb-xs-2 pr-xs-2 mt-xs-2 mb-xs-2">
+                        <div key={chat.id} className="d-flex-row align-items-center j-c-space-between pt-xs-2 pb-xs-2 pr-xs-2 mt-xs-2 mb-xs-2" onClick={() => navigate(`/artist-app/fanclub/chats/chat`, { state: currentFan })}>
                             <div className="d-flex-row align-items-center j-c-start">
                                 <img className="avatar-48 border-radius-100" src={user.image} alt={`${user.username} avatar`} />
                                 <div className="d-flex-column j-c-start align-items-start ml-xs-8">
@@ -51,7 +51,7 @@ const ChatsRoute = () => {
                                 </div>
                             </div>
 
-                            <div className="d-flex-row ml-xs-2" onClick={() => navigate(`/artist-app/fanclub/chats/chat`, { state: currentFan })}>
+                            <div className="d-flex-row ml-xs-2" >
                                 <img className="avatar-24 border-radius-02" src={IconArrowRight} alt="Chat image" />
                             </div>
                         </div>
