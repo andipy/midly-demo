@@ -82,16 +82,16 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 	return (
 		<>
-		<div className='bg-dark-soft position-relative overflow-hidden d-flex-column j-c-center border-radius-04 mb-xs-8'>
-			<div className='d-flex-row w-100 j-c-space-between align-items-center pl-xs-2 mt-xs-2 mb-xs-2'>
-				<div className='d-flex-row j-c-start align-items-center gap-0_25em'>
+		<div className='position-relative overflow-hidden d-flex-column j-c-center border-radius-04 mb-xs-4'>
+			<div className='d-flex-row w-100 j-c-space-between align-items-center pl-xs-2 mb-xs-2'>
+				{/* <div className='d-flex-row j-c-start align-items-center gap-0_25em'>
 					{artist &&
 						<>
 							<img className='avatar-28 border-radius-100 ' src={artist?.image} />
 							<p className='fsize-xs-1 f-w-500'>{artist?.artistName}</p>
 						</>
 					}
-				</div>
+				</div> */}
 				
 				<div className='d-flex-row j-c-end align-items-center pr-xs-2'>
 					{ post.settings.isPinned &&
@@ -104,7 +104,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 				<p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>
 			}
 
-			<div className={`w-100  j-c-center align-items-center position-relative`}>
+			<div className={`w-100  j-c-center align-items-center position-relative `}>
 				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} onClick={() => focusPost(post.id, 'FULL_SCREEN_POST')}>
 					{post.media.length >= 0 ?
 						<SwipeCarousel images={post.media} text={post.text} />
@@ -115,7 +115,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 			</div>
 
 			{(!post.settings.isPrivate || (post.settings.isPrivate && hasUserSubscribed) || pathname.includes('/artist-app/')) ?
-				<div className='w-100 pr-xs-4 pl-xs-4 mb-xs-4'>
+				<div className='w-100  mb-xs-4'>
 					<div className='d-flex-row w-100 j-c-space-between align-items-center mt-xs-2'>
 						<div className='d-flex-row align-items-center gap-1em'>
 							<div className='d-flex-row align-items-center gap-0_25em'
@@ -132,13 +132,13 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 								{!pathname.includes('/artist-app') ? (
 									isLiked ? (
 										<img
-											className="avatar-28 bg-dark-soft-2 border-radius-04"
+											className="avatar-28  border-radius-04"
 											src={IconThunderActive}
 											alt="Liked"
 										/>
 									) : (
 										<img
-											className="avatar-28 bg-dark-soft-2 border-radius-04"
+											className="avatar-28  border-radius-04"
 											src={IconThunder}
 											alt="Not Liked"
 										/>
@@ -146,13 +146,13 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 								) : (
 									isLiked ? (
 										<img
-											className="avatar-28 bg-dark-soft-2 border-radius-04"
+											className="avatar-28  border-radius-04"
 											src={IconThunderActive}
 											alt="Liked"
 										/>
 									) : (
 										<img
-											className="avatar-28 bg-dark-soft-2 border-radius-04"
+											className="avatar-28  border-radius-04"
 											src={IconThunder}
 											alt="Not Liked"
 										/>
@@ -175,19 +175,19 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 									
 								}}
 							>
-								<img className='avatar-28 bg-dark-soft-2 border-radius-04' src={IconComments} />
+								<img className='avatar-28  border-radius-04' src={IconComments} />
 								<p className='fsize-xs-1'>{post.comments.length}</p>
 							</div>
 
 							<div className='d-flex-row align-items-center gap-0_25em' onClick={() => focusPost(post.id, 'SHARE_POST')}>
-								<img className='avatar-28 bg-dark-soft-2 border-radius-04' src={IconShare}/>
+								<img className='avatar-28  border-radius-04' src={IconShare}/>
 								{/* <p className='fsize-xs-1'>{post.shares}</p> */}
 							</div>
 						</div>
 
 						{pathname.includes('/artist-app/') &&
 							<div className='d-flex-row' onClick={() => focusPost(post.id, 'OPEN_SETTINGS')}>
-								<img className='avatar-28 bg-dark-soft-2 border-radius-04' src={IconSettings}/>
+								<img className='avatar-28  border-radius-04' src={IconSettings}/>
 							</div>
 						}
 					</div>

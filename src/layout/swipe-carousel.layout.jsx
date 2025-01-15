@@ -69,14 +69,14 @@ const SwipeCarousel = ({ images, text }) => {
 			onTouchEnd={canSlide ? handleDragEnd : undefined}
 		>
 			<div
-				className='carousel-track d-flex-row align-items-center object-fit-cover w-100'
+				className='carousel-track d-flex-row align-items-center object-fit-cover w-100 border-radius-08 '
 				ref={trackRef}
 				style={{
 					transform: `translateX(-${currentIndex * 100}%)`,
 				}}
 			>
 				{images.map((media, index) => (
-					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 object-fit-cover'
+					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 object-fit-cover border-radius-08 '
 						style={{
 							width: '300px',
 							height: `300px`,
@@ -84,13 +84,13 @@ const SwipeCarousel = ({ images, text }) => {
 						}}
 					>
 						{media.type === 'IMAGE' ?
-							<img  className='object-fit-cover w-100 h-100' src={media.url} />
+							<img  className='object-fit-cover w-100 h-100 border-radius-08 ' src={media.url} />
 						: media.type === 'VIDEO' ?	
-						<video className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted={!isMuted}>
+						<video className='w-100 h-100 object-fit-cover border-radius-08 ' autoPlay playsInline loop muted={!isMuted}>
 							<source src={media.url} type='video/mp4' />
 						</video>
 						: media.type === 'AUDIO'?
-							<div className='object-fit-cover w-100 h-100 d-flex-row j-c-center align-items-center'>
+							<div className='object-fit-cover w-100 h-100 d-flex-row j-c-center align-items-center border-radius-08 '>
 								<AudioPost src={media.url} />
 							</div>
 						: null

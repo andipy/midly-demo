@@ -488,8 +488,8 @@ const ContentCreationRoute = () => {
         let newPostId
         const foundPost = fanclubs
           .map(fanclub => {
-            newPostId = fanclub.posts.length + 1
             if (fanclub.artistId === currentArtist.id) {
+                newPostId = fanclub.posts.length + 1
               return fanclub.posts.find(post => post.mode === 'SKETCH')
             }
             return null
@@ -538,7 +538,7 @@ const ContentCreationRoute = () => {
                                 ...fanclub.posts,
                                 {
                                     ...post,
-                                    id: post.id,
+                                    id: newPostId,
                                     artistId: currentArtist.id,
                                     publisher: {
                                         ...post.publisher,
