@@ -30,7 +30,8 @@ export const FanclubsProvider = ({ children }) => {
             beneficiary: null,
             iban: null,
             posts: [],
-            concerts: []
+            concerts: [],
+            forum: []
         },{
             id: 2,
             artistId: 'a3p8',
@@ -56,7 +57,53 @@ export const FanclubsProvider = ({ children }) => {
             beneficiary: null,
             iban: null,
             posts: [],
-            concerts: []
+            concerts: [],
+            forum: [
+                {
+                    id: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    userName: 'imTheKing',
+                    publisher: {
+                        id: 1,
+                        type: 'FAN'
+                    },
+                    title: 'Prossimo concerto info',
+                    topic: 'Quanto dista San Siro da Roma?',
+                    hashtags: ['post', 'community', 'concerto'],
+                    likes: [],
+                    comments: []
+
+                },{
+                    id: 2,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    userName: 'imTheKing',
+                    publisher: {
+                        id: 1,
+                        type: 'FAN'
+                    },
+                    title: 'Disco nuovo',
+                    topic: 'Secondo voi quando esce?',
+                    hashtags: ['post', 'community', 'concerto'],
+                    likes: [],
+                    comments: []
+
+                }, {
+                    id: 3,
+                    userImage: require('../images/pictures/thasup.jpg'),
+                    userName: 'thasup',
+                    publisher: {
+                        id: 'a3p8',
+                        type: 'ARTIST'
+                    },
+                    title: 'Biglietti tour',
+                    topic: 'Avete comprato i blietti per il tour?',
+                    hashtags: ['post', 'community', 'concerto'],
+                    likes: [],
+                    comments: []
+
+                },  
+
+            ]
         },{
             id: 3,
             artistId: 3,
@@ -82,7 +129,8 @@ export const FanclubsProvider = ({ children }) => {
             beneficiary: null,
             iban: null,
             posts: [],
-            concerts: []
+            concerts: [],
+            forum: []
         }
     ])
 

@@ -15,6 +15,13 @@ import FullPageCenter from '../layout/full-page-center.layout'
 import Snackbar from '../components/snackbar.component'
 import PostConcert from '../components/post-concert.component'
 import Button from '../components/button.component'
+import TabFanclub from '../components/tab-fanclub.component'
+
+import IconSearch from '../images/icons/icon-search-black.svg'
+import IconPlus from '../images/icons/icon-plus-black.svg'
+import Carousel from '../layout/carousel.layout'
+import ForumTopic from '../components/forum-topic.component'
+
 
 const Fanclub = () => {
     const navigate = useNavigate()
@@ -438,9 +445,45 @@ const Fanclub = () => {
         setMixedPosts(sortedMixed)
     }, [fanclub])
 
+
+    const [postType, setPostType] = useState('ALL')
+    const clickTab = (value) => {
+        setPostType(value)
+    }
+
+    //FORUM
+    const likeTopic = (id) => {
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === context.id) {
+                    return {
+                        ...fanclub,
+                        forum: fanclub.forum.map(topic => {
+                            if (topic.id === id) {
+                                const liked = topic.likes.some(p => p.userId === currentFan.id)
+                                return {
+                                    ...topic,
+                                    likes: liked
+                                        ? topic.likes.filter(c => c.userId !== currentFan.id) // Rimuove il like
+                                        : [...topic.likes, { userId: currentFan.id }] // Aggiunge il like
+                                }
+                            }
+                            return topic
+                        })
+                    }
+                }
+                return fanclub
+            })
+        )
+    }
+
+    const shareTopic = () => {
+        triggerSnackbar('Link al post copiato negli appunti')
+    }
+
     return (
         <>
-            <div className='d-flex-column j-c-start mt-xs-4'>
+            <div className='d-flex-column j-c-start '>
                 <div className='d-flex-row j-c-space-between align-items-center'>
                     <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
                     {
@@ -458,58 +501,128 @@ const Fanclub = () => {
                 
                 <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
             </div>
-            {fanclub?.posts.length === 0 && fanclub?.concerts.lenght === 0 ?
-                <div className='d-flex-column align-items-center mt-xs-16'>
-                    <p className='fsize-xs-2 f-w-200 grey-200 w-70 t-align-center mt-xs-4'>L'artista ha già attivato il suo fanclub! Resta sincronizzato e sii il primo a vedere i primi contenuti appena usciranno.</p>
-                </div>
-            :
-                <Container style={'pb-xs-2 mt-xs-4'}>
-                    {
-                        mixedPosts.map(item => {
-                        if (item.type === 'CONCERT' || item.type === 'TOUR' ) {
-                            return (
+            <div className='mt-xs-4'>
+                <TabFanclub onClick={clickTab} postType={postType}/>
+            </div>
+            {
+                postType === 'FORUM' ?
+                <>
+                    <Container style={'pb-xs-2 mt-xs-4'}>
+                    <div className='w-100 d-flex-row align-items-center j-c-end gap-0_25em'>
+                        <div className='avatar-28 border-radius-100 d-flex-row align-items-center j-c-center bg-acid-lime'>
+                            <img className='avatar-20' src={IconSearch}/>
+                        </div>
+                        <div className='avatar-28 border-radius-100 d-flex-row align-items-center j-c-center bg-acid-lime'>
+                            <img className='avatar-20' src={IconPlus}/>
+                        </div>
+                    </div>
+                    <div className=''>
+                        <div className='mt-xs-4'>
+                            <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>I tuoi topic</h4>
+                            <Carousel>
+                                {fanclub?.forum
+                                .filter(topic => topic?.publisher.type === 'FAN' && topic?.publisher.id === currentFan?.id)
+                                .map(topic => {
+                                    return (
+                                        <ForumTopic key={topic.id} topic={topic} like={likeTopic} share={() => shareTopic()}/>
+                                    )
+                                })}
+                            </Carousel>
+                        </div>
+                        <div className='mt-xs-4'>
+                            <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>I più cliccati</h4>
+                            {/* per ora qui li vedo tutti */}
+                            <Carousel>
+                                {fanclub?.forum.map(topic => {
+                                    return (
+                                        <ForumTopic key={topic.id} topic={topic} like={likeTopic} share={() => shareTopic()}/>
+                                    )
+                                })}
+                            </Carousel>
+                        </div>
+                        <div className='mt-xs-4'>
+                            <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>Condivisi da thasup</h4>
+                            <Carousel>
+                                {fanclub?.forum
+                                .filter(topic => topic?.publisher.type === 'ARTIST')
+                                .map(topic => {
+                                    return (
+                                        <ForumTopic key={topic.id} topic={topic} like={likeTopic} share={() => shareTopic()}/>
+                                    )
+                                })}
+                            </Carousel>
+                        </div>
+                        <div className='mt-xs-4'>
+                            <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>Tutti i topic</h4>
+                            <Carousel>
+                                {fanclub?.forum.map(topic => {
+                                    return (
+                                        <ForumTopic key={topic.id} topic={topic} like={likeTopic} share={() => shareTopic()}/>
+                                    )
+                                })}
+                            </Carousel>
+                        </div>
+                    </div>
+                    </Container>
+                    
+                </>
+                :
+                <>
+                    {fanclub?.posts.length === 0 && fanclub?.concerts.lenght === 0 ?
+                        <div className='d-flex-column align-items-center mt-xs-16'>
+                            <p className='fsize-xs-2 f-w-200 grey-200 w-70 t-align-center mt-xs-4'>L'artista ha già attivato il suo fanclub! Resta sincronizzato e sii il primo a vedere i primi contenuti appena usciranno.</p>
+                        </div>
+                    :
+                        <Container style={'pb-xs-2 mt-xs-4'}>
+                            {
+                                mixedPosts.map(item => {
+                                if (item.type === 'CONCERT' || item.type === 'TOUR' ) {
+                                    return (
+                                        <PostConcert 
+                                        concert={item}
+                                        newPartecipation={newPartecipation}
+                                        hasUserSubscribed={hasUserSubscribed}
+                                        handleSubscription={handleSubscription}
+                                        slug={context.slug}
+                                    />
+                                    )
+                                } else {
+                                    return (
+                                        <Post
+                                        key={item.id}
+                                        post={item}
+                                        focusPost={focusPost}
+                                        likePost={likePost}
+                                        hasUserSubscribed={hasUserSubscribed}
+                                        handleSubscription={handleSubscription}
+                                    />
+                                    )
+                                }
+                                })
+                            }
+                            {/* {fanclub?.concerts.map(concert =>
                                 <PostConcert 
-                                concert={item}
-                                newPartecipation={newPartecipation}
-                                hasUserSubscribed={hasUserSubscribed}
-                                handleSubscription={handleSubscription}
-                                slug={context.slug}
-                            />
-                            )
-                        } else {
-                            return (
+                                    concert={concert}
+                                    newPartecipation={newPartecipation}
+                                    hasUserSubscribed={hasUserSubscribed}
+                                    handleSubscription={handleSubscription}
+                                />
+                            )}
+                            {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
                                 <Post
-                                key={item.id}
-                                post={item}
-                                focusPost={focusPost}
-                                likePost={likePost}
-                                hasUserSubscribed={hasUserSubscribed}
-                                handleSubscription={handleSubscription}
-                            />
-                            )
-                        }
-                        })
+                                    key={post.id}
+                                    post={post}
+                                    focusPost={focusPost}
+                                    likePost={likePost}
+                                    hasUserSubscribed={hasUserSubscribed}
+                                    handleSubscription={handleSubscription}
+                                />
+                            )} */}
+                        </Container>
                     }
-                    {/* {fanclub?.concerts.map(concert =>
-                        <PostConcert 
-                            concert={concert}
-                            newPartecipation={newPartecipation}
-                            hasUserSubscribed={hasUserSubscribed}
-                            handleSubscription={handleSubscription}
-                        />
-                    )}
-                    {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
-                        <Post
-                            key={post.id}
-                            post={post}
-                            focusPost={focusPost}
-                            likePost={likePost}
-                            hasUserSubscribed={hasUserSubscribed}
-                            handleSubscription={handleSubscription}
-                        />
-                    )} */}
-                </Container>
+                </>
             }
+            
 
             <CommentsModalLayout
                 modalOpen={modalOpen}
