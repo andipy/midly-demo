@@ -477,6 +477,31 @@ const Fanclub = () => {
         )
     }
 
+    const saveTopic = (id) => {
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub => {
+                if (fanclub.artistId === context.id) {
+                    return {
+                        ...fanclub,
+                        forum: fanclub.forum.map(topic => {
+                            if (topic.id === id) {
+                                const saved = topic.saved.some(p => p.userId === currentFan.id)
+                                return {
+                                    ...topic,
+                                    saved: saved
+                                        ? topic.saved.filter(c => c.userId !== currentFan.id) // Rimuove il save
+                                        : [...topic.saved, { userId: currentFan.id }] // Aggiunge il save
+                                }
+                            }
+                            return topic
+                        })
+                    }
+                }
+                return fanclub
+            })
+        )
+    }
+
     const shareTopic = () => {
         triggerSnackbar('Link al post copiato negli appunti')
     }
@@ -507,62 +532,80 @@ const Fanclub = () => {
             {
                 postType === 'FORUM' ?
                 <>
-                    <Container style={'pb-xs-2 mt-xs-4'}>
-                    <div className='w-100 d-flex-row align-items-center j-c-end gap-0_25em'>
-                        <div className='avatar-28 border-radius-100 d-flex-row align-items-center j-c-center bg-acid-lime'>
-                            <img className='avatar-20' src={IconSearch}/>
-                        </div>
-                        <div className='avatar-28 border-radius-100 d-flex-row align-items-center j-c-center bg-acid-lime'>
-                            <img className='avatar-20' src={IconPlus}/>
-                        </div>
+                    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center'>
+                        <img className='' src={IconPlus}/>
+
                     </div>
-                    <div className=''>
-                        <div className='mt-xs-4'>
-                            <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>I tuoi topic</h4>
-                            <Carousel>
+                    <Container style={'pb-xs-2'}>
+                        
+                    {(() => {
+                        const topicWithMaxWeight = fanclub?.forum.reduce((max, topic) => 
+                            topic.weight > max.weight ? topic : max, fanclub?.forum[0]);
+
+                        const artistTopicWithMaxWeight = fanclub?.forum
+                            .filter(topic => topic.publisher.type === 'ARTIST')
+                            .sort((a, b) => b.weight - a.weight)[0];
+
+                        return (
+                            <>
+                                {/* Topic con peso maggiore */}
+                                {topicWithMaxWeight && (
+                                    <ForumTopic 
+                                        key={topicWithMaxWeight.id} 
+                                        topic={topicWithMaxWeight} 
+                                        like={likeTopic} 
+                                        save={saveTopic} 
+                                        share={() => shareTopic()} 
+                                        popular={true}
+                                    />
+                                )}
+                                {/* 4 topic vari */}
                                 {fanclub?.forum
-                                .filter(topic => topic?.publisher.type === 'FAN' && topic?.publisher.id === currentFan?.id)
-                                .map(topic => {
-                                    return (
-                                        <ForumTopic key={topic.id} topic={topic} like={likeTopic} share={() => shareTopic()}/>
-                                    )
-                                })}
-                            </Carousel>
-                        </div>
-                        <div className='mt-xs-4'>
-                            <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>I più cliccati</h4>
-                            {/* per ora qui li vedo tutti */}
-                            <Carousel>
-                                {fanclub?.forum.map(topic => {
-                                    return (
-                                        <ForumTopic key={topic.id} topic={topic} like={likeTopic} share={() => shareTopic()}/>
-                                    )
-                                })}
-                            </Carousel>
-                        </div>
-                        <div className='mt-xs-4'>
-                            <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>Condivisi da thasup</h4>
-                            <Carousel>
+                                .filter(topic => topic.id !== topicWithMaxWeight?.id && topic.id !== artistTopicWithMaxWeight?.id)
+                                .sort((a, b) => b.weight - a.weight)
+                                .slice(0, 4)
+                                .map(topic => (
+                                    <ForumTopic 
+                                        key={topic.id} 
+                                        topic={topic} 
+                                        like={likeTopic} 
+                                        save={saveTopic} 
+                                        share={() => shareTopic()} 
+                                        popular={false}
+                                    />
+                                ))}
+
+                                {/* Primo ARTIST con peso maggiore */}
+                                {artistTopicWithMaxWeight && artistTopicWithMaxWeight.id !== topicWithMaxWeight.id && (
+                                    <ForumTopic 
+                                        key={artistTopicWithMaxWeight.id} 
+                                        topic={artistTopicWithMaxWeight} 
+                                        like={likeTopic} 
+                                        save={saveTopic} 
+                                        share={() => shareTopic()} 
+                                        popular={false}
+                                    />
+                                )}
+
+                                {/* altri topic vari */}
                                 {fanclub?.forum
-                                .filter(topic => topic?.publisher.type === 'ARTIST')
-                                .map(topic => {
-                                    return (
-                                        <ForumTopic key={topic.id} topic={topic} like={likeTopic} share={() => shareTopic()}/>
-                                    )
-                                })}
-                            </Carousel>
-                        </div>
-                        <div className='mt-xs-4'>
-                            <h4 className='fsize-xs-5 mb-xs-4 f-w-600'>Tutti i topic</h4>
-                            <Carousel>
-                                {fanclub?.forum.map(topic => {
-                                    return (
-                                        <ForumTopic key={topic.id} topic={topic} like={likeTopic} share={() => shareTopic()}/>
-                                    )
-                                })}
-                            </Carousel>
-                        </div>
-                    </div>
+                                .filter(topic => topic.id !== topicWithMaxWeight?.id && topic.id !== artistTopicWithMaxWeight?.id)
+                                .sort((a, b) => b.weight - a.weight)
+                                .slice(5)
+                                .map(topic => (
+                                    <ForumTopic 
+                                        key={topic.id} 
+                                        topic={topic} 
+                                        like={likeTopic} 
+                                        save={saveTopic} 
+                                        share={() => shareTopic()} 
+                                        popular={false}
+                                    />
+                                ))}
+                            </>
+                        );
+                    })()}
+                        
                     </Container>
                     
                 </>

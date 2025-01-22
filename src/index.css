@@ -1131,6 +1131,12 @@ animation: dot-loader-after 1s infinite linear;
 .border-top-dark-01 {
   border-top: 1px solid #303340;
 }
+.border-top-dark-0_5 {
+  border-top: 0.5px solid #303340;
+}
+.border-bottom-dark-0_5 {
+  border-bottom: 0.5px solid #303340;
+}
 .border-dark-3 {
   border: 3px solid var(--color-main-bg);
 }
@@ -1806,6 +1812,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .w-max-content {
   width: max-content;
+}
+.w-80px {
+  width: 80px;
 }
 .w-100px {
     width: 100px;

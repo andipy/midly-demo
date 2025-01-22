@@ -67,11 +67,14 @@ export const FanclubsProvider = ({ children }) => {
                         id: 1,
                         type: 'FAN'
                     },
+                    cover: 'blob:http://localhost:3000/e086166b-8a02-43cf-ae0a-53a91c658eb3',
                     title: 'Prossimo concerto info',
                     topic: 'Quanto dista San Siro da Roma?',
-                    hashtags: ['post', 'community', 'concerto'],
+                    hashtags: ['post', 'community', 'concerto', 'posteggi', 'vario', 'topic', 'sferafanclub'],
                     likes: [],
-                    comments: []
+                    comments: [],
+                    saved: [],
+                    weight: 9
 
                 },{
                     id: 2,
@@ -81,11 +84,14 @@ export const FanclubsProvider = ({ children }) => {
                         id: 1,
                         type: 'FAN'
                     },
+                    cover: 'blob:http://localhost:3000/e086166b-8a02-43cf-ae0a-53a91c658eb3',
                     title: 'Disco nuovo',
                     topic: 'Secondo voi quando esce?',
                     hashtags: ['post', 'community', 'concerto'],
                     likes: [],
-                    comments: []
+                    comments: [],
+                    saved: [],
+                    weight: 9
 
                 }, {
                     id: 3,
@@ -95,13 +101,33 @@ export const FanclubsProvider = ({ children }) => {
                         id: 'a3p8',
                         type: 'ARTIST'
                     },
+                    cover: 'blob:http://localhost:3000/e086166b-8a02-43cf-ae0a-53a91c658eb3',
                     title: 'Biglietti tour',
                     topic: 'Avete comprato i blietti per il tour?',
                     hashtags: ['post', 'community', 'concerto'],
                     likes: [],
-                    comments: []
+                    comments: [],
+                    saved: [],
+                    weight: 10
 
-                },  
+                },  {
+                    id: 4,
+                    userImage: require('../images/pictures/thasup.jpg'),
+                    userName: 'thasup',
+                    publisher: {
+                        id: 'a3p8',
+                        type: 'ARTIST'
+                    },
+                    cover: 'blob:http://localhost:3000/e086166b-8a02-43cf-ae0a-53a91c658eb3',
+                    title: 'Altra domanda artista peso minore',
+                    topic: 'Prova di lunghezza della domanda voglio farla molto lunga di modo che superi le tre righe quando viene stampata nella home del forum',
+                    hashtags: ['post', 'community', 'concerto'],
+                    likes: [],
+                    comments: [],
+                    saved: [],
+                    weight: 6
+
+                },
 
             ]
         },{
