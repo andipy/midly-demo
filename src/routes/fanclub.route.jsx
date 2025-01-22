@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useRef } from 'react'
-import { useOutletContext, Outlet, useNavigate } from 'react-router-dom'
+import { useOutletContext, Outlet, useNavigate, useLocation } from 'react-router-dom'
 
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
@@ -26,6 +26,7 @@ import ForumTopic from '../components/forum-topic.component'
 const Fanclub = () => {
     const navigate = useNavigate()
     const context = useOutletContext()
+    const {state } = useLocation()
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const {artists} = useContext(ArtistsContext)
@@ -447,6 +448,13 @@ const Fanclub = () => {
 
 
     const [postType, setPostType] = useState('ALL')
+    useEffect(() => {
+        if (state && state?.tab) {
+            setPostType('FORUM')
+        } else {
+            setPostType('ALL')
+        }
+    }, [state])
     const clickTab = (value) => {
         setPostType(value)
     }
@@ -511,7 +519,7 @@ const Fanclub = () => {
             <div className='d-flex-column j-c-start '>
                 <div className='d-flex-row j-c-space-between align-items-center'>
                     <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
-                    {
+                    {/* {
                         !hasUserSubscribed ?
                         <div className='bg-acid-lime pt-xs-1 pl-xs-2 pr-xs-2 pb-xs-1 border-radius-02' onClick={handleSubscription}>
                             <p className='fsize-xs-1 f-w-300 black'>Abbonati</p>
@@ -520,21 +528,20 @@ const Fanclub = () => {
                         <div className='bg-black border-grey-small pt-xs-1 pl-xs-2 pr-xs-2 pb-xs-1 border-radius-02' onClick={handleSubscription}>
                             <p className='fsize-xs-1 f-w-300 grey-400'>Rimuovi abbonamento</p>
                         </div>
-                    }
+                    } */}
                     
                 </div>
                 
                 <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
             </div>
-            <div className='mt-xs-4'>
+            <div className='mt-xs-2'>
                 <TabFanclub onClick={clickTab} postType={postType}/>
             </div>
             {
                 postType === 'FORUM' ?
                 <>
-                    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center'>
+                    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => navigate('topic/creation', { state: {artist:context} })}>
                         <img className='' src={IconPlus}/>
-
                     </div>
                     <Container style={'pb-xs-2'}>
                         

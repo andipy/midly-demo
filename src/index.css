@@ -50,6 +50,23 @@ a {
   color: inherit;
 }
 
+.input-topic-info {
+  background-color: #000;
+  border: none; 
+  resize: none;
+  transition: all 0.2s ease; 
+}
+
+.input-topic-info::placeholder {
+  color: white; 
+
+}
+
+.input-topic-info:focus {
+  color: white; 
+  outline: none; 
+}
+
 .circle-point {
   margin: 0 auto;
   border: 5px solid #313131; /* Light grey */

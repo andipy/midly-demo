@@ -32,6 +32,44 @@ const ForumTopic = ({key, topic, like, save, share, popular}) => {
             setSaved(userSaved)
         }
     }, [topic])
+
+    const [showDescription, setShowDescription] = useState(false)
+
+    const [days, setDays] = useState(0)
+	const [hours, setHours] = useState(0)
+	const [minutes, setMinutes] = useState(0)
+	const [seconds, setSeconds] = useState(0)
+	
+	useEffect(() => {
+		const specificDate = new Date(topic?.createdAt)
+		const currentDate = new Date()
+		const timeDifference = currentDate - specificDate
+		const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
+	
+		if (daysPassed === 0) {
+			const hoursPassed = Math.floor(timeDifference / (1000 * 60 * 60))
+			const minutesPassed = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60))
+			const secondsPassed = Math.floor((timeDifference % (1000 * 60)) / 1000)
+	
+			setDays(0)
+			setHours(hoursPassed)
+			setMinutes(minutesPassed)
+			setSeconds(secondsPassed)
+		} else {
+			setDays(daysPassed)
+		}
+	}, [topic])
+
+	const formatDate = () => {
+		const specificDate = new Date(topic?.createdAt)
+		const day = specificDate.getDate()
+		const month = specificDate.toLocaleString('default', { month: 'long' })
+		const formattedMonth =  month
+		const year = specificDate.getFullYear()
+		const today = new Date()
+		const thisYear = today.getFullYear()
+		return day + ' ' + formattedMonth + ' ' + `${year === thisYear ?  '' : year}`
+	}
   return (
     <div className="image-wrapper pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 border-bottom-dark-0_5">
         {
@@ -46,19 +84,61 @@ const ForumTopic = ({key, topic, like, save, share, popular}) => {
                             <img className='avatar-28 border-radius-100' src={topic?.userImage}/>
                             <p className='fsize-xs-1 f-w-500'>{topic?.userName}</p>
                         </div>
-                        <div id='centre-row' className='d-flex-row j-c-space-between align-items-center w-100'>
+                        <div id='centre-row' className='d-flex-row j-c-space-between align-items-center w-100 gap-1em'>
                             <div id='text' className='d-flex-column w-100'>
                                 <h1 className='fsize-xs-5 f-w-800'>{topic?.title}</h1>
-                                <p className='fsize-xs-2 f-w-300'>{topic?.topic}</p>
+                                <p className='fsize-xs-2 f-w-300'>
+                                    {topic?.description.length > 100 ?
+                                    <>
+                                        {showDescription ?
+                                            <>
+                                                {topic?.description}
+                                                <span className='lime-400 f-w-300' onClick={() => setShowDescription(false)}> meno</span>
+                                            </>
+                                        :
+                                            <>
+                                                {topic?.description.slice(0, 100)}...
+                                                <span className='lime-400 f-w-300' onClick={() => setShowDescription(true)}> altro</span>
+                                            </>
+                                        }
+                                    </>
+                                    :
+                                        topic?.description
+                                    }
+                                </p>
                             </div>
-                            <div id='image' className='d-flex-row w-80px '> 
-                                <img className='w-100 h-inherit object-fit-cover border-radius-08' src={topic?.cover}/>
-                            </div>
-
+                            {
+                                topic?.cover &&
+                                <div id='image' className='d-flex-row w-80px '> 
+                                    <img className='w-100 h-inherit object-fit-cover border-radius-08' src={topic?.cover}/>
+                                </div>
+                            }  
                         </div>
                         <div id='like row' className=' w-100 d-flex-row j-c-space-between align-items-center gap-0_25em'>
                             <div className='d-flex-row j-c-start align-items-center'>
-                                <p className='fsize-xs-1 f-w-300 grey-300'>2 giorni fa</p>
+                                <p className='fsize-xs-1 f-w-300 grey-300'>
+                                    {days > 31 ?
+                                        <span>{formatDate()}</span>
+                                    : days > 0 ?
+                                        <span>{days} giorni fa</span>
+                                    : days <= 0 ?
+                                    <>
+                                        {hours <= 0 ?
+                                        <>
+                                                {minutes <= 0 ?
+                                                    <span>{seconds} secondi fa</span>
+                                                :
+                                                    <span>{minutes} minuti fa</span>
+                                                }
+                                        </>
+                                            :
+                                                <span>{hours} ore fa</span>
+                                        }
+                                    </>
+                                    :
+                                        <span>{days} giorni fa</span>
+                                    }
+                                </p>
                                 <div className="d-flex-row j-c-start align-items-center gap-0_25em">
                                     <div className="border-radius-100 avatar-28">
                                         {
@@ -120,19 +200,63 @@ const ForumTopic = ({key, topic, like, save, share, popular}) => {
                             <p className='fsize-xs-1 f-w-500'>{topic?.userName}</p>
                             <p className='fsize-xs-0 f-w-300 gold'>Artista</p>
                         </div>
-                        <div id='centre-row' className='d-flex-row j-c-space-between align-items-center w-100'>
+                        <div id='centre-row' className='d-flex-row j-c-space-between align-items-center w-100 gap-1em'>
                             <div id='text' className='d-flex-column w-100'>
                                 <h1 className='fsize-xs-5 f-w-800'>{topic?.title}</h1>
-                                <p className='fsize-xs-2 f-w-300'>{topic?.topic}</p>
+                                <p className='fsize-xs-2 f-w-300'>
+                                    {topic?.description.length > 100 ?
+                                    <>
+                                        {showDescription ?
+                                            <>
+                                            {topic?.description}
+                                            <span className='lime-400 f-w-300' onClick={() => setShowDescription(false)}> meno</span>
+                                            </>
+                                        :
+                                            <>
+                                                {topic?.description.slice(0, 100)}...
+                                                <span className='lime-400 f-w-300' onClick={() => setShowDescription(true)}> altro</span>
+                                            </>
+                                        }
+                                    </>
+                                    :
+                                        topic?.description
+                                    }
+                                </p>
                             </div>
-                            <div id='image' className='d-flex-row w-80px '> 
-                                <img className='w-100 h-inherit object-fit-cover border-radius-08' src={topic?.cover}/>
-                            </div>
+                            {
+                                topic?.cover &&
+                                <div id='image' className='d-flex-row w-80px '> 
+                                    <img className='w-100 h-inherit object-fit-cover border-radius-08' src={topic?.cover}/>
+                                </div>
+                            }
+                            
 
                         </div>
                         <div id='like row' className=' w-100 d-flex-row j-c-space-between align-items-center gap-0_25em'>
                             <div className='d-flex-row j-c-start align-items-center'>
-                                <p className='fsize-xs-1 f-w-300 grey-300'>2 giorni fa</p>
+                                <p className='fsize-xs-1 f-w-300 grey-300'>
+                                    {days > 31 ?
+                                        <span>{formatDate()}</span>
+                                    : days > 0 ?
+                                        <span>{days} giorni fa</span>
+                                    : days <= 0 ?
+                                    <>
+                                        {hours <= 0 ?
+                                        <>
+                                                {minutes <= 0 ?
+                                                    <span>{seconds} secondi fa</span>
+                                                :
+                                                    <span>{minutes} minuti fa</span>
+                                                }
+                                        </>
+                                            :
+                                                <span>{hours} ore fa</span>
+                                        }
+                                    </>
+                                    :
+                                        <span>{days} giorni fa</span>
+                                    }
+                                </p>
                                 <div className="d-flex-row j-c-start align-items-center gap-0_25em">
                                     <div className="border-radius-100 avatar-28">
                                         {
