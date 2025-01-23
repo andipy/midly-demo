@@ -560,6 +560,7 @@ const Fanclub = () => {
                                     <ForumTopic 
                                         key={topicWithMaxWeight.id} 
                                         topic={topicWithMaxWeight} 
+                                        artistId={context.id}
                                         like={likeTopic} 
                                         save={saveTopic} 
                                         share={() => shareTopic()} 
@@ -575,6 +576,7 @@ const Fanclub = () => {
                                     <ForumTopic 
                                         key={topic.id} 
                                         topic={topic} 
+                                        artistId={context.id}
                                         like={likeTopic} 
                                         save={saveTopic} 
                                         share={() => shareTopic()} 
@@ -587,6 +589,7 @@ const Fanclub = () => {
                                     <ForumTopic 
                                         key={artistTopicWithMaxWeight.id} 
                                         topic={artistTopicWithMaxWeight} 
+                                        artistId={context.id}
                                         like={likeTopic} 
                                         save={saveTopic} 
                                         share={() => shareTopic()} 
@@ -603,6 +606,7 @@ const Fanclub = () => {
                                     <ForumTopic 
                                         key={topic.id} 
                                         topic={topic} 
+                                        artistId={context.id}
                                         like={likeTopic} 
                                         save={saveTopic} 
                                         share={() => shareTopic()} 

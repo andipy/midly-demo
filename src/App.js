@@ -93,7 +93,7 @@ import ChatTourRoute from './routes/chat-tour.route'
 import ChatPrivateRoute from './routes/chat-private.route'
 import TopicCreationRoute from './routes/topic-creation.route'
 import TopicAddHashtagRoute from './routes/topic-add-hashtag.route'
-
+import TopicDetailsRoute from './routes/topic-details.route'
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
 import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics-detail.route.admin'
@@ -180,6 +180,9 @@ const router = createBrowserRouter([
 	},{
 		path: '/artist/:artistSlug/fanclub/:postId',
 		element: <PostFullScreenRoute />,
+	},{
+		path: '/artist/:artistSlug/fanclub/topic/details',
+		element: <TopicDetailsRoute />,
 	},{
 		path: '/artist/:artistSlug/fanclub/topic/creation',
 		element: <TopicCreationRoute />,

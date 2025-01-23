@@ -15,7 +15,8 @@ import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import Container from '../layout/container.layout'
 
 
-const ForumTopic = ({key, topic, like, save, share, popular}) => {
+const ForumTopic = ({key, topic, artistId, like, save, share, popular}) => {
+    const navigate = useNavigate()
     const { currentFan} = useContext(CurrentFanContext)
     const [liked, setLiked] = useState(false)
     useEffect(() => {
@@ -71,7 +72,7 @@ const ForumTopic = ({key, topic, like, save, share, popular}) => {
 		return day + ' ' + formattedMonth + ' ' + `${year === thisYear ?  '' : year}`
 	}
   return (
-    <div className="image-wrapper pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 border-bottom-dark-0_5">
+    <div className="image-wrapper pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 border-bottom-dark-0_5" >
         {
             topic?.publisher.type === 'FAN' ?
                 <Container>
@@ -84,7 +85,7 @@ const ForumTopic = ({key, topic, like, save, share, popular}) => {
                             <img className='avatar-28 border-radius-100' src={topic?.userImage}/>
                             <p className='fsize-xs-1 f-w-500'>{topic?.userName}</p>
                         </div>
-                        <div id='centre-row' className='d-flex-row j-c-space-between align-items-center w-100 gap-1em'>
+                        <div id='centre-row' className='d-flex-row j-c-space-between align-items-center w-100 gap-1em' onClick={() => navigate('topic/details', {state: {topic: topic, artistId: artistId}})}>
                             <div id='text' className='d-flex-column w-100'>
                                 <h1 className='fsize-xs-5 f-w-800'>{topic?.title}</h1>
                                 <p className='fsize-xs-2 f-w-300'>
@@ -150,9 +151,9 @@ const ForumTopic = ({key, topic, like, save, share, popular}) => {
                                     </div>
                                     <p className="fsize-xs-1 f-w-300">{topic?.likes.length}</p>
                                     <div className="border-radius-100 avatar-28">
-                                        <img className="avatar-28" src={IconComments}/>
+                                        <img className="avatar-28" src={IconComments} onClick={() => navigate('topic/details', {state: {topic: topic, artistId: artistId}})}/>
                                     </div>
-                                    <p className="fsize-xs-1 f-w-300">{topic?.comments.length}</p>
+                                    <p className="fsize-xs-1 f-w-300">{topic?.commentsCount}</p>
                                     <div className="border-radius-100  avatar-28">
                                         <img className="avatar-28" src={IconShare} onClick={() => share()}/>
                                     </div>
@@ -200,7 +201,7 @@ const ForumTopic = ({key, topic, like, save, share, popular}) => {
                             <p className='fsize-xs-1 f-w-500'>{topic?.userName}</p>
                             <p className='fsize-xs-0 f-w-300 gold'>Artista</p>
                         </div>
-                        <div id='centre-row' className='d-flex-row j-c-space-between align-items-center w-100 gap-1em'>
+                        <div id='centre-row' className='d-flex-row j-c-space-between align-items-center w-100 gap-1em' onClick={() => navigate('topic/details', {state: {topic: topic, artistId: artistId}})}>
                             <div id='text' className='d-flex-column w-100'>
                                 <h1 className='fsize-xs-5 f-w-800'>{topic?.title}</h1>
                                 <p className='fsize-xs-2 f-w-300'>
@@ -270,7 +271,7 @@ const ForumTopic = ({key, topic, like, save, share, popular}) => {
                                     <div className="border-radius-100 avatar-28">
                                         <img className="avatar-28" src={IconComments}/>
                                     </div>
-                                    <p className="fsize-xs-1 f-w-300">{topic?.comments.length}</p>
+                                    <p className="fsize-xs-1 f-w-300">{topic?.commentsCount}</p>
                                     <div className="border-radius-100  avatar-28">
                                         <img className="avatar-28" src={IconShare} onClick={() => share()}/>
                                     </div>

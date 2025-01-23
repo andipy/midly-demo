@@ -96,7 +96,8 @@ const TopicCreationRoute = () => {
                                     likes: [],
                                     comments: [],
                                     saved: [],
-                                    weight: 1
+                                    weight: 1,
+                                    commentsCount: 0
                                 },
                             ],
                         }

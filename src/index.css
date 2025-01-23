@@ -67,6 +67,13 @@ a {
   outline: none; 
 }
 
+
+.navbar-secondary {
+  background-color: #000; /* Colore di sfondo */
+  padding: 10px 15px; /* Margini interni */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Ombra */
+}
+
 .circle-point {
   margin: 0 auto;
   border: 5px solid #313131; /* Light grey */
@@ -1150,6 +1157,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .border-top-dark-0_5 {
   border-top: 0.5px solid #303340;
+}
+.border-left-dark-0_5 {
+  border-left: 0.5px solid #303340;
 }
 .border-bottom-dark-0_5 {
   border-bottom: 0.5px solid #303340;

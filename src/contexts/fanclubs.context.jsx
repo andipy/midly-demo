@@ -74,7 +74,8 @@ export const FanclubsProvider = ({ children }) => {
                     likes: [],
                     comments: [],
                     saved: [],
-                    weight: 9
+                    weight: 9,
+                    commentsCount:0,
 
                 },{
                     id: 2,
@@ -91,7 +92,8 @@ export const FanclubsProvider = ({ children }) => {
                     likes: [],
                     comments: [],
                     saved: [],
-                    weight: 9
+                    weight: 9,
+                    commentsCount:0,
 
                 }, {
                     id: 3,
@@ -108,7 +110,8 @@ export const FanclubsProvider = ({ children }) => {
                     likes: [],
                     comments: [],
                     saved: [],
-                    weight: 10
+                    weight: 10,
+                    commentsCount:0,
 
                 },  {
                     id: 4,
@@ -125,7 +128,8 @@ export const FanclubsProvider = ({ children }) => {
                     likes: [],
                     comments: [],
                     saved: [],
-                    weight: 6
+                    weight: 6,
+                    commentsCount:0,
 
                 },
 
