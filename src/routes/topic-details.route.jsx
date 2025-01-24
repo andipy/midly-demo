@@ -231,7 +231,7 @@ const TopicDetailsRoute = () => {
 		} else {
 			setDays(daysPassed)
 		}
-	}, [state?.topic])
+	}, [topic])
 
     const formatDate = () => {
 		const specificDate = new Date(topic?.createdAt)
@@ -408,7 +408,9 @@ const TopicDetailsRoute = () => {
                             }
                         </p>
                     </div>
-                    <div id='hashtags' className='d-flex-row j-c-center align-items-center w-100 mt-xs-4'>
+                    {
+                        topic?.hashtags.length > 0 &&
+                        <div id='hashtags' className='d-flex-row j-c-center align-items-center w-100 mt-xs-4'>
                         <Carousel>
                             {topic?.hashtags.map(tag => {
                                 return (
@@ -419,7 +421,9 @@ const TopicDetailsRoute = () => {
                             })}     
 
                         </Carousel>
-                    </div>
+                        </div>
+                    }
+                    
                     <div id='centre-row' className='d-flex-row j-c-space-between align-items-center w-100 gap-1em mt-xs-4'>
                         <div id='text' className='d-flex-column w-100'>
                             <h1 className='fsize-xs-5 f-w-800'>{topic?.title}</h1>
@@ -428,6 +432,12 @@ const TopicDetailsRoute = () => {
                             </p>
                         </div>
                     </div>
+                    {
+                        topic?.cover &&
+                        <div id='image' className="w-100  d-flex-row j-c-center align-items-center mt-xs-4 border-radius-08 overflow-all-hidden">
+                            <img className="w-100 h-inherit  object-fit-cover" src={topic?.cover}/>
+                        </div>
+                    }
                     <div id='like row' className=' w-100 d-flex-row j-c-space-between align-items-center mt-xs-4 mb-xs-2'>
                         <div className='d-flex-row j-c-start align-items-center'>
                             <div className="d-flex-row j-c-start align-items-center gap-0_25em">

@@ -76,6 +76,7 @@ export const FanclubsProvider = ({ children }) => {
                     saved: [],
                     weight: 9,
                     commentsCount:0,
+                    createdAt: '2025-01-24'
 
                 },{
                     id: 2,
@@ -94,6 +95,7 @@ export const FanclubsProvider = ({ children }) => {
                     saved: [],
                     weight: 9,
                     commentsCount:0,
+                    createdAt: '2025-01-24'
 
                 }, {
                     id: 3,
@@ -112,6 +114,7 @@ export const FanclubsProvider = ({ children }) => {
                     saved: [],
                     weight: 10,
                     commentsCount:0,
+                    createdAt: '2025-01-24'
 
                 },  {
                     id: 4,
@@ -130,6 +133,7 @@ export const FanclubsProvider = ({ children }) => {
                     saved: [],
                     weight: 6,
                     commentsCount:0,
+                    createdAt: '2025-01-24'
 
                 },
 

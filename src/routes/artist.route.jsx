@@ -18,6 +18,7 @@ import CardInviteFriend from '../components/card-invite-friend.component'
 import CardConnectSpotify from '../components/card-connect-spotify.component'
 import MessageWhitePoints from '../components/message-white-points.component'
 import FullPageCenter from '../layout/full-page-center.layout'
+import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
 
 const ArtistRoute = () => {
 
@@ -340,11 +341,13 @@ const ArtistRoute = () => {
         }
     }, [isExitingErr])
 
+    const [modalSubscription, setModalSubscription] = useState(false)
+
     return (
         <>
             {
                 pathname.includes("fanclub") ?
-                <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={true} openSettings={() => openSettings()}  />
+                <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={true} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed}/>
                 :
                 <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)}  />
             }
@@ -353,7 +356,8 @@ const ArtistRoute = () => {
                 artist={artist}
                 userCompeting={userCompeting}
                 handleCompete={handleCompete}
-                openMessages={openMessages}
+                userSubscribed={hasUserSubscribed}
+                openSettingsSubscription={() => openSettings()}
             />
 
             <Container style={''}>
@@ -395,7 +399,7 @@ const ArtistRoute = () => {
                                 <Button
                                     style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2'
                                     label='Abbonati'
-                                    onClick={handleSubscription}
+                                    onClick={() => setModalSubscription(true)}
                                 />
                             }
                         </>
@@ -492,6 +496,10 @@ const ArtistRoute = () => {
                 <Container style={`position-sticky z-index-5 ${upperModalCompressed ? 'bottom-14' : 'bottom-2'}`}>
                     <CardInviteFriend artist={artist} />
                 </Container>
+            }
+            {
+                modalSubscription &&
+                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub}/>
             }
         </>
     )
