@@ -10,7 +10,7 @@ import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import IconOk from '../images/icons/icon-ok-grey.svg'
 import CoverFanclub from './cover-fanclub.component.artist'
 
-const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, currentFan, fanclub, openMessages, userSubscribed, openSettingsSubscription}) => {
+const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, currentFan, fanclub, openMessages, userSubscribed, openSettingsSubscription, openModalSubscription}) => {
 
     const { pathname } = useLocation()
     
@@ -43,7 +43,7 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
                             userSubscribed ?
                             <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 align-self-start w-auto gap-0_25em'} label={'Sei abbonato al fanclub'} onClick={openSettingsSubscription}><img src={IconOk}/></Button>
                             :
-                            <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 align-self-start w-auto black'} label={'Non sei abbonato'} onClick={openSettingsSubscription}/>
+                            <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 align-self-start w-auto black'} label={'Non sei abbonato'} onClick={openModalSubscription}/>
 
                         }  
                         </div>

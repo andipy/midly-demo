@@ -347,7 +347,7 @@ const ArtistRoute = () => {
         <>
             {
                 pathname.includes("fanclub") ?
-                <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={true} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed}/>
+                <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={true} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed} openModalSubscription={() => setModalSubscription(true)}/>
                 :
                 <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)}  />
             }
@@ -358,6 +358,7 @@ const ArtistRoute = () => {
                 handleCompete={handleCompete}
                 userSubscribed={hasUserSubscribed}
                 openSettingsSubscription={() => openSettings()}
+                openModalSubscription={() => setModalSubscription(true)}
             />
 
             <Container style={''}>
@@ -499,7 +500,7 @@ const ArtistRoute = () => {
             }
             {
                 modalSubscription &&
-                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub}/>
+                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={handleSubscription}/>
             }
         </>
     )

@@ -21,7 +21,7 @@ import IconSearch from '../images/icons/icon-search-black.svg'
 import IconPlus from '../images/icons/icon-plus-black.svg'
 import Carousel from '../layout/carousel.layout'
 import ForumTopic from '../components/forum-topic.component'
-
+import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
 
 const Fanclub = () => {
     const navigate = useNavigate()
@@ -514,6 +514,9 @@ const Fanclub = () => {
         triggerSnackbar('Link al post copiato negli appunti')
     }
 
+    const [modalSubscription, setModalSubscription] = useState(false)
+
+
     return (
         <>
             <div className='d-flex-column j-c-start '>
@@ -636,7 +639,7 @@ const Fanclub = () => {
                                         concert={item}
                                         newPartecipation={newPartecipation}
                                         hasUserSubscribed={hasUserSubscribed}
-                                        handleSubscription={handleSubscription}
+                                        handleSubscription={() => setModalSubscription(true)}
                                         slug={context.slug}
                                     />
                                     )
@@ -648,7 +651,7 @@ const Fanclub = () => {
                                         focusPost={focusPost}
                                         likePost={likePost}
                                         hasUserSubscribed={hasUserSubscribed}
-                                        handleSubscription={handleSubscription}
+                                        handleSubscription={() => setModalSubscription(true)}
                                     />
                                     )
                                 }
@@ -729,6 +732,10 @@ const Fanclub = () => {
             }
 
             <Snackbar message={messageSnackbar} triggered={triggered} />
+            {
+                modalSubscription &&
+                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={handleSubscription}/>
+            }
             
         </>
     )

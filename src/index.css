@@ -1131,6 +1131,8 @@ animation: dot-loader-after 1s infinite linear;
 .border-white {
   border: 2px solid #FFFFFF;
 }
+
+
 .border-grey-small {
   border: 1px solid #8d8d8d;
 }
@@ -3121,6 +3123,9 @@ nav .container {
     padding-top: calc(var(--modal-header-height) * .6);
   }
   /* PADDING LEFT */
+  .pl-xs-04 {
+    padding-left: 0.4%;
+  }
   .pl-xs-1 {
     padding-left: 1%;
   }
@@ -3143,6 +3148,9 @@ nav .container {
     padding-left: 13%;
   }
   /* PADDING RIGHT */
+  .pr-xs-04 {
+    padding-right: 0.4%;
+  }
   .pr-xs-1 {
     padding-right: 1%;
   }

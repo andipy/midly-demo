@@ -9,7 +9,7 @@ import IconPrize from '../images/icons/icon-prize-rank-card.svg'
 import IconMessage from '../images/icons/icon-message.svg'
 import SettingsLogo from '../images/icons/icon-settings-white.svg'
 
-const NavbarArtistPage = ({ artist, onClick, quiz, fanclub, openSettings, openMessages, userSubscribed}) => {
+const NavbarArtistPage = ({ artist, onClick, quiz, fanclub, openSettings, openMessages, userSubscribed, openModalSubscription}) => {
     const location = useLocation()
     const navigate = useNavigate()
     const [scrolled, setScrolled] = useState(false)
@@ -63,7 +63,12 @@ const NavbarArtistPage = ({ artist, onClick, quiz, fanclub, openSettings, openMe
                         <h4 className={`fsize-xs-1 f-w-500 ${quiz ? 'white':'lime-400'}`}>Live quiz</h4>
                     </div>
                     {fanclub && 
+                        userSubscribed ?
                         <div className='avatar-32 bg-dark-soft-transp75 pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-1 border-radius-100 d-flex-row j-c-center align-items-center' onClick={openSettings}>
+                            <img className='avatar-32' src={SettingsLogo}/>
+                        </div>
+                        :
+                        <div className='avatar-32 bg-dark-soft-transp75 pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-1 border-radius-100 d-flex-row j-c-center align-items-center' onClick={openModalSubscription}>
                             <img className='avatar-32' src={SettingsLogo}/>
                         </div>
                     }
