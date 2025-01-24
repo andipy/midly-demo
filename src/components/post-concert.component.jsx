@@ -52,7 +52,8 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
     <div className="mb-xs-8 position-relative">
     {concert.type === 'CONCERT' ?
     <>
-    <div className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} position-relative h-xs-27 image-wrapper`}>
+    <div className='w-100 position-relative h-xs-27 image-wrapper overflow-all-hidden'>
+    <div className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50 h-xs-27' : ''} `}>
         {concert?.cover.type === 'IMAGE' ?
             <img
                 className='w-100 h-inherit object-fit-cover'
@@ -73,6 +74,8 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
             }
         </div>
     </div>
+    </div>
+    
     <Container>
         <div className="d-flex-column mt-xs-2">
             <div className='d-flex-row j-c-space-between align-items-center'>
@@ -137,7 +140,8 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
     
     :
     <>
-    <div className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} position-relative h-xs-27 image-wrapper`}>
+    <div className='w-100 position-relative h-xs-27 image-wrapper overflow-all-hidden'>
+    <div className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} `}>
         {concert?.cover.type === 'IMAGE' ?
             <img
                 className='w-100 h-inherit object-fit-cover'
@@ -157,6 +161,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                 <img className='avatar-30 border-radius-100' src={IconThunder}/>	
             }
         </div>
+    </div>
     </div>
     <Container>
         <div className="d-flex-column mt-xs-2">

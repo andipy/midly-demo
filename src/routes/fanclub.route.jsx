@@ -458,6 +458,7 @@ const Fanclub = () => {
         }
     }, [state, sessionStorage])
 
+
     const clickTab = (value) => {
         setPostType(value)
     }
@@ -640,25 +641,37 @@ const Fanclub = () => {
                             {
                                 mixedPosts.map(item => {
                                 if (item.type === 'CONCERT' || item.type === 'TOUR' ) {
+                                    
                                     return (
-                                        <PostConcert 
-                                        concert={item}
-                                        newPartecipation={newPartecipation}
-                                        hasUserSubscribed={hasUserSubscribed}
-                                        handleSubscription={() => setModalSubscription(true)}
-                                        slug={context.slug}
-                                    />
+                                        <>
+                                        {
+                                            (postType === 'ALL' || postType === 'EVENTS') &&
+                                                <PostConcert 
+                                                    concert={item}
+                                                    newPartecipation={newPartecipation}
+                                                    hasUserSubscribed={hasUserSubscribed}
+                                                    handleSubscription={() => setModalSubscription(true)}
+                                                    slug={context.slug}
+                                                />
+                                        }
+                                        </>  
                                     )
                                 } else {
                                     return (
-                                        <Post
-                                        key={item.id}
-                                        post={item}
-                                        focusPost={focusPost}
-                                        likePost={likePost}
-                                        hasUserSubscribed={hasUserSubscribed}
-                                        handleSubscription={() => setModalSubscription(true)}
-                                    />
+                                        <>
+                                        {
+                                           (postType === 'ALL' || postType === 'POSTS') &&
+                                                <Post
+                                                    key={item.id}
+                                                    post={item}
+                                                    focusPost={focusPost}
+                                                    likePost={likePost}
+                                                    hasUserSubscribed={hasUserSubscribed}
+                                                    handleSubscription={() => setModalSubscription(true)}
+                                                /> 
+                                        }
+                                        </>
+                                        
                                     )
                                 }
                                 })
