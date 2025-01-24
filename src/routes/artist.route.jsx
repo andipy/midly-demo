@@ -398,7 +398,7 @@ const ArtistRoute = () => {
                         <>
                             {!hasUserSubscribed && fanclub?.isActive &&
                                 <Button
-                                    style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2'
+                                    style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2 w-100'
                                     label='Abbonati'
                                     onClick={() => setModalSubscription(true)}
                                 />
