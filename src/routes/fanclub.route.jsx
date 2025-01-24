@@ -448,7 +448,6 @@ const Fanclub = () => {
 
 
     const [postType, setPostType] = useState('ALL')
-    console.log(sessionStorage.getItem("postType"))
     useEffect(() => {
         if (state && state?.tab) {
             setPostType('FORUM')
@@ -458,7 +457,7 @@ const Fanclub = () => {
             setPostType('ALL')
         }
     }, [state, sessionStorage])
-    
+
     const clickTab = (value) => {
         setPostType(value)
     }
