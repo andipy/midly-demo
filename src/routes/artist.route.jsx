@@ -362,7 +362,7 @@ const ArtistRoute = () => {
             />
 
             <Container style={''}>
-                <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark pb-xs-2'>
+                <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark pb-xs-2 '>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && !location.pathname.includes('/fanclub') &&
                         <MessageFlashLeaderboard
                             artist={artist}

@@ -37,7 +37,7 @@ const NavbarArtistPage = ({ artist, onClick, quiz, fanclub, openSettings, openMe
     return (
         <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0 ${scrolled ? 'bg-dark shadow-dark-750' : ''}`}>
             <div className='container d-flex-row align-items-center j-c-space-between w-100'>
-                <div className='avatar-28' onClick={() => navigate('/')}>
+                <div className='avatar-28' onClick={() => {navigate('/');sessionStorage.removeItem('postType')}}>
                     <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} alt='Back' />
                 </div>
 

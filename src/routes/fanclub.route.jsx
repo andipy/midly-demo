@@ -448,16 +448,23 @@ const Fanclub = () => {
 
 
     const [postType, setPostType] = useState('ALL')
+    console.log(sessionStorage.getItem("postType"))
     useEffect(() => {
         if (state && state?.tab) {
             setPostType('FORUM')
+        } else if (sessionStorage.getItem("postType") !== null) {
+            setPostType(sessionStorage.getItem("postType"))
         } else {
             setPostType('ALL')
         }
-    }, [state])
+    }, [state, sessionStorage])
+    
     const clickTab = (value) => {
         setPostType(value)
     }
+    useEffect(() => {
+        sessionStorage.setItem("postType", postType)
+      }, [postType])
 
     //FORUM
     const likeTopic = (id) => {
