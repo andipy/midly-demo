@@ -727,7 +727,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 13,
-            artistId: 13,
+            artistId: 'a2p1',
             leaderboard: [
                 {
                     userId: 2,

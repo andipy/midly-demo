@@ -35,7 +35,7 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
                         <img className={`avatar-72 border-radius-100 ${artist?.flashLeaderboard.status === 'ONGOING' ? 'border-lime-6' : 'border-dark-6'}`} src={artist?.image} />                       
                         {artist?.verified && <img className='artist-avatar-verified-icon' src={IconVerifiedArtist} />}
                     </div>                    
-                    <div className='d-flex-column grow-1 no-shrink j-c-start mt-xs-4'>
+                    <div className='d-flex-column grow-1 no-shrink j-c-start mt-xs-6'>
                         <h2 className='fsize-xs-4 f-w-600'>{artist?.artistName}</h2>
                         <div className='d-flex-row j-c-space-between w-100 align-items-center'>
                         {

@@ -138,7 +138,7 @@ export const ArtistsProvider = ({ children }) => {
             highlight: false,
             verified: true,
         },{
-            id: 13,
+            id: 'a2p1',
             slug: 'sfera-ebbasta',
             artistName: 'Sfera Ebbasta',
             image: require('../images/pictures/sfera-ebbasta.jpg'),

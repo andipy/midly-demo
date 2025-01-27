@@ -493,7 +493,7 @@ const  PostFullScreenRoute = () => {
 	}, [post])
 
     const formatDate = () => {
-		const specificDate = new Date(post.createdAt)
+		const specificDate = new Date(post?.createdAt)
 		const day = specificDate.getDate()
 		const month = specificDate.toLocaleString('default', { month: 'long' })
 		const formattedMonth =  month
