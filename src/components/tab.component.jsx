@@ -6,7 +6,6 @@ const Tab = ({ artist }) => {
     const navigate = useNavigate()
 
     return (
-        // <div className='d-flex-row bg-dark mb-xs-2 mt-avatar-header position-sticky top-navbar z-index-999'>
         <div className='d-flex-row bg-dark mb-xs-2'>               
             <div className='d-flex-column grow-1 align-items-center'onClick={() => navigate(`/artist/${artist.slug}/leaderboard`, { state: artist })}>
                 <span className={`${location.pathname.includes('leaderboard') ? 'lime-400 f-w-600' : 'grey-300'} fsize-xs-3 mb-xs-2`}>Classifica</span>

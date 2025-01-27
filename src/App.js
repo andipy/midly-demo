@@ -47,7 +47,8 @@ import PersonalUserPointsRoute from './routes/personal-user-points.route'
 import FanPublicProfileRoute from './routes/fan-public-profile.route'
 import SubscriptionsSettingsRoute from './routes/subscriptions-settings.route'
 import PaymentsInfoRoute from './routes/payments-info.route'
-
+import FanclubForumRoute from './routes/fanclub-forum.route'
+import FanclubAllRoute from './routes/fanclub-all.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -140,6 +141,9 @@ const router = createBrowserRouter([
 			element: <Fanclub />,
 			children: [
 				{
+					path: '',
+					element: <Navigate to="dashboard" replace />,
+				},{
 					path: '/artist/:artistSlug/fanclub/user-moderation',
 					element: <UserModerationRoute />,
 				},{
@@ -148,7 +152,15 @@ const router = createBrowserRouter([
 				},{
 					path: '/artist/:artistSlug/fanclub/user-moderation/report',
 					element: <UserModerationReportRoute />,
+				},{
+					path: 'forum',
+					element: <FanclubForumRoute />
+				},
+				{
+					path: 'dashboard',
+					element: <FanclubAllRoute />
 				}
+
 			]
 		  }
 		  
@@ -181,14 +193,14 @@ const router = createBrowserRouter([
 		path: '/artist/:artistSlug/fanclub/:postId',
 		element: <PostFullScreenRoute />,
 	},{
-		path: '/artist/:artistSlug/fanclub/topic/details',
+		path: '/artist/:artistSlug/fanclub/forum/topic/details',
 		element: <TopicDetailsRoute />,
 	},{
-		path: '/artist/:artistSlug/fanclub/topic/creation',
+		path: '/artist/:artistSlug/fanclub/forum/topic/creation',
 		element: <TopicCreationRoute />,
 		children: [
 			{
-				path: '/artist/:artistSlug/fanclub/topic/creation/hashtags',
+				path: '/artist/:artistSlug/fanclub/forum/topic/creation/hashtags',
 				element: <TopicAddHashtagRoute />
 			}
 		]
