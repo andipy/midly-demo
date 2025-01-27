@@ -6,7 +6,7 @@ const TabFanclub = ({onClick, postType}) => {
             <p className=" fsize-xs-2 ">Bacheca</p>
         </div>
         <div className={` ${postType === 'POSTS' ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02`} onClick={() => onClick('POSTS')}> 
-            <p className=" fsize-xs-2">Post</p>
+            <p className=" fsize-xs-2">Contenuti</p>
         </div>
         <div className={` ${postType === 'EVENTS' ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02`} onClick={() => onClick('EVENTS')}> 
             <p className=" fsize-xs-2 ">Eventi</p>

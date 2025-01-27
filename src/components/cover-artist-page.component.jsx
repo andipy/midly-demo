@@ -35,16 +35,13 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
                         <img className={`avatar-72 border-radius-100 ${artist?.flashLeaderboard.status === 'ONGOING' ? 'border-lime-6' : 'border-dark-6'}`} src={artist?.image} />                       
                         {artist?.verified && <img className='artist-avatar-verified-icon' src={IconVerifiedArtist} />}
                     </div>                    
-                    <div className='d-flex-column grow-1 no-shrink j-c-start mt-xs-6'>
+                    <div className={`d-flex-column grow-1 no-shrink j-c-start ${pathname.includes('/fanclub')  && userSubscribed  && 'mt-xs-6'}`}>
                         <h2 className='fsize-xs-4 f-w-600'>{artist?.artistName}</h2>
-                        <div className='d-flex-row j-c-space-between w-100 align-items-center'>
-                        {
-                            pathname.includes('/fanclub')  && 
-                            userSubscribed ?
-                            <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 align-self-start w-auto gap-0_25em'} label={'Sei abbonato al fanclub'} onClick={openSettingsSubscription}><img src={IconOk}/></Button>
-                            :
-                            <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 align-self-start w-auto black'} label={'Non sei abbonato'} onClick={openModalSubscription}/>
-
+                        <div className={`d-flex-row j-c-space-between w-100 align-items-center ${pathname.includes('/fanclub')  && userSubscribed ? 'align-items-end' : 'align-items-center'}`}>
+                        {pathname.includes('/fanclub')  && userSubscribed &&
+                            <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em'} label={'Sei abbonato al fanclub'} onClick={openSettingsSubscription}><img src={IconOk}/></Button>
+                            // :
+                            // <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 align-self-start w-auto black'} label={'Non sei abbonato'} onClick={openModalSubscription}/>
                         }  
                         </div>
                     </div>                
@@ -60,13 +57,10 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
                     <div className='d-flex-column grow-1 no-shrink j-c-start'>
                         <h2 className='fsize-xs-4 f-w-600'>{artist?.artistName}</h2>
                         <div className='d-flex-row j-c-space-between w-100 align-items-center'>
-                        {userCompeting  && /* && currentFan?.hasSpotify */
-                            <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 align-self-start w-auto'} label={'Esci dalla classifica'} onClick={handleCompete} />
-                        }
-                        
-
+                            {userCompeting  && /* && currentFan?.hasSpotify */
+                                <Button style={'button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 mt-xs-2 pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 align-self-start w-auto'} label={'Esci dalla classifica'} onClick={handleCompete} />
+                            }
                         </div>
-                        
                     </div>                    
                 </Container>
             }              

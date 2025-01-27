@@ -30,6 +30,7 @@ export const CurrentFanProvider = ({ children }) => {
         followedArtists: [
             {artistId: 1},
             {artistId: 'a3p8'},
+            {artistId: 'a2p1'},
             {artistId: 3},
             {artistId: 6},
         ],

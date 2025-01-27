@@ -361,21 +361,23 @@ const ArtistRoute = () => {
                 openModalSubscription={() => setModalSubscription(true)}
             />
 
+            
+
             <Container style={''}>
-                <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark pb-xs-2 '>
+                <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark pb-xs-2'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && !location.pathname.includes('/fanclub') &&
                         <MessageFlashLeaderboard
                             artist={artist}
                             userCompeting={userCompeting}
                         />
                     }
-                    
+
                     {fanclub?.isActive &&
                         <Tab
                             artist={artist}
                         />
                     }
-                    
+
                     {!currentFan.hasSpotify &&
                         <CardConnectSpotify
                             onClick={handleSpotifyConnect}
@@ -455,29 +457,30 @@ const ArtistRoute = () => {
             <FullPageCenter style='z-index-1000 bg-black-transp70'>
                 <Container style={`centered-popup ${isExitingSettings ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
                     <div className='w-100 d-flex-column mt-xs-4 gap-1em'>
-                                {
-                                    !hasUserSubscribed ?
-                                    <Button
-                                        disabled={false}
-                                        style='fsize-xs-3 f-w-600 letter-spacing-1 bg-acid-lime black border-lime border-radius-04'
-                                        label='Abbonati'
-                                        onClick={handleSubscription}
-                                    />
-                                    :
-                                    <Button
-                                        disabled={false}
-                                        style='fsize-xs-3 f-w-400 letter-spacing-1 bg-dark-soft-2 grey-400  border-radius-04'
-                                        label='Disattiva abbonamento'
-                                        onClick={handleSubscription}
-                                    />
-                                }
-                                
-                                <Button
-                                    disabled={false}
-                                    style='fsize-xs-3 f-w-400 letter-spacing-1 bg-dark-soft-2 white  border-radius-04'
-                                    label='Chiudi'
-                                    onClick={() => setIsExitingSettings(true)} 
-                                />
+                        <p className='fsize-xs-4 grey-100'>Gestisci il tuo abbonamento al fanclub di {artist?.artistName}.</p>
+                        {
+                            !hasUserSubscribed ?
+                            <Button
+                                disabled={false}
+                                style='fsize-xs-3 f-w-600 letter-spacing-1 bg-acid-lime black border-lime border-radius-04'
+                                label='Abbonati'
+                                onClick={handleSubscription}
+                            />
+                            :
+                            <Button
+                                disabled={false}
+                                style='fsize-xs-3 f-w-600 letter-spacing-1 bg-red-300 black border-radius-04'
+                                label='Disattiva abbonamento'
+                                onClick={handleSubscription}
+                            />
+                        }
+                        
+                        <Button
+                            disabled={false}
+                            style='fsize-xs-3 f-w-400 letter-spacing-1 bg-dark-soft-2 white  border-radius-04'
+                            label='Chiudi'
+                            onClick={() => setIsExitingSettings(true)} 
+                        />
                     </div>
                 </Container>
             </FullPageCenter>

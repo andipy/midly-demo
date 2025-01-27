@@ -25,13 +25,13 @@ const MetricsRoute = () => {
         },{
             id: 2,
             label: 'STREAM GENERATI DAI FAN',
-            value: 83208,
+            value: 126808,
             dailyIncrement: 2.3 
         },{
             id: 3,
             label: 'ASCOLTI MEDI PER FAN',
-            value: 11,
-            dailyIncrement: -1.4
+            value: 16.5,
+            dailyIncrement: 1.4
         }
     ]
 
@@ -156,7 +156,7 @@ const MetricsRoute = () => {
             <Container style={'pt-xs-topbar pb-xs-appbar'}>
                 <div>
                     <h1>{getCurrentMonthAndYear()}</h1>
-                    <p className='fsize-xs-3 f-w-300 grey-200 letter-spacing-1 mt-xs-2'>Da inizio mese ad oggi:</p>
+                    <p className='fsize-xs-3 f-w-300 grey-200 letter-spacing-1 mt-xs-2'>Statistiche della classifica mensile da inizio mese ad oggi:</p>
                 </div>
 
                 <section className='mt-xs-2 mx-xs-auto'>
