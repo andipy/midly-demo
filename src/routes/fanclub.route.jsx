@@ -5,7 +5,6 @@ import { FanclubsContext } from '../contexts/fanclubs.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { ArtistsContext } from '../contexts/artists.context'
 
-import Post from '../components/post.component'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import Comment from '../components/comment.component'
 import TextbarComments from '../components/textbar-comments.component'
@@ -13,14 +12,10 @@ import Container from '../layout/container.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 import Snackbar from '../components/snackbar.component'
-import PostConcert from '../components/post-concert.component'
-import Button from '../components/button.component'
+
 import TabFanclub from '../components/tab-fanclub.component'
 
-import IconSearch from '../images/icons/icon-search-black.svg'
-import IconPlus from '../images/icons/icon-plus-black.svg'
-import Carousel from '../layout/carousel.layout'
-import ForumTopic from '../components/forum-topic.component'
+
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
 
 const Fanclub = () => {
@@ -258,74 +253,6 @@ const Fanclub = () => {
         }
     }, [context, fanclubs, currentFan])
 
-    const sortPosts = (a, b) => {
-        if (a.settings.isPinned !== b.settings.isPinned) {
-            return b.settings.isPinned - a.settings.isPinned
-        }
-        return new Date(b.createdAt) - new Date(a.createdAt)
-    }
-
-    const [modalUserModeration, setModalUserModeration] = useState(false)
-    const [userToModerate, setUserToModerate] = useState(null)
-    const openModalUserModeration = (userId) => {
-        setUserToModerate(userId)
-        setModalUserModeration(true)
-    }
-
-    const closeModalUserModeration = () => {
-        setUserToModerate(null)
-        setModalUserModeration(false)
-    }
-
-    const likePost = (id) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === context.id) {
-                    return {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post => {
-                            if (post.id === id) {
-                                const hasLiked = post.likes.some(like => like.userId === currentFan.id)
-                                return {
-                                    ...post,
-                                    likes: hasLiked
-                                        ? post.likes.filter(like => like.userId !== currentFan.id) // Rimuove il like
-                                        : [...post.likes, { userId: currentFan.id }] // Aggiunge il like
-                                }
-                            }
-                            return post
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const newPartecipation = (id) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === context.id) {
-                    return {
-                        ...fanclub,
-                        concerts: fanclub.concerts.map(concert => {
-                            if (concert.id === id) {
-                                const partecipate = concert.participants.some(p => p.userId === currentFan.id)
-                                return {
-                                    ...concert,
-                                    participants: partecipate
-                                        ? concert.participants.filter(c => c.userId !== currentFan.id) // Rimuove il like
-                                        : [...concert.participants, { userId: currentFan.id }] // Aggiunge il like
-                                }
-                            }
-                            return concert
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
 
     const likeComment = (commentId, postId) => {
         setFanclubs(prevFanclubs =>
@@ -434,17 +361,7 @@ const Fanclub = () => {
 		}, 2000)
 	}
 
-    const [mixedPosts, setMixedPosts] = useState([])
-    useEffect(() => {
-        const concerts = Array.isArray(fanclub?.concerts) ? fanclub.concerts : []
-        const posts = Array.isArray(fanclub?.posts) ? fanclub.posts : []
-        const mixed = [
-            ...concerts,
-            ...posts
-        ]
-        const sortedMixed = mixed.sort((a, b) => sortPosts(a,b))
-        setMixedPosts(sortedMixed)
-    }, [fanclub])
+    
 
 
     const [postType, setPostType] = useState('ALL')
@@ -466,61 +383,7 @@ const Fanclub = () => {
         sessionStorage.setItem("postType", postType)
       }, [postType])
 
-    //FORUM
-    const likeTopic = (id) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === context.id) {
-                    return {
-                        ...fanclub,
-                        forum: fanclub.forum.map(topic => {
-                            if (topic.id === id) {
-                                const liked = topic.likes.some(p => p.userId === currentFan.id)
-                                return {
-                                    ...topic,
-                                    likes: liked
-                                        ? topic.likes.filter(c => c.userId !== currentFan.id) // Rimuove il like
-                                        : [...topic.likes, { userId: currentFan.id }] // Aggiunge il like
-                                }
-                            }
-                            return topic
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const saveTopic = (id) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === context.id) {
-                    return {
-                        ...fanclub,
-                        forum: fanclub.forum.map(topic => {
-                            if (topic.id === id) {
-                                const saved = topic.saved.some(p => p.userId === currentFan.id)
-                                return {
-                                    ...topic,
-                                    saved: saved
-                                        ? topic.saved.filter(c => c.userId !== currentFan.id) // Rimuove il save
-                                        : [...topic.saved, { userId: currentFan.id }] // Aggiunge il save
-                                }
-                            }
-                            return topic
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const shareTopic = () => {
-        triggerSnackbar('Link al post copiato negli appunti')
-    }
-
+    
     const [modalSubscription, setModalSubscription] = useState(false)
 
 
@@ -547,157 +410,9 @@ const Fanclub = () => {
             <div className='mt-xs-2'>
                 <TabFanclub onClick={clickTab} postType={postType}/>
             </div>
-            {
-                postType === 'FORUM' ?
-                <>
-                    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => navigate('topic/creation', { state: {artist:context} })}>
-                        <img className='' src={IconPlus}/>
-                    </div>
-                    <Container style={'pb-xs-2'}>
-                        
-                    {(() => {
-                        const topicWithMaxWeight = fanclub?.forum.reduce((max, topic) => 
-                            topic.weight > max.weight ? topic : max, fanclub?.forum[0]);
-
-                        const artistTopicWithMaxWeight = fanclub?.forum
-                            .filter(topic => topic.publisher.type === 'ARTIST')
-                            .sort((a, b) => b.weight - a.weight)[0];
-
-                        return (
-                            <>
-                                {/* Topic con peso maggiore */}
-                                {topicWithMaxWeight && (
-                                    <ForumTopic 
-                                        key={topicWithMaxWeight.id} 
-                                        topic={topicWithMaxWeight} 
-                                        artistId={context.id}
-                                        like={likeTopic} 
-                                        save={saveTopic} 
-                                        share={() => shareTopic()} 
-                                        popular={true}
-                                    />
-                                )}
-                                {/* 4 topic vari */}
-                                {fanclub?.forum
-                                .filter(topic => topic.id !== topicWithMaxWeight?.id && topic.id !== artistTopicWithMaxWeight?.id)
-                                .sort((a, b) => b.weight - a.weight)
-                                .slice(0, 4)
-                                .map(topic => (
-                                    <ForumTopic 
-                                        key={topic.id} 
-                                        topic={topic} 
-                                        artistId={context.id}
-                                        like={likeTopic} 
-                                        save={saveTopic} 
-                                        share={() => shareTopic()} 
-                                        popular={false}
-                                    />
-                                ))}
-
-                                {/* Primo ARTIST con peso maggiore */}
-                                {artistTopicWithMaxWeight && artistTopicWithMaxWeight.id !== topicWithMaxWeight.id && (
-                                    <ForumTopic 
-                                        key={artistTopicWithMaxWeight.id} 
-                                        topic={artistTopicWithMaxWeight} 
-                                        artistId={context.id}
-                                        like={likeTopic} 
-                                        save={saveTopic} 
-                                        share={() => shareTopic()} 
-                                        popular={false}
-                                    />
-                                )}
-
-                                {/* altri topic vari */}
-                                {fanclub?.forum
-                                .filter(topic => topic.id !== topicWithMaxWeight?.id && topic.id !== artistTopicWithMaxWeight?.id)
-                                .sort((a, b) => b.weight - a.weight)
-                                .slice(5)
-                                .map(topic => (
-                                    <ForumTopic 
-                                        key={topic.id} 
-                                        topic={topic} 
-                                        artistId={context.id}
-                                        like={likeTopic} 
-                                        save={saveTopic} 
-                                        share={() => shareTopic()} 
-                                        popular={false}
-                                    />
-                                ))}
-                            </>
-                        );
-                    })()}
-                        
-                    </Container>
-                    
-                </>
-                :
-                <>
-                    {fanclub?.posts.length === 0 && fanclub?.concerts.lenght === 0 ?
-                        <div className='d-flex-column align-items-center mt-xs-16'>
-                            <p className='fsize-xs-2 f-w-200 grey-200 w-70 t-align-center mt-xs-4'>L'artista ha già attivato il suo fanclub! Resta sincronizzato e sii il primo a vedere i primi contenuti appena usciranno.</p>
-                        </div>
-                    :
-                        <Container style={'pb-xs-2 mt-xs-4'}>
-                            {
-                                mixedPosts.map(item => {
-                                if (item.type === 'CONCERT' || item.type === 'TOUR' ) {
-                                    
-                                    return (
-                                        <>
-                                        {
-                                            (postType === 'ALL' || postType === 'EVENTS') &&
-                                                <PostConcert 
-                                                    concert={item}
-                                                    newPartecipation={newPartecipation}
-                                                    hasUserSubscribed={hasUserSubscribed}
-                                                    handleSubscription={() => setModalSubscription(true)}
-                                                    slug={context.slug}
-                                                />
-                                        }
-                                        </>  
-                                    )
-                                } else {
-                                    return (
-                                        <>
-                                        {
-                                           (postType === 'ALL' || postType === 'POSTS') &&
-                                                <Post
-                                                    key={item.id}
-                                                    post={item}
-                                                    focusPost={focusPost}
-                                                    likePost={likePost}
-                                                    hasUserSubscribed={hasUserSubscribed}
-                                                    handleSubscription={() => setModalSubscription(true)}
-                                                /> 
-                                        }
-                                        </>
-                                        
-                                    )
-                                }
-                                })
-                            }
-                            {/* {fanclub?.concerts.map(concert =>
-                                <PostConcert 
-                                    concert={concert}
-                                    newPartecipation={newPartecipation}
-                                    hasUserSubscribed={hasUserSubscribed}
-                                    handleSubscription={handleSubscription}
-                                />
-                            )}
-                            {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
-                                <Post
-                                    key={post.id}
-                                    post={post}
-                                    focusPost={focusPost}
-                                    likePost={likePost}
-                                    hasUserSubscribed={hasUserSubscribed}
-                                    handleSubscription={handleSubscription}
-                                />
-                            )} */}
-                        </Container>
-                    }
-                </>
-            }
+            <Container>
+                <Outlet context={{context, focusPost}}/>
+            </Container>
             
 
             <CommentsModalLayout
@@ -739,7 +454,7 @@ const Fanclub = () => {
 
             </CommentsModalLayout>
 
-            <Outlet />
+            
             {err && 
                 <FullPageCenter style='z-index-1100 bg-black-transp70'>
                     <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
