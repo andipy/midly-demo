@@ -11,10 +11,8 @@ const UserModerationRoute = () => {
 	const { state } = useLocation()
 	const { userId, postId, fanclubId, commentId } = state
 
-
-
 	return (
-		<FullPageCenter style='z-index-1100 bg-black-transp70'>
+		<FullPageCenter style='z-index-1200 bg-black-transp70'>
 			<UserModeration
 				modalUserModeration={() => navigate(-1)}
 				user={userId}

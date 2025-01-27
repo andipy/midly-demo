@@ -473,7 +473,7 @@ const  PostFullScreenRoute = () => {
 	const [seconds, setSeconds] = useState(0)
 
     useEffect(() => {
-		const specificDate = new Date(post.createdAt)
+		const specificDate = new Date(post?.createdAt)
 		const currentDate = new Date()
 		const timeDifference = currentDate - specificDate
 		const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24))

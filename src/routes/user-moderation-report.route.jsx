@@ -85,7 +85,7 @@ const UserModerationReportRoute = () => {
     }
 
     return (
-        <FullPageCenter style='z-index-1100 bg-black-transp70'>
+        <FullPageCenter style='z-index-1200 bg-black-transp70'>
             <Container style='centered-popup position-absolute d-flex-column align-items-center bg-dark-soft-2 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2'>
                 <div className='d-flex-row j-c-start align-items-center mb-xs-4 gap-0_5em'>
                     {userFound?.image ?

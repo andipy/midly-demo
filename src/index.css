@@ -1693,6 +1693,9 @@ animation: dot-loader-after 1s infinite linear;
 .z-index-1100 {
   z-index: 1100;
 }
+.z-index-1200 {
+  z-index: 1200;
+}
 .m-auto {
   margin: 0 auto;
 }

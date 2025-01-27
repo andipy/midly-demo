@@ -49,6 +49,7 @@ import SubscriptionsSettingsRoute from './routes/subscriptions-settings.route'
 import PaymentsInfoRoute from './routes/payments-info.route'
 import FanclubForumRoute from './routes/fanclub-forum.route'
 import FanclubAllRoute from './routes/fanclub-all.route'
+
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -83,8 +84,6 @@ import AddStopRoute from './routes/add-stop.route.artist'
 import ConcertSettingsRoute from './routes/concert-settings.route.artist'
 import ConcertSettingsStopsRoute from './routes/concert-settings-stops.route.artist'
 import ChatsRoute from './routes/chats.route.artist'
-
-
 import UserModerationRoute from './routes/user-moderation.route'
 import UserModerationBlockRoute from './routes/user-moderation-block.route'
 import UserModerationReportRoute from './routes/user-moderation-report.route'
@@ -95,6 +94,7 @@ import ChatPrivateRoute from './routes/chat-private.route'
 import TopicCreationRoute from './routes/topic-creation.route'
 import TopicAddHashtagRoute from './routes/topic-add-hashtag.route'
 import TopicDetailsRoute from './routes/topic-details.route'
+
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
 import FlashLeaderboardMetricsDetailRoute from './routes/flash-leaderboard-metrics-detail.route.admin'
