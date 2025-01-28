@@ -15,8 +15,9 @@ import MessageChatPrivate from '../components/message-chat-private.component'
 const ChatPrivateRoute = () => {
     const navigate = useNavigate()
     const location = useLocation()
-
-    const { state, pathname } = useLocation()    
+    const { state } = location
+    const { artist, from } = state || {}
+    const pathname = location.pathname
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const { artists } = useContext(ArtistsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
@@ -74,11 +75,11 @@ const ChatPrivateRoute = () => {
                 let chat
                 if (!pathname.includes('/artist-app/')) {
                     chat = prevChats.find(
-                        c => c.artistId === state?.id && c.fanId === currentFan.id
+                        c => c.artistId === artist?.id && c.fanId === currentFan.id
                     )
                 } else {
                     chat = prevChats.find(
-                        c => c.artistId === currentArtist?.id && c.fanId === state?.id
+                        c => c.artistId === currentArtist?.id && c.fanId === artist?.id
                     )
                 }
                 
@@ -89,7 +90,7 @@ const ChatPrivateRoute = () => {
                         {
                             id: prevChats.length+1,
                             fanId: currentFan.id,
-                            artistId: state.id,
+                            artistId: artist.id,
                             messages: [currentMessage] 
                         }
                     ];
@@ -121,16 +122,16 @@ const ChatPrivateRoute = () => {
   return (
     <>
     {!pathname.includes('/artist-app/') && 
-        <NavbarChat artist={state}/>
+        <NavbarChat artist={artist} from={from}/>
     }
     {pathname.includes('/artist-app/') && 
-        <NavbarChat fan={state}/>
+        <NavbarChat fan={artist} from={from}/>
     }
     {!pathname.includes('/artist-app/') && 
         <Container style='pt-xs-topbar pb-xs-appbar'>
             {(() => {
             const foundChat = chats.find(
-                chat => chat.artistId === state?.id && chat.fanId === currentFan?.id
+                chat => chat.artistId === artist?.id && chat.fanId === currentFan?.id
             )
 
             if (foundChat?.messages && foundChat.messages.length > 0) {
@@ -156,7 +157,7 @@ const ChatPrivateRoute = () => {
         <Container style='pt-xs-topbar pb-xs-appbar'>
                 {(() => {
                 const foundChat = chats.find(
-                    chat => chat.artistId === currentArtist?.id && chat.fanId === state?.id
+                    chat => chat.artistId === currentArtist?.id && chat.fanId === artist?.id
                 )
 
                 if (foundChat?.messages && foundChat.messages.length > 0) {

@@ -16,7 +16,7 @@ const ChatTourRoute = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const { pathname } = useLocation()
-    const { artistId, id } = location.state || {}
+    const { artistId, id, from } = location.state || {}
     const { currentFan } = useContext(CurrentFanContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
@@ -63,7 +63,7 @@ const ChatTourRoute = () => {
 
   return (
     <>
-        <NavbarConcertChat id={artistId} concertId={id}/>
+        <NavbarConcertChat id={artistId} concertId={id} from={from}/>
         <Container style={'pt-xs-topbar'}>
             {!pathname.includes('/artist-app/') &&
                 <>

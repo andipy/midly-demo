@@ -16,7 +16,7 @@ const ChatConcertRoute = () => {
     const location = useLocation()
     const { pathname } = useLocation()
     const { state } = location
-    const { artistId, id, dateId } = state || {}
+    const { artistId, id, dateId, from } = state || {}
     const { currentFan } = useContext(CurrentFanContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
@@ -192,7 +192,7 @@ const ChatConcertRoute = () => {
                 dateId ? 
                 <NavbarConcertChat id={artistId} concertId={id} dateId={dateId}/>
                 :
-                <NavbarConcertChat id={artistId} concertId={id} />
+                <NavbarConcertChat id={artistId} concertId={id} from={from} />
             }
             
 

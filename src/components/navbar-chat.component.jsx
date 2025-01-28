@@ -7,7 +7,7 @@ import IconArrowLeft from '../images/icons/icon-arrowleft.svg'
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-function NavbarChat({artist, fan}) {
+function NavbarChat({artist, fan, from}) {
     const location = useLocation()
     const { pathname } = useLocation()
     const navigate = useNavigate()
@@ -16,7 +16,7 @@ function NavbarChat({artist, fan}) {
         <nav className='top-bar-area-overlay-fixed bg-dark d-flex-row align-items-center j-c-start white z-index-1000 top-0'>
             <div className='container d-flex-row align-items-center j-c-space-between w-100 gap-1em'>
                 {!pathname.includes('/artist-app/') &&
-                    <div className='avatar-28' onClick={() => navigate(`/artist/${artist.slug}/fanclub`, { state: {artist:artist} })}>
+                    <div className='avatar-28' onClick={() => navigate(from, { state: { artist: artist } })}>
                         <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} alt='Back' />
                     </div>
                 }

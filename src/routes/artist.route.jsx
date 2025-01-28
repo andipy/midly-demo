@@ -314,7 +314,7 @@ const ArtistRoute = () => {
     }
 
     const openMessages = () => {
-       navigate(`/artist/${artist.slug}/chat`, { state: artist })
+       navigate(`/artist/${artist.slug}/chat`, { state: { from: location, artist: artist } })
     }
 
     const [err, setErr] = useState(false)

@@ -21,6 +21,7 @@ import IconSettings from '../images/icons/icon-settings-white.svg'
 
 
 const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscription, slug, openSettings}) => {
+    const location = useLocation()
     const { pathname } = useLocation()
     const { currentFan} = useContext(CurrentFanContext)
     const navigate = useNavigate()
@@ -96,7 +97,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                         </div>
                         <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
                     </div>
-                    <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => navigate(`/artist/${slug}/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
+                    <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => navigate(`/artist/${slug}/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id,  from: location  } })}> 
                         <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
                             <img src={IconGroupBlack}></img>
                         </div>
@@ -202,7 +203,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                         </div>
                         <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
                     </div>
-                    <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => navigate(`/artist/${slug}/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
+                    <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => navigate(`/artist/${slug}/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id,  from: location  } })}> 
                         <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
                             <img src={IconGroupBlack}></img>
                         </div>
@@ -228,7 +229,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
             </div>
         }
         {pathname.includes('/artist-app/') &&
-            <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-50 mt-xs-4 mb-xs-2'  onClick={() => navigate(`/artist-app/fanclub/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
+            <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-50 mt-xs-4 mb-xs-2'  onClick={() => navigate(`/artist-app/fanclub/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id} })}> 
                 <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
                     <img src={IconGroupBlack}></img>
                 </div>

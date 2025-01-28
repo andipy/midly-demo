@@ -8,11 +8,8 @@ import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.c
 import Snackbar from '../components/snackbar.component'
 import Container from "../layout/container.layout"
 import PostConcert from "../components/post-concert.component"
-import Post from "../components/post.component"
 const FanclubEventsRoute = () => {
-    const navigate = useNavigate()
     const {context, focusPost} = useOutletContext()
-    const {state } = useLocation()
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const {artists} = useContext(ArtistsContext)

@@ -7,7 +7,7 @@ import IconArrowLeft from '../images/icons/icon-arrowleft.svg'
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-function NavbarConcertChat({id, concertId, dateId}) {
+function NavbarConcertChat({id, concertId, dateId, from}) {
     const location = useLocation()
     const { pathname } = useLocation()
     const navigate = useNavigate()
@@ -78,7 +78,7 @@ function NavbarConcertChat({id, concertId, dateId}) {
                 :
                     <>
                     {!pathname.includes('/artist-app/') &&
-                        <div className='avatar-28' onClick={() =>  navigate(`/artist/${artist?.slug}/fanclub`, { state : {artist: artist} })}>
+                        <div className='avatar-28' onClick={() =>  navigate(from, { state : {artist: artist} })}>
                             <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} alt='Back' />
                         </div>
                     }
