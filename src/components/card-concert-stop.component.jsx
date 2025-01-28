@@ -28,15 +28,18 @@ const CardConcertStop = ({date}) => {
         }
     }
   return (
-    <div className="d-flex-column j-c-start align-items-start">
-        <div className="avatar-80 d-flex-row j-c-center align-items-center bg-acid-lime">
-            <div className='d-flex-column align-items-center j-c-center bg-dark border-radius-04 avatar-80'>
-                <p className='fsize-xs-9 line-height-1'>{getDay(date?.date)}</p>
-                <p className='fsize-xs-3 line-height-1'>{getMonth(date?.date)}</p>
-                <p className='fsize-xs-2 line-height-1'>{getYear(date?.date)}</p>
+    <div className="d-flex-column j-c-space-between align-items-start">
+        <div className="d-flex-column j-c-start align-items-start"> 
+            <div className="avatar-80 d-flex-row j-c-center align-items-center bg-acid-lime">
+                <div className='d-flex-column align-items-center j-c-center bg-dark border-radius-04 avatar-80'>
+                    <p className='fsize-xs-9 line-height-1'>{getDay(date?.date)}</p>
+                    <p className='fsize-xs-3 line-height-1'>{getMonth(date?.date)}</p>
+                    <p className='fsize-xs-2 line-height-1'>{getYear(date?.date)}</p>
+                </div>
             </div>
+            <p className='grey-100 f-w-400 fsize-xs-1 ml-xs-2'>{date.mainPlace}</p>
         </div>
-        <p className='grey-100 f-w-400 fsize-xs-1 ml-xs-2'>{date.mainPlace}</p>
+
         <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3 ml-xs-2' to={''} target='blank'>
             {/* <img className='avatar-20' src={IconLink} /> */}
             <span>{'Vedi dettagli'}</span>

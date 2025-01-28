@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import IconSpeaker from '../images/icons/icon-speaker.png'
 import AudioPost from '../components/audio-post.component'
 
@@ -78,6 +78,7 @@ const SwipeCarousel = ({ images, text }) => {
 				{images.map((media, index) => (
 					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 object-fit-cover'
 						style={{
+							height: '350px',
 							overflow: 'hidden',
 						}}
 					>
