@@ -10,7 +10,6 @@ import Button from "../components/button.component"
 import IconEdit from '../images/icons/icon-edit.svg'
 import IconPlus from '../images/icons/icon-plus-lime.svg'
 import FullPageCenter from "../layout/full-page-center.layout"
-import IconOk from '../images/icons/icon-ok.svg'
 import Carousel from "../layout/carousel.layout"
 const ConcertCreationRoute = () => {
 

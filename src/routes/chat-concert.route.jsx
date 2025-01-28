@@ -7,7 +7,6 @@ import { ArtistsContext } from '../contexts/artists.context'
 import NavbarConcertChat from '../components/navbar-concert-chat.component'
 import Textbar from '../components/textbar.component'
 import Container from '../layout/container.layout'
-import CountdownConcert from '../components/countdown-concert.component'
 import MessageChatConcert from '../components/message-chat-concert.component'
 import FullPageCenter from '../layout/full-page-center.layout'
 
@@ -41,20 +40,6 @@ const ChatConcertRoute = () => {
         const foundArtist = artists.find(artist => artist.id === artistId)
         setArtist(foundArtist)
     }, [id])
-
-    // const formatDate = (date) => {
-    //     const months = [
-    //         "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", 
-    //         "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
-    //     ]
-
-    //     if ( date ) {
-    //         const [day, month, year] = date?.split('-')
-    //         const formattedDay = day.startsWith('0') ? day.slice(1) : day
-    //         const monthName = months[parseInt(month, 10) - 1]
-    //         return `${formattedDay} ${monthName} ${year}`
-    //     }   
-    // }
 
     const getDay = (date) => {
         if ( date ) {
@@ -212,7 +197,6 @@ const ChatConcertRoute = () => {
                                 <p className='fsize-xs-5 f-w-700 black'>{concert?.place.mainPlace}</p>
                             }
                         </div>
-                        {/* <CountdownConcert date ={concert?.date}/> */}
                     </Container>
                 </div>
             </div>

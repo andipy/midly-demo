@@ -7,16 +7,11 @@ import { ChatsContext } from '../contexts/chats.context'
 import { FansContext } from '../contexts/fans.context'
 
 import Container from '../layout/container.layout'
-import Textbar from '../components/textbar.component'
 import FullPageCenter from '../layout/full-page-center.layout'
-import MessageChatPrivate from '../components/message-chat-private.component'
 import NavbarBackOnly from '../components/navbar-back-only.component'
 import IconArrowRight from '../images/icons/icon-arrowright.svg'
 const ChatsRoute = () => {
     const navigate = useNavigate()
-    const location = useLocation()
-
-    const { state, pathname } = useLocation()    
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const {chats, setChats} = useContext(ChatsContext)
@@ -47,7 +42,6 @@ const ChatsRoute = () => {
                                 <img className="avatar-48 border-radius-100" src={user.image} alt={`${user.username} avatar`} />
                                 <div className="d-flex-column j-c-start align-items-start ml-xs-8">
                                     <p className="fsize-xs-1 f-w-300">{user.username}</p>
-                                    {/* <p className="fsize-xs-1 f-w-600">{chat.messages[chat.messages.length-1].content}</p> */}
                                 </div>
                             </div>
 

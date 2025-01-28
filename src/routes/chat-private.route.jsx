@@ -13,13 +13,11 @@ import FullPageCenter from '../layout/full-page-center.layout'
 import MessageChatPrivate from '../components/message-chat-private.component'
 
 const ChatPrivateRoute = () => {
-    const navigate = useNavigate()
     const location = useLocation()
     const { state } = location
     const { artist, from } = state || {}
     const pathname = location.pathname
-    const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
-    const { artists } = useContext(ArtistsContext)
+    const { currentFan} = useContext(CurrentFanContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const {chats, setChats} = useContext(ChatsContext)
 

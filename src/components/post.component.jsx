@@ -10,12 +10,12 @@ import Button from '../components/button.component'
 import SwipeCarousel from '../layout/swipe-carousel.layout'
 
 import IconSettings from '../images/icons/icon-settings-white.svg'
-// import IconLike from '../images/icons/icon-like-white-empty.svg'
 import IconThunder from '../images/icons/icon-thunder.svg'
 import IconThunderActive from '../images/icons/icon-thunder-active.svg'
 import IconComments from '../images/icons/icon-comment-white.svg'
 import IconShare from '../images/icons/icon-share-white.svg'
 import IconLink from '../images/icons/icon-link.svg'
+import Container from '../layout/container.layout'
 
 const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost, likePost }) => {
 
@@ -82,7 +82,8 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 	return (
 		<>
-		<div className={`w-100vw image-wrapper  j-c-center align-items-center position-relative `}>
+		<div className='position-relative overflow-hidden d-flex-column j-c-center w-100vw image-wrapper'>
+			<div className={`j-c-center align-items-center position-relative `}>
 				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} onClick={() => focusPost(post.id, 'FULL_SCREEN_POST')}>
 					{post.media.length >= 0 ?
 						<SwipeCarousel images={post.media} text={post.text} />
@@ -91,23 +92,22 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 					}
 				</div>
 			</div>
-		<div className='position-relative overflow-hidden d-flex-column j-c-center border-radius-04 mb-xs-4'>
-			<div className='d-flex-row w-100 j-c-space-between align-items-center pl-xs-2 mb-xs-2'>
-				{/* <div className='d-flex-row j-c-start align-items-center gap-0_25em'>
-					{artist &&
-						<>
-							<img className='avatar-28 border-radius-100 ' src={artist?.image} />
-							<p className='fsize-xs-1 f-w-500'>{artist?.artistName}</p>
-						</>
-					}
-				</div> */}
-				
-				<div className='d-flex-row j-c-end align-items-center pr-xs-2'>
+			{!hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate &&
+                <div className='position-absolute-x-y w-80 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
+                    <p className='t-align-center mb-xs-4'>Vuoi accedere ai contenuti esclusivi dell'artista?</p>
+                    <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={handleSubscription} />
+                </div>
+            }
+			<div className='d-flex-row w-100 j-c-space-between align-items-center pl-xs-2 mb-xs-2 position-absolute-x top-2 right-2'>
+				<div className='d-flex-row j-c-end align-items-center'>
 					{ post.settings.isPinned &&
 						<img className='avatar-28 border-radius-100' src={IconThunder}/>	
 					}
 				</div>
 			</div>
+		</div>
+		
+		<Container>
 
 			{!post.settings.isPrivate && !pathname.includes('/artist-app/') &&
 				<p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>
@@ -117,7 +117,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 			{(!post.settings.isPrivate || (post.settings.isPrivate && hasUserSubscribed) || pathname.includes('/artist-app/')) ?
 				<div className='w-100  mb-xs-4'>
-					<div className='d-flex-row w-100 j-c-space-between align-items-center mt-xs-2'>
+					<div className='d-flex-row w-100 j-c-space-between align-items-center mt-xs-2 mb-xs-1'>
 						<div className='d-flex-row align-items-center gap-1em'>
 							<div className='d-flex-row align-items-center gap-0_25em'
 								onClick={() => {
@@ -182,7 +182,6 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 							<div className='d-flex-row align-items-center gap-0_25em' onClick={() => focusPost(post.id, 'SHARE_POST')}>
 								<img className='avatar-28  border-radius-04' src={IconShare}/>
-								{/* <p className='fsize-xs-1'>{post.shares}</p> */}
 							</div>
 						</div>
 
@@ -194,7 +193,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 					</div>
 
 					<div className='w-100 d-flex-row'>
-						<p className='pre-wrap mb-xs-2 grey-100 f-w-400 fsize-xs-2'>
+						<p className='pre-wrap mb-xs-1 grey-100 f-w-400 fsize-xs-2'>
 							{post.caption.length > 95 ?
 							<>
 								{showCaption ?
@@ -216,7 +215,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 					</div>
 
 					{post.link.url &&
-						<Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post.link.url} target='blank'>
+						<Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-1' to={post.link.url} target='blank'>
 							<img className='avatar-20' src={IconLink} />
 							<span>{post.link.name ? post.link.name : 'Apri il link'}</span>
 						</Link>
@@ -228,7 +227,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 						<p className='f-w-400 grey-200 fsize-xs-2' onClick={() => focusPost(post.id, 'OPEN_COMMENTS')}>Commenta per primo</p>
 					}
 
-					<p className='fsize-xs-1 f-w-100 grey-300 mt-xs-2'>
+					<p className='fsize-xs-1 f-w-100 grey-300 mt-xs-1'>
 						{days > 31 ?
 							<span>{formatDate()}</span>
 						: days > 0 ?
@@ -254,7 +253,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 					</p>
 				</div>
 			:
-				<div className='w-100 pb-xs-4 pl-xs-4'>
+				<div className='w-100 pb-xs-4 '>
 					<p className='fsize-xs-3 f-w-600 gold'>Contenuto da sbloccare</p>
 					<p className='fsize-xs-0 f-w-100 grey-400'>
 						{days > 31 ?
@@ -266,13 +265,8 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 				</div>
 			}
 
-			{!hasUserSubscribed && !pathname.includes('/artist-app/') && post.settings.isPrivate &&
-                <div className='position-absolute-x-y w-80 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                    <p className='t-align-center mb-xs-4'>Vuoi accedere ai contenuti esclusivi dell'artista?</p>
-                    <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={handleSubscription} />
-                </div>
-            }
-		</div>
+			
+		</Container>
 		</>
 	)
 }

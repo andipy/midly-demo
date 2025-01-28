@@ -1,15 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useContext, useState, useEffect } from 'react'
-import { CurrentFanContext } from '../contexts/currentFan.context'
-import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { ArtistsContext } from '../contexts/artists.context'
 import NavbarConcertChat from '../components/navbar-concert-chat.component'
-import Textbar from '../components/textbar.component'
 import Container from '../layout/container.layout'
-import CountdownConcert from '../components/countdown-concert.component'
-import MessageChatConcert from '../components/message-chat-concert.component'
-import FullPageCenter from '../layout/full-page-center.layout'
 
 import IconArrowRight from '../images/icons/icon-arrowright.svg'
 const ChatTourRoute = () => {
@@ -17,9 +11,7 @@ const ChatTourRoute = () => {
     const navigate = useNavigate()
     const { pathname } = useLocation()
     const { artistId, id, from } = location.state || {}
-    const { currentFan } = useContext(CurrentFanContext)
-    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
-    const { currentArtist } = useContext(CurrentArtistContext)
+    const { fanclubs} = useContext(FanclubsContext)
     const { artists } = useContext(ArtistsContext)
 
 
@@ -35,31 +27,6 @@ const ChatTourRoute = () => {
         const foundArtist = artists.find(artist => artist.id === artistId)
         setArtist(foundArtist)
     }, [id])
-
-    const getDay = (date) => {
-        if ( date ) {
-            const [day] = date.split('-')
-            return day.padStart(2, '0')
-        }
-    }
-
-    const getMonth = (date) => {
-        if ( date ) {
-            const [, month] = date.split('-')
-            const monthNames = [
-                "GEN", "FEB", "MAR", "APR", "MAG", "GIU", 
-                "LUG", "AGO", "SET", "OTT", "NOV", "DIC"
-            ]
-            return monthNames[parseInt(month, 10) - 1]
-        }
-    }
-
-    const getYear = (date) => {
-        if ( date ) {
-            const [, , year] = date.split('-')
-            return year
-        }
-    }
 
   return (
     <>
