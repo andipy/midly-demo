@@ -59,7 +59,7 @@ const SwipeCarousel = ({ images, text }) => {
 	const canSlide = images.length + (text ? 1 : 0) > 1
 
 	return (
-		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden w-100'
+		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden w-100 '
 			onMouseDown={canSlide ? handleDragStart : undefined}
 			onMouseMove={isDragging && canSlide ? handleDragMove : undefined}
 			onMouseUp={canSlide ? handleDragEnd : undefined}
@@ -69,14 +69,14 @@ const SwipeCarousel = ({ images, text }) => {
 			onTouchEnd={canSlide ? handleDragEnd : undefined}
 		>
 			<div
-				className='carousel-track d-flex-row align-items-center object-fit-cover w-100 border-radius-08 '
+				className='carousel-track d-flex-row align-items-center object-fit-cover w-100'
 				ref={trackRef}
 				style={{
 					transform: `translateX(-${currentIndex * 100}%)`,
 				}}
 			>
 				{images.map((media, index) => (
-					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 object-fit-cover border-radius-08 '
+					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 object-fit-cover '
 						style={{
 							width: '300px',
 							height: `300px`,
@@ -84,13 +84,13 @@ const SwipeCarousel = ({ images, text }) => {
 						}}
 					>
 						{media.type === 'IMAGE' ?
-							<img  className='object-fit-cover w-100 h-100 border-radius-08 ' src={media.url} />
+							<img  className='object-fit-cover w-100 h-100 ' src={media.url} />
 						: media.type === 'VIDEO' ?	
-						<video className='w-100 h-100 object-fit-cover border-radius-08 ' autoPlay playsInline loop muted={!isMuted}>
+						<video className='w-100 h-100 object-fit-cover ' autoPlay playsInline loop muted={!isMuted}>
 							<source src={media.url} type='video/mp4' />
 						</video>
 						: media.type === 'AUDIO'?
-							<div className='object-fit-cover w-100 h-100 d-flex-row j-c-center align-items-center border-radius-08 '>
+							<div className='object-fit-cover w-100 h-100 d-flex-row j-c-center align-items-center '>
 								<AudioPost src={media.url} />
 							</div>
 						: null

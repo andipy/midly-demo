@@ -82,6 +82,15 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 	return (
 		<>
+		<div className={`w-100vw image-wrapper  j-c-center align-items-center position-relative `}>
+				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} onClick={() => focusPost(post.id, 'FULL_SCREEN_POST')}>
+					{post.media.length >= 0 ?
+						<SwipeCarousel images={post.media} text={post.text} />
+					:
+						null
+					}
+				</div>
+			</div>
 		<div className='position-relative overflow-hidden d-flex-column j-c-center border-radius-04 mb-xs-4'>
 			<div className='d-flex-row w-100 j-c-space-between align-items-center pl-xs-2 mb-xs-2'>
 				{/* <div className='d-flex-row j-c-start align-items-center gap-0_25em'>
@@ -104,15 +113,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 				<p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>
 			}
 
-			<div className={`w-100  j-c-center align-items-center position-relative `}>
-				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} onClick={() => focusPost(post.id, 'FULL_SCREEN_POST')}>
-					{post.media.length >= 0 ?
-						<SwipeCarousel images={post.media} text={post.text} />
-					:
-						null
-					}
-				</div>
-			</div>
+			
 
 			{(!post.settings.isPrivate || (post.settings.isPrivate && hasUserSubscribed) || pathname.includes('/artist-app/')) ?
 				<div className='w-100  mb-xs-4'>
