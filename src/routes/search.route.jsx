@@ -104,15 +104,15 @@ const SearchRoute = () => {
             />
             {!searchQuery && 
             <section id='highlight'>
-            {/* <div
-            className='position-sticky top-0 z-index-5 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
-            style={{ top: searchBarHeight }}
-            >
-                <div className='container'>
-                    <h2 className='fsize-xs-5 f-w-600 position-sticky'>Artisti in evidenza</h2>
-                </div>
-            </div> */}
-            <div className='mb-xs-8' key={''}>
+                {/* <div
+                className='position-sticky top-0 z-index-5 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
+                style={{ top: searchBarHeight }}
+                >
+                    <div className='container'>
+                        <h2 className='fsize-xs-5 f-w-600 position-sticky'>Artisti in evidenza</h2>
+                    </div>
+                </div> */}
+                <div className='mb-xs-8'>
                     <Carousel>
                         {highlightArtists.map(item => {
                             const isFollowed = currentFan.followedArtists.some(
