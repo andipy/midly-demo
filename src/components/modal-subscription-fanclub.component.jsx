@@ -64,11 +64,11 @@ const ModalSubscriptionFanclub = ({closeModal, fanclub, handleSubscription}) => 
                                             <div className='d-flex-row j-c-start align-items-center w-100 gap-0_5em'>
                                                 <p className='fsize-xs-2 f-w-500 lime-400'>Biglietto gratuito</p>
                                                 <div className='bg-red-400 pr-xs-4 pl-xs-4'>
-                                                    <p className='fsize-xs-0 f-w-300'>Novità</p>
+                                                    <p className='fsize-xs-0 f-w-300'>Hit</p>
                                                 </div>
                                             </div>
                                             
-                                            <p className='fsize-xs-1 f-w-300 lime-400'>Per un concerto di {artist?.artistName} quest'anno..</p>
+                                            <p className='fsize-xs-1 f-w-300 lime-400'>Per un concerto di {artist?.artistName} quest'anno.</p>
                                         </div>
                                     </div>
                                     <div className='d-flex-row j-c-start align-items-start gap-0_5em mt-xs-2'>
