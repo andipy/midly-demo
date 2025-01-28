@@ -32,7 +32,6 @@ const  PostFullScreenRoute = () => {
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { artists } = useContext(ArtistsContext)
 
-    const [post, setPost] = useState({})
     
     const [artist, setArtist] = useState()
     const fetchThisArtist = () => {
@@ -57,10 +56,10 @@ const  PostFullScreenRoute = () => {
             return
         }
     
-        const fanclub = fanclubs.find(elem => elem.artistId === currentArtist.id)
+        const fanclub = fanclubs.find(elem => elem.artistId === state?.artist?.id)
         setThisFanclub(fanclub)
     }
-
+    const [post, setPost] = useState({})
     const fetchThisPost = () => {
         const thisPost = thisFanclub?.posts?.find(elem => elem.id === state.id)
         setPost(thisPost)

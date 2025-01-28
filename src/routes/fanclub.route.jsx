@@ -26,7 +26,6 @@ const Fanclub = () => {
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const {artists} = useContext(ArtistsContext)
-
     // fetch the fanclub
     const [fanclub, setFanclub] = useState()
     const fetchThisFanclub = () => {
