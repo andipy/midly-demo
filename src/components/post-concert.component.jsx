@@ -54,6 +54,12 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
     {concert.type === 'CONCERT' ?
     <>
     <div className='w-100 position-relative h-xs-27 image-wrapper overflow-all-hidden'>
+        {!hasUserSubscribed && !pathname.includes('/artist-app/') && concert.settings.isPrivate &&
+            <div className=' position-absolute-x-y w-80 bg-black-transp50 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06  j-c-center align-items-center z-index-999'>
+                <p className='t-align-center mb-xs-4'>Vuoi accedere ai contenuti esclusivi dell'artista?</p>
+                <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={handleSubscription} />
+            </div>
+        }
     <div className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50 h-xs-27' : ''} `}>
         {concert?.cover.type === 'IMAGE' ?
             <img
@@ -78,70 +84,85 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
     </div>
     
     <Container>
-        <div className="d-flex-column mt-xs-2">
-            <div className='d-flex-row j-c-space-between align-items-center'>
-                <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
-                {pathname.includes('/artist-app/') &&
-                    <img className='avatar-20' src={IconSettings} onClick={() => openSettings(concert)}></img>
-                }
-            </div>
-            <p className='grey-100 f-w-400 fsize-xs-2'>{concert.place.mainPlace}</p>
-        </div>
-        {!pathname.includes('/artist-app/') &&
-            <div className='d-flex-row j-c-space-between align-items-center gap-0_5em mt-xs-2 mb-xs-2'>
-                {partecipate ? (
-                    <>
-                    <div className='bg-acid-lime-op-10 border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
-                        <div className='avatar-16 bg-acid-lime border-lime d-flex-row j-c-center align-items-center border-radius-100'>
-                            <img src={IconOkBlack}></img>
-                        </div>
-                        <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
-                    </div>
-                    <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => navigate(`/artist/${slug}/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id,  from: location  } })}> 
-                        <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
-                            <img src={IconGroupBlack}></img>
-                        </div>
-                        <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
-                    </div>
-                    </>
-                    
-                    
-                ) : (
-                    <>
-                    <div className='bg-dark-gradient border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
-                        <div className='avatar-16 bg-dark-gradient border-lime d-flex-row border-radius-100'></div>
-                        <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
-                    </div>
-                    <div className='bg-dark-gradient  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  > 
-                        <div className='avatar-16 bg-dark-gradient  d-flex-row j-c-center align-items-center border-radius-100'>
-                            <img src={IconGroup}></img>
-                        </div>
-                        <p className='grey-400 fsize-xs-2 f-w-500'>Chat di gruppo</p>
-                    </div>
-                    </>
-                )}
-            </div>
-        }
-        {pathname.includes('/artist-app/') &&
-            <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-50 mt-xs-2 mb-xs-2'  onClick={() => navigate(`/artist-app/fanclub/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
-                <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
-                    <img src={IconGroupBlack}></img>
+        {hasUserSubscribed || pathname.includes('/artist-app/') || !concert.settings.isPrivate ?
+        <>
+            <div className="d-flex-column mt-xs-2">
+                <div className='d-flex-row j-c-space-between align-items-center'>
+                    <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
+                    {pathname.includes('/artist-app/') &&
+                        <img className='avatar-20' src={IconSettings} onClick={() => openSettings(concert)}></img>
+                    }
                 </div>
-                <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
+                <p className='grey-100 f-w-400 fsize-xs-2'>{concert.place.mainPlace}</p>
             </div>
+            {!pathname.includes('/artist-app/') &&
+                <div className='d-flex-row j-c-space-between align-items-center gap-0_5em mt-xs-2 mb-xs-2'>
+                    {partecipate ? (
+                        <>
+                        <div className='bg-acid-lime-op-10 border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
+                            <div className='avatar-16 bg-acid-lime border-lime d-flex-row j-c-center align-items-center border-radius-100'>
+                                <img src={IconOkBlack}></img>
+                            </div>
+                            <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
+                        </div>
+                        <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => navigate(`/artist/${slug}/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id,  from: location  } })}> 
+                            <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
+                                <img src={IconGroupBlack}></img>
+                            </div>
+                            <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
+                        </div>
+                        </>
+                        
+                        
+                    ) : (
+                        <>
+                        <div className='bg-dark-gradient border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
+                            <div className='avatar-16 bg-dark-gradient border-lime d-flex-row border-radius-100'></div>
+                            <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
+                        </div>
+                        <div className='bg-dark-gradient  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  > 
+                            <div className='avatar-16 bg-dark-gradient  d-flex-row j-c-center align-items-center border-radius-100'>
+                                <img src={IconGroup}></img>
+                            </div>
+                            <p className='grey-400 fsize-xs-2 f-w-500'>Chat di gruppo</p>
+                        </div>
+                        </>
+                    )}
+                </div>
+            }
+            {pathname.includes('/artist-app/') &&
+                <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-50 mt-xs-2 mb-xs-2'  onClick={() => navigate(`/artist-app/fanclub/concert/chat`, { state: { artistId: concert?.artistId, id: concert?.id } })}> 
+                    <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
+                        <img src={IconGroupBlack}></img>
+                    </div>
+                    <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
+                </div>
+            }
+            {concert.buyLinks[0] &&
+                <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={concert.buyLinks[0]} target='blank'>
+                    {/* <img className='avatar-20' src={IconLink} /> */}
+                    <span>{'Acquista qui i biglietti'}</span>
+                </Link>
+            }
+        </>
+        :
+        <div className='w-100 pb-xs-4 '>
+			<p className='fsize-xs-3 f-w-600 gold'>Evento da sbloccare</p>
+		</div>
         }
-        {concert.buyLinks[0] &&
-            <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={concert.buyLinks[0]} target='blank'>
-                {/* <img className='avatar-20' src={IconLink} /> */}
-                <span>{'Acquista qui i biglietti'}</span>
-            </Link>
-        }
+        
     </Container>
     </>
     
     :
     <>
     <div className='w-100 position-relative h-xs-27 image-wrapper overflow-all-hidden'>
+        {!hasUserSubscribed && !pathname.includes('/artist-app/') && concert.settings.isPrivate &&
+            <div className=' position-absolute-x-y w-80 bg-black-transp50 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06  j-c-center align-items-center z-index-999'>
+                <p className='t-align-center mb-xs-4'>Vuoi accedere ai contenuti esclusivi dell'artista?</p>
+                <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={handleSubscription} />
+            </div>
+        }
     <div className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} `}>
         {concert?.cover.type === 'IMAGE' ?
             <img
@@ -165,89 +186,90 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
     </div>
     </div>
     <Container>
-        <div className="d-flex-column mt-xs-2">
-            <div className='d-flex-row j-c-space-between align-items-center'>
-                <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
-                {pathname.includes('/artist-app/') &&
-                    <img className='avatar-20' src={IconSettings} onClick={() => openSettings(concert)}></img>
-                }
-            </div>
-        </div>
-        {concert.dates.length > 0 &&
-            <section id='quiz' className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} mt-xs-2`}>
-                <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Tutte le tappe del tour</h2>
-                <Carousel>
-                    {concert.dates
-                    .sort((a, b) => {
-                        const dateA = new Date(a.date.split('-').reverse().join('-'))
-                        const dateB = new Date(b.date.split('-').reverse().join('-'))
-                        return dateA - dateB
-                    })
-                    .map(date => {
-                        return (
-                           <CardConcertStop 
-                            date={date}
-                           />
-                        )
-                    })}
-                </Carousel>
-            </section>
-        }
-        {!pathname.includes('/artist-app/') &&
-            <div className='d-flex-row j-c-space-between align-items-center gap-0_5em mt-xs-4 mb-xs-2'>
-                {partecipate ? (
-                    <>
-                    <div className='bg-acid-lime-op-10 border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
-                        <div className='avatar-16 bg-acid-lime border-lime d-flex-row j-c-center align-items-center border-radius-100'>
-                            <img src={IconOkBlack}></img>
-                        </div>
-                        <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
-                    </div>
-                    <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => navigate(`/artist/${slug}/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id,  from: location  } })}> 
-                        <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
-                            <img src={IconGroupBlack}></img>
-                        </div>
-                        <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
-                    </div>
-                    </>
-                    
-                    
-                ) : (
-                    <>
-                    <div className='bg-dark-gradient border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
-                        <div className='avatar-16 bg-dark-gradient border-lime d-flex-row border-radius-100'></div>
-                        <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
-                    </div>
-                    <div className='bg-dark-gradient  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  > 
-                        <div className='avatar-16 bg-dark-gradient  d-flex-row j-c-center align-items-center border-radius-100'>
-                            <img src={IconGroup}></img>
-                        </div>
-                        <p className='grey-400 fsize-xs-2 f-w-500'>Chat di gruppo</p>
-                    </div>
-                    </>
-                )}
-            </div>
-        }
-        {pathname.includes('/artist-app/') &&
-            <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-50 mt-xs-4 mb-xs-2'  onClick={() => navigate(`/artist-app/fanclub/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id} })}> 
-                <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
-                    <img src={IconGroupBlack}></img>
+        {hasUserSubscribed || pathname.includes('/artist-app/') || !concert.settings.isPrivate ?
+        <>
+            <div className="d-flex-column mt-xs-2">
+                <div className='d-flex-row j-c-space-between align-items-center'>
+                    <p className='lime-400 f-w-400 fsize-xs-2'>{concert.name}</p>
+                    {pathname.includes('/artist-app/') &&
+                        <img className='avatar-20' src={IconSettings} onClick={() => openSettings(concert)}></img>
+                    }
                 </div>
-                <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
+            </div>
+            {concert.dates.length > 0 &&
+                <section id='quiz' className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} mt-xs-2`}>
+                    <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Tutte le tappe del tour</h2>
+                    <Carousel>
+                        {concert.dates
+                        .sort((a, b) => {
+                            const dateA = new Date(a.date.split('-').reverse().join('-'))
+                            const dateB = new Date(b.date.split('-').reverse().join('-'))
+                            return dateA - dateB
+                        })
+                        .map(date => {
+                            return (
+                            <CardConcertStop 
+                                date={date}
+                            />
+                            )
+                        })}
+                    </Carousel>
+                </section>
+            }
+            {!pathname.includes('/artist-app/') &&
+                <div className='d-flex-row j-c-space-between align-items-center gap-0_5em mt-xs-4 mb-xs-2'>
+                    {partecipate ? (
+                        <>
+                        <div className='bg-acid-lime-op-10 border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
+                            <div className='avatar-16 bg-acid-lime border-lime d-flex-row j-c-center align-items-center border-radius-100'>
+                                <img src={IconOkBlack}></img>
+                            </div>
+                            <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
+                        </div>
+                        <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => navigate(`/artist/${slug}/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id,  from: location  } })}> 
+                            <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
+                                <img src={IconGroupBlack}></img>
+                            </div>
+                            <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
+                        </div>
+                        </>
+                        
+                        
+                    ) : (
+                        <>
+                        <div className='bg-dark-gradient border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
+                            <div className='avatar-16 bg-dark-gradient border-lime d-flex-row border-radius-100'></div>
+                            <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
+                        </div>
+                        <div className='bg-dark-gradient  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  > 
+                            <div className='avatar-16 bg-dark-gradient  d-flex-row j-c-center align-items-center border-radius-100'>
+                                <img src={IconGroup}></img>
+                            </div>
+                            <p className='grey-400 fsize-xs-2 f-w-500'>Chat di gruppo</p>
+                        </div>
+                        </>
+                    )}
+                </div>
+            }
+            {pathname.includes('/artist-app/') &&
+                <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-50 mt-xs-4 mb-xs-2'  onClick={() => navigate(`/artist-app/fanclub/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id} })}> 
+                    <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
+                        <img src={IconGroupBlack}></img>
+                    </div>
+                    <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
+                </div>
+            }
+        </>
+        :
+            <div className='w-100 pb-xs-4 '>
+                <p className='fsize-xs-3 f-w-600 gold'>Tour da sbloccare</p>
             </div>
         }
-        
-        
     </Container>
     </>
     }
 
-    {!hasUserSubscribed && !pathname.includes('/artist-app/') && concert.settings.isPrivate &&
-        <div className='position-absolute-x-y w-100vw bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 h-100 j-c-center align-items-center'>
-            <p className='t-align-center mb-xs-4'>Vuoi accedere ai contenuti esclusivi dell'artista?</p>
-            <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={handleSubscription} />
-        </div>
-    }
+    
     
     </div>
     
