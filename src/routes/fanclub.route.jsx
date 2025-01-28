@@ -19,6 +19,7 @@ import TabFanclub from '../components/tab-fanclub.component'
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
 
 const Fanclub = () => {
+    const location = useLocation()
     const navigate = useNavigate()
     const context = useOutletContext()
     const {state } = useLocation()
@@ -432,7 +433,7 @@ const Fanclub = () => {
                                         key={comment.id}
                                         inputRef={inputRef}
                                         spotCommentToReply={() => spotCommentToReply(comment.id)}
-                                        modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id }})}
+                                        modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id}})}
                                         likeComment = {() => likeComment(comment.id, post.id)}
                                         postId={post.id}
                                         likeReply={likeReply}

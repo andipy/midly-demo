@@ -49,7 +49,8 @@ import SubscriptionsSettingsRoute from './routes/subscriptions-settings.route'
 import PaymentsInfoRoute from './routes/payments-info.route'
 import FanclubForumRoute from './routes/fanclub-forum.route'
 import FanclubAllRoute from './routes/fanclub-all.route'
-
+import FanclubPostsRoute from './routes/fanclub-posts.route'
+import FanclubEventsRoute from './routes/fanclub-events.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -144,21 +145,26 @@ const router = createBrowserRouter([
 					path: '',
 					element: <Navigate to="dashboard" replace />,
 				},{
-					path: '/artist/:artistSlug/fanclub/user-moderation',
+					path: 'user-moderation',
 					element: <UserModerationRoute />,
 				},{
-					path: '/artist/:artistSlug/fanclub/user-moderation/block',
+					path: 'user-moderation/block',
 					element: <UserModerationBlockRoute />,
 				},{
-					path: '/artist/:artistSlug/fanclub/user-moderation/report',
+					path: 'user-moderation/report',
 					element: <UserModerationReportRoute />,
 				},{
 					path: 'forum',
 					element: <FanclubForumRoute />
-				},
-				{
+				},{
 					path: 'dashboard',
 					element: <FanclubAllRoute />
+				},{
+					path: 'posts',
+					element: <FanclubPostsRoute />
+				},{
+					path: 'events',
+					element: <FanclubEventsRoute />
 				}
 
 			]
