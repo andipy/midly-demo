@@ -76,10 +76,8 @@ const SwipeCarousel = ({ images, text }) => {
 				}}
 			>
 				{images.map((media, index) => (
-					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 object-fit-cover '
+					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 object-fit-cover'
 						style={{
-							width: '300px',
-							height: `300px`,
 							overflow: 'hidden',
 						}}
 					>
