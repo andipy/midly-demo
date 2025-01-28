@@ -363,8 +363,9 @@ const ArtistRoute = () => {
 
             
 
-            <Container style={''}>
-                <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark pb-xs-2'>
+            
+            <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark pb-xs-2'>
+                <div className='container pt-xs-2'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && !location.pathname.includes('/fanclub') &&
                         <MessageFlashLeaderboard
                             artist={artist}
@@ -388,7 +389,7 @@ const ArtistRoute = () => {
                             <>
                                 {currentFan.hasSpotify && !userCompeting &&
                                     <Button
-                                        style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2'
+                                        style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2 mb-xs-2'
                                         label='Competi nella classifica'
                                         onClick={handleCompete}
                                     />
@@ -400,7 +401,7 @@ const ArtistRoute = () => {
                         <>
                             {!hasUserSubscribed && fanclub?.isActive &&
                                 <Button
-                                    style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2 w-100'
+                                    style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2 mb-xs-2 w-100'
                                     label='Abbonati'
                                     onClick={() => setModalSubscription(true)}
                                 />
@@ -416,6 +417,8 @@ const ArtistRoute = () => {
                         />
                     }
                 </div>
+            </div>
+            <Container style={''}>
                 <Outlet context={artist} />
             </Container>
 

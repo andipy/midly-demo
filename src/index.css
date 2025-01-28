@@ -1742,7 +1742,7 @@ animation: dot-loader-after 1s infinite linear;
   bottom: calc(calc(var(--avatar-72) * 2 * 0.9) * -0.9);
 }
 .mt-avatar-header {
-  margin-top: calc(var(--avatar-72) * 1.1);
+  margin-top: calc(var(--avatar-72) * 1.0);
 }
 .mt-avatar-header-2 {
   margin-top: calc(20vh * .85);
