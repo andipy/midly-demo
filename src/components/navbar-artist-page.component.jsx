@@ -76,7 +76,7 @@ const NavbarArtistPage = ({ artist, onClick, quiz, fanclub, openSettings, openMe
                     }
                     {fanclub &&  
                         <div className='avatar-32 bg-dark-soft-transp75 pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-1 border-radius-100 d-flex-row j-c-center align-items-center' onClick={openMessages}>
-                            <img className='avatar-24 border-radius-100 mt-xs-6' src={IconDm}/>
+                            <img className='avatar-32' src={IconDm}/>
                         </div>
                     }
                 </div>
