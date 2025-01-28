@@ -22,8 +22,8 @@ const ChatPrivateRoute = () => {
     const pathname = location.pathname
     const { currentFan, setCurrentFan} = useContext(CurrentFanContext)
     const { currentArtist } = useContext(CurrentArtistContext)
-    const {chats, setChats} = useContext(ChatsContext)
-    const {fanclubs, setFanclubs} = useContext(FanclubsContext)
+    const { chats, setChats } = useContext(ChatsContext)
+    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
 
     const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
     const [modalSubscription, setModalSubscription] = useState(false)
@@ -50,8 +50,6 @@ const ChatPrivateRoute = () => {
             checkFanclubSubscription()
         }
     }, [artist, currentFan])
-
-    
 
     const [currentMessage, setCurrentMessage] = useState({
         type: 'MESSAGE',
@@ -99,11 +97,10 @@ const ChatPrivateRoute = () => {
 
     const handleSubmitMessage = (e) => {
         e.preventDefault()
-        console.log(currentMessage)
-        if ( currentMessage.comment !== '' ) { 
+        if ( currentMessage.content !== '' ) { 
             setChats(prevChats => {
                 let chat
-                if (!pathname.includes('/artist-app/')) {
+                if ( !pathname.includes('/artist-app/') ) {
                     chat = prevChats.find(
                         c => c.artistId === artist?.id && c.fanId === currentFan.id
                     )
@@ -112,7 +109,6 @@ const ChatPrivateRoute = () => {
                         c => c.artistId === currentArtist?.id && c.fanId === artist?.id
                     )
                 }
-                
     
                 if (!chat) {
                     return [
@@ -145,10 +141,6 @@ const ChatPrivateRoute = () => {
         }))
     }
 
-    const [chatOpen, setChatOpen] = useState(true)
-    const closeModal = () => {
-        setChatOpen(false)
-    }
     const handleSubscription = () => {
         let currentDate = new Date()
         let date = currentDate.toISOString().split('T')[0]
@@ -252,11 +244,9 @@ const ChatPrivateRoute = () => {
                     } else {
                         return (
                             <FullPageCenter style={'z-index-999'}>
-                                <h3 className='t-align-center grey-200 fsize-xs-6 f-w-400 w-80 line-height-140'>
-                                    Avvia la chat!
-                                </h3>
+                                <h3 className='t-align-center grey-200 fsize-xs-6 f-w-400 w-80 line-height-140'>Avvia la chat!</h3>
                             </FullPageCenter>
-                        );
+                        )
                     }
                 })()}
                 </Container>
@@ -287,9 +277,8 @@ const ChatPrivateRoute = () => {
                     })()}
                 </Container>
             }
-            <div className='position-fixed bg-dark-soft bottom-0 w-100 z-index-5 border-radius-top-08 shadow-dark-750'>
+            <div className='position-fixed bg-dark-soft bottom-0 w-100 z-index-1100 border-radius-top-08 shadow-dark-750'>
                 <Textbar
-                    onClick={() => setChatOpen(true)}
                     currentComment={currentMessage}
                     handleCurrentComment={handleCurrentMessage}
                     handleSubmitComment={handleSubmitMessage} 
