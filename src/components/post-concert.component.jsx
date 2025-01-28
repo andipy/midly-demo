@@ -55,12 +55,12 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
     <>
     <div className='w-100 position-relative h-xs-27 image-wrapper overflow-all-hidden'>
         {!hasUserSubscribed && !pathname.includes('/artist-app/') && concert.settings.isPrivate &&
-            <div className=' position-absolute-x-y w-80 bg-black-transp50 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06  j-c-center align-items-center z-index-999'>
+            <div className=' position-absolute-x-y w-80 bg-black-transp50 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06 j-c-center align-items-center z-index-3'>
                 <p className='t-align-center mb-xs-4'>Vuoi accedere ai contenuti esclusivi dell'artista?</p>
                 <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={handleSubscription} />
             </div>
         }
-    <div className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50 h-xs-27' : ''} `}>
+    <div className={`z-index-2 ${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50 h-xs-27' : ''} `}>
         {concert?.cover.type === 'IMAGE' ?
             <img
                 className='w-100 h-inherit object-fit-cover'
@@ -158,12 +158,12 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
     <>
     <div className='w-100 position-relative h-xs-27 image-wrapper overflow-all-hidden'>
         {!hasUserSubscribed && !pathname.includes('/artist-app/') && concert.settings.isPrivate &&
-            <div className=' position-absolute-x-y w-80 bg-black-transp50 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06  j-c-center align-items-center z-index-999'>
+            <div className=' position-absolute-x-y w-80 bg-black-transp50 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06 j-c-center align-items-center z-index-3'>
                 <p className='t-align-center mb-xs-4'>Vuoi accedere ai contenuti esclusivi dell'artista?</p>
                 <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={handleSubscription} />
             </div>
         }
-    <div className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} `}>
+    <div className={`z-index-2 ${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} `}>
         {concert?.cover.type === 'IMAGE' ?
             <img
                 className='w-100 h-inherit object-fit-cover'
