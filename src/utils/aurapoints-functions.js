@@ -40,9 +40,9 @@ export const ATTEND_CONCERT=3
 
 
 /* commenti
-
 SHARE_POST=2 (una sola volta per post)
 ATTEND_GROUP_CHAT_EVENT=20 (assegnati se l'utente ha inviato almeno 10 messaggi, valido una volta per chat)
 CREATE_TOPIC=20 (assegnati solo se almeno 20 diversi utenti rispondono)
-SHARE_TOPIC=2 (una sola volta per post) */
+SHARE_TOPIC=2 (una sola volta per post) 
+*/
 

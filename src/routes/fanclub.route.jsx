@@ -12,81 +12,44 @@ import Container from '../layout/container.layout'
 import CommentsModalLayout from '../layout/comments-modal.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 import Snackbar from '../components/snackbar.component'
-
 import TabFanclub from '../components/tab-fanclub.component'
-
-
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
 
+import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
+import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
+import useSubmitComment from '../utils/handle-submit-comment.hook'
+import useLikeComment from '../utils/handle-like-comment.hook'
+import useLikeReply from '../utils/handle-like-reply-comment.hook'
+import useArtistName from '../utils/get-artist-name.hook'
 const Fanclub = () => {
-    const location = useLocation()
     const navigate = useNavigate()
     const context = useOutletContext()
     const {state } = useLocation()
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
-    const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+    const { currentFan } = useContext(CurrentFanContext)
     const {artists} = useContext(ArtistsContext)
-    // fetch the fanclub
+
+    const hasUserSubscribed = useFanclubSubscription(context?.id)
+    const artistName = useArtistName(context?.id)
+
+    const { handleSubscription, err } = useFanclubSubscriptionHandler()
+    const { handleSubmitComment } = useSubmitComment()
+    const { likeComment } = useLikeComment()
+    const { likeReply} = useLikeReply()
+
     const [fanclub, setFanclub] = useState()
     const fetchThisFanclub = () => {
         const thisFanclub = fanclubs.find(elem => elem.artistId === context.id)
         setFanclub(thisFanclub)
     }
 
-    const [err, setErr] = useState(false)
-    // handle and check current fan's subscription
-    const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
-    const handleSubscription = () => {
-        let currentDate = new Date()
-        let date = currentDate.toISOString().split('T')[0]
-        if (hasUserSubscribed) {
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub =>
-                    fanclub.artistId === context.id
-                        ? { ...fanclub, subscribers: (fanclub.subscribers || 0) - 1 }
-                        : fanclub
-                )
-            );
-            setCurrentFan(prev => ({
-                ...prev,
-                fanclubsSubscribed: prev.fanclubsSubscribed.filter(fanclub => fanclub.artistId !== context.id),
-                removedSubscriptions: [
-                    ...prev.removedSubscriptions,
-                    { artistId: context.id, createdAt: date }
-                ]
-            }))
-        } else {
-            if (fanclub?.maxSubscribers <= fanclub?.subscribers && fanclub?.maxSubscribers) {
-                setErr(true)
-                return
-            } else {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub =>
-                        fanclub.artistId === context.id
-                            ? { ...fanclub, subscribers: (fanclub.subscribers || 0) + 1 }
-                            : fanclub
-                    )
-                )
-                setCurrentFan(prev => ({
-                    ...prev,
-                    fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: context.id, createdAt: date }],
-                    removedSubscriptions: prev.removedSubscriptions.filter(fanclub => fanclub.artistId !== context.id)
-                }))
-            }  
+    useEffect(() => {
+        if ( context ) {
+            fetchThisFanclub()
         }
-        
-    }
-    const checkFanclubSubscription = () => {
-        let isSubscribed
-        if ( currentFan.fanclubsSubscribed.find(sub => sub.artistId === context.id) ) {
-            isSubscribed = true
-        } else {
-            isSubscribed = false
-        }
-        setHasUserSubscribed(isSubscribed)
-    }
+    }, [context, fanclubs, currentFan])
+    
 
-    // handle post actions
     const [postInFocus, setPostInFocus] = useState({
         id: undefined,
         action: undefined,
@@ -113,6 +76,58 @@ const Fanclub = () => {
         likes: [],
         comments: []
     })
+    const handleCurrentComment = (e) => {
+        e.preventDefault()
+        let commentsNumber
+        let currentDate = new Date()
+        let date = currentDate.toISOString().split('T')[0]
+        fanclubs.map(fanclub => {
+            if ( fanclub.artistId === context.id ) {
+                fanclub.posts.map(post => {
+                    if ( post.id === postInFocus.id ) {
+                        commentsNumber = post.comments.length + 1
+                    }
+                })
+            }
+        })
+
+        setCurrentComment(prev => ({
+            ...prev,
+            id: commentsNumber,
+            userId: currentFan.id,
+            userType: currentFan.type,
+            userImage: currentFan.image,
+            username: currentFan.username,
+            createdAt: date,
+            comment: e.target.value
+        }))
+    }
+
+    const [commentInFocus, setCommentInFocus] = useState(null)
+    const inputRef = useRef(null)
+    const spotCommentToReply = (id) => {
+        setCommentInFocus(id)
+        inputRef.current.focus()
+    }
+
+    const submitComment = (e) => {
+        e.preventDefault()
+        handleSubmitComment(currentComment, postInFocus, commentInFocus, context.id)
+        setCurrentComment({
+            id: undefined,
+            userId: undefined,
+            userType: undefined,
+            userImage: undefined,
+            username: undefined,
+            createdAt: undefined,
+            comment: '',
+            likes: [],
+            comments: []
+        })
+        setCommentInFocus(null)
+    }
+
+
     const [modalOpen, setModalOpen] = useState(false)
     const openComments = (id) => {
         setModalOpen(true)
@@ -144,190 +159,6 @@ const Fanclub = () => {
         }
     }, [postInFocus])
 
-    const handleCurrentComment = (e) => {
-        e.preventDefault()
-        let commentsNumber
-        let currentDate = new Date()
-        let date = currentDate.toISOString().split('T')[0]
-        fanclubs.map(fanclub => {
-            if ( fanclub.artistId === context.id ) {
-                fanclub.posts.map(post => {
-                    if ( post.id === postInFocus.id ) {
-                        commentsNumber = post.comments.length + 1
-                    }
-                })
-            }
-        })
-
-        setCurrentComment(prev => ({
-            ...prev,
-            id: commentsNumber,
-            userId: currentFan.id,
-            userType: currentFan.type,
-            userImage: currentFan.image,
-            username: currentFan.username,
-            createdAt: date,
-            comment: e.target.value
-        }))
-    }
-
-    const handleSubmitComment = (e) => {
-        e.preventDefault()
-        if ( currentComment.comment !== '' ) {
-            if ( commentInFocus ) {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub => {
-                        if (fanclub.artistId === context.id) {
-                            return {
-                                ...fanclub,
-                                posts: fanclub.posts.map(post => {
-                                    if (post.id === postInFocus.id) {
-                                        return {
-                                            ...post,
-                                            comments: post.comments.map(comment => {
-                                                if (comment.id === commentInFocus) {
-                                                    return {
-                                                        ...comment,
-                                                        comments: [...comment.comments, currentComment]
-                                                    }
-                                                }
-                                                return comment
-                                            })
-                                        }
-                                    }
-                                    return post
-                                })
-                            }
-                        }
-                        return fanclub
-                    })
-                )
-                setCommentInFocus(null)
-            } else if ( !commentInFocus ) {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub => {
-                        if (fanclub.artistId === context.id) {
-                            return {
-                                ...fanclub,
-                                posts: fanclub.posts.map(post => {
-                                    if (post.id === postInFocus.id) {
-                                        return {
-                                            ...post,
-                                            comments: [...post.comments, currentComment]
-                                        }
-                                    }
-                                    return post;
-                                })
-                            }
-                        }
-                        return fanclub;
-                    })
-                )
-            }
-        }
-        
-        setCurrentComment({
-            id: undefined,
-            userId: undefined,
-            userType: undefined,
-            userImage: undefined,
-            username: undefined,
-            createdAt: undefined,
-            comment: '',
-            likes: [],
-            comments: []
-        })
-    }
-
-    const [commentInFocus, setCommentInFocus] = useState(null)
-    const inputRef = useRef(null)
-    const spotCommentToReply = (id) => {
-        setCommentInFocus(id)
-        inputRef.current.focus()
-    }
-
-    useEffect(() => {
-        if ( context ) {
-            fetchThisFanclub()
-            checkFanclubSubscription()
-        }
-    }, [context, fanclubs, currentFan])
-
-
-    const likeComment = (commentId, postId) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === context.id) {
-                    return {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post => {
-                            if (post.id === postId) {
-                                return {
-                                    ...post,
-                                    comments: post.comments.map(comment => {
-                                        if (comment.id === commentId) {
-                                            const hasLiked = comment.likes.some(like => like.userId === currentFan.id && (like.type === 'FAN'))
-                                            return {
-                                                ...comment,
-                                                likes: hasLiked
-                                                    ? comment.likes.filter(like => !(like.userId === currentFan.id && like.type === 'FAN')) // Rimuove il like
-                                                    : [...comment.likes, { userId: currentFan.id, type: 'FAN' }] // Aggiunge il like
-                                            }
-                                        }
-                                        return comment
-                                    })
-                                }
-                            }
-                            return post
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const likeReply = (replyId, commentId, postId) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === context.id) {
-                    return {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post => {
-                            if (post.id === postId) {
-                                return {
-                                    ...post,
-                                    comments: post.comments.map(comment => {
-                                        if (comment.id === commentId) {
-                                            return {
-                                                ...comment,
-                                                comments: comment.comments.map(reply => {
-                                                    if (reply.id === replyId) {
-                                                        const hasLiked = reply.likes.some(like => like.userId === currentFan.id && (like.type === 'FAN'))
-                                                        return {
-                                                            ...reply,
-                                                            likes: hasLiked
-                                                                ? reply.likes.filter(like => !(like.userId === currentFan.id && like.type === 'FAN')) // Rimuove il like
-                                                                : [...reply.likes, { userId: currentFan.id, type: 'FAN' }] // Aggiunge il like
-                                                        }
-                                                    }
-                                                    return reply
-                                                })
-                                            }
-                                        }
-                                        return comment
-                                    })
-                                }
-                            }
-                            return post
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
     const [isExiting, setIsExiting] = useState(false)
 
     useEffect(() => {
@@ -343,7 +174,6 @@ const Fanclub = () => {
     useEffect(() => {
         if (isExiting) {
             const endDelay = setTimeout(() => {
-                setErr(false)
                 setIsExiting(false)
             }, 400)
 
@@ -360,29 +190,6 @@ const Fanclub = () => {
 			setTriggered(false)
 		}, 2000)
 	}
-
-    
-
-
-    const [postType, setPostType] = useState('ALL')
-    useEffect(() => {
-        if (state && state?.tab) {
-            setPostType('FORUM')
-        } else if (sessionStorage.getItem("postType") !== null) {
-            setPostType(sessionStorage.getItem("postType"))
-        } else {
-            setPostType('ALL')
-        }
-    }, [state, sessionStorage])
-
-
-    const clickTab = (value) => {
-        setPostType(value)
-    }
-    useEffect(() => {
-        sessionStorage.setItem("postType", postType)
-      }, [postType])
-
     
     const [modalSubscription, setModalSubscription] = useState(false)
 
@@ -397,7 +204,7 @@ const Fanclub = () => {
                 <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
             </div>
             <div className='mt-xs-2'>
-                <TabFanclub onClick={clickTab} postType={postType}/>
+                <TabFanclub/>
             </div>
             <Container>
                 <Outlet context={{context, focusPost}}/>
@@ -421,9 +228,9 @@ const Fanclub = () => {
                                         inputRef={inputRef}
                                         spotCommentToReply={() => spotCommentToReply(comment.id)}
                                         modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id}})}
-                                        likeComment = {() => likeComment(comment.id, post.id)}
+                                        likeComment = {() => likeComment(comment.id, post.id, context.id)}
                                         postId={post.id}
-                                        likeReply={likeReply}
+                                        likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, context.id)}
                                     />
                                 )
                             })
@@ -433,7 +240,7 @@ const Fanclub = () => {
 
                 <TextbarComments
                     handleCurrentComment={handleCurrentComment}
-                    handleSubmitComment={handleSubmitComment}
+                    handleSubmitComment={submitComment}
                     currentComment={currentComment}
                     setCurrentComment={setCurrentComment}
                     modalOpen={modalOpen}
@@ -447,7 +254,7 @@ const Fanclub = () => {
                 <FullPageCenter style='z-index-1100 bg-black-transp70'>
                     <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
                         <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
-                            <h2 className='fsize-xs-2 f-w-300 t-align-center'>Il fanclub di {artists.find(artist => artist.id === fanclub?.artistId).artistName} è al completo</h2>
+                            <h2 className='fsize-xs-2 f-w-300 t-align-center'>Il fanclub di {artistName} è al completo</h2>
                         </div>
                     </Container>
 	            </FullPageCenter>
