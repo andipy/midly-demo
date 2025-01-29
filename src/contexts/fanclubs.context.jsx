@@ -36,7 +36,7 @@ export const FanclubsProvider = ({ children }) => {
             id: 2,
             artistId: 'a3p8',
             isActive: true,
-            subscribers: null,
+            subscribers: 2, /* da rimettere null */
             name: null,
             description: null,
             pricing: null,

@@ -21,6 +21,8 @@ import useSubmitComment from '../utils/handle-submit-comment.hook'
 import useLikeComment from '../utils/handle-like-comment.hook'
 import useLikeReply from '../utils/handle-like-reply-comment.hook'
 import useArtistName from '../utils/get-artist-name.hook'
+import useFanclub from '../utils/get-fanclub.hooks'
+import useModal from '../utils/handle-modal.hooks'
 const Fanclub = () => {
     const navigate = useNavigate()
     const context = useOutletContext()
@@ -31,23 +33,13 @@ const Fanclub = () => {
 
     const hasUserSubscribed = useFanclubSubscription(context?.id)
     const artistName = useArtistName(context?.id)
+    const fanclub = useFanclub(context?.id)
 
-    const { handleSubscription, err } = useFanclubSubscriptionHandler()
+    const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     const { handleSubmitComment } = useSubmitComment()
     const { likeComment } = useLikeComment()
     const { likeReply} = useLikeReply()
-
-    const [fanclub, setFanclub] = useState()
-    const fetchThisFanclub = () => {
-        const thisFanclub = fanclubs.find(elem => elem.artistId === context.id)
-        setFanclub(thisFanclub)
-    }
-
-    useEffect(() => {
-        if ( context ) {
-            fetchThisFanclub()
-        }
-    }, [context, fanclubs, currentFan])
+    const { modalOpen, openModal, closeModal } = useModal()
     
 
     const [postInFocus, setPostInFocus] = useState({
@@ -126,14 +118,11 @@ const Fanclub = () => {
         })
         setCommentInFocus(null)
     }
-
-
-    const [modalOpen, setModalOpen] = useState(false)
     const openComments = (id) => {
-        setModalOpen(true)
+        openModal()
     }
-    const closeModal = () => {
-        setModalOpen(false)
+    const closeComments = () => {
+        closeModal()
         setPostInFocus({
             id: undefined,
             action: undefined,
@@ -145,7 +134,7 @@ const Fanclub = () => {
     useEffect(() => {
         if ( postInFocus.id ) {
             if ( postInFocus.action === 'OPEN_COMMENTS' ) {
-                openComments(postInFocus.id)
+                openComments()
             }
             if ( postInFocus.action === 'OPEN_SETTINGS' ) {
                 navigate(`/artist-app/fanclub/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
@@ -158,28 +147,6 @@ const Fanclub = () => {
             }
         }
     }, [postInFocus])
-
-    const [isExiting, setIsExiting] = useState(false)
-
-    useEffect(() => {
-        if (err) {
-            const exitDelay = setTimeout(() => {
-                setIsExiting(true)
-            }, 1000)
-
-            return () => clearTimeout(exitDelay)
-        }
-    }, [err])
-
-    useEffect(() => {
-        if (isExiting) {
-            const endDelay = setTimeout(() => {
-                setIsExiting(false)
-            }, 400)
-
-            return () => clearTimeout(endDelay)
-        }
-    }, [isExiting])
 
     const [triggered, setTriggered] = useState(false)
 	const [messageSnackbar, setMessageSnackbar] = useState('')
@@ -212,10 +179,10 @@ const Fanclub = () => {
             
             <CommentsModalLayout
                 modalOpen={modalOpen}
-                closeModal={closeModal}
+                closeModal={closeComments}
             >
                 <NavbarCommentsModal
-                    closeModal={closeModal}
+                    closeModal={closeComments}
                 />
                 <Container style={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts.map(post => {
@@ -251,7 +218,7 @@ const Fanclub = () => {
 
             
             {err && 
-                <FullPageCenter style='z-index-1100 bg-black-transp70'>
+                <FullPageCenter style='z-index-1300 bg-black-transp70'>
                     <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
                         <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
                             <h2 className='fsize-xs-2 f-w-300 t-align-center'>Il fanclub di {artistName} è al completo</h2>
@@ -263,7 +230,7 @@ const Fanclub = () => {
             <Snackbar message={messageSnackbar} triggered={triggered} />
             {
                 modalSubscription &&
-                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={handleSubscription}/>
+                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={() => handleSubscription(context?.id)}/>
             }
             
         </>
