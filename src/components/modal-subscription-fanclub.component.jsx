@@ -32,7 +32,7 @@ const ModalSubscriptionFanclub = ({closeModal, fanclub, handleSubscription}) => 
         }
     }, [fanclub])
   return (
-        <FullPageCenter style='z-index-1000 bg-black-transp80'>
+        <FullPageCenter style='z-index-1200 bg-black-transp80'>
             <Container style={`centered-popup ${isExitingSettings ? 'fade-out' : ''}`}>
                 <Carousel>
                     {/* ANNO */}

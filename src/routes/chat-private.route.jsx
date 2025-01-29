@@ -95,8 +95,15 @@ const ChatPrivateRoute = () => {
         }))
     }
 
+    const [shake, setShake] = useState(false)
     const handleSubmitMessage = (e) => {
         e.preventDefault()
+        if (!hasUserSubscribed) {
+            setShake(true)
+            setTimeout(() => setShake(false), 500)
+            return
+        }
+        
         if ( currentMessage.content !== '' ) { 
             setChats(prevChats => {
                 let chat
@@ -205,7 +212,10 @@ const ChatPrivateRoute = () => {
             return () => clearTimeout(endDelay)
         }
     }, [isExitingErr])
-    console.log(hasUserSubscribed)
+
+    
+
+
   return (
     <div className='position-relative'>
         {
@@ -277,14 +287,17 @@ const ChatPrivateRoute = () => {
                     })()}
                 </Container>
             }
-            <div className='position-fixed bg-dark-soft bottom-0 w-100 z-index-1100 border-radius-top-08 shadow-dark-750'>
-                <Textbar
-                    currentComment={currentMessage}
-                    handleCurrentComment={handleCurrentMessage}
-                    handleSubmitComment={handleSubmitMessage} 
-                />
-            </div>
+            
 
+        </div>
+
+        <div className={`position-fixed bg-dark-soft bottom-0 w-100 z-index-1100 border-radius-top-08 shadow-dark-750`}>
+            <Textbar
+                currentComment={currentMessage}
+                handleCurrentComment={handleCurrentMessage}
+                handleSubmitComment={handleSubmitMessage} 
+                shake={shake}
+            />
         </div>
 
         

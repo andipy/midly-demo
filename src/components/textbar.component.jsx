@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 
 import IconArrowUp from '../images/icons/icon-arrow-up.svg'
 
-const Textbar = ({ currentComment, handleCurrentComment, handleSubmitComment, onClick, className }) => {
+const Textbar = ({ currentComment, handleCurrentComment, handleSubmitComment, onClick, className, shake }) => {
 
     const { pathname } = useLocation()
 
@@ -13,6 +13,7 @@ const Textbar = ({ currentComment, handleCurrentComment, handleSubmitComment, on
                 onSubmit={(e) => handleSubmitComment(e, currentComment)}
             >
                 <input
+                    className={`${shake ? 'vibrate' : ''}`} 
                     type='text'
                     name='user-message'
                     placeholder={

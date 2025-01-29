@@ -67,6 +67,18 @@ a {
   outline: none; 
 }
 
+@keyframes vibrate {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+.vibrate {
+  animation: vibrate 0.3s ease-in-out 3;
+}
+
 
 .navbar-secondary {
   background-color: #000; /* Colore di sfondo */
