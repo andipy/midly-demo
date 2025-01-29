@@ -18,9 +18,13 @@ const CardFollowedArtist = ({ artist }) => {
                     <div className='mb-xs-2 d-flex-row'>
                     <h5 className='fsize-xs-4 f-w-500 no-shrink'>{artist?.artistName}</h5>
                     </div>
-                    <div className='d-flex-row align-items-center pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 mb-xs-2 mt-xs-2 bg-white-transp15 border-radius-100 w-max-content '>
-                        <p className='fsize-xs-0 letter-spacing-1 lime-400'>{statusConvert[artist.flashLeaderboard.status]}</p>
-                    </div>
+                    {
+                        (artist?.flashLeaderboard.status === 'ONGOING' || artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'CLOSED_VISIBILE') &&
+                        <div className='d-flex-row align-items-center pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 mb-xs-2 mt-xs-2 bg-white-transp15 border-radius-100 w-max-content '>
+                            <p className='fsize-xs-0 letter-spacing-1 lime-400'>{statusConvert[artist.flashLeaderboard.status]}</p>
+                        </div>
+                    }
+                    
                 </div>
 
                 
