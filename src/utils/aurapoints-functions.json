@@ -1,22 +1,39 @@
-subscribtion function for a month: 15
-Subscribtion function for a year: 30
-Like post: 1 
-Like topic: 1
-Share post: 3
-Share topic: 2
-Comment post: 5
-Reply comment: 3
-Click on a link: 10
-First comment: 10
-Renew subscription: 10
-Save topic: 3
-Partecipate event: 2
-Message on event chat: 3
-Partecipate tour: 2
-User report: 5
-Buy tickets (?): 15
-like comment or reply: 1
-message private: 3
+SUBSCRIPTION_MONTHLY=15
+SUBSCRIPTION_YEARLY=180
+
+LIKE_POST=1
+LIKE_POST_COMMENT=2
+LIKE_POST_COMMENT_REPLY=2
+CLICK_POST_LINK=3
+COMMENT_POST_AS_FIRST=9
+COMMENT_POST=5
+REPLY_TO_POST_COMMENT=7
+SHARE_POST=2 (una sola volta per post)
+UNLIKE_POST=-1
+UNLIKE_POST_COMMENT=-2
+UNLIKE_POST_COMMENT_REPLY=-2
+DELETE_POST_COMMENT_AS_FIRST=-8
+DELETE_POST_COMMENT=-5
+DELETE_POST_COMMENT_REPLY=-6
+TRY_REPORT_COMMENT=0
+TRY_REPORT_USER=0
+REPORT_COMMENT_ACCEPTED=10
+REPORT_USER_ACCEPTED=10
+
+CREATE_TOPIC=20 (assegnati solo se almeno 20 diversi utenti rispondono)
+LIKE_TOPIC=1
+LIKE_REPLY_TO_TOPIC=2
+LIKE_REPLY_TOREPLY_TO_TOPIC=2
+REPLY_TO_TOPIC_AS_FIRST=9
+REPLY_TO_TOPIC=5
+REPLY_TO_REPLY_TO_TOPIC=7
+SAVE_TOPIC=3
+SHARE_TOPIC=2 (una sola volta per post)
+UNLIKE_TOPIC=-1
+UNLIKE_REPLY_TO_TOPIC=-2
+UNLIKE_REPLY_TOREPLY_TO_TOPIC=-2
+UNSAVE_TOPIC=-3
 
 
-
+ATTEND_GROUP_CHAT_EVENT=20 (assegnati se l'utente ha inviato almeno 10 messaggi, valido una volta per chat)
+ATTEND_CONCERT=3
