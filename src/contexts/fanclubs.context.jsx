@@ -193,6 +193,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     artistId: 'a2p1',
                     caption: 'Prime Ebbasta',
+                    commentsCount: 2,
                     comments: [
                         {
                         id: 1,
@@ -202,6 +203,7 @@ export const FanclubsProvider = ({ children }) => {
                         username: "Sfera Ebbasta",
                         createdAt: "2025-01-27",
                         comment: "Ciao superfans!",
+                        repliedUsername: undefined,
                         likes: [
                             {
                                 type: 'FAN',
@@ -221,6 +223,7 @@ export const FanclubsProvider = ({ children }) => {
                             username: "imtheKING",
                             createdAt: "2025-01-27",
                             comment: "Spaccato!!",
+                            repliedUsername: 'Sfera Ebbasta',
                             likes: [],
                             comments: []
                             }
@@ -269,6 +272,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     artistId: 'a2p1',
                     caption: 'X2VR fuori venerdì',
+                    commentsCount: 0,
                     comments: [
                     ],
                     createdAt: "2025-01-27T09:22:23.542Z",
@@ -313,6 +317,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     artistId: 'a2p1',
                     caption: 'Merch esclusivo superfan abbonati!',
+                    commentsCount: 0,
                     comments: [],
                     createdAt: "2025-01-26T09:22:23.542Z",
                     id: 3,
@@ -352,6 +357,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     artistId: 'a2p1',
                     caption: 'Italiano vero',
+                    commentsCount: 0,
                     comments: [],
                     createdAt: "2025-01-21T09:22:23.542Z",
                     id: 4,
@@ -391,6 +397,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     artistId: 'a2p1',
                     caption: 'Lifestyle',
+                    commentsCount: 0,
                     comments: [],
                     createdAt: "2025-01-10T09:22:23.542Z",
                     id: 5,
@@ -430,6 +437,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     artistId: 'a2p1',
                     caption: 'State ascoltando le nuove uscite?',
+                    commentsCount: 0,
                     comments: [],
                     createdAt: "2025-01-27T12:22:23.542Z",
                     id: 6,
