@@ -262,9 +262,9 @@ const ForumTopic = ({key, topic, artistId, like, save, share, popular}) => {
                                     <div className="border-radius-100 avatar-28">
                                         {
                                             liked ?
-                                            <img className="avatar-28" src={IconThunderActive} onClick={() => like(topic.id)}/>
+                                            <img className="avatar-28" src={IconThunderActive} onClick={like}/>
                                             :
-                                            <img className="avatar-28" src={IconThunder} onClick={() => like(topic.id)}/>
+                                            <img className="avatar-28" src={IconThunder} onClick={like}/>
                                         }
                                     </div>
                                     <p className="fsize-xs-1 f-w-300">{topic?.likes.length}</p>
@@ -281,9 +281,9 @@ const ForumTopic = ({key, topic, artistId, like, save, share, popular}) => {
                                 <div className="border-radius-100  avatar-28">
                                 {
                                     saved ?
-                                    <img className="avatar-28" src={IconSaveActive} onClick={() => save(topic.id)}/>
+                                    <img className="avatar-28" src={IconSaveActive} onClick={save}/>
                                     :
-                                    <img className="avatar-28" src={IconSave} onClick={() => save(topic.id)}/>
+                                    <img className="avatar-28" src={IconSave} onClick={save}/>
                                 }
                                 </div>
                             </div>

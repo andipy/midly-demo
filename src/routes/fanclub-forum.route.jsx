@@ -1,96 +1,29 @@
 import { useContext, useState, useEffect } from "react"
 import { useOutletContext, Outlet, useNavigate, useLocation } from 'react-router-dom'
 
-import { FanclubsContext } from "../contexts/fanclubs.context"
-import { CurrentFanContext } from '../contexts/currentFan.context'
 
 import ForumTopic from "../components/forum-topic.component"
 import Container from "../layout/container.layout"
 import IconPlus from '../images/icons/icon-plus-black.svg'
+import Snackbar from "../components/snackbar.component"
 
+import useFanclub from '../utils/get-fanclub.hooks'
+import useShare from '../utils/handle-share.hook'
+import useLikeTopic from "../utils/handle-like-topic.hook"
+import useSaveTopic from "../utils/handle-save-topic.hook"
 const FanclubForumRoute = () => {
     const {context} = useOutletContext()
-    const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
-    const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const navigate = useNavigate()
-    const [fanclub, setFanclub] = useState()
-    const fetchThisFanclub = () => {
-        const thisFanclub = fanclubs.find(elem => elem.artistId === context?.id)
-        setFanclub(thisFanclub)
-    }
 
+    const fanclub = useFanclub(context?.id)
 
-    useEffect(() => {
-            if ( context ) {
-                fetchThisFanclub()
-            }
-        }, [context, fanclubs, currentFan])
+    const { share, messageSnackbar, triggered } = useShare()
+    const {likeTopic} = useLikeTopic()
+    const { saveTopic} = useSaveTopic()
 
-    const [triggered, setTriggered] = useState(false)
-	const [messageSnackbar, setMessageSnackbar] = useState('')
-	const triggerSnackbar = (message) => {
-		setMessageSnackbar(message)
-		setTriggered(true)
-		setTimeout(() => {
-			setTriggered(false)
-		}, 2000)
-	}
-
-    //FORUM
-    const likeTopic = (id) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === context.id) {
-                    return {
-                        ...fanclub,
-                        forum: fanclub.forum.map(topic => {
-                            if (topic.id === id) {
-                                const liked = topic.likes.some(p => p.userId === currentFan.id)
-                                return {
-                                    ...topic,
-                                    likes: liked
-                                        ? topic.likes.filter(c => c.userId !== currentFan.id) // Rimuove il like
-                                        : [...topic.likes, { userId: currentFan.id }] // Aggiunge il like
-                                }
-                            }
-                            return topic
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const saveTopic = (id) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === context.id) {
-                    return {
-                        ...fanclub,
-                        forum: fanclub.forum.map(topic => {
-                            if (topic.id === id) {
-                                const saved = topic.saved.some(p => p.userId === currentFan.id)
-                                return {
-                                    ...topic,
-                                    saved: saved
-                                        ? topic.saved.filter(c => c.userId !== currentFan.id) // Rimuove il save
-                                        : [...topic.saved, { userId: currentFan.id }] // Aggiunge il save
-                                }
-                            }
-                            return topic
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const shareTopic = () => {
-    /*         triggerSnackbar('Link al post copiato negli appunti')
-    */   
-    console.log('share') 
+    //share
+    const handleShare = (post) => {
+        share(post)
     }
 
     const topicWithMaxWeight = fanclub?.forum.reduce((max, topic) => 
@@ -111,9 +44,9 @@ const FanclubForumRoute = () => {
                 key={topicWithMaxWeight.id} 
                 topic={topicWithMaxWeight} 
                 artistId={context.id}
-                like={likeTopic} 
-                save={saveTopic} 
-                share={() => shareTopic()} 
+                like={() => likeTopic(context.id, topicWithMaxWeight.id)} 
+                save={() => saveTopic(context.id, topicWithMaxWeight.id)} 
+                share={() => handleShare(topicWithMaxWeight)} 
                 popular={true}
             />
         )}
@@ -126,9 +59,9 @@ const FanclubForumRoute = () => {
                 key={topic.id} 
                 topic={topic} 
                 artistId={context.id}
-                like={likeTopic} 
-                save={saveTopic} 
-                share={() => shareTopic()} 
+                like={() => likeTopic(context.id, topic.id)} 
+                save={() => saveTopic(context.id, topic.id)} 
+                share={() => handleShare(topic)} 
                 popular={false}
             />
         ))}
@@ -138,9 +71,9 @@ const FanclubForumRoute = () => {
                 key={artistTopicWithMaxWeight.id} 
                 topic={artistTopicWithMaxWeight} 
                 artistId={context.id}
-                like={likeTopic} 
-                save={saveTopic} 
-                share={() => shareTopic()} 
+                like={() => likeTopic(context.id, artistTopicWithMaxWeight.id)} 
+                save={() => saveTopic(context.id, artistTopicWithMaxWeight.id)} 
+                share={() => handleShare(artistTopicWithMaxWeight)} 
                 popular={false}
             />
         )}
@@ -154,13 +87,15 @@ const FanclubForumRoute = () => {
                 key={topic.id} 
                 topic={topic} 
                 artistId={context.id}
-                like={likeTopic} 
-                save={saveTopic} 
-                share={() => shareTopic()} 
+                like={() => likeTopic(context.id, topic.id)} 
+                save={() => saveTopic(context.id, topic.id)} 
+                share={() => handleShare(topic)} 
                 popular={false}
             />
         ))}
     </Container>
+    <Snackbar message={messageSnackbar} triggered={triggered} />
+
     </>
     
   )
