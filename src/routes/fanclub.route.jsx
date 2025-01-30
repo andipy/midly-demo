@@ -23,6 +23,7 @@ import useLikeReply from '../utils/handle-like-reply-comment.hook'
 import useArtistName from '../utils/get-artist-name.hook'
 import useFanclub from '../utils/get-fanclub.hooks'
 import useModal from '../utils/handle-modal.hooks'
+import useShare from '../utils/handle-share.hook'
 const Fanclub = () => {
     const navigate = useNavigate()
     const context = useOutletContext()
@@ -40,6 +41,7 @@ const Fanclub = () => {
     const { likeComment } = useLikeComment()
     const { likeReply} = useLikeReply()
     const { modalOpen, openModal, closeModal } = useModal()
+    const { share, messageSnackbar, triggered } = useShare()
     
 
     const [postInFocus, setPostInFocus] = useState({
@@ -140,27 +142,24 @@ const Fanclub = () => {
                 navigate(`/artist-app/fanclub/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
             }
             if ( postInFocus.action === 'SHARE_POST' ) {
-                triggerSnackbar('Link al post copiato negli appunti')
+                handleShare(postInFocus.post)
             }
             if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
                 navigate(`${postInFocus.post.id}`, { state: { ...postInFocus.post, artist: context} })
             }
         }
     }, [postInFocus])
-
-    const [triggered, setTriggered] = useState(false)
-	const [messageSnackbar, setMessageSnackbar] = useState('')
-	const triggerSnackbar = (message) => {
-		setMessageSnackbar(message)
-		setTriggered(true)
-		setTimeout(() => {
-			setTriggered(false)
-		}, 2000)
-	}
     
     const [modalSubscription, setModalSubscription] = useState(false)
 
-
+    const handleShare = (post) => {
+        share(post)
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
+    }
     return (
         <>
             <div className='d-flex-column j-c-start '>

@@ -1,41 +1,67 @@
-import { useContext } from "react";
-import { FanclubsContext } from "../contexts/fanclubs.context";
-import { CurrentFanContext } from "../contexts/currentFan.context";
+import { useLocation } from 'react-router-dom'
+import { useContext } from "react"
+import { FanclubsContext } from "../contexts/fanclubs.context"
+import { CurrentFanContext } from "../contexts/currentFan.context"
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 const useLikePost = () => {
-  const { fanclubs, setFanclubs } = useContext(FanclubsContext);
-  const { currentFan } = useContext(CurrentFanContext);
+  const location = useLocation()
+  const pathname = location.pathname 
+  const { fanclubs, setFanclubs } = useContext(FanclubsContext)
+  const { currentFan } = useContext(CurrentFanContext)
+  const {currentArtist} = useContext(CurrentArtistContext)
 
   const likePost = (artistId, postId) => {
-    setFanclubs((prevFanclubs) =>
-      prevFanclubs.map((fanclub) => {
-        if (fanclub.artistId === artistId) {
-          return {
-            ...fanclub,
-            posts: fanclub.posts.map((post) => {
-              if (post.id === postId) {
-                const hasLiked = post.likes.some(
-                  (like) => like.userId === currentFan.id
-                );
+    if ( pathname.includes('/artist-app') ) {
+      setFanclubs(prevFanclubs =>
+        prevFanclubs.map(fanclub => {
+            if (fanclub.artistId === artistId) {
                 return {
-                  ...post,
-                  likes: hasLiked
-                    ? post.likes.filter(
-                        (like) => like.userId !== currentFan.id
-                      ) // Rimuove il like
-                    : [...post.likes, { userId: currentFan.id }], // Aggiunge il like
-                };
+                    ...fanclub,
+                    posts: fanclub.posts.map(post => {
+                        if (post.id === postId) {
+                            const hasLiked = post.likes.some(like => like.userId === currentArtist.id)
+                            return {
+                                ...post,
+                                likes: hasLiked
+                                    ? post.likes.filter(like => like.userId !== currentArtist.id) // Rimuove il like
+                                    : [...post.likes, { userId: currentArtist.id }] // Aggiunge il like
+                            }
+                        }
+                        return post
+                    })
+                }
+            }
+            return fanclub
+        })
+      )
+    } else if (!pathname.includes('/artist-app')) {
+      setFanclubs(prevFanclubs =>
+          prevFanclubs.map(fanclub => {
+              if (fanclub.artistId === artistId) {
+                  return {
+                      ...fanclub,
+                      posts: fanclub.posts.map(post => {
+                          if (post.id === postId) {
+                              const hasLiked = post.likes.some(like => like.userId === currentFan.id)
+                              return {
+                                  ...post,
+                                  likes: hasLiked
+                                      ? post.likes.filter(like => like.userId !== currentFan.id) // Rimuove il like
+                                      : [...post.likes, { userId: currentFan.id }] // Aggiunge il like
+                              }
+                          }
+                          return post
+                      })
+                  }
               }
-              return post;
-            }),
-          };
-        }
-        return fanclub;
-      })
-    );
-  };
+              return fanclub
+          })
+      )
+    }
+  }
 
-  return { likePost };
-};
+  return { likePost }
+}
 
 export default useLikePost

@@ -25,39 +25,49 @@ import UserModeration from '../components/user-moderation.component'
 import PostType from '../components/post-type-popup.component'
 import PostConcert from '../components/post-concert.component'
 
-
+import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
+import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
+import useSubmitComment from '../utils/handle-submit-comment.hook'
+import useLikeComment from '../utils/handle-like-comment.hook'
+import useLikeReply from '../utils/handle-like-reply-comment.hook'
+import useArtistName from '../utils/get-artist-name.hook'
+import useFanclub from '../utils/get-fanclub.hooks'
+import useModal from '../utils/handle-modal.hooks'
+import useLikePost from '../utils/handle-like-post.hook'
+import useShare from '../utils/handle-share.hook'
 const FanclubRoute = () => {
+
+    //utils
 
     const navigate = useNavigate()
 
     const { currentArtist } = useContext(CurrentArtistContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
 
-    const [fanclub, setFanclub] = useState(null)
-    const fetchThisFanclub = () => {
-        if (!fanclubs || !currentArtist) {
-            console.warn("fanclubs or currentArtist is undefined")
-            return
-        }
-    
-        const thisFanclub = fanclubs.find(elem => elem.artistId === currentArtist.id)
-        setFanclub(thisFanclub)
-    }
-    useEffect(() => {
-        if (fanclubs && currentArtist) {
-            fetchThisFanclub()
-        }
-    }, [fanclubs, currentArtist])
+    const fanclub = useFanclub(currentArtist?.id)
+
+    const { modalOpen, openModal, closeModal } = useModal()
+    const { handleSubmitComment } = useSubmitComment()
+    const {likePost} = useLikePost()
+    const { likeComment } = useLikeComment()
+    const { likeReply } = useLikeReply()
+    const { share, messageSnackbar, triggered } = useShare()
 
     const [showComponent, setShowComponent] = useState(false)
     const [clickCount, setClickCount] = useState(0)
     const timeoutRef = useRef(null)
+    const inputRef = useRef(null)
+
+    //focus post
 
     const [postInFocus, setPostInFocus] = useState({
         id: undefined,
         action: undefined,
         post: undefined
     })
+
+    console.log(postInFocus)
+
     const focusPost = (id, action) => {
         const thisPost = fanclub.posts.find(post => post.id === id)
         setPostInFocus({
@@ -66,21 +76,7 @@ const FanclubRoute = () => {
             post: thisPost
         })
     }
-    const [modalOpen, setModalOpen] = useState(false)
-    const inputRef = useRef(null)
-    const openComments = (id) => {
-        setModalOpen(true)
-    }
-    const closeModal = () => {
-        setModalOpen(false)
-        setPostInFocus({
-            id: undefined,
-            action: undefined,
-            post: undefined
-        })
-        setCommentInFocus(null)
-    }
-    
+
     useEffect(() => {
         if ( postInFocus.id ) {
             if ( postInFocus.action === 'OPEN_COMMENTS' ) {
@@ -90,7 +86,7 @@ const FanclubRoute = () => {
                 navigate(`/artist-app/fanclub/edit-post/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
             }
             if ( postInFocus.action === 'SHARE_POST' ) {
-                triggerSnackbar('Link al post copiato negli appunti')
+                handleShare(postInFocus.post)
             }
             if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
                 navigate(`/artist-app/fanclub/${postInFocus.post.id}`, {
@@ -100,8 +96,19 @@ const FanclubRoute = () => {
         }
     }, [postInFocus])
 
-    const openSettingsConcert = (concert) => {
-        navigate(`/artist-app/fanclub/edit-post-concert/${concert.id}`, { state: { ...concert, invokedModal: true } })
+    //Comment section
+    
+    const openComments = (id) => {
+        openModal()
+    }
+    const closeComments = () => {
+        closeModal()
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
+        setCommentInFocus(null)
     }
 
     const [commentInFocus, setCommentInFocus] = useState(null)
@@ -147,116 +154,57 @@ const FanclubRoute = () => {
         }))
     }
 
-    const handleSubmitComment = (e) => {
+    const submitComment = (e) => {
         e.preventDefault()
-        if ( currentComment.comment !== '' ) {
-            if ( commentInFocus ) {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub => {
-                        if (fanclub.artistId === currentArtist.id) {
-                            return {
-                                ...fanclub,
-                                posts: fanclub.posts.map(post => {
-                                    if (post.id === postInFocus.id) {
-                                        return {
-                                            ...post,
-                                            comments: post.comments.map(comment => {
-                                                if (comment.id === commentInFocus) {
-                                                    return {
-                                                        ...comment,
-                                                        comments: [...comment.comments, currentComment]
-                                                    }
-                                                }
-                                                return comment
-                                            })
-                                        }
-                                    }
-                                    return post
-                                })
-                            }
-                        }
-                        return fanclub
-                    })
-                )
-                setCommentInFocus(null)
-            } else if ( !commentInFocus ) {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub => {
-                        if (fanclub.artistId === currentArtist.id) {
-                            return {
-                                ...fanclub,
-                                posts: fanclub.posts.map(post => {
-                                    if (post.id === postInFocus.id) {
-                                        return {
-                                            ...post,
-                                            comments: [...post.comments, currentComment]
-                                        }
-                                    }
-                                    return post
-                                })
-                            }
-                        }
-                        return fanclub
-                    })
-                )
-            }
+        handleSubmitComment(currentComment, postInFocus, commentInFocus, currentArtist.id)
+        setCurrentComment({
+            id: undefined,
+            userId: undefined,
+            userType: undefined,
+            userImage: undefined,
+            username: undefined,
+            createdAt: undefined,
+            comment: '',
+            likes: [],
+            comments: []
+        })
+        setCommentInFocus(null)
+    }
+
+    //posts
+    const [mixedPosts, setMixedPosts] = useState([])
+    useEffect(() => {
+        const concerts = Array.isArray(fanclub?.concerts) ? fanclub.concerts : []
+        const posts = Array.isArray(fanclub?.posts) ? fanclub.posts : []
+        const mixed = [
+            ...concerts,
+            ...posts
+        ]
+        const sortedMixed = mixed.sort((a, b) => sortPosts(a,b))
+        setMixedPosts(sortedMixed)
+    }, [fanclub])
+
+    const sortPosts = (a, b) => {
+        if (a.settings.isPinned !== b.settings.isPinned) {
+            return b.settings.isPinned - a.settings.isPinned
         }
-        
-        setCurrentComment({
+        return new Date(b.createdAt) - new Date(a.createdAt)
+    }
+
+    //share
+    const handleShare = (post) => {
+        share(post)
+        setPostInFocus({
             id: undefined,
-            userId: undefined,
-            userType: undefined,
-            userImage: undefined,
-            username: undefined,
-            createdAt: undefined,
-            comment: '',
-            likes: [],
-            comments: []
+            action: undefined,
+            post: undefined
         })
     }
 
-    const handleSubmitReply = (e) => {
-        e.preventDefault()
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === currentArtist.id) {
-                    return {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post => {
-                            if (post.id === postInFocus.id) {
-                                return {
-                                    ...post,
-                                    comments: post.comments.map(comment => {
-                                        if ( comment.id === commentInFocus ) {
-                                            return (
-                                                [...comment.comments, currentComment]
-                                            )
-                                        }
-                                    })
-                                }
-                            }
-                            return post
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-        setCurrentComment({
-            id: undefined,
-            userId: undefined,
-            userType: undefined,
-            userImage: undefined,
-            username: undefined,
-            createdAt: undefined,
-            comment: '',
-            likes: [],
-            comments: []
-        })
-        
+    //various
+    const openSettingsConcert = (concert) => {
+        navigate(`/artist-app/fanclub/edit-post-concert/${concert.id}`, { state: { ...concert, invokedModal: true } })
     }
-
-    
 
     useEffect(() => {
         const handleMouseDown = () => {
@@ -291,13 +239,9 @@ const FanclubRoute = () => {
         }
     }, [])
 
-    const sortPosts = (a, b) => {
-        if (a.settings.isPinned !== b.settings.isPinned) {
-            return b.settings.isPinned - a.settings.isPinned
-        }
-        return new Date(b.createdAt) - new Date(a.createdAt)
-    }
+    //handle file change
 
+    
     const [err, setErr] = useState(false)
     const [errMsg, setErrMsg] = useState('')
 
@@ -383,139 +327,9 @@ const FanclubRoute = () => {
         )
     }
 
-    const [modalUserModeration, setModalUserModeration] = useState(false)
-    const [userToModerate, setUserToModerate] = useState(null)
-    const openModalUserModeration = (userId) => {
-        setUserToModerate(userId)
-        setModalUserModeration(true)
-    }
-
-    const closeModalUserModeration = () => {
-        setUserToModerate(null)
-        setModalUserModeration(false)
-    }
-    const likePost = (id) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === currentArtist.id) {
-                    return {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post => {
-                            if (post.id === id) {
-                                const hasLiked = post.likes.some(like => like.userId === currentArtist.id)
-                                return {
-                                    ...post,
-                                    likes: hasLiked
-                                        ? post.likes.filter(like => like.userId !== currentArtist.id) // Rimuove il like
-                                        : [...post.likes, { userId: currentArtist.id }] // Aggiunge il like
-                                }
-                            }
-                            return post
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const likeComment = (commentId, postId) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === currentArtist.id) {
-                    return {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post => {
-                            if (post.id === postId) {
-                                return {
-                                    ...post,
-                                    comments: post.comments.map(comment => {
-                                        if (comment.id === commentId) {
-                                            const hasLiked = comment.likes.some(like => like.userId === currentArtist.id && (like.type === 'ARTIST'))
-                                            return {
-                                                ...comment,
-                                                likes: hasLiked
-                                                    ? comment.likes.filter(like => !(like.userId === currentArtist.id && like.type === 'ARTIST')) // Rimuove il like
-                                                    : [...comment.likes, { userId: currentArtist.id, type: 'ARTIST' }] // Aggiunge il like
-                                            }
-                                        }
-                                        return comment
-                                    })
-                                }
-                            }
-                            return post
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const likeReply = (replyId, commentId, postId) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === currentArtist.id) {
-                    return {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post => {
-                            if (post.id === postId) {
-                                return {
-                                    ...post,
-                                    comments: post.comments.map(comment => {
-                                        if (comment.id === commentId) {
-                                            return {
-                                                ...comment,
-                                                comments: comment.comments.map(reply => {
-                                                    if (reply.id === replyId) {
-                                                        const hasLiked = reply.likes.some(like => like.userId === currentArtist.id && (like.type === 'ARTIST'))
-                                                        return {
-                                                            ...reply,
-                                                            likes: hasLiked
-                                                                ? reply.likes.filter(like => !(like.userId === currentArtist.id && like.type === 'ARTIST')) //rimuove like
-                                                                : [...reply.likes, { userId: currentArtist.id, type: 'ARTIST' }] // Aggiunge il like
-                                                        }
-                                                    }
-                                                    return reply
-                                                })
-                                            }
-                                        }
-                                        return comment
-                                    })
-                                }
-                            }
-                            return post
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const [triggered, setTriggered] = useState(false)
-	const [messageSnackbar, setMessageSnackbar] = useState('')
-	const triggerSnackbar = (message) => {
-		setMessageSnackbar(message)
-		setTriggered(true)
-		setTimeout(() => {
-			setTriggered(false)
-		}, 2000)
-	}
-
     const [createContent, setCreateContent] = useState(false)
 
-    const [mixedPosts, setMixedPosts] = useState([])
-    useEffect(() => {
-        const concerts = Array.isArray(fanclub?.concerts) ? fanclub.concerts : []
-        const posts = Array.isArray(fanclub?.posts) ? fanclub.posts : []
-        const mixed = [
-            ...concerts,
-            ...posts
-        ]
-        const sortedMixed = mixed.sort((a, b) => sortPosts(a,b))
-        setMixedPosts(sortedMixed)
-    }, [fanclub])
+    
    
     return (
         <>
@@ -577,26 +391,12 @@ const FanclubRoute = () => {
                                         artistId={fanclub?.artistId}
                                         post={item}
                                         focusPost={focusPost}
-                                        likePost={likePost}
+                                        likePost={(postId) => likePost(currentArtist?.id, postId)}
                                     />
                                   );
                                 }
                                 })
                             }
-                            {/* {fanclub?.concerts.map(concert =>
-                                <PostConcert 
-                                    concert={concert}
-                                />
-                            )}
-                            {fanclub?.posts.sort((a, b) => sortPosts(a,b)).map(post =>
-                                <Post
-                                    key={post.id}
-                                    artistId={fanclub?.artistId}
-                                    post={post}
-                                    focusPost={focusPost}
-                                    likePost={likePost}
-                                />
-                            )} */}
                         </Container>
                     }
                 </>
@@ -619,7 +419,7 @@ const FanclubRoute = () => {
                 modalOpen={modalOpen}
                 closeModal={closeModal}
             >
-                <NavbarCommentsModal closeModal={closeModal} />
+                <NavbarCommentsModal closeModal={closeComments} />
                 <Container style={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts.map(post => {
                         if ( post.id ===  postInFocus.id) {
@@ -631,9 +431,9 @@ const FanclubRoute = () => {
                                         inputRef={inputRef}
                                         spotCommentToReply={() => spotCommentToReply(comment.id)}
                                         modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id }})}
-                                        likeComment = {() => likeComment(comment.id, post.id)}
+                                        likeComment = {() => likeComment(comment.id, post.id, currentArtist.id)}
                                         postId={post.id}
-                                        likeReply={likeReply}
+                                        likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, currentArtist?.id)}
                                     />
                                 )
                             })
@@ -643,7 +443,7 @@ const FanclubRoute = () => {
 
                 <TextbarComments
                     handleCurrentComment={handleCurrentComment}
-                    handleSubmitComment={handleSubmitComment}
+                    handleSubmitComment={submitComment}
                     currentComment={currentComment}
                     setCurrentComment={setCurrentComment}
                     modalOpen={modalOpen}
