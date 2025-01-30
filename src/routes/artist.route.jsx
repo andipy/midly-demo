@@ -19,7 +19,9 @@ import CardConnectSpotify from '../components/card-connect-spotify.component'
 import MessageWhitePoints from '../components/message-white-points.component'
 import FullPageCenter from '../layout/full-page-center.layout'
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
-
+import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
+import useFanclub from '../utils/get-fanclub.hooks'
+import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
 const ArtistRoute = () => {
 
     const navigate = useNavigate()
@@ -32,6 +34,8 @@ const ArtistRoute = () => {
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { quizzes } = useContext(LiveQuizContext)
     const [ artistLiveQuizzes, setArtistLiveQuizzes] = useState()
+
+    const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     
     const [artist, setArtist] = useState()
     const fetchThisArtist = () => {
@@ -43,11 +47,9 @@ const ArtistRoute = () => {
         setArtist(thisArtist)
     }
 
-    const [fanclub, setFanclub] = useState()
-    const fetchThisFanclub = () => {
-        const thisFanclub = fanclubs.find(elem => elem.artistId === artist.id)
-        setFanclub(thisFanclub)
-    }
+    const fanclub = useFanclub(artist?.id)
+    const hasUserSubscribed = useFanclubSubscription(artist?.id)
+
 
     const [userCompeting, setUserCompeting] = useState(false)
     const fetchCompeting = () => {
@@ -134,11 +136,6 @@ const ArtistRoute = () => {
         }
     }, [currentFan, artist])
 
-    useEffect(() => {
-        if (artist) {
-            fetchThisFanclub()
-        }
-    }, [artist])
 
     /* recupero live quiz artista */
     useEffect(() => {
@@ -216,12 +213,12 @@ const ArtistRoute = () => {
         setSettings(true)
     }
 
-    const [isExiting, setIsExiting] = useState(false)
+    const [isExitingQuiz, setIsExitingQuiz] = useState(false)
 
     useEffect(() => {
         if (quizEnded) {
             const exitDelay = setTimeout(() => {
-                setIsExiting(true)
+                setIsExitingQuiz(true)
             }, 1000)
 
             return () => clearTimeout(exitDelay)
@@ -232,7 +229,7 @@ const ArtistRoute = () => {
         if (isExiting) {
             const endDelay = setTimeout(() => {
                 setQuizEnded(false)
-                setIsExiting(false)
+                setIsExitingQuiz(false)
             }, 400)
 
             return () => clearTimeout(endDelay)
@@ -251,95 +248,9 @@ const ArtistRoute = () => {
         }
     }, [isExitingSettings])
 
-    const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
-
-    const checkFanclubSubscription = () => {
-        let isSubscribed
-        if ( currentFan.fanclubsSubscribed.find(sub => sub.artistId === artist.id) ) {
-            isSubscribed = true
-        } else {
-            isSubscribed = false
-        }
-        setHasUserSubscribed(isSubscribed)
-    }
-
-    useEffect(() => {
-        if ( artist ) {
-            fetchThisFanclub()
-            checkFanclubSubscription()
-        }
-    }, [artist, fanclubs, currentFan])
-
-    const handleSubscription = () => {
-        let currentDate = new Date()
-        let date = currentDate.toISOString().split('T')[0]
-        if (hasUserSubscribed) {
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub =>
-                    fanclub.artistId === artist.id
-                        ? { ...fanclub, subscribers: (fanclub.subscribers || 0) - 1 }
-                        : fanclub
-                )
-            );
-            setCurrentFan(prev => ({
-                ...prev,
-                fanclubsSubscribed: prev.fanclubsSubscribed.filter(fanclub => fanclub.artistId !== artist.id),
-                removedSubscriptions: [
-                    ...prev.removedSubscriptions,
-                    { artistId: artist.id, createdAt: date }
-                ]
-            }))
-        } else {
-            if (fanclub?.maxSubscribers <= fanclub?.subscribers && fanclub?.maxSubscribers) {
-                setErr(true)
-                return
-            } else {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub =>
-                        fanclub.artistId === artist.id
-                            ? { ...fanclub, subscribers: (fanclub.subscribers || 0) + 1 }
-                            : fanclub
-                    )
-                )
-                setCurrentFan(prev => ({
-                    ...prev,
-                    fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: artist.id, createdAt: date }],
-                    removedSubscriptions: prev.removedSubscriptions.filter(fanclub => fanclub.artistId !== artist.id)
-                }))
-            }  
-        }
-
-        setIsExitingSettings(true)
-        
-    }
-
     const openMessages = () => {
        navigate(`/artist/${artist.slug}/chat`, { state: { from: location, artist: artist } })
     }
-
-    const [err, setErr] = useState(false)
-    const [isExitingErr, setIsExitingErr] = useState(false)
-
-    useEffect(() => {
-        if (err) {
-            const exitDelay = setTimeout(() => {
-                setIsExitingErr(true)
-            }, 1000)
-
-            return () => clearTimeout(exitDelay)
-        }
-    }, [err])
-
-    useEffect(() => {
-        if (isExitingErr) {
-            const endDelay = setTimeout(() => {
-                setErr(false)
-                setIsExitingErr(false)
-            }, 400)
-
-            return () => clearTimeout(endDelay)
-        }
-    }, [isExitingErr])
 
     const [modalSubscription, setModalSubscription] = useState(false)
 
@@ -467,14 +378,14 @@ const ArtistRoute = () => {
                                 disabled={false}
                                 style='fsize-xs-3 f-w-600 letter-spacing-1 bg-acid-lime black border-lime border-radius-04'
                                 label='Abbonati'
-                                onClick={handleSubscription}
+                                onClick={() => {handleSubscription(artist?.id); setIsExitingSettings(true)}}
                             />
                             :
                             <Button
                                 disabled={false}
                                 style='fsize-xs-3 f-w-600 letter-spacing-1 bg-red-300 black border-radius-04'
                                 label='Disattiva abbonamento'
-                                onClick={handleSubscription}
+                                onClick={() => {handleSubscription(artist?.id); setIsExitingSettings(true)}}
                             />
                         }
                         
@@ -491,7 +402,7 @@ const ArtistRoute = () => {
 
             {err && 
                 <FullPageCenter style='z-index-1100 bg-black-transp70'>
-                    <Container style={`centered-popup ${isExitingErr ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+                    <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
                         <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
                             <h2 className='fsize-xs-2 f-w-300 t-align-center'>Il fanclub di {artists.find(artist => artist.id === fanclub?.artistId).artistName} è al completo</h2>
                         </div>
@@ -506,7 +417,7 @@ const ArtistRoute = () => {
             }
             {
                 modalSubscription &&
-                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={handleSubscription}/>
+                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={() => handleSubscription(artist?.id)}/>
             }
         </>
     )
