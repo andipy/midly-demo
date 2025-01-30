@@ -15,9 +15,9 @@ const TopicCommentReply = ({reply, comment, likeReply, likedReply}) => {
                 <div className="border-radius-100 avatar-20 d-flex-row j-c-center align-items-center">
                     {
                         likedReply ?
-                        <img className="avatar-20" src={IconThunderActive} onClick={() => likeReply(reply.id, comment?.id)}/>
+                        <img className="avatar-20" src={IconThunderActive} onClick={() => likeReply(reply.id)}/>
                         :
-                        <img className="avatar-20" src={IconThunder} onClick={() => likeReply(reply.id, comment?.id)}/>
+                        <img className="avatar-20" src={IconThunder} onClick={() => likeReply(reply.id)}/>
                     }
                     <p className="fsize-xs-1 f-w-300">{reply.likes.length}</p>
                 </div>

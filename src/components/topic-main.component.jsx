@@ -8,7 +8,7 @@ import IconThunder from '../images/icons/icon-thunder.svg'
 import IconThunderActive from '../images/icons/icon-thunder-active.svg'
 
 import Carousel from "../layout/carousel.layout"
-const TopicMain = ({topic, liked, likeTopic, saved, saveTopic, spotCommentToReply}) => {
+const TopicMain = ({topic, liked, likeTopic, saved, saveTopic, shareTopic, spotCommentToReply}) => {
     const [days, setDays] = useState(0)
 	const [hours, setHours] = useState(0)
 	const [minutes, setMinutes] = useState(0)
@@ -122,7 +122,7 @@ const TopicMain = ({topic, liked, likeTopic, saved, saveTopic, spotCommentToRepl
                         </div>
                         <p className="fsize-xs-1 f-w-300">{topic?.commentsCount}</p>
                         <div className="border-radius-100  avatar-20 d-flex-row j-c-center align-items-center">
-                            <img className="avatar-20" src={IconShare} /* onClick={() => share()} *//>
+                            <img className="avatar-20" src={IconShare} onClick={() => shareTopic()} />
                         </div>
                     </div>
                 </div>

@@ -2,45 +2,47 @@ import { useEffect, useState, useContext, useRef } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 
 import { FanclubsContext } from "../contexts/fanclubs.context"
-import { ArtistsContext } from "../contexts/artists.context"
 import { CurrentFanContext } from "../contexts/currentFan.context"
-import { FansContext } from "../contexts/fans.context";
 
 import NavbarBackOnly from "../components/navbar-back-only.component"
 import Container from "../layout/container.layout"
 import TextbarComments from "../components/textbar-comments.component"
 import TopicMain from "../components/topic-main.component"
 import TopicComment from "../components/topic-comment.component"
+import Snackbar from "../components/snackbar.component"
 
+import useFanclub from "../utils/get-fanclub.hooks"
+import useTopic from "../utils/get-fanclub-topic.hook"
+import useArtist from "../utils/get-artist.hook"
+import useFan from "../utils/get-fan.hook"
+import useCommentTopicHandler from "../utils/handle-comment-topic"
+import useLikeTopic from "../utils/handle-like-topic.hook"
+import useSaveTopic from "../utils/handle-save-topic.hook"
+import useShare from "../utils/handle-share.hook"
+import useLikeTopicComment from "../utils/handle-like-topic-comment.hook"
+import useLikeTopicReply from "../utils/handle-like-topic-reply.hook"
 const TopicDetailsRoute = () => {
     const navigate = useNavigate()
     const { pathname, state } = useLocation()
     const { fanclubs, setFanclubs} = useContext(FanclubsContext)
     const { currentFan} = useContext(CurrentFanContext)
-    const { artists } = useContext(ArtistsContext)
-    const { fans } = useContext(FansContext)
 
-    const [fanclub, setFanclub] = useState()
-    const [topic, setTopic] = useState()
-    const [artist, setArtist] = useState()
-    const [fan, setFan] = useState()
-    useEffect(() => {
-        if (state && fanclubs && artists && fans) {
-            const matchedFanclub = fanclubs.find(fanclub => fanclub.artistId === state.artistId)
-            const matchedTopic = matchedFanclub.forum.find(t => t.id === state?.topic.id)
-            const matchedArtist = artists.find(a  => a.id === state.artistId)
-            const matchedFan = fans.find(f => f.id === currentFan.id)
+    const fanclub = useFanclub(state?.artistId)
+    const topic = useTopic(fanclub, state?.topic?.id)   
+    const artist = useArtist(state?.artistId)
+    const fan = useFan(currentFan?.id)
+    
+    const {likeTopic} = useLikeTopic()
+    const { saveTopic} = useSaveTopic()
+    const { share, messageSnackbar, triggered } = useShare()
+    const { handleSubmitComment, commentInFocus, setCommentInFocus, replyingUser, setReplyingUser, currentComment, setCurrentComment } = useCommentTopicHandler(artist?.id, topic?.id)
+    const { likeComment } = useLikeTopicComment()
+    const { likeReply } = useLikeTopicReply()
 
-            setFanclub(matchedFanclub)
-            setTopic(matchedTopic)
-            setArtist(matchedArtist)
-            setFan(matchedFan)
 
-        }
-    }, [state, fanclubs, artists, fans])
+    //scrolled
 
     const [scrolled, setScrolled] = useState(false)
-
     useEffect(() => {
         const handleScroll = () => {
             if (window.pageYOffset >= 160) {
@@ -56,6 +58,8 @@ const TopicDetailsRoute = () => {
         }
     }, [])
 
+    //liked
+
     const [liked, setLiked] = useState(false)
     useEffect(() => {
         if (topic && topic.likes) {
@@ -63,6 +67,8 @@ const TopicDetailsRoute = () => {
             setLiked(userLiked)
         }
     }, [topic])
+
+    //saved
 
     const [saved, setSaved] = useState(false)
     useEffect(() => {
@@ -72,27 +78,15 @@ const TopicDetailsRoute = () => {
         }
     }, [topic])
 
-    const [commentInFocus, setCommentInFocus] = useState(null)
-    const [replyingUser, setReplyingUser] = useState(null)
+    //comments
     const inputRef = useRef(null)
+
     const spotCommentToReply = (id, username) => {
         setReplyingUser(username)
         setCommentInFocus(id)
         inputRef.current.focus()
     }
 
-    const [currentComment, setCurrentComment] = useState({
-        id: undefined,
-        userId: undefined,
-        userType: undefined,
-        userImage: undefined,
-        username: undefined,
-        createdAt: undefined,
-        comment: '',
-        likes: [],
-        comments: [],
-        repliedUsername: undefined
-    })
     const handleCurrentComment = (e) => {
         e.preventDefault()
         let commentsNumber
@@ -127,201 +121,9 @@ const TopicDetailsRoute = () => {
         }))
     }
 
-    const handleSubmitComment = (e) => {
-        e.preventDefault()
-        if ( currentComment.comment !== '' ) {
-            if ( commentInFocus ) {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub => {
-                        if (fanclub.artistId === state?.artistId) {
-                            return {
-                                ...fanclub,
-                                forum: fanclub.forum.map(t => {
-                                    if (t.id === topic?.id) {
-                                        return {
-                                            ...t,
-                                            comments: t.comments.map(comment => {
-                                                if (comment.id === commentInFocus) {
-                                                    return {
-                                                        ...comment,
-                                                        comments: [...comment.comments, currentComment]
-                                                    }
-                                                }
-                                                return comment
-                                            }),
-                                            commentsCount: t.commentsCount+1
-                                        }
-                                    }
-                                    return t
-                                })
-                            }
-                        }
-                        return fanclub
-                    })
-                )
-                setCommentInFocus(null)
-                setReplyingUser(null)
-
-            } else if ( !commentInFocus ) {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub => {
-                        if (fanclub.artistId === state?.artistId) {
-                            return {
-                                ...fanclub,
-                                forum: fanclub.forum.map(t => {
-                                    if (t.id === topic?.id) {
-                                        return {
-                                            ...t,
-                                            comments: [...t.comments, currentComment],
-                                            commentsCount: t.commentsCount+1
-                                        }
-                                    }
-                                    return t;
-                                })
-                            }
-                        }
-                        return fanclub;
-                    })
-                )
-            }
-        }
-        
-        setCurrentComment({
-            id: undefined,
-            userId: undefined,
-            userType: undefined,
-            userImage: undefined,
-            username: undefined,
-            createdAt: undefined,
-            comment: '',
-            likes: [],
-            comments: [],
-            repliedUsername: undefined
-        })
-    }
-
-    
-    const likeTopic = (id) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === state?.artistId) {
-                    return {
-                        ...fanclub,
-                        forum: fanclub.forum.map(topic => {
-                            if (topic.id === id) {
-                                const liked = topic.likes.some(p => p.userId === currentFan.id)
-                                return {
-                                    ...topic,
-                                    likes: liked
-                                        ? topic.likes.filter(c => c.userId !== currentFan.id) // Rimuove il like
-                                        : [...topic.likes, { userId: currentFan.id }] // Aggiunge il like
-                                }
-                            }
-                            return topic
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const saveTopic = (id) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === state?.artistId) {
-                    return {
-                        ...fanclub,
-                        forum: fanclub.forum.map(topic => {
-                            if (topic.id === id) {
-                                const saved = topic.saved.some(p => p.userId === currentFan.id)
-                                return {
-                                    ...topic,
-                                    saved: saved
-                                        ? topic.saved.filter(c => c.userId !== currentFan.id) // Rimuove il save
-                                        : [...topic.saved, { userId: currentFan.id }] // Aggiunge il save
-                                }
-                            }
-                            return topic
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-    const likeComment = (commentId) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === state?.artistId) {
-                    return {
-                        ...fanclub,
-                        forum: fanclub.forum.map(t => {
-                            if (t.id === topic?.id) {
-                                return {
-                                    ...t,
-                                    comments: t.comments.map(comment => {
-                                        if (comment.id === commentId) {
-                                            const hasLiked = comment.likes.some(like => like.userId === currentFan.id && (like.type === 'FAN'))
-                                            return {
-                                                ...comment,
-                                                likes: hasLiked
-                                                    ? comment.likes.filter(like => !(like.userId === currentFan.id && like.type === 'FAN')) // Rimuove il like
-                                                    : [...comment.likes, { userId: currentFan.id, type: 'FAN' }] // Aggiunge il like
-                                            }
-                                        }
-                                        return comment
-                                    })
-                                }
-                            }
-                            return t
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
-    }
-
-    const likeReply = (replyId, commentId) => {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === state?.artistId) {
-                    return {
-                        ...fanclub,
-                        forum: fanclub.forum.map(t => {
-                            if (t.id === topic?.id) {
-                                return {
-                                    ...t,
-                                    comments: t.comments.map(comment => {
-                                        if (comment.id === commentId) {
-                                            return {
-                                                ...comment,
-                                                comments: comment.comments.map(reply => {
-                                                    if (reply.id === replyId) {
-                                                        const hasLiked = reply.likes.some(like => like.userId === currentFan.id && (like.type === 'FAN'))
-                                                        return {
-                                                            ...reply,
-                                                            likes: hasLiked
-                                                                ? reply.likes.filter(like => !(like.userId === currentFan.id && like.type === 'FAN')) // Rimuove il like
-                                                                : [...reply.likes, { userId: currentFan.id, type: 'FAN' }] // Aggiunge il like
-                                                        }
-                                                    }
-                                                    return reply
-                                                })
-                                            }
-                                        }
-                                        return comment
-                                    })
-                                }
-                            }
-                            return t
-                        })
-                    }
-                }
-                return fanclub
-            })
-        )
+    //share
+    const handleShare = (topic) => {
+        share(topic)
     }
 
   return (
@@ -336,12 +138,12 @@ const TopicDetailsRoute = () => {
             </div>
         )}
         <Container style={'pb-xs-appbar'}>
-            <TopicMain topic={topic} liked={liked} likeTopic={likeTopic} saved={saved} saveTopic={saveTopic} spotCommentToReply={spotCommentToReply}/>
+            <TopicMain topic={topic} liked={liked} likeTopic={() => likeTopic(artist.id, topic.id)} saved={saved} saveTopic={() => saveTopic(artist.id, topic.id)} shareTopic={() => handleShare(topic)}  spotCommentToReply={spotCommentToReply}/>
             {
                 topic?.comments.map(c => {
                     const likedComment = c.likes.find(l => l.userId === currentFan.id && l.type === 'FAN')
                     return (
-                        <TopicComment comment={c} topic={topic} likedComment={likedComment} likeComment={likeComment} commentInFocus={commentInFocus} spotCommentToReply={spotCommentToReply} likeReply={likeReply}/>
+                        <TopicComment comment={c} topic={topic} likedComment={likedComment} likeComment={(commentId) => likeComment(artist.id, topic.id, commentId)} commentInFocus={commentInFocus} spotCommentToReply={spotCommentToReply} likeReply={(commentId, replyId) => likeReply(artist.id, topic.id, commentId, replyId)}/>
                     )
                 })
             }
@@ -358,6 +160,7 @@ const TopicDetailsRoute = () => {
                 replyingUser={replyingUser}
             />
         </div>
+        <Snackbar message={messageSnackbar} triggered={triggered} />
     </>
   )
 }

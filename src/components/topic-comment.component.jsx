@@ -34,7 +34,7 @@ const TopicComment = ({comment, topic, likeComment, likedComment, commentInFocus
                                 likedComment ?
                                 <img className="avatar-20" src={IconThunderActive} onClick={() => likeComment(comment?.id)}/>
                                 :
-                                <img className="avatar-20" src={IconThunder} onClick={() => likeComment(comment.id)}/>
+                                <img className="avatar-20" src={IconThunder} onClick={() => likeComment(comment?.id)}/>
                             }
                             <p className="fsize-xs-1 f-w-300">{comment?.likes.length}</p>
                         </div>
@@ -55,7 +55,7 @@ const TopicComment = ({comment, topic, likeComment, likedComment, commentInFocus
                         comment?.comments.map(reply => {
                             const likedReply = reply.likes.find(l => l.userId === currentFan.id && l.type === 'FAN')
                             return(
-                                <TopicCommentReply reply={reply} comment={comment} likedReply={likedReply} likeReply={likeReply}/>
+                                <TopicCommentReply reply={reply} comment={comment} likedReply={likedReply} likeReply={(replyId) => likeReply(comment?.id, replyId)}/>
                             )
                         })
                     }
