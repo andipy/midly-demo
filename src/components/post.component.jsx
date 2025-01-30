@@ -177,7 +177,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 								}}
 							>
 								<img className='avatar-28  border-radius-04' src={IconComments} />
-								<p className='fsize-xs-1'>{post.comments.length}</p>
+								<p className='fsize-xs-1'>{post.commentsCount}</p>
 							</div>
 
 							<div className='d-flex-row align-items-center gap-0_25em' onClick={() => focusPost(post.id, 'SHARE_POST')}>
@@ -222,7 +222,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 					}
 
 					{post.comments.length > 0 ?
-						<p className='lime-400 f-w-500 fsize-xs-1' onClick={() => focusPost(post.id, 'OPEN_COMMENTS')}>Visualizza {post.comments.length} commenti</p>
+						<p className='lime-400 f-w-500 fsize-xs-1' onClick={() => focusPost(post.id, 'OPEN_COMMENTS')}>Visualizza {post.commentsCount} commenti</p>
 					: !pathname.includes('/artist-app/') &&
 						<p className='f-w-400 grey-200 fsize-xs-2' onClick={() => focusPost(post.id, 'OPEN_COMMENTS')}>Commenta per primo</p>
 					}

@@ -68,7 +68,8 @@ const Fanclub = () => {
         createdAt: undefined,
         comment: '',
         likes: [],
-        comments: []
+        comments: [],
+        repliedUsername: undefined
     })
     const handleCurrentComment = (e) => {
         e.preventDefault()
@@ -79,11 +80,16 @@ const Fanclub = () => {
             if ( fanclub.artistId === context.id ) {
                 fanclub.posts.map(post => {
                     if ( post.id === postInFocus.id ) {
-                        commentsNumber = post.comments.length + 1
+                        commentsNumber = post?.commentsCount + 1
                     }
                 })
             }
         })
+
+        let replied
+        if ( commentInFocus) {
+            replied = replyingUser
+        }
 
         setCurrentComment(prev => ({
             ...prev,
@@ -93,13 +99,16 @@ const Fanclub = () => {
             userImage: currentFan.image,
             username: currentFan.username,
             createdAt: date,
-            comment: e.target.value
+            comment: e.target.value,
+            repliedUsername: replied
         }))
     }
 
-    const [commentInFocus, setCommentInFocus] = useState(null)
     const inputRef = useRef(null)
-    const spotCommentToReply = (id) => {
+    const [commentInFocus, setCommentInFocus] = useState(null)
+    const [replyingUser, setReplyingUser] = useState(null)
+    const spotCommentToReply = (id, username) => {
+        setReplyingUser(username)
         setCommentInFocus(id)
         inputRef.current.focus()
     }
@@ -116,9 +125,11 @@ const Fanclub = () => {
             createdAt: undefined,
             comment: '',
             likes: [],
-            comments: []
+            comments: [],
+            repliedUsername: undefined
         })
         setCommentInFocus(null)
+        setReplyingUser(null)
     }
     const openComments = (id) => {
         openModal()
@@ -192,7 +203,7 @@ const Fanclub = () => {
                                         comment={comment}
                                         key={comment.id}
                                         inputRef={inputRef}
-                                        spotCommentToReply={() => spotCommentToReply(comment.id)}
+                                        spotCommentToReply={spotCommentToReply}
                                         modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id}})}
                                         likeComment = {() => likeComment(comment.id, post.id, context.id)}
                                         postId={post.id}
@@ -211,6 +222,7 @@ const Fanclub = () => {
                     setCurrentComment={setCurrentComment}
                     modalOpen={modalOpen}
                     inputRef={inputRef}
+                    replyingUser={replyingUser}
                 />
 
             </CommentsModalLayout>

@@ -69,7 +69,7 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
                     <div className='d-flex-row j-c-space-between w-100 mt-xs-2'>
                         <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
                             <span className='fsize-xs-1 f-w-200 grey-400'>{comment.createdAt}</span>
-                            <span className='fsize-xs-2 f-w-600 grey-300' onClick={spotCommentToReply}>Reply</span>
+                            <span className='fsize-xs-2 f-w-600 grey-300' onClick={() => spotCommentToReply(comment?.id, comment?.username)}>Reply</span>
                         </div>
                         <div className='d-flex-row align-items-center gap-0_5em'>
                             <span className='fsize-xs-1'>{comment.likes.length > 0 ? comment.likes.length : ''}</span>

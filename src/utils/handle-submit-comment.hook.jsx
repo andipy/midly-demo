@@ -21,7 +21,8 @@ const useSubmitComment = () => {
                               ? { ...comment, comments: [...comment.comments, currentComment] }
                               : comment
                           )
-                        : [...post.comments, currentComment]
+                        : [...post.comments, currentComment],
+                      commentsCount: post.commentsCount+1
                     }
                   : post
               )

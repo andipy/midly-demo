@@ -67,7 +67,8 @@ const ContentCreationRoute = () => {
         share: {
             shareCount: 0,
             shareLink: undefined
-        }
+        },
+        commentsCount: 0
     })
 
     useEffect(() => {

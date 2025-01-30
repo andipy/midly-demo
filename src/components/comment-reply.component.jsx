@@ -61,7 +61,7 @@ const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentR
                         <span className='fsize-xs-0 gold'>Artista</span>
                     }
                 </div>
-                <div className='fsize-xs-2 grey-100 f-w-300 line-height-1_5 mt-xs-2'>{comment.comment}</div>
+                <div className='fsize-xs-2 grey-100 f-w-300 line-height-1_5 mt-xs-2'><span className="blue-bright-600">@{comment?.repliedUsername}</span> {comment?.comment}</div>
 
                 <div className='d-flex-row j-c-space-between w-100 mt-xs-2'>
                     <div className='d-flex-row j-c-start align-items-center gap-0_5em'>

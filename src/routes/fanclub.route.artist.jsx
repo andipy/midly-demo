@@ -63,7 +63,6 @@ const FanclubRoute = () => {
         post: undefined
     })
 
-    console.log(postInFocus)
 
     const focusPost = (id, action) => {
         const thisPost = fanclub.posts.find(post => post.id === id)
@@ -109,7 +108,9 @@ const FanclubRoute = () => {
     }
 
     const [commentInFocus, setCommentInFocus] = useState(null)
-    const spotCommentToReply = (id) => {
+    const [replyingUser, setReplyingUser] = useState(null)
+    const spotCommentToReply = (id, username) => {
+        setReplyingUser(username)
         setCommentInFocus(id)
         inputRef.current.focus()
     }
@@ -122,7 +123,8 @@ const FanclubRoute = () => {
         createdAt: undefined,
         comment: '',
         likes: [],
-        comments: []
+        comments: [],
+        repliedUsername: undefined
     })
     const handleCurrentComment = (e) => {
         e.preventDefault()
@@ -133,11 +135,16 @@ const FanclubRoute = () => {
             if ( fanclub.artistId === currentArtist.id ) {
                 fanclub.posts.map(post => {
                     if ( post.id === postInFocus.id ) {
-                        commentsNumber = post.comments.length + 1
+                        commentsNumber = post?.commentsCount + 1
                     }
                 })
             }
         })
+
+        let replied
+        if ( commentInFocus) {
+            replied = replyingUser
+        }
 
         setCurrentComment(prev => ({
             ...prev,
@@ -147,7 +154,8 @@ const FanclubRoute = () => {
             userImage: currentArtist.image,
             username: currentArtist.artistName,
             createdAt: date,
-            comment: e.target.value
+            comment: e.target.value,
+            repliedUsername: replied
         }))
     }
 
@@ -163,9 +171,11 @@ const FanclubRoute = () => {
             createdAt: undefined,
             comment: '',
             likes: [],
-            comments: []
+            comments: [],
+            repliedUsername: undefined
         })
         setCommentInFocus(null)
+        setReplyingUser(null)
     }
 
     //posts
@@ -426,7 +436,7 @@ const FanclubRoute = () => {
                                         comment={comment}
                                         key={comment.id}
                                         inputRef={inputRef}
-                                        spotCommentToReply={() => spotCommentToReply(comment.id)}
+                                        spotCommentToReply={spotCommentToReply}
                                         modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id }})}
                                         likeComment = {() => likeComment(comment.id, post.id, currentArtist.id)}
                                         postId={post.id}
@@ -445,6 +455,7 @@ const FanclubRoute = () => {
                     setCurrentComment={setCurrentComment}
                     modalOpen={modalOpen}
                     inputRef={inputRef}
+                    replyingUser={replyingUser}
                 />
             </CommentsModalLayout>
 

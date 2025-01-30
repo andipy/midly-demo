@@ -19,6 +19,9 @@ const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitCom
                             :
                             'Lascia un commento'
                         :
+                            replyingUser ?
+                            `Rispondi a @${replyingUser}`
+                            :
                             'Commenta il tuo contenuto'
                         
                     }
