@@ -123,7 +123,7 @@ const TopicDetailsRoute = () => {
 
     //share
     const handleShare = (topic) => {
-        share(topic)
+        share(topic, state?.artistId)
     }
 
   return (

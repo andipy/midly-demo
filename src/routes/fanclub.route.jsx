@@ -164,7 +164,7 @@ const Fanclub = () => {
     const [modalSubscription, setModalSubscription] = useState(false)
 
     const handleShare = (post) => {
-        share(post)
+        share(post, context?.id)
         setPostInFocus({
             id: undefined,
             action: undefined,

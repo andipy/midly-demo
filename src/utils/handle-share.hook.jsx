@@ -15,7 +15,7 @@ const useShare = () => {
     }, 2000)
   }
 
-  const share = async (post) => {
+  const share = async (post, artistId) => {
     const url = post?.share?.shareLink || window.location.href // Usa il link del post o l'URL attuale
     triggerSnackbar('LInk al post condiviso')
 
@@ -33,7 +33,7 @@ const useShare = () => {
     }
 
     if (!window.location.pathname.includes('/artist-app')) {
-      setAuraPoints(SHARE_POST, 'SHARE_POST', post.artistId)
+      setAuraPoints(SHARE_POST, 'SHARE_POST', artistId)
     }
 
   }

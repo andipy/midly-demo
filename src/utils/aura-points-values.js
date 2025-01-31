@@ -23,20 +23,21 @@ export const REPORT_USER_ACCEPTED=10
 export const CREATE_TOPIC=20 
 export const LIKE_TOPIC=1 //
 export const LIKE_REPLY_TO_TOPIC=2 //
-export const LIKE_REPLY_TOREPLY_TO_TOPIC=2
-export const REPLY_TO_TOPIC_AS_FIRST=9
-export const REPLY_TO_TOPIC=5
-export const REPLY_TO_REPLY_TO_TOPIC=7
-export const SAVE_TOPIC=3
-export const SHARE_TOPIC=2 
+export const LIKE_REPLY_TOREPLY_TO_TOPIC=2 //
+export const REPLY_TO_TOPIC_AS_FIRST=9 //
+export const REPLY_TO_TOPIC=5 //
+export const REPLY_TO_REPLY_TO_TOPIC=7 //
+export const SAVE_TOPIC=3 //
+export const SHARE_TOPIC=2 //
 export const UNLIKE_TOPIC=-1 //
 export const UNLIKE_REPLY_TO_TOPIC=-2 //
-export const UNLIKE_REPLY_TOREPLY_TO_TOPIC=-2
-export const UNSAVE_TOPIC=-3
+export const UNLIKE_REPLY_TOREPLY_TO_TOPIC=-2 //
+export const UNSAVE_TOPIC=-3 //
 
 
 export const ATTEND_GROUP_CHAT_EVENT=20 
-export const ATTEND_CONCERT=3
+export const ATTEND_CONCERT=3 //
+export const UNATTEND_CONCERT=-3 //
 
 
 /* commenti

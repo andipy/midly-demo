@@ -1,26 +1,24 @@
-import { useContext } from "react";
-import { FanclubsContext } from "../contexts/fanclubs.context";
-import { CurrentFanContext } from "../contexts/currentFan.context";
-
+import { useContext } from "react"
+import { FanclubsContext } from "../contexts/fanclubs.context"
+import { CurrentFanContext } from "../contexts/currentFan.context"
+import useAuraPoints from "./handle-aura-points.hook"
+import { ATTEND_CONCERT, UNATTEND_CONCERT } from "./aura-points-values"
 const useConcertParticipation = () => {
-  const { fanclubs, setFanclubs } = useContext(FanclubsContext);
-  const { currentFan } = useContext(CurrentFanContext);
+  const { fanclubs, setFanclubs } = useContext(FanclubsContext)
+  const { currentFan } = useContext(CurrentFanContext)
+  const { setAuraPoints} =useAuraPoints()
 
   const newParticipation = (artistId, concertId) => {
-    // Trova il fanclub per l'artista
-    const fanclub = fanclubs.find((f) => f.artistId === artistId);
-    if (!fanclub) return; // Se il fanclub non esiste, non fare nulla
+    const fanclub = fanclubs.find((f) => f.artistId === artistId)
+    if (!fanclub) return 
 
-    // Trova il concerto per l'artista
-    const concert = fanclub.concerts.find((c) => c.id === concertId);
-    if (!concert) return; // Se il concerto non esiste, non fare nulla
+    const concert = fanclub.concerts.find((c) => c.id === concertId)
+    if (!concert) return 
 
-    // Controlla se l'utente è già partecipante
     const partecipate = concert.participants.some(
       (p) => p.userId === currentFan.id
-    );
+    )
 
-    // Aggiungi o rimuovi la partecipazione
     setFanclubs((prevFanclubs) =>
       prevFanclubs.map((fanclub) => {
         if (fanclub.artistId === artistId) {
@@ -38,18 +36,24 @@ const useConcertParticipation = () => {
                         ...concert.participants,
                         { userId: currentFan.id },
                       ], // Aggiunge il partecipante
-                };
+                }
               }
-              return concert;
+              return concert
             }),
-          };
+          }
         }
-        return fanclub;
+        return fanclub
       })
-    );
-  };
+    )
+    if (partecipate) {
+        setAuraPoints(UNATTEND_CONCERT, 'UNATTEND_CONCERT', artistId)
+    } else {
+        setAuraPoints(ATTEND_CONCERT, 'ATTEND_CONCERT', artistId)
+    }
 
-  return { newParticipation };
-};
+  }
 
-export default useConcertParticipation;
+  return { newParticipation }
+}
+
+export default useConcertParticipation

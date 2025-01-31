@@ -200,7 +200,7 @@ const FanclubRoute = () => {
 
     //share
     const handleShare = (post) => {
-        share(post)
+        share(post, currentArtist?.id)
         setPostInFocus({
             id: undefined,
             action: undefined,

@@ -1,12 +1,16 @@
-import { useContext } from "react";
-import { FanclubsContext } from "../contexts/fanclubs.context";
-import { CurrentFanContext } from "../contexts/currentFan.context";
+import { useContext } from "react"
+import { FanclubsContext } from "../contexts/fanclubs.context"
+import { CurrentFanContext } from "../contexts/currentFan.context"
+import useAuraPoints from "./handle-aura-points.hook"
+import { LIKE_REPLY_TOREPLY_TO_TOPIC, UNLIKE_REPLY_TOREPLY_TO_TOPIC } from "./aura-points-values"
 
 const useLikeTopicReply = () => {
-  const { fanclubs, setFanclubs } = useContext(FanclubsContext);
-  const { currentFan } = useContext(CurrentFanContext);
+  const { fanclubs, setFanclubs } = useContext(FanclubsContext)
+  const {setAuraPoints} = useAuraPoints()
+  const { currentFan } = useContext(CurrentFanContext)
 
   const likeReply = (artistId, topicId, commentId, replyId) => {
+    let hasLiked
     setFanclubs((prevFanclubs) =>
       prevFanclubs.map((fanclub) => {
         if (fanclub.artistId === artistId) {
@@ -22,9 +26,9 @@ const useLikeTopicReply = () => {
                         ...comment,
                         comments: comment.comments.map((reply) => {
                           if (reply.id === replyId) {
-                            const hasLiked = reply.likes.some(
+                            hasLiked = reply.likes.some(
                               (like) => like.userId === currentFan.id && like.type === "FAN"
-                            );
+                            )
                             return {
                               ...reply,
                               likes: hasLiked
@@ -33,26 +37,32 @@ const useLikeTopicReply = () => {
                                       !(like.userId === currentFan.id && like.type === "FAN")
                                   ) // Rimuove il like
                                 : [...reply.likes, { userId: currentFan.id, type: "FAN" }] // Aggiunge il like
-                            };
+                            }
                           }
-                          return reply;
+                          return reply
                         })
-                      };
+                      }
                     }
-                    return comment;
+                    return comment
                   })
-                };
+                }
               }
-              return topic;
+              return topic
             })
-          };
+          }
         }
-        return fanclub;
+        return fanclub
       })
-    );
-  };
+    )
 
-  return { likeReply };
-};
+    if (hasLiked) {
+        setAuraPoints(UNLIKE_REPLY_TOREPLY_TO_TOPIC, 'UNLIKE_REPLY_TOREPLY_TO_TOPIC', artistId)
+    } else {
+        setAuraPoints(LIKE_REPLY_TOREPLY_TO_TOPIC, 'LIKE_REPLY_TOREPLY_TO_TOPIC', artistId)
+    }
+  }
 
-export default useLikeTopicReply;
+  return { likeReply }
+}
+
+export default useLikeTopicReply

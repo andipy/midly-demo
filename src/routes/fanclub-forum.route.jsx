@@ -23,7 +23,8 @@ const FanclubForumRoute = () => {
 
     //share
     const handleShare = (post) => {
-        share(post)
+        console.log(context?.id)
+        share(post, context?.id)
     }
 
     const topicWithMaxWeight = fanclub?.forum.reduce((max, topic) => 
