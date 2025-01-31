@@ -2,13 +2,12 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useContext, useState, useEffect } from 'react'
 
 import { FansContext } from '../contexts/fans.context'
-import { ModerationsContext } from '../contexts/moderations.context'
-import { CurrentArtistContext } from '../contexts/currentArtist.context'
-import { CurrentFanContext } from '../contexts/currentFan.context'
 
 import FullPageCenter from '../layout/full-page-center.layout'
 import Container from '../layout/container.layout'
 import Button from '../components/button.component'
+
+import useReportUser from '../utils/handle-report-user.hook'
 
 const UserModerationReportRoute = () => {
 
@@ -23,13 +22,23 @@ const UserModerationReportRoute = () => {
     const reported = location.state?.reported
     
     const { fans } = useContext(FansContext)
-    const { blocked, reports, setReports } = useContext(ModerationsContext)
-    const { currentArtist } = useContext(CurrentArtistContext)
-    const { currentFan } = useContext(CurrentFanContext)
+
+    const { reportUser } = useReportUser()
+
+    const handleReport = () => {
+        reportUser({
+          userId,
+          description,
+          postId,
+          commentId,
+          fanclubId,
+          artistId,
+        })
+        navigate(".", { state: { userId, reported: true } })
+      }
 
     
     const [ userFound, setUserFound] = useState()
-    
     useEffect(() => {
         const matchedFan = fans?.find((fan) => fan?.id === userId)
         setUserFound(matchedFan)
@@ -39,49 +48,6 @@ const UserModerationReportRoute = () => {
     const handleDescription = (e) => {
         e.preventDefault()
         setDescription(e.target.value)
-    }
-
-    const reportUser = () => {
-        const isUserBlocked = blocked.some(
-            (block) => block.blockedUserId === userId && block.fanclubId === fanclubId
-        )
-
-        if (pathname.includes('/artist-app/')) {
-            const newReport = {
-                reportedUserId: userId,
-                reportingUser: {
-                    id: currentArtist.id,
-                    userType: 'ARTIST'
-                },
-                description: description,
-                postId: postId,
-                commentId: commentId,
-                fanclubId: fanclubId,
-                fanclubArtistId: artistId,
-                createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0],
-                archived: isUserBlocked,
-            }
-            setReports([...reports, newReport])
-            navigate('.',{state: { userId: userId, reported: true }})
-        } else {
-            const newReport = {
-                reportedUserId: userId,
-                reportingUser: {
-                    id: currentFan.id,
-                    userType: 'FAN'
-                },
-                description: description,
-                postId: postId,
-                commentId: commentId,
-                fanclubId: fanclubId,
-                fanclubArtistId: artistId,
-                createdAt: new Date().toISOString().replace('T', ' ').replace('Z', '').split('.')[0],
-                archived: isUserBlocked,
-            }
-
-            setReports([...reports, newReport])
-            navigate('.',{state: { userId: userId, reported: true }})
-        }
     }
 
     return (
@@ -127,7 +93,7 @@ const UserModerationReportRoute = () => {
                                 disabled={false}
                                 style='fsize-xs-3 f-w-600 letter-spacing-1 bg-red-300 black border-radius-04'
                                 label='Segnala'
-                                onClick={() => reportUser()}
+                                onClick={() => handleReport()}
                             />
                             <Button
                                 disabled={false}

@@ -16,7 +16,7 @@ export const DELETE_POST_COMMENT_AS_FIRST=-9
 export const DELETE_POST_COMMENT=-5
 export const DELETE_POST_COMMENT_REPLY=-7
 export const TRY_REPORT_COMMENT=0
-export const TRY_REPORT_USER=0
+export const TRY_REPORT_USER=0 //
 export const REPORT_COMMENT_ACCEPTED=10
 export const REPORT_USER_ACCEPTED=10
 
@@ -35,7 +35,7 @@ export const UNLIKE_REPLY_TOREPLY_TO_TOPIC=-2 //
 export const UNSAVE_TOPIC=-3 //
 
 
-export const ATTEND_GROUP_CHAT_EVENT=20 
+export const ATTEND_GROUP_CHAT_EVENT=20 //
 export const ATTEND_CONCERT=3 //
 export const UNATTEND_CONCERT=-3 //
 
@@ -46,4 +46,5 @@ ATTEND_GROUP_CHAT_EVENT=20 (assegnati se l'utente ha inviato almeno 10 messaggi,
 CREATE_TOPIC=20 (assegnati solo se almeno 20 diversi utenti rispondono)
 SHARE_TOPIC=2 (una sola volta per post) 
 */
+
 

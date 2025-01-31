@@ -106,7 +106,6 @@ const ConcertCreationRoute = () => {
         const isoDate = e.target.value
         const [year, month, day] = isoDate.split('-')
         const formattedDate = `${day}-${month}-${year}`
-        console.log(formattedDate)
         e.preventDefault()
         setEventDateNotFormatted(e.target.value)
         setEventDate(formattedDate)

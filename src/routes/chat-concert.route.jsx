@@ -9,6 +9,7 @@ import Textbar from '../components/textbar.component'
 import Container from '../layout/container.layout'
 import MessageChatConcert from '../components/message-chat-concert.component'
 import FullPageCenter from '../layout/full-page-center.layout'
+import useConcertCommentHandler from '../utils/handle-concert-message.hook'
 
 const ChatConcertRoute = () => {
 
@@ -20,6 +21,8 @@ const ChatConcertRoute = () => {
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const { artists } = useContext(ArtistsContext)
+
+    const { currentComment, setCurrentComment, handleSubmitComment } = useConcertCommentHandler(artistId, id, dateId)
 
     const [concert, setConcert] = useState()
     useEffect(() =>{
@@ -66,17 +69,6 @@ const ChatConcertRoute = () => {
         }
     }
 
-    const [currentComment, setCurrentComment] = useState({
-        type: 'COMMENT',
-        userId: undefined,
-        userType: undefined,
-        content: '',
-        username: '',
-        userImage: undefined,
-        createdAt: undefined,
-        id: undefined
-    })
-
     useEffect(() => {
         pathname.includes('/artist-app') ?
             setCurrentComment(prev => ({
@@ -116,53 +108,6 @@ const ChatConcertRoute = () => {
             id: messagesNumber,
             createdAt: date,
             content: e.target.value
-        }))
-    }
-
-    const handleSubmitComment = (e) => {
-        e.preventDefault()
-        if ( currentComment.comment !== '' ) { 
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub => {
-                    if (fanclub.artistId === artistId) {
-                        return {
-                            ...fanclub,
-                            concerts: fanclub.concerts.map(c => {
-                                if (c.id === id) {
-                                    if (dateId) {
-                                        return {
-                                            ...c,
-                                            dates: c.dates.map(date => {
-                                                if (date.id === dateId) {
-                                                    return {
-                                                        ...date,
-                                                        messages: [...date.messages, currentComment]
-                                                    }
-                                                }
-                                                return date
-                                            })
-                                        };
-                                    } else {
-                                        return {
-                                            ...c,
-                                            messages: [...c.messages, currentComment]
-                                        }
-                                    }
-                                }
-                                return c
-                            })
-                        }
-                    }
-                    return fanclub
-                })
-            )
-        }
-        
-        setCurrentComment(prev => ({
-            ...prev,
-            id: undefined,
-            createdAt: undefined,
-            content: ''
         }))
     }
 
