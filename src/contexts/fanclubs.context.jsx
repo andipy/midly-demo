@@ -216,7 +216,7 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: []
         },{
-            id: 2,
+            id: 4,
             artistId: 'a2p1',
             isActive: true,
             subscribers: null,

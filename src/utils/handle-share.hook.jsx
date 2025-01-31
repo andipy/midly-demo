@@ -1,7 +1,10 @@
 import { useState } from "react"
 import Snackbar from "../components/snackbar.component"
+import useAuraPoints from "./handle-aura-points.hook"
+import { SHARE_POST } from "./aura-points-values"
 const useShare = () => {
   const [triggered, setTriggered] = useState(false)
+  const {setAuraPoints} = useAuraPoints()
   const [messageSnackbar, setMessageSnackbar] = useState("")
 
   const triggerSnackbar = (message) => {
@@ -27,6 +30,10 @@ const useShare = () => {
         })
     } else {
         navigator.clipboard.writeText(url)
+    }
+
+    if (!window.location.pathname.includes('/artist-app')) {
+      setAuraPoints(SHARE_POST, 'SHARE_POST', post.artistId)
     }
 
   }

@@ -104,7 +104,7 @@ const ModalSubscriptionFanclub = ({closeModal, fanclub, handleSubscription}) => 
                             <Button 
                                 style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2'
                                 label='Abbonati'
-                                onClick={() => {handleSubscription(); setIsExitingSettings(true)}}
+                                onClick={() => {handleSubscription('YEAR'); setIsExitingSettings(true)}}
                             />
                         </div>
                     </div>
@@ -155,7 +155,7 @@ const ModalSubscriptionFanclub = ({closeModal, fanclub, handleSubscription}) => 
                             <Button 
                                 style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2'
                                 label='Abbonati'
-                                onClick={() => {handleSubscription(); setIsExitingSettings(true)}}
+                                onClick={() => {handleSubscription('MONTH'); setIsExitingSettings(true)}}
                             />
                             
                         </div>

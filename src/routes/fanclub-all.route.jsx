@@ -78,6 +78,7 @@ const FanclubAllRoute = () => {
                             likePost={(postId) => likePost(context.id, postId)}
                             hasUserSubscribed={hasUserSubscribed}
                             handleSubscription={() => setModalSubscription(true)}
+                            artistId={context.id}
                         /> 
                     }
                     </>
@@ -90,7 +91,7 @@ const FanclubAllRoute = () => {
     </Container>
     {
         modalSubscription &&
-        <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={() => handleSubscription(context?.id)}/>
+        <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(context?.id, period)}/>
     }
     {err && 
         <FullPageCenter style='z-index-1300 bg-black-transp70'>

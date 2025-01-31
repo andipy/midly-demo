@@ -417,7 +417,7 @@ const ArtistRoute = () => {
             }
             {
                 modalSubscription &&
-                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={() => handleSubscription(artist?.id)}/>
+                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(artist?.id, period)}/>
             }
         </>
     )

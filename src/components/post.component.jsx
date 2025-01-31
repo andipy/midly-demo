@@ -16,12 +16,15 @@ import IconComments from '../images/icons/icon-comment-white.svg'
 import IconShare from '../images/icons/icon-share-white.svg'
 import IconLink from '../images/icons/icon-link.svg'
 import Container from '../layout/container.layout'
+import useAuraPoints from '../utils/handle-aura-points.hook'
+import { CLICK_POST_LINK } from '../utils/aura-points-values'
 
 const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost, likePost }) => {
 
 	const { artists } = useContext(ArtistsContext)
 	const { currentFan	} = useContext(CurrentFanContext)
 	const { currentArtist } = useContext(CurrentArtistContext)
+	const {setAuraPoints} = useAuraPoints()
 
 	const [artist, setArtist] = useState()
 	useEffect(() => {
@@ -215,10 +218,21 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 					</div>
 
 					{post.link.url &&
-						<Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-1' to={post.link.url} target='blank'>
-							<img className='avatar-20' src={IconLink} />
-							<span>{post.link.name ? post.link.name : 'Apri il link'}</span>
-						</Link>
+						<>
+						{!pathname.includes('/artist-app') &&
+							<a className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-1' href={post.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artistId)}>
+								<img className='avatar-20' src={IconLink} />
+								<span>{post.link.name ? post.link.name : 'Apri il link'}</span>
+							</a>
+						}
+						{pathname.includes('/artist-app') &&
+							<a className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-1' href={post.link.url} target='blank'>
+								<img className='avatar-20' src={IconLink} />
+								<span>{post.link.name ? post.link.name : 'Apri il link'}</span>
+							</a>
+						}
+						</>
+						
 					}
 
 					{post.comments.length > 0 ?

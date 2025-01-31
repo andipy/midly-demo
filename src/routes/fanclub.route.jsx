@@ -241,7 +241,7 @@ const Fanclub = () => {
             <Snackbar message={messageSnackbar} triggered={triggered} />
             {
                 modalSubscription &&
-                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={() => handleSubscription(context?.id)}/>
+                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(context?.id, period)}/>
             }
             
         </>

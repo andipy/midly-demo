@@ -1,34 +1,36 @@
 import { useContext, useState, useEffect } from "react"
 import { FanclubsContext } from "../contexts/fanclubs.context"
 import { CurrentFanContext } from "../contexts/currentFan.context"
+import { SUBSCRIPTION_MONTHLY, SUBSCRIPTION_YEARLY } from "./aura-points-values"
+import useAuraPoints from "./handle-aura-points.hook"
 const useFanclubSubscriptionHandler = () => {
   const { fanclubs, setFanclubs } = useContext(FanclubsContext)
   const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
   const [err, setErr] = useState(false)
-  const [isExiting, setIsExiting] = useState(false);
-
+  const [isExiting, setIsExiting] = useState(false)
+  const {setAuraPoints} = useAuraPoints()
   useEffect(() => {
     if (err) {
       const exitDelay = setTimeout(() => {
-        setIsExiting(true);
-      }, 1000);
+        setIsExiting(true)
+      }, 1000)
 
-      return () => clearTimeout(exitDelay);
+      return () => clearTimeout(exitDelay)
     }
-  }, [err]);
+  }, [err])
 
   useEffect(() => {
     if (isExiting) {
       const endDelay = setTimeout(() => {
-        setErr(false);
-        setIsExiting(false);
-      }, 400);
+        setErr(false)
+        setIsExiting(false)
+      }, 400)
 
-      return () => clearTimeout(endDelay);
+      return () => clearTimeout(endDelay)
     }
-  }, [isExiting]);
+  }, [isExiting])
 
-  const handleSubscription = (artistId) => {
+  const handleSubscription = (artistId, period) => {
     let currentDate = new Date().toISOString().split("T")[0]
     let fanclub = fanclubs.find(f => f.artistId === artistId)
     let hasUserSubscribed = currentFan.fanclubsSubscribed.some(f => f.artistId === artistId)
@@ -65,6 +67,14 @@ const useFanclubSubscriptionHandler = () => {
         fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId, createdAt: currentDate }],
         removedSubscriptions: prev.removedSubscriptions.filter(f => f.artistId !== artistId)
       }))
+
+      if (period === 'MONTH') {
+        setAuraPoints(SUBSCRIPTION_MONTHLY, 'SUBSCRIPTION_MONTHLY', artistId)
+      } else if (period === 'YEAR') {
+        setAuraPoints(SUBSCRIPTION_YEARLY, 'SUBSCRIPTION_YEARLY', artistId)
+      }
+      
+
     }
 
     setErr(false)

@@ -66,8 +66,7 @@ export const CurrentFanProvider = ({ children }) => {
         },
         whiteLabelPoints: 0,
         actions: [],
-        auraPoints: 0,
-        auraActionsLog: []
+        auraPoints: []
     })
 
     return (
