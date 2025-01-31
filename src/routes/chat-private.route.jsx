@@ -14,6 +14,10 @@ import FullPageCenter from '../layout/full-page-center.layout'
 import MessageChatPrivate from '../components/message-chat-private.component'
 import Button from '../components/button.component'
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
+import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
+import useFanclub from '../utils/get-fanclub.hooks'
+import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
+import usePrivateChatHandler from '../utils/handle-private-message.hook'
 
 const ChatPrivateRoute = () => {
     const location = useLocation()
@@ -25,42 +29,15 @@ const ChatPrivateRoute = () => {
     const { chats, setChats } = useContext(ChatsContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
 
-    const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
+    /* const [hasUserSubscribed, setHasUserSubscribed] = useState(false) */
     const [modalSubscription, setModalSubscription] = useState(false)
 
-    const [fanclub, setFanclub] = useState()
-    const fetchThisFanclub = () => {
-        const thisFanclub = fanclubs.find(elem => elem.artistId === artist.id)
-        setFanclub(thisFanclub)
-    }
+    const hasUserSubscribed = useFanclubSubscription(artist?.id)
+    
+    const fanclub = useFanclub(artist?.id)
 
-    const checkFanclubSubscription = () => {
-        let isSubscribed
-        if ( currentFan.fanclubsSubscribed.find(sub => sub.artistId === artist.id) ) {
-            isSubscribed = true
-        } else {
-            isSubscribed = false
-        }
-        setHasUserSubscribed(isSubscribed)
-    }
-
-    useEffect(() => {
-        if ( artist ) {
-            fetchThisFanclub()
-            checkFanclubSubscription()
-        }
-    }, [artist, currentFan])
-
-    const [currentMessage, setCurrentMessage] = useState({
-        type: 'MESSAGE',
-        userId: undefined,
-        userType: undefined,
-        content: '',
-        username: '',
-        userImage: undefined,
-        createdAt: undefined,
-        id: undefined
-    })
+    const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
+    const { currentMessage, setCurrentMessage, shake, submitMessage } = usePrivateChatHandler(artist?.id, pathname, hasUserSubscribed)
 
     useEffect(() => {
         pathname.includes('/artist-app') ?
@@ -95,131 +72,11 @@ const ChatPrivateRoute = () => {
         }))
     }
 
-    const [shake, setShake] = useState(false)
-    const handleSubmitMessage = (e) => {
-        e.preventDefault()
-        if (!hasUserSubscribed) {
-            setShake(true)
-            setTimeout(() => setShake(false), 500)
-            return
-        }
-        
-        if ( currentMessage.content !== '' ) { 
-            setChats(prevChats => {
-                let chat
-                if ( !pathname.includes('/artist-app/') ) {
-                    chat = prevChats.find(
-                        c => c.artistId === artist?.id && c.fanId === currentFan.id
-                    )
-                } else {
-                    chat = prevChats.find(
-                        c => c.artistId === currentArtist?.id && c.fanId === artist?.id
-                    )
-                }
-    
-                if (!chat) {
-                    return [
-                        ...prevChats,
-                        {
-                            id: prevChats.length+1,
-                            fanId: currentFan.id,
-                            artistId: artist.id,
-                            messages: [currentMessage] 
-                        }
-                    ];
-                } else {
-                    return prevChats.map((c, index) => {
-                        if (c.id === chat.id) {
-                            return {
-                                ...c,
-                                messages: [...c.messages, currentMessage]
-                            }
-                        }
-                        return chat
-                    })
-                }
-            })
-        }
-        setCurrentMessage(prev => ({
-            ...prev,
-            id: undefined,
-            createdAt: undefined,
-            content: ''
-        }))
-    }
-
-    const handleSubscription = () => {
-        let currentDate = new Date()
-        let date = currentDate.toISOString().split('T')[0]
-        if (hasUserSubscribed) {
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub =>
-                    fanclub.artistId === artist.id
-                        ? { ...fanclub, subscribers: (fanclub.subscribers || 0) - 1 }
-                        : fanclub
-                )
-            );
-            setCurrentFan(prev => ({
-                ...prev,
-                fanclubsSubscribed: prev.fanclubsSubscribed.filter(fanclub => fanclub.artistId !== artist.id),
-                removedSubscriptions: [
-                    ...prev.removedSubscriptions,
-                    { artistId: artist.id, createdAt: date }
-                ]
-            }))
-        } else {
-            if (fanclub?.maxSubscribers <= fanclub?.subscribers && fanclub?.maxSubscribers) {
-                setErr(true)
-                return
-            } else {
-                setFanclubs(prevFanclubs =>
-                    prevFanclubs.map(fanclub =>
-                        fanclub.artistId === artist.id
-                            ? { ...fanclub, subscribers: (fanclub.subscribers || 0) + 1 }
-                            : fanclub
-                    )
-                )
-                setCurrentFan(prev => ({
-                    ...prev,
-                    fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId: artist.id, createdAt: date }],
-                    removedSubscriptions: prev.removedSubscriptions.filter(fanclub => fanclub.artistId !== artist.id)
-                }))
-            }  
-        }
-
-        
-    }
-    const [err, setErr] = useState(false)
-    const [isExitingErr, setIsExitingErr] = useState(false)
-
-    useEffect(() => {
-        if (err) {
-            const exitDelay = setTimeout(() => {
-                setIsExitingErr(true)
-            }, 1000)
-
-            return () => clearTimeout(exitDelay)
-        }
-    }, [err])
-
-    useEffect(() => {
-        if (isExitingErr) {
-            const endDelay = setTimeout(() => {
-                setErr(false)
-                setIsExitingErr(false)
-            }, 400)
-
-            return () => clearTimeout(endDelay)
-        }
-    }, [isExitingErr])
-
-    
-
 
   return (
     <div className='position-relative'>
         {
-            !hasUserSubscribed &&
+            !hasUserSubscribed && 
             <FullPageCenter style={'z-index-1000'}>
                 <div className='position-absolute-x-y w-80 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
                     <p className='t-align-center mb-xs-4'>Vuoi mandare messaggi privati all'artista?</p>
@@ -295,7 +152,7 @@ const ChatPrivateRoute = () => {
             <Textbar
                 currentComment={currentMessage}
                 handleCurrentComment={handleCurrentMessage}
-                handleSubmitComment={handleSubmitMessage} 
+                handleSubmitComment={submitMessage} 
                 shake={shake}
             />
         </div>
@@ -303,11 +160,11 @@ const ChatPrivateRoute = () => {
         
         {
             modalSubscription &&
-            <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={handleSubscription}/>
+            <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={() => handleSubscription(artist?.id)}/>
         }
         {err && 
             <FullPageCenter style='z-index-1100 bg-black-transp70'>
-                <Container style={`centered-popup ${isExitingErr ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+                <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
                     <div className='d-flex-column align-items-center j-c-center w-100 pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2'>
                         <h2 className='fsize-xs-2 f-w-300 t-align-center'>Il fanclub è al completo</h2>
                     </div>
