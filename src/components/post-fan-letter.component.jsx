@@ -20,7 +20,7 @@ const PostFanLetter = ({post, fan})=> {
                 <p className="fsize-xs-1 f-w-500">{fan?.username}</p>
             </div>
         </div>
-        <p className='pre-wrap mb-xs-1 grey-100 f-w-300 fsize-xs-1'>
+        <p className='pre-wrap grey-100 f-w-300 fsize-xs-1'>
             {post?.caption.length > 38 ?
             <>
                 {showCaption ?
