@@ -35,7 +35,7 @@ const FanclubLeaderboardRoute = () => {
             <div className='mb-xs-4'>
                 <div className='d-flex-row j-c-center'>
                     <div className='d-flex-column align-items-center w-33'>
-                        <div className='first-position podium-border position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${context.slug}/fanclub/aura-board/fan`, {state: { invokedModal: true, artist: context, fan: leaderboard[0] }});}}>
+                        <div className='first-position podium-border position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${context.slug}/fanclub/auraBoard/fan`, {state: { invokedModal: true, artist: context, fan: leaderboard[0] }});}}>
                             {leaderboard[0].image &&
                                 <img className='object-fit-cover position-absolute-x-y podium-border-empty-image-inner z-index-2' src={leaderboard[0].image} />
                             }
@@ -56,7 +56,7 @@ const FanclubLeaderboardRoute = () => {
 
                 <div className='d-flex-row j-c-start mt-xs-negative20'>
                     <div className='d-flex-column align-items-center w-33'>
-                        <div className='second-position podium-border position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${context.slug}/fanclub/aura-board/fan`, {state: { invokedModal: true, artist: context, fan: leaderboard[1] }});}}>
+                        <div className='second-position podium-border position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${context.slug}/fanclub/auraBoard/fan`, {state: { invokedModal: true, artist: context, fan: leaderboard[1] }});}}>
                             {leaderboard[1].image &&
                                 <img className='object-fit-cover position-absolute-x-y podium-border-empty-image-inner z-index-2' src={leaderboard[1].image} />
                             }
@@ -77,7 +77,7 @@ const FanclubLeaderboardRoute = () => {
 
                 <div className='d-flex-row j-c-end mt-xs-negative25'>
                     <div className='d-flex-column align-items-center w-33'>
-                        <div className='third-position podium-border position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${context.slug}/fanclub/aura-board/fan`, {state: { invokedModal: true, artist: context, fan: leaderboard[2] }});}}>
+                        <div className='third-position podium-border position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${context.slug}/fanclub/auraBoard/fan`, {state: { invokedModal: true, artist: context, fan: leaderboard[2] }});}}>
                             {leaderboard[2].image &&
                                 <img className='object-fit-cover position-absolute-x-y podium-border-empty-image-inner z-index-2' src={leaderboard[2].image} />
                             }
@@ -104,7 +104,7 @@ const FanclubLeaderboardRoute = () => {
                     key={index}
                     onClick={(event) => {
                         event.preventDefault(); // Evita comportamenti indesiderati
-                        navigate(`/artist/${context.slug}/fanclub/aura-board/fan`, {
+                        navigate(`/artist/${context.slug}/fanclub/auraBoard/fan`, {
                             state: { invokedModal: true, artist: context, fan: fan },
                         });
                     }}  

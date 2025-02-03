@@ -171,7 +171,7 @@ const router = createBrowserRouter([
 					path: 'letters',
 					element: <FanclubLettersRoute />
 				}, {
-					path: 'aura-board',
+					path: 'auraBoard',
 					element: <FanclubLeaderboardRoute />,
 					children: [
 						{
