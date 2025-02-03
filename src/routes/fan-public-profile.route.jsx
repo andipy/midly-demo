@@ -108,7 +108,7 @@ const FanPublicProfileRoute = () => {
 						<p className='fsize-xs-5 f-w-600'>{state.fan.username}</p>
 						<AffinityFanLevel value={selectedFan?.affinityWithCurrentUser} max={100} image={state.fan.image} />
 						<div className='d-flex-row align-items-center bg-dark-gradient border-radius-1 pl-xs-4 pr-xs-4 gap-0_25em mt-xs-2'>
-							<p className='lime-400 fsize-xs-2 f-w-500 no-shrink'>Affinità musicale:</p>
+							<p className='lime-400 fsize-xs-2 f-w-500 no-shrink'>Affinità musicale con te:</p>
 							<p className='lime-400 fsize-xs-2 f-w-500'>{Math.round(currentAffinity)}%</p>
 						</div>
 					</div>

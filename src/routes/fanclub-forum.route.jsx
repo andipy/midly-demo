@@ -49,8 +49,8 @@ const FanclubForumRoute = () => {
         empty ?
         <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
             <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Sii il primo ad aprire un topic di discussione nel fanclub di {context?.artistName}</p>
-                <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Apri un topic' onClick={() => navigate('topic/creation', { state: {artist:context} })} />
+                <p className='t-align-center mb-xs-4 letter-spacing-1 grey-200 f-w-400'>Sii il primo ad aprire un topic di discussione nel fanclub di {context?.artistName}.</p>
+                <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Apri un topic' onClick={() => navigate('topic/creation', { state: {artist:context} })} />
             </div>
         </div>
         :
@@ -59,7 +59,7 @@ const FanclubForumRoute = () => {
         </div> 
     }
     
-    <Container style={'pb-xs-2'}>             
+    <Container style={'pb-xs-2 mt-xs-4'}>             
         {topicWithMaxWeight && (
             <ForumTopic 
                 key={topicWithMaxWeight.id} 
@@ -100,20 +100,20 @@ const FanclubForumRoute = () => {
         )}
 
         {fanclub?.forum
-        .filter(topic => topic.id !== topicWithMaxWeight?.id && topic.id !== artistTopicWithMaxWeight?.id)
-        .sort((a, b) => b.weight - a.weight)
-        .slice(5)
-        .map(topic => (
-            <ForumTopic 
-                key={topic.id} 
-                topic={topic} 
-                artistId={context.id}
-                like={() => likeTopic(context.id, topic.id)} 
-                save={() => saveTopic(context.id, topic.id)} 
-                share={() => handleShare(topic)} 
-                popular={false}
-            />
-        ))}
+            .filter(topic => topic.id !== topicWithMaxWeight?.id && topic.id !== artistTopicWithMaxWeight?.id)
+            .sort((a, b) => b.weight - a.weight)
+            .slice(5)
+            .map(topic => (
+                <ForumTopic 
+                    key={topic.id} 
+                    topic={topic} 
+                    artistId={context.id}
+                    like={() => likeTopic(context.id, topic.id)} 
+                    save={() => saveTopic(context.id, topic.id)} 
+                    share={() => handleShare(topic)} 
+                    popular={false}
+                />
+            ))}
     </Container>
     <Snackbar message={messageSnackbar} triggered={triggered} />
 

@@ -58,8 +58,7 @@ a {
 }
 
 .input-topic-info::placeholder {
-  color: white; 
-
+  color: rgb(194, 194, 194);
 }
 
 .input-topic-info:focus {
@@ -69,9 +68,9 @@ a {
 
 @keyframes vibrate {
   0% { transform: translateX(0); }
-  25% { transform: translateX(-3px); }
-  50% { transform: translateX(3px); }
-  75% { transform: translateX(-3px); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
   100% { transform: translateX(0); }
 }
 
@@ -1172,11 +1171,20 @@ animation: dot-loader-after 1s infinite linear;
 .border-top-dark-0_5 {
   border-top: 0.5px solid #303340;
 }
+.border-top-dark-3-0_5 {
+  border-top: 0.5px solid #4a4f62;
+}
 .border-left-dark-0_5 {
   border-left: 0.5px solid #303340;
 }
 .border-bottom-dark-0_5 {
   border-bottom: 0.5px solid #303340;
+}
+.border-bottom-dark-2-0_5 {
+  border-bottom: 0.5px solid #7c8198;
+}
+.border-bottom-dark-3-0_5 {
+  border-bottom: 0.5px solid #4a4f62;
 }
 .border-dark-3 {
   border: 3px solid var(--color-main-bg);
@@ -1219,6 +1227,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 
 /************* BORDER RADIUS *************/
+.border-radius-none {
+  border-radius: 0;
+}
 .border-radius-01 {
   border-radius: .1rem;
 }
@@ -1722,6 +1733,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .bottom-negative-12 {
   bottom: -12%;
+}
+.bottom-negative-25 {
+  bottom: -25%;
 }
 .bottom-0-pure {
   bottom: 0px;

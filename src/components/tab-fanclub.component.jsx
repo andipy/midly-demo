@@ -7,25 +7,27 @@ const TabFanclub = () => {
     
     return (
         <Carousel>
-            <div className={`${pathname.includes('dashboard')? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02`} onClick={() => {navigate('dashboard')}}> 
+            <div className={`${pathname.includes('dashboard')? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('dashboard')}}> 
                 <p className='fsize-xs-2'>Bacheca</p>
             </div>
             
-            <div className={`${pathname.includes('posts') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02`} onClick={() => {navigate('posts')}}> 
-                <p className='fsize-xs-2'>Post</p>
+            <div className={`${pathname.includes('posts') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('posts')}}> 
+                <p className='fsize-xs-2'>Post dell'artista</p>
             </div>
         
-            {/* <div className={`${pathname.includes('events') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02`} onClick={() => {navigate('events')}}> 
+            {/* <div className={`${pathname.includes('events') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('events')}}> 
                 <p className=' fsize-xs-2 '>Eventi</p>
             </div> */}
             
-            <div className={`${pathname.includes('forum') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02`} onClick={() => {navigate('forum')}}> 
+            <div className={`${pathname.includes('forum') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('forum')}}> 
                 <p className='fsize-xs-2'>Forum</p>
             </div>
+
             <div className={`${pathname.includes('letters') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('letters')}}> 
                 <p className='fsize-xs-2 no-shrink'>Fan messages</p>
             </div>  
-            <div className={`${pathname.includes('fanclub/auraBoard') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02`} onClick={() => {navigate('auraBoard')}}> 
+
+            <div className={`${pathname.includes('fanclub/auraBoard') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('auraBoard')}}> 
                 <p className='fsize-xs-2'>Auraboard</p>
             </div>       
         </Carousel>

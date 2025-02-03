@@ -5,7 +5,7 @@ import { CurrentFanContext } from '../contexts/currentFan.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { FansContext } from '../contexts/fans.context'
 
-import NavbarTopicCreation from "../components/navbar-topic-creation.component"
+import NavbarTopicCreation from '../components/navbar-topic-creation.component'
 import Button from '../components/button.component'
 import Container from '../layout/container.layout'
 import IconPicture from '../images/icons/icon-picture.svg'
@@ -42,7 +42,7 @@ const TopicCreationRoute = () => {
         
         if (selectedFile) {
             let fileType = ''
-            if (selectedFile.type.split("/")[0] === 'image') {
+            if (selectedFile.type.split('/')[0] === 'image') {
                 fileType = 'IMAGE'
                 const imageUrl = URL.createObjectURL(selectedFile)
                 setFile({
@@ -125,9 +125,9 @@ const TopicCreationRoute = () => {
         <NavbarTopicCreation artist={state?.artist} transparent={true}/>
         <Container style={'pt-xs-topbar pb-xs-appbar'}>
             <div>
-                <div className='position-relative w-100 '>
+                <div className='position-relative w-100 mb-xs-6'>
                     <textarea
-                        className='input-topic-info fsize-xs-5 f-w-800 w-100 white'
+                        className='input-topic-info fsize-xs-6 f-w-500 w-100 border-bottom-dark-2-0_5 border-radius-none white'
                         type='text'
                         placeholder='Cosa vuoi chiedere?'
                         value={topicTitle}
@@ -135,21 +135,20 @@ const TopicCreationRoute = () => {
                         maxLength={35}
                         onChange={(e) => handleTopicTitle(e)}
                     />
-                    <span className="position-absolute fsize-xs-1 grey-400 bottom-0 right-2 z-index-999">{topicTitle.length}/35</span>
-                    
+                    <span className='position-absolute fsize-xs-1 grey-400 bottom-negative-25 right-2 z-index-999'>{topicTitle.length}/35</span>
                 </div>
                 
                 <textarea
-                    className='input-topic-info fsize-xs-2 f-w-500 w-100 white'
+                    className='input-topic-info fsize-xs-3 f-w-400 w-100 border-bottom-dark-2-0_5 border-radius-none white mb-xs-10'
                     type='text'
-                    placeholder='Descrivi la richiesta'
+                    placeholder="Approfondisci il tuo punto di vista"
                     value={topicDescr}
-                    rows={4}
+                    rows={6}
                     onChange={(e) => handleTopicDescr(e)}
                 />
-                <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4 ' for='input-name'>
-                    HASHTAG
-                </label>
+
+                <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>HASHTAG</label>
+
                 <div className='d-flex-row j-c-start align-items-center gap-0_5em mt-xs-4 ml-xs-4'>
                     {
                         hashtags.map(((hashtag, index) =>

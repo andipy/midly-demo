@@ -674,9 +674,9 @@ export const FanclubsProvider = ({ children }) => {
                         type: 'ARTIST'
                     },
                     cover: undefined,
-                    title: 'Siete pronti per il nuovo tour?',
-                    description: 'Ultimi ticket disponibili, link nella sezione eventi',
-                    hashtags: ['post', 'community', 'concerto', 'topic', 'sferafanclub'],
+                    title: 'Secondo voi qual è il futuro della musica urban?',
+                    description: 'Quali suoni diventeranno main stream? Per me suoni sempre più sintetici e particolari, ma vedo anche un ritorno degli strumenti classici come il piano. Per voi?',
+                    hashtags: ['musica', 'futuro', 'gustiMusicali'],
                     likes: [
                         {userId: 1},
                         {userId: 2},
