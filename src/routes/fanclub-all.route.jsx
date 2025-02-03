@@ -1,7 +1,9 @@
 import { useState, useEffect, useContext, useRef } from 'react'
 import { useOutletContext, Outlet, useNavigate, useLocation } from 'react-router-dom'
+import ForumTopic from '../components/forum-topic.component'
 
 import { ArtistsContext } from '../contexts/artists.context'
+import { FansContext } from '../contexts/fans.context'
 
 
 import FullPageCenter from '../layout/full-page-center.layout'
@@ -9,19 +11,26 @@ import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.c
 import Container from "../layout/container.layout"
 import PostConcert from "../components/post-concert.component"
 import Post from "../components/post.component"
+import Snackbar from '../components/snackbar.component'
+import PostFanLetter from '../components/post-fan-letter.component'
 
 import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
 import useFanclub from '../utils/get-fanclub.hooks'
 import useConcertParticipation from '../utils/handle-event-partecipation.hooks'
 import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
 import useLikePost from '../utils/handle-like-post.hook'
+import useLikeTopic from '../utils/handle-like-topic.hook'
+import useSaveTopic from '../utils/handle-save-topic.hook'
+import useShare from '../utils/handle-share.hook'
 const FanclubAllRoute = () => {
     const {context, focusPost} = useOutletContext()
     const {artists} = useContext(ArtistsContext)
+    const {fans} = useContext(FansContext)
 
     const hasUserSubscribed = useFanclubSubscription(context?.id)
     const fanclub = useFanclub(context?.id)
 
+    //POST EE EVENTS
     const { newParticipation } = useConcertParticipation()
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     const {likePost} = useLikePost()
@@ -38,10 +47,34 @@ const FanclubAllRoute = () => {
         setMixedPosts(sortedMixed)
     }, [fanclub])
 
+    const [forum, setForum] = useState()
+    const [letters, setLetters] = useState()
+    useEffect(() => {
+        if (fanclub) {
+            const thisForum = fanclub.forum.sort((a,b) => sortForum(a, b))
+            setForum(thisForum)
+            setLetters(fanclub.fanLetters)
+        }
+    }, [fanclub])
+
     const sortPosts = (a, b) => {
         if (a.settings.isPinned !== b.settings.isPinned) {
             return b.settings.isPinned - a.settings.isPinned
         }
+        return new Date(b.createdAt) - new Date(a.createdAt)
+    }
+
+    //TOPICS
+    const { share, messageSnackbar, triggered } = useShare()
+    const {likeTopic} = useLikeTopic()
+    const { saveTopic} = useSaveTopic()
+
+    //share
+    const handleShare = (post) => {
+        share(post, context?.id)
+    }
+
+    const sortForum = (a,b) => {
         return new Date(b.createdAt) - new Date(a.createdAt)
     }
 
@@ -50,7 +83,170 @@ const FanclubAllRoute = () => {
   return (
     <div>
         <Container style={'pb-xs-2 mt-xs-4'}>
+
+        {/*  primo post */}
         {
+            (() => {
+                const firstPost = mixedPosts?.filter(item => item.type !== 'CONCERT' && item.type !== 'TOUR')[0];
+        
+                return firstPost ? (
+                    <Post
+                        key={firstPost.id}
+                        post={firstPost}
+                        focusPost={focusPost}
+                        likePost={(postId) => likePost(context.id, postId)}
+                        hasUserSubscribed={hasUserSubscribed}
+                        handleSubscription={() => setModalSubscription(true)}
+                        artistId={context.id}
+                    />
+                ) : null;
+            })()
+        }
+        <div className='border-top-dark-0_5 w-100vw image-wrapper'></div>
+        {/* primo topic */}
+        {
+            forum &&
+            (() => {
+                const firstTopic = forum[0] 
+        
+                return firstTopic ? (
+                    <ForumTopic 
+                        key={firstTopic.id} 
+                        topic={firstTopic} 
+                        artistId={context.id}
+                        like={() => likeTopic(context.id, firstTopic.id)} 
+                        save={() => saveTopic(context.id, firstTopic.id)} 
+                        share={() => handleShare(firstTopic)} 
+                        popular={false}
+                    />
+                ) : null;
+            })()
+        }
+        <div className='mb-xs-4'></div>
+        {/* 4 letters */}
+        {
+            (() => {
+                const lettersFirst = letters?.slice(0, Math.min(4, letters.length))
+        
+                return lettersFirst ? (
+                    <div className="d-flex-row j-c-space-between align-items-start w-100 gap-0_5em">
+                        <div className="d-flex-column j-c-start align-items-start">
+                            {lettersFirst?.filter((_, index) => index % 2 === 0).map(post => {
+                                const fan = fans?.find(fan => fan?.id === post?.userId)
+                                return (
+                                    <PostFanLetter post={post} fan={fan} /> 
+                                )
+                            })}
+                        </div>
+                        <div className="d-flex-column j-c-start align-items-end">
+                            {lettersFirst?.filter((_, index) => index % 2 !== 0).map(post => {
+                                const fan = fans?.find(fan => fan?.id === post?.userId)
+                                return (
+                                    <PostFanLetter post={post} fan={fan} /> 
+                                )
+                            })}
+                        </div>
+
+                    </div>
+                ) : null;
+            })()
+        }
+        <div className='mb-xs-4'></div>
+        {/* secondo post */}
+        {
+            (() => {
+                const secondPost = mixedPosts?.filter(item => item.type !== 'CONCERT' && item.type !== 'TOUR')[1]
+        
+                return secondPost ? (
+                    <Post
+                        key={secondPost.id}
+                        post={secondPost}
+                        focusPost={focusPost}
+                        likePost={(postId) => likePost(context.id, postId)}
+                        hasUserSubscribed={hasUserSubscribed}
+                        handleSubscription={() => setModalSubscription(true)}
+                        artistId={context.id}
+                    />
+                ) : null;
+            })()
+        }
+        <div className='border-top-dark-0_5 w-100vw image-wrapper'></div>
+        {/* secondo topic */}
+        {
+            forum &&
+            (() => {
+                const secondTopic = forum[1] 
+
+                return secondTopic ? (
+                    <ForumTopic 
+                        key={secondTopic.id} 
+                        topic={secondTopic} 
+                        artistId={context.id}
+                        like={() => likeTopic(context.id, secondTopic.id)} 
+                        save={() => saveTopic(context.id, secondTopic.id)} 
+                        share={() => handleShare(secondTopic)} 
+                        popular={false}
+                    />
+                ) : null;
+            })()
+        }
+        <div className='mb-xs-4'></div>
+        {/* altre 4 letters */}
+        {
+            letters?.length > 4 &&
+            (() => {
+                const lettersSecond = letters?.slice(4, Math.min(8, letters.length))
+
+                return lettersSecond ? (
+                    <div className="d-flex-row j-c-space-between align-items-start w-100 gap-0_5em">
+                        <div className="d-flex-column j-c-start align-items-start">
+                            {lettersSecond?.filter((_, index) => index % 2 === 0).map(post => {
+                                const fan = fans?.find(fan => fan?.id === post?.userId)
+                                return (
+                                    <PostFanLetter post={post} fan={fan} /> 
+                                )
+                            })}
+                        </div>
+                        <div className="d-flex-column j-c-start align-items-end">
+                            {lettersSecond?.filter((_, index) => index % 2 !== 0).map(post => {
+                                const fan = fans?.find(fan => fan?.id === post?.userId)
+                                return (
+                                    <PostFanLetter post={post} fan={fan} /> 
+                                )
+                            })}
+                        </div>
+
+                    </div>
+                ) : null;
+            })()
+        }
+        <div className='mb-xs-4'></div>
+        {/* Altri post */}
+        {
+            mixedPosts?.filter(item => item.type !== 'CONCERT' && item.type !== 'TOUR').length > 2 &&
+            mixedPosts
+            .filter(item => item.type !== 'CONCERT' && item.type !== 'TOUR')
+            .slice(2)
+            .map(item => {
+                return (
+                    <>
+                    {
+                        <Post
+                            key={item.id}
+                            post={item}
+                            focusPost={focusPost}
+                            likePost={(postId) => likePost(context.id, postId)}
+                            hasUserSubscribed={hasUserSubscribed}
+                            handleSubscription={() => setModalSubscription(true)}
+                            artistId={context.id}
+                        /> 
+                    }
+                    </>
+                    
+                )
+            })
+        }
+        {/* {
             mixedPosts.map(item => {
             if (item.type === 'CONCERT' || item.type === 'TOUR' ) {
                 
@@ -58,16 +254,16 @@ const FanclubAllRoute = () => {
                     <>
                     {   
                         <>
-                        {/* <div>
+                        <div>
 
-                        </div> */}
-                        {/* <PostConcert 
+                        </div>
+                        <PostConcert 
                             concert={item}
                             newPartecipation={(concertId) => newParticipation(context.id, concertId)}
                             hasUserSubscribed={hasUserSubscribed}
                             handleSubscription={() => setModalSubscription(true)}
                             slug={context.slug}
-                        /> */}
+                        />
                         </>  
                     }
                     </>  
@@ -91,7 +287,7 @@ const FanclubAllRoute = () => {
                 )
             }
             })
-        }
+        } */}
     
     </Container>
     {
@@ -107,6 +303,7 @@ const FanclubAllRoute = () => {
             </Container>
         </FullPageCenter>
     }
+    <Snackbar message={messageSnackbar} triggered={triggered} />
     </div>
   )
 }

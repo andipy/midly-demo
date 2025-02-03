@@ -6,11 +6,11 @@ const PostFanLetter = ({post, fan})=> {
         <div className="border-radius-08 w-100 d-flex-row j-c-center align-items-center position-relative">
             {
                 post?.media.type === 'IMAGE' &&
-                <img className="object-fit-contain w-100 border-radius-08 mt-xs-8" src={post?.media.url}/>
+                <img className="object-fit-contain w-100 border-radius-08 mt-xs-4" src={post?.media.url}/>
             }
             {
                 post?.media.type === 'VIDEO' &&
-                <video className="object-fit-contain w-100 border-radius-08 mt-xs-8"autoPlay playsInline loop muted={true} >
+                <video className="object-fit-contain w-100 border-radius-08 mt-xs-4"autoPlay playsInline loop muted={true} >
                     <source src={post?.media.url} type='video/mp4' />
                 </video>
             }

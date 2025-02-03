@@ -216,6 +216,9 @@ const router = createBrowserRouter([
 		path: '/artist/:artistSlug/fanclub/forum/topic/details',
 		element: <TopicDetailsRoute />,
 	},{
+		path: '/artist/:artistSlug/fanclub/dashboard/topic/details',
+		element: <TopicDetailsRoute />,
+	},{
 		path: '/artist/:artistSlug/fanclub/forum/topic/creation',
 		element: <TopicCreationRoute />,
 		children: [

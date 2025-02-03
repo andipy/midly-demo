@@ -15,7 +15,7 @@ const useLikePost = () => {
   const { setAuraPoints } = useAuraPoints()
 
   const likePost = (artistId, postId) => {
-    let hasLiked;
+    let hasLiked
     if ( pathname.includes('/artist-app') ) {
         setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub => {
