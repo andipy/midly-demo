@@ -80,7 +80,7 @@ const ChatPrivateRoute = () => {
             <FullPageCenter style={'z-index-1000'}>
                 <div className='position-absolute-x-y w-80 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
                     <p className='t-align-center mb-xs-4'>Vuoi mandare messaggi privati all'artista?</p>
-                    <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={setModalSubscription} />
+                    <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2 ${shake ? 'vibrate' : ''}`} label='Abbonati' onClick={setModalSubscription} />
                 </div>
             </FullPageCenter>
             
@@ -153,7 +153,7 @@ const ChatPrivateRoute = () => {
                 currentComment={currentMessage}
                 handleCurrentComment={handleCurrentMessage}
                 handleSubmitComment={submitMessage} 
-                shake={shake}
+                /* shake={shake} */
             />
         </div>
 
