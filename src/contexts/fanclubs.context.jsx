@@ -38,14 +38,14 @@ export const FanclubsProvider = ({ children }) => {
             id: 2,
             artistId: 'a3p8',
             isActive: true,
-            subscribers: 2, /* da rimettere null */
-            name: null,
-            description: null,
-            pricing: null,
+            subscribers: 0,
+            name: 'Fanclub di THASUP',
+            description: 'Solo per i superfan di Davide, nuova musica fuori presto!',
+            pricing: '3.99',
             cover: {
-                id: undefined,
-                url: undefined,
-                type: undefined
+                id: 1,
+                url: require('../images/pictures/thasup-fanclub-cover.jpeg'),
+                type: 'IMAGE'
             },
             maxSubscribers: null,
             firstName: null,
@@ -58,136 +58,91 @@ export const FanclubsProvider = ({ children }) => {
             province: null,
             beneficiary: null,
             iban: null,
-            posts: [],
-            concerts: [],
-            forum: [
+            posts: [
                 {
+                    artistId: 'a3p8',
+                    caption: 'Spoiler del prossimo branO?',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2024-12-23T09:22:23.542Z",
                     id: 1,
-                    userImage: require('../images/pictures/current-fan.jpg'),
-                    userName: 'imTheKing',
-                    publisher: {
-                        id: 1,
-                        type: 'FAN'
-                    },
-                    cover: require('../images/pictures/thasup-album-cover.jpeg'),
-                    title: 'Quanto dista San Siro da Roma?',
-                    description: 'Devo venire in auto con quattro amici se qualcuno volesse aggiungersi abbiamo 5 posti',
-                    hashtags: ['post', 'community', 'concerto', 'posteggi', 'vario', 'topic', 'sferafanclub'],
-                    likes: [],
-                    comments: [],
-                    saved: [],
-                    weight: 9,
-                    commentsCount:0,
-                    createdAt: '2025-01-24'
-
-                },{
-                    id: 2,
-                    userImage: require('../images/pictures/current-fan.jpg'),
-                    userName: 'imTheKing',
-                    publisher: {
-                        id: 1,
-                        type: 'FAN'
-                    },
-                    cover: require('../images/pictures/thasup-album-cover.jpeg'),
-                    title: 'Secondo voi quando esce?',
-                    description: 'Il disco nuovooooo',
-                    hashtags: ['post', 'community', 'concerto'],
-                    likes: [],
-                    comments: [],
-                    saved: [],
-                    weight: 9,
-                    commentsCount:0,
-                    createdAt: '2025-01-24'
-
-                }, {
-                    id: 3,
-                    userImage: require('../images/pictures/thasup.jpg'),
-                    userName: 'thasup',
+                    likes: [
+                        {userId: 1},
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6}
+                    ],
+                    link: {name: '', url: ''},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/thasup-post-1.jpg'),
+                        }
+                    ],
+                    mode: 'PUBLISHED',
                     publisher: {
                         id: 'a3p8',
                         type: 'ARTIST'
                     },
-                    cover: require('../images/pictures/thasup-album-cover.jpeg'),
-                    title: 'Avete comprato i blietti per il tour?',
-                    description: 'Stanno per finire!!',
-                    hashtags: ['post', 'community', 'concerto'],
-                    likes: [],
-                    comments: [],
-                    saved: [],
-                    weight: 10,
-                    commentsCount:0,
-                    createdAt: '2025-01-24'
-
-                },  {
-                    id: 4,
-                    userImage: require('../images/pictures/thasup.jpg'),
-                    userName: 'thasup',
-                    publisher: {
-                        id: 'a3p8',
-                        type: 'ARTIST'
+                    settings: {
+                        isPinned: false,
+                        isPrivate: true
                     },
-                    cover: require('../images/pictures/thasup-album-cover.jpeg'),
-                    title: 'Altra domanda artista peso minore',
-                    description: 'Prova di lunghezza della domanda voglio farla molto lunga di modo che superi le tre righe quando viene stampata nella home del forum',
-                    hashtags: ['post', 'community', 'concerto'],
-                    likes: [],
-                    comments: [],
-                    saved: [],
-                    weight: 6,
-                    commentsCount:0,
-                    createdAt: '2025-01-24'
+                    share: {
+                        shareCount: 20,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
 
                 },
-
-            ],
-            leaderboard: [
                 {
-                    userId: 2,
-                    image: require('../images/pictures/ai_01.png'),
-                    username: 'chiara',
-                    auraPoints: 3689,
-                },{
-                    userId: 1,
-                    image: require('../images/pictures/current-fan.jpg'),
-                    username: 'imtheKING',
-                    auraPoints: 0,
-                },{
-                    userId: 6,
-                    image: require('../images/pictures/ai_03.png'),
-                    username: 'Giulietta',
-                    auraPoints: 2907,
-                },{
-                    userId: 5,
-                    image: require('../images/pictures/ai_04.png'),
-                    username: 'ginger04',
-                    auraPoints: 1984,
-                },{
-                    userId: 4,
-                    image: require('../images/pictures/ai_05.png'),
-                    username: 'marco_09',
-                    auraPoints: 1888,
-                },{
-                    userId: 9,
-                    image: require('../images/pictures/ai_06.png'),
-                    username: 'francesca.david',
-                    auraPoints: 1467,
-                },{
-                    userId: 8,
-                    image: require('../images/pictures/ai_07.png'),
-                    username: 'davide00',
-                    auraPoints: 1107,
-                },{
-                    userId: 3,
-                    image: require('../images/pictures/ai_08.png'),
-                    username: 'bob16',
-                    auraPoints: 467,
-                },{
-                    userId: 7,
-                    image: require('../images/pictures/ai_09.png'),
-                    username: 'kevin.alfa.il.migliore',
-                    auraPoints: 399,
-                }
+                    artistId: 'a3p8',
+                    caption: 'CASA GOSPEL fuori ora!?!?',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-02-02T09:22:23.542Z",
+                    id: 2,
+                    likes: [
+                        {userId: 1},
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6}
+                    ],
+                    link: {name: '', url: ''},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/thasup-post-2.jpeg'),
+                        }
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'a3p8',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: true,
+                        isPrivate: false
+                    },
+                    share: {
+                        shareCount: 20,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
+
+                },
             ],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
             fanLetters: []
         },{
             id: 3,

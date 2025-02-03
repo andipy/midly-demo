@@ -6,6 +6,8 @@ import ForumTopic from "../components/forum-topic.component"
 import Container from "../layout/container.layout"
 import IconPlus from '../images/icons/icon-plus-black.svg'
 import Snackbar from "../components/snackbar.component"
+import FullPageCenter from "../layout/full-page-center.layout"
+import Button from "../components/button.component"
 
 import useFanclub from '../utils/get-fanclub.hooks'
 import useShare from '../utils/handle-share.hook'
@@ -20,6 +22,13 @@ const FanclubForumRoute = () => {
     const { share, messageSnackbar, triggered } = useShare()
     const {likeTopic} = useLikeTopic()
     const { saveTopic} = useSaveTopic()
+
+    const [empty, setEmpty] = useState(true)
+    useEffect(() => {
+        if (fanclub?.forum.length > 0) {
+            setEmpty(false)
+        }
+    }, [fanclub])
 
     //share
     const handleShare = (post) => {
@@ -36,9 +45,20 @@ const FanclubForumRoute = () => {
 
   return (
     <>
-    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => navigate('topic/creation', { state: {artist:context} })}>
-        <img className='' src={IconPlus}/>
-    </div> 
+    {
+        empty ?
+        <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
+            <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
+                <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Sii il primo ad aprire un topic di discussione nel fanclub di {context?.artistName}</p>
+                <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Apri un topic' onClick={() => navigate('topic/creation', { state: {artist:context} })} />
+            </div>
+        </div>
+        :
+        <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => navigate('topic/creation', { state: {artist:context} })}>
+            <img className='' src={IconPlus}/>
+        </div> 
+    }
+    
     <Container style={'pb-xs-2'}>             
         {topicWithMaxWeight && (
             <ForumTopic 

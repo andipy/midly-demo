@@ -1,10 +1,12 @@
 import { useContext } from "react"
 import { FanclubsContext } from "../contexts/fanclubs.context"
 import { CurrentFanContext } from "../contexts/currentFan.context"
+import { FansContext } from "../contexts/fans.context"
 
 const useAuraPoints = () => {
   const { fanclubs, setFanclubs } = useContext(FanclubsContext)
   const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+  const { fans} = useContext(FansContext)
 
   const setAuraPoints = (value, type, artistId) => {
     console.log(value, type, artistId)
@@ -59,25 +61,26 @@ const useAuraPoints = () => {
         })
 
         setFanclubs(prevFanclubs => {
-            
-            const updatedFanclubs = prevFanclubs.map(f =>
-              f.artistId === artistId
-                ? {
-                    ...f,
-                    leaderboard: f.leaderboard.map(user => {
-                      if (user.userId === currentFan.id) {
-                        const updatedUser = { ...user, auraPoints: (user.auraPoints || 0) + value }
-
-                        return updatedUser
-                      }
-                      return user
-                    })
+          return prevFanclubs.map(f => {
+              if (f.artistId === artistId) {
+                  const userExists = f.leaderboard.some(user => user.userId === currentFan.id)
+                  const fan = fans.find(fan => fan.id === currentFan.id)
+      
+                  const updatedLeaderboard = userExists
+                      ? f.leaderboard.map(user =>
+                          user.userId === currentFan.id
+                              ? { ...user, auraPoints: (user.auraPoints || 0) + value }
+                              : user
+                      )
+                      : [...f.leaderboard, { userId: currentFan.id, auraPoints: value, image: fan?.image, username: currentFan?.username }]
+      
+                  return {
+                      ...f,
+                      leaderboard: updatedLeaderboard
                   }
-                : f
-            )
-          
-          
-            return updatedFanclubs
+              }
+              return f
+          })
         })
 
     }

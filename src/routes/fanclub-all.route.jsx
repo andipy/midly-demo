@@ -22,6 +22,7 @@ import useLikePost from '../utils/handle-like-post.hook'
 import useLikeTopic from '../utils/handle-like-topic.hook'
 import useSaveTopic from '../utils/handle-save-topic.hook'
 import useShare from '../utils/handle-share.hook'
+import Button from '../components/button.component'
 const FanclubAllRoute = () => {
     const {context, focusPost} = useOutletContext()
     const {artists} = useContext(ArtistsContext)
@@ -79,9 +80,28 @@ const FanclubAllRoute = () => {
     }
 
     const [modalSubscription, setModalSubscription] = useState(false)
+
+    const [empty, setEmpty] = useState(true)
+    useEffect(() => {
+        if (fanclub?.posts.length > 0 || fanclub?.forum.length > 0 || fanclub?.fanLetters.length > 0) {
+            setEmpty(false)
+        }
+    }, [fanclub])
     
   return (
     <div>
+        {
+            empty &&
+            <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
+                <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
+                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Il fanclub di {context?.artistName} è attivo, rimani sintonizzato per vedere i suoi contenuti.</p>
+                    {
+                        hasUserSubscribed &&
+                        <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Abbonati' onClick={() => setModalSubscription(true)} />
+                    }
+                </div>
+            </div>
+        }
         <Container style={'pb-xs-2 mt-xs-4'}>
 
         {/*  primo post */}

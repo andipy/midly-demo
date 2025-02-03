@@ -4,8 +4,7 @@ import { CurrentFanContext } from "../contexts/currentFan.context"
 import useFanclub from "../utils/get-fanclub.hooks"
 import CardLeaderboardFan from "../components/card-leaderboard-fan.component"
 import IconPoints from '../images/icons/icon-points.svg'
-import CardLeaderboardYourPosition from "../components/card-leaderboard-your-position.component"
-
+import Button from "../components/button.component"
 const FanclubLeaderboardRoute = () => {
     const {context} = useOutletContext()
     const navigate = useNavigate()
@@ -28,9 +27,24 @@ const FanclubLeaderboardRoute = () => {
             return usernameNoEmail
         }
     }
+    const [empty, setEmpty] = useState(true)
+    useEffect(() => {
+        if (fanclub?.leaderboard.length > 0) {
+            setEmpty(false)
+        }
+    }, [fanclub])
   return (
     <>
-        {leaderboard &&
+        {
+            empty &&
+            <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
+                <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
+                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Più interagisci con il fanclub di {context?.artistName}, più verrai riconosciuto come un suo Super fan.</p>
+                </div>
+            </div>
+            
+        }
+        {leaderboard && leaderboard.length > 0 &&
             <section className='mt-xs-4'>
             <div className='mb-xs-4'>
                 <div className='d-flex-row j-c-center'>
@@ -53,8 +67,9 @@ const FanclubLeaderboardRoute = () => {
                         </div>
                     </div>
                 </div>
-
-                <div className='d-flex-row j-c-start mt-xs-negative20'>
+                {
+                    leaderboard.length > 1 &&
+                    <div className='d-flex-row j-c-start mt-xs-negative20'>
                     <div className='d-flex-column align-items-center w-33'>
                         <div className='second-position podium-border position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${context.slug}/fanclub/auraBoard/fan`, {state: { invokedModal: true, artist: context, fan: leaderboard[1] }});}}>
                             {leaderboard[1].image &&
@@ -73,9 +88,12 @@ const FanclubLeaderboardRoute = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div className='d-flex-row j-c-end mt-xs-negative25'>
+                    </div>
+                }
+                
+                {
+                    leaderboard.length > 2 &&
+                    <div className='d-flex-row j-c-end mt-xs-negative25'>
                     <div className='d-flex-column align-items-center w-33'>
                         <div className='third-position podium-border position-relative' onClick={(event) => {event.preventDefault(); navigate(`/artist/${context.slug}/fanclub/auraBoard/fan`, {state: { invokedModal: true, artist: context, fan: leaderboard[2] }});}}>
                             {leaderboard[2].image &&
@@ -94,7 +112,9 @@ const FanclubLeaderboardRoute = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
+                }
+                
             </div>
 
             {leaderboard.map((fan, index) => index >= 3 &&

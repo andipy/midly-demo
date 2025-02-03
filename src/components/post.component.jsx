@@ -113,7 +113,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 		<Container>
 
 			{!post.settings.isPrivate && !pathname.includes('/artist-app/') &&
-				<p className='fsize-xs-2 grey-200 mb-xs-2 gold'>Contenuto gratuito</p>
+				<p className='fsize-xs-2 grey-200 mb-xs-2 gold mt-xs-2'>Contenuto gratuito</p>
 			}
 
 			
