@@ -14,7 +14,7 @@ import IconThunderActive from '../images/icons/icon-thunder-active.svg'
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import Container from '../layout/container.layout'
 
-const ForumTopic = ({key, topic, artistId, like, save, share, popular}) => {
+const ForumTopic = ({ key, topic, artistId, like, save, share, popular }) => {
     const navigate = useNavigate()
     const { currentFan} = useContext(CurrentFanContext)
     const [liked, setLiked] = useState(false)
@@ -72,7 +72,7 @@ const ForumTopic = ({key, topic, artistId, like, save, share, popular}) => {
     }
 
     return (
-        <div className='image-wrapper pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 border-top-dark-3-0_5'>
+        <div className='image-wrapper pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 bg-dark-gradient mb-xs-2'>
             <Container>
                 {popular &&
                     <p className='fsize-xs-1 f-w-500 blue-bright-600 mb-xs-4'>Più popolare</p>
@@ -92,8 +92,8 @@ const ForumTopic = ({key, topic, artistId, like, save, share, popular}) => {
                     </div>
                     <div className='d-flex-row j-c-space-between align-items-center w-100 gap-1em' onClick={() => navigate('topic/details', {state: {topic: topic, artistId: artistId}})}>
                         <div className='d-flex-column w-100'>
-                            <h1 className='fsize-xs-6 f-w-600'>{topic?.title}</h1>
-                            <p className='fsize-xs-3 f-w-400 grey-100 mt-xs-2'>
+                            <h1 className='fsize-xs-5 f-w-800'>{topic?.title}</h1>
+                            <p className='fsize-xs-2 f-w-300 mt-xs-4'>
                                 {topic?.description.length > 100 ?
                                 <>
                                     {showDescription ?

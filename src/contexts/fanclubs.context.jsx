@@ -228,7 +228,7 @@ export const FanclubsProvider = ({ children }) => {
                             userId: 1,
                             userType: "FAN",
                             userImage: require('../images/pictures/ai_01.png'),
-                            username: "imtheKING",
+                            username: "chiara",
                             createdAt: "2025-01-27",
                             comment: "Spaccato!!",
                             repliedUsername: 'Sfera Ebbasta',
@@ -685,7 +685,7 @@ export const FanclubsProvider = ({ children }) => {
                     ],
                     comments: [
                         {
-                            comment: 'Non vedo l oraaaa',
+                            comment: 'Bella domanda, secondo me un ritorno alle origini, suoni semplici, strumenti classici e poi.... boom, suoni devastanti nel mezzo',
                             comments: [],
                             createdAt: '2025-01-27',
                             id: 1,
@@ -694,7 +694,7 @@ export const FanclubsProvider = ({ children }) => {
                             userId: 1,
                             userImage: require('../images/pictures/ai_01.png'),
                             userType: 'FAN',
-                            username: 'imtheKING'
+                            username: 'chiara'
                         }
                     ],
                     saved: [],
@@ -706,7 +706,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     id: 1,
                     userImage: require('../images/pictures/ai_01.png'),
-                    userName: 'imtheKING',
+                    userName: 'chiara',
                     publisher: {
                         id: 1,
                         type: 'FAN'

@@ -1,26 +1,27 @@
-import { useEffect, useState, useContext, useRef } from "react"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useEffect, useState, useContext, useRef } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 
-import { FanclubsContext } from "../contexts/fanclubs.context"
-import { CurrentFanContext } from "../contexts/currentFan.context"
+import { FanclubsContext } from '../contexts/fanclubs.context'
+import { CurrentFanContext } from '../contexts/currentFan.context'
 
-import NavbarBackOnly from "../components/navbar-back-only.component"
-import Container from "../layout/container.layout"
-import TextbarComments from "../components/textbar-comments.component"
-import TopicMain from "../components/topic-main.component"
-import TopicComment from "../components/topic-comment.component"
-import Snackbar from "../components/snackbar.component"
+import NavbarBackOnly from '../components/navbar-back-only.component'
+import Container from '../layout/container.layout'
+import TextbarComments from '../components/textbar-comments.component'
+import TopicMain from '../components/topic-main.component'
+import TopicComment from '../components/topic-comment.component'
+import Snackbar from '../components/snackbar.component'
 
-import useFanclub from "../utils/get-fanclub.hooks"
-import useTopic from "../utils/get-fanclub-topic.hook"
-import useArtist from "../utils/get-artist.hook"
-import useFan from "../utils/get-fan.hook"
-import useCommentTopicHandler from "../utils/handle-comment-topic"
-import useLikeTopic from "../utils/handle-like-topic.hook"
-import useSaveTopic from "../utils/handle-save-topic.hook"
-import useShare from "../utils/handle-share.hook"
-import useLikeTopicComment from "../utils/handle-like-topic-comment.hook"
-import useLikeTopicReply from "../utils/handle-like-topic-reply.hook"
+import useFanclub from '../utils/get-fanclub.hooks'
+import useTopic from '../utils/get-fanclub-topic.hook'
+import useArtist from '../utils/get-artist.hook'
+import useFan from '../utils/get-fan.hook'
+import useCommentTopicHandler from '../utils/handle-comment-topic'
+import useLikeTopic from '../utils/handle-like-topic.hook'
+import useSaveTopic from '../utils/handle-save-topic.hook'
+import useShare from '../utils/handle-share.hook'
+import useLikeTopicComment from '../utils/handle-like-topic-comment.hook'
+import useLikeTopicReply from '../utils/handle-like-topic-reply.hook'
+
 const TopicDetailsRoute = () => {
     const navigate = useNavigate()
     const { pathname, state } = useLocation()
@@ -129,26 +130,27 @@ const TopicDetailsRoute = () => {
   return (
     <>
         <NavbarBackOnly onClick={() => navigate(`/artist/${artist.slug}/fanclub/forum`, { state: {artist:artist, tab: 'FORUM'} })} />
-        {scrolled && (
-            <div className="position-fixed w-100 bg-dark-gradient z-index-10 pb-xs-4 pt-xs-4 navbar-secondary-slide">
-                <div className="container d-flex-column align-items-start j-c-start">
-                    <h1 className="fsize-xs-4 f-w-800 white">{topic?.title}</h1>
-                    <p className="fsize-xs-1 f-w-300 grey-400">{topic?.likes.length} like - {topic?.commentsCount} commenti</p>
+        
+        {scrolled &&
+            <div className='position-fixed w-100 bg-dark-gradient z-index-10 pb-xs-4 pt-xs-4 navbar-secondary-slide'>
+                <div className='container d-flex-column align-items-start j-c-start'>
+                    <h1 className='fsize-xs-4 f-w-700 white'>{topic?.title}</h1>
+                    <p className='fsize-xs-1 f-w-300 grey-400'>{topic?.likes.length} like - {topic?.commentsCount} commenti</p>
                 </div>
             </div>
-        )}
+        }
+
         <Container style={'pb-xs-appbar'}>
             <TopicMain topic={topic} liked={liked} likeTopic={() => likeTopic(artist.id, topic.id)} saved={saved} saveTopic={() => saveTopic(artist.id, topic.id)} shareTopic={() => handleShare(topic)}  spotCommentToReply={spotCommentToReply}/>
-            {
-                topic?.comments.map(c => {
+            {topic?.comments.map(c => {
                     const likedComment = c.likes.find(l => l.userId === currentFan.id && l.type === 'FAN')
                     return (
                         <TopicComment comment={c} topic={topic} likedComment={likedComment} likeComment={(commentId) => likeComment(artist.id, topic.id, commentId)} commentInFocus={commentInFocus} spotCommentToReply={spotCommentToReply} likeReply={(commentId, replyId) => likeReply(artist.id, topic.id, commentId, replyId)}/>
                     )
                 })
             }
-            
         </Container>
+
         <div className='position-fixed bg-dark-soft bottom-0 w-100 z-index-5 border-radius-top-08 shadow-dark-750'>
             <TextbarComments
                 handleCurrentComment={handleCurrentComment}
@@ -160,6 +162,7 @@ const TopicDetailsRoute = () => {
                 replyingUser={replyingUser}
             />
         </div>
+        
         <Snackbar message={messageSnackbar} triggered={triggered} />
     </>
   )
