@@ -172,7 +172,13 @@ const router = createBrowserRouter([
 					element: <FanclubLettersRoute />
 				}, {
 					path: 'leaderboard',
-					element: <FanclubLeaderboardRoute />
+					element: <FanclubLeaderboardRoute />,
+					children: [
+						{
+						  path: 'fan', 
+						  element: <FanPublicProfileRoute />,
+						},
+					],
 				}
 
 			]

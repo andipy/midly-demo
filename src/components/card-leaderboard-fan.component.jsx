@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 
 import IconPoints from '../images/icons/icon-points.svg'
 
-const CardLeaderboardFan = ({ fan, position, onClick }) => {
+const CardLeaderboardFan = ({ fan, position, onClick, aura }) => {
 
     const { pathname } = useLocation()
     const handleUsername = (condition, username, limit) => {
@@ -23,7 +23,13 @@ const CardLeaderboardFan = ({ fan, position, onClick }) => {
                 <div className='text-info d-flex-column'>
                     <div className='letter-spacing-1'>{handleUsername(fan, fan?.username, 18)}</div>
                     <div className='d-flex-row align-items-center letter-spacing-1'>
-                        <div className='grey-400 fsize-xs-1 letter-spacing-1'>{fan?.points} </div>
+                        {
+                            aura ?
+                            <div className='grey-400 fsize-xs-1 letter-spacing-1'>{fan?.auraPoints} </div>
+                            :
+                            <div className='grey-400 fsize-xs-1 letter-spacing-1'>{fan?.points} </div>
+                        }
+                        
                         <img className='avatar-12 ml-xs-2 mt-xs-1' src={IconPoints} alt=' points' />
                     </div>
                 </div>

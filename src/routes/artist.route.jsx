@@ -327,6 +327,7 @@ const ArtistRoute = () => {
                             artist={artist}
                         />
                     }
+                    
                 </div>
             </div>
             <Container style={''}>
