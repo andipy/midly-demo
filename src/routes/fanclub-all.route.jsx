@@ -56,14 +56,19 @@ const FanclubAllRoute = () => {
                 
                 return (
                     <>
-                    {
-                        <PostConcert 
+                    {   
+                        <>
+                        {/* <div>
+
+                        </div> */}
+                        {/* <PostConcert 
                             concert={item}
                             newPartecipation={(concertId) => newParticipation(context.id, concertId)}
                             hasUserSubscribed={hasUserSubscribed}
                             handleSubscription={() => setModalSubscription(true)}
                             slug={context.slug}
-                        />
+                        /> */}
+                        </>  
                     }
                     </>  
                 )

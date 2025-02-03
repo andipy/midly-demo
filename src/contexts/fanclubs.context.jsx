@@ -33,6 +33,7 @@ export const FanclubsProvider = ({ children }) => {
             concerts: [],
             forum: [],
             leaderboard: [],
+            fanLetters:[]
         },{
             id: 2,
             artistId: 'a3p8',
@@ -186,7 +187,8 @@ export const FanclubsProvider = ({ children }) => {
                     username: 'kevin.alfa.il.migliore',
                     auraPoints: 399,
                 }
-            ]
+            ],
+            fanLetters: []
         },{
             id: 3,
             artistId: 3,
@@ -214,7 +216,8 @@ export const FanclubsProvider = ({ children }) => {
             posts: [],
             concerts: [],
             forum: [],
-            leaderboard: []
+            leaderboard: [],
+            fanLetters:[]
         },{
             id: 4,
             artistId: 'a2p1',
@@ -817,6 +820,78 @@ export const FanclubsProvider = ({ children }) => {
                     image: require('../images/pictures/ai_09.png'),
                     username: 'kevin.alfa.il.migliore',
                     auraPoints: 399,
+                }
+            ],
+            fanLetters:[
+                {
+                    id: 1,
+                    userId: 1,
+                    media: 
+                    {
+                        url: require('../images/pictures/sfera-fan-letter-1.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Numero uno'
+                },
+                {
+                    id: 2,
+                    userId: 5,
+                    media: 
+                    {
+                        url: require('../images/pictures/sfera-fan-letter-2.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Numero uno'
+                },
+                {
+                    id: 3,
+                    userId: 3,
+                    media: 
+                    {
+                        url: require('../images/pictures/sfera-fan-letter-3.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Prova di una caption più lunga di modo che su due righe venga troncata e non venga mostrata oltre nella home letters fanclub'
+                },
+                {
+                    id: 4,
+                    userId: 6,
+                    media: 
+                    {
+                        url: require('../assets/video/sfera-fan-letter-8.mp4'),
+                        type: 'VIDEO'
+                    },
+                    caption: 'Prova video loop muto'
+                },
+                {
+                    id: 5,
+                    userId: 1,
+                    media: 
+                    {
+                        url: require('../images/pictures/sfera-fan-letter-5.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Numero uno'
+                },
+                {
+                    id: 6,
+                    userId: 1,
+                    media: 
+                    {
+                        url: require('../images/pictures/sfera-fan-letter-6.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Numero uno'
+                },
+                {
+                    id: 7,
+                    userId: 2,
+                    media: 
+                    {
+                        url: require('../images/pictures/sfera-fan-letter-7.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Numero uno'
                 }
             ]
         }

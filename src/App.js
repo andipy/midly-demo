@@ -51,6 +51,8 @@ import FanclubForumRoute from './routes/fanclub-forum.route'
 import FanclubAllRoute from './routes/fanclub-all.route'
 import FanclubPostsRoute from './routes/fanclub-posts.route'
 import FanclubEventsRoute from './routes/fanclub-events.route'
+import FanclubLettersRoute from './routes/fanclub-letters.route'
+import FanclubLeaderboardRoute from './routes/fanclub-leaderboard.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -165,6 +167,12 @@ const router = createBrowserRouter([
 				},{
 					path: 'events',
 					element: <FanclubEventsRoute />
+				}, {
+					path: 'letters',
+					element: <FanclubLettersRoute />
+				}, {
+					path: 'leaderboard',
+					element: <FanclubLeaderboardRoute />
 				}
 
 			]

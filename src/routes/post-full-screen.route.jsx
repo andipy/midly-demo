@@ -22,6 +22,15 @@ import Comment from '../components/comment.component'
 import TextbarComments from '../components/textbar-comments.component'
 import Snackbar from '../components/snackbar.component'
 
+import useSubmitComment from '../utils/handle-submit-comment.hook'
+import useLikeComment from '../utils/handle-like-comment.hook'
+import useLikeReply from '../utils/handle-like-reply-comment.hook'
+import useFanclub from '../utils/get-fanclub.hooks'
+import useModal from '../utils/handle-modal.hooks'
+import useShare from '../utils/handle-share.hook'
+import useAuraPoints from '../utils/handle-aura-points.hook'
+import { CLICK_POST_LINK } from '../utils/aura-points-values'
+import useLikePost from '../utils/handle-like-post.hook'
 const  PostFullScreenRoute = () => {
     const navigate = useNavigate()
     const { state } = useLocation()
@@ -31,6 +40,14 @@ const  PostFullScreenRoute = () => {
     const { currentFan } = useContext(CurrentFanContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { artists } = useContext(ArtistsContext)
+
+    const { handleSubmitComment } = useSubmitComment()
+    const { likeComment } = useLikeComment()
+    const { likeReply} = useLikeReply()
+    const { modalOpen, openModal, closeModal } = useModal()
+    const { share, messageSnackbar, triggered } = useShare()
+    const {setAuraPoints} = useAuraPoints()
+    const {likePost} = useLikePost()
 
     
     const [artist, setArtist] = useState()
@@ -48,28 +65,12 @@ const  PostFullScreenRoute = () => {
             fetchThisArtist()
         }
     }, [artists, state, artist])
-
-    const [thisFanclub, setThisFanclub] = useState(null)
-    const fetchThisFanclub = () => {
-        if (!fanclubs || !currentArtist) {
-            console.warn('fanclubs or currentArtist is undefined')
-            return
-        }
-    
-        const fanclub = fanclubs.find(elem => elem.artistId === state?.artist?.id)
-        setThisFanclub(fanclub)
-    }
+    const thisFanclub = useFanclub(state?.artist?.id)
     const [post, setPost] = useState({})
     const fetchThisPost = () => {
         const thisPost = thisFanclub?.posts?.find(elem => elem.id === state.id)
         setPost(thisPost)
     }
-    useEffect(() => {
-        if (fanclubs && currentArtist) {
-            fetchThisFanclub()
-        }
-       
-    }, [fanclubs, currentArtist])
     useEffect(() => {
         if (thisFanclub) {
             fetchThisPost()
@@ -100,7 +101,7 @@ const  PostFullScreenRoute = () => {
                     navigate(`/artist-app/fanclub/${postInFocus.post.id}/edit-post`, { state: { ...postInFocus.post, invokedModal: true } })
                 }
                 if ( postInFocus.action === 'SHARE_POST' ) {
-                    triggerSnackbar('Link al post copiato negli appunti')
+                    handleShare(postInFocus.post)
                 }
             }
         }, [postInFocus])
@@ -118,76 +119,65 @@ const  PostFullScreenRoute = () => {
 		}
 	}, [post])
 
-    const likePost = (id) => {
-        if ( pathname.includes('/artist-app') ) {
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub => {
-                if (fanclub.artistId === currentArtist.id) {
-                    return {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post => {
-                            if (post.id === id) {
-                                const hasLiked = post.likes.some(like => like.userId === currentArtist.id)
-                                return {
-                                    ...post,
-                                    likes: hasLiked
-                                        ? post.likes.filter(like => like.userId !== currentArtist.id) // Rimuove il like
-                                        : [...post.likes, { userId: currentArtist.id }] // Aggiunge il like
-                                }
-                            }
-                            return post
-                        })
+    // handle comment section
+    const [currentComment, setCurrentComment] = useState({
+        id: undefined,
+        userId: undefined,
+        userType: undefined,
+        userImage: undefined,
+        username: undefined,
+        createdAt: undefined,
+        comment: '',
+        likes: [],
+        comments: [],
+        repliedUsername: undefined
+    })
+    const handleCurrentComment = (e) => {
+        e.preventDefault()
+        let commentsNumber
+        let currentDate = new Date()
+        let date = currentDate.toISOString().split('T')[0]
+        fanclubs.map(fanclub => {
+            if ( fanclub.artistId === state?.artist.id ) {
+                fanclub.posts.map(post => {
+                    if ( post.id === postInFocus.id ) {
+                        commentsNumber = post?.commentsCount + 1
                     }
-                }
-                return fanclub
-            })
-        )
-        } else if (!pathname.includes('/artist-app')) {
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub => {
-                    if (fanclub.artistId === thisFanclub.artistId) {
-                        return {
-                            ...fanclub,
-                            posts: fanclub.posts.map(post => {
-                                if (post.id === id) {
-                                    const hasLiked = post.likes.some(like => like.userId === currentFan.id)
-                                    return {
-                                        ...post,
-                                        likes: hasLiked
-                                            ? post.likes.filter(like => like.userId !== currentFan.id) // Rimuove il like
-                                            : [...post.likes, { userId: currentFan.id }] // Aggiunge il like
-                                    }
-                                }
-                                return post
-                            })
-                        }
-                    }
-                    return fanclub
                 })
-            )
+            }
+        })
+
+        let replied
+        if ( commentInFocus) {
+            replied = replyingUser
         }
+
+        setCurrentComment(prev => ({
+            ...prev,
+            id: commentsNumber,
+            userId: currentFan.id,
+            userType: currentFan.type,
+            userImage: currentFan.image,
+            username: currentFan.username,
+            createdAt: date,
+            comment: e.target.value,
+            repliedUsername: replied
+        }))
     }
 
-    const [modalOpen, setModalOpen] = useState(false)
-        const inputRef = useRef(null)
-        const openComments = (id) => {
-            setModalOpen(true)
-        }
-        const closeModal = () => {
-            setModalOpen(false)
-            setPostInFocus({
-                id: undefined,
-                action: undefined,
-                post: undefined
-            })
-            setCommentInFocus(null)
-    }
+    const inputRef = useRef(null)
     const [commentInFocus, setCommentInFocus] = useState(null)
-        const spotCommentToReply = (id) => {
-            setCommentInFocus(id)
-            inputRef.current.focus()
-        }
-        const [currentComment, setCurrentComment] = useState({
+    const [replyingUser, setReplyingUser] = useState(null)
+    const spotCommentToReply = (id, username) => {
+        setReplyingUser(username)
+        setCommentInFocus(id)
+        inputRef.current.focus()
+    }
+
+    const submitComment = (e) => {
+        e.preventDefault()
+        handleSubmitComment(currentComment, postInFocus, commentInFocus, state?.artist.id)
+        setCurrentComment({
             id: undefined,
             userId: undefined,
             userType: undefined,
@@ -196,275 +186,32 @@ const  PostFullScreenRoute = () => {
             createdAt: undefined,
             comment: '',
             likes: [],
-            comments: []
+            comments: [],
+            repliedUsername: undefined
         })
-        const handleCurrentComment = (e) => {
-            e.preventDefault()
-            let commentsNumber
-            let currentDate = new Date()
-            let date = currentDate.toISOString().split('T')[0]
-            fanclubs.map(fanclub => {
-                if ( fanclub.artistId === thisFanclub.artistId ) {
-                    fanclub.posts.map(post => {
-                        if ( post.id === postInFocus.id ) {
-                            commentsNumber = post.comments.length + 1
-                        }
-                    })
-                }
-            })
-
-            if ( pathname.includes('/artist-app') ) {
-    
-            setCurrentComment(prev => ({
-                ...prev,
-                id: commentsNumber,
-                userId: currentArtist.id,
-                userType: currentArtist.type,
-                userImage: currentArtist.image,
-                username: currentArtist.artistName,
-                createdAt: date,
-                comment: e.target.value
-            }))
-        } else if (!pathname.includes('/artist-app')) {
-
-            setCurrentComment(prev => ({
-                ...prev,
-                id: commentsNumber,
-                userId: currentFan.id,
-                userType: currentFan.type,
-                userImage: currentFan.image,
-                username: currentFan.username,
-                createdAt: date,
-                comment: e.target.value
-            }))
-        }
-        }
-    
-        const handleSubmitComment = (e) => {
-            e.preventDefault()
-            if ( currentComment.comment !== '' ) {
-                if ( commentInFocus ) {
-                    setFanclubs(prevFanclubs =>
-                        prevFanclubs.map(fanclub => {
-                            if (fanclub.artistId === thisFanclub.artistId) {
-                                return {
-                                    ...fanclub,
-                                    posts: fanclub.posts.map(post => {
-                                        if (post.id === postInFocus.id) {
-                                            return {
-                                                ...post,
-                                                comments: post.comments.map(comment => {
-                                                    if (comment.id === commentInFocus) {
-                                                        return {
-                                                            ...comment,
-                                                            comments: [...comment.comments, currentComment]
-                                                        }
-                                                    }
-                                                    return comment
-                                                })
-                                            }
-                                        }
-                                        return post
-                                    })
-                                }
-                            }
-                            return fanclub
-                        })
-                    )
-                    setCommentInFocus(null)
-                } else if ( !commentInFocus ) {
-                    setFanclubs(prevFanclubs =>
-                        prevFanclubs.map(fanclub => {
-                            if (fanclub.artistId === thisFanclub.artistId) {
-                                return {
-                                    ...fanclub,
-                                    posts: fanclub.posts.map(post => {
-                                        if (post.id === postInFocus.id) {
-                                            return {
-                                                ...post,
-                                                comments: [...post.comments, currentComment]
-                                            }
-                                        }
-                                        return post
-                                    })
-                                }
-                            }
-                            return fanclub
-                        })
-                    )
-                }
-            }
-            
-            setCurrentComment({
-                id: undefined,
-                userId: undefined,
-                userType: undefined,
-                userImage: undefined,
-                username: undefined,
-                createdAt: undefined,
-                comment: '',
-                likes: [],
-                comments: []
-            })
-        }
-
-        const likeComment = (commentId, postId) => {
-            if ( pathname.includes('/artist-app') ) {
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub => {
-                    if (fanclub.artistId === thisFanclub.artistId) {
-                        return {
-                            ...fanclub,
-                            posts: fanclub.posts.map(post => {
-                                if (post.id === postId) {
-                                    return {
-                                        ...post,
-                                        comments: post.comments.map(comment => {
-                                            if (comment.id === commentId) {
-                                                const hasLiked = comment.likes.some(like => like.userId === currentArtist.id && (like.type === 'ARTIST'))
-                                                return {
-                                                    ...comment,
-                                                    likes: hasLiked
-                                                        ? comment.likes.filter(like => !(like.userId === currentArtist.id && like.type === 'ARTIST')) // Rimuove il like
-                                                        : [...comment.likes, { userId: currentArtist.id, type: 'ARTIST' }] // Aggiunge il like
-                                                }
-                                            }
-                                            return comment
-                                        })
-                                    }
-                                }
-                                return post
-                            })
-                        }
-                    }
-                    return fanclub
-                })
-            )
-        } else if (!pathname.includes('/artist-app')) {
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub => {
-                    if (fanclub.artistId === thisFanclub.artistId) {
-                        return {
-                            ...fanclub,
-                            posts: fanclub.posts.map(post => {
-                                if (post.id === postId) {
-                                    return {
-                                        ...post,
-                                        comments: post.comments.map(comment => {
-                                            if (comment.id === commentId) {
-                                                const hasLiked = comment.likes.some(like => like.userId === currentFan.id && (like.type === 'FAN'))
-                                                return {
-                                                    ...comment,
-                                                    likes: hasLiked
-                                                        ? comment.likes.filter(like => !(like.userId === currentFan.id && like.type === 'FAN')) // Rimuove il like
-                                                        : [...comment.likes, { userId: currentFan.id, type: 'FAN' }] // Aggiunge il like
-                                                }
-                                            }
-                                            return comment
-                                        })
-                                    }
-                                }
-                                return post
-                            })
-                        }
-                    }
-                    return fanclub
-                })
-            )
-        }
-        }
-        
-        const likeReply = (replyId, commentId, postId) => {
-            if ( pathname.includes('/artist-app') ) {
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub => {
-                    if (fanclub.artistId === thisFanclub.artistId) {
-                        return {
-                            ...fanclub,
-                            posts: fanclub.posts.map(post => {
-                                if (post.id === postId) {
-                                    return {
-                                        ...post,
-                                        comments: post.comments.map(comment => {
-                                            if (comment.id === commentId) {
-                                                return {
-                                                    ...comment,
-                                                    comments: comment.comments.map(reply => {
-                                                        if (reply.id === replyId) {
-                                                            const hasLiked = reply.likes.some(like => like.userId === currentArtist.id && (like.type === 'ARTIST'))
-                                                            return {
-                                                                ...reply,
-                                                                likes: hasLiked
-                                                                    ? reply.likes.filter(like => !(like.userId === currentArtist.id && like.type === 'ARTIST')) //rimuove like
-                                                                    : [...reply.likes, { userId: currentArtist.id, type: 'ARTIST' }] // Aggiunge il like
-                                                            }
-                                                        }
-                                                        return reply
-                                                    })
-                                                }
-                                            }
-                                            return comment
-                                        })
-                                    }
-                                }
-                                return post
-                            })
-                        }
-                    }
-                    return fanclub
-                })
-            )
-        } else if (!pathname.includes('/artist-app')){
-            setFanclubs(prevFanclubs =>
-                prevFanclubs.map(fanclub => {
-                    if (fanclub.artistId === thisFanclub.artistId) {
-                        return {
-                            ...fanclub,
-                            posts: fanclub.posts.map(post => {
-                                if (post.id === postId) {
-                                    return {
-                                        ...post,
-                                        comments: post.comments.map(comment => {
-                                            if (comment.id === commentId) {
-                                                return {
-                                                    ...comment,
-                                                    comments: comment.comments.map(reply => {
-                                                        if (reply.id === replyId) {
-                                                            const hasLiked = reply.likes.some(like => like.userId === currentFan.id && (like.type === 'FAN'))
-                                                            return {
-                                                                ...reply,
-                                                                likes: hasLiked
-                                                                    ? reply.likes.filter(like => !(like.userId === currentFan.id && like.type === 'FAN')) //rimuove like
-                                                                    : [...reply.likes, { userId: currentFan.id, type: 'FAN' }] // Aggiunge il like
-                                                            }
-                                                        }
-                                                        return reply
-                                                    })
-                                                }
-                                            }
-                                            return comment
-                                        })
-                                    }
-                                }
-                                return post
-                            })
-                        }
-                    }
-                    return fanclub
-                })
-            )
-        }
+        setCommentInFocus(null)
+        setReplyingUser(null)
     }
-
-    const [triggered, setTriggered] = useState(false)
-	const [messageSnackbar, setMessageSnackbar] = useState('')
-	const triggerSnackbar = (message) => {
-		setMessageSnackbar(message)
-		setTriggered(true)
-		setTimeout(() => {
-			setTriggered(false)
-		}, 2000)
-	}
+    const openComments = (id) => {
+        openModal()
+    }
+    const closeComments = () => {
+        closeModal()
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
+        setCommentInFocus(null)
+    }
+    const handleShare = (post) => {
+        share(post, state?.artist.id)
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
+    }
 
     const [days, setDays] = useState(0)
 	const [hours, setHours] = useState(0)
@@ -519,7 +266,7 @@ const  PostFullScreenRoute = () => {
                 }
             </div>
             <div className='d-flex-column gap-0_5em position-absolute-y right-5 z-index-5'>
-                <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => likePost(post.id)}>
+                <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => likePost(state?.artist.id, post.id)}>
                     {isLiked ?		
                         <img
                             className='avatar-32 border-radius-100'
@@ -571,7 +318,7 @@ const  PostFullScreenRoute = () => {
                     }
                     
                     {post?.link.url !== '' &&
-                        <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post?.link.url} target='blank'>
+                        <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post?.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', state?.artist.id)}>
                             <img className='avatar-20' src={IconLink} />
                             <span>{post?.link.name ? post.link.name : 'Apri il link'}</span>
                         </Link>
@@ -607,9 +354,9 @@ const  PostFullScreenRoute = () => {
 
         <CommentsModalLayout
             modalOpen={modalOpen}
-            closeModal={closeModal}
+            closeModal={closeComments}
         >
-            <NavbarCommentsModal closeModal={closeModal} />
+            <NavbarCommentsModal closeModal={closeComments} />
             <Container style={'pb-xs-12 pb-sm-2'}>
                 {thisFanclub?.posts.map(post => {
                     if ( post.id ===  postInFocus.id) {
@@ -619,11 +366,11 @@ const  PostFullScreenRoute = () => {
                                     comment={comment}
                                     key={comment.id}
                                     inputRef={inputRef}
-                                    spotCommentToReply={() => spotCommentToReply(comment.id)}
-                                    modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id }})}
-                                    likeComment = {() => likeComment(comment.id, post.id)}
+                                    spotCommentToReply={spotCommentToReply}
+                                    modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id}})}
+                                    likeComment = {() => likeComment(comment.id, post.id, state?.artist.id)}
                                     postId={post.id}
-                                    likeReply={likeReply}
+                                    likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, state?.artist.id)}    
                                 />
                             )
                         })
@@ -633,11 +380,12 @@ const  PostFullScreenRoute = () => {
 
             <TextbarComments
                 handleCurrentComment={handleCurrentComment}
-                handleSubmitComment={handleSubmitComment}
+                handleSubmitComment={submitComment}
                 currentComment={currentComment}
                 setCurrentComment={setCurrentComment}
                 modalOpen={modalOpen}
                 inputRef={inputRef}
+                replyingUser={replyingUser}
             />
         </CommentsModalLayout>
 

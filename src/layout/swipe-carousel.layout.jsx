@@ -85,7 +85,7 @@ const SwipeCarousel = ({ images, text }) => {
 						{media.type === 'IMAGE' ?
 							<img  className='object-fit-cover w-100 h-100 ' src={media.url} />
 						: media.type === 'VIDEO' ?	
-						<video className='w-100 h-100 object-fit-cover ' autoPlay playsInline loop muted={!isMuted}>
+						<video className='w-100 h-100 object-fit-cover ' autoPlay playsInline loop muted={true}>
 							<source src={media.url} type='video/mp4' />
 						</video>
 						: media.type === 'AUDIO'?
