@@ -150,7 +150,7 @@ const FanclubAllRoute = () => {
         
                 return lettersFirst ? (
                     <div className="d-flex-row j-c-space-between align-items-start w-100 gap-0_5em">
-                        <div className="d-flex-column j-c-start align-items-start">
+                        <div className="d-flex-column j-c-start align-items-start w-50">
                             {lettersFirst?.filter((_, index) => index % 2 === 0).map(post => {
                                 const fan = fans?.find(fan => fan?.id === post?.userId)
                                 return (
@@ -158,7 +158,7 @@ const FanclubAllRoute = () => {
                                 )
                             })}
                         </div>
-                        <div className="d-flex-column j-c-start align-items-end">
+                        <div className="d-flex-column j-c-start align-items-end w-50">
                             {lettersFirst?.filter((_, index) => index % 2 !== 0).map(post => {
                                 const fan = fans?.find(fan => fan?.id === post?.userId)
                                 return (
@@ -219,7 +219,7 @@ const FanclubAllRoute = () => {
 
                 return lettersSecond ? (
                     <div className="d-flex-row j-c-space-between align-items-start w-100 gap-0_5em">
-                        <div className="d-flex-column j-c-start align-items-start">
+                        <div className="d-flex-column j-c-start align-items-start w-50">
                             {lettersSecond?.filter((_, index) => index % 2 === 0).map(post => {
                                 const fan = fans?.find(fan => fan?.id === post?.userId)
                                 return (
@@ -227,7 +227,7 @@ const FanclubAllRoute = () => {
                                 )
                             })}
                         </div>
-                        <div className="d-flex-column j-c-start align-items-end">
+                        <div className="d-flex-column j-c-start align-items-end w-50">
                             {lettersSecond?.filter((_, index) => index % 2 !== 0).map(post => {
                                 const fan = fans?.find(fan => fan?.id === post?.userId)
                                 return (

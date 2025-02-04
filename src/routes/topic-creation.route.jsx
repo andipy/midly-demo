@@ -107,7 +107,7 @@ const TopicCreationRoute = () => {
             )
         }
 
-        navigate(`/artist/${state?.artist.slug}/fanclub`, { state: {artist:state?.artist, tab: 'FORUM'} })
+        navigate(`/artist/${state?.artist.slug}/fanclub/forum`, { state: {artist:state?.artist, tab: 'FORUM'} })
     }
 
     const [filledMandatory, setFilledMandatory] = useState(false)
