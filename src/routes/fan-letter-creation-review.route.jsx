@@ -7,7 +7,6 @@ import Container from '../layout/container.layout'
 
 import Button from '../components/button.component'
 
-import AudioPost from '../components/audio-post.component'
 import NavbarFanLetterCreation from '../components/navbar-fan-letter-creation.component'
 const FanLetterCreationReviewRoute = () => {
     const location = useLocation()
@@ -102,9 +101,9 @@ const FanLetterCreationReviewRoute = () => {
     } 
   return (
     <>
-        <NavbarFanLetterCreation artist={artist} transparent={true} deletePost={() => deletePost()}/>
+        <NavbarFanLetterCreation artist={artist} transparent={true} deletePost={() => deletePost()} goBack={true}/>
         <Container style={'pt-xs-topbar pb-xs-appbar'}>
-            <h1 className='fsize-xs-5 f-w-600 mb-xs-8'>Rivedi il post e pubblica</h1>
+            <h1 className='fsize-xs-5 f-w-600 mb-xs-8'>Rivedi il messaggio e pubblica</h1>
             <div className='position-relative'>
             {post?.media && (
                 post.media.type === 'IMAGE' ? (
@@ -125,10 +124,6 @@ const FanLetterCreationReviewRoute = () => {
                         playsInline
                         loop
                     />
-                ) : post.media.type === 'AUDIO' ? (
-                    <div className="d-flex-row j-c-center align-items-center w-min-100 h-min-100 objcet-fit-cover bg-dark-gradient border-radius-04">
-                        <AudioPost src={post.media.url} />
-                    </div>
                 ) : null
             )}
             </div>

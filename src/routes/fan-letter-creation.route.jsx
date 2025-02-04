@@ -492,6 +492,7 @@ const FanLetterCreationRoute = () => {
                     switchCamera={switchCamera}
                     handleFileChange={handleFileChange}
                     textDefined={false}
+                    audioDefined={false}
                 />
             </div>
 

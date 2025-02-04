@@ -7,7 +7,7 @@ import IconAudioMedia from '../images/icons/icon-audio-rec.png'
 import IconFlip from '../images/icons/icon-flip.svg'
 import Button from './button.component'
 
-const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, toggleRecordingAudio, recording, recordingAudio, contentType, photo, video, audio, textContent, handlePhotoType, handleVideoType, handleAudioType, handleTextType, switchCamera, facingMode, handleFileChange, textDefined }) => {
+const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, toggleRecordingAudio, recording, recordingAudio, contentType, photo, video, audio, textContent, handlePhotoType, handleVideoType, handleAudioType, handleTextType, switchCamera, facingMode, handleFileChange, textDefined, audioDefined }) => {
 
     const location = useLocation()
 
@@ -79,7 +79,7 @@ const AppbarContentCreation = ({ handleCapturePhoto, toggleRecording, toggleReco
                 <div className='d-flex-row align-items-center j-c-center gap-0_25em mb-xs-2'>
                     <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'IMAGE' ? 'white' : 'grey-400'}`} onClick={handlePhotoType}>FOTO</span>
                     <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'VIDEO' ? 'white' : 'grey-400'}`} onClick={handleVideoType}>VIDEO</span>
-                    <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'AUDIO' ? 'white' : 'grey-400'}`} onClick={handleAudioType}>AUDIO</span>
+                    {audioDefined !== false && <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'AUDIO' ? 'white' : 'grey-400'}`} onClick={handleAudioType}>AUDIO</span>}
                     {textDefined !== false && <span className={`pt-xs-3 pb-xs-3 pl-xs-4 pr-xs-4 border-radius-100 bg-dark-soft-transp75 fsize-xs-2 letter-spacing-1 ${contentType === 'TEXT' ? 'white' : 'grey-400'}`} onClick={handleTextType}>TEXT</span>}
                 </div>
             }

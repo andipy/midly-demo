@@ -786,7 +786,8 @@ export const FanclubsProvider = ({ children }) => {
                         url: require('../images/pictures/sfera-fan-letter-1.jpg'),
                         type: 'IMAGE'
                     },
-                    caption: 'Numero uno'
+                    caption: 'Numero uno',
+                    mode: 'PUBLISHED'
                 },
                 {
                     id: 2,
@@ -796,7 +797,8 @@ export const FanclubsProvider = ({ children }) => {
                         url: require('../images/pictures/sfera-fan-letter-2.jpg'),
                         type: 'IMAGE'
                     },
-                    caption: 'Numero uno'
+                    caption: 'Numero uno',
+                    mode: 'PUBLISHED'
                 },
                 {
                     id: 3,
@@ -806,7 +808,8 @@ export const FanclubsProvider = ({ children }) => {
                         url: require('../images/pictures/sfera-fan-letter-3.jpg'),
                         type: 'IMAGE'
                     },
-                    caption: 'Prova di una caption più lunga di modo che su due righe venga troncata e non venga mostrata oltre nella home letters fanclub'
+                    caption: 'Prova di una caption più lunga di modo che su due righe venga troncata e non venga mostrata oltre nella home letters fanclub',
+                    mode: 'PUBLISHED'
                 },
                 {
                     id: 4,
@@ -816,7 +819,8 @@ export const FanclubsProvider = ({ children }) => {
                         url: require('../assets/video/sfera-fan-letter-8.mp4'),
                         type: 'VIDEO'
                     },
-                    caption: 'Prova video loop muto'
+                    caption: 'Prova video loop muto',
+                    mode: 'PUBLISHED'
                 },
                 {
                     id: 5,
@@ -826,7 +830,8 @@ export const FanclubsProvider = ({ children }) => {
                         url: require('../images/pictures/sfera-fan-letter-5.jpg'),
                         type: 'IMAGE'
                     },
-                    caption: 'Numero uno'
+                    caption: 'Numero uno',
+                    mode: 'PUBLISHED'
                 },
                 {
                     id: 6,
@@ -836,7 +841,8 @@ export const FanclubsProvider = ({ children }) => {
                         url: require('../images/pictures/sfera-fan-letter-6.jpg'),
                         type: 'IMAGE'
                     },
-                    caption: 'Numero uno'
+                    caption: 'Numero uno',
+                    mode: 'PUBLISHED'
                 },
                 {
                     id: 7,
@@ -846,7 +852,8 @@ export const FanclubsProvider = ({ children }) => {
                         url: require('../images/pictures/sfera-fan-letter-7.jpg'),
                         type: 'IMAGE'
                     },
-                    caption: 'Numero uno'
+                    caption: 'Numero uno',
+                    mode: 'PUBLISHED'
                 }
             ]
         }
