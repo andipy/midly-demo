@@ -1,14 +1,16 @@
 import { useContext } from 'react'
-
+import { useLocation } from 'react-router-dom'
 import { CurrentFanContext } from '../contexts/currentFan.context'
-
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 import IconThunder from '../images/icons/icon-thunder.svg'
 import IconThunderActive from '../images/icons/icon-thunder-active.svg'
 import TopicCommentReply from './topic-comment-reply.component'
 const TopicComment = ({comment, topic, likeComment, likedComment, commentInFocus, spotCommentToReply, likeReply}) => {
-
+    const location = useLocation()
+    const pathname = location.pathname
     const {currentFan} = useContext(CurrentFanContext)
+    const {currentArtist} = useContext(CurrentArtistContext)
   return (
     <div id={comment?.id} className="d-flex-column w-100vw image-wrapper bg-dark-gradient mb-xs-2"> 
         <div className={`${comment?.id === commentInFocus ? 'bg-dark-soft-2' : 'bg-dark-gradient'} pt-xs-4 pb-xs-2`} onClick={() => spotCommentToReply(comment?.id, comment?.username)}>
@@ -53,7 +55,13 @@ const TopicComment = ({comment, topic, likeComment, likedComment, commentInFocus
                     <div className=" container pl-xs-4 border-left-dark-0_5">
                     {
                         comment?.comments.map(reply => {
-                            const likedReply = reply.likes.find(l => l.userId === currentFan.id && l.type === 'FAN')
+                            let likedReply 
+                            {
+                                pathname.includes('/artist-app') ?
+                                    likedReply = reply.likes.find(l => l.userId === currentArtist.id && l.type === 'ARTIST')
+                                :
+                                    likedReply = reply.likes.find(l => l.userId === currentFan.id && l.type === 'FAN')
+                            }
                             return(
                                 <TopicCommentReply reply={reply} comment={comment} likedReply={likedReply} likeReply={(replyId) => likeReply(comment?.id, replyId)}/>
                             )

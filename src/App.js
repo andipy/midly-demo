@@ -305,6 +305,18 @@ const router = createBrowserRouter([
 			}
 		]
 	},{
+		path: '/artist-app/fanclub/forum/topic/details',
+		element: <TopicDetailsRoute />,
+	},{
+		path: '/artist-app/fanclub/forum/topic/creation',
+		element: <TopicCreationRoute />,
+		children: [
+			{
+				path: '/artist-app/fanclub/forum/topic/creation/hashtags',
+				element: <TopicAddHashtagRoute />
+			}
+		]
+	},{
 		path: '/artist-app/fanclub/:postId',
 		element: <PostFullScreenRoute />,
 		children: [

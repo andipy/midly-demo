@@ -2,6 +2,7 @@ import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { useContext, useState, useEffect } from 'react'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 import Carousel from '../layout/carousel.layout'
 import IconComments from '../images/icons/icon-comment-white.svg'
@@ -16,11 +17,21 @@ import Container from '../layout/container.layout'
 
 const ForumTopic = ({ key, topic, artistId, like, save, share, popular }) => {
     const navigate = useNavigate()
+    const location = useLocation()
+    const pathname = location.pathname 
     const { currentFan} = useContext(CurrentFanContext)
+    const {currentArtist} = useContext(CurrentArtistContext)
     const [liked, setLiked] = useState(false)
     useEffect(() => {
         if (topic && topic.likes) {
-            const userLiked = topic.likes.some(p => p.userId === currentFan.id)
+            let userLiked
+            {
+                pathname.includes('/artist-app') ?
+                    userLiked = topic.likes.some(p => p.userId === currentArtist.id)
+                :
+                    userLiked = topic.likes.some(p => p.userId === currentFan.id)
+            }
+            
             setLiked(userLiked)
         }
     }, [topic])
@@ -28,7 +39,13 @@ const ForumTopic = ({ key, topic, artistId, like, save, share, popular }) => {
     const [saved, setSaved] = useState(false)
     useEffect(() => {
         if (topic && topic.saved) {
-            const userSaved = topic.saved.some(p => p.userId === currentFan.id)
+            let userSaved
+            {
+                pathname.includes('/artist-app') ?
+                    userSaved = topic.saved.some(p => p.userId === currentArtist.id)
+                :
+                    userSaved = topic.saved.some(p => p.userId === currentFan.id)
+            } 
             setSaved(userSaved)
         }
     }, [topic])

@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 import NavbarBackOnly from '../components/navbar-back-only.component'
 import Container from '../layout/container.layout'
@@ -27,6 +28,7 @@ const TopicDetailsRoute = () => {
     const { pathname, state } = useLocation()
     const { fanclubs, setFanclubs} = useContext(FanclubsContext)
     const { currentFan} = useContext(CurrentFanContext)
+    const {currentArtist} = useContext(CurrentArtistContext)
 
     const fanclub = useFanclub(state?.artistId)
     const topic = useTopic(fanclub, state?.topic?.id)   
@@ -64,7 +66,13 @@ const TopicDetailsRoute = () => {
     const [liked, setLiked] = useState(false)
     useEffect(() => {
         if (topic && topic.likes) {
-            const userLiked = topic?.likes.some(p => p.userId === currentFan.id)
+            let userLiked
+            {
+                pathname.includes('/artist-app') ?
+                    userLiked = topic.likes.some(p => p.userId === currentArtist.id)
+                :
+                    userLiked = topic.likes.some(p => p.userId === currentFan.id)
+            }
             setLiked(userLiked)
         }
     }, [topic])
@@ -74,7 +82,13 @@ const TopicDetailsRoute = () => {
     const [saved, setSaved] = useState(false)
     useEffect(() => {
         if (topic && topic.saved) {
-            const userSaved = topic.saved.some(p => p.userId === currentFan.id)
+            let userSaved
+            {
+                pathname.includes('/artist-app') ?
+                    userSaved = topic.saved.some(p => p.userId === currentArtist.id)
+                :
+                    userSaved = topic.saved.some(p => p.userId === currentFan.id)
+            } 
             setSaved(userSaved)
         }
     }, [topic])
@@ -108,18 +122,33 @@ const TopicDetailsRoute = () => {
             replied = replyingUser
         }
 
-
-        setCurrentComment(prev => ({
-            ...prev,
-            id: commentsNumber,
-            userId: currentFan.id,
-            userType: currentFan.type,
-            userImage: fan.image,
-            username: currentFan.username,
-            createdAt: date,
-            comment: e.target.value,
-            repliedUsername: replied
-        }))
+        {
+            pathname.includes('/artist-app') ?
+                setCurrentComment(prev => ({
+                    ...prev,
+                    id: commentsNumber,
+                    userId: currentArtist.id,
+                    userType: 'ARTIST',
+                    userImage: currentArtist.image,
+                    username: currentArtist.artistName,
+                    createdAt: date,
+                    comment: e.target.value,
+                    repliedUsername: replied
+                }))
+            :
+                setCurrentComment(prev => ({
+                    ...prev,
+                    id: commentsNumber,
+                    userId: currentFan.id,
+                    userType: currentFan.type,
+                    userImage: fan.image,
+                    username: currentFan.username,
+                    createdAt: date,
+                    comment: e.target.value,
+                    repliedUsername: replied
+                }))
+        } 
+        
     }
 
     //share
@@ -129,8 +158,13 @@ const TopicDetailsRoute = () => {
 
   return (
     <>
-        <NavbarBackOnly onClick={() => navigate(`/artist/${artist.slug}/fanclub/forum`, { state: {artist:artist, tab: 'FORUM'} })} />
-        
+        <NavbarBackOnly 
+            onClick={() => {
+                pathname.includes("/artist-app")
+                    ? navigate(-1)
+                    : navigate(`/artist/${artist.slug}/fanclub/forum`, { state: { artist: artist, tab: 'FORUM' } })
+            }}        
+        />
         {scrolled &&
             <div className='position-fixed w-100 bg-dark-gradient z-index-10 pb-xs-4 pt-xs-4 navbar-secondary-slide'>
                 <div className='container d-flex-column align-items-start j-c-start'>
@@ -143,7 +177,13 @@ const TopicDetailsRoute = () => {
         <Container style={'pb-xs-appbar'}>
             <TopicMain topic={topic} liked={liked} likeTopic={() => likeTopic(artist.id, topic.id)} saved={saved} saveTopic={() => saveTopic(artist.id, topic.id)} shareTopic={() => handleShare(topic)}  spotCommentToReply={spotCommentToReply}/>
             {topic?.comments.map(c => {
-                    const likedComment = c.likes.find(l => l.userId === currentFan.id && l.type === 'FAN')
+                    let likedComment 
+                    {
+                        pathname.includes('/artist-app') ?
+                            likedComment = c.likes.find(l => l.userId === currentArtist.id && l.type === 'ARTIST')
+                        :
+                            likedComment = c.likes.find(l => l.userId === currentFan.id && l.type === 'FAN')
+                    }
                     return (
                         <TopicComment comment={c} topic={topic} likedComment={likedComment} likeComment={(commentId) => likeComment(artist.id, topic.id, commentId)} commentInFocus={commentInFocus} spotCommentToReply={spotCommentToReply} likeReply={(commentId, replyId) => likeReply(artist.id, topic.id, commentId, replyId)}/>
                     )

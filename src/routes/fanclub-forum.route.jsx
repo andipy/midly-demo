@@ -51,16 +51,38 @@ const FanclubForumRoute = () => {
     <>
     {
         empty ?
-        <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
-            <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                <p className='t-align-center mb-xs-4 letter-spacing-1 grey-200 f-w-400'>Sii il primo ad aprire un topic di discussione nel fanclub di {artist?.artistName}.</p>
-                <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Apri un topic' onClick={() => navigate('topic/creation', { state: {artist:artist} })} />
-            </div>
-        </div>
+        <>
+            {
+                location?.pathname.includes("/artist-app") ?
+                    <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
+                        <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
+                            <p className='t-align-center mb-xs-4 letter-spacing-1 grey-200 f-w-400'>Sii il primo ad aprire un topic di discussione nel tuo fanclub.</p>
+                            <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Apri un topic' onClick={() => navigate('topic/creation', { state: {artist:artist} })} />
+                        </div>
+                    </div>
+                :
+                    <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
+                        <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
+                            <p className='t-align-center mb-xs-4 letter-spacing-1 grey-200 f-w-400'>Sii il primo ad aprire un topic di discussione nel fanclub di {artist?.artistName}.</p>
+                            <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Apri un topic' onClick={() => navigate('topic/creation', { state: {artist:artist} })} />
+                        </div>
+                    </div>
+            }
+        </>
+        
         :
-        <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => navigate('topic/creation', { state: {artist:artist} })}>
-            <img className='' src={IconPlus}/>
-        </div> 
+        <>
+            {
+                location?.pathname.includes("/artist-app") ?
+                    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center mb-xs-16' onClick={() => navigate('topic/creation', { state: {artist:artist} })}>
+                        <img className='' src={IconPlus}/>
+                    </div> 
+                :
+                    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => navigate('topic/creation', { state: {artist:artist} })}>
+                        <img className='' src={IconPlus}/>
+                    </div> 
+            }
+        </>
     }
     
     <Container style={'pb-xs-2 mt-xs-4'}>             

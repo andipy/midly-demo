@@ -4,6 +4,7 @@ import { useLocation, useNavigate, Outlet } from 'react-router-dom'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { FansContext } from '../contexts/fans.context'
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 import NavbarTopicCreation from '../components/navbar-topic-creation.component'
 import Button from '../components/button.component'
@@ -19,6 +20,7 @@ const TopicCreationRoute = () => {
     const { pathname, state } = useLocation()
     const navigate = useNavigate()
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+    const {currentArtist} =useContext(CurrentArtistContext)
     const { setFanclubs } = useContext(FanclubsContext)
     const { fans } = useContext(FansContext)
 
@@ -105,9 +107,45 @@ const TopicCreationRoute = () => {
                     return fanclub
                 })
             )
+            navigate(`/artist/${state?.artist.slug}/fanclub/forum`, { state: {artist:state?.artist, tab: 'FORUM'} })
+        } else if (pathname.includes('artist-app')) {
+            setFanclubs(prevFanclubs =>
+                prevFanclubs.map(fanclub => {
+                    if (fanclub?.artistId === state?.artist.id) {   
+                        let newForumId = fanclub?.forum.length + 1
+                        return {
+                            ...fanclub,
+                            forum: [
+                                ...fanclub.forum,
+                                {                                    
+                                    id: newForumId,
+                                    userImage: currentArtist?.image,
+                                    userName: currentArtist?.artistName,
+                                    publisher: {
+                                        id: currentArtist.id,
+                                        type: 'ARTIST'
+                                    },
+                                    createdAt: currentDate,
+                                    cover: file?.url,
+                                    title: topicTitle,
+                                    description: topicDescr,
+                                    hashtags: hashtags,
+                                    likes: [],
+                                    comments: [],
+                                    saved: [],
+                                    weight: 1,
+                                    commentsCount: 0
+                                },
+                            ],
+                        }
+                    }
+                    return fanclub
+                })
+            )
+            navigate(-1)
         }
 
-        navigate(`/artist/${state?.artist.slug}/fanclub/forum`, { state: {artist:state?.artist, tab: 'FORUM'} })
+        
     }
 
     const [filledMandatory, setFilledMandatory] = useState(false)
