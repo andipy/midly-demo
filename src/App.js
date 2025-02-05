@@ -143,9 +143,13 @@ const router = createBrowserRouter([
 			  },
 			],
 		  }, */
-			{
+			/* {
 				path: '',
 				element: <Navigate to="dashboard" replace />,
+			} */,
+			{
+				path: '',
+				element: <Navigate to="posts" replace />,
 			},{
 				path: 'user-moderation',
 				element: <UserModerationRoute />,
@@ -158,10 +162,10 @@ const router = createBrowserRouter([
 			},{
 				path: 'forum',
 				element: <FanclubForumRoute />
-			},{
+			},/* {
 				path: 'dashboard',
 				element: <FanclubAllRoute />
-			},{
+			} */,{
 				path: 'posts',
 				element: <FanclubPostsRoute />
 			},{
@@ -309,7 +313,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: '',
-				element: <Navigate to="dashboard" replace />,
+				element: <Navigate to="posts" replace />,
 			},{
 				path: '/artist-app/fanclub/activation/terms',
 				element: <FanclubTermsRoute />
