@@ -9,7 +9,9 @@ const NavbarFanLetterCreation = ({artist, transparent, deletePost, goBack}) => {
     const navigate = useNavigate()
     const back = () => {
         deletePost()
-        navigate(`/artist/${artist.slug}/fanclub/letters`, { state: { artist: artist} })
+        /*  navigate(`/artist/${artist.slug}/fanclub/letters`, { state: { artist: artist} }) */
+        /* MAJOR CHANGES */
+       navigate(`/artist/${artist.slug}/letters`, { state: { artist: artist} })
     }
     const handleBackNavigation = () => {
         deletePost()

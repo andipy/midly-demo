@@ -107,7 +107,8 @@ const TopicCreationRoute = () => {
                     return fanclub
                 })
             )
-            navigate(`/artist/${state?.artist.slug}/fanclub/forum`, { state: {artist:state?.artist, tab: 'FORUM'} })
+            /* MAJOR CHANGES */
+            navigate(`/artist/${state?.artist.slug}/forum`, { state: {artist:state?.artist, tab: 'FORUM'} })
         } else if (pathname.includes('artist-app')) {
             setFanclubs(prevFanclubs =>
                 prevFanclubs.map(fanclub => {

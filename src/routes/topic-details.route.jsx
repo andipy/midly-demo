@@ -162,7 +162,8 @@ const TopicDetailsRoute = () => {
             onClick={() => {
                 pathname.includes("/artist-app")
                     ? navigate(-1)
-                    : navigate(`/artist/${artist.slug}/fanclub/forum`, { state: { artist: artist, tab: 'FORUM' } })
+                    : /* MAJOR CHANGES navigate(`/artist/${artist.slug}/fanclub/forum`, { state: { artist: artist, tab: 'FORUM' } }) */
+                    navigate(`/artist/${artist.slug}/forum`, { state: { artist: artist, tab: 'FORUM' } })
             }}        
         />
         {scrolled &&

@@ -24,12 +24,13 @@ import useSaveTopic from '../utils/handle-save-topic.hook'
 import useShare from '../utils/handle-share.hook'
 import Button from '../components/button.component'
 const FanclubAllRoute = () => {
-    const {context, focusPost} = useOutletContext()
+    const {artist, focusPost} = useOutletContext()
     const {artists} = useContext(ArtistsContext)
     const {fans} = useContext(FansContext)
+    console.log(artist)
 
-    const hasUserSubscribed = useFanclubSubscription(context?.id)
-    const fanclub = useFanclub(context?.id)
+    const hasUserSubscribed = useFanclubSubscription(artist?.id)
+    const fanclub = useFanclub(artist?.id)
 
     //POST EE EVENTS
     const { newParticipation } = useConcertParticipation()
@@ -72,7 +73,7 @@ const FanclubAllRoute = () => {
 
     //share
     const handleShare = (post) => {
-        share(post, context?.id)
+        share(post, artist?.id)
     }
 
     const sortForum = (a,b) => {
@@ -94,9 +95,9 @@ const FanclubAllRoute = () => {
             empty &&
             <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                 <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Il fanclub di {context?.artistName} è attivo, rimani sintonizzato per vedere i suoi contenuti.</p>
+                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Il fanclub di {artist?.artistName} è attivo, rimani sintonizzato per vedere i suoi contenuti.</p>
                     {
-                        hasUserSubscribed &&
+                        !hasUserSubscribed &&
                         <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Abbonati' onClick={() => setModalSubscription(true)} />
                     }
                 </div>
@@ -114,10 +115,10 @@ const FanclubAllRoute = () => {
                         key={firstPost.id}
                         post={firstPost}
                         focusPost={focusPost}
-                        likePost={(postId) => likePost(context.id, postId)}
+                        likePost={(postId) => likePost(artist.id, postId)}
                         hasUserSubscribed={hasUserSubscribed}
                         handleSubscription={() => setModalSubscription(true)}
-                        artistId={context.id}
+                        artistId={artist.id}
                     />
                 ) : null;
             })()
@@ -133,9 +134,9 @@ const FanclubAllRoute = () => {
                     <ForumTopic 
                         key={firstTopic.id} 
                         topic={firstTopic} 
-                        artistId={context.id}
-                        like={() => likeTopic(context.id, firstTopic.id)} 
-                        save={() => saveTopic(context.id, firstTopic.id)} 
+                        artistId={artist.id}
+                        like={() => likeTopic(artist.id, firstTopic.id)} 
+                        save={() => saveTopic(artist.id, firstTopic.id)} 
                         share={() => handleShare(firstTopic)} 
                         popular={false}
                     />
@@ -182,10 +183,10 @@ const FanclubAllRoute = () => {
                         key={secondPost.id}
                         post={secondPost}
                         focusPost={focusPost}
-                        likePost={(postId) => likePost(context.id, postId)}
+                        likePost={(postId) => likePost(artist.id, postId)}
                         hasUserSubscribed={hasUserSubscribed}
                         handleSubscription={() => setModalSubscription(true)}
-                        artistId={context.id}
+                        artistId={artist.id}
                     />
                 ) : null;
             })()
@@ -201,9 +202,9 @@ const FanclubAllRoute = () => {
                     <ForumTopic 
                         key={secondTopic.id} 
                         topic={secondTopic} 
-                        artistId={context.id}
-                        like={() => likeTopic(context.id, secondTopic.id)} 
-                        save={() => saveTopic(context.id, secondTopic.id)} 
+                        artistId={artist.id}
+                        like={() => likeTopic(artist.id, secondTopic.id)} 
+                        save={() => saveTopic(artist.id, secondTopic.id)} 
                         share={() => handleShare(secondTopic)} 
                         popular={false}
                     />
@@ -255,10 +256,10 @@ const FanclubAllRoute = () => {
                             key={item.id}
                             post={item}
                             focusPost={focusPost}
-                            likePost={(postId) => likePost(context.id, postId)}
+                            likePost={(postId) => likePost(artist.id, postId)}
                             hasUserSubscribed={hasUserSubscribed}
                             handleSubscription={() => setModalSubscription(true)}
-                            artistId={context.id}
+                            artistId={artist.id}
                         /> 
                     }
                     </>
@@ -279,10 +280,10 @@ const FanclubAllRoute = () => {
                         </div>
                         <PostConcert 
                             concert={item}
-                            newPartecipation={(concertId) => newParticipation(context.id, concertId)}
+                            newPartecipation={(concertId) => newParticipation(artist.id, concertId)}
                             hasUserSubscribed={hasUserSubscribed}
                             handleSubscription={() => setModalSubscription(true)}
-                            slug={context.slug}
+                            slug={artist.slug}
                         />
                         </>  
                     }
@@ -296,10 +297,10 @@ const FanclubAllRoute = () => {
                             key={item.id}
                             post={item}
                             focusPost={focusPost}
-                            likePost={(postId) => likePost(context.id, postId)}
+                            likePost={(postId) => likePost(artist.id, postId)}
                             hasUserSubscribed={hasUserSubscribed}
                             handleSubscription={() => setModalSubscription(true)}
-                            artistId={context.id}
+                            artistId={artist.id}
                         /> 
                     }
                     </>
@@ -312,7 +313,7 @@ const FanclubAllRoute = () => {
     </Container>
     {
         modalSubscription &&
-        <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(context?.id, period)}/>
+        <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(artist?.id, period)}/>
     }
     {err && 
         <FullPageCenter style='z-index-1300 bg-black-transp70'>

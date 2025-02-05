@@ -8,7 +8,10 @@ const CardArtist = ({ artist, isFollowed }) => {
     const navigate = useNavigate()
 
     return (
-        <div className='artist-card-multiple-row bg-dark-gradient border-radius-06 position-relative' onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: { artist: artist } })}>
+        <div className='artist-card-multiple-row bg-dark-gradient border-radius-06 position-relative' 
+            /* MAJOR CHANGES onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: { artist: artist } })} */
+            onClick={() => navigate(`/artist/${artist?.slug}`, { state: { artist: artist } })}
+        >
             <div className='overlay-card bg-dark-overlay-card border-radius-06 z-index-1'></div>
             <img className='artist-card-multiple-row object-fit-cover border-radius-06' src={artist.image} alt='' />
             <div className='d-flex-column position-absolute bottom-5 ml-xs-8 z-index-2'>

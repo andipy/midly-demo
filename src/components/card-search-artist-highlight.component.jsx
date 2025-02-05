@@ -7,7 +7,10 @@ const CardArtistHighlight = ({ artist, isFollowed, length, index }) => {
     const navigate = useNavigate()
 
     return (
-        <div className={`position-relative h-xs-22 overflow-clip border-radius-04 no-shrink ${length === 1 ? 'artist-card-highlight-single' : 'artist-card-highlight-multiple'}`} onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: {artist: artist} })}>
+        <div className={`position-relative h-xs-22 overflow-clip border-radius-04 no-shrink ${length === 1 ? 'artist-card-highlight-single' : 'artist-card-highlight-multiple'}`} 
+           /* MAJOR CHANGES  onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: {artist: artist} })} */
+           onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
+        >
             <div className='position-relative w-100 h-inherit mb-xs-4'>
                 { index &&
                 <div className="position-absolute top-0 right-0 bg-black white border-radius-100 pl-xs-2 avatar-20 border-radius-100">

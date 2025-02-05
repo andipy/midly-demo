@@ -82,7 +82,9 @@ const FanLetterCreationReviewRoute = () => {
             })
         )
 
-        navigate(`/artist/${artist.slug}/fanclub/letters`, { state: { artist: artist} })
+        /* navigate(`/artist/${artist.slug}/fanclub/letters`, { state: { artist: artist} }) */
+       /*  MAJOR CHANGES */
+        navigate(`/artist/${artist.slug}/letters`, { state: { artist: artist} })
     }
 
     const deletePost = () => {

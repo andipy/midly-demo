@@ -27,7 +27,7 @@ const TabFanclub = () => {
                 <p className='fsize-xs-2 no-shrink'>Fan messages</p>
             </div>  
 
-            <div className={`${pathname.includes('fanclub/auraBoard') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('auraBoard')}}> 
+            <div className={`${pathname.includes('auraBoard') ? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('auraBoard')}}> 
                 <p className='fsize-xs-2'>Auraboard</p>
             </div>       
         </Carousel>

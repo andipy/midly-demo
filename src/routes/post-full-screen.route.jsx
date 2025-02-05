@@ -256,7 +256,7 @@ const  PostFullScreenRoute = () => {
             { pathname.includes('/artist-app') ?
             <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
             :
-            <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}/fanclub`, { state : {artist: artist} })}/>
+            <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}`, { state : {artist: artist} })}/>
             }
             <div className='d-flex-row j-c-center align-items-center w-100 h-100' >
                 {post?.media?.length >= 0 ?

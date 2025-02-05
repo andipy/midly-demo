@@ -14,15 +14,15 @@ import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
 import useLikePost from '../utils/handle-like-post.hook'
 import Button from '../components/button.component'
 const FanclubPostsRoute = () => {
-    const {context, focusPost, setPostInFocus} = useOutletContext()
+    const {artist, focusPost, setPostInFocus} = useOutletContext()
     const {artists} = useContext(ArtistsContext)
     const {currentArtist} = useContext(CurrentArtistContext)
     const location = useLocation()
 
-    let artist = location?.pathname.includes("/artist-app") ? currentArtist : context
+    let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
 
-    const hasUserSubscribed =  useFanclubSubscription(artist?.id)
-    const fanclub = useFanclub(artist?.id)
+    const hasUserSubscribed =  useFanclubSubscription(artistF?.id)
+    const fanclub = useFanclub(artistF?.id)
 
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     const {likePost} = useLikePost()
@@ -49,7 +49,7 @@ const FanclubPostsRoute = () => {
             empty &&
             <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                 <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Il fanclub di {artist?.artistName} è attivo, rimani sintonizzato per vedere i suoi contenuti.</p>
+                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Il fanclub di {artistF?.artistName} è attivo, rimani sintonizzato per vedere i suoi contenuti.</p>
                     {
                         !hasUserSubscribed &&
                         <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Abbonati' onClick={() => setModalSubscription(true)} />
@@ -69,10 +69,10 @@ const FanclubPostsRoute = () => {
                                 key={item.id}
                                 post={item}
                                 focusPost={focusPost}
-                                likePost={(postId) => likePost(artist?.id, postId)}
+                                likePost={(postId) => likePost(artistF?.id, postId)}
                                 hasUserSubscribed={hasUserSubscribed}
                                 handleSubscription={() => setModalSubscription(true)}
-                                artistId={artist?.id}
+                                artistId={artistF?.id}
                             /> 
                         }
                         </>
@@ -84,7 +84,7 @@ const FanclubPostsRoute = () => {
         </Container>
         {
             modalSubscription &&
-            <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(artist?.id, period)}/>
+            <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(artistF?.id, period)}/>
         }
         {err && 
             <FullPageCenter style='z-index-1300 bg-black-transp70'>

@@ -7,12 +7,13 @@ import CardLeaderboardFan from "../components/card-leaderboard-fan.component"
 import IconPoints from '../images/icons/icon-points.svg'
 import Button from "../components/button.component"
 const FanclubLeaderboardRoute = () => {
-    const {context} = useOutletContext()
+    /* MAJOR CHANGES */
+    const {artist} = useOutletContext()
     const location = useLocation()
     const {currentArtist} = useContext(CurrentArtistContext)
-    let artist = location?.pathname.includes("/artist-app") ? currentArtist : context
+    let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
     const navigate = useNavigate()
-    const fanclub = useFanclub(artist?.id)
+    const fanclub = useFanclub(artistF?.id)
     const [leaderboard, setLeaderboard] = useState()
     useEffect(() => {
         if (fanclub) {
@@ -44,7 +45,7 @@ const FanclubLeaderboardRoute = () => {
                 <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
                     {
                         !location.pathname.includes("/artist-app") ?
-                            <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Più interagisci con il fanclub di {artist?.artistName}, più verrai riconosciuto come un suo Super fan.</p>
+                            <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Più interagisci con il fanclub di {artistF?.artistName}, più verrai riconosciuto come un suo Super fan.</p>
                         :
                             <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Qui vedrai i Superfan che intergiscono di più con te.</p>
                     }
@@ -61,8 +62,8 @@ const FanclubLeaderboardRoute = () => {
                             onClick={(event) => {
                             event.preventDefault();
                             if (!window.location.pathname.includes("artist-app")) {
-                                navigate(`/artist/${artist.slug}/fanclub/auraBoard/fan`, { 
-                                    state: { invokedModal: true, artist: artist, fan: leaderboard[0] } 
+                                navigate(`/artist/${artistF.slug}/auraBoard/fan`, { 
+                                    state: { invokedModal: true, artist: artistF, fan: leaderboard[0] } 
                                 });
                             }
                         }}>
@@ -91,8 +92,8 @@ const FanclubLeaderboardRoute = () => {
                             onClick={(event) => {
                             event.preventDefault();
                             if (!window.location.pathname.includes("artist-app")) {
-                                navigate(`/artist/${artist.slug}/fanclub/auraBoard/fan`, { 
-                                    state: { invokedModal: true, artist: artist, fan: leaderboard[1] } 
+                                navigate(`/artist/${artistF.slug}/auraBoard/fan`, { 
+                                    state: { invokedModal: true, artist: artistF, fan: leaderboard[1] } 
                                 });
                             }
                         }}>
@@ -123,8 +124,8 @@ const FanclubLeaderboardRoute = () => {
                         onClick={(event) => {
                             event.preventDefault();
                             if (!window.location.pathname.includes("artist-app")) {
-                                navigate(`/artist/${artist.slug}/fanclub/auraBoard/fan`, { 
-                                    state: { invokedModal: true, artist: artist, fan: leaderboard[2] } 
+                                navigate(`/artist/${artistF.slug}/auraBoard/fan`, { 
+                                    state: { invokedModal: true, artist: artistF, fan: leaderboard[2] } 
                                 });
                             }
                         }}>
@@ -157,8 +158,8 @@ const FanclubLeaderboardRoute = () => {
                     onClick={(event) => {
                         event.preventDefault(); // Evita comportamenti indesiderati
                         if (!window.location.pathname.includes("artist-app")) {
-                            navigate(`/artist/${artist.slug}/fanclub/auraBoard/fan`, {
-                                state: { invokedModal: true, artist: artist, fan: fan },
+                            navigate(`/artist/${artistF.slug}/auraBoard/fan`, {
+                                state: { invokedModal: true, artist: artistF, fan: fan },
                             })
                         }
                     }}  

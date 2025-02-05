@@ -35,19 +35,19 @@ const useConcertCommentHandler = (artistId, concertId, dateId) => {
                 return {
                     ...concert,
                     dates: concert.dates.map((date) => {
-                        if (date.id !== dateId) return date;
+                        if (date.id !== dateId) return date
                         if (!window.location.pathname.includes('/artist-app')) {
                             fanCommentsCount = date.messages.filter(
                                 (msg) => msg.userId === currentComment?.userId
-                                ).length; 
+                                ).length 
                         }
                                
                         return {
                         ...date,
                         messages: [...date.messages, currentComment]
-                        };
+                        }
                     })
-                };
+                }
             } else {
                 if (!window.location.pathname.includes('/artist-app')) {
                     fanCommentsCount = concert.messages.filter(

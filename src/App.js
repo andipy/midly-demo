@@ -132,7 +132,8 @@ const router = createBrowserRouter([
 		path: '/artist/:artistSlug',
 		element: <ArtistRoute />,
 		children: [
-		  {
+		/* MAJOR CHANGE */
+		  /* {
 			path: '/artist/:artistSlug/leaderboard',
 			element: <LeaderboardRoute />,
 			children: [
@@ -141,8 +142,46 @@ const router = createBrowserRouter([
 				element: <FanPublicProfileRoute />,
 			  },
 			],
-		  },
-		  {
+		  }, */
+			{
+				path: '',
+				element: <Navigate to="dashboard" replace />,
+			},{
+				path: 'user-moderation',
+				element: <UserModerationRoute />,
+			},{
+				path: 'user-moderation/block',
+				element: <UserModerationBlockRoute />,
+			},{
+				path: 'user-moderation/report',
+				element: <UserModerationReportRoute />,
+			},{
+				path: 'forum',
+				element: <FanclubForumRoute />
+			},{
+				path: 'dashboard',
+				element: <FanclubAllRoute />
+			},{
+				path: 'posts',
+				element: <FanclubPostsRoute />
+			},{
+				path: 'events',
+				element: <FanclubEventsRoute />
+			}, {
+				path: 'letters',
+				element: <FanclubLettersRoute />
+			}, {
+				path: 'auraBoard',
+				element: <FanclubLeaderboardRoute />,
+				children: [
+					{
+					path: 'fan', 
+					element: <FanPublicProfileRoute />,
+					},
+				],
+			}
+		/* MAJOR CHANGE */
+		  /* {
 			path: '/artist/:artistSlug/fanclub',
 			element: <Fanclub />,
 			children: [
@@ -185,15 +224,19 @@ const router = createBrowserRouter([
 				}
 
 			]
-		  }
+		  } */
 		  
 		],
 	},{
-		path: '/artist/:artistSlug/fanclub/letters/creation',
+		/* MAJOR CHANGE */
+		/* path: '/artist/:artistSlug/fanclub/letters/creation', */
+		path: '/artist/:artistSlug/letters/creation',
 		element: <FanLetterCreationRoute />,
 
 	},{
-		path: '/artist/:artistSlug/fanclub/letters/creation/review',
+		/* MAJOR CHANGE */
+		/* path: '/artist/:artistSlug/fanclub/letters/creation/review', */
+		path: '/artist/:artistSlug/letters/creation/review',
 		element: <FanLetterCreationReviewRoute />,
 
 	},{
@@ -221,20 +264,30 @@ const router = createBrowserRouter([
 			}
 		]
 	},{
-		path: '/artist/:artistSlug/fanclub/:postId',
+		/* MAJOR CHANGE */
+		/* path: '/artist/:artistSlug/fanclub/:postId', */
+		path: '/artist/:artistSlug/:postId',
 		element: <PostFullScreenRoute />,
 	},{
-		path: '/artist/:artistSlug/fanclub/forum/topic/details',
+		/* MAJOR CHANGE */
+		/* path: '/artist/:artistSlug/fanclub/forum/topic/details', */
+		path: '/artist/:artistSlug/forum/topic/details',
 		element: <TopicDetailsRoute />,
 	},{
-		path: '/artist/:artistSlug/fanclub/dashboard/topic/details',
+		/* MAJOR CHANGE */
+		/* path: '/artist/:artistSlug/fanclub/dashboard/topic/details', */
+		path: '/artist/:artistSlug/dashboard/topic/details',
 		element: <TopicDetailsRoute />,
 	},{
-		path: '/artist/:artistSlug/fanclub/forum/topic/creation',
+		/* MAJOR CHANGE */
+		/* path: '/artist/:artistSlug/fanclub/forum/topic/creation', */
+		path: '/artist/:artistSlug/forum/topic/creation',
 		element: <TopicCreationRoute />,
 		children: [
 			{
-				path: '/artist/:artistSlug/fanclub/forum/topic/creation/hashtags',
+				/* MAJOR CHANGE */
+				/* path: '/artist/:artistSlug/fanclub/forum/topic/creation/hashtags', */
+				path: '/artist/:artistSlug/forum/topic/creation/hashtags',
 				element: <TopicAddHashtagRoute />
 			}
 		]

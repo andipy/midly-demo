@@ -14,14 +14,14 @@ import useShare from '../utils/handle-share.hook'
 import useLikeTopic from "../utils/handle-like-topic.hook"
 import useSaveTopic from "../utils/handle-save-topic.hook"
 const FanclubForumRoute = () => {
-    const {context} = useOutletContext()
+    const {artist} = useOutletContext()
     const navigate = useNavigate()
     const {currentArtist} = useContext(CurrentArtistContext)
     const location = useLocation()
-    let artist = location?.pathname.includes("/artist-app") ? currentArtist : context
+    let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
 
 
-    const fanclub = useFanclub(artist?.id)
+    const fanclub = useFanclub(artistF?.id)
 
     const { share, messageSnackbar, triggered } = useShare()
     const {likeTopic} = useLikeTopic()
@@ -36,8 +36,8 @@ const FanclubForumRoute = () => {
 
     //share
     const handleShare = (post) => {
-        console.log(artist?.id)
-        share(post, artist?.id)
+        console.log(artistF?.id)
+        share(post, artistF?.id)
     }
 
     const topicWithMaxWeight = fanclub?.forum.reduce((max, topic) => 
@@ -57,14 +57,14 @@ const FanclubForumRoute = () => {
                     <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                         <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
                             <p className='t-align-center mb-xs-4 letter-spacing-1 grey-200 f-w-400'>Sii il primo ad aprire un topic di discussione nel tuo fanclub.</p>
-                            <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Apri un topic' onClick={() => navigate('topic/creation', { state: {artist:artist} })} />
+                            <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Apri un topic' onClick={() => navigate('topic/creation', { state: {artist:artistF} })} />
                         </div>
                     </div>
                 :
                     <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                         <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                            <p className='t-align-center mb-xs-4 letter-spacing-1 grey-200 f-w-400'>Sii il primo ad aprire un topic di discussione nel fanclub di {artist?.artistName}.</p>
-                            <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Apri un topic' onClick={() => navigate('topic/creation', { state: {artist:artist} })} />
+                            <p className='t-align-center mb-xs-4 letter-spacing-1 grey-200 f-w-400'>Sii il primo ad aprire un topic di discussione nel fanclub di {artistF?.artistName}.</p>
+                            <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Apri un topic' onClick={() => navigate('topic/creation', { state: {artist:artistF} })} />
                         </div>
                     </div>
             }
@@ -74,11 +74,11 @@ const FanclubForumRoute = () => {
         <>
             {
                 location?.pathname.includes("/artist-app") ?
-                    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center mb-xs-16' onClick={() => navigate('topic/creation', { state: {artist:artist} })}>
+                    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center mb-xs-16' onClick={() => navigate('topic/creation', { state: {artist:artistF} })}>
                         <img className='' src={IconPlus}/>
                     </div> 
                 :
-                    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => navigate('topic/creation', { state: {artist:artist} })}>
+                    <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => navigate('topic/creation', { state: {artist:artistF} })}>
                         <img className='' src={IconPlus}/>
                     </div> 
             }
@@ -90,9 +90,9 @@ const FanclubForumRoute = () => {
             <ForumTopic 
                 key={topicWithMaxWeight.id} 
                 topic={topicWithMaxWeight} 
-                artistId={artist.id}
-                like={() => likeTopic(artist.id, topicWithMaxWeight.id)} 
-                save={() => saveTopic(artist.id, topicWithMaxWeight.id)} 
+                artistId={artistF.id}
+                like={() => likeTopic(artistF.id, topicWithMaxWeight.id)} 
+                save={() => saveTopic(artistF.id, topicWithMaxWeight.id)} 
                 share={() => handleShare(topicWithMaxWeight)} 
                 popular={true}
             />
@@ -105,9 +105,9 @@ const FanclubForumRoute = () => {
             <ForumTopic 
                 key={topic.id} 
                 topic={topic} 
-                artistId={artist.id}
-                like={() => likeTopic(artist.id, topic.id)} 
-                save={() => saveTopic(artist.id, topic.id)} 
+                artistId={artistF.id}
+                like={() => likeTopic(artistF.id, topic.id)} 
+                save={() => saveTopic(artistF.id, topic.id)} 
                 share={() => handleShare(topic)} 
                 popular={false}
             />
@@ -117,9 +117,9 @@ const FanclubForumRoute = () => {
             <ForumTopic 
                 key={artistTopicWithMaxWeight.id} 
                 topic={artistTopicWithMaxWeight} 
-                artistId={artist.id}
-                like={() => likeTopic(artist.id, artistTopicWithMaxWeight.id)} 
-                save={() => saveTopic(artist.id, artistTopicWithMaxWeight.id)} 
+                artistId={artistF.id}
+                like={() => likeTopic(artistF.id, artistTopicWithMaxWeight.id)} 
+                save={() => saveTopic(artistF.id, artistTopicWithMaxWeight.id)} 
                 share={() => handleShare(artistTopicWithMaxWeight)} 
                 popular={false}
             />
@@ -133,9 +133,9 @@ const FanclubForumRoute = () => {
                 <ForumTopic 
                     key={topic.id} 
                     topic={topic} 
-                    artistId={artist.id}
-                    like={() => likeTopic(artist.id, topic.id)} 
-                    save={() => saveTopic(artist.id, topic.id)} 
+                    artistId={artistF.id}
+                    like={() => likeTopic(artistF.id, topic.id)} 
+                    save={() => saveTopic(artistF.id, topic.id)} 
                     share={() => handleShare(topic)} 
                     popular={false}
                 />
