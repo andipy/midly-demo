@@ -14,16 +14,11 @@ import Navbar from '../components/navbar.component.artist'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import TextbarComments from '../components/textbar-comments.component'
 import Comment from '../components/comment.component'
-import Post from '../components/post.component'
-import SettingsArea from '../components/settings-area.component.artist'
 import Snackbar from '../components/snackbar.component'
 
 import IconFanclub from '../images/icons/icon-fanclub-inactive.svg'
-import IllustrationsFanclubEmpty from '../images/illustrations/illustration-fanclub-empty.svg'
 import IconEdit from "../images/icons/icon-edit.svg"
-import UserModeration from '../components/user-moderation.component'
 import PostType from '../components/post-type-popup.component'
-import PostConcert from '../components/post-concert.component'
 
 import useSubmitComment from '../utils/handle-submit-comment.hook'
 import useLikeComment from '../utils/handle-like-comment.hook'
@@ -32,6 +27,7 @@ import useFanclub from '../utils/get-fanclub.hooks'
 import useModal from '../utils/handle-modal.hooks'
 import useLikePost from '../utils/handle-like-post.hook'
 import useShare from '../utils/handle-share.hook'
+import TabFanclub from '../components/tab-fanclub.component'
 const FanclubRoute = () => {
 
     //utils
@@ -45,7 +41,6 @@ const FanclubRoute = () => {
 
     const { modalOpen, openModal, closeModal } = useModal()
     const { handleSubmitComment } = useSubmitComment()
-    const {likePost} = useLikePost()
     const { likeComment } = useLikeComment()
     const { likeReply } = useLikeReply()
     const { share, messageSnackbar, triggered } = useShare()
@@ -368,6 +363,17 @@ const FanclubRoute = () => {
                 </>
             }
 
+            {
+                fanclub?.isActive &&
+                <Container style={'pb-xs-appbar '}>
+                    <TabFanclub />
+                    {
+                        !window.location.pathname.includes('/edit-post') &&
+                            <Outlet context={{focusPost, setPostInFocus}}/>
+                    }   
+                </Container>      
+            }
+{/* 
             {fanclub?.isActive &&
                 <>
                     {fanclub?.posts.length === 0 && fanclub?.concerts.length === 0 ?
@@ -377,7 +383,7 @@ const FanclubRoute = () => {
                             <Button
                                 style='bg-dark lime-400 border-lime fsize-xs-3 f-w-600 black w-70'
                                 label='Crea un contenuto'
-                                onClick={() => /* navigate('/artist-app/content-creation') */ setCreateContent(true)}
+                                onClick={() => setCreateContent(true)}
                             />
                         </Container >
                     :   
@@ -407,7 +413,7 @@ const FanclubRoute = () => {
                         </Container>
                     }
                 </>
-            }
+            } */}
 
             {!fanclub?.isActive &&
                 <FullPageCenter>
@@ -460,7 +466,11 @@ const FanclubRoute = () => {
             </CommentsModalLayout>
 
             <Appbar />
-            <Outlet context={{ postInFocus, setPostInFocus }} />
+            {
+                window.location.pathname.includes('/edit-post') &&
+                <Outlet context={{ postInFocus, setPostInFocus }} />
+            }  
+             
 
             {err && 
                 <FullPageCenter style='z-index-1100 bg-black-transp70'>

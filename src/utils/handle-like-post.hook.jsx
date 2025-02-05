@@ -64,11 +64,13 @@ const useLikePost = () => {
             })
         )
 
-        if (hasLiked) {
-            setAuraPoints(UNLIKE_POST, 'UNLIKE_POST', artistId)
-        } else {
-            setAuraPoints(LIKE_POST, 'LIKE_POST', artistId)
-        }
+        if (!pathname.includes('/artist-app')) {
+            if (hasLiked) {
+                setAuraPoints(UNLIKE_POST, 'UNLIKE_POST', artistId)
+            } else {
+                setAuraPoints(LIKE_POST, 'LIKE_POST', artistId)
+            }
+        } 
 
     }
   }

@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react'
 import { useNavigate, useOutletContext, useLocation } from 'react-router-dom'
 import { ArtistsContext } from '../contexts/artists.context'
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 import FullPageCenter from '../layout/full-page-center.layout'
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
@@ -13,11 +14,15 @@ import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
 import useLikePost from '../utils/handle-like-post.hook'
 import Button from '../components/button.component'
 const FanclubPostsRoute = () => {
-    const {context, focusPost} = useOutletContext()
+    const {context, focusPost, setPostInFocus} = useOutletContext()
     const {artists} = useContext(ArtistsContext)
+    const {currentArtist} = useContext(CurrentArtistContext)
+    const location = useLocation()
 
-    const hasUserSubscribed = useFanclubSubscription(context?.id)
-    const fanclub = useFanclub(context?.id)
+    let artist = location?.pathname.includes("/artist-app") ? currentArtist : context
+
+    const hasUserSubscribed =  useFanclubSubscription(artist?.id)
+    const fanclub = useFanclub(artist?.id)
 
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     const {likePost} = useLikePost()
@@ -44,9 +49,9 @@ const FanclubPostsRoute = () => {
             empty &&
             <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                 <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Il fanclub di {context?.artistName} è attivo, rimani sintonizzato per vedere i suoi contenuti.</p>
+                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Il fanclub di {artist?.artistName} è attivo, rimani sintonizzato per vedere i suoi contenuti.</p>
                     {
-                        hasUserSubscribed &&
+                        !hasUserSubscribed &&
                         <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Abbonati' onClick={() => setModalSubscription(true)} />
                     }                
                 </div>
@@ -64,10 +69,10 @@ const FanclubPostsRoute = () => {
                                 key={item.id}
                                 post={item}
                                 focusPost={focusPost}
-                                likePost={(postId) => likePost(context.id, postId)}
+                                likePost={(postId) => likePost(artist?.id, postId)}
                                 hasUserSubscribed={hasUserSubscribed}
                                 handleSubscription={() => setModalSubscription(true)}
-                                artistId={context.id}
+                                artistId={artist?.id}
                             /> 
                         }
                         </>
@@ -79,7 +84,7 @@ const FanclubPostsRoute = () => {
         </Container>
         {
             modalSubscription &&
-            <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(context?.id, period)}/>
+            <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(artist?.id, period)}/>
         }
         {err && 
             <FullPageCenter style='z-index-1300 bg-black-transp70'>

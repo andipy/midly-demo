@@ -85,10 +85,12 @@ const useLikeReply = () => {
             : fanclub
         )
       )
-      if (hasLiked) {
-        setAuraPoints(UNLIKE_POST_COMMENT_REPLY, 'UNLIKE_POST_COMMENT_REPLY', artistId)
-      } else {
-        setAuraPoints(LIKE_POST_COMMENT_REPLY, 'LIKE_POST_COMMENT_REPLY', artistId)
+      if (!window.location.pathname.includes('/artist-app')) {
+        if (hasLiked) {
+          setAuraPoints(UNLIKE_POST_COMMENT_REPLY, 'UNLIKE_POST_COMMENT_REPLY', artistId)
+        } else {
+          setAuraPoints(LIKE_POST_COMMENT_REPLY, 'LIKE_POST_COMMENT_REPLY', artistId)
+        }
       }
     }
 

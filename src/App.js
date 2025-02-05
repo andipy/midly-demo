@@ -99,6 +99,7 @@ import ChatPrivateRoute from './routes/chat-private.route'
 import TopicCreationRoute from './routes/topic-creation.route'
 import TopicAddHashtagRoute from './routes/topic-add-hashtag.route'
 import TopicDetailsRoute from './routes/topic-details.route'
+import FanclubPostsRouteArtist from './routes/archived/fanclub-posts.route.artist'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -254,6 +255,9 @@ const router = createBrowserRouter([
 		element: <FanclubRoute />,
 		children: [
 			{
+				path: '',
+				element: <Navigate to="dashboard" replace />,
+			},{
 				path: '/artist-app/fanclub/activation/terms',
 				element: <FanclubTermsRoute />
 			},{
@@ -274,6 +278,30 @@ const router = createBrowserRouter([
 			},{
 				path: '/artist-app/fanclub/user-moderation/report',
 				element: <UserModerationReportRoute />,
+			},{
+				path: 'forum',
+				element: <FanclubForumRoute />
+			},{
+				path: 'dashboard',
+				element: <FanclubAllRoute />
+			},{
+				path: 'posts',
+				element: <FanclubPostsRoute />
+			},{
+				path: 'events',
+				element: <FanclubEventsRoute />
+			}, {
+				path: 'letters',
+				element: <FanclubLettersRoute />
+			}, {
+				path: 'auraBoard',
+				element: <FanclubLeaderboardRoute />,
+				/* children: [
+					{
+					  path: 'fan', 
+					  element: <FanPublicProfileRoute />,
+					},
+				], */
 			}
 		]
 	},{

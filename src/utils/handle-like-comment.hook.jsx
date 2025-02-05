@@ -62,7 +62,7 @@ const useLikeComment = () => {
                                 ? comment.likes.filter(like => !(like.userId === currentFan.id && like.type === "FAN"))
                                 : [...comment.likes, { userId: currentFan.id, type: "FAN" }]
                           }
-                          : comment;
+                          : comment
                       })
                     }
                     : post
@@ -71,10 +71,12 @@ const useLikeComment = () => {
             : fanclub
         )
       )
-      if (hasLiked) {
-          setAuraPoints(UNLIKE_POST_COMMENT, 'UNLIKE_POST_COMMENT', artistId)
-      } else {
-          setAuraPoints(LIKE_POST_COMMENT, 'LIKE_POST_COMMENT', artistId)
+      if (!window.location.pathname.includes('/artist-app')) {
+        if (hasLiked) {
+            setAuraPoints(UNLIKE_POST_COMMENT, 'UNLIKE_POST_COMMENT', artistId)
+        } else {
+            setAuraPoints(LIKE_POST_COMMENT, 'LIKE_POST_COMMENT', artistId)
+        }
       }
     }
     
