@@ -56,6 +56,7 @@ import FanclubLeaderboardRoute from './routes/fanclub-leaderboard.route'
 import FanLetterCreationRoute from './routes/fan-letter-creation.route'
 import FanLetterCreationReviewRoute from './routes/fan-letter-creation-review.route'
 import FanclubGroupChatRoute from './routes/fanclub-group-chat.route'
+import HomeRoute from './routes/home.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -125,7 +126,10 @@ const router = createBrowserRouter([
 		element: <LoginRoute />
 	},{
 		path: '/',
-		element:<Navigate to='/your-favourites' />
+		element:<Navigate to='/home' />
+	},{
+		path: '/home',
+		element: <HomeRoute />
 	},{
 		path: '/your-favourites',
 		element: <YourFavouritesRoute />
