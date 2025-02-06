@@ -107,7 +107,7 @@ const ForumTopic = ({ key, topic, artistId, like, save, share, popular }) => {
                             <p className='fsize-xs-0 f-w-300 gold'>Artista</p>
                         }
                     </div>
-                    <div className='d-flex-row j-c-space-between align-items-center w-100 gap-1em' onClick={() => navigate('topic/details', {state: {topic: topic, artistId: artistId}})}>
+                    <div className='d-flex-row j-c-space-between align-items-center w-100 gap-1em' onClick={() => navigate('topic/details', {state: {topic: topic, artistId: artistId, from: pathname}})}>
                         <div className='d-flex-column w-100'>
                             <h1 className='fsize-xs-5 f-w-800'>{topic?.title}</h1>
                             <p className='fsize-xs-2 f-w-300 mt-xs-4'>
