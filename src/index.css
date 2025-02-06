@@ -958,6 +958,9 @@ animation: dot-loader-after 1s infinite linear;
 .bg-dark-soft-2 {
   background-color: #252525;
 }
+.bg-dark-soft-3 {
+  background-color: #4f4f4f;
+}
 .bg-grey-50 {
   background-color: #F0F0F0;
 }
@@ -1804,7 +1807,7 @@ animation: dot-loader-after 1s infinite linear;
   top: 95%;
 }
 .top-navbar {
-  top: var(--top-bar-height);
+  top: calc(var(--top-bar-height) * 0.99);
 }
 .top-navbar-more-1_1 {
   top: calc(var(--top-bar-height) * 1.1 );

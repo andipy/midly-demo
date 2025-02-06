@@ -432,11 +432,15 @@ const ArtistRoute = () => {
                 openModalSubscription={() => setModalSubscription(true)}
             />
 
+            <Container style='d-flex-column j-c-start mt-avatar-header'>
+                <div className='d-flex-row j-c-space-between align-items-center'>
+                    <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
+                </div>
+                <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
+            </Container>
             
-
-            
-            <div className='mt-avatar-header position-sticky top-navbar z-index-999 bg-dark pb-xs-2'>
-                <div className='container pt-xs-2'>
+            <div className='position-sticky top-navbar z-index-999 bg-dark pb-xs-2 pt-xs-2'>
+                <Container className='container'>
                     {/* MAJOR CHANGES */}
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && /* !location.pathname.includes('/fanclub')  && */
                         <MessageFlashLeaderboard
@@ -457,6 +461,15 @@ const ArtistRoute = () => {
                             onClick={handleSpotifyConnect}
                         />
                     }
+
+                    {/* MAJOR CHANGES */}
+                    {/* {userCompeting && currentFan.hasSpotify && !pathname.includes('fanclub') &&
+                        <CardLeaderboardYourPosition
+                            currentFan={currentFan}
+                            artist={artist}
+                        />
+                    } */}
+                    
                     <div className='w-100 d-flex-column j-c-space-between align-items-center'>
                         {/* MAJOR CHANGES */}
                         {/* {pathname.includes('leaderboard') &&
@@ -484,37 +497,21 @@ const ArtistRoute = () => {
                         } */}
                         {!hasUserSubscribed && fanclub?.isActive &&
                             <Button
-                                style='bg-acid-lime fsize-xs-3 f-w-500 black mb-xs-2 w-100'
-                                label='Abbonati'
+                                style='border-lime bg-none lime-400 fsize-xs-3 f-w-500 black mb-xs-2 w-100'
+                                label={`Abbonati a ${artist.artistName}`}
                                 onClick={() => setModalSubscription(true)}
                             />
                         }
                     </div>
-                    
-                    {/* MAJOR CHANGES */}
-                    {/* {userCompeting && currentFan.hasSpotify && !pathname.includes('fanclub') &&
-                        <CardLeaderboardYourPosition
-                            currentFan={currentFan}
-                            artist={artist}
-                        />
-                    } */}
-                    {/* MAJOR CHANGES */}
-                    <div className='d-flex-column j-c-start '>
-                        <div className='d-flex-row j-c-space-between align-items-center'>
-                            <h2 className='fsize-xs-5 f-w-600'>{fanclub?.name}</h2>
-                        </div>
-                        
-                        <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
-                    </div>
-                    <div className='mt-xs-2'>
-                        <TabFanclub/>
-                    </div>
-                    
-                </div>
+
+                    <TabFanclub/>
+                </Container>
             </div>
+
             <Container style={''}>
                 <Outlet context={{artist, focusPost}} />
             </Container>
+
             {/* MAJOR CHANGES */}
             <CommentsModalLayout
                 modalOpen={modalOpen}
