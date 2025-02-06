@@ -40,14 +40,14 @@ const FanclubLettersRoute = () => {
                 !location?.pathname.includes("/artist-app") ?
                 <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                     <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-200 f-w-400'>Sii il primo a postare un messaggio per {artistF?.artistName} direttamente nel suo fanclub.</p>
+                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Sii il primo a postare un messaggio per {artistF?.artistName} direttamente nel suo fanclub.</p>
                         <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Posta un messaggio' onClick={() => navigate('creation', { state: {artist:artistF} })}/>
                     </div>
                 </div>
                 :
                 <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                     <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-200 f-w-400'>I tuoi Superfan non hanno ancora pubblicato nulla.</p>
+                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>I tuoi Superfan non hanno ancora pubblicato nulla.</p>
                     </div>
                 </div>
             }

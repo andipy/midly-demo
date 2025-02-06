@@ -867,7 +867,7 @@ export const FanclubsProvider = ({ children }) => {
                     username: 'imtheKING',
                     id: 1,
                     createdAt: "2025-02-05T12:22:23.542Z",
-                    content: 'Primo messaggio della chat di gruppo'
+                    content: 'Raga, ma avete sentito l ultimo pezzo di Sfera? "Soldi e Diamanti" è una bomba!'
                 },
                 {
                     userType: 'fan',
@@ -876,7 +876,7 @@ export const FanclubsProvider = ({ children }) => {
                     username: 'chiara',
                     id: 2,
                     createdAt: "2025-02-05T13:22:23.542Z",
-                    content: 'Secondo messaggio della chat di gruppo'
+                    content: 'Yesss! Il beat spacca e il ritornello ti rimane in testa subito'
                 },
                 {
                     userType: 'fan',
@@ -885,7 +885,151 @@ export const FanclubsProvider = ({ children }) => {
                     username: 'ginger04',
                     id: 3,
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Terzo messaggio della chat di gruppo più lungo degli altri per far capire come funziona quando si superano un tot di righe'
+                    content: 'Secondo voi è meglio questa o "Baby"? Io sono ancora in fissa con quella'
+                },
+                {
+                    userType: 'fan',
+                    userId: 6,
+                    userImage: require('../images/pictures/ai_03.png'),
+                    username: 'giulietta',
+                    id: 4,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Bro, "Baby" è un classico, ma l ultimo singolo è già una hit!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 7,
+                    userImage: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    id: 5,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Sfera non sbaglia un colpo, ogni traccia è un successo assicurato!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 2,
+                    userImage: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    id: 6,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Ho visto che sta annunciando le date del tour, chi viene al concerto di Milano?'
+                },
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 7,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Io ci sarò! Voglio sentire "Piove" live, con Lazza sarebbe una bomba!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 8,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Raga, ma secondo voi collaborerà mai con artisti americani tipo Travis Scott?'
+                },
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 9,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Sarebbe il top! Lui ha già fatto feat internazionali, quindi mai dire mai!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 6,
+                    userImage: require('../images/pictures/ai_03.png'),
+                    username: 'giulietta',
+                    id: 10,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: ' Io spero solo che porti i pezzi vecchi nei live, tipo "Rockstar", quella è leggenda!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 11,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Verooo! "Rockstar" mi riporta a un sacco di ricordi, che anni pazzeschi!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 2,
+                    userImage: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    id: 12,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'E il nuovo album? Quando lo annuncia? Sto aspettando troppo!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 13,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Dicono esca prima dell estate, vi immaginate un altra hit estiva come "M Manc"!? 🔥'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 14,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'O magari un pezzo drill con Shiva e Capo Plaza 😈 Sarebbe il delirio!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 15,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Raga ma parliamo del look di Sfera? Sempre il più fresco, gli occhiali a cuore sono già iconici'
+                },
+                {
+                    userType: 'fan',
+                    userId: 6,
+                    userImage: require('../images/pictures/ai_03.png'),
+                    username: 'giulietta',
+                    id: 16,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Poi l’attitude… Sfera ha proprio quella vibe da superstar, come pochi!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 17,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Infatti, se oggi la trap italiana è conosciuta è anche merito suo!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 7,
+                    userImage: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    id: 18,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Non vedo l’ora di sentirlo dal vivo, il palco è il suo regno!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 8,
+                    userImage: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    id: 19,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Sfera numero uno! Ci vediamo sotto il palco raga! '
                 },
 
             ]
