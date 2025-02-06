@@ -55,6 +55,7 @@ import FanclubLettersRoute from './routes/fanclub-letters.route'
 import FanclubLeaderboardRoute from './routes/fanclub-leaderboard.route'
 import FanLetterCreationRoute from './routes/fan-letter-creation.route'
 import FanLetterCreationReviewRoute from './routes/fan-letter-creation-review.route'
+import FanclubGroupChatRoute from './routes/fanclub-group-chat.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -183,6 +184,9 @@ const router = createBrowserRouter([
 					element: <FanPublicProfileRoute />,
 					},
 				],
+			},{
+				path: 'groupchat',
+				element: <FanclubGroupChatRoute />,
 			}
 		/* MAJOR CHANGE */
 		  /* {
@@ -359,6 +363,9 @@ const router = createBrowserRouter([
 					  element: <FanPublicProfileRoute />,
 					},
 				], */
+			},{
+				path: 'groupchat',
+				element: <FanclubGroupChatRoute />,
 			}
 		]
 	},{

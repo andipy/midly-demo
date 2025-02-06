@@ -1749,6 +1749,9 @@ animation: dot-loader-after 1s infinite linear;
 .bottom-5 {
   bottom: 5%;
 }
+.bottom-10 {
+  bottom: 10%;
+}
 .bottom-12 {
   bottom: 12%;
 }

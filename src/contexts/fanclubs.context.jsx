@@ -33,7 +33,8 @@ export const FanclubsProvider = ({ children }) => {
             concerts: [],
             forum: [],
             leaderboard: [],
-            fanLetters:[]
+            fanLetters:[],
+            messages:[]
         },{
             id: 2,
             artistId: 'a3p8',
@@ -143,7 +144,8 @@ export const FanclubsProvider = ({ children }) => {
             concerts: [],
             forum: [],
             leaderboard: [],
-            fanLetters: []
+            fanLetters: [],
+            messages:[]
         },{
             id: 3,
             artistId: 3,
@@ -172,7 +174,8 @@ export const FanclubsProvider = ({ children }) => {
             concerts: [],
             forum: [],
             leaderboard: [],
-            fanLetters:[]
+            fanLetters:[],
+            messages:[]
         },{
             id: 4,
             artistId: 'a2p1',
@@ -855,6 +858,36 @@ export const FanclubsProvider = ({ children }) => {
                     caption: 'Numero uno',
                     mode: 'PUBLISHED'
                 }
+            ],
+            messages:[
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 1,
+                    createdAt: "2025-02-05T12:22:23.542Z",
+                    content: 'Primo messaggio della chat di gruppo'
+                },
+                {
+                    userType: 'fan',
+                    userId: 2,
+                    userImage: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    id: 2,
+                    createdAt: "2025-02-05T13:22:23.542Z",
+                    content: 'Secondo messaggio della chat di gruppo'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 3,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Terzo messaggio della chat di gruppo più lungo degli altri per far capire come funziona quando si superano un tot di righe'
+                },
+
             ]
         }
     ])

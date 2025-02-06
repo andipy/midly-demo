@@ -30,7 +30,10 @@ const TabFanclub = () => {
 
             <div className={`${pathname.includes('auraBoard') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-2 white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('auraBoard')}}> 
                 <p className='fsize-xs-2'>Classifica</p>
-            </div>       
+            </div>  
+            <div className={`${pathname.includes('groupchat') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-2 white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('groupchat')}}> 
+                <p className='fsize-xs-2'>Chat di gruppo</p>
+            </div>      
         </Carousel>
       )
 }
