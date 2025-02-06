@@ -24,6 +24,7 @@ import useModal from "../utils/handle-modal.hooks"
 import useFanclubSubscriptionHandler from "../utils/handle-subscription.hook"
 import useLikeTopic from "../utils/handle-like-topic.hook"
 import useSaveTopic from "../utils/handle-save-topic.hook"
+
 const HomeRoute = () => {
   const navigate = useNavigate()
   const location = useLocation()

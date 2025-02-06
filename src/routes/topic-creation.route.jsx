@@ -65,11 +65,11 @@ const TopicCreationRoute = () => {
         setTopicDescr(e.target.value)
     }
 
-    const [hashtags, setHashtags] = useState([])
+    // const [hashtags, setHashtags] = useState([])
 
-    const removeTag = (index) => {
-        setHashtags(hashtags.filter((_, i) => i !== index))
-    }
+    // const removeTag = (index) => {
+    //     setHashtags(hashtags.filter((_, i) => i !== index))
+    // }
 
     const publishTopic = () => {
         let currentDate = new Date()
@@ -95,7 +95,7 @@ const TopicCreationRoute = () => {
                                     cover: file?.url,
                                     title: topicTitle,
                                     description: topicDescr,
-                                    hashtags: hashtags,
+                                    //hashtags: hashtags,
                                     likes: [],
                                     comments: [],
                                     saved: [],
@@ -132,7 +132,7 @@ const TopicCreationRoute = () => {
                                     cover: file?.url,
                                     title: topicTitle,
                                     description: topicDescr,
-                                    hashtags: hashtags,
+                                    //hashtags: hashtags,
                                     likes: [],
                                     comments: [],
                                     saved: [],
@@ -188,11 +188,10 @@ const TopicCreationRoute = () => {
                     onChange={(e) => handleTopicDescr(e)}
                 />
 
-                <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>HASHTAG</label>
+                {/* <label className='fsize-xs-1 grey-300 letter-spacing-3 ml-xs-4'>HASHTAG</label> */}
 
-                <div className='d-flex-row j-c-start align-items-center gap-0_5em mt-xs-4 ml-xs-4'>
-                    {
-                        hashtags.map(((hashtag, index) =>
+                {/* <div className='d-flex-row j-c-start align-items-center gap-0_5em mt-xs-4 ml-xs-4'>
+                    {hashtags.map(((hashtag, index) =>
                             <div className='bg-acid-lime-op-75 pr-xs-2 pl-xs-2 pt-xs-1 pb-xs-1 border-radius-02 d-flex-row j-c-center align-items-center gap-0_5em'>
                                 <p className='fsize-xs-1 f-w-300 lime-400'>#{hashtag}</p>
                                 <div className='bg-dark-gradient avatar-16 d-flex-row j-c-center align-items-center pr-xs-2 pl-xs-2 pt-xs-1 pb-xs-1 border-radius-100 ' onClick={() => removeTag(index)}>
@@ -204,7 +203,7 @@ const TopicCreationRoute = () => {
                     <div className='bg-dark-gradient avatar-28 d-flex-row j-c-center align-items-center pr-xs-2 pl-xs-2 pt-xs-1 pb-xs-1 border-radius-100 ' onClick={() => navigate(`hashtags`, { state: { invokedModal: true } })}>
                         <img className='avatar-28' src={IconPlus}/>
                     </div>
-                </div>
+                </div> */}
                 
             </div>
             
@@ -255,7 +254,8 @@ const TopicCreationRoute = () => {
                 </Button>
             </Container>
         </div>
-        <Outlet context={[hashtags, setHashtags]}/>
+        
+        {/* <Outlet context={[hashtags, setHashtags]}/> */}
         
     </>
    

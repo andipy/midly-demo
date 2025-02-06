@@ -180,7 +180,7 @@ const router = createBrowserRouter([
 				path: 'letters',
 				element: <FanclubLettersRoute />
 			}, {
-				path: 'auraBoard',
+				path: 'leaderboard',
 				element: <FanclubLeaderboardRoute />,
 				children: [
 					{
@@ -225,7 +225,7 @@ const router = createBrowserRouter([
 					path: 'letters',
 					element: <FanclubLettersRoute />
 				}, {
-					path: 'auraBoard',
+					path: 'leaderboard',
 					element: <FanclubLeaderboardRoute />,
 					children: [
 						{
@@ -365,7 +365,7 @@ const router = createBrowserRouter([
 				path: 'letters',
 				element: <FanclubLettersRoute />
 			}, {
-				path: 'auraBoard',
+				path: 'leaderboard',
 				element: <FanclubLeaderboardRoute />,
 				/* children: [
 					{

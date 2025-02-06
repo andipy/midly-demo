@@ -151,6 +151,7 @@ const ContentCreationRoute = () => {
     const handleCapturePhoto = () => {
         const canvas = canvasRef.current
         const video = videoRef.current
+        
         if (canvas && video) {
             canvas.width = video.videoWidth
             canvas.height = video.videoHeight

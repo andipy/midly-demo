@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { FanclubsContext } from "../contexts/fanclubs.context"
 import useAuraPoints from "./handle-aura-points.hook"
 import { COMMENT_POST_AS_FIRST, COMMENT_POST, REPLY_TO_POST_COMMENT } from "./aura-points-values"
+
 const useSubmitComment = () => {
   const { fanclubs, setFanclubs } = useContext(FanclubsContext)
   const { setAuraPoints} = useAuraPoints()

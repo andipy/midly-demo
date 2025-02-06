@@ -650,7 +650,7 @@ export const FanclubsProvider = ({ children }) => {
                     cover: undefined,
                     title: 'Secondo voi qual è il futuro della musica urban?',
                     description: 'Quali suoni diventeranno main stream? Per me suoni sempre più sintetici e particolari, ma vedo anche un ritorno degli strumenti classici come il piano. Per voi?',
-                    hashtags: ['musica', 'futuro', 'gustiMusicali'],
+                    //hashtags: ['musica', 'futuro', 'gustiMusicali'],
                     likes: [
                         {userId: 1},
                         {userId: 2},
@@ -689,7 +689,7 @@ export const FanclubsProvider = ({ children }) => {
                     cover: require('../images/pictures/sferaebbasta-topic-image.jpg'),
                     title: 'Foto del live al Forum?',
                     description: 'Qualcuno ha fatto qualche foto al live di sabato?',
-                    hashtags: ['foto', 'live', 'forum'],
+                    //hashtags: ['foto', 'live', 'forum'],
                     likes: [
                         {userId: 1},
                         {userId: 2},

@@ -13,6 +13,8 @@ import CoverFanclub from './cover-fanclub.component.artist'
 const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, currentFan, fanclub, openMessages, userSubscribed, openSettingsSubscription, openModalSubscription}) => {
 
     const { pathname } = useLocation()
+
+    console.log(artist)
     
     return (
         <header className={`position-relative ${pathname.includes('flash-leaderboard') ? 'position-fixed w-100 z-index-5 top-0 h-xs-20' : 'h-xs-27'}`}>
@@ -28,7 +30,14 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
                 }
             />
             } */}
-            <CoverFanclub fanclub={fanclub}/>
+            {fanclub ?
+                <CoverFanclub fanclub={fanclub} />
+            :
+                <img
+                    className='w-100 h-inherit object-fit-cover'
+                    src={artist?.image}
+                />
+            }
             <Container style={'w-100 position-absolute-x bottom-avatar-header z-index-2 d-flex-row align-items-center gap-0_5em'}>
                 <div className='position-relative avatar-72'>
                     <img className={`avatar-72 border-radius-100 ${artist?.flashLeaderboard.status === 'ONGOING' ? 'border-lime-6' : 'border-dark-6'}`} src={artist?.image} />                       

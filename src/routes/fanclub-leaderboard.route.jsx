@@ -62,7 +62,7 @@ const FanclubLeaderboardRoute = () => {
                             onClick={(event) => {
                             event.preventDefault();
                             if (!window.location.pathname.includes("artist-app")) {
-                                navigate(`/artist/${artistF.slug}/auraBoard/fan`, { 
+                                navigate(`/artist/${artistF.slug}/leaderboard/fan`, { 
                                     state: { invokedModal: true, artist: artistF, fan: leaderboard[0] } 
                                 });
                             }
@@ -92,7 +92,7 @@ const FanclubLeaderboardRoute = () => {
                             onClick={(event) => {
                             event.preventDefault();
                             if (!window.location.pathname.includes("artist-app")) {
-                                navigate(`/artist/${artistF.slug}/auraBoard/fan`, { 
+                                navigate(`/artist/${artistF.slug}/leaderboard/fan`, { 
                                     state: { invokedModal: true, artist: artistF, fan: leaderboard[1] } 
                                 });
                             }
@@ -124,7 +124,7 @@ const FanclubLeaderboardRoute = () => {
                         onClick={(event) => {
                             event.preventDefault();
                             if (!window.location.pathname.includes("artist-app")) {
-                                navigate(`/artist/${artistF.slug}/auraBoard/fan`, { 
+                                navigate(`/artist/${artistF.slug}/leaderboard/fan`, { 
                                     state: { invokedModal: true, artist: artistF, fan: leaderboard[2] } 
                                 });
                             }
@@ -158,7 +158,7 @@ const FanclubLeaderboardRoute = () => {
                     onClick={(event) => {
                         event.preventDefault(); // Evita comportamenti indesiderati
                         if (!window.location.pathname.includes("artist-app")) {
-                            navigate(`/artist/${artistF.slug}/auraBoard/fan`, {
+                            navigate(`/artist/${artistF.slug}/leaderboard/fan`, {
                                 state: { invokedModal: true, artist: artistF, fan: fan },
                             })
                         }

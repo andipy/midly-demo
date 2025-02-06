@@ -191,7 +191,7 @@ const ForumTopic = ({ key, topic, artistId, like, save, share, popular }) => {
                         </div>
                         
                     </div>
-                    <div className='d-flex-row j-c-center align-items-center w-100'>
+                    {/* <div className='d-flex-row j-c-center align-items-center w-100'>
                         <Carousel>
                             {topic?.hashtags.map(tag => {
                                 return (
@@ -199,11 +199,9 @@ const ForumTopic = ({ key, topic, artistId, like, save, share, popular }) => {
                                         <p className='fsize-xs-1 f-w-500 lime-400'>#{tag}</p>
                                     </div>
                                 )
-                            })}     
-
+                            })}
                         </Carousel>
-                    </div>
-
+                    </div> */}
                 </div>
             </Container>
         </div>

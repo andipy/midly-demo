@@ -29,36 +29,34 @@ const TopicAddHashtagRoute= () => {
         navigate(-1)
     }
 
-
-
-  return (
-    <FullScreenModalLayout background='bg-black'>
-        <NavbarCloseTransparent closeModal={() => navigate(-1)}/>
-        <Container>
-            <input
-                className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-02 mt-xs-4'
-                type='text'
-                placeholder={`${'Hashtag'}`}
-                value={tag}
-                onChange={(e) => handleTag(e)}
-            />
-
-        </Container>
-        
-        <div className='position-fixed bottom-0 w-100 pt-xs-4 pb-xs-4 bg-dark'>
+    return (
+        <FullScreenModalLayout background='bg-black'>
+            <NavbarCloseTransparent closeModal={() => navigate(-1)}/>
             <Container>
-                <Button
-                    disabled={false}
-                    style={`${'bg-acid-lime dark-900'} fsize-xs-3 f-w-600 letter-spacing-1`}
-                    onClick={updateHashtags} 
-                    label='Salva'
-                >
-                </Button>
-            </Container>
-        </div>
+                <input
+                    className='bg-dark-soft white fsize-xs-2 f-w-500 border-radius-02 mt-xs-4'
+                    type='text'
+                    placeholder={`${'Hashtag'}`}
+                    value={tag}
+                    onChange={(e) => handleTag(e)}
+                />
 
-    </FullScreenModalLayout>
-  )
+            </Container>
+            
+            <div className='position-fixed bottom-0 w-100 pt-xs-4 pb-xs-4 bg-dark'>
+                <Container>
+                    <Button
+                        disabled={false}
+                        style={`${'bg-acid-lime dark-900'} fsize-xs-3 f-w-600 letter-spacing-1`}
+                        onClick={updateHashtags} 
+                        label='Salva'
+                    >
+                    </Button>
+                </Container>
+            </div>
+
+        </FullScreenModalLayout>
+    )
 }
 
 export default TopicAddHashtagRoute

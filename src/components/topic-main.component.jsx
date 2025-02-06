@@ -87,7 +87,7 @@ const TopicMain = ({topic, liked, likeTopic, saved, saveTopic, shareTopic, spotC
                     </p>
                 </div>
 
-                {topic?.hashtags.length > 0 &&
+                {/* {topic?.hashtags.length > 0 &&
                     <div className='d-flex-row j-c-center align-items-center w-100 mt-xs-4'>
                         <Carousel>
                             {topic?.hashtags.map(tag => {
@@ -96,11 +96,10 @@ const TopicMain = ({topic, liked, likeTopic, saved, saveTopic, shareTopic, spotC
                                         <p className='fsize-xs-1 f-w-500 lime-400'>#{tag}</p>
                                     </div>
                                 )
-                            })}     
-
+                            })}
                         </Carousel>
                     </div>
-                }
+                } */}
                 
                 <div className='d-flex-row j-c-space-between align-items-center w-100 gap-1em mt-xs-4'>
                     <div className='d-flex-column w-100'>

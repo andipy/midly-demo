@@ -420,7 +420,7 @@ const ArtistRoute = () => {
                 :
                 <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)}  />
             } */}
-            <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={true} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed} openModalSubscription={() => setModalSubscription(true)}/>
+            <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={true} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed} openModalSubscription={() => setModalSubscription(true)} />
 
             <CoverArtistPage
                 fanclub={fanclub}

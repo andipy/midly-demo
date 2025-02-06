@@ -45,8 +45,7 @@ const FanclubPostsRoute = () => {
 
   return (
     <div>
-        {
-            empty &&
+        {empty &&
             <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                 <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
                     <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Il fanclub di {artistF?.artistName} è attivo, rimani sintonizzato per vedere i suoi contenuti.</p>
@@ -57,35 +56,30 @@ const FanclubPostsRoute = () => {
                 </div>
             </div>
         }
+
         <Container style={'pb-xs-2 mt-xs-4'}>
-            {
-                fanclub?.posts
+            {fanclub?.posts
                 .sort((a, b) => sortPosts(a,b))
                 .map(item => {
                     return (
-                        <>
-                        {
-                            <Post
-                                key={item.id}
-                                post={item}
-                                focusPost={focusPost}
-                                likePost={(postId) => likePost(artistF?.id, postId)}
-                                hasUserSubscribed={hasUserSubscribed}
-                                handleSubscription={() => setModalSubscription(true)}
-                                artistId={artistF?.id}
-                            /> 
-                        }
-                        </>
-                        
+                        <Post
+                            key={item.id}
+                            post={item}
+                            focusPost={focusPost}
+                            likePost={(postId) => likePost(artistF?.id, postId)}
+                            hasUserSubscribed={hasUserSubscribed}
+                            handleSubscription={() => setModalSubscription(true)}
+                            artistId={artistF?.id}
+                        />
                     )
                 })
             }
-        
         </Container>
-        {
-            modalSubscription &&
+
+        {modalSubscription &&
             <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(artistF?.id, period)}/>
         }
+        
         {err && 
             <FullPageCenter style='z-index-1300 bg-black-transp70'>
                 <Container style={`centered-popup ${isExiting ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-red-400 border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
