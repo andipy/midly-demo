@@ -6,36 +6,6 @@ export const FanclubsProvider = ({ children }) => {
 
     const [fanclubs, setFanclubs] = useState([
         {
-            id: 1,
-            artistId: 1,
-            isActive: false,
-            subscribers: null,
-            name: null,
-            description: null,
-            pricing: null,
-            cover: {
-                id: undefined,
-                url: undefined,
-                type: undefined
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters:[],
-            messages:[]
-        },{
             id: 2,
             artistId: 'a3p8',
             isActive: true,
@@ -669,7 +639,8 @@ export const FanclubsProvider = ({ children }) => {
             ],
             forum: [
                 {
-                    id: 'a2p1',
+                    id: 2,
+                    artistId: 'a2p1',
                     userImage: require('../images/pictures/sfera-ebbasta.jpg'),
                     userName: 'Sfera Ebbasta',
                     publisher: {
@@ -708,6 +679,7 @@ export const FanclubsProvider = ({ children }) => {
                 },
                 {
                     id: 1,
+                    artistId: "a2p1",
                     userImage: require('../images/pictures/ai_01.png'),
                     userName: 'chiara',
                     publisher: {

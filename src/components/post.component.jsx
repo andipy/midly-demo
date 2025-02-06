@@ -20,7 +20,7 @@ import useAuraPoints from '../utils/handle-aura-points.hook'
 import { CLICK_POST_LINK } from '../utils/aura-points-values'
 
 const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost, likePost }) => {
-
+	const navigate = useNavigate()
 	const { artists } = useContext(ArtistsContext)
 	const { currentFan	} = useContext(CurrentFanContext)
 	const { currentArtist } = useContext(CurrentArtistContext)
@@ -85,6 +85,16 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 	return (
 		<>
+		{
+			pathname.includes('/home') &&
+			<div 
+				className='d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4'
+				onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
+				>
+				<img className='avatar-28 border-radius-100' src={artist?.image}/>
+				<p className='fsize-xs-1 f-w-500'>{artist?.artistName}</p>
+			</div>
+		}
 		<div className='position-relative overflow-hidden d-flex-column j-c-center w-100vw image-wrapper'>
 			<div className={`j-c-center align-items-center position-relative `}>
 				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} onClick={() => focusPost(post.id, 'FULL_SCREEN_POST')}>
@@ -183,7 +193,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 								<p className='fsize-xs-1'>{post.commentsCount}</p>
 							</div>
 
-							<div className='d-flex-row align-items-center gap-0_25em' onClick={() => focusPost(post.id, 'SHARE_POST')}>
+							<div className='d-flex-row align-items-center gap-0_25em' onClick={() => focusPost(post.id, 'SHARE_POST', artist?.id)}>
 								<img className='avatar-28  border-radius-04' src={IconShare}/>
 							</div>
 						</div>

@@ -10,7 +10,7 @@ const useAuraPoints = () => {
 
   const setAuraPoints = (value, type, artistId) => {
     console.log(value, type, artistId)
-    const fanclubId = fanclubs.find(f => f.artistId === artistId).id
+    const fanclubId = fanclubs.find(f => f.artistId === artistId)?.id
 
     if (currentFan) {
         setCurrentFan(prevFan => {

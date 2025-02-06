@@ -84,6 +84,7 @@ const TopicCreationRoute = () => {
                                 ...fanclub.forum,
                                 {                                    
                                     id: newForumId,
+                                    artistId: state?.artist.id,
                                     userImage: fan?.image,
                                     userName: currentFan?.username,
                                     publisher: {
@@ -120,6 +121,7 @@ const TopicCreationRoute = () => {
                                 ...fanclub.forum,
                                 {                                    
                                     id: newForumId,
+                                    artistId: state?.artist.id,
                                     userImage: currentArtist?.image,
                                     userName: currentArtist?.artistName,
                                     publisher: {
