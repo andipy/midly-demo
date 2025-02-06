@@ -33,7 +33,9 @@ import { CLICK_POST_LINK } from '../utils/aura-points-values'
 import useLikePost from '../utils/handle-like-post.hook'
 const  PostFullScreenRoute = () => {
     const navigate = useNavigate()
-    const { state } = useLocation()
+    const location = useLocation()
+    const { postId, artistId, from } = location.state || {}    
+    console.log(postId, artistId, from)
     const { pathname } = useLocation()
 
     const { currentArtist} = useContext(CurrentArtistContext)
@@ -48,27 +50,26 @@ const  PostFullScreenRoute = () => {
     const { share, messageSnackbar, triggered } = useShare()
     const {setAuraPoints} = useAuraPoints()
     const {likePost} = useLikePost()
-
-    
+    console.log(artistId)
     const [artist, setArtist] = useState()
     const fetchThisArtist = () => {
-        if (!state?.artist) {
+        if (!artistId) {
             console.error('State or state.artist is undefined')
             return
         }
-        const thisArtist = artists.find(artist => state.artist.id === artist.id)
+        const thisArtist = artists.find(artist => artist.id === artistId )
         setArtist(thisArtist)
     }
 
     useEffect(() => {
-        if (state && artists.length > 0) {
+        if (artistId && artists.length > 0) {
             fetchThisArtist()
         }
-    }, [artists, state, artist])
-    const thisFanclub = useFanclub(state?.artist?.id)
+    }, [artists, artistId, artist])
+    const thisFanclub = useFanclub(artistId)
     const [post, setPost] = useState({})
     const fetchThisPost = () => {
-        const thisPost = thisFanclub?.posts?.find(elem => elem.id === state.id)
+        const thisPost = thisFanclub?.posts?.find(elem => elem.id === postId)
         setPost(thisPost)
     }
     useEffect(() => {
@@ -138,7 +139,7 @@ const  PostFullScreenRoute = () => {
         let currentDate = new Date()
         let date = currentDate.toISOString().split('T')[0]
         fanclubs.map(fanclub => {
-            if ( fanclub.artistId === state?.artist.id ) {
+            if ( fanclub.artistId === artistId ) {
                 fanclub.posts.map(post => {
                     if ( post.id === postInFocus.id ) {
                         commentsNumber = post?.commentsCount + 1
@@ -176,7 +177,7 @@ const  PostFullScreenRoute = () => {
 
     const submitComment = (e) => {
         e.preventDefault()
-        handleSubmitComment(currentComment, postInFocus, commentInFocus, state?.artist.id)
+        handleSubmitComment(currentComment, postInFocus, commentInFocus, artistId)
         setCurrentComment({
             id: undefined,
             userId: undefined,
@@ -205,7 +206,7 @@ const  PostFullScreenRoute = () => {
         setCommentInFocus(null)
     }
     const handleShare = (post) => {
-        share(post, state?.artist.id)
+        share(post,artistId)
         setPostInFocus({
             id: undefined,
             action: undefined,
@@ -256,7 +257,14 @@ const  PostFullScreenRoute = () => {
             { pathname.includes('/artist-app') ?
             <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
             :
-            <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}`, { state : {artist: artist} })}/>
+            <>
+                {
+                    from ?
+                    <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`${from}`, { state : {artist: artist} })}/>
+                    :
+                    <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}`, { state : {artist: artist} })}/>
+                }
+            </>
             }
             <div className='d-flex-row j-c-center align-items-center w-100 h-100' >
                 {post?.media?.length >= 0 ?
@@ -266,7 +274,7 @@ const  PostFullScreenRoute = () => {
                 }
             </div>
             <div className='d-flex-column gap-0_5em position-absolute-y right-5 z-index-5'>
-                <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => likePost(state?.artist.id, post.id)}>
+                <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => likePost(artistId, post.id)}>
                     {isLiked ?		
                         <img
                             className='avatar-32 border-radius-100'
@@ -282,7 +290,7 @@ const  PostFullScreenRoute = () => {
                     }
                 </div>
                 <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
-                    <img className='avatar-32' src={IconComments} onClick={() => focusPost(state.id, 'OPEN_COMMENTS')} />
+                    <img className='avatar-32' src={IconComments} onClick={() => focusPost(postId, 'OPEN_COMMENTS')} />
                 </div>
                 <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2'>
                     <img className='avatar-32' src={IconShare} onClick={() => focusPost(post.id, 'SHARE_POST')} />
@@ -318,7 +326,7 @@ const  PostFullScreenRoute = () => {
                     }
                     
                     {post?.link.url !== '' &&
-                        <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post?.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', state?.artist.id)}>
+                        <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post?.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artistId)}>
                             <img className='avatar-20' src={IconLink} />
                             <span>{post?.link.name ? post.link.name : 'Apri il link'}</span>
                         </Link>
@@ -368,9 +376,9 @@ const  PostFullScreenRoute = () => {
                                     inputRef={inputRef}
                                     spotCommentToReply={spotCommentToReply}
                                     modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id}})}
-                                    likeComment = {() => likeComment(comment.id, post.id, state?.artist.id)}
+                                    likeComment = {() => likeComment(comment.id, post.id, artistId)}
                                     postId={post.id}
-                                    likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, state?.artist.id)}    
+                                    likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, artistId)}    
                                 />
                             )
                         })

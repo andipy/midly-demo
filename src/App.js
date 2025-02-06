@@ -281,6 +281,10 @@ const router = createBrowserRouter([
 		path: '/artist/:artistSlug/:postId',
 		element: <PostFullScreenRoute />,
 	},{
+		/* path: '/artist/:artistSlug/fanclub/:postId', */
+		path: '/home/:postId',
+		element: <PostFullScreenRoute />,
+	},{
 		/* MAJOR CHANGE */
 		/* path: '/artist/:artistSlug/fanclub/forum/topic/details', */
 		path: '/artist/:artistSlug/forum/topic/details',

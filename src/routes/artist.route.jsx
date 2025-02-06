@@ -396,7 +396,7 @@ const ArtistRoute = () => {
                 handleShare(postInFocus.post)
             }
             if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
-                navigate(`${postInFocus.post.id}`, { state: { ...postInFocus.post, artist: artist} })
+                navigate(`${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: artist.id} })
             }
         }
     }, [postInFocus])

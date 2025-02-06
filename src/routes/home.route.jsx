@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useRef } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { FanclubsContext } from "../contexts/fanclubs.context"
 import { CurrentFanContext } from "../contexts/currentFan.context"
 import { FansContext } from "../contexts/fans.context"
@@ -26,6 +26,8 @@ import useLikeTopic from "../utils/handle-like-topic.hook"
 import useSaveTopic from "../utils/handle-save-topic.hook"
 const HomeRoute = () => {
   const navigate = useNavigate()
+  const location = useLocation()
+  const pathname = location.pathname
   const {fanclubs} = useContext(FanclubsContext)
   const {currentFan} = useContext(CurrentFanContext)
   const {fans} = useContext(FansContext)
@@ -87,7 +89,7 @@ const HomeRoute = () => {
           id: thisPost.id,
           action: action,
           post: thisPost,
-          artistid: artistId
+          artistId: artistId
       })
   }
   useEffect(() => {
@@ -99,7 +101,7 @@ const HomeRoute = () => {
             handleShare(postInFocus.post)
         }
         if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
-            navigate(`${postInFocus.post.id}`, { state: { ...postInFocus.post, artist: postInFocus.artistId} })
+            navigate(`${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: postInFocus.artistId, from: pathname} })
         }
     }
   }, [postInFocus])
