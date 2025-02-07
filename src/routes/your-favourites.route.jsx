@@ -29,7 +29,7 @@ const YourFavouritesRoute = () => {
     const { artists } = useContext(ArtistsContext)
     const { currentFan } = useContext(CurrentFanContext)
     
-    const [favourites, setFavourites] = useState([])
+    const [subscribed, setSubscribed] = useState([])
     const [showComponent, setShowComponent] = useState(false)
     const [clickCount, setClickCount] = useState(0)
     const [highlightArtists, setHighlightArtists] = useState([])
@@ -69,11 +69,11 @@ const YourFavouritesRoute = () => {
     }
 
     const fetchFavourites = () => {
-        const favouriteArtistIds = currentFan.followedArtists.map(artist => artist.artistId)
+        const favouriteArtistIds = currentFan.fanclubsSubscribed.map(artist => artist.artistId)
         const favouriteArtists = artists
             .filter(artist => favouriteArtistIds.includes(artist.id))
             .sort((a,b) => sortArtists(a,b))
-        setFavourites(favouriteArtists)
+        setSubscribed(favouriteArtists)
     }
 
     const { quizzes } = useContext(LiveQuizContext)
@@ -162,7 +162,7 @@ const YourFavouritesRoute = () => {
         <>
             <NavbarDefault />
             <Container style={'pb-xs-appbar'}>
-            <TextTitle title={'I tuoi preferiti'} />
+            <TextTitle title={'I tuoi abbonamenti'} />
             {currentFan.hasSpotify && currentFan.followedArtists.length > 0  ?
                 <>
                 {sanremo &&
@@ -196,7 +196,7 @@ const YourFavouritesRoute = () => {
 
                 <section className={quizzes.length > 0 ? 'mt-xs-8' : ''}>
                     <section>
-                        {favourites.map(favourite => <CardFollowedArtist artist={favourite} key={favourite.id} />
+                        {subscribed.map(favourite => <CardFollowedArtist artist={favourite} key={favourite.id} />
                         )}
                     </section>
                     <ButtonFollowMoreArtists />

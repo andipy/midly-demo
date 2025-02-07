@@ -20,10 +20,10 @@ import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
 import useSubmitComment from '../utils/handle-submit-comment.hook'
 import useLikeComment from '../utils/handle-like-comment.hook'
 import useLikeReply from '../utils/handle-like-reply-comment.hook'
-import useArtistName from '../utils/get-artist-name.hook'
 import useFanclub from '../utils/get-fanclub.hooks'
 import useModal from '../utils/handle-modal.hooks'
 import useShare from '../utils/handle-share.hook'
+import useArtist from '../utils/get-artist.hook'
 const Fanclub = () => {
     const navigate = useNavigate()
     const context = useOutletContext()
@@ -33,7 +33,7 @@ const Fanclub = () => {
     const {artists} = useContext(ArtistsContext)
 
     const hasUserSubscribed = useFanclubSubscription(context?.id)
-    const artistName = useArtistName(context?.id)
+    const artistName = useArtist(context?.id)?.artistName
     const fanclub = useFanclub(context?.id)
 
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()

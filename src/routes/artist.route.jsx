@@ -27,8 +27,8 @@ import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
 import useSubmitComment from '../utils/handle-submit-comment.hook'
 import useLikeComment from '../utils/handle-like-comment.hook'
 import useLikeReply from '../utils/handle-like-reply-comment.hook'
-import useArtistName from '../utils/get-artist-name.hook'
-/* import useFanclub from '../utils/get-fanclub.hooks'
+/* import useArtistName from '../utils/get-artist-name.hook'
+ *//* import useFanclub from '../utils/get-fanclub.hooks'
  */
 import useModal from '../utils/handle-modal.hooks' 
 import useShare from '../utils/handle-share.hook'
@@ -285,8 +285,8 @@ const ArtistRoute = () => {
 
     /* MAJOR CHANGES */
     /* const hasUserSubscribed = useFanclubSubscription(context?.id) */
-    const artistName = useArtistName(artist?.id)
-    /* const fanclub = useFanclub(context?.id) */
+/*     const artistName = useArtistName(artist?.id)
+ */    /* const fanclub = useFanclub(context?.id) */
 
     /* const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler() */
     const { handleSubmitComment } = useSubmitComment()
