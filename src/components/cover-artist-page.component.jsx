@@ -36,11 +36,13 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
                     src={artist?.image}
                 />
             }
+            {!pathname.includes('/flash-leaderboard') &&
             <Container style={'w-100 position-absolute-x bottom-avatar-header z-index-2 d-flex-row align-items-center gap-0_5em'}>
-                <div className='position-relative avatar-72'>
+                
+                    <div className='position-relative avatar-72'>
                     <img className={`avatar-72 border-radius-100 ${artist?.flashLeaderboard.status === 'ONGOING' ? 'border-lime-6' : 'border-dark-6'}`} src={artist?.image} />                       
                     {artist?.verified && <img className='artist-avatar-verified-icon' src={IconVerifiedArtist} />}
-                </div>                    
+                </div>
                 <div className={`d-flex-column grow-1 no-shrink j-c-start ${pathname.includes('/fanclub')  && userSubscribed  && 'mt-xs-6'}`}>
                     <h2 className='fsize-xs-4 f-w-600'>{artist?.artistName}</h2>
                     <div className={`d-flex-row j-c-space-between w-100 align-items-center ${pathname.includes('/fanclub')  && userSubscribed ? 'align-items-end' : 'align-items-center'}`}>
@@ -53,6 +55,7 @@ const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, cu
                     </div>
                 </div>                
             </Container>
+        }
             
             {/* MAJOR CHANGES */}
             {/* {pathname.includes('/fanclub') &&

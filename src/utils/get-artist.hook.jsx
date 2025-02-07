@@ -1,11 +1,13 @@
-import { useContext, useMemo } from "react"
-import { ArtistsContext } from "../contexts/artists.context"
-const useArtist = (artistId) => {
-  const { artists } = useContext(ArtistsContext)
+import { useContext, useMemo } from 'react'
+import { ArtistsContext } from '../contexts/artists.context'
 
-  return useMemo(() => {
-    return artists?.find(artist => artist.id === artistId)
-  }, [artistId, artists])
+const useArtist = ( artistId ) => {
+	const { artists } = useContext(ArtistsContext)
+
+	return useMemo(() => {
+		return artists?.find(artist => artist.id === artistId)
+	}, [artistId, artists])
+
 }
 
 export default useArtist

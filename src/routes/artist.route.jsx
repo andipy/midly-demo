@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useRef } from 'react'
-import { useNavigate, useLocation, Outlet } from 'react-router-dom'
+import { useNavigate, useLocation, useParams, Outlet } from 'react-router-dom'
 
 import { ArtistsContext } from '../contexts/artists.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
@@ -38,10 +38,12 @@ import Comment from '../components/comment.component'
 import TextbarComments from '../components/textbar-comments.component'
 import TabFanclub from '../components/tab-fanclub.component'
 import Snackbar from '../components/snackbar.component'
+
 const ArtistRoute = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
+    const { artistSlug } = useParams()
 
     const { state, pathname } = useLocation()
     
@@ -54,13 +56,24 @@ const ArtistRoute = () => {
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     
     const [artist, setArtist] = useState()
+
     const fetchThisArtist = () => {
-        if (!state?.artist) {
-            console.error('State or state.artist is undefined')
+        if (state?.artist) {
+            const thisArtist = artists.find(artist => state.artist.id === artist.id)
+            setArtist(thisArtist)
             return
         }
-        const thisArtist = artists.find(artist => state.artist.id === artist.id)
-        setArtist(thisArtist)
+
+        if (artistSlug) {
+            const thisArtist = artists.find(artist => artist.slug === artistSlug)
+            if (thisArtist) {
+                setArtist(thisArtist)
+            } else {
+                console.error('Artist not found with slug:', artistSlug)
+            }
+        } else {
+            console.error('No artist data found in state or URL')
+        }
     }
 
     const fanclub = useFanclub(artist?.id)
@@ -141,10 +154,10 @@ const ArtistRoute = () => {
     },[location.state])
 
     useEffect(() => {
-        if (state && artists.length > 0) {
+        if (artists.length > 0) {
             fetchThisArtist()
         }
-    }, [artists, state, artist])
+    }, [artists, state, artistSlug])
 
     useEffect(() => {
         if (artist) {
