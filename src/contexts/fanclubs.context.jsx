@@ -10,120 +10,9 @@ export const FanclubsProvider = ({ children }) => {
             artistId: 'a3p8',
             isActive: true,
             subscribers: 0,
-            name: 'Fanclub di THASUP',
-            description: 'Solo per i superfan di Davide, nuova musica fuori presto!',
-            pricing: '3.99',
-            cover: {
-                id: 1,
-                url: require('../images/pictures/thasup-fanclub-cover.jpeg'),
-                type: 'IMAGE'
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [
-                {
-                    artistId: 'a3p8',
-                    caption: 'Spoiler del prossimo branO?',
-                    commentsCount: 0,
-                    comments: [],
-                    createdAt: "2024-12-23T09:22:23.542Z",
-                    id: 1,
-                    likes: [
-                        {userId: 1},
-                        {userId: 2},
-                        {userId: 3},
-                        {userId: 4},
-                        {userId: 5},
-                        {userId: 6}
-                    ],
-                    link: {name: '', url: ''},
-                    media: [
-                        {
-                            id: 1,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/thasup-post-1.jpg'),
-                        }
-                    ],
-                    mode: 'PUBLISHED',
-                    publisher: {
-                        id: 'a3p8',
-                        type: 'ARTIST'
-                    },
-                    settings: {
-                        isPinned: false,
-                        isPrivate: true
-                    },
-                    share: {
-                        shareCount: 20,
-                        shareLink: undefined,
-                    },
-                    text: ''
-                    
-
-                },
-                {
-                    artistId: 'a3p8',
-                    caption: 'CASA GOSPEL fuori ora!?!?',
-                    commentsCount: 0,
-                    comments: [],
-                    createdAt: "2025-02-02T09:22:23.542Z",
-                    id: 2,
-                    likes: [
-                        {userId: 1},
-                        {userId: 2},
-                        {userId: 3},
-                        {userId: 4},
-                        {userId: 5},
-                        {userId: 6}
-                    ],
-                    link: {name: '', url: ''},
-                    media: [
-                        {
-                            id: 1,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/thasup-post-2.jpeg'),
-                        }
-                    ],
-                    mode: 'PUBLISHED',
-                    publisher: {
-                        id: 'a3p8',
-                        type: 'ARTIST'
-                    },
-                    settings: {
-                        isPinned: true,
-                        isPrivate: false
-                    },
-                    share: {
-                        shareCount: 20,
-                        shareLink: undefined,
-                    },
-                    text: ''
-                    
-
-                },
-            ],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters: [],
-            messages:[]
-        },{
-            id: 3,
-            artistId: 3,
-            isActive: false,
-            subscribers: null,
-            name: null,
-            description: null,
-            pricing: null,
+            name: '',
+            description: '',
+            pricing: '',
             cover: {
                 id: undefined,
                 url: undefined,
@@ -144,7 +33,7 @@ export const FanclubsProvider = ({ children }) => {
             concerts: [],
             forum: [],
             leaderboard: [],
-            fanLetters:[],
+            fanLetters: [],
             messages:[]
         },{
             id: 4,
@@ -1005,6 +894,507 @@ export const FanclubsProvider = ({ children }) => {
                 },
 
             ]
+        },{
+            id: 5,
+            artistId: 'a8p1',
+            isActive: true,
+            subscribers: null,
+            name: 'Fanclub di NAYT',
+            description: 'Lettera Q',
+            pricing: '3.99',
+            cover: {
+                id: 1,
+                url: require('../images/pictures/nayt-fanclub-cover.jpg'),
+                type: 'IMAGE'
+            },
+            maxSubscribers: null,
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [
+                {
+                    artistId: 'a8p1',
+                    caption: 'Lettera Q, il mio nuovo disco, fuori venerdì, presalva qui sotto',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2024-12-23T09:22:23.542Z",
+                    id: 1,
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {name: 'Presave del disco', url: 'https://open.spotify.com/intl-it/artist/7tmTvmqgTBcX88ZrSHByrD'},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/nayt-fanclub-cover.jpg'),
+                        },
+                        {
+                            id: 2,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/nayt-post-1.jpg')
+                        }
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'a8p1',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: false
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
+
+                },{
+                    artistId: 'a8p1',
+                    caption: 'Biglietti del tour anticipati solo per i Superfan!!',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-02-06T09:22:23.542Z",
+                    id: 2,
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {name: 'Link i biglietti', url: 'https://open.spotify.com/intl-it/artist/7tmTvmqgTBcX88ZrSHByrD'},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/nayt-post-2.jpg'),
+                        }
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'a8p1',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: true
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
+
+                },
+            ],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 6,
+            artistId: 'a4p4',
+            isActive: true,
+            subscribers: null,
+            name: 'SSSSickLukeClub',
+            description: 'X2',
+            pricing: '3.99',
+            cover: {
+                id: 1,
+                url: require('../images/pictures/sick-luke-fanclub-cover.png'),
+                type: 'IMAGE'
+            },
+            maxSubscribers: null,
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [
+                {
+                    artistId: 'a4p4',
+                    caption: 'Solo x voi la copertina di X2, il mio nuovo album lesssgoo',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2024-08-23T09:22:23.542Z",
+                    id: 1,
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {name: '', url: ''},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sick-luke-post-1.jpg'),
+                        },
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'a4p4',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: true
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
+
+                }
+            ],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 7,
+            artistId: 'a5p1',
+            isActive: true,
+            subscribers: null,
+            name: 'Astri',
+            description: '3000, nuova musica presto out!!',
+            pricing: '3.99',
+            cover: {
+                id: 1,
+                url: require('../images/pictures/astro-fanclub-cover.jpg'),
+                type: 'IMAGE'
+            },
+            maxSubscribers: null,
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [
+                {
+                    artistId: 'a5p1',
+                    caption: 'Spoiler del prossimo feat, no cap',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-02-01T09:22:23.542Z",
+                    id: 1,
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {name: '', url: ''},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/astro-post-2.jpg'),
+                        },
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'a5p1',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: true
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
+
+                },{
+                    artistId: 'a5p1',
+                    caption: 'Presto fuori ci siamo o no?',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-02-05T09:22:23.542Z",
+                    id: 2,
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {name: '', url: ''},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'VIDEO',
+                            url: require('../assets/video/astro-post-3.mp4'),
+                        },{
+                            id: 2,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/astro-post-1.jpg'),
+                        },
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'a5p1',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: false
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
+
+                }
+            ],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 8,
+            artistId: 'a7p3',
+            isActive: true,
+            subscribers: null,
+            name: 'okClub',
+            description: 'okokokokokokokokokokokokokokokokokokokok',
+            pricing: '3.99',
+            cover: {
+                id: 1,
+                url: require('../images/pictures/okgiorgio-fanclub-cover.png'),
+                type: 'IMAGE'
+            },
+            maxSubscribers: null,
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [
+                {
+                    artistId: 'a7p3',
+                    caption: 'Dj set per le mucche',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-01-28T22:22:23.542Z",
+                    id: 1,
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {name: '', url: ''},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'VIDEO',
+                            url: require('../assets/video/okgiorgio-post-1.mp4'),
+                        },
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'a7p3',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: false
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
+
+                }
+            ],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 9,
+            artistId: 'a6p2',
+            isActive: true,
+            subscribers: null,
+            name: 'we love Villanova',
+            description: 'TOCCA IL CIELO FEST',
+            pricing: '3.99',
+            cover: {
+                id: 1,
+                url: require('../images/pictures/bnkr44-fanclub-cover.jpg'),
+                type: 'IMAGE'
+            },
+            maxSubscribers: null,
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [
+                {
+                    artistId: 'a6p2',
+                    caption: 'BIGLIETTI IN ANTEPRIMA, EMPOLI CI VEDIAMO LI!',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-02-05T22:22:23.542Z",
+                    id: 1,
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {name: 'TOCCA IL CIELO FEST', url: 'https://open.spotify.com/intl-it/artist/1lwGYDWoXC7E5wDNYZBurw?si=Mq6kiGjESwKSXe-8yk22NQ'},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/bnkr44-post-1.jpg'),
+                        },{
+                            id: 2,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/bnkr44-post-2.jpg'),
+                        },
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'a6p2',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: true
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
+
+                },{
+                    artistId: 'a6p2',
+                    caption: 'Korea44',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-01-27T22:22:23.542Z",
+                    id: 1,
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {name: '', url: ''},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/bnkr44-post-3.jpg'),
+                        }
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'a6p2',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: false
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
+
+                }
+            ],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
         }
     ])
 

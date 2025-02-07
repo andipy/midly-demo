@@ -247,7 +247,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 5,
-            artistId: 5,
+            artistId: 'a5p1',
             leaderboard: [
                 {
                     userId: 2,
@@ -367,7 +367,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 7,
-            artistId: 7,
+            artistId: 'a4p4',
             leaderboard: [
                 {
                     userId: 2,

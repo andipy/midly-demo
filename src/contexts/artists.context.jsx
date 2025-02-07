@@ -50,7 +50,7 @@ export const ArtistsProvider = ({ children }) => {
             highlight: false,
             verified: true,
         },{
-            id: 5,
+            id: 'a5p1',
             slug: 'astro',
             artistName: 'Astro',
             image: require('../images/pictures/astro.jpg'),
@@ -72,7 +72,7 @@ export const ArtistsProvider = ({ children }) => {
             highlight: false,
             verified: true,
         },{
-            id: 7,
+            id: 'a4p4',
             slug: 'sick-luke',
             artistName: 'Sick Luke',
             image: require('../images/pictures/sick-luke.jpg'),
@@ -406,6 +406,39 @@ export const ArtistsProvider = ({ children }) => {
             slug: 'laura-pausini',
             artistName: 'Laura Pausini',
             image: require('../images/pictures/laura_pausini.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 'a6p2',
+            slug: 'bnkr44',
+            artistName: 'bnkr44',
+            image: require('../images/pictures/bnkr44.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 'a7p3',
+            slug: 'okgiorgio',
+            artistName: 'okgiorgio',
+            image: require('../images/pictures/okgiorgio.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 'a8p1',
+            slug: 'nayt',
+            artistName: 'Nayt',
+            image: require('../images/pictures/nayt.jpg'),
             flashLeaderboard: {
                 status: undefined,
             },
