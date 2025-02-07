@@ -18,8 +18,6 @@ import Appbar from '../components/appbar.component'
 import Button from '../components/button.component'
 import CardArtist from '../components/card-search-artists.component'
 import CardArtistHighlight from '../components/card-search-artist-highlight.component'
-
-
 import TextTitle from '../components/text-title.component'
 
 const YourFavouritesRoute = () => {
@@ -28,6 +26,12 @@ const YourFavouritesRoute = () => {
 
     const { artists } = useContext(ArtistsContext)
     const { currentFan } = useContext(CurrentFanContext)
+
+    // const [topBarHeight, setTopBarHeight] = useState(0)
+    // useEffect(() => {
+    //     const topBar = document.getElementById('top-bar')
+    //     setTopBarHeight(topBar.offsetHeight - 1)
+    // }, [])
     
     const [subscribed, setSubscribed] = useState([])
     const [showComponent, setShowComponent] = useState(false)
@@ -161,8 +165,17 @@ const YourFavouritesRoute = () => {
     return (
         <>
             <NavbarDefault />
-            <Container style={'pb-xs-appbar'}>
-            <TextTitle title={'I tuoi abbonamenti'} />
+            <Container style={'pb-xs-appbar'} >
+            
+            <div
+                className='position-sticky top-0 z-index-5 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
+                style={{ top: 0 }}
+            >
+                <Container>
+                    <h2 className='fsize-xs-5 f-w-600 position-sticky'>I miei club</h2>
+                </Container>
+            </div>
+
             {currentFan.hasSpotify && currentFan.followedArtists.length > 0  ?
                 <>
                 {sanremo &&
@@ -194,19 +207,18 @@ const YourFavouritesRoute = () => {
                     </section>
                 }
 
-                <section className={quizzes.length > 0 ? 'mt-xs-8' : ''}>
-                    <section>
-                        {subscribed.map(favourite => <CardFollowedArtist artist={favourite} key={favourite.id} />
-                        )}
-                    </section>
-                    <ButtonFollowMoreArtists />
+                <section className={quizzes.length > 0 ? 'mt-xs-2' : ''}>
+                    {subscribed.map(favourite =>
+                        <CardFollowedArtist artist={favourite} key={favourite.id} />
+                    )}
+                    {/* <ButtonFollowMoreArtists /> */}
                 </section>
                                 
 
-                <section className='mt-xs-16 mt-lg-8 mb-xs-8'>
+                {/* <section className='mt-xs-16 mt-lg-8 mb-xs-8'>
                     <h4 className='fsize-xs-5 mb-xs-1 letter-spacing-1 f-w-500'>Domande frequenti</h4>
                     <p className='fsize-xs-2 f-w-200 grey-200'>Vuoi sapere di più su come funziona Midly? Vai alle <a className='text-underline blue-300 f-w-400' href='/faq'>FAQ</a> e troverai tutte le risposte alle tue domande!</p>
-                </section>
+                </section> */}
                 </>
             :
                 <div>
