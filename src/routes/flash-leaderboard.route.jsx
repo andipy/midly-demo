@@ -226,7 +226,7 @@ const FlashLeaderboardRoute = () => {
     return (
         <>
             <NavbarLeaderboardFlashPage artist={artist} leaderboard={leaderboard} />
-            <CoverArtistPage leaderboard={leaderboard} />
+            <CoverArtistPage artist={artist} leaderboard={leaderboard} />
 
             <Container style={`mt-avatar-header-2 pb-xs-24 pb-md-8 ${artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && 'pt-xs-8'}`}>
                 <div className='d-flex-column position-sticky top-navbar z-index-999 mb-xs-4'>

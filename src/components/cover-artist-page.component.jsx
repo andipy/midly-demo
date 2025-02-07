@@ -13,8 +13,6 @@ import CoverFanclub from './cover-fanclub.component.artist'
 const CoverArtistPage = ({ artist, leaderboard, userCompeting, handleCompete, currentFan, fanclub, openMessages, userSubscribed, openSettingsSubscription, openModalSubscription}) => {
 
     const { pathname } = useLocation()
-
-    console.log(artist)
     
     return (
         <header className={`position-relative ${pathname.includes('flash-leaderboard') ? 'position-fixed w-100 z-index-5 top-0 h-xs-20' : 'h-xs-27'}`}>

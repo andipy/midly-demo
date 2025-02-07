@@ -574,7 +574,7 @@ const ArtistRoute = () => {
                 />
             }
 
-            {(artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING') && !location.pathname.includes('/fanclub') ?
+            {(artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING')  ?
                 <MessageFlashLeaderboardModal
                     artist={artist}
                     userCompeting={userCompeting}
