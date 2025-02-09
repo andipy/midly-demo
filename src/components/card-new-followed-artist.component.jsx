@@ -62,7 +62,7 @@ const CardFollowedArtist = ({ artist, hasUserSubscribed, preview }) => {
                             </div>
                         }
 
-                        {!lastPost &&
+                        {!lastPost && hasUserSubscribed &&
                             <p className='fsize-xs-2 f-w-500 lime-400 mt-xs-4'>Vai al suo club</p>
                         }
                     </div>
