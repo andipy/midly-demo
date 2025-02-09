@@ -14,8 +14,8 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             announceMessage: 'Sta per aprire la classifica flash di thasup',
             announceStartDate: '2025-02-03 00:00:00',
             announceEndDate: '2025-02-20 00:00:00',
-            rankStartDate: '2025-02-07 10:53:00',
-            rankEndDate: '2025-02-09 00:00:00',
+            rankStartDate: '2025-02-09 15:00:00',
+            rankEndDate: '2025-02-10 00:00:00',
             participants: 7139,
             totalStreams: 108712,
             image: require('../images/pictures/thasup-album-cover.jpeg'),
@@ -343,6 +343,94 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             song: {
                 title: '1 MOMENTO (feat. ANNA)',
                 url: 'https://open.spotify.com/intl-it/track/6OCnAtM8oa0JymErlTYXxG',
+            },
+            album: null,
+            badges: [
+                {
+                    position: 1,
+                    image: require('../images/illustrations/GOLD.png')
+                },{
+                    position: 2,
+                    image: require('../images/illustrations/SILVER.png')
+                },{
+                    position: 3,
+                    image: require('../images/illustrations/BRONZE.png')
+                },{
+                    position: 4,
+                    image: require('../images/illustrations/GENERIC.png')
+                }
+            ],
+            leaderboard: [
+                {
+                    userId: 2,
+                    image: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    points: 32,
+                    // position: 1
+                },{
+                    userId: 1,
+                    image: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    points: 37,
+                    // position: 2
+                },{
+                    userId: 6,
+                    image: require('../images/pictures/ai_03.png'),
+                    username: 'Giulietta',
+                    points: 66,
+                    // position: 3
+                },{
+                    userId: 5,
+                    image: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    points: 12,
+                    // position: 4
+                },{
+                    userId: 4,
+                    image: require('../images/pictures/ai_05.png'),
+                    username: 'marco_09',
+                    points: 13,
+                    // position: 5
+                },{
+                    userId: 9,
+                    image: require('../images/pictures/ai_06.png'),
+                    username: 'francesca.david',
+                    points: 11,
+                    // position: 6
+                },{
+                    userId: 8,
+                    image: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    points: 76,
+                    // position: 7
+                },{
+                    userId: 3,
+                    image: require('../images/pictures/ai_08.png'),
+                    username: 'bob16',
+                    points: 13,
+                    // position: 8
+                },{
+                    userId: 7,
+                    image: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    points: 98,
+                    // position: 9
+                }
+            ]
+        },{
+            id: 5,
+            artistId: 'a2p1',
+            announceMessage: 'Sta per aprire la classifica flash di Sfera Ebbasta',
+            announceStartDate: '2025-02-08 12:00:00',
+            announceEndDate: '2025-02-11 12:00:00',
+            rankStartDate: '2025-02-09 00:00:00',
+            rankEndDate: '2025-02-10 00:00:00',
+            participants: 6970,
+            totalStreams: 39016,
+            image: require('../images/pictures/sfera-ebbasta.jpg'),
+            song: {
+                title: 'Visiera A Becco',
+                url: 'https://open.spotify.com/intl-it/track/4ySxBjhmdnkeFUqhKxW3cY',
             },
             album: null,
             badges: [

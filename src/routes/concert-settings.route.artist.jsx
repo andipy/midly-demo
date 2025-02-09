@@ -32,7 +32,6 @@ const ConcertSettingsRoute = () => {
     const [tourStops, setTourStops] = useState([])
 
     const fetchThisPost = () => {
-        console.log(state)
         setPost(state)
         setLinks(state.buyLinks)  
 
@@ -126,7 +125,6 @@ const ConcertSettingsRoute = () => {
         const isoDate = e.target.value
         const [year, month, day] = isoDate.split('-')
         const formattedDate = `${day}-${month}-${year}`
-        console.log(formattedDate)
         e.preventDefault()
         setEventDateNotFormatted(e.target.value)
         setPost(prev => ({

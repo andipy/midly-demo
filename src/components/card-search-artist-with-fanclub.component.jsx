@@ -1,18 +1,19 @@
 import { useNavigate } from 'react-router-dom'
 
-import IconSuccess from '../images/icons/icon-success-standard.svg'
+import IconOk from '../images/icons/icon-ok.svg'
+import IconUnfollow from '../images/icons/icon-unfollow.svg'
 
-const CardArtistHighlight = ({ artist, isFollowed, isSubscribed, length, index }) => {
+const CardArtistWithFanclub = ({ artist, isFollowed, isSubscribed, length, index }) => {
 
     const navigate = useNavigate()
 
     return (
-        <div className={`position-relative h-xs-22 overflow-clip border-radius-04 no-shrink ${length === 1 ? 'artist-card-highlight-single' : 'artist-card-highlight-multiple'}`} 
+        <div className={`position-relative h-xs-30 overflow-clip border-radius-04 no-shrink ${length === 1 ? 'artist-card-highlight-single' : 'artist-card-highlight-multiple'}`} 
            /* MAJOR CHANGES  onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: {artist: artist} })} */
            onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
         >
             <div className='position-relative w-100 h-inherit mb-xs-4'>
-                { index &&
+                {index &&
                 <div className="position-absolute top-0 right-0 bg-black white border-radius-100 pl-xs-2 avatar-20 border-radius-100">
                     <p className="fsize-xs-1 f-w-300">{1}</p>
                 </div>
@@ -24,14 +25,18 @@ const CardArtistHighlight = ({ artist, isFollowed, isSubscribed, length, index }
                 </div>
                 {isFollowed && !isSubscribed &&
                     <div className='overlay-card-followed z-index-3 bg-black-transp50 d-flex-row j-c-center align-items-center gap-0_25em h-inherit'>
-                        <img src={IconSuccess} alt='Y!' />
-                        <span className='t-align-center white fsize-xs-4 z-index-4'>Seguiti</span>
+                        <div className='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 w-auto gap-0_25em no-shrink position-absolute-x-y'>
+                            <img className='avatar-16' src={IconUnfollow} />
+                            <span className='fsize-xs-1'>Segui già</span>
+                        </div>
                     </div>
                 }
                 {isSubscribed &&
                     <div className='overlay-card-followed z-index-3 bg-black-transp50 d-flex-row j-c-center align-items-center gap-0_25em h-inherit'>
-                        <img src={IconSuccess} alt='Y!' />
-                        <span className='t-align-center white fsize-xs-4 z-index-4'>Sei abbonato</span>
+                        <div className='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 w-auto gap-0_25em no-shrink position-absolute-x-y'>
+                            <img className='avatar-16' src={IconOk} />
+                            <span className='fsize-xs-1'>Sei abbonato</span>
+                        </div>
                     </div>
                 }
             </div>
@@ -39,4 +44,4 @@ const CardArtistHighlight = ({ artist, isFollowed, isSubscribed, length, index }
     )
 }
 
-export default CardArtistHighlight
+export default CardArtistWithFanclub

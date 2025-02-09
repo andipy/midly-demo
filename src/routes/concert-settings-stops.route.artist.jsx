@@ -66,7 +66,6 @@ const ConcertSettingsStopsRoute = () => {
             }
             return fanclub
         })
-        console.log(concert)
         navigate(`/artist-app/fanclub/edit-post-concert/${state?.postId}`, { state: { ...concert, invokedModal: true } })
     }
 
@@ -115,7 +114,6 @@ const ConcertSettingsStopsRoute = () => {
         const isoDate = e.target.value
         const [year, month, day] = isoDate.split('-')
         const formattedDate = `${day}-${month}-${year}`
-        console.log(formattedDate)
         e.preventDefault()
         setEventDateNotFormatted(e.target.value)
         setStop(prev => ({

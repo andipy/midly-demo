@@ -3,6 +3,7 @@ import { FanclubsContext } from "../contexts/fanclubs.context"
 import { CurrentFanContext } from "../contexts/currentFan.context"
 import { SUBSCRIPTION_MONTHLY, SUBSCRIPTION_YEARLY } from "./aura-points-values"
 import useAuraPoints from "./handle-aura-points.hook"
+
 const useFanclubSubscriptionHandler = () => {
   const { fanclubs, setFanclubs } = useContext(FanclubsContext)
   const { currentFan, setCurrentFan } = useContext(CurrentFanContext)

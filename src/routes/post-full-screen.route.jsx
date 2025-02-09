@@ -35,7 +35,6 @@ const  PostFullScreenRoute = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const { postId, artistId, from } = location.state || {}    
-    console.log(postId, artistId, from)
     const { pathname } = useLocation()
 
     const { currentArtist} = useContext(CurrentArtistContext)
@@ -50,7 +49,6 @@ const  PostFullScreenRoute = () => {
     const { share, messageSnackbar, triggered } = useShare()
     const {setAuraPoints} = useAuraPoints()
     const {likePost} = useLikePost()
-    console.log(artistId)
     const [artist, setArtist] = useState()
     const fetchThisArtist = () => {
         if (!artistId) {

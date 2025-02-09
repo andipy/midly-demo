@@ -23,7 +23,6 @@ const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentR
 			setIsLiked(likedByUser)
 		}
         if (comment && comment.likes && pathname.includes('/artist-app')) {
-            console.log('artista')
 			const likedByUser = comment.likes.some(like => like.userId === currentArtist.id && like.type === 'ARTIST');
 			setIsLiked(likedByUser)
 		}

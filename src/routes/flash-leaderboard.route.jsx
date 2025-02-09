@@ -24,6 +24,7 @@ import CardFlashLeaderboardYourPosition from '../components/card-flash-leaderboa
 
 import IconPoints from '../images/icons/icon-points.svg'
 import IconInfoLime from '../images/icons/icon-info-lime.svg'
+import IconFollow from '../images/icons/icon-follow.svg'
 import SpecialBadge1P from '../images/illustrations/flash-podium-1.png'
 import SpecialBadge2P from '../images/illustrations/flash-podium-2.png'
 import SpecialBadge3P from '../images/illustrations/flash-podium-3.png'
@@ -44,7 +45,7 @@ const FlashLeaderboardRoute = () => {
     const [leaderboard, setLeaderboard] = useState()
     const [chart, setChart] = useState()
     const [showComponent, setShowComponent] = useState(null)
-    const [userCompeting, setUserCompeting] = useState(null)
+    const [userFollowing, setUserFollowing] = useState(null)
 
     const sliderSteps = 5
     const [sliderPage, setSliderPage] = useState(1)
@@ -105,12 +106,12 @@ const FlashLeaderboardRoute = () => {
             const favouriteArtistIds = currentFan.followedArtists.map(followed => followed.artistId)
 
             if (favouriteArtistIds.includes(artist.id)) {
-                setUserCompeting(true)
+                setUserFollowing(true)
             } else {
-                setUserCompeting(false)
+                setUserFollowing(false)
             }
         } else {
-            setUserCompeting(false)
+            setUserFollowing(false)
         }
     }
 
@@ -198,8 +199,8 @@ const FlashLeaderboardRoute = () => {
         
     },[location.state])
 
-    const handleCompete = () => {
-        if (userCompeting) {
+    const handleFollow = () => {
+        if (userFollowing) {
             const newfollowedArtists = currentFan.followedArtists.filter(leaderboard => leaderboard.artistId !== artist.id);
             setCurrentFan(prev => ({ ...prev, followedArtists: newfollowedArtists }))
         } else {
@@ -241,10 +242,16 @@ const FlashLeaderboardRoute = () => {
                                     onClick={handleSpotifyConnect}
                                 />
                             }
-                            {currentFan?.hasSpotify && !userCompeting &&
-                                <Button style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-4' label='Competi nella classifica' onClick={handleCompete}/>
+                            {currentFan?.hasSpotify && !userFollowing &&
+                                <Button
+                                    style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
+                                    label='Segui'
+                                    onClick={handleFollow}
+                                >
+                                    <img src={IconFollow} />
+                                </ Button>
                             }
-                            {currentFan?.hasSpotify && userCompeting &&
+                            {currentFan?.hasSpotify && userFollowing &&
                                 <CardFlashLeaderboardYourPosition currentFan={currentFan} artist={artist}  />  
                             }
                         </>

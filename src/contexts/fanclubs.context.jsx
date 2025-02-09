@@ -8,7 +8,7 @@ export const FanclubsProvider = ({ children }) => {
         {
             id: 2,
             artistId: 'a3p8',
-            isActive: true,
+            isActive: false,
             subscribers: 0,
             name: '',
             description: '',

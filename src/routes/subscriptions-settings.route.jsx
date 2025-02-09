@@ -49,8 +49,7 @@ const getMonth = (date) => {
             {currentFan?.fanclubsSubscribed?.map(subscription => {
                 const fanclub = fanclubs?.find(fc => fc?.artistId === subscription.artistId)
                 const artist = artists?.find(a => a.id === subscription.artistId)
-                console.log(fanclub)
-                console.log(artist)
+
                 return fanclub ? (
                   <div className='d-flex-row j-c-space-between align-items-center w-100'>
                     <div className='d-flex-row j-c-start align-items-start w-100'>
@@ -83,8 +82,7 @@ const getMonth = (date) => {
             {currentFan?.removedSubscriptions?.map(subscription => {
                 const fanclub = fanclubs?.find(fc => fc?.artistId === subscription.artistId)
                 const artist = artists?.find(a => a.id === subscription.artistId)
-                console.log(fanclub)
-                console.log(artist)
+
                 return fanclub ? (
                   <div className='d-flex-row j-c-space-between align-items-center w-100'>
                     <div className='d-flex-row j-c-start align-items-start w-100'>

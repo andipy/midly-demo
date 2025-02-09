@@ -174,8 +174,8 @@ const ProfileRoute = () => {
                 </div>  
             }
 
-            <section>
-                {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi punti personali</h4> */}
+            {/* <section>
+                <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500'>I tuoi punti personali</h4>
                 <div className='mt-xs-4 mb-xs-4'>
                     <Link to='/personal-user-points'>
                         <div className='bg-dark-gradient border-radius-1 d-flex-row j-c-space-between align-items-center pt-xs-4 pb-xs-4 pl-xs-6 pr-xs-6'>
@@ -198,13 +198,13 @@ const ProfileRoute = () => {
                                     </div>  
                                 )}
                             </div>
-                            {/* <div className='d-flex-row j-c-end align-items-center'>
+                            <div className='d-flex-row j-c-end align-items-center'>
                                 <img src={IconArrowRight} alt='->'/>
-                            </div>  */}     
+                            </div>      
                         </div>
                     </Link>
                 </div>
-            </section>
+            </section> */}
 
             <section className='mt-xs-4 mb-xs-4'>
                 {/* <h4 className='fsize-xs-5 mb-lg-1 letter-spacing-2 f-w-500 mb-xs-2'>I tuoi riconoscimenti</h4> */}

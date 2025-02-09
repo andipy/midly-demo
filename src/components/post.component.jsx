@@ -19,7 +19,7 @@ import Container from '../layout/container.layout'
 import useAuraPoints from '../utils/handle-aura-points.hook'
 import { CLICK_POST_LINK } from '../utils/aura-points-values'
 
-const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost, likePost }) => {
+const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost, likePost, preview }) => {
 	const navigate = useNavigate()
 	const { artists } = useContext(ArtistsContext)
 	const { currentFan	} = useContext(CurrentFanContext)
@@ -85,8 +85,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 	return (
 		<>
-		{
-			pathname.includes('/home') &&
+		{pathname.includes('/home') &&
 			<div 
 				className='d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4'
 				onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
@@ -99,7 +98,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 			<div className={`j-c-center align-items-center position-relative `}>
 				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} onClick={() => focusPost(post.id, 'FULL_SCREEN_POST')}>
 					{post.media.length >= 0 ?
-						<SwipeCarousel images={post.media} text={post.text} />
+						<SwipeCarousel images={post.media} text={post.text} preview={preview} />
 					:
 						null
 					}
@@ -205,76 +204,79 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 						}
 					</div>
 
-					<div className='w-100 d-flex-row'>
-						<p className='pre-wrap mb-xs-1 grey-100 f-w-400 fsize-xs-2'>
-							{post.caption.length > 95 ?
-							<>
-								{showCaption ?
-									<>
-										{post.caption}
-										<span className='lime-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
-									</>
-								:
-									<>
-										{post.caption.slice(0, 95)}...
-										<span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
-									</>
-								}
-							</>
-							:
-								post.caption
-							}
-						</p>
-					</div>
-
-					{post.link.url &&
+					{!preview &&
 						<>
-						{!pathname.includes('/artist-app') &&
-							<a className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-1' href={post.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artistId)}>
-								<img className='avatar-20' src={IconLink} />
-								<span>{post.link.name ? post.link.name : 'Apri il link'}</span>
-							</a>
-						}
-						{pathname.includes('/artist-app') &&
-							<a className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-1' href={post.link.url} target='blank'>
-								<img className='avatar-20' src={IconLink} />
-								<span>{post.link.name ? post.link.name : 'Apri il link'}</span>
-							</a>
-						}
-						</>
-						
-					}
-
-					{post.comments.length > 0 ?
-						<p className='lime-400 f-w-500 fsize-xs-1' onClick={() => focusPost(post.id, 'OPEN_COMMENTS')}>Visualizza {post.commentsCount} commenti</p>
-					: !pathname.includes('/artist-app/') &&
-						<p className='f-w-400 grey-200 fsize-xs-2' onClick={() => focusPost(post.id, 'OPEN_COMMENTS')}>Commenta per primo</p>
-					}
-
-					<p className='fsize-xs-1 f-w-100 grey-300 mt-xs-1'>
-						{days > 31 ?
-							<span>{formatDate()}</span>
-						: days > 0 ?
-							<span>{days} giorni fa</span>
-						: days <= 0 ?
-						<>
-							{hours <= 0 ?
-							<>
-									{minutes <= 0 ?
-										<span>{seconds} secondi fa</span>
+							<div className='w-100 d-flex-row'>
+								<p className='pre-wrap mb-xs-1 grey-100 f-w-400 fsize-xs-2'>
+									{post.caption.length > 95 ?
+									<>
+										{showCaption ?
+											<>
+												{post.caption}
+												<span className='lime-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
+											</>
+										:
+											<>
+												{post.caption.slice(0, 95)}...
+												<span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
+											</>
+										}
+									</>
 									:
-										<span>{minutes} minuti fa</span>
+										post.caption
 									}
-							</>
-								:
-									<span>{hours} ore fa</span>
+								</p>
+							</div>
+
+							{post.link.url &&
+								<>
+								{!pathname.includes('/artist-app') &&
+									<a className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-1' href={post.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artistId)}>
+										<img className='avatar-20' src={IconLink} />
+										<span>{post.link.name ? post.link.name : 'Apri il link'}</span>
+									</a>
+								}
+								{pathname.includes('/artist-app') &&
+									<a className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-1' href={post.link.url} target='blank'>
+										<img className='avatar-20' src={IconLink} />
+										<span>{post.link.name ? post.link.name : 'Apri il link'}</span>
+									</a>
+								}
+								</>
 							}
+
+							{post.comments.length > 0 ?
+								<p className='lime-400 f-w-500 fsize-xs-1' onClick={() => focusPost(post.id, 'OPEN_COMMENTS')}>Visualizza {post.commentsCount} commenti</p>
+							: !pathname.includes('/artist-app/') &&
+								<p className='f-w-400 grey-200 fsize-xs-2' onClick={() => focusPost(post.id, 'OPEN_COMMENTS')}>Commenta per primo</p>
+							}
+
+							<p className='fsize-xs-1 f-w-100 grey-300 mt-xs-1'>
+								{days > 31 ?
+									<span>{formatDate()}</span>
+								: days > 0 ?
+									<span>{days} giorni fa</span>
+								: days <= 0 ?
+								<>
+									{hours <= 0 ?
+									<>
+											{minutes <= 0 ?
+												<span>{seconds} secondi fa</span>
+											:
+												<span>{minutes} minuti fa</span>
+											}
+									</>
+										:
+											<span>{hours} ore fa</span>
+									}
+								</>
+								:
+									<span>{days} giorni fa</span>
+								}
+								
+							</p>
 						</>
-						:
-							<span>{days} giorni fa</span>
-						}
-						
-					</p>
+					}
 				</div>
 			:
 				<div className='w-100 pb-xs-4 '>

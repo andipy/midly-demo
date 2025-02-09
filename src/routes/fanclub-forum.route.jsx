@@ -36,7 +36,6 @@ const FanclubForumRoute = () => {
 
     //share
     const handleShare = (post) => {
-        console.log(artistF?.id)
         share(post, artistF?.id)
     }
 

@@ -2,6 +2,7 @@ import {useState, useContext, useRef, useEffect} from 'react'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { ArtistsContext } from '../contexts/artists.context'
+import { FanclubsContext } from '../contexts/fanclubs.context'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -14,6 +15,7 @@ import Carousel from '../layout/carousel.layout'
 import CardArtist from '../components/card-search-artists.component'
 import CardPreferredArtist from '../components/card-preferred-artist.component'
 import CardArtistHighlight from '../components/card-search-artist-highlight.component'
+import CardArtistWithFanclub from '../components/card-search-artist-with-fanclub.component'
 
 const SearchRoute = () => {
 
@@ -21,10 +23,12 @@ const SearchRoute = () => {
 
     const { currentFan } = useContext(CurrentFanContext)
     const { artists } = useContext(ArtistsContext)
+    const { fanclubs } = useContext(FanclubsContext)
     const [searchQuery, setSearchQuery] = useState('')
     const [searchBarHeight, setSearchBarHeight] = useState(0)
-    const [highlightArtists, setHighlightArtists] = useState([])
-    const [mostListenedArtists, setMostListenedArtists] = useState([])
+    const [artistsWithFanclub, setArtistsWithFanclub] = useState([])
+    // const [highlightArtists, setHighlightArtists] = useState([])
+    // const [mostListenedArtists, setMostListenedArtists] = useState([])
     const [allOtherArtists, setAllOtherArtists] = useState([])
 
     const sortArtists = (a, b) => {
@@ -41,25 +45,41 @@ const SearchRoute = () => {
         return chunks
     }
 
-    const fetchHighlightArtists = () => {
-        const highlightArtists = artists
-            .filter(artist => artist.highlight === true)
+    const fetchArtistsWithFanclub = () => {
+        const artistsWithFanclubs = artists
+            .filter(artist => fanclubs.some(fanclub => fanclub.artistId === artist.id && fanclub.isActive === true)) // Filter active fanclubs
+            .map(artist => {
+                // Make sure to include the 'isActive' flag on the artist object or in any other way you need
+                const fanclub = fanclubs.find(fanclub => fanclub.artistId === artist.id && fanclub.isActive === true);
+                return {
+                    ...artist,
+                    isActive: fanclub ? fanclub.isActive : false // Set 'isActive' to true if it exists in the fanclub
+                }
+            })
             .sort((a, b) => sortArtists(a, b))
-        setHighlightArtists(highlightArtists)
+    
+        setArtistsWithFanclub(artistsWithFanclubs)
     }
-    const fetchMostListenedArtists = () => {
-        const items = artists.filter(artist => 
-            currentFan.mostListenedArtistsOnSpotify.some(mostListenedArtist => artist.id === mostListenedArtist.artistId))
-        const sortItems = items.sort((a, b) => sortArtists(a, b))
-        setMostListenedArtists(sortItems)
-    }
+    
+    // const fetchHighlightArtists = () => {
+    //     const highlightArtists = artists
+    //         .filter(artist => artist.highlight === true)
+    //         .sort((a, b) => sortArtists(a, b))
+    //     setHighlightArtists(highlightArtists)
+    // }
+    // const fetchMostListenedArtists = () => {
+    //     const items = artists.filter(artist => 
+    //         currentFan.mostListenedArtistsOnSpotify.some(mostListenedArtist => artist.id === mostListenedArtist.artistId))
+    //     const sortItems = items.sort((a, b) => sortArtists(a, b))
+    //     setMostListenedArtists(sortItems)
+    // }
     const fetchAllOtherArtists = () => {
         const sortItems = artists.sort((a, b) => sortArtists(a, b))
 
         if ( searchQuery === '' ) {
-            if ( mostListenedArtists.length > 0 ) {
+            if ( artistsWithFanclub.length > 0 ) {
                 const items = sortItems.filter(artist =>
-                    !mostListenedArtists.some(mostListenedArtist => artist.id === mostListenedArtist.id))
+                    !artistsWithFanclub.some(artistWithFanclub => artist.id === artistWithFanclub.id))
                 setAllOtherArtists(items)
             } else {
                 setAllOtherArtists(sortItems)
@@ -71,23 +91,29 @@ const SearchRoute = () => {
     }
 
     useEffect(() => {
-        fetchHighlightArtists()
+        fetchArtistsWithFanclub()
     }, [])
-    useEffect(() => {
-        if ( currentFan.hasSpotify ) {
-            fetchMostListenedArtists()
-        }
-    }, [currentFan.hasSpotify])
+    // useEffect(() => {
+    //     fetchHighlightArtists()
+    // }, [])
+    // useEffect(() => {
+    //     if ( currentFan.hasSpotify ) {
+    //         fetchMostListenedArtists()
+    //     }
+    // }, [currentFan.hasSpotify])
+    // useEffect(() => {
+    //     fetchAllOtherArtists()
+    // }, [mostListenedArtists, searchQuery])
     useEffect(() => {
         fetchAllOtherArtists()
-    }, [mostListenedArtists, searchQuery])
+    }, [artistsWithFanclub, searchQuery])
 
     useEffect(() => {
         const searchBar = document.getElementById('search-bar')
         setSearchBarHeight(searchBar.offsetHeight - 1)
     }, [])
 
-    const chunkMostListenedArtists = chunkArray(mostListenedArtists, 6)
+    // const chunkMostListenedArtists = chunkArray(mostListenedArtists, 6)
     const chunkedItems = chunkArray(allOtherArtists, 6)
 
     return (
@@ -112,27 +138,60 @@ const SearchRoute = () => {
                         <h2 className='fsize-xs-5 f-w-600 position-sticky'>Artisti in evidenza</h2>
                     </div>
                 </div> */}
+                <div
+                    className='position-sticky top-0 z-index-5 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
+                    style={{ top: searchBarHeight }}
+                >
+                    <div className='container'>
+                        <h2 className='fsize-xs-5 f-w-600 position-sticky'>Artisti con fanclub attivo</h2>
+                    </div>
+                </div>
                 <div className='mb-xs-8'>
+                    <Carousel>
+                        {artistsWithFanclub.map(item => {
+                            const isFollowed = currentFan.followedArtists.some(
+                                (followed) => followed.artistId === item.id
+                            )
+                            const isSubscribed = currentFan.fanclubsSubscribed.some(
+                                (subscribed) => subscribed.artistId === item.id
+                            )
+                            return (
+                                <CardArtistWithFanclub 
+                                    artist={item} 
+                                    key={item.id} 
+                                    isFollowed={isFollowed}
+                                    isSubscribed={isSubscribed}
+                                    length={artistsWithFanclub.length}
+                                />
+                            )
+                        })}
+                    </Carousel>
+                </div>
+                {/* <div className='mb-xs-8'>
                     <Carousel>
                         {highlightArtists.map(item => {
                             const isFollowed = currentFan.followedArtists.some(
                                 (followed) => followed.artistId === item.id
+                            )
+                            const isSubscribed = currentFan.fanclubsSubscribed.some(
+                                (subscribed) => subscribed.artistId === item.id
                             )
                             return (
                                 <CardArtistHighlight 
                                     artist={item} 
                                     key={item.id} 
                                     isFollowed={isFollowed}
+                                    isSubscribed={isSubscribed}
                                     length={highlightArtists.length}
                                 />
                             )
                         })}
                     </Carousel>
-                </div>
+                </div> */}
             </section>
             }
             
-            {!currentFan.hasSpotify || !searchQuery && 
+            {/* {!currentFan.hasSpotify || !searchQuery && 
                 <section id='preferred-artists'>
                     <div
                         className='position-sticky top-0 z-index-5 w-100vw ml-input-search-center bg-dark pt-xs-2 pb-xs-2'
@@ -152,7 +211,6 @@ const SearchRoute = () => {
                                                 <CardPreferredArtist 
                                                     artist = {artist}
                                                     key = {artist.id}
-                                                    /* MAJOR CHANGES */
                                                     onClick={() => navigate(`/artist/${artist?.slug}`, { state :{ artist : artist} })}
                                                 />
                                             )
@@ -167,9 +225,7 @@ const SearchRoute = () => {
                         </div>
                     }
                 </section>
-            }
-
-            
+            } */}
 
             <section id='more-artists' className='mt-xs-4'>
                 {!searchQuery &&
@@ -183,28 +239,32 @@ const SearchRoute = () => {
                     </div>
                 }
                 {allOtherArtists.length > 0 ?
-                <div className='d-flex-column mt-xs-2 mb-xs-0'>
-                    {chunkedItems.map((chunk, index) => (
-                        <div className='mb-xs-8' key={index}>
-                            <Carousel>
-                                {chunk.map(item => {
-                                    const isFollowed = currentFan.followedArtists.some(
-                                        (followed) => followed.artistId === item.id
-                                    )
-                                    return (
-                                        <CardArtist 
-                                            artist={item} 
-                                            key={item.id} 
-                                            isFollowed={isFollowed}
-                                        />
-                                    )
-                                })}
-                            </Carousel>
-                        </div>
-                    ))}
-                    {/* <p className='fsize-xs-0 f-w-300 grey-400 mt-xs-6'> * in ordine alfabetico</p> */}
-                </div>
-            :
+                    <div className='d-flex-column mt-xs-2 mb-xs-0'>
+                        {chunkedItems.map((chunk, index) => (
+                            <div className='mb-xs-8' key={index}>
+                                <Carousel>
+                                    {chunk.map(item => {
+                                        const isFollowed = currentFan.followedArtists.some(
+                                            (followed) => followed.artistId === item.id
+                                        )
+                                        const isSubscribed = currentFan.fanclubsSubscribed.some(
+                                            (subscribed) => subscribed.artistId === item.id
+                                        )
+                                        return (
+                                            <CardArtist 
+                                                artist={item} 
+                                                key={item.id} 
+                                                isFollowed={isFollowed}
+                                                isSubscribed={isSubscribed}
+                                            />
+                                        )
+                                    })}
+                                </Carousel>
+                            </div>
+                        ))}
+                        {/* <p className='fsize-xs-0 f-w-300 grey-400 mt-xs-6'> * in ordine alfabetico</p> */}
+                    </div>
+                :
                 <div className='d-flex-column mt-xs-2 mb-xs-0'>
                     <div className='d-flex-column mt-xs-2'>
                         <h1 className='grey-400 fsize-xs-5 mt-xs-2 mt-xl-2 overflow-x'>L'artista non c'è in Midly, o hai digitato male il suo nome!</h1>

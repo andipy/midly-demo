@@ -126,7 +126,7 @@ const router = createBrowserRouter([
 		element: <LoginRoute />
 	},{
 		path: '/',
-		element:<Navigate to='/home' />
+		element: <Navigate to='/your-favourites' />
 	},{
 		path: '/home',
 		element: <HomeRoute />
@@ -137,24 +137,42 @@ const router = createBrowserRouter([
 		path: '/artist/:artistSlug',
 		element: <ArtistRoute />,
 		children: [
-		/* MAJOR CHANGE */
-		  /* {
-			path: '/artist/:artistSlug/leaderboard',
-			element: <LeaderboardRoute />,
-			children: [
-			  {
-				path: 'fan', 
-				element: <FanPublicProfileRoute />,
-			  },
-			],
-		  }, */
-			/* {
-				path: '',
-				element: <Navigate to="dashboard" replace />,
-			} */,
 			{
 				path: '',
-				element: <Navigate to="posts" replace />,
+				element: <Navigate to='posts' replace />,
+			},{
+				path: 'forum',
+				element: <FanclubForumRoute />
+			},{
+				path: 'posts',
+				element: <FanclubPostsRoute />
+			},{
+				path: 'events',
+				element: <FanclubEventsRoute />
+			}, {
+				path: 'letters',
+				element: <FanclubLettersRoute />
+			},{
+				path: 'leaderboard',
+				element: <FanclubLeaderboardRoute />,
+				children: [
+					{
+						path: 'fan', 
+						element: <FanPublicProfileRoute />,
+					},
+				],
+			},{
+				path: 'group-chat',
+				element: <FanclubGroupChatRoute />,
+			},{
+				path: 'leaderboard-streaming',
+				element: <LeaderboardRoute />,
+				children: [
+					{
+						path: 'fan', 
+						element: <FanPublicProfileRoute />,
+					},
+				],
 			},{
 				path: 'user-moderation',
 				element: <UserModerationRoute />,
@@ -164,33 +182,6 @@ const router = createBrowserRouter([
 			},{
 				path: 'user-moderation/report',
 				element: <UserModerationReportRoute />,
-			},{
-				path: 'forum',
-				element: <FanclubForumRoute />
-			},/* {
-				path: 'dashboard',
-				element: <FanclubAllRoute />
-			} */,{
-				path: 'posts',
-				element: <FanclubPostsRoute />
-			},{
-				path: 'events',
-				element: <FanclubEventsRoute />
-			}, {
-				path: 'letters',
-				element: <FanclubLettersRoute />
-			}, {
-				path: 'leaderboard',
-				element: <FanclubLeaderboardRoute />,
-				children: [
-					{
-					path: 'fan', 
-					element: <FanPublicProfileRoute />,
-					},
-				],
-			},{
-				path: 'groupchat',
-				element: <FanclubGroupChatRoute />,
 			}
 		/* MAJOR CHANGE */
 		  /* {
@@ -374,7 +365,7 @@ const router = createBrowserRouter([
 					},
 				], */
 			},{
-				path: 'groupchat',
+				path: 'group-chat',
 				element: <FanclubGroupChatRoute />,
 			}
 		]

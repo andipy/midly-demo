@@ -19,16 +19,22 @@ const LeaderboardRoute = () => {
     
     const [leaderboard, setLeaderboard] = useState()
     const fetchThisLeaderboard = () => {
-        const thisLeaderboard = leaderboards.find(elem => context.id === elem.artistId).leaderboard
-        const sortedLeaderboard = thisLeaderboard.sort((a, b) => b.points - a.points)
+        const foundLeaderboard = leaderboards.find(elem => context?.artist.id === elem.artistId)
+        
+        if (!foundLeaderboard) {
+            console.warn("No matching leaderboard found")
+            return
+        }
+    
+        const sortedLeaderboard = foundLeaderboard.leaderboard.sort((a, b) => b.points - a.points)
         setLeaderboard(sortedLeaderboard)
     }
 
     useEffect(() => {
-        if ( context ) {
+        if (context && Array.isArray(leaderboards) && leaderboards.length > 0) {
             fetchThisLeaderboard()
         }
-    }, [context])
+    }, [context, leaderboards])
 
     const handleUsername = (condition, username, limit) => {
         if ( condition ) {
@@ -40,9 +46,6 @@ const LeaderboardRoute = () => {
             return usernameNoEmail
         }
     }
-
-
-    
 
     return (
         <>
@@ -126,7 +129,6 @@ const LeaderboardRoute = () => {
                     }}                
                 />)
             }
-            
             
         </section>
 

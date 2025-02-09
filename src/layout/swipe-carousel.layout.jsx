@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import IconSpeaker from '../images/icons/icon-speaker.png'
 import AudioPost from '../components/audio-post.component'
 
-const SwipeCarousel = ({ images, text }) => {
+const SwipeCarousel = ({ images, text, preview }) => {
+
 	const [currentIndex, setCurrentIndex] = useState(0)
 	const [isDragging, setIsDragging] = useState(false)
 	const trackRef = useRef(null)
@@ -59,7 +60,7 @@ const SwipeCarousel = ({ images, text }) => {
 	const canSlide = images.length + (text ? 1 : 0) > 1
 
 	return (
-		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden w-100 '
+		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden w-100'
 			onMouseDown={canSlide ? handleDragStart : undefined}
 			onMouseMove={isDragging && canSlide ? handleDragMove : undefined}
 			onMouseUp={canSlide ? handleDragEnd : undefined}
@@ -78,7 +79,7 @@ const SwipeCarousel = ({ images, text }) => {
 				{images.map((media, index) => (
 					<div id='carousel-slide' key={index} className='d-flex-row j-c-center align-items-center w-min-100 h-min-100 object-fit-cover'
 						style={{
-							height: '350px',
+							height: preview ? '200px' : '350px',
 							overflow: 'hidden',
 						}}
 					>

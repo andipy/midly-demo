@@ -204,8 +204,8 @@ const HomeRoute = () => {
 
 	return (
 		<>
-		<NavbarDefault />
-		<Container style={'pb-xs-appbar'}>
+		{/* <NavbarDefault /> */}
+		<Container style=''>
 			{(() => {
 					if (!latestPosts?.length) return null
 

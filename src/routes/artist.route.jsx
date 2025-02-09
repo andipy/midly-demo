@@ -1,17 +1,25 @@
 import { useEffect, useState, useContext, useRef } from 'react'
-import { useNavigate, useLocation, useParams, Outlet } from 'react-router-dom'
+import { useNavigate, useLocation, useParams, Navigate, Outlet } from 'react-router-dom'
 
 import { ArtistsContext } from '../contexts/artists.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { LiveQuizContext } from '../contexts/live-quiz.context'
 
+import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
+import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
+import useSubmitComment from '../utils/handle-submit-comment.hook'
+import useLikeComment from '../utils/handle-like-comment.hook'
+import useLikeReply from '../utils/handle-like-reply-comment.hook'
+import useFanclub from '../utils/get-fanclub.hooks'
+import useModal from '../utils/handle-modal.hooks' 
+import useShare from '../utils/handle-share.hook'
+
 import Container from '../layout/container.layout'
 import NavbarArtistPage from '../components/navbar-artist-page.component'
 import CoverArtistPage from '../components/cover-artist-page.component'
 import CardLeaderboardYourPosition from '../components/card-leaderboard-your-position.component'
 import Button from '../components/button.component'
-import Tab from '../components/tab.component'
 import MessageFlashLeaderboard from '../components/message-flash-leaderboard.component'
 import MessageFlashLeaderboardModal from '../components/message-flash-leaderboard-modal.component'
 import CardInviteFriend from '../components/card-invite-friend.component'
@@ -19,25 +27,15 @@ import CardConnectSpotify from '../components/card-connect-spotify.component'
 import MessageWhitePoints from '../components/message-white-points.component'
 import FullPageCenter from '../layout/full-page-center.layout'
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
-/* import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
- */import useFanclub from '../utils/get-fanclub.hooks'
-import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
-/* import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
- */import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
-import useSubmitComment from '../utils/handle-submit-comment.hook'
-import useLikeComment from '../utils/handle-like-comment.hook'
-import useLikeReply from '../utils/handle-like-reply-comment.hook'
-/* import useArtistName from '../utils/get-artist-name.hook'
- *//* import useFanclub from '../utils/get-fanclub.hooks'
- */
-import useModal from '../utils/handle-modal.hooks' 
-import useShare from '../utils/handle-share.hook'
 import CommentsModalLayout from '../layout/comments-modal.layout'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import Comment from '../components/comment.component'
 import TextbarComments from '../components/textbar-comments.component'
 import TabFanclub from '../components/tab-fanclub.component'
 import Snackbar from '../components/snackbar.component'
+
+import IconFollow from '../images/icons/icon-follow.svg'
+import IconUnfollow from '../images/icons/icon-unfollow.svg'
 
 const ArtistRoute = () => {
 
@@ -79,19 +77,18 @@ const ArtistRoute = () => {
     const fanclub = useFanclub(artist?.id)
     const hasUserSubscribed = useFanclubSubscription(artist?.id)
 
-
-    const [userCompeting, setUserCompeting] = useState(false)
+    const [userFollowing, setUserFollowing] = useState(false)
     const fetchCompeting = () => {
         if ( currentFan.followedArtists.length > 0 ) {
             const favouriteArtistIds = currentFan.followedArtists.map(followed => followed.artistId)
 
             if (favouriteArtistIds.includes(artist.id)) {
-                setUserCompeting(true)
+                setUserFollowing(true)
             } else {
-                setUserCompeting(false)
+                setUserFollowing(false)
             }
         } else {
-            setUserCompeting(false)
+            setUserFollowing(false)
         }
     }
 
@@ -99,8 +96,8 @@ const ArtistRoute = () => {
     const [whitePoints, setWhitePoints] = useState(0)
     const [message, setMessage] = useState('')
     
-    const handleCompete = () => {
-        if (userCompeting) {
+    const handleFollow = () => {
+        if (userFollowing) {
             const newfollowedArtists = currentFan.followedArtists.filter(leaderboard => leaderboard.artistId !== artist.id)
             setCurrentFan(prev => ({ ...prev, followedArtists: newfollowedArtists }))
         } else {
@@ -283,11 +280,6 @@ const ArtistRoute = () => {
 
     const [modalSubscription, setModalSubscription] = useState(false)
 
-    /* MAJOR CHANGES */
-    /* const hasUserSubscribed = useFanclubSubscription(context?.id) */
-/*     const artistName = useArtistName(artist?.id)
- */    /* const fanclub = useFanclub(context?.id) */
-
     /* const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler() */
     const { handleSubmitComment } = useSubmitComment()
     const { likeComment } = useLikeComment()
@@ -414,7 +406,7 @@ const ArtistRoute = () => {
         }
     }, [postInFocus])
     
-/*     const [modalSubscription, setModalSubscription] = useState(false)*/
+    /* const [modalSubscription, setModalSubscription] = useState(false)*/
     const handleShare = (post) => {
         share(post, artist?.id)
         setPostInFocus({
@@ -424,22 +416,29 @@ const ArtistRoute = () => {
         })
     }
 
+    useEffect(() => {
+        if (fanclub !== undefined) {
+            if (fanclub?.isActive) {
+                navigate(`/artist/${artistSlug}/posts`)
+            } else {
+                navigate(`/artist/${artistSlug}/leaderboard-streaming`)
+            }
+
+            if (fanclub === null) {
+                navigate(`/artist/${artistSlug}/leaderboard-streaming`)
+            }
+        }
+    }, [fanclub, navigate, artistSlug])
+
     return (
         <>
-            {/* MAJOR CHANGES */}
-            {/* {
-                pathname.includes("fanclub") ?
-                <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={true} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed} openModalSubscription={() => setModalSubscription(true)}/>
-                :
-                <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)}  />
-            } */}
-            <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={true} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed} openModalSubscription={() => setModalSubscription(true)} />
+            <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={fanclub} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed} openModalSubscription={() => setModalSubscription(true)} />
 
             <CoverArtistPage
                 fanclub={fanclub}
                 artist={artist}
-                userCompeting={userCompeting}
-                handleCompete={handleCompete}
+                userFollowing={userFollowing}
+                handleFollow={handleFollow}
                 userSubscribed={hasUserSubscribed}
                 openSettingsSubscription={() => openSettings()}
                 openModalSubscription={() => setModalSubscription(true)}
@@ -452,77 +451,60 @@ const ArtistRoute = () => {
                 <p className='fsize-xs-2 f-w-400 grey-300'>{fanclub?.description}</p>
             </Container>
             
-            <div className='position-sticky top-navbar z-index-999 bg-dark pb-xs-2 pt-xs-2'>
+            <article className='position-sticky top-navbar z-index-999 bg-dark pb-xs-2'>
                 <Container className='container'>
-                    {/* MAJOR CHANGES */}
-                    {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && /* !location.pathname.includes('/fanclub')  && */
-                        <MessageFlashLeaderboard
-                            artist={artist}
-                            userCompeting={userCompeting}
-                        />
+                    {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
+                        <MessageFlashLeaderboard artist={artist} />
                     }
-
-                    {/* MAJOR CHANGES */}
-                    {/* {fanclub?.isActive &&
-                        <Tab
-                            artist={artist}
-                        />
-                    } */}
 
                     {!currentFan.hasSpotify &&
-                        <CardConnectSpotify
-                            onClick={handleSpotifyConnect}
-                        />
+                        <CardConnectSpotify onClick={handleSpotifyConnect} />
                     }
 
                     {/* MAJOR CHANGES */}
-                    {/* {userCompeting && currentFan.hasSpotify && !pathname.includes('fanclub') &&
+                    {/* {userFollowing && currentFan.hasSpotify && !pathname.includes('fanclub') &&
                         <CardLeaderboardYourPosition
                             currentFan={currentFan}
                             artist={artist}
                         />
                     } */}
-                    
-                    <div className='w-100 d-flex-column j-c-space-between align-items-center'>
-                        {/* MAJOR CHANGES */}
-                        {/* {pathname.includes('leaderboard') &&
-                            <>
-                                {currentFan.hasSpotify && !userCompeting &&
-                                    <Button
-                                        style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2 mb-xs-2'
-                                        label='Competi nella classifica'
-                                        onClick={handleCompete}
-                                    />
-                                }
-                            </>
-                            
+
+                    <div className='d-flex-row gap-0_5em mt-xs-2'>
+                        {/* {!hasUserSubscribed && userFollowing &&
+                            <Button
+                                style='bg-dark-soft-3 black w-20'
+                                onClick={handleFollow}
+                            >
+                                <img src={IconUnfollow} />
+                            </ Button>
                         } */}
-                        {/* {pathname.includes('fanclub') &&
-                        <>
-                            {!hasUserSubscribed && fanclub?.isActive &&
-                                <Button
-                                    style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2 mb-xs-2 w-100'
-                                    label='Abbonati'
-                                    onClick={() => setModalSubscription(true)}
-                                />
-                            }
-                        </>
-                        } */}
+                        {!userFollowing && !hasUserSubscribed &&
+                            <Button
+                                style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
+                                label='Segui'
+                                onClick={handleFollow}
+                            >
+                                <img src={IconFollow} />
+                            </ Button>
+                        }
                         {!hasUserSubscribed && fanclub?.isActive &&
                             <Button
-                                style='border-lime bg-none lime-400 fsize-xs-3 f-w-500 black mb-xs-2 w-100'
-                                label={`Abbonati a ${artist.artistName}`}
+                                style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black grow-1'
+                                label='Abbonati'
                                 onClick={() => setModalSubscription(true)}
                             />
                         }
                     </div>
 
-                    <TabFanclub/>
-                </Container>
-            </div>
+                    {fanclub?.isActive &&
+                        <TabFanclub />
+                    }
 
-            <Container style={''}>
-                <Outlet context={{artist, focusPost}} />
+                </Container>
+            </article>
+
+            <Container style=''>
+                <Outlet context={{ artist, focusPost }} />
             </Container>
 
             {/* MAJOR CHANGES */}
@@ -590,7 +572,6 @@ const ArtistRoute = () => {
             {(artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING')  ?
                 <MessageFlashLeaderboardModal
                     artist={artist}
-                    userCompeting={userCompeting}
                     modalOpen={modalOpenFlash}
                     toggleModalContent={toggleModalContent}
                     upperModalCompressed={upperModalCompressed}

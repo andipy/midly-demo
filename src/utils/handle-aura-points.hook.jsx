@@ -9,7 +9,6 @@ const useAuraPoints = () => {
   const { fans} = useContext(FansContext)
 
   const setAuraPoints = (value, type, artistId) => {
-    console.log(value, type, artistId)
     const fanclubId = fanclubs.find(f => f.artistId === artistId)?.id
 
     if (currentFan) {

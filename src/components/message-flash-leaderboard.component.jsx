@@ -59,7 +59,7 @@ const MessageFlashLeaderboard = ({ artist }) => {
             </div>
         } */}
         {artist.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
-            <div className='d-flex-row align-items-center j-c-space-between bg-brand-gradient border-radius-100 pl-xs-4 pr-xs-2 pt-xs-2 pb-xs-2 mb-xs-4' onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}>
+            <div className='d-flex-row align-items-center j-c-space-between bg-brand-gradient border-radius-100 pl-xs-4 pr-xs-2 pt-xs-2 pb-xs-2' onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}>
                 <p className='fsize-xs-2 black f-w-600'>CLASSIFICA FLASH TERMINATA</p>
                 <img className='avatar-24 bg-white border-radius-100' src={IconRightDark} alt='GO!' />
             </div>

@@ -7,7 +7,11 @@ const useFanclub = (artistId) => {
   useEffect(() => {
     if (artistId && fanclubs) {
       const thisFanclub = fanclubs.find((elem) => elem.artistId === artistId)
-      setFanclub(thisFanclub)
+      if ( thisFanclub ) {
+        setFanclub(thisFanclub)
+      } else {
+        setFanclub(null)
+      }
     }
   }, [artistId, fanclubs])
 

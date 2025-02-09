@@ -43,13 +43,6 @@ const PostSettingsRoute = () => {
             }
     }, [state])
 
-/*     useEffect(() => {
-        if (post) {
-            console.log(post)
-        }
-    }, [post]) */
-    
-
     const updatePosts = () => {
         setFanclubs(prevFanclubs =>
             prevFanclubs.map(fanclub => {

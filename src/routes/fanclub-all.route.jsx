@@ -27,7 +27,6 @@ const FanclubAllRoute = () => {
     const {artist, focusPost} = useOutletContext()
     const {artists} = useContext(ArtistsContext)
     const {fans} = useContext(FansContext)
-    console.log(artist)
 
     const hasUserSubscribed = useFanclubSubscription(artist?.id)
     const fanclub = useFanclub(artist?.id)
