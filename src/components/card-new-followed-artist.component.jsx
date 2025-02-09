@@ -98,7 +98,7 @@ const CardFollowedArtist = ({ artist, hasUserSubscribed, preview }) => {
                 </div>
             }
             {lastPost &&
-                <div className='position-absolute w-100 h-60 left-0 bottom-0 bg-dark-overlay-header-5'></div>
+                <div className='position-absolute w-100 h-60 left-0 bottom-0 bg-dark-overlay-header-5 border-bottom-dark-1-0_5'></div>
             }
         </div>
     )
