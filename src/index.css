@@ -2786,6 +2786,7 @@ nav .container {
       --container: 88vw;
       --container-landing: 88vw;
   }
+
   .container {
       width: var(--container);
   }
@@ -3364,6 +3365,11 @@ nav .container {
       --container: 65vw;
       --container-landing: 85vw;
   }
+  .image-wrapper {
+    width: 71vw;
+    margin-left: calc((71vw - var(--container)) / -2); 
+    position: relative;
+  }
   .container {
       width: var(--container);
   }
@@ -3799,6 +3805,11 @@ nav .container {
       --container: 50vw;
       --container-landing: 80vw;
   }
+  .image-wrapper {
+    width: 56vw;
+    margin-left: calc((56vw - var(--container)) / -2); 
+    position: relative;
+  }
   .container {
       width: var(--container);
   }
@@ -4231,6 +4242,11 @@ nav .container {
       --container: 45vw;
       --container-landing: 80vw;
   }
+  .image-wrapper {
+    width: 51vw;
+    margin-left: calc((51vw - var(--container)) / -2); 
+    position: relative;
+  }
   .container {
       width: var(--container);
   }
@@ -4660,6 +4676,11 @@ nav .container {
   :root {
       --container: 36vw;
       --container-landing: 75vw;
+  }
+  .image-wrapper {
+    width: 42vw;
+    margin-left: calc((42vw - var(--container)) / -2); 
+    position: relative;
   }
   .container {
       width: var(--container);
@@ -5094,9 +5115,15 @@ nav .container {
       --container: 30vw;
       --container-landing: 70vw;
   }
+  .image-wrapper {
+    width: 36vw;
+    margin-left: calc((36vw - var(--container)) / -2); 
+    position: relative;
+  }
   .container {
       width: var(--container);
   }
+  
   #logo {
       width: 25%;
       margin: 8% auto;

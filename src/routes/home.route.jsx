@@ -24,7 +24,8 @@ import useModal from "../utils/handle-modal.hooks"
 import useFanclubSubscriptionHandler from "../utils/handle-subscription.hook"
 import useLikeTopic from "../utils/handle-like-topic.hook"
 import useSaveTopic from "../utils/handle-save-topic.hook"
-
+import ModalSubscriptionFanclub from "../components/modal-subscription-fanclub.component"
+import FullPageCenter from "../layout/full-page-center.layout"
 const HomeRoute = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
@@ -214,6 +215,7 @@ const HomeRoute = () => {
 					return firstChunk?.map((post, index) => {
 						const artistId = post?.artistId
 						const hasUserSubscribed = currentFan.fanclubsSubscribed.some(sub => sub.artistId === artistId) 
+						const fanclub = fanclubs.find(f => f.artistId === artistId)
 
 						return (
 							<Post
@@ -222,7 +224,7 @@ const HomeRoute = () => {
 								focusPost={(postId, action) => focusPost(postId, action, artistId)}
 								likePost={(postId) => likePost(artistId, postId)}
 								hasUserSubscribed={hasUserSubscribed}
-								handleSubscription={() => setModalSubscription(true)}
+								handleSubscription={() => {setModalSubscription(true);setFanclubInFocus(fanclub);}}
 								artistId={artistId}
 								home={true}
 							/>
@@ -404,9 +406,9 @@ const HomeRoute = () => {
 
 		</CommentsModalLayout>
 		<Appbar />
-		{/* {
+		{
 			modalSubscription &&
-			<ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclubInFocus} handleSubscription={(period) => handleSubscription(fanclubInFocus?.id, period)}/>
+			<ModalSubscriptionFanclub closeModal={() => {setModalSubscription(false); setFanclubInFocus(null)}} fanclub={fanclubInFocus} handleSubscription={(period) => {handleSubscription(fanclubInFocus?.artistId, period)}}/>
 		}
 		{err && 
 			<FullPageCenter style='z-index-1100 bg-black-transp70'>
@@ -416,7 +418,7 @@ const HomeRoute = () => {
 					</div>
 				</Container>
 			</FullPageCenter>
-		} */}
+		}
 		<Snackbar message={messageSnackbar} triggered={triggered} />
 		</>
 	)
