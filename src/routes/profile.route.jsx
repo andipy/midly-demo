@@ -31,9 +31,9 @@ const ProfileRoute = () => {
     const location = useLocation()
 
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
-    const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
+    /* const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
     const [whitePoints, setWhitePoints] = useState(0)
-    const [message, setMessage] = useState("")
+    const [message, setMessage] = useState("") */
 
 
     const handleFileChange = (event) => {
@@ -55,9 +55,9 @@ const ProfileRoute = () => {
                     actions: [...prev.actions, { type: 'PROFILE_IMAGE_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
 
-                setShowMessageWhitePoints(true)
+                /* setShowMessageWhitePoints(true)
                 setWhitePoints(5)
-                setMessage('Aggiungi immagine di profilo')
+                setMessage('Aggiungi immagine di profilo') */
             }
         } else {
             return
@@ -79,9 +79,9 @@ const ProfileRoute = () => {
                     whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
                     actions: [...prev.actions, { type: 'SPOTIFY_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
-                setShowMessageWhitePoints(true)
+                /* setShowMessageWhitePoints(true)
                 setWhitePoints(10)
-                setMessage('Aggiungi Spotify')
+                setMessage('Aggiungi Spotify') */
     
             }
         }
@@ -324,9 +324,9 @@ const ProfileRoute = () => {
         </section>
 
         </Container>
-        {showMessageWhitePoints && 
+        {/* {showMessageWhitePoints && 
             <MessageWhitePoints points={whitePoints} message={message} onClick={() => setShowMessageWhitePoints(false)} />
-        }
+        } */}
         {showMessageDisconnectSpotify && 
             <MessageDisconnectSpotify onClick={() => disconnectSpotify()} close={() => setShowMessageDisconnectSpotify(false)} />
         }

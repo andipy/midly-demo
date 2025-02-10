@@ -166,9 +166,9 @@ const FlashLeaderboardRoute = () => {
         }
     }
 
-    const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
+    /* const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
     const [whitePoints, setWhitePoints] = useState(0)
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState('') */
 
     const handleSpotifyConnect = () => {
         localStorage.setItem('pageFrom', '/profile')
@@ -190,9 +190,9 @@ const FlashLeaderboardRoute = () => {
                     whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
                     actions: [...prev.actions, { type: 'SPOTIFY_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
-                setShowMessageWhitePoints(true)
+                /* setShowMessageWhitePoints(true)
                 setWhitePoints(10)
-                setMessage('Aggiungi Spotify')
+                setMessage('Aggiungi Spotify') */
     
             }
         }
@@ -211,9 +211,9 @@ const FlashLeaderboardRoute = () => {
                     whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
                     actions: [...prev.actions, { type: 'FIVE_ARTISTS_FOLLOWED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
-                setShowMessageWhitePoints(true)
+                /* setShowMessageWhitePoints(true)
                 setWhitePoints(10)
-                setMessage('Segui almeno 5 artisti')
+                setMessage('Segui almeno 5 artisti') */
             } else {
                 setCurrentFan(prev => ({
                     ...prev,
@@ -352,13 +352,13 @@ const FlashLeaderboardRoute = () => {
                 }
             </Container>
 
-            {showMessageWhitePoints && 
+            {/* {showMessageWhitePoints && 
                 <MessageWhitePoints
                     points={whitePoints}
                     message={message}
                     onClick={() => setShowMessageWhitePoints(false)}
                 />
-            }
+            } */}
 
             {showComponent &&
                 <MultistepExplanation sliderSteps={sliderSteps} leaderboard={leaderboard} artist={artist} sliderPage={sliderPage} incrementPageSlider={incrementPageSlider} decrementPageSlider={decrementPageSlider} />

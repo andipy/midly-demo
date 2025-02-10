@@ -92,9 +92,9 @@ const ArtistRoute = () => {
         }
     }
 
-    const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
+    /* const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
     const [whitePoints, setWhitePoints] = useState(0)
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState('') */
     
     const handleFollow = () => {
         if (userFollowing) {
@@ -108,9 +108,9 @@ const ArtistRoute = () => {
                     whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
                     actions: [...prev.actions, { type: 'FIVE_ARTISTS_FOLLOWED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
-                setShowMessageWhitePoints(true)
+                /* setShowMessageWhitePoints(true)
                 setWhitePoints(10)
-                setMessage('Segui almeno 5 artisti')
+                setMessage('Segui almeno 5 artisti') */
             } else {
                 setCurrentFan(prev => ({
                     ...prev,
@@ -141,9 +141,9 @@ const ArtistRoute = () => {
                     whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
                     actions: [...prev.actions, { type: 'SPOTIFY_ADDED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
                 }))
-                setShowMessageWhitePoints(true)
+                /* setShowMessageWhitePoints(true)
                 setWhitePoints(10)
-                setMessage('Aggiungi Spotify')
+                setMessage('Aggiungi Spotify') */
     
             }
         }
@@ -561,13 +561,13 @@ const ArtistRoute = () => {
 	            </FullPageCenter>
             }
 
-            {showMessageWhitePoints && 
+            {/* {showMessageWhitePoints && 
                 <MessageWhitePoints
                     points={whitePoints}
                     message={message}
                     onClick={() => setShowMessageWhitePoints(false)}
                 />
-            }
+            } */}
 
             {(artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING')  ?
                 <MessageFlashLeaderboardModal
