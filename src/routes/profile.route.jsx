@@ -130,16 +130,10 @@ const ProfileRoute = () => {
                                         {currentFan.username.charAt(0).toUpperCase()}
                                     </h5>
                                 </div>
-                                <div className='d-flex-column align-items-center position-absolute-y right-neg5 position-absolute-x top-95 '>
-                                    <div className='d-flex-row align-items-center '>
-                                        <div className='bg-dark-gradient border-radius-100  d-flex-row j-c-center align-items-center avatar-36'>
-                                            <div className='d-flex-row align-items-center'>
-                                                <div className='fsize-xs-3'>{5} </div>
-                                                <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {/* <div className='d-flex-row align-items-center j-c-center    position-absolute-y right-neg5 position-absolute-x top-95 avatar-36 border-radius-100 bg-dark-gradient'>
+                                    <div className='fsize-xs-3'>{5}</div>
+                                    <img className='avatar-16 ml-xs-2' src={IconPoints} />
+                                </div> */}
                             </div>
                             
                         }
