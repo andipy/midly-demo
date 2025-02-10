@@ -134,6 +134,9 @@ const router = createBrowserRouter([
 		path: '/your-favourites',
 		element: <YourFavouritesRoute />
 	},{
+		path: '/your-favourites/:postId',
+		element: <PostFullScreenRoute />,
+	},{
 		path: '/artist/:artistSlug',
 		element: <ArtistRoute />,
 		children: [

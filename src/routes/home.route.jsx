@@ -224,6 +224,7 @@ const HomeRoute = () => {
 								hasUserSubscribed={hasUserSubscribed}
 								handleSubscription={() => setModalSubscription(true)}
 								artistId={artistId}
+								home={true}
 							/>
 						)
 					})
@@ -325,6 +326,7 @@ const HomeRoute = () => {
 							hasUserSubscribed={hasUserSubscribed}
 							handleSubscription={() => setModalSubscription(true)}
 							artistId={artistId}
+							home={true}
 						/>
 					)
 				})

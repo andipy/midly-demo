@@ -19,7 +19,7 @@ import Container from '../layout/container.layout'
 import useAuraPoints from '../utils/handle-aura-points.hook'
 import { CLICK_POST_LINK } from '../utils/aura-points-values'
 
-const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost, likePost, preview }) => {
+const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost, likePost, preview, home }) => {
 	const navigate = useNavigate()
 	const { artists } = useContext(ArtistsContext)
 	const { currentFan	} = useContext(CurrentFanContext)
@@ -85,7 +85,7 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 
 	return (
 		<>
-		{pathname.includes('/home') &&
+		{home &&
 			<div 
 				className='d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4'
 				onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
