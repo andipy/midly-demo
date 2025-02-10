@@ -140,10 +140,10 @@ const router = createBrowserRouter([
 		path: '/artist/:artistSlug',
 		element: <ArtistRoute />,
 		children: [
-			{
+			/* {
 				path: '',
 				element: <Navigate to='posts' replace />,
-			},{
+			}, */{
 				path: 'forum',
 				element: <FanclubForumRoute />
 			},{

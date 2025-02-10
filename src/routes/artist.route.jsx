@@ -416,19 +416,27 @@ const ArtistRoute = () => {
         })
     }
 
+    const previousIsActive = useRef(null)
     useEffect(() => {
-        if (fanclub !== undefined) {
-            if (fanclub?.isActive) {
-                navigate(`/artist/${artistSlug}/posts`)
-            } else {
-                navigate(`/artist/${artistSlug}/leaderboard-streaming`)
-            }
+        const expectedPath = `/artist/${artistSlug}`
 
-            if (fanclub === null) {
-                navigate(`/artist/${artistSlug}/leaderboard-streaming`)
-            }
+        if (fanclub === undefined) return
+        if (location.pathname !== expectedPath) return
+        if (fanclub !== null && fanclub?.isActive === previousIsActive.current) {
+            return
         }
-    }, [fanclub, navigate, artistSlug])
+        previousIsActive.current = fanclub?.isActive
+
+        if (fanclub?.isActive) {
+            navigate(`/artist/${artistSlug}/posts`)
+        } else {
+            navigate(`/artist/${artistSlug}/leaderboard-streaming`)
+        }
+
+        if (fanclub === null) {
+            navigate(`/artist/${artistSlug}/leaderboard-streaming`)
+        }
+    }, [fanclub, navigate, artistSlug, location.pathname])
 
     return (
         <>
