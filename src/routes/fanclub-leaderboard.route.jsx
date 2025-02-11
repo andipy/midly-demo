@@ -6,6 +6,8 @@ import useFanclub from "../utils/get-fanclub.hooks"
 import CardLeaderboardFan from "../components/card-leaderboard-fan.component"
 import IconPoints from '../images/icons/icon-points.svg'
 import Button from "../components/button.component"
+import ModalRulesAuraboard from "../components/modal-rules-auraboard.component"
+import IconInfo from '../images/icons/icon-info-white.svg'
 
 const FanclubLeaderboardRoute = () => {
     /* MAJOR CHANGES */
@@ -15,6 +17,24 @@ const FanclubLeaderboardRoute = () => {
     let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
     const navigate = useNavigate()
     const fanclub = useFanclub(artistF?.id)
+
+    //regole
+    const storageKey = `rulesViewed_${artistF?.id}`
+    const [rules, setRules] = useState(true)
+
+    useEffect(() => {
+        setRules(sessionStorage.getItem(storageKey) === "true" ? false : true)
+    }, [storageKey])
+
+    const closeRules = () => {
+        setRules(false);
+        sessionStorage.setItem(storageKey, "true")
+    }
+
+    const openRules = () => {
+        setRules(true)
+    }
+
 
     const [leaderboard, setLeaderboard] = useState()
     useEffect(() => {
@@ -173,6 +193,15 @@ const FanclubLeaderboardRoute = () => {
         <div className='position-relative w-100 d-flex-column j-c-center align-items-center'>
             <Outlet /> 
         </div>
+        {
+            rules &&
+            <ModalRulesAuraboard closeModal={() => closeRules()}/>
+        }
+        {
+            <div className='bg-dark-soft-2 avatar-24 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => openRules()}>
+                <img className='avatar-24 border-radius-100' src={IconInfo}/>
+            </div> 
+        }
     </>
   )
 }
