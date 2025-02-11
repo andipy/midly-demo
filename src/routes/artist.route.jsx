@@ -465,28 +465,15 @@ const ArtistRoute = () => {
                         <MessageFlashLeaderboard artist={artist} />
                     }
 
-                    {!currentFan.hasSpotify &&
-                        <CardConnectSpotify onClick={handleSpotifyConnect} />
-                    }
-
-                    {/* MAJOR CHANGES */}
-                    {/* {userFollowing && currentFan.hasSpotify && !pathname.includes('fanclub') &&
+                    {userFollowing && currentFan.hasSpotify && pathname.includes('/leaderboard-streaming') &&
                         <CardLeaderboardYourPosition
                             currentFan={currentFan}
                             artist={artist}
                         />
-                    } */}
+                    }
 
                     <div className='d-flex-row gap-0_5em mt-xs-2'>
-                        {/* {!hasUserSubscribed && userFollowing &&
-                            <Button
-                                style='bg-dark-soft-3 black w-20'
-                                onClick={handleFollow}
-                            >
-                                <img src={IconUnfollow} />
-                            </ Button>
-                        } */}
-                        {!userFollowing && !hasUserSubscribed &&
+                        {!userFollowing && !hasUserSubscribed && !pathname.includes('/leaderboard-streaming') &&
                             <Button
                                 style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
                                 label='Segui'
@@ -503,6 +490,20 @@ const ArtistRoute = () => {
                             />
                         }
                     </div>
+
+                    {currentFan.hasSpotify && !userFollowing && !hasUserSubscribed && pathname.includes('/leaderboard-streaming') &&
+                        <Button
+                            style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
+                            label='Segui per partecipare alla classifica'
+                            onClick={handleFollow}
+                        >
+                            <img src={IconFollow} />
+                        </ Button>
+                    }
+
+                    {!currentFan.hasSpotify && pathname.includes('/leaderboard-streaming') &&
+                        <CardConnectSpotify onClick={handleSpotifyConnect} />
+                    }
 
                     {fanclub?.isActive &&
                         <TabFanclub />
