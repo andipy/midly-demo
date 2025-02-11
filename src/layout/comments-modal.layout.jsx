@@ -1,8 +1,18 @@
+import { useState, useEffect } from "react"
 const CommentsModalLayout = ({ children, modalOpen }) => {
+
+    const [open, setOpen] = useState(false)
+    useEffect(() => {
+        if(modalOpen === true) {
+            setOpen(true)
+        } else if (modalOpen === false) {
+            setOpen(false)
+        }
+    }, [modalOpen])
 
 
     return (
-        <div className={`position-fixed h-80vh bg-dark-soft w-100 border-radius-top-08 z-index-1100 overflow-scroll left-0 ${modalOpen ? 'slide-up' : 'slide-down'}`}>
+        <div className={`position-fixed h-80vh bg-dark-soft w-100 border-radius-top-08 z-index-1100 overflow-scroll left-0 ${open ? 'slide-up' : 'slide-down'}`}>
             {children}
         </div>
     )

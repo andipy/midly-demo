@@ -8,19 +8,23 @@ import IconPoints from '../images/icons/icon-points.svg'
 import Button from "../components/button.component"
 import ModalRulesAuraboard from "../components/modal-rules-auraboard.component"
 import IconInfo from '../images/icons/icon-info-white.svg'
-
+import CommentsModalLayout from "../layout/comments-modal.layout"
+import Container from "../layout/container.layout"
+import SpotifyLogo from '../images/icons/icon-spotify.svg'
+import CardConnectSpotify from "../components/card-connect-spotify.component"
 const FanclubLeaderboardRoute = () => {
     /* MAJOR CHANGES */
     const { artist}  = useOutletContext()
     const location = useLocation()
     const { currentArtist } = useContext(CurrentArtistContext)
+    const {currentFan} = useContext(CurrentFanContext)
     let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
     const navigate = useNavigate()
     const fanclub = useFanclub(artistF?.id)
 
     //regole
     const storageKey = `rulesViewed_${artistF?.id}`
-    const [rules, setRules] = useState(true)
+    const [rules, setRules] = useState(false)
 
     useEffect(() => {
         setRules(sessionStorage.getItem(storageKey) === "true" ? false : true)
@@ -59,6 +63,11 @@ const FanclubLeaderboardRoute = () => {
             setEmpty(false)
         }
     }, [fanclub])
+
+    const handleSpotifyConnect = () => {
+        localStorage.setItem('pageFrom', location?.pathname)
+        navigate('/spotify-login')
+    }
   return (
     <>
         {empty &&
@@ -193,15 +202,49 @@ const FanclubLeaderboardRoute = () => {
         <div className='position-relative w-100 d-flex-column j-c-center align-items-center'>
             <Outlet /> 
         </div>
-        {
+        {/* {
             rules &&
             <ModalRulesAuraboard closeModal={() => closeRules()}/>
-        }
+        } */}
         {
             <div className='bg-dark-soft-2 avatar-24 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => openRules()}>
                 <img className='avatar-24 border-radius-100' src={IconInfo}/>
             </div> 
         }
+        <CommentsModalLayout
+            modalOpen={rules}
+            closeModal={closeRules}
+        >
+            <Container style={'d-flex-column j-c-center align-items-center h-100 pt-xs-8 pb-xs-8'}>
+            <div className="d-flex-column h-100 j-c-space-between align-items-center">
+            <div className="d-flex-column j-c-start align-items-center">
+                <h1 className="fsize-xs-5 f-w-600 letter-spacing-1 mb-xs-4">
+                    Che azioni danno punti?
+                </h1>
+                
+            </div>
+            <div>
+                <p className='fsize-xs-2 f-w-300 t-align-center'>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                {
+                !currentFan.hasSpotify ?
+                <CardConnectSpotify onClick={handleSpotifyConnect} />
+                :
+                <></>
+                }
+            </div>
+            <div className="d-flex-column w-100">
+                
+                <Button 
+                    style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2'
+                    label='Chiudi'
+                    onClick={closeRules}
+                />
+            </div>
+            </div>
+            </Container>
+        </CommentsModalLayout>
     </>
   )
 }
