@@ -72,13 +72,7 @@ const ModalRulesAuraboard = ({closeModal}) => {
                                 <img className='social-logo' src={SpotifyLogo} alt='SPOTIFY'/>
                             </Button>
                             :
-                            <Button 
-                                style='bg-white-transp15 fsize-xs-3 f-w-500 grey-400 mt-xs-2'
-                                label='Spotify connesso'
-                                disabled={true}
-                                onClick={handleSpotifyConnect}
-                            >
-                            </Button>
+                            <></>
                         }
                         
                         <Button 
