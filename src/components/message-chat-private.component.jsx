@@ -1,5 +1,4 @@
-/* import AudioPost from "./audio-post.component"
- */
+
 import { useState, useRef, useContext, useEffect } from 'react'
 
 import { ArtistsContext } from '../contexts/artists.context'
@@ -7,31 +6,33 @@ import { ArtistsContext } from '../contexts/artists.context'
 import IconPlay from '../images/icons/icon-play.svg'
 import IconPause from '../images/icons/icon-pause.svg'
 const MessageChatPrivate = ({message, currentUserId}) => {
-
-    
     const [isPlaying, setIsPlaying] = useState(false)
     const [progress, setProgress] = useState(0)
     const audioRef = useRef(null)
+    const [duration, setDuration] = useState(0)
+    const [timeElapsed, setTimeElapsed] = useState('0:00')
+    const [timeRemaining, setTimeRemaining] = useState('0:00')
 
-
+    // Gestione della riproduzione
     const togglePlayPause = () => {
         if (isPlaying) {
-        audioRef.current.pause()
+            audioRef.current.pause()
         } else {
-        audioRef.current.play()
+            audioRef.current.play()
         }
         setIsPlaying(!isPlaying)
     }
 
     const handleTimeUpdate = () => {
-        const audio = audioRef?.current;
-    
-        const currentTime = audio?.currentTime;
-
+        const audio = audioRef.current
         if (!audio || !duration) return
+
+        const currentTime = audio.currentTime
         setTimeElapsed(formatTime(currentTime))
+
         const remainingTime = duration - currentTime
         setTimeRemaining(formatTime(remainingTime))
+
         const currentProgress = (currentTime / duration) * 100
         setProgress(currentProgress || 0)
     }
@@ -46,9 +47,6 @@ const MessageChatPrivate = ({message, currentUserId}) => {
         setProgress((newTime / audioRef.current.duration) * 100)
     }
 
-    const [timeElapsed, setTimeElapsed] = useState('0:00')
-    const [timeRemaining, setTimeRemaining] = useState('0:00')
-
     const formatTime = (seconds) => {
         const roundedSeconds = Math.round(seconds)
         const minutes = Math.floor(roundedSeconds / 60)
@@ -56,61 +54,74 @@ const MessageChatPrivate = ({message, currentUserId}) => {
         return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`
     }
 
-    const [duration, setDuration] = useState(0)
-
     const handleLoadedMetadata = () => {
         const audio = audioRef.current
         if (audio) {
             const audioDuration = audio.duration
             if (audioDuration === Infinity || isNaN(audioDuration)) {
-            setDuration(0)
+                setDuration(0)
             } else {
-            setDuration(audioDuration)
-            setTimeRemaining(formatTime(audioDuration))
+                setDuration(audioDuration)
+                setTimeRemaining(formatTime(audioDuration))
             }
         }
-        }
-    
-        const handleLoadedData = () => {
+    }
+
+    const handleLoadedData = () => {
         const audio = audioRef.current
         if (audio) {
             const audioDuration = audio.duration
             if (audioDuration !== Infinity && !isNaN(audioDuration)) {
-            setDuration(audioDuration)
-            setTimeRemaining(formatTime(audioDuration))
+                setDuration(audioDuration)
+                setTimeRemaining(formatTime(audioDuration))
             }
         }
-        }
-    
-        const handleCanPlayThrough = () => {
+    }
+
+    const handleCanPlayThrough = () => {
         const audio = audioRef.current
         if (audio) {
             const audioDuration = audio.duration
             if (audioDuration !== Infinity && !isNaN(audioDuration)) {
-            setDuration(audioDuration)
-            setTimeRemaining(formatTime(audioDuration))
+                setDuration(audioDuration)
+                setTimeRemaining(formatTime(audioDuration))
             }
         }
-        }
-    
-        useEffect(() => {
+    }
+
+    const handlePlay = () => {
+        // Dopo aver iniziato la riproduzione, avviare il calcolo del progresso
+        handleTimeUpdate()
+    }
+
+    useEffect(() => {
         if (message.type === 'AUDIO') {
             const audio = audioRef.current
             if (audio) {
-        
                 audio.addEventListener('loadedmetadata', handleLoadedMetadata)
                 audio.addEventListener('loadeddata', handleLoadedData)
                 audio.addEventListener('canplaythrough', handleCanPlayThrough)
-        
+                audio.addEventListener('play', handlePlay)
+
                 return () => {
-                audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
-                audio.removeEventListener('loadeddata', handleLoadedData)
-                audio.removeEventListener('canplaythrough', handleCanPlayThrough)
+                    audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
+                    audio.removeEventListener('loadeddata', handleLoadedData)
+                    audio.removeEventListener('canplaythrough', handleCanPlayThrough)
+                    audio.removeEventListener('play', handlePlay)
                 }
             }
         }
-        
-        }, [message.content])
+    }, [message.content])
+
+    useEffect(() => {
+        if (isPlaying && audioRef.current) {
+            const intervalId = setInterval(() => {
+                handleTimeUpdate() // Assicura che venga chiamato anche durante la riproduzione
+            }, 1000)
+
+            return () => clearInterval(intervalId) // Pulisce l'intervallo quando non è più necessario
+        }
+    }, [isPlaying])
     return (
       <>
       {message?.userId === currentUserId ?
