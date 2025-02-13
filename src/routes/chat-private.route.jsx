@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState, useContext, useRef } from 'react'
 import { useNavigate, useLocation, Outlet } from 'react-router-dom'
 
 import { ArtistsContext } from '../contexts/artists.context'
@@ -14,6 +14,7 @@ import FullPageCenter from '../layout/full-page-center.layout'
 import MessageChatPrivate from '../components/message-chat-private.component'
 import Button from '../components/button.component'
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
+import TextAudioBar from '../components/text-audio-bar.component'
 import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
 import useFanclub from '../utils/get-fanclub.hooks'
 import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
@@ -70,6 +71,137 @@ const ChatPrivateRoute = () => {
             createdAt: date,
             content: e.target.value
         }))
+    }
+
+    //audio x artist
+    const toggleRecordingAudio = () => {
+        if (recordingAudio) {
+            handleStopRecordingAudio()
+        } else {
+            handleStartRecordingAudio()
+        }
+    }
+
+    const submitAudio = (updatedMessage) => {
+        setChats((prevChats) => {
+            let chat
+
+            chat = prevChats.find(
+            (c) => c.artistId === currentArtist?.id && c.fanId === artist?.id
+            )
+            
+      
+            if (!chat) {
+              return [
+                ...prevChats,
+                {
+                  id: prevChats.length + 1,
+                  fanId: currentFan.id,
+                  artistId: artist?.id,
+                  messages: [updatedMessage]
+                }
+              ]
+            } else {
+              return prevChats.map((c) =>
+                c.id === chat.id
+                  ? { ...c, messages: [...c.messages, updatedMessage] }
+                  : c
+              )
+            }
+        })
+
+        setCurrentMessage((prev) => ({
+            ...prev,
+            id: undefined,
+            createdAt: undefined,
+            content: "",
+            type: "MESSAGE"
+        }))
+    }
+    const handleStopRecordingAudio = () => {
+        if (audioRecorderRef.current) {
+            audioRecorderRef.current.stop()
+            setRecordingAudio(false)
+            cancelAnimationFrame(animationRef.current)
+            setElapsedTime({ hours: 0, minutes: 0, seconds: 0 })
+            setAudioData(new Uint8Array(0))
+    
+            audioRecorderRef.current.onstop = () => {
+                const blob = new Blob(chunksRef.current, { type: 'audio/mp3' }) 
+                const dataUrl = URL.createObjectURL(blob)
+                const currentDate = new Date().toISOString().split('T')[0]
+    
+                setCurrentMessage((prev) => {
+                    const updatedMessage = {
+                        ...prev,  
+                        id: Date.now(),
+                        createdAt: currentDate,
+                        type: 'AUDIO',
+                        content: dataUrl
+                    }
+    
+                   
+                    submitAudio(updatedMessage)
+    
+                    return updatedMessage 
+                })
+            }
+        }
+    }
+
+    const [recordingAudio, setRecordingAudio] = useState(false)
+    const audioRecorderRef = useRef(null)
+    const [elapsedTime, setElapsedTime] = useState({
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+    })
+    const [audioData, setAudioData] = useState(new Uint8Array(0)) // Dati per la forma d'onda
+    const animationRef = useRef(null)
+    const analyserRef = useRef(null)
+    const chunksRef = useRef([])
+
+    const handleStartRecordingAudio = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+            const source = audioContext.createMediaStreamSource(stream)
+            const analyser = audioContext.createAnalyser()
+            analyser.fftSize = 256 
+            analyser.minDecibels = -90
+            analyser.maxDecibels = -10
+            const dataArray = new Uint8Array(analyser.frequencyBinCount)
+    
+            source.connect(analyser)
+            analyserRef.current = analyser
+    
+            audioRecorderRef.current = new MediaRecorder(stream)
+            chunksRef.current = [] 
+    
+            audioRecorderRef.current.ondataavailable = (e) => {
+                chunksRef.current.push(e.data) 
+            }
+    
+            audioRecorderRef.current.start()
+            setRecordingAudio(true)
+    
+            const startTime = Date.now()
+            const update = () => {
+                analyser.getByteTimeDomainData(dataArray)
+                setAudioData([...dataArray])
+    
+                const elapsedTimeMs = Date.now() - startTime
+                const hours = Math.floor(elapsedTimeMs / (1000 * 60 * 60))
+                const minutes = Math.floor((elapsedTimeMs % (1000 * 60 * 60)) / (1000 * 60))
+                const seconds = Math.floor((elapsedTimeMs % (1000 * 60)) / 1000)
+                setElapsedTime({ hours, minutes, seconds })
+    
+                animationRef.current = requestAnimationFrame(update)
+            }
+            update()
+        } catch (err) {
+            console.error('Errore nella registrazione audio:', err.message)
+        }
     }
 
 
@@ -149,12 +281,27 @@ const ChatPrivateRoute = () => {
         </div>
 
         <div className={`position-fixed bg-dark-soft bottom-0 w-100 z-index-1100 border-radius-top-08 shadow-dark-750`}>
-            <Textbar
-                currentComment={currentMessage}
-                handleCurrentComment={handleCurrentMessage}
-                handleSubmitComment={submitMessage} 
-                /* shake={shake} */
-            />
+            {
+                pathname.includes('/artist-app/') &&
+                <TextAudioBar
+                    currentComment={currentMessage}
+                    handleCurrentComment={handleCurrentMessage}
+                    handleSubmitComment={submitMessage} 
+                    toggleRecordingAudio={toggleRecordingAudio}
+                    recordingAudio={recordingAudio}
+                    elapsedTime={elapsedTime}
+                />
+            }
+            {
+                !pathname.includes('/artist-app/') &&
+                <Textbar
+                    currentComment={currentMessage}
+                    handleCurrentComment={handleCurrentMessage}
+                    handleSubmitComment={submitMessage} 
+                    /* shake={shake} */
+                />
+            }
+            
         </div>
 
         

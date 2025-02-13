@@ -20,8 +20,9 @@ const usePrivateChatHandler = (artistId, pathname, hasUserSubscribed) => {
     id: undefined
   })
 
-  const submitMessage = (e) => {
-    e.preventDefault()
+  const submitMessage = (e = null) => {
+    if (e) e.preventDefault()
+
 
     if (!hasUserSubscribed) {
       setShake(true)
@@ -29,8 +30,7 @@ const usePrivateChatHandler = (artistId, pathname, hasUserSubscribed) => {
       return
     }
 
-    if (currentMessage.content.trim() === "") return
-
+    if (currentMessage.content.trim() === "" && currentMessage.type === 'MESSAGE') return
     setChats((prevChats) => {
       let chat
       if (!pathname.includes("/artist-app/")) {
