@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useRef } from "react"
+import { useContext, useState, useEffect, useRef, useLayoutEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { FanclubsContext } from "../contexts/fanclubs.context"
 import { CurrentFanContext } from "../contexts/currentFan.context"
@@ -374,24 +374,39 @@ const HomeRoute = () => {
 				closeModal={closeComments}
 			/>
 			<Container style={'pb-xs-12 pb-sm-2'}>
-				{fanclubInFocus?.posts.map(post => {
-					if ( post.id ===  postInFocus.id) {
-						return post.comments.map(comment => {
-							return (
-								<Comment
-									comment={comment}
-									key={comment.id}
-									inputRef={inputRef}
-									spotCommentToReply={spotCommentToReply}
-									modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclubInFocus?.id, postId: post.id}})}
-									likeComment = {() => likeComment(comment.id, post.id, fanclubInFocus.artistId)}
-									postId={post.id}
-									likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, fanclubInFocus.artistId)}
-								/>
-							)
+			{fanclubs
+			.filter(fanclub => fanclub.artistId === fanclubInFocus?.artistId) // Filtra il fanclub giusto
+			.map(fanclub => 
+			fanclub?.posts.map(post => {
+				if (post.id === postInFocus.id) {
+				return post?.comments?.map(comment => {
+					return (
+					<Comment
+						comment={comment}
+						key={comment.id}
+						inputRef={inputRef}
+						spotCommentToReply={spotCommentToReply}
+						modalUserModeration={() => 
+						navigate('user-moderation', { 
+							state: { 
+							userId: comment.userId, 
+							commentId: comment.id, 
+							fanclubId: fanclub?.id, 
+							postId: post.id 
+							} 
 						})
-					}})
+						}
+						likeComment={() => likeComment(comment.id, post.id, fanclub.artistId)}
+						postId={post.id}
+						likeReply={(replyId, commentId, postId) => 
+						likeReply(replyId, commentId, postId, fanclub.artistId)
+						}
+					/>
+					);
+				});
 				}
+			})
+			)}
 			</Container>
 
 			<TextbarComments

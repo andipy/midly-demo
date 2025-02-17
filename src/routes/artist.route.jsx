@@ -44,6 +44,13 @@ const ArtistRoute = () => {
     const { artistSlug } = useParams()
 
     const { state, pathname } = useLocation()
+    /* const artist = state?.artist */
+    const [from, setFrom] = useState()
+    useEffect(() => {
+        if (state?.from) {
+          setFrom(state.from)
+        }
+    }, [state])
     
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const { artists } = useContext(ArtistsContext)
@@ -440,7 +447,7 @@ const ArtistRoute = () => {
 
     return (
         <>
-            <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={fanclub} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed} openModalSubscription={() => setModalSubscription(true)} />
+            <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={fanclub} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed} openModalSubscription={() => setModalSubscription(true)} from={from}/>
 
             <CoverArtistPage
                 fanclub={fanclub}

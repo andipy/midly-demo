@@ -158,12 +158,12 @@ const ProfileRoute = () => {
                         </div>
                         <p className='f-w-400 fsize-xs-1 grey-200 line-height-140'>Midly traccia i brani che ascolti e li converte in punti nelle classifiche degli artisti che segui!</p>
                         <button className='bg-green-spotify dark-900 mt-xs-4 letter-spacing-1 f-w-500' onClick={handleSpotifyConnect}>CONNETTI SPOTIFY</button>
-                        <div className='bg-dark-gradient border-radius-100 d-flex-row j-c-center align-items-center avatar-36 ml-xs-2 position-absolute top-2 right-2'>
+                        {/* <div className='bg-dark-gradient border-radius-100 d-flex-row j-c-center align-items-center avatar-36 ml-xs-2 position-absolute top-2 right-2'>
                             <div className='d-flex-row align-items-center'>
                                 <div className='fsize-xs-3'>{10}</div>
                                 <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>  
             }

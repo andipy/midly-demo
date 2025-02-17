@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import IconOk from '../images/icons/icon-ok.svg'
 import IconUnfollow from '../images/icons/icon-unfollow.svg'
@@ -6,11 +6,12 @@ import IconUnfollow from '../images/icons/icon-unfollow.svg'
 const CardArtistWithFanclub = ({ artist, isFollowed, isSubscribed, length, index }) => {
 
     const navigate = useNavigate()
+    const location = useLocation()
 
     return (
         <div className={`position-relative h-xs-30 overflow-clip border-radius-04 no-shrink ${length === 1 ? 'artist-card-highlight-single' : 'artist-card-highlight-multiple'}`} 
            /* MAJOR CHANGES  onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: {artist: artist} })} */
-           onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
+           onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist, from: location?.pathname} })}
         >
             <div className='position-relative w-100 h-inherit mb-xs-4'>
                 {index &&

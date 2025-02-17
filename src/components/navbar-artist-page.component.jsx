@@ -9,7 +9,7 @@ import IconPrize from '../images/icons/icon-prize-rank-card.svg'
 import IconDm from '../images/icons/icon-dm.svg'
 import SettingsLogo from '../images/icons/icon-settings-white.svg'
 
-const NavbarArtistPage = ({ artist, onClick, quiz, fanclub, openSettings, openMessages, userSubscribed, openModalSubscription}) => {
+const NavbarArtistPage = ({ artist, onClick, quiz, fanclub, openSettings, openMessages, userSubscribed, openModalSubscription, from}) => {
     const location = useLocation()
     const navigate = useNavigate()
     const [scrolled, setScrolled] = useState(false)
@@ -34,10 +34,18 @@ const NavbarArtistPage = ({ artist, onClick, quiz, fanclub, openSettings, openMe
         }
     }, [])
 
+    const handleClick = () => {
+        if (from) {
+          navigate(from)
+        } else {
+          navigate("/")
+        }
+    }
+
     return (
         <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0 ${scrolled ? 'bg-dark shadow-dark-750' : ''}`}>
             <div className='container d-flex-row align-items-center j-c-space-between w-100'>
-                <div className='avatar-28' onClick={() => {navigate('/')}}>
+                <div className='avatar-28' onClick={handleClick}>
                     <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} alt='Back' />
                 </div>
 

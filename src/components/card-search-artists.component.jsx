@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import IconSuccess from '../images/icons/icon-success-standard.svg'
 import IconOk from '../images/icons/icon-ok.svg'
@@ -7,11 +7,12 @@ import IconUnfollow from '../images/icons/icon-unfollow.svg'
 const CardArtist = ({ artist, isFollowed, isSubscribed }) => {
 
     const navigate = useNavigate()
+    const location = useLocation()
 
     return (
         <div className='artist-card-multiple-row bg-dark-gradient border-radius-06 position-relative' 
             /* MAJOR CHANGES onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: { artist: artist } })} */
-            onClick={() => navigate(`/artist/${artist?.slug}`, { state: { artist: artist } })}
+            onClick={() => navigate(`/artist/${artist?.slug}`, { state: { artist: artist, from: location?.pathname } })}
         >
             <div className='overlay-card bg-dark-overlay-card border-radius-06 z-index-1'></div>
             <img className='artist-card-multiple-row object-fit-cover border-radius-06' src={artist.image} alt='' />

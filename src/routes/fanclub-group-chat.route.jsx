@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState, useRef, useLayoutEffect } from "react"
 import { useOutletContext, useLocation } from "react-router-dom"
 import { CurrentArtistContext } from "../contexts/currentArtist.context"
 import { CurrentFanContext } from "../contexts/currentFan.context"
@@ -58,10 +58,19 @@ const FanclubGroupChatRoute = () => {
         }))
     }
     const [chatOpen, setChatOpen] = useState(true)
+
+    const messagesContainerRef = useRef(null)
+    const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView()
+    }, [fanclub?.messages])
+
   return (
     <>
     {!pathname.includes('/artist-app/') && 
         <Container style='pt-xs-8 pb-xs-appbar'>
+            <div ref={messagesContainerRef}>
             {fanclub?.messages && fanclub?.messages.length > 0 ?
                 fanclub?.messages.map((mess, index) => (
                     <MessageChatConcert 
@@ -76,11 +85,14 @@ const FanclubGroupChatRoute = () => {
                     </div>
                 </div>
             }
+            </div>
+            <div ref={messagesEndRef} />
         </Container>
     }
 
     {pathname.includes('/artist-app/') && 
-        <Container style='mt-xs-4 pb-xs-appbar'>
+        <Container  style='mt-xs-4 pb-xs-appbar'>
+            <div ref={messagesContainerRef}>
             {fanclub?.messages && fanclub?.messages.length > 0 ?
                 fanclub?.messages.map((mess, index) => (
                     <MessageChatConcert 
@@ -97,6 +109,8 @@ const FanclubGroupChatRoute = () => {
                 </div>
             </>
             }
+            </div>
+            <div ref={messagesEndRef} />
         </Container>
     }
     {
