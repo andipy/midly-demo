@@ -35,6 +35,11 @@ import useLikePost from '../utils/handle-like-post.hook'
 import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
 import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
+import IconFollow from '../images/icons/icon-follow.svg'
+import IconOk from '../images/icons/icon-ok.svg'
+import IconUnfollow from '../images/icons/icon-unfollow.svg'
+
+
 const  PostFullScreenRoute = () => {
     const navigate = useNavigate()
     const location = useLocation()
@@ -42,12 +47,26 @@ const  PostFullScreenRoute = () => {
     const { pathname } = useLocation()
 
     const { currentArtist} = useContext(CurrentArtistContext)
-    const { currentFan } = useContext(CurrentFanContext)
+    const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { artists } = useContext(ArtistsContext)
     const hasUserSubscribed = useFanclubSubscription(artistId)
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
 
+    const [userFollowing, setUserFollowing] = useState(false)
+    const fetchCompeting = () => {
+        if ( currentFan.followedArtists.length > 0 ) {
+            const favouriteArtistIds = currentFan.followedArtists.map(followed => followed.artistId)
+
+            if (favouriteArtistIds.includes(artist.id)) {
+                setUserFollowing(true)
+            } else {
+                setUserFollowing(false)
+            }
+        } else {
+            setUserFollowing(false)
+        }
+    }
     const { handleSubmitComment } = useSubmitComment()
     const { likeComment } = useLikeComment()
     const { likeReply} = useLikeReply()
@@ -82,6 +101,28 @@ const  PostFullScreenRoute = () => {
         }
        
     }, [thisFanclub])
+
+    useEffect(() => {
+        if (artist) {
+            fetchCompeting()
+        }
+    }, [currentFan, artist])
+
+    const handleFollow = () => {
+        if ((currentFan.followedArtists.length === 4) && !currentFan.actions.some(action => action.type === 'FIVE_ARTISTS_FOLLOWED')) {
+            setCurrentFan(prev => ({
+                ...prev,
+                followedArtists: [...prev.followedArtists, { artistId: artist.id }],
+                whiteLabelPoints: Number(prev.whiteLabelPoints) + 10,
+                actions: [...prev.actions, { type: 'FIVE_ARTISTS_FOLLOWED', value: true, createdAt: new Date().toISOString().replace('T', ' ').split('.')[0] }]
+            }))
+        } else {
+            setCurrentFan(prev => ({
+                ...prev,
+                followedArtists: [...prev.followedArtists, { artistId: artist.id }],
+            }))
+        } 
+    }
     
     const [postInFocus, setPostInFocus] = useState({
             id: undefined,
@@ -255,7 +296,6 @@ const  PostFullScreenRoute = () => {
 	}
 
     const [modalSubscription, setModalSubscription] = useState(false)
-    
     return (
         <>
         
@@ -272,6 +312,7 @@ const  PostFullScreenRoute = () => {
                 }
             </>
             }
+            
             <div className={` d-flex-row j-c-center align-items-center w-100 h-100 position-relative`} >
                 <div className={`${(post?.settings?.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} >
                 {post?.media?.length >= 0 ?
@@ -287,6 +328,13 @@ const  PostFullScreenRoute = () => {
                 </div>
                 }
             </div>
+            <div 
+				className='d-flex-row w-100 j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4 bg-color-none position-absolute-y top-5 container z-index-1200'
+				onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
+				>
+				<img className='avatar-28 border-radius-100' src={artist?.image}/>
+				<p className='fsize-xs-1 f-w-500'>{artist?.artistName}</p>
+			</div>
             {
                 (hasUserSubscribed || pathname.includes('/artist-app/') || !post?.settings?.isPrivate) &&
                 <>
@@ -318,62 +366,94 @@ const  PostFullScreenRoute = () => {
                         </div>
                         }
                     </div>
-                    {post?.link && post?.caption && 
-                        <div className='d-flex-column j-c-center w-100 position-absolute-x bottom-0 bg-dark-soft-transp75 pt-xs-4 pb-xs-4 pl-xs-6 pr-xs-6'>
-                            {post?.caption !== '' &&
-                                <p className='pre-wrap mb-xs-2 grey-100 f-w-400 fsize-xs-2'>
-                                    {post?.caption.length > 95 ?
-                                    <>
-                                        {showCaption ?
-                                            <>
-                                                {post?.caption}
-                                                <span className='lime-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
-                                            </>
+                    <div className='d-flex-column j-c-center w-100 position-absolute-x bottom-0 gap-0_5em'>
+                        {!post?.settings?.isPrivate && !hasUserSubscribed && !userFollowing &&
+                            <Button
+                                style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black container'
+                                label='Segui'
+                                onClick={handleFollow}
+                            >
+                                <img src={IconFollow} />
+                            </ Button>
+                        }
+                        {hasUserSubscribed &&
+                            <Button
+                                style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em no-shrink container'
+                                label='Sei abbonato al fanclub'
+                                /* onClick={openSettingsSubscription} */
+                            >
+                                <img className='avatar-20' src={IconOk} />
+                            </Button>
+                        }
+                        {!hasUserSubscribed && userFollowing &&
+                            <Button
+                                style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em no-shrink container'
+                                label='Segui già'
+                                /* onClick={handleFollow} */
+                            >
+                                <img className='avatar-20' src={IconUnfollow} />
+                            </Button>
+                        }
+                        
+                        {post?.link && post?.caption && 
+                            <div className='d-flex-column j-c-center w-100  bg-dark-soft-transp75 pt-xs-4 pb-xs-4 pl-xs-6 pr-xs-6'>
+                                
+                                {post?.caption !== '' &&
+                                    <p className='pre-wrap mb-xs-2 grey-100 f-w-400 fsize-xs-2'>
+                                        {post?.caption.length > 95 ?
+                                        <>
+                                            {showCaption ?
+                                                <>
+                                                    {post?.caption}
+                                                    <span className='lime-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
+                                                </>
+                                            :
+                                                <>
+                                                    {post?.caption.slice(0, 95)}...
+                                                    <span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
+                                                </>
+                                            }
+                                        </>
                                         :
-                                            <>
-                                                {post?.caption.slice(0, 95)}...
-                                                <span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
-                                            </>
+                                            post?.caption
+                                        }
+                                    </p>
+                                }
+                                
+                                {post?.link.url !== '' &&
+                                    <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post?.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artistId)}>
+                                        <img className='avatar-20' src={IconLink} />
+                                        <span>{post?.link.name ? post.link.name : 'Apri il link'}</span>
+                                    </Link>
+                                }
+
+                                <p className='fsize-xs-1 f-w-100 grey-300 mt-xs-2'>
+                                    {days > 31 ?
+                                        <span>{formatDate()}</span>
+                                    : days > 0 ?
+                                        <span>{days} giorni fa</span>
+                                    : days <= 0 ?
+                                    <>
+                                        {hours <= 0 ?
+                                        <>
+                                                {minutes <= 0 ?
+                                                    <span>{seconds} secondi fa</span>
+                                                :
+                                                    <span>{minutes} minuti fa</span>
+                                                }
+                                        </>
+                                            :
+                                                <span>{hours} ore fa</span>
                                         }
                                     </>
                                     :
-                                        post?.caption
+                                        <span>{days} giorni fa</span>
                                     }
                                 </p>
-                            }
-                            
-                            {post?.link.url !== '' &&
-                                <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post?.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artistId)}>
-                                    <img className='avatar-20' src={IconLink} />
-                                    <span>{post?.link.name ? post.link.name : 'Apri il link'}</span>
-                                </Link>
-                            }
-
-                            <p className='fsize-xs-1 f-w-100 grey-300 mt-xs-2'>
-                                {days > 31 ?
-                                    <span>{formatDate()}</span>
-                                : days > 0 ?
-                                    <span>{days} giorni fa</span>
-                                : days <= 0 ?
-                                <>
-                                    {hours <= 0 ?
-                                    <>
-                                            {minutes <= 0 ?
-                                                <span>{seconds} secondi fa</span>
-                                            :
-                                                <span>{minutes} minuti fa</span>
-                                            }
-                                    </>
-                                        :
-                                            <span>{hours} ore fa</span>
-                                    }
-                                </>
-                                :
-                                    <span>{days} giorni fa</span>
-                                }
-                            </p>
-                        </div>
+                            </div>
+                        
                     }
+                    </div>
                 </>
             }
         </FullPageCenter>

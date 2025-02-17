@@ -182,7 +182,15 @@ const ForumTopic = ({ key, topic, artistId, like, save, share, popular, handlePo
                                 </div>
                                 <p className='fsize-xs-1 f-w-300'>{topic?.likes.length}</p>
                                 <div className='border-radius-100 avatar-28'>
-                                    <img className='avatar-28' src={IconComments} onClick={() => navigate('topic/details', {state: {topic: topic, artistId: artistId, from: pathname}})}/>
+                                    <img className='avatar-28' src={IconComments} 
+                                    onClick={() => {
+                                    if (!hasUserSubscribed) {
+                                        handlePopUp('SHOW-TOPIC')
+                                    } else {
+                                        navigate('topic/details', {state: {topic: topic, artistId: artistId, from: pathname}});
+                                    }
+                                    }}
+                                    />
                                 </div>
                                 <p className='fsize-xs-1 f-w-300'>{topic?.commentsCount}</p>
                                 <div className='border-radius-100  avatar-28'>

@@ -2,6 +2,8 @@ import {useContext, useEffect, useState} from 'react'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
 
 import { CurrentFanContext } from '../contexts/currentFan.context'
+import { FanclubsContext } from '../contexts/fanclubs.context'
+import { ArtistsContext } from '../contexts/artists.context'
 
 import NavbarDefault from '../components/navbar-default.component'
 import Container from '../layout/container.layout'
@@ -31,6 +33,8 @@ const ProfileRoute = () => {
     const location = useLocation()
 
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+    const {fanclubs} = useContext(FanclubsContext)
+    const {artists} = useContext(ArtistsContext)
     /* const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
     const [whitePoints, setWhitePoints] = useState(0)
     const [message, setMessage] = useState("") */
@@ -148,6 +152,7 @@ const ProfileRoute = () => {
                     </div>
                 </div>
             </div>
+            
 
             {!currentFan.hasSpotify && 
                 <div className='mt-xs-4 mb-xs-4'>  
@@ -236,6 +241,36 @@ const ProfileRoute = () => {
                         </div>
                     </div>
                 </div>
+            }
+            {currentFan?.fanclubsSubscribed?.length > 0 &&
+                <div className='mt-xs-4 mb-xs-4'>  
+                    <div className='bg-dark-gradient-radial border-radius-1 d-flex-column align-items-start j-c-center pt-xs-8 pb-xs-8 pr-xs-8 pl-xs-8 position-relative'>
+                        <div className='d-flex-row w-100 j-c-center align-items-center'>
+                            <span className='font-heading fsize-xs-4 f-w-600 letter-spacing-1 no-shrink'>I tuoi punti aura</span>
+                        </div>
+                        <div className='d-flex-column w-100'>
+                        {currentFan?.fanclubsSubscribed.map((item) => {
+                            const fanclub = fanclubs.find(f => f.artistId === item.artistId)
+                            const thisLeaderboard = fanclub?.leaderboard.sort((a, b) => b.auraPoints - a.auraPoints)
+                            const thisArtist = artists?.find(artist => artist.id === item.artistId)
+                            const thisUser = thisLeaderboard?.find(user => user.userId === currentFan.id)
+                            
+                            return fanclub ? (
+                                <div className='d-flex-row j-c-space-between align-items-center w-100 mt-xs-4'>
+                                    <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
+                                        <img className='avatar-32 border-radius-100' src={fanclub?.cover.url} />
+                                        <p className='fsize-xs-2 f-w-500'>{thisArtist?.artistName}:</p>
+                                    </div>
+                                    <div className='d-flex-row j-c-end align-items-center'>
+                                        <p className='fsize-xs-2 f-w-500'>{thisUser?.auraPoints}</p>
+                                        <img className='avatar-16 ml-xs-2' src={IconPoints} alt='points' />
+                                    </div>
+                                </div>
+                            ) : null;
+                        })}
+                        </div>
+                    </div>
+                </div> 
             }
         </div>
 
