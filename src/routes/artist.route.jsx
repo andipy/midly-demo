@@ -281,6 +281,41 @@ const ArtistRoute = () => {
         }
     }, [isExitingSettings])
 
+
+    const [popUpSubscription, setPopUpSubscription] = useState(false)
+    const [popUpMessage, setPopUpMessage] = useState('')
+    const [isExitingPopUp, setIsExitingPopUp] = useState(false)
+    useEffect(() => {
+        if (isExitingPopUp) {
+            const endDelay = setTimeout(() => {
+                setPopUpSubscription(false)
+                setPopUpMessage("")
+                setIsExitingPopUp(false)
+            }, 400)
+
+            return () => clearTimeout(endDelay)
+        }
+    }, [isExitingPopUp])
+
+    const handlePopUp = (action) => {
+        if (!popUpSubscription) {
+            if (action === 'POST-TOPIC') {
+                setPopUpMessage('pubblicare un topic')
+            } else if (action === 'LIKE-TOPIC') {
+                setPopUpMessage('mettere like a un topic')
+            } else if (action === 'SAVE-TOPIC') {
+                setPopUpMessage('salvare un topic')
+            } else if (action === 'SHOW-TOPIC') {
+                setPopUpMessage('partecipare a un topic')
+            } else if (action === 'POST-LETTER') {
+                setPopUpMessage('pubblicare un messaggio')
+            } else if (action='MESSAGE-CHAT') {
+                setPopUpMessage('partecipare alla chat')
+            }
+            setPopUpSubscription(true)
+        }
+    }
+
     const openMessages = () => {
        navigate(`/artist/${artist.slug}/chat`, { state: { from: location, artist: artist } })
     }
@@ -516,11 +551,19 @@ const ArtistRoute = () => {
                         <TabFanclub />
                     }
 
+                    {userFollowing && currentFan.hasSpotify && pathname.includes('/leaderboard') &&
+                        <CardLeaderboardYourPosition
+                            currentFan={currentFan}
+                            artist={artist}
+                            leaderboardType={'AURA'}
+                        />
+                    }
+
                 </Container>
             </article>
 
             <Container style=''>
-                <Outlet context={{ artist, focusPost }} />
+                <Outlet context={{ artist, focusPost, handlePopUp }} />
             </Container>
 
             {/* MAJOR CHANGES */}
@@ -649,6 +692,30 @@ const ArtistRoute = () => {
             {
                 modalSubscription &&
                 <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={fanclub} handleSubscription={(period) => handleSubscription(artist?.id, period)}/>
+            }
+            {
+                popUpSubscription &&
+                <FullPageCenter style={'z-index-1200'}>
+                    <Container style={`centered-popup ${isExitingPopUp ? 'fade-out' : ''} position-absolute d-flex-column align-items-center gap-0_5em bg-dark-soft border-radius-04 pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4 pt-sm-2 pb-sm-2 pl-sm-2 pr-sm-2 `}>
+                        <div className='w-100 d-flex-column mt-xs-4 gap-1em'>
+                            <p className='fsize-xs-4 grey-100'>Per poter {popUpMessage} devi essere abbonato al Fanclub.</p>
+                            {
+                                <Button 
+                                    style='bg-acid-lime black f-w-500 fsize-xs-2' 
+                                    label='Abbonati' 
+                                    onClick={() => {setModalSubscription(true); setIsExitingPopUp(true)}}
+                                />
+                            }
+                            
+                            <Button
+                                disabled={false}
+                                style='fsize-xs-3 f-w-400 letter-spacing-1 bg-dark-soft-2 white  border-radius-04'
+                                label='Chiudi'
+                                onClick={() => setIsExitingPopUp(true)} 
+                            />
+                        </div>
+                    </Container>
+                </FullPageCenter>
             }
             {/* MAJOR CHANGES */}
             <Snackbar message={messageSnackbar} triggered={triggered} />

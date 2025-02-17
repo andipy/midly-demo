@@ -7,13 +7,15 @@ import Container from "../layout/container.layout"
 import PostFanLetter from "../components/post-fan-letter.component"
 import Button from "../components/button.component"
 import IconPlus from '../images/icons/icon-plus-black.svg'
+import useFanclubSubscription from "../utils/get-fanclub-subscription.hook"
 
 const FanclubLettersRoute = () => {
-    const {artist} = useOutletContext()
+    const {artist, handlePopUp} = useOutletContext()
     const {currentArtist} = useContext(CurrentArtistContext)
     const location = useLocation()
     let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
     const navigate = useNavigate()
+    const hasUserSubscribed = useFanclubSubscription(artistF?.id)
 
     const fanclub = useFanclub(artistF?.id)
     const {fans} = useContext(FansContext)
@@ -41,7 +43,15 @@ const FanclubLettersRoute = () => {
                 <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                     <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
                         <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Sii il primo a postare un messaggio per {artistF?.artistName} direttamente nel suo fanclub.</p>
-                        <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Posta un messaggio' onClick={() => navigate('creation', { state: {artist:artistF} })}/>
+                        <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Posta un messaggio' 
+                        onClick={() => {
+                            if (!hasUserSubscribed) {
+                                handlePopUp('POST-LETTER')
+                            } else {
+                                navigate('creation', { state: {artist:artistF} })
+                            }
+                            }}
+                        />
                     </div>
                 </div>
                 :
@@ -57,7 +67,15 @@ const FanclubLettersRoute = () => {
             <>
             {
                 !location?.pathname.includes("/artist-app") &&
-                <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => navigate('creation', { state: {artist:artistF} })}>
+                <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' 
+                    onClick={() => {
+                    if (!hasUserSubscribed) {
+                        handlePopUp('POST-LETTER')
+                    } else {
+                        navigate('creation', { state: {artist:artistF} })
+                    }
+                    }}
+                >
                     <img className='' src={IconPlus}/>
                 </div> 
             }

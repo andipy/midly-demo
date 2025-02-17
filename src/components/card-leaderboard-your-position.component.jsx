@@ -4,10 +4,14 @@ import { useState, useEffect, useContext } from 'react'
 import { LeaderboardsContext } from '../contexts/leaderboards.context'
 
 import IconPoints from '../images/icons/icon-points.svg'
+import useFanclub from '../utils/get-fanclub.hooks'
 
-const CardLeaderboardYourPosition = ({ currentFan, artist }) => {
+const CardLeaderboardYourPosition = ({ currentFan, artist, leaderboardType }) => {
+    
 
     const { pathname } = useLocation()
+
+    const fanclub = useFanclub(artist?.id)
 
     const { leaderboards } = useContext(LeaderboardsContext)
 
@@ -27,19 +31,34 @@ const CardLeaderboardYourPosition = ({ currentFan, artist }) => {
     })
 
     useEffect(() => {
-        const thisLeaderboard = leaderboards.find(leaderboard => leaderboard.artistId === artist.id).leaderboard
+        if (leaderboardType === 'AURA') {
+            const thisLeaderboard = fanclub?.leaderboard.sort((a, b) => b.auraPoints - a.auraPoints)
+            const thisUser = thisLeaderboard?.find(user => user.userId === currentFan.id)
+            if ( thisUser ) {
+                setCurrentUserInLeaderboard(prev => ({
+                    ...prev,
+                    points: thisUser.auraPoints,
+                    position: thisLeaderboard.indexOf(thisUser) + 1,
+                    image: thisUser.image
+                }))
+            }
 
-        const thisUser = thisLeaderboard.find(user => user.userId === currentFan.id)
-        if ( thisUser ) {
-            setCurrentUserInLeaderboard(prev => ({
-                ...prev,
-                points: thisUser.points,
-                position: thisLeaderboard.indexOf(thisUser) + 1,
-                image: thisUser.image
-            }))
+        } else {
+            const thisLeaderboard = leaderboards.find(leaderboard => leaderboard.artistId === artist.id).leaderboard
+
+            const thisUser = thisLeaderboard.find(user => user.userId === currentFan.id)
+            if ( thisUser ) {
+                setCurrentUserInLeaderboard(prev => ({
+                    ...prev,
+                    points: thisUser.points,
+                    position: thisLeaderboard.indexOf(thisUser) + 1,
+                    image: thisUser.image
+                }))
+            }
         }
+        
 
-    }, [])
+    }, [leaderboardType, fanclub])
 
     return (
         <article className={`d-flex-row align-items-center j-c-space-between w-100 position-sticky z-index-5 pr-xs-4 pl-xs-2 mb-xs-4 mt-xs-4 ${pathname.includes('flash-leaderboard') ? `${scrolled ? 'bg-black-transp50' : 'bg-dark-soft'} border-radius-100 pb-xs-2 pt-xs-2` : 'bg-dark-soft border-radius-08 pb-xs-2 pt-xs-2'}`}>

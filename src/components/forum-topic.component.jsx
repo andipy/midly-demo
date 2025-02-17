@@ -14,14 +14,16 @@ import IconThunder from '../images/icons/icon-thunder.svg'
 import IconThunderActive from '../images/icons/icon-thunder-active.svg'
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import Container from '../layout/container.layout'
+import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
 
-const ForumTopic = ({ key, topic, artistId, like, save, share, popular }) => {
+const ForumTopic = ({ key, topic, artistId, like, save, share, popular, handlePopUp }) => {
     const navigate = useNavigate()
     const location = useLocation()
     const pathname = location.pathname 
     const { currentFan} = useContext(CurrentFanContext)
     const {currentArtist} = useContext(CurrentArtistContext)
     const [liked, setLiked] = useState(false)
+    const hasUserSubscribed = useFanclubSubscription(artistId)
     useEffect(() => {
         if (topic && topic.likes) {
             let userLiked
@@ -107,7 +109,15 @@ const ForumTopic = ({ key, topic, artistId, like, save, share, popular }) => {
                             <p className='fsize-xs-0 f-w-300 gold'>Artista</p>
                         }
                     </div>
-                    <div className='d-flex-row j-c-space-between align-items-center w-100 gap-1em' onClick={() => navigate('topic/details', {state: {topic: topic, artistId: artistId, from: pathname}})}>
+                    <div className='d-flex-row j-c-space-between align-items-center w-100 gap-1em' 
+                        onClick={() => {
+                            if (!hasUserSubscribed) {
+                                handlePopUp('SHOW-TOPIC')
+                            } else {
+                                navigate('topic/details', {state: {topic: topic, artistId: artistId, from: pathname}});
+                            }
+                            }}
+                    >
                         <div className='d-flex-column w-100'>
                             <h1 className='fsize-xs-5 f-w-800'>{topic?.title}</h1>
                             <p className='fsize-xs-2 f-w-300 mt-xs-4'>

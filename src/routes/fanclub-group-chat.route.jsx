@@ -12,13 +12,20 @@ import useFanclub from "../utils/get-fanclub.hooks"
 const FanclubGroupChatRoute = () => {
     const location = useLocation()
     const pathname = location?.pathname
-    const {artist} = useOutletContext()
+    const {artist, handlePopUp} = useOutletContext()
     const {currentArtist} = useContext(CurrentArtistContext)
     const {currentFan} = useContext(CurrentFanContext)
     const {fanclubs} = useContext(FanclubsContext)
     let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
-    const {currentMessage, setCurrentMessage, handleSubmitMessage} = useFanclubGroupChatHandler(artistF?.id)
+    const {currentMessage, setCurrentMessage, handleSubmitMessage, shake} = useFanclubGroupChatHandler(artistF?.id)
     const fanclub = useFanclub(artistF?.id)
+
+
+    useEffect(() => {
+        if (shake) {
+            handlePopUp('MESSAGE-CHAT')
+        }
+    }, [shake])
 
     useEffect(() => {
         pathname.includes('/artist-app') ?
@@ -134,6 +141,7 @@ const FanclubGroupChatRoute = () => {
                 currentComment={currentMessage}
                 handleCurrentComment={handleCurrentMessage}
                 handleSubmitComment={handleSubmitMessage} 
+                shake={shake} 
             />
         </div>
     }

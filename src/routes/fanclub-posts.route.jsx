@@ -14,7 +14,7 @@ import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
 import useLikePost from '../utils/handle-like-post.hook'
 import Button from '../components/button.component'
 const FanclubPostsRoute = () => {
-    const {artist, focusPost, setPostInFocus} = useOutletContext()
+    const {artist, focusPost} = useOutletContext()
     const {artists} = useContext(ArtistsContext)
     const {currentArtist} = useContext(CurrentArtistContext)
     const location = useLocation()
