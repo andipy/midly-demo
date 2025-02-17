@@ -82,6 +82,16 @@ const ChatPrivateRoute = () => {
         }
     }
 
+    const clearMessage = () => {
+        setCurrentMessage((prev) => ({
+            ...prev,
+            id: undefined,
+            createdAt: undefined,
+            content: "",
+            type: "MESSAGE"
+        }))
+    }
+
     const submitAudio = (updatedMessage) => {
         setChats((prevChats) => {
             let chat
@@ -110,13 +120,7 @@ const ChatPrivateRoute = () => {
             }
         })
 
-        setCurrentMessage((prev) => ({
-            ...prev,
-            id: undefined,
-            createdAt: undefined,
-            content: "",
-            type: "MESSAGE"
-        }))
+        clearMessage()
     }
     const handleStopRecordingAudio = () => {
         if (audioRecorderRef.current) {
@@ -140,13 +144,14 @@ const ChatPrivateRoute = () => {
                         content: dataUrl
                     }
     
-                   
-                    submitAudio(updatedMessage)
-    
                     return updatedMessage 
                 })
             }
         }
+    }
+
+    const handleSubmitAudio = () => {
+        submitAudio(currentMessage)
     }
 
     const [recordingAudio, setRecordingAudio] = useState(false)
@@ -290,6 +295,8 @@ const ChatPrivateRoute = () => {
                     toggleRecordingAudio={toggleRecordingAudio}
                     recordingAudio={recordingAudio}
                     elapsedTime={elapsedTime}
+                    handleSubmitAudio={handleSubmitAudio}
+                    clear={clearMessage}
                 />
             }
             {
