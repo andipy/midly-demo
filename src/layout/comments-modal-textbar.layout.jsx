@@ -11,7 +11,7 @@ const CommentsModalTextbarLayout = ({ children, modalOpen, handleCurrentComment,
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
-        if (modalOpen) {
+        if (modalOpen === true) {
             setOpen(true)
         }
     }, [modalOpen])
@@ -23,9 +23,11 @@ const CommentsModalTextbarLayout = ({ children, modalOpen, handleCurrentComment,
         }, 300)
     }
 
+    if (!modalOpen) return null
+
 
     return (
-        <div className={`position-fixed h-80vh bg-dark-soft w-100 border-radius-top-08 z-index-1100 overflow-scroll left-0 ${open ? 'slide-up' : 'slide-down'}`}>
+        <div className={`position-fixed h-80vh bg-dark-soft w-100 border-radius-top-08 z-index-1100 overflow-scroll left-0  ${open ? ' slide-up' : 'slide-down'}`}>
             <nav className='position-sticky top-0 w-100 d-flex-row align-items-center j-c-center white bg-dark-soft z-index-5 pt-xs-3 pb-xs-3 pt-sm-2 pb-sm-2'>
                 <div className='container d-flex-row align-items-center j-c-space-between'>
                     <div className='avatar-32'></div>

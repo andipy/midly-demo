@@ -551,7 +551,7 @@ const ArtistRoute = () => {
                         <TabFanclub />
                     }
 
-                    {userFollowing && currentFan.hasSpotify && pathname.includes('/leaderboard') &&
+                    {userFollowing && currentFan.hasSpotify && pathname.includes('/leaderboard') &&  !pathname.includes('/leaderboard-streaming') &&
                         <CardLeaderboardYourPosition
                             currentFan={currentFan}
                             artist={artist}
