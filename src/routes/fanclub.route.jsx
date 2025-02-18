@@ -9,8 +9,8 @@ import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import Comment from '../components/comment.component'
 import TextbarComments from '../components/textbar-comments.component'
 import Container from '../layout/container.layout'
-import CommentsModalLayout from '../layout/comments-modal.layout'
-import FullPageCenter from '../layout/full-page-center.layout'
+/* import CommentsModalLayout from '../layout/comments-modal.layout'
+ */import FullPageCenter from '../layout/full-page-center.layout'
 import Snackbar from '../components/snackbar.component'
 import TabFanclub from '../components/tab-fanclub.component'
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
@@ -187,7 +187,7 @@ const Fanclub = () => {
                 <Outlet context={{context, focusPost}}/>
             </Container>
             
-            <CommentsModalLayout
+            {/* <CommentsModalLayout
                 modalOpen={modalOpen}
                 closeModal={closeComments}
             >
@@ -225,7 +225,7 @@ const Fanclub = () => {
                     replyingUser={replyingUser}
                 />
 
-            </CommentsModalLayout>
+            </CommentsModalLayout> */}
 
             
             {err && 

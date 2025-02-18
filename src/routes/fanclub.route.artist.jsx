@@ -5,8 +5,7 @@ import { FanclubsContext } from '../contexts/fanclubs.context'
 
 import Container from '../layout/container.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
-import CommentsModalLayout from '../layout/comments-modal.layout'
-
+import CommentsModalTextbarLayout from '../layout/comments-modal-textbar.layout'
 import CoverFanclub from '../components/cover-fanclub.component.artist'
 import Appbar from '../components/appbar.component.artist'
 import Button from '../components/button.component'
@@ -427,43 +426,41 @@ const FanclubRoute = () => {
                     </Container>
                 </FullPageCenter>
             }
-
-            <CommentsModalLayout
-                modalOpen={modalOpen}
-                closeModal={closeModal}
-            >
-                <NavbarCommentsModal closeModal={closeComments} />
-                <Container style={'pb-xs-12 pb-sm-2'}>
-                    {fanclub?.posts.map(post => {
-                        if ( post.id ===  postInFocus.id) {
-                            return post.comments.map(comment => {
-                                return (
-                                    <Comment
-                                        comment={comment}
-                                        key={comment.id}
-                                        inputRef={inputRef}
-                                        spotCommentToReply={spotCommentToReply}
-                                        modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id }})}
-                                        likeComment = {() => likeComment(comment.id, post.id, currentArtist.id)}
-                                        postId={post.id}
-                                        likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, currentArtist?.id)}
-                                    />
-                                )
-                            })
-                        }})
-                    }
-                </Container>
-
-                <TextbarComments
+            {
+                modalOpen &&
+                <CommentsModalTextbarLayout
+                    modalOpen={modalOpen}
+                    closeModal={closeModal}
                     handleCurrentComment={handleCurrentComment}
                     handleSubmitComment={submitComment}
                     currentComment={currentComment}
                     setCurrentComment={setCurrentComment}
-                    modalOpen={modalOpen}
                     inputRef={inputRef}
                     replyingUser={replyingUser}
-                />
-            </CommentsModalLayout>
+                >
+                    <Container style={'pb-xs-12 pb-sm-2'}>
+                        {fanclub?.posts.map(post => {
+                            if ( post.id ===  postInFocus.id) {
+                                return post.comments.map(comment => {
+                                    return (
+                                        <Comment
+                                            comment={comment}
+                                            key={comment.id}
+                                            inputRef={inputRef}
+                                            spotCommentToReply={spotCommentToReply}
+                                            modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id }})}
+                                            likeComment = {() => likeComment(comment.id, post.id, currentArtist.id)}
+                                            postId={post.id}
+                                            likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, currentArtist?.id)}
+                                        />
+                                    )
+                                })
+                            }})
+                        }
+                    </Container>
+                </CommentsModalTextbarLayout>
+            }
+            
 
             <Appbar />
             {

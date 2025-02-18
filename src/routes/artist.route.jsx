@@ -27,12 +27,12 @@ import CardConnectSpotify from '../components/card-connect-spotify.component'
 import MessageWhitePoints from '../components/message-white-points.component'
 import FullPageCenter from '../layout/full-page-center.layout'
 import ModalSubscriptionFanclub from '../components/modal-subscription-fanclub.component'
-import CommentsModalLayout from '../layout/comments-modal.layout'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import Comment from '../components/comment.component'
 import TextbarComments from '../components/textbar-comments.component'
 import TabFanclub from '../components/tab-fanclub.component'
 import Snackbar from '../components/snackbar.component'
+import CommentsModalTextbarLayout from '../layout/comments-modal-textbar.layout'
 
 import IconFollow from '../images/icons/icon-follow.svg'
 import IconUnfollow from '../images/icons/icon-unfollow.svg'
@@ -567,45 +567,44 @@ const ArtistRoute = () => {
             </Container>
 
             {/* MAJOR CHANGES */}
-            <CommentsModalLayout
-                modalOpen={modalOpen}
-                closeModal={closeComments}
-            >
-                <NavbarCommentsModal
+            {
+                modalOpen &&
+            
+                <CommentsModalTextbarLayout
+                    modalOpen={modalOpen}
                     closeModal={closeComments}
-                />
-                <Container style={'pb-xs-12 pb-sm-2'}>
-                    {fanclub?.posts.map(post => {
-                        if ( post.id ===  postInFocus.id) {
-                            return post.comments.map(comment => {
-                                return (
-                                    <Comment
-                                        comment={comment}
-                                        key={comment.id}
-                                        inputRef={inputRef}
-                                        spotCommentToReply={spotCommentToReply}
-                                        modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id}})}
-                                        likeComment = {() => likeComment(comment.id, post.id, artist.id)}
-                                        postId={post.id}
-                                        likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, artist.id)}
-                                    />
-                                )
-                            })
-                        }})
-                    }
-                </Container>
-
-                <TextbarComments
                     handleCurrentComment={handleCurrentComment}
                     handleSubmitComment={submitComment}
                     currentComment={currentComment}
                     setCurrentComment={setCurrentComment}
-                    modalOpen={modalOpen}
                     inputRef={inputRef}
                     replyingUser={replyingUser}
-                />
+                    
+                >
+                    <Container style={'pb-xs-12 pb-sm-2'}>
+                        {fanclub?.posts.map(post => {
+                            if ( post.id ===  postInFocus.id) {
+                                return post.comments.map(comment => {
+                                    return (
+                                        <Comment
+                                            comment={comment}
+                                            key={comment.id}
+                                            inputRef={inputRef}
+                                            spotCommentToReply={spotCommentToReply}
+                                            modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id}})}
+                                            likeComment = {() => likeComment(comment.id, post.id, artist.id)}
+                                            postId={post.id}
+                                            likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, artist.id)}
+                                        />
+                                    )
+                                })
+                            }})
+                        }
+                    </Container>
 
-            </CommentsModalLayout>
+                </CommentsModalTextbarLayout>
+            }
+            
 
             {quizEnded && 
                 <FullPageCenter style='z-index-1100 bg-black-transp70'>

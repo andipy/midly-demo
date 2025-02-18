@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-const CommentsModalLayout = ({ children, modalOpen }) => {
+const ModalLayout = ({ children, modalOpen }) => {
 
     const [open, setOpen] = useState(false)
     useEffect(() => {
@@ -18,4 +18,4 @@ const CommentsModalLayout = ({ children, modalOpen }) => {
     )
 }
 
-export default CommentsModalLayout
+export default ModalLayout

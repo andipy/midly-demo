@@ -6,7 +6,7 @@ const TextbarComments = ({ currentComment, handleCurrentComment, handleSubmitCom
     const { pathname } = useLocation()
 
     return (
-        <section className={`text-bar-live-chat ${modalOpen ? 'position-fixed bottom-0' : 'bottom-hidden-textbar-comments'}`}>
+        <section className={`text-bar-live-chat ${modalOpen ? 'bottom-0 position-fixed' : 'bottom-hidden-textbar-comments'}`}>
             <form className='container d-flex-row align-items-center gap-1em' onSubmit={(e) => handleSubmitComment(e, currentComment)}>
                 <input
                     type='text'

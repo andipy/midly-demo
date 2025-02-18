@@ -8,7 +8,7 @@ import IconPoints from '../images/icons/icon-points.svg'
 import Button from "../components/button.component"
 import ModalRulesAuraboard from "../components/modal-rules-auraboard.component"
 import IconInfo from '../images/icons/icon-info-black.svg'
-import CommentsModalLayout from "../layout/comments-modal.layout"
+import ModalLayout from "../layout/modal.layout"
 import Container from "../layout/container.layout"
 import SpotifyLogo from '../images/icons/icon-spotify.svg'
 import CardConnectSpotify from "../components/card-connect-spotify.component"
@@ -212,40 +212,43 @@ const FanclubLeaderboardRoute = () => {
             </div> 
             
         }
-        <CommentsModalLayout
-            modalOpen={rules}
-            closeModal={closeRules}
-        >
-            <Container style={'d-flex-column j-c-center align-items-center h-100 pt-xs-8 pb-xs-8'}>
-            <div className="d-flex-column h-100 j-c-space-between align-items-center">
-            <div className="d-flex-column j-c-start align-items-center">
-                <h1 className="fsize-xs-5 f-w-600 letter-spacing-1 mb-xs-4">
-                    Che azioni danno punti?
-                </h1>
-                
-            </div>
-            <div>
-                <p className='fsize-xs-2 f-w-300 t-align-center'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                {
-                !currentFan.hasSpotify ?
-                <CardConnectSpotify onClick={handleSpotifyConnect} />
-                :
-                <></>
-                }
-            </div>
-            <div className="d-flex-column w-100">
-                
-                <Button 
-                    style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2'
-                    label='Chiudi'
-                    onClick={closeRules}
-                />
-            </div>
-            </div>
-            </Container>
-        </CommentsModalLayout>
+        {rules &&
+            <ModalLayout
+                modalOpen={rules}
+                closeModal={closeRules}
+            >
+                <Container style={'d-flex-column j-c-center align-items-center h-100 pt-xs-8 pb-xs-8'}>
+                <div className="d-flex-column h-100 j-c-space-between align-items-center">
+                <div className="d-flex-column j-c-start align-items-center">
+                    <h1 className="fsize-xs-5 f-w-600 letter-spacing-1 mb-xs-4">
+                        Che azioni danno punti?
+                    </h1>
+                    
+                </div>
+                <div>
+                    <p className='fsize-xs-2 f-w-300 t-align-center'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    {
+                    !currentFan.hasSpotify ?
+                    <CardConnectSpotify onClick={handleSpotifyConnect} />
+                    :
+                    <></>
+                    }
+                </div>
+                <div className="d-flex-column w-100">
+                    
+                    <Button 
+                        style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2'
+                        label='Chiudi'
+                        onClick={closeRules}
+                    />
+                </div>
+                </div>
+                </Container>
+            </ModalLayout>
+        }
+        
     </>
   )
 }

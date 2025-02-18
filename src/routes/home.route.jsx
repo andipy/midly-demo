@@ -8,7 +8,7 @@ import NavbarDefault from "../components/navbar-default.component"
 import Container from "../layout/container.layout"
 import Appbar from "../components/appbar.component"
 import Post from "../components/post.component"
-import CommentsModalLayout from "../layout/comments-modal.layout"
+import CommentsModalTextbarLayout from "../layout/comments-modal-textbar.layout"
 import NavbarCommentsModal from "../components/navbar-comments-modal.component"
 import TextbarComments from "../components/textbar-comments.component"
 import Comment from "../components/comment.component"
@@ -366,60 +366,57 @@ const HomeRoute = () => {
 				})
 			})()}
 		</Container>
-		<CommentsModalLayout
-			modalOpen={modalOpen}
-			closeModal={closeComments}
-		>
-			<NavbarCommentsModal
+		{
+			modalOpen &&
+			<CommentsModalTextbarLayout
+				modalOpen={modalOpen}
 				closeModal={closeComments}
-			/>
-			<Container style={'pb-xs-12 pb-sm-2'}>
-			{fanclubs
-			.filter(fanclub => fanclub.artistId === fanclubInFocus?.artistId) // Filtra il fanclub giusto
-			.map(fanclub => 
-			fanclub?.posts.map(post => {
-				if (post.id === postInFocus.id) {
-				return post?.comments?.map(comment => {
-					return (
-					<Comment
-						comment={comment}
-						key={comment.id}
-						inputRef={inputRef}
-						spotCommentToReply={spotCommentToReply}
-						modalUserModeration={() => 
-						navigate('user-moderation', { 
-							state: { 
-							userId: comment.userId, 
-							commentId: comment.id, 
-							fanclubId: fanclub?.id, 
-							postId: post.id 
-							} 
-						})
-						}
-						likeComment={() => likeComment(comment.id, post.id, fanclub.artistId)}
-						postId={post.id}
-						likeReply={(replyId, commentId, postId) => 
-						likeReply(replyId, commentId, postId, fanclub.artistId)
-						}
-					/>
-					);
-				});
-				}
-			})
-			)}
-			</Container>
-
-			<TextbarComments
 				handleCurrentComment={handleCurrentComment}
 				handleSubmitComment={submitComment}
 				currentComment={currentComment}
 				setCurrentComment={setCurrentComment}
-				modalOpen={modalOpen}
 				inputRef={inputRef}
 				replyingUser={replyingUser}
-			/>
+			>
+				<Container style={'pb-xs-12 pb-sm-2'}>
+				{fanclubs
+				.filter(fanclub => fanclub.artistId === fanclubInFocus?.artistId) // Filtra il fanclub giusto
+				.map(fanclub => 
+				fanclub?.posts.map(post => {
+					if (post.id === postInFocus.id) {
+					return post?.comments?.map(comment => {
+						return (
+						<Comment
+							comment={comment}
+							key={comment.id}
+							inputRef={inputRef}
+							spotCommentToReply={spotCommentToReply}
+							modalUserModeration={() => 
+							navigate('user-moderation', { 
+								state: { 
+								userId: comment.userId, 
+								commentId: comment.id, 
+								fanclubId: fanclub?.id, 
+								postId: post.id 
+								} 
+							})
+							}
+							likeComment={() => likeComment(comment.id, post.id, fanclub.artistId)}
+							postId={post.id}
+							likeReply={(replyId, commentId, postId) => 
+							likeReply(replyId, commentId, postId, fanclub.artistId)
+							}
+						/>
+						);
+					});
+					}
+				})
+				)}
+				</Container>
 
-		</CommentsModalLayout>
+			</CommentsModalTextbarLayout>
+		}
+		
 		<Appbar />
 		{
 			modalSubscription &&

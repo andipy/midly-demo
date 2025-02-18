@@ -15,7 +15,7 @@ import IconThunder from '../images/icons/icon-thunder.svg'
 import IconThunderActive from '../images/icons/icon-thunder-active.svg'
 import IconComments from '../images/icons/icon-comment-white.svg'
 import IconShare from '../images/icons/icon-share-white.svg'
-import CommentsModalLayout from '../layout/comments-modal.layout'
+import CommentsModalTextbarLayout from '../layout/comments-modal-textbar.layout'
 import NavbarCommentsModal from '../components/navbar-comments-modal.component'
 import Container from '../layout/container.layout'
 import Comment from '../components/comment.component'
@@ -459,9 +459,15 @@ const  PostFullScreenRoute = () => {
         </FullPageCenter>
 
 
-        <CommentsModalLayout
+        <CommentsModalTextbarLayout
             modalOpen={modalOpen}
             closeModal={closeComments}
+            handleCurrentComment={handleCurrentComment}
+            handleSubmitComment={submitComment}
+            currentComment={currentComment}
+            setCurrentComment={setCurrentComment}
+            inputRef={inputRef}
+            replyingUser={replyingUser}
         >
             <NavbarCommentsModal closeModal={closeComments} />
             <Container style={'pb-xs-12 pb-sm-2'}>
@@ -484,17 +490,7 @@ const  PostFullScreenRoute = () => {
                     }})
                 }
             </Container>
-
-            <TextbarComments
-                handleCurrentComment={handleCurrentComment}
-                handleSubmitComment={submitComment}
-                currentComment={currentComment}
-                setCurrentComment={setCurrentComment}
-                modalOpen={modalOpen}
-                inputRef={inputRef}
-                replyingUser={replyingUser}
-            />
-        </CommentsModalLayout>
+        </CommentsModalTextbarLayout>
 
         <Outlet context={{ postInFocus, setPostInFocus }} />
 
