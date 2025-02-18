@@ -134,6 +134,10 @@ const ChatPrivateRoute = () => {
                 const blob = new Blob(chunksRef.current, { type: 'audio/mp3' }) 
                 const dataUrl = URL.createObjectURL(blob)
                 const currentDate = new Date().toISOString().split('T')[0]
+
+                const endTime = Date.now()
+                const duration= (endTime - timeStart) /1000
+                
     
                 setCurrentMessage((prev) => {
                     const updatedMessage = {
@@ -141,7 +145,8 @@ const ChatPrivateRoute = () => {
                         id: Date.now(),
                         createdAt: currentDate,
                         type: 'AUDIO',
-                        content: dataUrl
+                        content: dataUrl,
+                        duration: duration
                     }
     
                     return updatedMessage 
@@ -165,6 +170,7 @@ const ChatPrivateRoute = () => {
     const animationRef = useRef(null)
     const analyserRef = useRef(null)
     const chunksRef = useRef([])
+    const [timeStart, setTimeStart] = useState(0)
 
     const handleStartRecordingAudio = async () => {
         try {
@@ -191,6 +197,7 @@ const ChatPrivateRoute = () => {
             setRecordingAudio(true)
     
             const startTime = Date.now()
+            setTimeStart(startTime)
             const update = () => {
                 analyser.getByteTimeDomainData(dataArray)
                 setAudioData([...dataArray])

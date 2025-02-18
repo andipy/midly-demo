@@ -9,26 +9,12 @@ const MessageChatPrivate = ({ message, currentUserId }) => {
     const [timeRemaining, setTimeRemaining] = useState('0:00')
 
     const audioRef = useRef(null)
-    const animationRef = useRef(null)
-
-    useEffect(() => {
-        if (isPlaying) {
-            animationRef.current = requestAnimationFrame(updateProgress)
-        } else {
-            cancelAnimationFrame(animationRef.current)
-        }
-    }, [isPlaying])
 
     const togglePlayPause = () => {
-        const audio = audioRef.current
-        if (!audio) return
-
         if (isPlaying) {
-            audio.pause()
-            cancelAnimationFrame(animationRef.current)
+            audioRef.current.pause()
         } else {
-            audio.play()
-            animationRef.current = requestAnimationFrame(updateProgress)
+            audioRef.current.play()
         }
 
         setIsPlaying(!isPlaying)
@@ -44,19 +30,16 @@ const MessageChatPrivate = ({ message, currentUserId }) => {
     }
 
     const updateProgress = () => {
-        const audio = audioRef.current
-        if (!audio || audio.paused) return
 
-        const currentTime = audio.currentTime
-        const duration = audio.duration || 1 
-
+        const currentTime = audioRef.current.currentTime
+        let duration = message?.duration || 0
+  
         setProgress((currentTime / duration) * 100)
         setTimeElapsed(formatTime(currentTime))
         setTimeRemaining(formatTime(duration - currentTime))
 
     }
 
-    console.log(progress)
 
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60)
@@ -76,7 +59,6 @@ const MessageChatPrivate = ({ message, currentUserId }) => {
         setProgress(0)
         setTimeElapsed('0:00')
         setTimeRemaining(formatTime(audioRef.current.duration))
-        cancelAnimationFrame(animationRef.current)
     }
 
     return (
