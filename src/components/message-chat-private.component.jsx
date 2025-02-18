@@ -54,7 +54,6 @@ const MessageChatPrivate = ({ message, currentUserId }) => {
         setTimeElapsed(formatTime(currentTime))
         setTimeRemaining(formatTime(duration - currentTime))
 
-        animationRef.current = requestAnimationFrame(updateProgress)
     }
 
     console.log(progress)
@@ -92,6 +91,7 @@ const MessageChatPrivate = ({ message, currentUserId }) => {
                                     src={message.content}
                                     onLoadedMetadata={handleLoadedMetadata}
                                     onEnded={handleEnded}
+                                    onTimeUpdate={updateProgress}
                                 />
                                 <div className="avatar-24 bg-white border-radius-100 d-flex-row j-c-center align-items-center" onClick={togglePlayPause}>
                                     <img className='avatar-16' src={isPlaying ? IconPause : IconPlay} />
