@@ -1,262 +1,155 @@
-
-import { useState, useRef, useContext, useEffect } from 'react'
-
-import { ArtistsContext } from '../contexts/artists.context'
-
+import { useState, useRef, useEffect } from 'react'
 import IconPlay from '../images/icons/icon-play.svg'
 import IconPause from '../images/icons/icon-pause.svg'
-const MessageChatPrivate = ({message, currentUserId}) => {
+
+const MessageChatPrivate = ({ message, currentUserId }) => {
     const [isPlaying, setIsPlaying] = useState(false)
     const [progress, setProgress] = useState(0)
-    const audioRef = useRef(null)
-    const [duration, setDuration] = useState(0)
     const [timeElapsed, setTimeElapsed] = useState('0:00')
     const [timeRemaining, setTimeRemaining] = useState('0:00')
 
-    // Gestione della riproduzione
-    const togglePlayPause = () => {
+    const audioRef = useRef(null)
+    const animationRef = useRef(null)
+
+    useEffect(() => {
         if (isPlaying) {
-            audioRef.current.pause()
+            animationRef.current = requestAnimationFrame(updateProgress)
         } else {
-            audioRef.current.play()
+            cancelAnimationFrame(animationRef.current)
         }
-        setIsPlaying(!isPlaying)
-    }
+    }, [isPlaying])
 
-    const handleTimeUpdate = () => {
+    const togglePlayPause = () => {
         const audio = audioRef.current
-        if (!audio || !duration) return
+        if (!audio) return
 
-        const currentTime = audio.currentTime
-        setTimeElapsed(formatTime(currentTime))
+        if (isPlaying) {
+            audio.pause()
+            cancelAnimationFrame(animationRef.current)
+        } else {
+            audio.play()
+            animationRef.current = requestAnimationFrame(updateProgress)
+        }
 
-        const remainingTime = duration - currentTime
-        setTimeRemaining(formatTime(remainingTime))
-
-        const currentProgress = (currentTime / duration) * 100
-        setProgress(currentProgress || 0)
+        setIsPlaying(!isPlaying)
     }
 
     const handleProgressClick = (e) => {
         const rect = e.target.getBoundingClientRect()
         const clickX = e.clientX - rect.left
-        const width = rect.width
-        const newTime = (clickX / width) * audioRef.current.duration
+        const newTime = (clickX / rect.width) * audioRef.current.duration
 
         audioRef.current.currentTime = newTime
         setProgress((newTime / audioRef.current.duration) * 100)
     }
 
+    const updateProgress = () => {
+        const audio = audioRef.current
+        if (!audio || audio.paused) return
+
+        const currentTime = audio.currentTime
+        const duration = audio.duration || 1 
+
+        setProgress((currentTime / duration) * 100)
+        setTimeElapsed(formatTime(currentTime))
+        setTimeRemaining(formatTime(duration - currentTime))
+
+        animationRef.current = requestAnimationFrame(updateProgress)
+    }
+
+    console.log(progress)
+
     const formatTime = (seconds) => {
-        const roundedSeconds = Math.round(seconds)
-        const minutes = Math.floor(roundedSeconds / 60)
-        const remainingSeconds = roundedSeconds % 60
+        const minutes = Math.floor(seconds / 60)
+        const remainingSeconds = Math.round(seconds % 60)
         return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`
     }
 
     const handleLoadedMetadata = () => {
         const audio = audioRef.current
         if (audio) {
-            const audioDuration = audio.duration
-            if (audioDuration === Infinity || isNaN(audioDuration)) {
-                setDuration(0)
-            } else {
-                setDuration(audioDuration)
-                setTimeRemaining(formatTime(audioDuration))
-            }
+            setTimeRemaining(formatTime(audio.duration))
         }
     }
 
-    const handleLoadedData = () => {
-        const audio = audioRef.current
-        if (audio) {
-            const audioDuration = audio.duration
-            if (audioDuration !== Infinity && !isNaN(audioDuration)) {
-                setDuration(audioDuration)
-                setTimeRemaining(formatTime(audioDuration))
-            }
-        }
+    const handleEnded = () => {
+        setIsPlaying(false)
+        setProgress(0)
+        setTimeElapsed('0:00')
+        setTimeRemaining(formatTime(audioRef.current.duration))
+        cancelAnimationFrame(animationRef.current)
     }
 
-    const handleCanPlayThrough = () => {
-        const audio = audioRef.current
-        if (audio) {
-            const audioDuration = audio.duration
-            if (audioDuration !== Infinity && !isNaN(audioDuration)) {
-                setDuration(audioDuration)
-                setTimeRemaining(formatTime(audioDuration))
-            }
-        }
-    }
-
-    const handlePlay = () => {
-        // Dopo aver iniziato la riproduzione, avviare il calcolo del progresso
-        handleTimeUpdate()
-    }
-
-    useEffect(() => {
-        if (message.type === 'AUDIO') {
-            const audio = audioRef.current
-            if (audio) {
-                audio.addEventListener('loadedmetadata', handleLoadedMetadata)
-                audio.addEventListener('loadeddata', handleLoadedData)
-                audio.addEventListener('canplaythrough', handleCanPlayThrough)
-                audio.addEventListener('play', handlePlay)
-
-                return () => {
-                    audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
-                    audio.removeEventListener('loadeddata', handleLoadedData)
-                    audio.removeEventListener('canplaythrough', handleCanPlayThrough)
-                    audio.removeEventListener('play', handlePlay)
-                }
-            }
-        }
-    }, [message.content])
-
-    useEffect(() => {
-        if (isPlaying && audioRef.current) {
-            const intervalId = setInterval(() => {
-                handleTimeUpdate() // Assicura che venga chiamato anche durante la riproduzione
-            }, 1000)
-
-            return () => clearInterval(intervalId) // Pulisce l'intervallo quando non è più necessario
-        }
-    }, [isPlaying])
     return (
-      <>
-      {message?.userId === currentUserId ?
-            <div className="d-flex-column j-c-center align-items-end mb-xs-4 ">
-            <div className="bg-dark-soft-2 border-radius-08 pt-xs-2 pb-xs-2 pl-xs-4 pr-xs-4 ml-xs-20"> 
-                {
-                    message.type === 'AUDIO' ?
-                    <div className='d-flex-row j-c-center align-items-center w-100 gap-0_5em'>
-                        <div className="d-flex-column j-c-center align-items-center border-radius-02 w-100">
-                            <audio
-                                ref={audioRef}
-                                src={message.content}
-                                onTimeUpdate={handleTimeUpdate}
-                                onEnded={() => setIsPlaying(false)}
-                            >
-                                <source src={message.content} type="audio/mp3" />
-                                <source src={message.content.replace('.mp3', '.wav')} type="audio/wav" />
-                            </audio>
-                                
-                            
-                
-                            <div
-                                onClick={handleProgressClick}
-                                style={{
-                                width: '200px',
-                                height: '5px',
-                                background: '#ccc',
-                                borderRadius: '5px',
-                                cursor: 'pointer',
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        width: `${progress}%`,
-                                        height: '100%',
-                                        background: '#DAEF64',
-                                        borderRadius: '5px',
-                                    }}
-                                ></div>
+        <>
+            {message?.userId === currentUserId ? (
+                <div className="d-flex-column j-c-center align-items-end mb-xs-4">
+                    <div className="bg-dark-soft-2 border-radius-08 pt-xs-2 pb-xs-2 pl-xs-4 pr-xs-4 ml-xs-20">
+                        {message.type === 'AUDIO' ? (
+                            <div className='d-flex-row j-c-center align-items-center w-100 gap-0_5em'>
+                                <audio
+                                    ref={audioRef}
+                                    src={message.content}
+                                    onLoadedMetadata={handleLoadedMetadata}
+                                    onEnded={handleEnded}
+                                />
+                                <div className="avatar-24 bg-white border-radius-100 d-flex-row j-c-center align-items-center" onClick={togglePlayPause}>
+                                    <img className='avatar-16' src={isPlaying ? IconPause : IconPlay} />
+                                </div>
+                                <div onClick={handleProgressClick} style={progressBarStyle}>
+                                    <div style={{ ...progressFillStyle, width: `${progress}%` }} />
+                                </div>
                             </div>
-                
-                        {/* <div className='w-100 d-flex-row j-c-space-between align-items-center mb-xs-4'>
-                            <p className='fsize-xs-0 f-w-300'>{timeElapsed}</p>
-                            <p className='fsize-xs-0 f-w-300'>-{timeRemaining}</p>
-                        </div> */}
-                        </div>
-                        <div className='w-100 d-flex-row j-c-center align-items-center'>
-                            <div className="avatar-24 bg-white border-radius-100 d-flex-row j-c-center align-items-center" onClick={togglePlayPause}>
-                            {isPlaying ? (<img className='avatar-16' src={IconPause}/>) : (<img className='avatar-16' src={IconPlay}/>)}
-                            </div>
-                        </div>
+                        ) : (
+                            <p className="t-align-start">{message.content}</p>
+                        )}
                     </div>
-                    :
-                    <p className="t-align-start">{message.content}</p>
-                }
-            </div>
-            
-            </div>
-      :
-      <>
-      <div className="d-flex-row j-c-start align-items-end mb-xs-4">
-          {message?.userImage ? 
-              <img
-                  src={message?.userImage}
-                  className='avatar-28 border-radius-100'
-              />
-          : 
-              <div className='avatar-28 position-relative'>
-                  <div className='d-flex-row j-c-center align-items-center avatar-28 border-radius-100 bg-purple-400'>
-                      <h5 className='f-w-500 fsize-xs-6'>
-                          {message?.username.charAt(0).toUpperCase()}
-                      </h5>
-                  </div>
-              </div>
-                          
-          }
-          <div className="bg-dark-gradient border-radius-08 pt-xs-2 pb-xs-2 pl-xs-4 pr-xs-4 ml-xs-2 mr-xs-20"> 
-              {
-                message.type === 'AUDIO' ?
-                <div className='d-flex-row j-c-start align-items-center w-100 gap-0_5em'>
-                        <div className='w-100 d-flex-row j-c-center align-items-center'>
-                            <div className="avatar-24 bg-white border-radius-100 d-flex-row j-c-center align-items-center" onClick={togglePlayPause}>
-                            {isPlaying ? (<img className='avatar-16' src={IconPause}/>) : (<img className='avatar-16' src={IconPlay}/>)}
+                </div>
+            ) : (
+                <div className="d-flex-row j-c-start align-items-end mb-xs-4">
+                    {message?.userImage ? (
+                        <img src={message?.userImage} className='avatar-28 border-radius-100' />
+                    ) : (
+                        <div className='avatar-28 position-relative'>
+                            <div className='d-flex-row j-c-center align-items-center avatar-28 border-radius-100 bg-purple-400'>
+                                <h5 className='f-w-500 fsize-xs-6'>
+                                    {message?.username.charAt(0).toUpperCase()}
+                                </h5>
                             </div>
                         </div>
-                        <div className="d-flex-column j-c-center align-items-center border-radius-02 w-100">
-                            <audio
-                                ref={audioRef}
-                                src={message.content}
-                                onTimeUpdate={handleTimeUpdate}
-                                onEnded={() => setIsPlaying(false)}
-                            >
-                                <source src={message.content} type="audio/mp3" />
-                                <source src={message.content.replace('.mp3', '.wav')} type="audio/wav" />
-                            </audio>
-                                
-                            
-                
-                            <div
-                                onClick={handleProgressClick}
-                                style={{
-                                width: '170px',
-                                height: '5px',
-                                background: '#ccc',
-                                borderRadius: '5px',
-                                cursor: 'pointer',
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        width: `${progress}%`,
-                                        height: '100%',
-                                        background: '#DAEF64',
-                                        borderRadius: '5px',
-                                    }}
-                                ></div>
+                    )}
+                    <div className="bg-dark-gradient border-radius-08 pt-xs-2 pb-xs-2 pl-xs-4 pr-xs-4 ml-xs-2 mr-xs-20">
+                        {message.type === 'AUDIO' ? (
+                            <div className='d-flex-row j-c-start align-items-center w-100 gap-0_5em'>
+                                <div className="avatar-24 bg-white border-radius-100 d-flex-row j-c-center align-items-center" onClick={togglePlayPause}>
+                                    <img className='avatar-16' src={isPlaying ? IconPause : IconPlay} />
+                                </div>
+                                <div onClick={handleProgressClick} style={progressBarStyle}>
+                                    <div style={{ ...progressFillStyle, width: `${progress}%` }} />
+                                </div>
                             </div>
-                
-                        {/* <div className='w-100 d-flex-row j-c-space-between align-items-center mb-xs-4'>
-                            <p className='fsize-xs-0 f-w-300'>{timeElapsed}</p>
-                            <p className='fsize-xs-0 f-w-300'>-{timeRemaining}</p>
-                        </div> */}
-                        </div>
-                        
+                        ) : (
+                            <p className="t-align-start">{message.content}</p>
+                        )}
                     </div>
-                :
-                <p className="t-align-start">{message.content}</p>
-              }
-          </div>
-      </div>
-      </>
-      }
-      </>
-      
+                </div>
+            )}
+        </>
     )
-  }
-  
-  export default MessageChatPrivate
+}
+
+const progressBarStyle = {
+    width: '200px',
+    height: '5px',
+    background: '#ccc',
+    borderRadius: '5px',
+    cursor: 'pointer',
+}
+
+const progressFillStyle = {
+    height: '100%',
+    background: '#DAEF64',
+    borderRadius: '5px',
+}
+
+export default MessageChatPrivate
