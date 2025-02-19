@@ -10,6 +10,7 @@ import Container from '../layout/container.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
 import NavbarBackOnly from '../components/navbar-back-only.component'
 import IconArrowRight from '../images/icons/icon-arrowright.svg'
+import useFanclub from '../utils/get-fanclub.hooks'
 const ChatsRoute = () => {
     const navigate = useNavigate()
     const location = useLocation()
@@ -17,6 +18,7 @@ const ChatsRoute = () => {
     const { currentArtist } = useContext(CurrentArtistContext)
     const {chats, setChats} = useContext(ChatsContext)
     const {fans } = useContext(FansContext)
+    const fanclub  = useFanclub(currentArtist?.id)
 
     const [artistChats, setArtistChats] = useState()
     useEffect(() => {
@@ -29,6 +31,27 @@ const ChatsRoute = () => {
   return (
     <>
     <NavbarBackOnly onClick={() => navigate(-1)}/>
+    <Container style={'mb-xs-4'}>
+        <h4 className="fsize-xs-6 f-w-500">Chat di gruppo</h4>
+        <div className="d-flex-row align-items-center j-c-space-between pt-xs-2 pb-xs-2 pr-xs-2 mt-xs-2 mb-xs-2" onClick={() => navigate(`/artist-app/fanclub/chats/group-chat`, { state: { from: location} })}>
+            <div className="d-flex-row align-items-center j-c-start">
+                {
+                    fanclub?.cover.url ?
+                    <img className="avatar-48 border-radius-100" src={fanclub?.cover.url} alt={`${fanclub?.name} avatar`} />
+                    :
+                    <img className="avatar-48 border-radius-100" src={currentArtist?.image} alt={`${fanclub?.name} avatar`} />
+                }
+                
+                <div className="d-flex-column j-c-start align-items-start ml-xs-8">
+                    <p className="fsize-xs-1 f-w-300">{fanclub?.name}</p>
+                </div>
+            </div>
+
+            <div className="d-flex-row ml-xs-2" >
+                <img className="avatar-24 border-radius-02" src={IconArrowRight} alt="Chat image" />
+            </div>
+        </div>
+    </Container>
     <Container style={'mb-xs-4'}>
         <h4 className="fsize-xs-6 f-w-500">Messaggi</h4>
         {artistChats?.length > 0 ?

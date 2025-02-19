@@ -2,15 +2,19 @@ import { useEffect, useState, useContext } from 'react'
 
 import { ArtistsContext } from '../contexts/artists.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
 
 import IconArrowLeft from '../images/icons/icon-arrowleft.svg'
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import { useLocation, useNavigate } from 'react-router-dom'
+import useFanclub from '../utils/get-fanclub.hooks'
 
 function NavbarChat({artist, fan, from}) {
     const location = useLocation()
     const { pathname } = useLocation()
     const navigate = useNavigate()
+    const {currentArtist} = useContext(CurrentArtistContext)
+    const fanclub = useFanclub(currentArtist?.id)
 
     return (
         <nav className='top-bar-area-overlay-fixed bg-dark d-flex-row align-items-center j-c-start white z-index-1000 top-0'>
@@ -67,6 +71,25 @@ function NavbarChat({artist, fan, from}) {
                         </h2>                  
                     </div>
                 </div>
+                }
+                {
+                    pathname.includes('group-chat') &&
+                    <div className='d-flex-row align-items-center j-c-center gap-0_25em w-100'>
+                        <div className='avatar-36 position-relative mr-xs-4'>
+                            {
+                                fanclub?.cover.url ?
+                                <img className='avatar-36 border-radius-100' src={fanclub?.cover.url} alt='Artist' />
+                                :
+                                <img className='avatar-36 border-radius-100' src={currentArtist?.image} alt='Artist' />
+                            }
+                                             
+                        </div> 
+                        <div className='d-flex-column j-c-center align-items-start'>
+                            <h2 className='f-w-600 fsize-xs-3 letter-spacing-1'>
+                                {fanclub?.name}
+                            </h2>                  
+                        </div>
+                    </div>
                 }
                 
 

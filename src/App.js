@@ -102,6 +102,7 @@ import TopicCreationRoute from './routes/topic-creation.route'
 import TopicAddHashtagRoute from './routes/topic-add-hashtag.route'
 import TopicDetailsRoute from './routes/topic-details.route'
 import FanclubPostsRouteArtist from './routes/archived/fanclub-posts.route.artist'
+import GroupChatRoute from './routes/group-chat.route.artist'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -541,6 +542,9 @@ const router = createBrowserRouter([
 	},{
 		path: '/artist-app/fanclub/chats/chat',
 		element: <ChatPrivateRoute />,
+	},{
+		path: '/artist-app/fanclub/chats/group-chat',
+		element: <GroupChatRoute />,
 	},{
 		path: '/artist-app/profile',
 		element: <ProfileArtistRoute />
