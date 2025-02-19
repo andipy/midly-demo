@@ -42,7 +42,7 @@ const ChatsRoute = () => {
                     <img className="avatar-48 border-radius-100" src={currentArtist?.image} alt={`${fanclub?.name} avatar`} />
                 }
                 
-                <div className="d-flex-column j-c-start align-items-start ml-xs-8">
+                <div className="d-flex-column j-c-start align-items-start ml-xs-8 w-100 no-shrink">
                     <p className="fsize-xs-1 f-w-300">{fanclub?.name}</p>
                 </div>
             </div>
