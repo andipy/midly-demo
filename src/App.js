@@ -57,6 +57,7 @@ import FanLetterCreationRoute from './routes/fan-letter-creation.route'
 import FanLetterCreationReviewRoute from './routes/fan-letter-creation-review.route'
 import FanclubGroupChatRoute from './routes/fanclub-group-chat.route'
 import HomeRoute from './routes/home.route'
+import ForumSavedRoute from './routes/forum-saved.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -304,6 +305,12 @@ const router = createBrowserRouter([
 				element: <TopicAddHashtagRoute />
 			}
 		]
+	},{
+		path: '/artist/:artistSlug/forum/saved',
+		element: <ForumSavedRoute />,
+	},{
+		path: '/artist/:artistSlug/forum/saved/topic/details',
+		element: <TopicDetailsRoute />,
 	},{
 		path: '/flash-leaderboard-explanation',
 		element: <FlashLeaderboardExplanationRoute />,

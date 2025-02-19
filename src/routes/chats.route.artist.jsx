@@ -54,7 +54,7 @@ const ChatsRoute = () => {
     </Container>
     <Container style={'mb-xs-4'}>
         <h4 className="fsize-xs-6 f-w-500">Messaggi</h4>
-        {artistChats?.length > 0 ?
+        {artistChats?.length > 0 &&
         <>
             {
                 artistChats?.map(chat => {
@@ -77,14 +77,17 @@ const ChatsRoute = () => {
                 })
             }
         </>    
-        :
-            <FullPageCenter>
-                <h3 className='t-align-center grey-200 fsize-xs-6 f-w-400 w-80 line-height-140'>
-                    Non hai chat recenti!
-                </h3>
-            </FullPageCenter>
         }
+        
     </Container>
+    {
+        artistChats?.length <= 0 &&
+        <div className=' mt-xs-50 d-flex-column align-items-center j-c-center'>
+            <h3 className='t-align-center grey-200 fsize-xs-6 f-w-400 w-80 line-height-140'>
+                Non hai chat recenti!
+            </h3>
+        </div>
+    }
     </>
   )
 }

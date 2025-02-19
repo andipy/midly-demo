@@ -92,27 +92,28 @@ const GroupChatRoute = () => {
                 <NavbarChat from={from}/>
                 <Container  style='pt-xs-topbar pb-xs-appbar'>
                     <div ref={messagesContainerRef}>
-                    {fanclub?.messages && fanclub?.messages.length > 0 ?
+                    {fanclub?.messages && fanclub?.messages.length > 0 &&
                         fanclub?.messages.map((mess, index) => (
                             <MessageChatConcert 
                                 message={mess}
                                 currentUserId={currentArtist?.id}
                             />
                         ))
-                    :
-                    <>
-                        <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
-                            <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                                <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Avvia la chat!</p>
-                            </div>
-                        </div>
-                    </>
                     }
                     </div>
                     <div ref={messagesEndRef} />
                 </Container>         
         </div>
-
+        {
+            fanclub?.messages.length <= 0   &&              
+            <>
+                <FullPageCenter>
+                <h3 className='t-align-center grey-200 fsize-xs-6 f-w-400 w-80 line-height-140'>
+                    Avvia la chat!
+                </h3>
+                </FullPageCenter>    
+            </>
+        }
         <div className={`position-fixed bg-dark-soft bottom-0 w-100 z-index-1100 border-radius-top-08 shadow-dark-750`}>
             <Textbar
                 className={''}
