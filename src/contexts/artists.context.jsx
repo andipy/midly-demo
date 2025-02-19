@@ -445,6 +445,50 @@ export const ArtistsProvider = ({ children }) => {
             importance: 1,
             highlight: false,
             verified: false,
+        },{
+            id: 'a15p1',
+            slug: 'fedez',
+            artistName: 'Fedez',
+            image: require('../images/pictures/fedez.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 'a16p1',
+            slug: 'irama',
+            artistName: 'Irama',
+            image: require('../images/pictures/irama.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 'a17p1',
+            slug: 'achille-lauro',
+            artistName: 'Achille Lauro',
+            image: require('../images/pictures/achille-lauro.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
+        },{
+            id: 'a18p1',
+            slug: 'serena-brancale',
+            artistName: 'Serena Brancale',
+            image: require('../images/pictures/serena-brancale.jpg'),
+            flashLeaderboard: {
+                status: undefined,
+            },
+            importance: 1,
+            highlight: false,
+            verified: false,
         }
     ])
 

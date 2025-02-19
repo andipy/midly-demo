@@ -2225,6 +2225,246 @@ export const LeaderboardsProvider = ({ children }) => {
                     // position: 9
                 }
             ]
+        },{
+            id: 38,
+            artistId: 'a15p1',
+            leaderboard: [
+                {
+                    userId: 2,
+                    image: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    points: 3689,
+                    // position: 1
+                },{
+                    userId: 1,
+                    image: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    points: 2237,
+                    // position: 2
+                },{
+                    userId: 6,
+                    image: require('../images/pictures/ai_03.png'),
+                    username: 'Giulietta',
+                    points: 2907,
+                    // position: 3
+                },{
+                    userId: 5,
+                    image: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    points: 1984,
+                    // position: 4
+                },{
+                    userId: 4,
+                    image: require('../images/pictures/ai_05.png'),
+                    username: 'marco_09',
+                    points: 1888,
+                    // position: 5
+                },{
+                    userId: 9,
+                    image: require('../images/pictures/ai_06.png'),
+                    username: 'francesca.david',
+                    points: 1467,
+                    // position: 6
+                },{
+                    userId: 8,
+                    image: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    points: 1107,
+                    // position: 7
+                },{
+                    userId: 3,
+                    image: require('../images/pictures/ai_08.png'),
+                    username: 'bob16',
+                    points: 467,
+                    // position: 8
+                },{
+                    userId: 7,
+                    image: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    points: 399,
+                    // position: 9
+                }
+            ]
+        },{
+            id: 39,
+            artistId: 'a16p1',
+            leaderboard: [
+                {
+                    userId: 2,
+                    image: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    points: 3689,
+                    // position: 1
+                },{
+                    userId: 1,
+                    image: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    points: 2237,
+                    // position: 2
+                },{
+                    userId: 6,
+                    image: require('../images/pictures/ai_03.png'),
+                    username: 'Giulietta',
+                    points: 2907,
+                    // position: 3
+                },{
+                    userId: 5,
+                    image: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    points: 1984,
+                    // position: 4
+                },{
+                    userId: 4,
+                    image: require('../images/pictures/ai_05.png'),
+                    username: 'marco_09',
+                    points: 1888,
+                    // position: 5
+                },{
+                    userId: 9,
+                    image: require('../images/pictures/ai_06.png'),
+                    username: 'francesca.david',
+                    points: 1467,
+                    // position: 6
+                },{
+                    userId: 8,
+                    image: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    points: 1107,
+                    // position: 7
+                },{
+                    userId: 3,
+                    image: require('../images/pictures/ai_08.png'),
+                    username: 'bob16',
+                    points: 467,
+                    // position: 8
+                },{
+                    userId: 7,
+                    image: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    points: 399,
+                    // position: 9
+                }
+            ]
+        },{
+            id: 40,
+            artistId: 'a17p1',
+            leaderboard: [
+                {
+                    userId: 2,
+                    image: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    points: 3689,
+                    // position: 1
+                },{
+                    userId: 1,
+                    image: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    points: 2237,
+                    // position: 2
+                },{
+                    userId: 6,
+                    image: require('../images/pictures/ai_03.png'),
+                    username: 'Giulietta',
+                    points: 2907,
+                    // position: 3
+                },{
+                    userId: 5,
+                    image: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    points: 1984,
+                    // position: 4
+                },{
+                    userId: 4,
+                    image: require('../images/pictures/ai_05.png'),
+                    username: 'marco_09',
+                    points: 1888,
+                    // position: 5
+                },{
+                    userId: 9,
+                    image: require('../images/pictures/ai_06.png'),
+                    username: 'francesca.david',
+                    points: 1467,
+                    // position: 6
+                },{
+                    userId: 8,
+                    image: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    points: 1107,
+                    // position: 7
+                },{
+                    userId: 3,
+                    image: require('../images/pictures/ai_08.png'),
+                    username: 'bob16',
+                    points: 467,
+                    // position: 8
+                },{
+                    userId: 7,
+                    image: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    points: 399,
+                    // position: 9
+                }
+            ]
+        },{
+            id: 41,
+            artistId: 'a18p1',
+            leaderboard: [
+                {
+                    userId: 2,
+                    image: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    points: 3689,
+                    // position: 1
+                },{
+                    userId: 1,
+                    image: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    points: 2237,
+                    // position: 2
+                },{
+                    userId: 6,
+                    image: require('../images/pictures/ai_03.png'),
+                    username: 'Giulietta',
+                    points: 2907,
+                    // position: 3
+                },{
+                    userId: 5,
+                    image: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    points: 1984,
+                    // position: 4
+                },{
+                    userId: 4,
+                    image: require('../images/pictures/ai_05.png'),
+                    username: 'marco_09',
+                    points: 1888,
+                    // position: 5
+                },{
+                    userId: 9,
+                    image: require('../images/pictures/ai_06.png'),
+                    username: 'francesca.david',
+                    points: 1467,
+                    // position: 6
+                },{
+                    userId: 8,
+                    image: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    points: 1107,
+                    // position: 7
+                },{
+                    userId: 3,
+                    image: require('../images/pictures/ai_08.png'),
+                    username: 'bob16',
+                    points: 467,
+                    // position: 8
+                },{
+                    userId: 7,
+                    image: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    points: 399,
+                    // position: 9
+                }
+            ]
         }
     ])
 
