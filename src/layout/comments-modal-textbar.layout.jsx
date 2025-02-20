@@ -5,7 +5,7 @@ import IconArrowUp from '../images/icons/icon-arrow-up.svg'
 import IconExit from '../images/icons/icon-exit.svg'
 
 import TextbarComments from "../components/textbar-comments.component"
-const CommentsModalTextbarLayout = ({ children, modalOpen, handleCurrentComment, submitComment, currentComment, setCurrentComment, inputRef, replyingUser, closeModal, title }) => {
+const CommentsModalTextbarLayout = ({ children, modalOpen, handleCurrentComment, handleSubmitComment, currentComment, setCurrentComment, inputRef, replyingUser, closeModal, title }) => {
     const { pathname } = useLocation()
 
     const [open, setOpen] = useState(false)
@@ -41,7 +41,7 @@ const CommentsModalTextbarLayout = ({ children, modalOpen, handleCurrentComment,
             </nav>
             {children}
             <section className={`text-bar-live-chat ${open ? 'bottom-0 position-fixed slide-up' : 'bottom-hidden-textbar-comments slide-down'}`}>
-                <form className='container d-flex-row align-items-center gap-1em' onSubmit={(e) => submitComment(e, currentComment)}>
+                <form className='container d-flex-row align-items-center gap-1em' onSubmit={(e) => handleSubmitComment(e)}>
                     <input
                         type='text'
                         name='user-message'

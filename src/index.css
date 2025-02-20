@@ -50,6 +50,35 @@ a {
   color: inherit;
 }
 
+.comment-container::-webkit-scrollbar {
+  display: none;
+}
+.comment-container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.comment-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.comment-container.swiped .comment-content {
+  margin-left: -80px;
+}
+.comment-container.swiped-fan .comment-content {
+  margin-left: -40px;
+}
+
+.comment-actions {
+  display: flex;
+  flex-shrink: 0;
+  width: auto;
+}
+
 .input-topic-info {
   background-color: #000;
   border: none; 

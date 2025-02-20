@@ -25,7 +25,7 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
 			setIsLiked(likedByUser)
 		}
         if (comment && comment.likes && pathname.includes('/artist-app')) {
-			const likedByUser = comment.likes.some(like => like.userId === currentArtist.id && like.type === 'ARTIST');
+			const likedByUser = comment.likes.some(like => like.userId === currentArtist.id && like.type === 'ARTIST')
 			setIsLiked(likedByUser)
 		}
 	}, [comment])
@@ -38,51 +38,85 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
 		}
     }, [comment])
 
+    const [offsetX, setOffsetX] = useState(0)
+    const [isSwiped, setIsSwiped] = useState(false)
+
+    const handleTouchStart = (e) => {
+        setOffsetX(e.touches[0].clientX)
+    }
+
+    const handleTouchMove = (e) => {
+        const touchX = e.touches[0].clientX
+        const deltaX = touchX - offsetX
+        
+        if (deltaX < -50) {
+            setIsSwiped(true)
+        } else if (deltaX > 20) { 
+            setIsSwiped(false)
+        }
+    }
+
 
     return (
         <div className={`d-flex-column mb-xs-6`}>
-            <div className={`d-flex-row gap-0_5em mb-xs-3`} key={comment.id}>
-                {comment.userType==='FAN' ?
-                    userImage ?
-                    <img src={userImage} className='avatar-36 border-radius-100' onClick={modalUserModeration}/>
+            <div 
+                className={`d-flex-row gap-0_5em mb-xs-3 comment-container overflow-x w-100 ${isSwiped && pathname.includes('artist-app') ? "swiped" : ""} ${isSwiped && !pathname.includes('artist-app') ? "swiped-fan" : ""}`} 
+                key={comment.id}
+                onTouchStart={handleTouchStart} 
+                onTouchMove={handleTouchMove}
+            >
+                <div className={`d-flex-row j-c-center w-100vw gap-0_5em comment-content w-min-100 `}>
+                    {comment.userType==='FAN' ?
+                        userImage ?
+                        <img src={userImage} className='avatar-36 border-radius-100' onClick={modalUserModeration}/>
+                        :
+                        <div className='avatar-36 position-relative'>
+                            <div className='d-flex-row j-c-center align-items-center avatar-36 border-radius-100 bg-purple-400' onClick={modalUserModeration}>
+                                <h5 className='f-w-500 fsize-xs-3'>
+                                    {comment.username.charAt(0).toUpperCase()}
+                                </h5>
+                            </div>
+                        </div>
                     :
-                    <div className='avatar-36 position-relative'>
-                        <div className='d-flex-row j-c-center align-items-center avatar-36 border-radius-100 bg-purple-400' onClick={modalUserModeration}>
-                            <h5 className='f-w-500 fsize-xs-3'>
-                                {comment.username.charAt(0).toUpperCase()}
-                            </h5>
-                        </div>
-                    </div>
-                :
-                <img src={comment.userImage} className='avatar-36 border-radius-100' onClick={modalUserModeration}/>
-                    
-                }
-                <div className='d-flex-column w-100'>
-                    <div className='d-flex-row align-items-center gap-0_5em'>
-                        <span className='fsize-xs-3 f-w-600 grey-250' onClick={modalUserModeration}>{comment.username}</span>
-                        {comment.userType === 'ARTIST' &&
-                            <span className='fsize-xs-1 gold'>Artista</span>
-                        }
-                    </div>
-                    <div className='fsize-xs-3 grey-100 f-w-300 line-height-1_5 mt-xs-2'>{comment.comment}</div>
-
-                    <div className='d-flex-row j-c-space-between w-100 mt-xs-2'>
-                        <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
-                            <span className='fsize-xs-1 f-w-200 grey-400'>{comment.createdAt}</span>
-                            <span className='fsize-xs-2 f-w-600 grey-300' onClick={() => spotCommentToReply(comment?.id, comment?.username)}>Reply</span>
-                        </div>
+                    <img src={comment.userImage} className='avatar-36 border-radius-100' onClick={modalUserModeration}/>
+                        
+                    }
+                    <div className='d-flex-column w-100'>
                         <div className='d-flex-row align-items-center gap-0_5em'>
-                            <span className='fsize-xs-1'>{comment.likes.length > 0 ? comment.likes.length : ''}</span>
-                            { isLiked ? 
-                                <img className='avatar-24' src={IconThunderActive} alt='♡' onClick={likeComment}/>
-                                :
-                                <img className='avatar-24' src={IconThunder} alt='♡' onClick={likeComment}/>
+                            <span className='fsize-xs-3 f-w-600 grey-250' onClick={modalUserModeration}>{comment.username}</span>
+                            {comment.userType === 'ARTIST' &&
+                                <span className='fsize-xs-1 gold'>Artista</span>
                             }
-                            
-                            
+                        </div>
+                        <div className='fsize-xs-3 grey-100 f-w-300 line-height-1_5 mt-xs-2'>{comment.comment}</div>
+
+                        <div className='d-flex-row j-c-space-between w-100 mt-xs-2'>
+                            <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
+                                <span className='fsize-xs-1 f-w-200 grey-400'>{comment.createdAt}</span>
+                                <span className='fsize-xs-2 f-w-600 grey-300' onClick={() => spotCommentToReply(comment?.id, comment?.username)}>Reply</span>
+                            </div>
+                            <div className='d-flex-row align-items-center gap-0_5em'>
+                                <span className='fsize-xs-1'>{comment.likes.length > 0 ? comment.likes.length : ''}</span>
+                                { isLiked ? 
+                                    <img className='avatar-24' src={IconThunderActive} alt='♡' onClick={likeComment}/>
+                                    :
+                                    <img className='avatar-24' src={IconThunder} alt='♡' onClick={likeComment}/>
+                                }
+                                
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div className='d-flex-row comment-actions'>
+                    <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2'>Segnala</div>
+                    {
+                        pathname.includes('artist-app') &&
+                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8'>Elimina</div>
+
+                    }
+                </div>
+                
             </div>
             {comment.comments.map(reply => {
                 return (
