@@ -29,7 +29,64 @@ export const FanclubsProvider = ({ children }) => {
             province: null,
             beneficiary: null,
             iban: null,
-            posts: [],
+            posts: [
+                {
+                    artistId: 'a3p8',
+                    caption: 'supremo',
+                    commentsCount: 1,
+                    comments: [
+                        {
+                            id: 1,
+                            userId: 3,
+                            userType: "FAN",
+                            userImage: "",
+                            username: "utente_03",
+                            createdAt: "2025-02-20",
+                            comment: "ciao",
+                            likes: [],
+                            comments: []
+                          }
+                    ],
+                    createdAt: "2024-12-23T09:22:23.542Z",
+                    id: 1,
+                    likes: [
+                        {userId: 1},
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6}
+                    ],
+                    link: {name: '', url: ''},
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sferaebbasta-post-1.jpg'),
+                        },{
+                            id: 2,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sferaebbasta-post-2.jpg'),
+                        }
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'a2p1',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: true
+                    },
+                    share: {
+                        shareCount: 20,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                    
+
+                },
+            ],
             concerts: [],
             forum: [],
             leaderboard: [],

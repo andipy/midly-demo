@@ -116,6 +116,9 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
                             pathname.includes('artist-app') && comment.userType === 'ARTIST' ?
                             <></>
                             :
+                            !pathname.includes('artist-app') && comment.userId === currentFan.id ?
+                            <></>
+                            :
                             <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2' onClick={() => {commentUserModeration(); setIsSwiped(false)}}>Segnala</div>
                         }
                         {

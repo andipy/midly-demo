@@ -35,7 +35,7 @@ const UserModerationReportRoute = () => {
           fanclubId,
           artistId,
         })
-        navigate(-1, { state: { userId, reported: true } })
+        navigate('.', { state: { userId, reported: true } })
       }
 
     
@@ -74,7 +74,7 @@ const UserModerationReportRoute = () => {
                             disabled={false}
                             style='fsize-xs-3 f-w-600 letter-spacing-1 bg-acid-lime black  border-radius-04'
                             label='Chiudi'
-                            onClick={() => navigate(-3)}
+                            onClick={() => navigate(-2)}
                         />
                     </div>
                 :
