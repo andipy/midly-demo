@@ -480,6 +480,53 @@ const ArtistRoute = () => {
         }
     }, [fanclub, navigate, artistSlug, location.pathname])
 
+    const deleteComment = (commentId, postId) => {
+        console.log(postId, commentId)
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub =>
+                fanclub.artistId === artist?.id
+                    ? {
+                        ...fanclub,
+                        posts: fanclub.posts.map(post =>
+                            post.id === postId
+                                ? { ...post, commentsCount: post.commentsCount-1, comments: post.comments.filter(comment => comment.id !== commentId) }
+                                : post
+                        )
+                    }
+                    : fanclub
+            )
+        )
+    }
+
+    const deleteReply = (commentId, postId, replyId) => {
+        console.log(postId, commentId, replyId)
+        setFanclubs(prevFanclubs =>
+            prevFanclubs.map(fanclub =>
+                fanclub.artistId === artist?.id
+                    ? {
+                        ...fanclub,
+                        posts: fanclub.posts.map(post =>
+                            post.id === postId
+                                ? {
+                                    ...post,
+                                    commentsCount: post.commentsCount-1,
+                                    comments: post.comments.map(comment =>
+                                        comment.id === commentId
+                                            ? {
+                                                ...comment,
+                                                comments: comment.comments.filter(reply => reply.id !== replyId) // Rimuovi la risposta
+                                            }
+                                            : comment
+                                    )
+                                }
+                                : post
+                        )
+                    }
+                    : fanclub
+            )
+        );
+    }
+
     return (
         <>
             <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={fanclub} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed} openModalSubscription={() => setModalSubscription(true)} from={from}/>
@@ -592,9 +639,12 @@ const ArtistRoute = () => {
                                             inputRef={inputRef}
                                             spotCommentToReply={spotCommentToReply}
                                             modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id}})}
+                                            commentUserModeration={() => navigate('user-moderation/report', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, artistId: fanclub?.artistId, reported: false, type: 'COMMENT' }})}
                                             likeComment = {() => likeComment(comment.id, post.id, artist.id)}
                                             postId={post.id}
                                             likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, artist.id)}
+                                            deleteComment = {() => navigate('user-moderation/delete', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, deleted: false}})}
+                                            deleteReply = {(replyId, userId) => navigate('user-moderation/delete', {state: {  userId: userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, deleted: false, replyId: replyId, type: 'REPLY'}})}
                                         />
                                     )
                                 })

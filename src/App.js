@@ -104,6 +104,7 @@ import TopicAddHashtagRoute from './routes/topic-add-hashtag.route'
 import TopicDetailsRoute from './routes/topic-details.route'
 import FanclubPostsRouteArtist from './routes/archived/fanclub-posts.route.artist'
 import GroupChatRoute from './routes/group-chat.route.artist'
+import UserModerationDeleteRoute from './routes/user-moderation-delete.route'
 
 //ADMIN ROUTES
 import FlashLeaderboardsDashboardRoute from './routes/flash-leaderboards.route.admin'
@@ -187,6 +188,9 @@ const router = createBrowserRouter([
 			},{
 				path: 'user-moderation/report',
 				element: <UserModerationReportRoute />,
+			},{
+				path: 'user-moderation/delete',
+				element: <UserModerationDeleteRoute />,
 			}
 		/* MAJOR CHANGE */
 		  /* {
@@ -351,6 +355,9 @@ const router = createBrowserRouter([
 			},{
 				path: '/artist-app/fanclub/user-moderation/report',
 				element: <UserModerationReportRoute />,
+			},{
+				path: '/artist-app/fanclub/user-moderation/delete',
+				element: <UserModerationDeleteRoute />,
 			},{
 				path: 'forum',
 				element: <FanclubForumRoute />

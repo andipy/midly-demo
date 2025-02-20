@@ -20,6 +20,7 @@ const UserModerationReportRoute = () => {
     const commentId = location.state?.commentId
     const artistId = location.state?.artistId
     const reported = location.state?.reported
+    const type = location.state?.type
     
     const { fans } = useContext(FansContext)
 
@@ -34,7 +35,7 @@ const UserModerationReportRoute = () => {
           fanclubId,
           artistId,
         })
-        navigate(".", { state: { userId, reported: true } })
+        navigate(-1, { state: { userId, reported: true } })
       }
 
     
@@ -78,11 +79,20 @@ const UserModerationReportRoute = () => {
                     </div>
                 :
                     <div>
-                        <p className='fsize-xs-3 f-w-400 t-align-center mb-xs-4'>Stai per segnalare questo profilo. Scrivi il motivo della segnalazione:</p>
+                        {
+                            type && type === 'COMMENT' &&
+                            <p className='fsize-xs-3 f-w-400 t-align-center mb-xs-4'>Stai per segnalare questo commento. Scrivi il motivo della segnalazione:</p>
+
+                        }
+                        {
+                            !type &&
+                            <p className='fsize-xs-3 f-w-400 t-align-center mb-xs-4'>Stai per segnalare questo profilo. Scrivi il motivo della segnalazione:</p>
+
+                        }
                         <textarea
                             className='bg-dark-gradient white fsize-xs-3 f-w-400 border-radius-04'
                             type='text'
-                            placeholder={`${'Perchè vuoi segnalare questo profilo?'}`}
+                            placeholder={`${ type ? 'Perchè vuoi segnalare questo commento?' : 'Perchè vuoi segnalare questo profilo?'}`}
                             value={description}
                             onChange={(e) => handleDescription(e)}
                             rows={4}

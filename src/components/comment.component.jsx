@@ -11,8 +11,7 @@ import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FansContext } from '../contexts/fans.context'
 
 
-const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment, postId, likeReply }) => {
-
+const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment, postId, likeReply, commentUserModeration, deleteComment, deleteReply }) => {
     const { currentFan	} = useContext(CurrentFanContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const { fans } = useContext(FansContext)
@@ -48,10 +47,10 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
     const handleTouchMove = (e) => {
         const touchX = e.touches[0].clientX
         const deltaX = touchX - offsetX
-        
+        if (!pathname.includes('artist-app')  && comment.userType === 'ARTIST') return
         if (deltaX < -50) {
             setIsSwiped(true)
-        } else if (deltaX > 20) { 
+        } else if (deltaX > 10) { 
             setIsSwiped(false)
         }
     }
@@ -60,12 +59,12 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
     return (
         <div className={`d-flex-column mb-xs-6`}>
             <div 
-                className={`d-flex-row gap-0_5em mb-xs-3 comment-container overflow-x w-100 ${isSwiped && pathname.includes('artist-app') ? "swiped" : ""} ${isSwiped && !pathname.includes('artist-app') ? "swiped-fan" : ""}`} 
+                className={`d-flex-row j-c-start gap-0_5em mb-xs-3 comment-container overflow-x w-100 ${isSwiped && pathname.includes('artist-app') ? "swiped" : "swiped-off"} ${isSwiped && !pathname.includes('artist-app') ? "swiped-fan" : "swiped-off"} ${isSwiped && !pathname.includes('artist-app') && comment.userId === currentFan.id ? "swiped" : "swiped-off"} ${isSwiped && pathname.includes('artist-app') && comment.userType === 'ARTIST' ? "swiped-fan" : "swiped-off"}`} 
                 key={comment.id}
                 onTouchStart={handleTouchStart} 
                 onTouchMove={handleTouchMove}
             >
-                <div className={`d-flex-row j-c-center w-100vw gap-0_5em comment-content w-min-100 `}>
+                <div className={`d-flex-row j-c-start align-items-start  gap-0_5em comment-content w-min-100 `}>
                     {comment.userType==='FAN' ?
                         userImage ?
                         <img src={userImage} className='avatar-36 border-radius-100' onClick={modalUserModeration}/>
@@ -78,12 +77,12 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
                             </div>
                         </div>
                     :
-                    <img src={comment.userImage} className='avatar-36 border-radius-100' onClick={modalUserModeration}/>
+                    <img src={comment.userImage} className='avatar-36 border-radius-100'/>
                         
                     }
-                    <div className='d-flex-column w-100'>
+                    <div className='d-flex-column w-100 align-items-start j-c-start'>
                         <div className='d-flex-row align-items-center gap-0_5em'>
-                            <span className='fsize-xs-3 f-w-600 grey-250' onClick={modalUserModeration}>{comment.username}</span>
+                            <span className='fsize-xs-3 f-w-600 grey-250' onClick={comment.userType === 'FAN' ? modalUserModeration : undefined}>{comment.username}</span>
                             {comment.userType === 'ARTIST' &&
                                 <span className='fsize-xs-1 gold'>Artista</span>
                             }
@@ -108,19 +107,35 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
                         </div>
                     </div>
                 </div>
-                <div className='d-flex-row comment-actions'>
-                    <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2'>Segnala</div>
-                    {
-                        pathname.includes('artist-app') &&
-                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8'>Elimina</div>
+                {
+                    (!pathname.includes('artist-app')  && comment.userType === 'ARTIST') ?
+                    <></>
+                    :
+                    <div className='d-flex-row comment-actions'>
+                        {
+                            pathname.includes('artist-app') && comment.userType === 'ARTIST' ?
+                            <></>
+                            :
+                            <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2' onClick={() => {commentUserModeration(); setIsSwiped(false)}}>Segnala</div>
+                        }
+                        {
+                            pathname.includes('artist-app') &&
+                            <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8' onClick={() => {deleteComment(); setIsSwiped(false)}}>Elimina</div>
 
-                    }
-                </div>
+                        }
+                        {
+                            !pathname.includes('artist-app') && comment?.userId === currentFan.id &&
+                            <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8' onClick={() => {deleteComment(); setIsSwiped(false)}}>Elimina</div>
+
+                        }
+                    </div>
+                }
+                
                 
             </div>
             {comment.comments.map(reply => {
                 return (
-                    <CommentReply comment={reply} postId={postId} likeReply={likeReply} commentReplied={comment.id} />
+                    <CommentReply comment={reply} postId={postId} likeReply={likeReply} commentReplied={comment.id} commentUserModeration={commentUserModeration} deleteReply={() => deleteReply(reply.id, reply.userId)}/>
                 )
             })}
         </div>
