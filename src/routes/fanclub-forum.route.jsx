@@ -8,7 +8,7 @@ import IconPlus from '../images/icons/icon-plus-black.svg'
 import Snackbar from "../components/snackbar.component"
 import FullPageCenter from "../layout/full-page-center.layout"
 import Button from "../components/button.component"
-import IconSave from '../images/icons/icon-save-black.svg'
+import IconSave from '../images/icons/icon-save-lime.svg'
 
 
 import useFanclub from '../utils/get-fanclub.hooks'
@@ -89,8 +89,8 @@ const FanclubForumRoute = () => {
                         <img className='' src={IconPlus}/>
                     </div> 
                 :
-                    <div className="bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center gap-0_5em">
-                        <div className='bg-acid-lime avatar-40 border-radius-100  d-flex-row j-c-center align-items-center' onClick={() => navigate('saved', { state: {artist:artistF, from: location.pathname} })}>
+                    <div className="bottom-5 right-5 position-fixed z-index-999 d-flex-column j-c-center align-items-center gap-0_5em">
+                        <div className='bg-dark-soft-2 avatar-40 border-radius-100  d-flex-row j-c-center align-items-center' onClick={() => navigate('saved', { state: {artist:artistF, from: location.pathname} })}>
                             <img className='' src={IconSave}/>
                         </div> 
                         <div className='bg-acid-lime avatar-40 border-radius-100  d-flex-row j-c-center align-items-center' 

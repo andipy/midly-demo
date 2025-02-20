@@ -9,8 +9,8 @@ const MessageChatPrivate = ({ message, currentUserId }) => {
     const [timeRemaining, setTimeRemaining] = useState('0:00')
 
     const audioRef = useRef(null)
-
     const togglePlayPause = () => {
+        if (!audioRef.current) return
         if (isPlaying) {
             audioRef.current.pause()
         } else {
@@ -103,6 +103,13 @@ const MessageChatPrivate = ({ message, currentUserId }) => {
                     <div className="bg-dark-gradient border-radius-08 pt-xs-2 pb-xs-2 pl-xs-4 pr-xs-4 ml-xs-2 mr-xs-20">
                         {message.type === 'AUDIO' ? (
                             <div className='d-flex-row j-c-start align-items-center w-100 gap-0_5em'>
+                                <audio
+                                    ref={audioRef}
+                                    src={message.content}
+                                    onLoadedMetadata={handleLoadedMetadata}
+                                    onEnded={handleEnded}
+                                    onTimeUpdate={updateProgress}
+                                />
                                 <div className="avatar-24 bg-white border-radius-100 d-flex-row j-c-center align-items-center" onClick={togglePlayPause}>
                                     <img className='avatar-16' src={isPlaying ? IconPause : IconPlay} />
                                 </div>
