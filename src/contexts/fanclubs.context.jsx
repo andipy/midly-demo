@@ -32,8 +32,8 @@ export const FanclubsProvider = ({ children }) => {
             posts: [
                 {
                     artistId: 'a3p8',
-                    caption: 'supremo',
-                    commentsCount: 1,
+                    caption: 'qualche amico sul nuovo brano...',
+                    commentsCount: 2,
                     comments: [
                         {
                             id: 1,
@@ -44,7 +44,20 @@ export const FanclubsProvider = ({ children }) => {
                             createdAt: "2025-02-20",
                             comment: "ciao",
                             likes: [],
-                            comments: []
+                            comments: [
+                                {
+                                    id: 2,
+                                    userId: 6,
+                                    userType: "FAN",
+                                    userImage: "",
+                                    username: "utente_06",
+                                    createdAt: "2025-02-20",
+                                    comment: "ahahaha",
+                                    likes: [],
+                                    comments: [],
+                                    repliedUsername: "utente_03"
+                                  }
+                            ]
                           }
                     ],
                     createdAt: "2024-12-23T09:22:23.542Z",
@@ -62,11 +75,7 @@ export const FanclubsProvider = ({ children }) => {
                         {
                             id: 1,
                             type: 'IMAGE',
-                            url: require('../images/pictures/sferaebbasta-post-1.jpg'),
-                        },{
-                            id: 2,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/sferaebbasta-post-2.jpg'),
+                            url: require('../images/pictures/thasup-post-1.jpg'),
                         }
                     ],
                     mode: 'PUBLISHED',

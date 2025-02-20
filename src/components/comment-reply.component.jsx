@@ -8,7 +8,7 @@ import { CurrentFanContext } from '../contexts/currentFan.context'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FansContext } from '../contexts/fans.context'
 
-const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentReplied, commentUserModeration, deleteReply}) => {
+const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentReplied, commentUserModeration, deleteReply, replyUserModeration}) => {
 
     const { currentFan	} = useContext(CurrentFanContext)
     const { currentArtist} = useContext(CurrentArtistContext)
@@ -118,7 +118,7 @@ const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentR
                         pathname.includes('artist-app') && comment.userType === 'ARTIST' ?
                         <></>
                         :
-                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2' onClick={() => {commentUserModeration(); setIsSwiped(false)}}>Segnala</div>
+                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2' onClick={() => {replyUserModeration(); setIsSwiped(false)}}>Segnala</div>
                     }
                     {
                         pathname.includes('artist-app') &&

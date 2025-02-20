@@ -17,7 +17,7 @@ const useReportUser = () => {
   const isArtistApp = location.pathname.includes("/artist-app/")
   const currentUser = isArtistApp ? currentArtist : currentFan
 
-  const reportUser = ({ userId, description, postId, commentId, fanclubId, artistId }) => {
+  const reportUser = ({ userId, description, postId, commentId, fanclubId, artistId, type, comment, replyId, reply }) => {
     const isUserBlocked = blocked.some(
       (block) => block.blockedUserId === userId && block.fanclubId === fanclubId
     )
@@ -30,11 +30,12 @@ const useReportUser = () => {
       },
       description,
       postId,
-      commentId,
       fanclubId,
       fanclubArtistId: artistId,
       createdAt: new Date().toISOString().replace("T", " ").replace("Z", "").split(".")[0],
       archived: isUserBlocked,
+      ...(type === 'COMMENT' && { type, commentId, comment }),
+      ...(replyId && reply && { commentId: commentId, replyId: replyId, comment: reply, reply: true })
     }
 
     if (!isArtistApp) {

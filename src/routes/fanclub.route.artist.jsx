@@ -495,7 +495,8 @@ const FanclubRoute = () => {
                                             inputRef={inputRef}
                                             spotCommentToReply={spotCommentToReply}
                                             modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id }})}
-                                            commentUserModeration={() => navigate('user-moderation/report', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, artistId: fanclub?.artistId, reported: false, type: 'COMMENT' }})}
+                                            commentUserModeration={() => navigate('user-moderation/report', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, artistId: fanclub?.artistId, reported: false, type: 'COMMENT', comment: comment }})}
+                                            replyUserModeration={(userId, reply, replyId) => navigate('user-moderation/report', {state: {  userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, artistId: fanclub?.artistId, reported: false, type: 'COMMENT', comment: comment, reply, replyId }})}
                                             likeComment = {() => likeComment(comment.id, post.id, currentArtist.id)}
                                             postId={post.id}
                                             likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, currentArtist?.id)}

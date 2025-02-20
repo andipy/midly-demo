@@ -21,6 +21,10 @@ const UserModerationReportRoute = () => {
     const artistId = location.state?.artistId
     const reported = location.state?.reported
     const type = location.state?.type
+    const comment = location.state?.comment
+    const replyId = location.state?.replyId
+    const reply = location.state?.reply
+
     
     const { fans } = useContext(FansContext)
 
@@ -34,6 +38,10 @@ const UserModerationReportRoute = () => {
           commentId,
           fanclubId,
           artistId,
+          type,
+          comment,
+          replyId,
+          reply
         })
         navigate('.', { state: { userId, reported: true } })
       }
