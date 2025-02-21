@@ -33,7 +33,7 @@ const Appbar = () => {
                 <Link to='/your-favourites'>
                     <div className='d-flex-column align-items-center'>
                         <img className='mb-xs-8' src={pathname.includes('your-favourites') ? IconFavouritesActive : IconFavouritesInactive} alt='Favourites' />
-                        <span className={`${pathname.includes('your-favourites') ? 'f-w-700 lime-400' : 'f-w-300 white'} fsize-xs-0 letter-spacing-1`}>I miei club</span>
+                        <span className={`${pathname.includes('your-favourites') ? 'f-w-700 lime-400' : 'f-w-300 white'} fsize-xs-0 letter-spacing-1`}>I miei artisti</span>
                     </div>
                 </Link>
                 

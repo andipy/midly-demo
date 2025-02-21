@@ -22,6 +22,7 @@ import CardArtistHighlight from '../components/card-search-artist-highlight.comp
 import CardArtistWithFanclub from '../components/card-search-artist-with-fanclub.component'
 import TextTitle from '../components/text-title.component'
 import HomeRoute from './home.route'
+import CardPreferredArtist from '../components/card-preferred-artist.component'
 
 const YourFavouritesRoute = () => {
 
@@ -258,8 +259,22 @@ const YourFavouritesRoute = () => {
                             style={{ top: 0 }}
                         >
                             <Container>
-                                <TextTitle title={'I miei club'} />
+                                <TextTitle title={'I miei artisti'} />
                             </Container>
+                        </div>
+                        <div id='artists-list' className='d-flex-row j-c-start align-items-center mb-xs-4'>
+                            <Carousel>
+                                {[...subscribedArtists.map(artist => ({ ...artist, hasUserSubscribed: true })), 
+                                ...followedArtists.map(artist => ({ ...artist, hasUserSubscribed: false }))]
+                                .map(artist => (
+                                    <CardPreferredArtist 
+                                        artist = {artist}
+                                        size={'small'}
+                                        key = {artist.id}
+                                        onClick={() => navigate(`/artist/${artist?.slug}`, { state :{ artist : artist} })}
+                                    />
+                                ))}
+                            </Carousel> 
                         </div>
                         {subscribedArtists.map(artist =>
                             <CardFollowedArtist artist={artist} key={artist.id} hasUserSubscribed={true} preview={true} />
