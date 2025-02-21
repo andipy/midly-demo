@@ -12,6 +12,7 @@ body {
   width: 7%;
   margin: 2.4% auto;
 }
+
 #logo img {
   width: 100%;
 }
@@ -48,6 +49,26 @@ p {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.heart-animation {
+  position: absolute;
+  animation: heart-fade 1s ease-out forwards;
+}
+
+@keyframes heart-fade {
+  0% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+  50% {
+      transform: translateY(-30px);
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(-50px);
+      opacity: 0;
+  }
 }
 
 .comment-container::-webkit-scrollbar {
