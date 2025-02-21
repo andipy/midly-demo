@@ -106,7 +106,7 @@ export const FanclubsProvider = ({ children }) => {
             artistId: 'a2p1',
             isActive: true,
             subscribers: null,
-            name: 'Fanclub di Sfera',
+            name: 'Club di Sfera',
             description: 'sferaebbasta',
             pricing: '3.99',
             cover: {
@@ -738,7 +738,7 @@ export const FanclubsProvider = ({ children }) => {
                         url: require('../images/pictures/sfera-fan-letter-3.jpg'),
                         type: 'IMAGE'
                     },
-                    caption: 'Prova di una caption più lunga di modo che su due righe venga troncata e non venga mostrata oltre nella home letters fanclub',
+                    caption: 'Prova di una caption più lunga di modo che su due righe venga troncata e non venga mostrata oltre nella home letters club',
                     mode: 'PUBLISHED'
                 },
                 {
@@ -965,7 +965,7 @@ export const FanclubsProvider = ({ children }) => {
             artistId: 'a8p1',
             isActive: true,
             subscribers: null,
-            name: 'Fanclub di NAYT',
+            name: 'Club di NAYT',
             description: 'Lettera Q',
             pricing: '3.99',
             cover: {

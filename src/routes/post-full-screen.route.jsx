@@ -296,18 +296,18 @@ const  PostFullScreenRoute = () => {
 	}
 
     const [modalSubscription, setModalSubscription] = useState(false)
+
     return (
         <>
         
         <FullPageCenter style=''>
-            { pathname.includes('/artist-app') ?
+            {pathname.includes('/artist-app') ?
             <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
             :
             <>
-                {
-                    from ?
+                {from ?
                     <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`${from}`, { state : {artist: artist} })}/>
-                    :
+                :
                     <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}`, { state : {artist: artist} })}/>
                 }
             </>
@@ -315,10 +315,8 @@ const  PostFullScreenRoute = () => {
             
             <div className={` d-flex-row j-c-center align-items-center w-100 h-100 position-relative`} >
                 <div className={`${(post?.settings?.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} >
-                {post?.media?.length >= 0 ?
+                {post?.media?.length >= 0 &&
                     <SwipeCarouselFull images={post.media} text={post.text} />
-                        :
-                    null
                 }                   
                 </div>
                 {!hasUserSubscribed && !pathname.includes('/artist-app/') && post?.settings?.isPrivate &&
