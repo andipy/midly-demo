@@ -114,8 +114,17 @@ const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentR
                 <></>
                 :
                 <div className='d-flex-row comment-actions'>
+                    {/* {
+                        pathname.includes('artist-app') && comment.userType === 'ARTIST' ?
+                        <></>
+                        :
+                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2' onClick={() => {replyUserModeration(); setIsSwiped(false)}}>Segnala</div>
+                    } */}
                     {
                         pathname.includes('artist-app') && comment.userType === 'ARTIST' ?
+                        <></>
+                        :
+                        !pathname.includes('artist-app') && comment.userId === currentFan.id ?
                         <></>
                         :
                         <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2' onClick={() => {replyUserModeration(); setIsSwiped(false)}}>Segnala</div>
