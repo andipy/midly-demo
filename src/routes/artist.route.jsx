@@ -53,7 +53,7 @@ const ArtistRoute = () => {
     }, [state])
     
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
-    const { artists } = useContext(ArtistsContext)
+    const { artists, setArtists } = useContext(ArtistsContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { quizzes } = useContext(LiveQuizContext)
     const [ artistLiveQuizzes, setArtistLiveQuizzes] = useState()
@@ -527,6 +527,19 @@ const ArtistRoute = () => {
         );
     }
 
+    const handleRequestFanclub = () => {
+        setArtists(prevArtists => 
+            prevArtists.map(art => 
+                art.id === artist.id 
+                    ? { 
+                        ...art, 
+                        requestFanclub: [...(art.requestFanclub || []), { userId: currentFan.id }]
+                      } 
+                    : art
+            )
+        )
+    }
+
     return (
         <>
             <NavbarArtistPage artist={artist} onClick={(event) => handleQuizShow(event)} fanclub={fanclub} openSettings={() => openSettings()}  openMessages={openMessages} userSubscribed={hasUserSubscribed} openModalSubscription={() => setModalSubscription(true)} from={from}/>
@@ -552,6 +565,33 @@ const ArtistRoute = () => {
                 <Container className='container'>
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
                         <MessageFlashLeaderboard artist={artist} />
+                    }
+                    {currentFan.hasSpotify && userFollowing && !hasUserSubscribed && pathname.includes('/leaderboard-streaming') &&
+                        <div className='d-flex-row gap-0_5em mt-xs-2'>
+
+                            <Button
+                                style={artist?.requestFanclub?.some(req => req.userId === currentFan.id) 
+                                    ? 'border-grey-small grey-400 bg-black text-white fsize-xs-3 f-w-500 '
+                                    : 'border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
+                                }
+                                label={''}
+                                onClick={handleRequestFanclub}
+                                disabled={artist?.requestFanclub?.some(req => req.userId === currentFan.id)}
+                            >
+                                <div className='d-flex-column j-c-center align-items-center'>
+                                    <span>
+                                    {
+                                        artist?.requestFanclub?.some(req => req.userId === currentFan.id) ? 'Fanclub richiesto' : 'Richiedi fanclub'
+                                    }
+                                    </span>
+                                    <span className='fsize-xs-0 f-w-300'>
+                                        Richiesto da {artist?.requestFanclub ? `${artist?.requestFanclub.length}` : '0' } {artist?.requestFanclub?.length === 1 ? 'persona' : 'persone'}
+                                    </span>
+                                    
+                                </div>
+                            </Button>
+                        </div>
+                        
                     }
 
                     {userFollowing && currentFan.hasSpotify && pathname.includes('/leaderboard-streaming') &&
@@ -581,14 +621,40 @@ const ArtistRoute = () => {
                     </div>
 
                     {currentFan.hasSpotify && !userFollowing && !hasUserSubscribed && pathname.includes('/leaderboard-streaming') &&
+                    <div className='d-flex-row gap-0_5em mt-xs-2'>
                         <Button
                             style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
-                            label='Segui per partecipare alla classifica'
+                            label='Segui'
                             onClick={handleFollow}
                         >
                             <img src={IconFollow} />
                         </ Button>
+                        <Button
+                            style={artist?.requestFanclub?.some(req => req.userId === currentFan.id) 
+                                ? 'border-grey-small grey-400 bg-black text-white fsize-xs-3 f-w-500 '
+                                : 'border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
+                            }
+                            label={''}
+                            onClick={handleRequestFanclub}
+                            disabled={artist?.requestFanclub?.some(req => req.userId === currentFan.id)}
+                        >
+                            <div className='d-flex-column j-c-center align-items-center'>
+                                <span>
+                                {
+                                    artist?.requestFanclub?.some(req => req.userId === currentFan.id) ? 'Fanclub richiesto' : 'Richiedi fanclub'
+                                }
+                                </span>
+                                <span className='fsize-xs-0 f-w-300'>
+                                    Richiesto da {artist?.requestFanclub ? `${artist?.requestFanclub.length}` : '0' } {artist?.requestFanclub?.length === 1 ? 'persona' : 'persone'}
+                                </span>
+                                
+                            </div>
+                        </Button>
+                    </div>
+                        
                     }
+
+                    
 
                     {!currentFan.hasSpotify && pathname.includes('/leaderboard-streaming') &&
                         <CardConnectSpotify onClick={handleSpotifyConnect} />
