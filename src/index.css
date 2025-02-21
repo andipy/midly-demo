@@ -2700,8 +2700,8 @@ nav .container {
   bottom: -2px;
   /* border-radius: 24px 24px 0 0; */
   background-color: var(--color-main-bg);
-  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.6), 0 -12px 12px 0 rgba(0, 0, 0, 0.6);
-}
+/*   box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.6), 0 -12px 12px 0 rgba(0, 0, 0, 0.6);
+ */}
 .app-bar-area-suspended {
   width: 85%;
   height: var(--app-bar-height);

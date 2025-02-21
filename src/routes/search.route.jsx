@@ -148,7 +148,16 @@ const SearchRoute = () => {
                 </div>
                 <div className='mb-xs-8'>
                     <Carousel>
-                        {artistsWithFanclub.map(item => {
+                        {artistsWithFanclub
+                        .sort((a, b) => {
+                            const getPriority = (artist) => 
+                                currentFan.fanclubsSubscribed.some(sub => sub.artistId === artist.id) ? 2 :
+                                currentFan.followedArtists.some(follow => follow.artistId === artist.id) ? 1 : 
+                                0
+                            
+                            return getPriority(a) - getPriority(b)
+                        })
+                        .map(item => {
                             const isFollowed = currentFan.followedArtists.some(
                                 (followed) => followed.artistId === item.id
                             )

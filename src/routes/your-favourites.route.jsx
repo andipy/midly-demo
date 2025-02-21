@@ -255,7 +255,7 @@ const YourFavouritesRoute = () => {
                 {(followedArtists.length > 0 || subscribedArtists.length > 0) &&
                     <section className='mb-xs-10'>
                         <div
-                            className={`position-sticky top-0 z-index-5 w-100vw ml-input-search-center bg-dark pb-xs-4 ${scrolled ? 'pt-xs-4' : ''}`}
+                            className={`position-sticky top-0 z-index-5 w-100vw ml-input-search-center bg-dark pb-xs-4 ${scrolled ? 'pt-xs-4 ' : ''}`}
                             style={{ top: 0 }}
                         >
                             <Container>
