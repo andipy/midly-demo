@@ -12,7 +12,7 @@ const TabFanclub = () => {
                 <p className='fsize-xs-2'>Bacheca</p>
             </div> */}
             
-            <div className={`${pathname.includes('posts') ? 'bg-acid-lime black f-w-600' : 'bg-white black f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('posts')}}> 
+            <div className={`${pathname.includes('posts') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('posts')}}> 
                 <p className='fsize-xs-2'>Post dell'artista</p>
             </div>
         
@@ -20,19 +20,19 @@ const TabFanclub = () => {
                 <p className=' fsize-xs-2 '>Eventi</p>
             </div> */}
 
-            <div className={`${pathname.includes('letters') ? 'bg-acid-lime black f-w-600' : 'bg-white black f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('letters')}}> 
+            <div className={`${pathname.includes('letters') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('letters')}}> 
                 <p className='fsize-xs-2 no-shrink'>Fan messages</p>
             </div>
 
-            <div className={`${pathname.includes('group-chat') ? 'bg-acid-lime black f-w-600' : 'bg-white black f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('group-chat')}}> 
+            <div className={`${pathname.includes('group-chat') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('group-chat')}}> 
                 <p className='fsize-xs-2'>Chat di gruppo</p>
             </div>
 
-            <div className={`${pathname.includes('forum') ? 'bg-acid-lime black f-w-600' : 'bg-white black f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('forum')}}> 
+            <div className={`${pathname.includes('forum') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('forum')}}> 
                 <p className='fsize-xs-2'>Forum</p>
             </div>
 
-            <div className={`${pathname.includes('leaderboard') ? 'bg-acid-lime black f-w-600' : 'bg-white black f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('leaderboard')}}> 
+            <div className={`${pathname.includes('leaderboard') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('leaderboard')}}> 
                 <p className='fsize-xs-2'>Classifica</p>
             </div>     
         </Carousel>
