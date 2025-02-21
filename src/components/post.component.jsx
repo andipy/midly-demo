@@ -97,10 +97,8 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 		<div className='position-relative overflow-hidden d-flex-column j-c-center w-100vw image-wrapper'>
 			<div className={`j-c-center align-items-center position-relative `}>
 				<div className={`${(post.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} onClick={() => focusPost(post.id, 'FULL_SCREEN_POST')}>
-					{post.media.length >= 0 ?
+					{post.media.length >= 0 &&
 						<SwipeCarousel images={post.media} text={post.text} preview={preview} />
-					:
-						null
 					}
 				</div>
 			</div>
@@ -120,12 +118,9 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 		</div>
 		
 		<Container>
-
 			{!post.settings.isPrivate && !pathname.includes('/artist-app/') &&
 				<p className='fsize-xs-2 grey-200 mb-xs-2 gold mt-xs-2'>Contenuto gratuito</p>
 			}
-
-			
 
 			{(!post.settings.isPrivate || (post.settings.isPrivate && hasUserSubscribed) || pathname.includes('/artist-app/')) ?
 				<div className='w-100  mb-xs-4'>
@@ -290,8 +285,6 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 					</p>
 				</div>
 			}
-
-			
 		</Container>
 		</>
 	)

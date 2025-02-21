@@ -366,93 +366,95 @@ const  PostFullScreenRoute = () => {
                         </div>
                         }
                     </div>
-                    <div className='d-flex-column j-c-center w-100 position-absolute-x bottom-0 gap-0_5em'>
-                        {!post?.settings?.isPrivate && !hasUserSubscribed && !userFollowing &&
-                            <Button
-                                style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black container'
-                                label='Segui'
-                                onClick={handleFollow}
-                            >
-                                <img src={IconFollow} />
-                            </ Button>
-                        }
-                        {hasUserSubscribed &&
-                            <Button
-                                style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em no-shrink container'
-                                label='Sei abbonato al fanclub'
-                                /* onClick={openSettingsSubscription} */
-                            >
-                                <img className='avatar-20' src={IconOk} />
-                            </Button>
-                        }
-                        {!hasUserSubscribed && userFollowing &&
-                            <Button
-                                style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em no-shrink container'
-                                label='Segui già'
-                                /* onClick={handleFollow} */
-                            >
-                                <img className='avatar-20' src={IconUnfollow} />
-                            </Button>
-                        }
-                        
-                        {post?.link && post?.caption && 
-                            <div className='d-flex-column j-c-center w-100  bg-dark-soft-transp75 pt-xs-4 pb-xs-4 pl-xs-6 pr-xs-6'>
-                                
-                                {post?.caption !== '' &&
-                                    <p className='pre-wrap mb-xs-2 grey-100 f-w-400 fsize-xs-2'>
-                                        {post?.caption.length > 95 ?
-                                        <>
-                                            {showCaption ?
-                                                <>
-                                                    {post?.caption}
-                                                    <span className='lime-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
-                                                </>
+
+                    <div className='bg-dark-soft-transp75 position-absolute-x bottom-0 w-100 pt-xs-4 pb-xs-4'>
+                        <Container style='d-flex-column j-c-center gap-0_5em'>
+                            {!post?.settings?.isPrivate && !hasUserSubscribed && !userFollowing &&
+                                <Button
+                                    style='border-lime bg-black lime-400 fsize-xs-2 w-30 f-w-500 black'
+                                    label='Segui'
+                                    onClick={handleFollow}
+                                >
+                                    <img className='avatar-22' src={IconFollow} />
+                                </ Button>
+                            }
+                            {hasUserSubscribed &&
+                                <Button
+                                    style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em'
+                                    label={`Sei abbonato a ${artist?.artistName}`}
+                                    /* onClick={openSettingsSubscription} */
+                                >
+                                    <img className='avatar-20' src={IconOk} />
+                                </Button>
+                            }
+                            {!hasUserSubscribed && userFollowing &&
+                                <Button
+                                    style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em'
+                                    label='Segui già'
+                                    /* onClick={handleFollow} */
+                                >
+                                    <img className='avatar-20' src={IconUnfollow} />
+                                </Button>
+                            }
+                            
+                            {post?.link && post?.caption && 
+                                <div className='d-flex-column j-c-center w-100'>
+                                    {post?.caption !== '' &&
+                                        <p className='pre-wrap mb-xs-2 grey-100 f-w-400 fsize-xs-2'>
+                                            {post?.caption.length > 95 ?
+                                            <>
+                                                {showCaption ?
+                                                    <>
+                                                        {post?.caption}
+                                                        <span className='lime-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
+                                                    </>
+                                                :
+                                                    <>
+                                                        {post?.caption.slice(0, 95)}...
+                                                        <span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
+                                                    </>
+                                                }
+                                            </>
                                             :
-                                                <>
-                                                    {post?.caption.slice(0, 95)}...
-                                                    <span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
-                                                </>
+                                                post?.caption
+                                            }
+                                        </p>
+                                    }
+                                    
+                                    {post?.link.url !== '' &&
+                                        <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post?.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artistId)}>
+                                            <img className='avatar-20' src={IconLink} />
+                                            <span>{post?.link.name ? post.link.name : 'Apri il link'}</span>
+                                        </Link>
+                                    }
+
+                                    <p className='fsize-xs-1 f-w-100 grey-300 mt-xs-2'>
+                                        {days > 31 ?
+                                            <span>{formatDate()}</span>
+                                        : days > 0 ?
+                                            <span>{days} giorni fa</span>
+                                        : days <= 0 ?
+                                        <>
+                                            {hours <= 0 ?
+                                            <>
+                                                    {minutes <= 0 ?
+                                                        <span>{seconds} secondi fa</span>
+                                                    :
+                                                        <span>{minutes} minuti fa</span>
+                                                    }
+                                            </>
+                                                :
+                                                    <span>{hours} ore fa</span>
                                             }
                                         </>
                                         :
-                                            post?.caption
+                                            <span>{days} giorni fa</span>
                                         }
                                     </p>
-                                }
-                                
-                                {post?.link.url !== '' &&
-                                    <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={post?.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artistId)}>
-                                        <img className='avatar-20' src={IconLink} />
-                                        <span>{post?.link.name ? post.link.name : 'Apri il link'}</span>
-                                    </Link>
-                                }
-
-                                <p className='fsize-xs-1 f-w-100 grey-300 mt-xs-2'>
-                                    {days > 31 ?
-                                        <span>{formatDate()}</span>
-                                    : days > 0 ?
-                                        <span>{days} giorni fa</span>
-                                    : days <= 0 ?
-                                    <>
-                                        {hours <= 0 ?
-                                        <>
-                                                {minutes <= 0 ?
-                                                    <span>{seconds} secondi fa</span>
-                                                :
-                                                    <span>{minutes} minuti fa</span>
-                                                }
-                                        </>
-                                            :
-                                                <span>{hours} ore fa</span>
-                                        }
-                                    </>
-                                    :
-                                        <span>{days} giorni fa</span>
-                                    }
-                                </p>
-                            </div>
-                        
-                    }
+                                </div>
+                            
+                        }
+                        </Container>
                     </div>
                 </>
             }

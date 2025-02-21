@@ -262,7 +262,7 @@ const YourFavouritesRoute = () => {
                                 <TextTitle title={'I miei artisti'} />
                             </Container>
                         </div>
-                        <div id='artists-list' className='d-flex-row j-c-start align-items-center mb-xs-4'>
+                        <div className='mb-xs-6'>
                             <Carousel>
                                 {[...subscribedArtists.map(artist => ({ ...artist, hasUserSubscribed: true })), 
                                 ...followedArtists.map(artist => ({ ...artist, hasUserSubscribed: false }))]

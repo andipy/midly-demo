@@ -78,7 +78,7 @@ const CoverArtistPage = ({ artist, leaderboard, userFollowing, handleFollow, cur
                         {userSubscribed &&
                             <Button
                                 style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em no-shrink'
-                                label='Sei abbonato al fanclub'
+                                label={`Sei abbonato a ${artist?.artistName}`}
                                 onClick={openSettingsSubscription}
                             >
                                 <img className='avatar-20' src={IconOk} />

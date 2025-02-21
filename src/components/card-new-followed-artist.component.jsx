@@ -45,14 +45,14 @@ const CardFollowedArtist = ({ artist, hasUserSubscribed, preview }) => {
     }, [artist, fanclubs])
 
     return (
-        <div className={`d-flex-column gap-0_25em pt-xs-2 pb-xs-2 pl-xs-6 pr-xs-6 position-relative image-wrapper mb-xs-4 ${lastPost ? 'bg-dark-gradient' : 'bg-dark-gradient'}`} onClick={() => navigate(`/artist/${artist?.slug}`, { state : {artist: artist} })}>
+        <div className={`d-flex-column gap-0_25em pt-xs-2 pl-xs-6 pr-xs-6 position-relative image-wrapper mb-xs-4 ${lastPost ? 'bg-dark-gradient' : 'bg-dark-gradient'}`} onClick={() => navigate(`/artist/${artist?.slug}`, { state : {artist: artist} })}>
             {lastPost &&
-                <p className='fsize-xs-2 f-w-500 blue-bright-600 mb-xs-2'>Ultimo post di:</p>
+                <p className='fsize-xs-2 f-w-500 blue-bright-600'>Ultimo post di:</p>
             }
 
-            <div className='d-flex-row j-c-space-between align-items-center w-100'>
+            <div className='d-flex-row j-c-space-between align-items-center w-100 pb-xs-2'>
                 <div className='d-flex-row align-items-center gap-0_5em'>
-                    <img className={`object-fit-cover border-radius-100 ${lastPost ? 'avatar-48' : 'avatar-72'}`} src={artist?.image} />
+                    <img className={`object-fit-cover border-radius-100 ${lastPost ? 'avatar-40' : 'avatar-72'}`} src={artist?.image} />
                     <div className='d-flex-column mb-xs-2'>
                         <h5 className='fsize-xs-4 f-w-500 no-shrink'>{artist?.artistName}</h5>
 
@@ -97,9 +97,9 @@ const CardFollowedArtist = ({ artist, hasUserSubscribed, preview }) => {
                 />
                 </div>
             }
-            {lastPost &&
+            {/* {lastPost &&
                 <div className='position-absolute w-100 h-60 left-0 bottom-0 bg-dark-overlay-header-5 border-bottom-dark-1-0_5'></div>
-            }
+            } */}
         </div>
     )
 }
