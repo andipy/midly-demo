@@ -38,7 +38,7 @@ const UserModerationDeleteRoute = () => {
                         ...fanclub,
                         posts: fanclub.posts.map(post =>
                             post.id === postId
-                                ? { ...post,commentsCount: post.commentsCount-1, comments: post.comments.filter(comment => comment.id !== commentId) }
+                                ? { ...post,commentsCount: post.commentsCount-post.comments.find(comment => comment.id === commentId).comments?.length -1, comments: post.comments.filter(comment => comment.id !== commentId) }
                                 : post
                         ),
                         

@@ -76,7 +76,7 @@ const FanclubManageUsersRoute = () => {
                         ...fanclub,
                         posts: fanclub.posts.map(post =>
                             post.id === reportedComment.postId
-                                ? { ...post,commentsCount: post.commentsCount-1, comments: post.comments.filter(comment => comment.id !== reportedComment.comment.id) }
+                                ? { ...post,commentsCount: post.commentsCount-post.comments.find(comment => comment.id === reportedComment.comment.id).comments?.length -1, comments: post.comments.filter(comment => comment.id !== reportedComment.comment.id) }
                                 : post
                         ),
                         
