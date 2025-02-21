@@ -234,48 +234,45 @@ const HomeRoute = () => {
 			}
 
 			{(() => {
-				if (!fanclubs.length) return null
+				if (!fanclubs.length) return null;
 
-				return fanclubs?.map((f) => {
-					const fanLettersToShow = fanclubs
-						.filter(fanclub => fanclub.id !== 4) // Exclude Sfera Ebbasta fanclub
-						.flatMap(fanclub => fanclub.fanLetters || [])
-						.slice(0, 2)
+				return fanclubs
+					.filter(f => f.id !== 4) // Escludi il fanclub di Sfera Ebbasta
+					.map(f => {
+						const artist = artists?.find(a => a.id === f.artistId)
 
-					const artist = artists?.find(a => a.id === f.artistId)
+						const fanLettersToShow = (f.fanLetters || []).slice(0, 2)
 
-					return fanLettersToShow.length > 0 ?
-						<>
-							<div 
-								className='d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4'
-								onClick={() => navigate(`/artist/${artist?.slug}/letters`, { state: {artist: artist} })}
-							>
-								<p className='fsize-xs-1 f-w-500'>Da</p>
-								<img className='avatar-28 border-radius-100' src={artist?.image} />
-								<p className='fsize-xs-1 f-w-500'>{artist?.artistName} - Fan messages</p>
-							</div>
+						if (fanLettersToShow.length === 0) return null // Se non ci sono lettere, salta
 
-							<div className="d-flex-row j-c-space-between align-items-start w-100 gap-0_5em">
-								<div className="d-flex-column j-c-start align-items-start w-50">
-								{fanLettersToShow?.filter((_, index) => index % 2 === 0).map(post => {
-									const fan = fans?.find(fan => fan?.id === post?.userId)
-									return (
-										<PostFanLetter post={post} fan={fan} /> 
-									)
-								})}
+						return (
+							<div key={f.id}>
+								<div 
+									className='d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4'
+									onClick={() => navigate(`/artist/${artist?.slug}/letters`, { state: { artist } })}
+								>
+									<p className='fsize-xs-1 f-w-500'>Da</p>
+									<img className='avatar-28 border-radius-100' src={artist?.image} />
+									<p className='fsize-xs-1 f-w-500'>{artist?.artistName} - Fan messages</p>
 								</div>
-								<div className="d-flex-column j-c-start align-items-end w-50">
-								{fanLettersToShow?.filter((_, index) => index % 2 !== 0).map(post => {
-									const fan = fans?.find(fan => fan?.id === post?.userId)
-									return (
-										<PostFanLetter post={post} fan={fan} /> 
-									)
-								})}
+
+								<div className="d-flex-row j-c-space-between align-items-start w-100 gap-0_5em">
+									<div className="d-flex-column j-c-start align-items-start w-50">
+										{fanLettersToShow.filter((_, index) => index % 2 === 0).map(post => {
+											const fan = fans?.find(fan => fan?.id === post?.userId)
+											return <PostFanLetter key={post.id} post={post} fan={fan} />
+										})}
+									</div>
+									<div className="d-flex-column j-c-start align-items-end w-50">
+										{fanLettersToShow.filter((_, index) => index % 2 !== 0).map(post => {
+											const fan = fans?.find(fan => fan?.id === post?.userId)
+											return <PostFanLetter key={post.id} post={post} fan={fan} />
+										})}
+									</div>
 								</div>
 							</div>
-						</>
-					: null
-				})
+						)
+					})
 			})()}
 
 			{(() => {
@@ -318,6 +315,7 @@ const HomeRoute = () => {
 				return secondChunk?.map((post, index) => {
 					const artistId = post?.artistId
 					const hasUserSubscribed = currentFan.fanclubsSubscribed.some(sub => sub.artistId === artistId) 
+					const fanclub = fanclubs.find(f => f.artistId === artistId)
 
 					return (
 						<Post
@@ -326,7 +324,7 @@ const HomeRoute = () => {
 							focusPost={(postId, action) => focusPost(postId, action, artistId)}
 							likePost={(postId) => likePost(artistId, postId)}
 							hasUserSubscribed={hasUserSubscribed}
-							handleSubscription={() => setModalSubscription(true)}
+							handleSubscription={() => {setModalSubscription(true);setFanclubInFocus(fanclub);}}
 							artistId={artistId}
 							home={true}
 						/>
@@ -407,8 +405,8 @@ const HomeRoute = () => {
 							likeReply(replyId, commentId, postId, fanclub.artistId)
 							}
 						/>
-						);
-					});
+						)
+					})
 					}
 				})
 				)}

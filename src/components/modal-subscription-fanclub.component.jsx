@@ -26,7 +26,7 @@ const ModalSubscriptionFanclub = ({closeModal, fanclub, handleSubscription}) => 
     }, [isExitingSettings])
     const [artist, setArtist] = useState()
     useEffect(() => {
-        const matchedArtist = artists.find(a => a.id === fanclub.artistId)
+        const matchedArtist = artists.find(a => a.id === fanclub?.artistId)
         if (matchedArtist) {
             setArtist(matchedArtist)
         }
