@@ -599,9 +599,6 @@ const ArtistRoute = () => {
                                         artist?.requestFanclub?.some(req => req.userId === currentFan.id) ? 'Fanclub richiesto' : 'Richiedi fanclub'
                                     }
                                 </span>
-                                <span className='fsize-xs-0 f-w-300'>
-                                    Richiesto da {artist?.requestFanclub ? `${artist?.requestFanclub.length}` : '0' } {artist?.requestFanclub?.length === 1 ? 'persona' : 'persone'}
-                                </span>
                             </div>
                         </Button>
                     </div>
@@ -683,9 +680,6 @@ const ArtistRoute = () => {
                                     {
                                         artist?.requestFanclub?.some(req => req.userId === currentFan.id) ? 'Fanclub richiesto' : 'Richiedi fanclub'
                                     }
-                                </span>
-                                <span className='fsize-xs-0 f-w-300'>
-                                    Richiesto da {artist?.requestFanclub ? `${artist?.requestFanclub.length}` : '0' } {artist?.requestFanclub?.length === 1 ? 'persona' : 'persone'}
                                 </span>
                             </div>
                         </Button>

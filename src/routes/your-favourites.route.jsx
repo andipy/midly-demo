@@ -279,9 +279,20 @@ const YourFavouritesRoute = () => {
                         {subscribedArtists.map(artist =>
                             <CardFollowedArtist artist={artist} key={artist.id} hasUserSubscribed={true} preview={true} />
                         )}
-                        {/* {followedArtists.map(artist =>
-                            <CardFollowedArtist artist={artist} key={artist.id} hasUserSubscribed={false} preview={true} />
-                        )} */}
+                        {followedArtists
+                            .filter(artist => {
+                                const artistFanclub = fanclubs.find(fanclub => fanclub.artistId === artist.id)
+                                return artistFanclub && artistFanclub.posts?.length > 0
+                            })
+                            .map(artist => (
+                                <CardFollowedArtist 
+                                    artist={artist} 
+                                    key={artist.id} 
+                                    hasUserSubscribed={false} 
+                                    preview={true} 
+                                />
+                            ))
+                        }
                     </section>
                 }
 
