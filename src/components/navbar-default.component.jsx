@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Logo from '../images/logo/logo-text-only-white.svg'
 import IconInbox from '../images/icons/icon-inbox-white.svg'
 import Container from '../layout/container.layout'
+import IconThunder from '../images/icons/icon-thunder.svg'
 
 const NavbarDefault = () => {
 
@@ -15,7 +16,7 @@ const NavbarDefault = () => {
 
 
                 <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate('activity')}>
-                    <img className='avatar-32' src={IconInbox} alt='M' />
+                    <img className='avatar-32' src={IconThunder} alt='M' />
                 </div>
             </Container>
         </nav>
