@@ -69,7 +69,33 @@ const FanclubGroupChatRoute = () => {
     const messagesContainerRef = useRef(null)
     const messagesEndRef = useRef(null);
 
+    const colors = [
+        { id: 1, text: 'color-01', icon: 'color-fill-01' },
+        { id: 2, text: 'color-02', icon: 'color-fill-02' },
+        { id: 3, text: 'color-03', icon: 'color-fill-03' },
+        { id: 4, text: 'color-04', icon: 'color-fill-04' },
+        { id: 5, text: 'color-05', icon: 'color-fill-05' },
+    ]
+
+    const [userColors, setUserColors] = useState({})
+
     useEffect(() => {
+        if (fanclub?.messages) {
+            let newUserColors = { ...userColors }
+
+            fanclub.messages.forEach((mess) => {
+                if (!newUserColors[mess.userId]) {
+                    const availableColors = colors.filter(c => !Object.values(newUserColors).includes(c))
+                    const randomColor = availableColors.length > 0 
+                        ? availableColors[Math.floor(Math.random() * availableColors.length)] 
+                        : colors[Math.floor(Math.random() * colors.length)]
+
+                    newUserColors[mess.userId] = randomColor
+                }
+            })
+
+            setUserColors(newUserColors)
+        }
         messagesEndRef.current?.scrollIntoView()
     }, [fanclub?.messages])
 
@@ -83,6 +109,7 @@ const FanclubGroupChatRoute = () => {
                     <MessageChatConcert 
                         message={mess}
                         currentUserId={currentFan?.id}
+                        color={userColors[mess.userId]}
                     />
                 ))
             :
@@ -105,6 +132,7 @@ const FanclubGroupChatRoute = () => {
                     <MessageChatConcert 
                         message={mess}
                         currentUserId={currentArtist?.id}
+                        color={userColors[mess.userId]}
                     />
                 ))
             :

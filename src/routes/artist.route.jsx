@@ -528,7 +528,7 @@ const ArtistRoute = () => {
         );
     } */
 
-    const [isHeartVisible, setIsHeartVisible] = useState(false)
+    /* const [isHeartVisible, setIsHeartVisible] = useState(false)
     const handleRequestFanclub = () => {
         setIsHeartVisible(true)
         setArtists(prevArtists => 
@@ -541,6 +541,19 @@ const ArtistRoute = () => {
         setTimeout(() => {
             setIsHeartVisible(false)
         }, 1000)
+    } */
+
+    const handleRequestFanclub = () => {
+        setArtists(prevArtists => 
+            prevArtists.map(art => 
+                art.id === artist.id 
+                    ? {
+                        ...art, 
+                        requestFanclub: [...(art.requestFanclub || []), { userId: currentFan.id }]
+                        } 
+                    : art
+            )
+        )
     }
 
     return (
@@ -572,28 +585,23 @@ const ArtistRoute = () => {
                     {currentFan.hasSpotify && userFollowing && !hasUserSubscribed && pathname.includes('/leaderboard-streaming') &&
                         <div className='d-flex-row gap-0_5em mt-xs-2'>
                         <Button
-                            style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
+                            style={artist?.requestFanclub?.some(req => req.userId === currentFan.id) 
+                                ? 'border-grey-small grey-400 bg-black text-white fsize-xs-3 f-w-500 '
+                                : 'border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
+                            }
                             label={''}
                             onClick={handleRequestFanclub}
+                            disabled={artist?.requestFanclub?.some(req => req.userId === currentFan.id)}
                         >
                             <div className='d-flex-column j-c-center align-items-center'>
                                 <span>
-                                Richiedi fanclub
+                                    {
+                                        artist?.requestFanclub?.some(req => req.userId === currentFan.id) ? 'Fanclub richiesto' : 'Richiedi fanclub'
+                                    }
                                 </span>
                                 <span className='fsize-xs-0 f-w-300'>
-                                {artist?.requestFanclub ?
-                                    <>
-                                        Richiesto  {artist?.requestFanclub ? `${artist?.requestFanclub}` : '0' } {artist?.requestFanclub === 1 ? 'volta' : 'volte'}
-                                    </>
-                                    :
-                                    <></>
-                                }
+                                    Richiesto da {artist?.requestFanclub ? `${artist?.requestFanclub.length}` : '0' } {artist?.requestFanclub?.length === 1 ? 'persona' : 'persone'}
                                 </span>
-                                {isHeartVisible && (
-                                    <div className="heart-animation avatar-28">
-                                        <img className='avatar-24' src={IconThunder}/>
-                                    </div>
-                                )}
                             </div>
                         </Button>
                     </div>
@@ -635,7 +643,7 @@ const ArtistRoute = () => {
                         >
                             <img src={IconFollow} />
                         </ Button>
-                        <Button
+                        {/* <Button
                             style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
                             label={''}
                             onClick={handleRequestFanclub}
@@ -659,6 +667,26 @@ const ArtistRoute = () => {
                                     </div>
                                 )}
                                 
+                            </div>
+                        </Button> */}
+                        <Button
+                            style={artist?.requestFanclub?.some(req => req.userId === currentFan.id) 
+                                ? 'border-grey-small grey-400 bg-black text-white fsize-xs-3 f-w-500 '
+                                : 'border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
+                            }
+                            label={''}
+                            onClick={handleRequestFanclub}
+                            disabled={artist?.requestFanclub?.some(req => req.userId === currentFan.id)}
+                        >
+                            <div className='d-flex-column j-c-center align-items-center'>
+                                <span>
+                                    {
+                                        artist?.requestFanclub?.some(req => req.userId === currentFan.id) ? 'Fanclub richiesto' : 'Richiedi fanclub'
+                                    }
+                                </span>
+                                <span className='fsize-xs-0 f-w-300'>
+                                    Richiesto da {artist?.requestFanclub ? `${artist?.requestFanclub.length}` : '0' } {artist?.requestFanclub?.length === 1 ? 'persona' : 'persone'}
+                                </span>
                             </div>
                         </Button>
                     </div>

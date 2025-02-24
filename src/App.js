@@ -58,6 +58,7 @@ import FanLetterCreationReviewRoute from './routes/fan-letter-creation-review.ro
 import FanclubGroupChatRoute from './routes/fanclub-group-chat.route'
 import HomeRoute from './routes/home.route'
 import ForumSavedRoute from './routes/forum-saved.route'
+import FanclubActivityRoute from './routes/fanclub-activity.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -139,6 +140,9 @@ const router = createBrowserRouter([
 	},{
 		path: '/your-favourites/:postId',
 		element: <PostFullScreenRoute />,
+	},{
+		path: '/your-favourites/activity',
+		element: <FanclubActivityRoute />,
 	},{
 		path: '/artist/:artistSlug',
 		element: <ArtistRoute />,

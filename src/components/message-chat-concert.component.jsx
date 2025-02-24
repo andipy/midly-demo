@@ -1,5 +1,5 @@
 
-const MessageChatConcert = ({message, currentUserId}) => {
+const MessageChatConcert = ({message, currentUserId, color}) => {
   return (
     <>
     {message?.userId === currentUserId ?
@@ -38,7 +38,7 @@ const MessageChatConcert = ({message, currentUserId}) => {
             />
         : 
             <div className='avatar-28 position-relative'>
-                <div className='d-flex-row j-c-center align-items-center avatar-28 border-radius-100 bg-purple-400'>
+                <div className={`d-flex-row j-c-center align-items-center avatar-28 border-radius-100 ${color?.icon}`}>
                     <h5 className='f-w-500 fsize-xs-6'>
                         {message?.username.charAt(0).toUpperCase()}
                     </h5>
@@ -49,7 +49,7 @@ const MessageChatConcert = ({message, currentUserId}) => {
         <div className="bg-dark-gradient border-radius-08 pt-xs-2 pb-xs-2 pl-xs-4 pr-xs-4 ml-xs-2 mr-xs-20"> 
             <div className="d-flex-row j-c-start align-items-center ">
                 
-                <span className="purple-400 t-align-start">{message.username}</span>
+                <span className={`t-align-start ${color?.text}`}>{message.username}</span>
                 {/* <span className="message-timestamp">{new Date(message.createdAt).toLocaleString()}</span> */}
             </div>
             <p className="t-align-start">{message.content}</p>
