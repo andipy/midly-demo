@@ -279,9 +279,9 @@ const YourFavouritesRoute = () => {
                         {subscribedArtists.map(artist =>
                             <CardFollowedArtist artist={artist} key={artist.id} hasUserSubscribed={true} preview={true} />
                         )}
-                        {followedArtists.map(artist =>
+                        {/* {followedArtists.map(artist =>
                             <CardFollowedArtist artist={artist} key={artist.id} hasUserSubscribed={false} preview={true} />
-                        )}
+                        )} */}
                     </section>
                 }
 
