@@ -666,11 +666,6 @@ export const FanclubsProvider = ({ children }) => {
                     username: 'chiara',
                     auraPoints: 3689,
                 },{
-                    userId: 1,
-                    image: require('../images/pictures/current-fan.jpg'),
-                    username: 'imtheKING',
-                    auraPoints: 0,
-                },{
                     userId: 6,
                     image: require('../images/pictures/ai_03.png'),
                     username: 'Giulietta',
