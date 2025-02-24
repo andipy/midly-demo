@@ -48,9 +48,25 @@ const HomeRoute = () => {
 	const [latestFanLetters, setLatestFanLetters] = useState()
 
 	useEffect(() => {
+
+		const followedArtistIds = currentFan.followedArtists.map(artist => artist.artistId);
+    	const subscribedArtistIds = currentFan.fanclubsSubscribed.map(artist => artist.artistId);
+
+		const excludedArtistIds = new Set([...followedArtistIds, ...subscribedArtistIds]);
+		const latestPostsByArtist = new Map();
+		fanclubs.forEach(fanclub => {
+			if (excludedArtistIds.has(fanclub.artistId) && fanclub.posts?.length > 0) {
+				const latestPost = fanclub.posts.reduce((latest, post) => 
+					new Date(post.createdAt) > new Date(latest.createdAt) ? post : latest
+				, fanclub.posts[0]); // Partiamo dal primo post come riferimento
+
+				latestPostsByArtist.set(fanclub.artistId, latestPost.id);
+			}
+		});
 		const allPosts = fanclubs
 			.filter(fanclub => fanclub.id !== 4) // Exclude Sfera Ebbasta fanclub
-			.flatMap(fanclub => fanclub.posts || []);
+			.flatMap(fanclub => fanclub.posts || [])
+			.filter(post => !latestPostsByArtist.has(post.artistId) || latestPostsByArtist.get(post.artistId) !== post.id)
 		const allTopics = fanclubs
 			.filter(fanclub => fanclub.id !== 4) // Exclude Sfera Ebbasta fanclub
 			.flatMap((fanclub) => fanclub.forum || [])
@@ -182,6 +198,7 @@ const HomeRoute = () => {
 			repliedUsername: replied
 		}))
 	}
+	
 	const submitComment = (e) => {
 		e.preventDefault()
 		handleSubmitComment(currentComment, postInFocus, commentInFocus, fanclubInFocus?.artistId)
@@ -200,6 +217,42 @@ const HomeRoute = () => {
 		setCommentInFocus(null)
 		setReplyingUser(null)
 	}
+	/* const [followedArtists, setFollowedArtists] = useState([])
+    const [subscribedArtists, setSubscribedArtists] = useState([])
+	
+	const fetchFollowedArtists = () => {
+        const followedArtistIds = currentFan.followedArtists.map(artist => artist.artistId)
+        const followedArtists = artists
+            .filter(artist => followedArtistIds.includes(artist.id))
+    
+        // Remove artists that are also in the subscribedArtists list
+        const uniqueFollowedArtists = followedArtists.filter(artist => 
+            !subscribedArtists.some(subscribed => subscribed.id === artist.id)
+        )
+        
+        setFollowedArtists(uniqueFollowedArtists)
+    }
+    
+    const fetchSubscribedArtists = () => {
+        const subscribedArtistIds = currentFan.fanclubsSubscribed.map(artist => artist.artistId)
+        const subscribedArtists = artists
+            .filter(artist => subscribedArtistIds.includes(artist.id))
+    
+        // Remove artists that are also in the followedArtists list
+        const uniqueSubscribedArtists = subscribedArtists.filter(artist => 
+            !followedArtists.some(followed => followed.id === artist.id)
+        )
+        
+        setSubscribedArtists(uniqueSubscribedArtists)
+    } 
+
+	useEffect(() => {
+        fetchSubscribedArtists()
+    }, [artists, currentFan])
+
+    useEffect(() => {
+        fetchFollowedArtists()
+    }, [artists, currentFan, subscribedArtists]) */
 
 	const [modalSubscription, setModalSubscription] = useState(false)
 
