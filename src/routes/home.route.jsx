@@ -26,6 +26,8 @@ import useLikeTopic from "../utils/handle-like-topic.hook"
 import useSaveTopic from "../utils/handle-save-topic.hook"
 import ModalSubscriptionFanclub from "../components/modal-subscription-fanclub.component"
 import FullPageCenter from "../layout/full-page-center.layout"
+import ModalLayout from "../layout/modal.layout"
+import LikeUser from "../components/like-user.component"
 const HomeRoute = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
@@ -39,7 +41,8 @@ const HomeRoute = () => {
 	const { likeComment } = useLikeComment()
 	const { likeReply} = useLikeReply()
 	const { share, messageSnackbar, triggered } = useShare()
-	const { modalOpen, openModal, closeModal } = useModal()
+    const { modalOpen: modal1Open, openModal: openModal1, closeModal: closeModal1 } = useModal()
+	const { modalOpen: modal2Open, openModal: openModal2, closeModal: closeModal2 } = useModal()
 	const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
 	const {likeTopic} = useLikeTopic()
 	const { saveTopic} = useSaveTopic()
@@ -49,20 +52,20 @@ const HomeRoute = () => {
 
 	useEffect(() => {
 
-		const followedArtistIds = currentFan.followedArtists.map(artist => artist.artistId);
-    	const subscribedArtistIds = currentFan.fanclubsSubscribed.map(artist => artist.artistId);
+		const followedArtistIds = currentFan.followedArtists.map(artist => artist.artistId)
+    	const subscribedArtistIds = currentFan.fanclubsSubscribed.map(artist => artist.artistId)
 
-		const excludedArtistIds = new Set([...followedArtistIds, ...subscribedArtistIds]);
-		const latestPostsByArtist = new Map();
+		const excludedArtistIds = new Set([...followedArtistIds, ...subscribedArtistIds])
+		const latestPostsByArtist = new Map()
 		fanclubs.forEach(fanclub => {
 			if (excludedArtistIds.has(fanclub.artistId) && fanclub.posts?.length > 0) {
 				const latestPost = fanclub.posts.reduce((latest, post) => 
 					new Date(post.createdAt) > new Date(latest.createdAt) ? post : latest
-				, fanclub.posts[0]); // Partiamo dal primo post come riferimento
+				, fanclub.posts[0])
 
-				latestPostsByArtist.set(fanclub.artistId, latestPost.id);
+				latestPostsByArtist.set(fanclub.artistId, latestPost.id)
 			}
-		});
+		})
 		const allPosts = fanclubs
 			.filter(fanclub => fanclub.id !== 4) // Exclude Sfera Ebbasta fanclub
 			.flatMap(fanclub => fanclub.posts || [])
@@ -119,6 +122,9 @@ const HomeRoute = () => {
 		if ( postInFocus.action === 'OPEN_COMMENTS' ) {
 			openComments()
 		}
+		if ( postInFocus.action === 'OPEN_LIKES' ) {
+			openLikes()
+		}
 		if ( postInFocus.action === 'SHARE_POST' ) {
 			handleShare(postInFocus.post)
 		}
@@ -142,10 +148,13 @@ const HomeRoute = () => {
 	}
 
 	const openComments = (id) => {
-		openModal()
+		openModal1()
+	}
+	const openLikes = (id) => {
+		openModal2()
 	}
 	const closeComments = () => {
-		closeModal()
+		closeModal1()
 		setPostInFocus({
 			id: undefined,
 			action: undefined,
@@ -153,6 +162,15 @@ const HomeRoute = () => {
 		})
 		setFanclubInFocus(undefined)
 		setCommentInFocus(null)
+	}
+	const closeLikes = () => {
+		closeModal2()
+		setPostInFocus({
+			id: undefined,
+			action: undefined,
+			post: undefined
+		})
+		setFanclubInFocus(undefined)
 	}
 	const [currentComment, setCurrentComment] = useState({
 		id: undefined,
@@ -418,9 +436,9 @@ const HomeRoute = () => {
 			})()}
 		</Container>
 		{
-			modalOpen &&
+			modal1Open &&
 			<CommentsModalTextbarLayout
-				modalOpen={modalOpen}
+				modalOpen={modal1Open}
 				closeModal={closeComments}
 				handleCurrentComment={handleCurrentComment}
 				handleSubmitComment={submitComment}
@@ -467,7 +485,50 @@ const HomeRoute = () => {
 
 			</CommentsModalTextbarLayout>
 		}
-		
+		{modal2Open &&
+		<ModalLayout
+			modalOpen={modal2Open}
+			closeModal={closeLikes}
+		>
+			<NavbarCommentsModal title={'Likes'} closeModal={closeLikes}/>
+			<Container style={'pb-xs-12 pb-sm-2'}>
+				{fanclubs
+					.filter(fanclub => fanclub.artistId === fanclubInFocus?.artistId) // Filtra il fanclub giusto
+					.map(fanclub => 
+					fanclub?.posts.map(post => {
+						if (post.id === postInFocus.id) {
+							return post.likes.map(like => {
+								let user
+								if (like.userId === fanclub?.artistId) {
+									const artistFound = artists.find(artist => artist?.id === like.userId);
+									if (artistFound) {
+										user = {
+											id: artistFound.id,
+											username: artistFound.artistName,
+											image: artistFound.image
+										};
+									}
+								} else {
+									const fanFound = fans.find(fan => fan?.id === like.userId);
+									if (fanFound) {
+										user = {
+											id: fanFound.id,
+											username: fanFound.username,
+											image: fanFound.image
+										};
+									}
+								}
+	
+								return (
+									<LikeUser user={user}/>
+								)
+							})
+						}
+					})
+					)}
+			</Container>
+		</ModalLayout>
+		}
 		<Appbar />
 		{
 			modalSubscription &&

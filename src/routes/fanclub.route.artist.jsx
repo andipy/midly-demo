@@ -2,6 +2,8 @@ import { useContext, useEffect, useState, useRef } from 'react'
 import { useNavigate, Outlet, Link } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
+import { FansContext } from '../contexts/fans.context'
+import { ArtistsContext } from '../contexts/artists.context'
 
 import Container from '../layout/container.layout'
 import FullPageCenter from '../layout/full-page-center.layout'
@@ -27,6 +29,8 @@ import useModal from '../utils/handle-modal.hooks'
 import useLikePost from '../utils/handle-like-post.hook'
 import useShare from '../utils/handle-share.hook'
 import TabFanclub from '../components/tab-fanclub.component'
+import ModalLayout from '../layout/modal.layout'
+import LikeUser from '../components/like-user.component'
 const FanclubRoute = () => {
 
     //utils
@@ -35,10 +39,13 @@ const FanclubRoute = () => {
 
     const { currentArtist } = useContext(CurrentArtistContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
+    const {fans} = useContext(FansContext)
+    const {artists} = useContext(ArtistsContext)
 
     const fanclub = useFanclub(currentArtist?.id)
 
-    const { modalOpen, openModal, closeModal } = useModal()
+    const { modalOpen: modal1Open, openModal: openModal1, closeModal: closeModal1 } = useModal()
+    const { modalOpen: modal2Open, openModal: openModal2, closeModal: closeModal2 } = useModal()
     const { handleSubmitComment } = useSubmitComment()
     const { likeComment } = useLikeComment()
     const { likeReply } = useLikeReply()
@@ -72,6 +79,9 @@ const FanclubRoute = () => {
             if ( postInFocus.action === 'OPEN_COMMENTS' ) {
                 openComments(postInFocus.id)
             }
+            if ( postInFocus.action === 'OPEN_LIKES' ) {
+                openLikes(postInFocus.id)
+            }
             if ( postInFocus.action === 'OPEN_SETTINGS' ) {
                 navigate(`/artist-app/fanclub/edit-post/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
             }
@@ -89,16 +99,27 @@ const FanclubRoute = () => {
     //Comment section
     
     const openComments = (id) => {
-        openModal()
+        openModal1()
+    }
+    const openLikes = (id) => {
+        openModal2()
     }
     const closeComments = () => {
-        closeModal()
+        closeModal1()
         setPostInFocus({
             id: undefined,
             action: undefined,
             post: undefined
         })
         setCommentInFocus(null)
+    }
+    const closeLikes = () => {
+        closeModal2()
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
     }
 
     const [commentInFocus, setCommentInFocus] = useState(null)
@@ -473,10 +494,10 @@ const FanclubRoute = () => {
                 </FullPageCenter>
             }
             {
-                modalOpen &&
+                modal1Open &&
                 <CommentsModalTextbarLayout
-                    modalOpen={modalOpen}
-                    closeModal={closeModal}
+                    modalOpen={modal1Open}
+                    closeModal={closeComments}
                     handleCurrentComment={handleCurrentComment}
                     handleSubmitComment={submitComment}
                     currentComment={currentComment}
@@ -510,6 +531,47 @@ const FanclubRoute = () => {
                     </Container>
                 </CommentsModalTextbarLayout>
             }
+            {modal2Open &&
+            <ModalLayout
+                modalOpen={modal2Open}
+                closeModal={closeLikes}
+            >
+                <NavbarCommentsModal title={'Likes'} closeModal={closeLikes}/>
+                <Container style={'pb-xs-12 pb-sm-2'}>
+                    {fanclub?.posts.map(post => {
+                        if ( post.id ===  postInFocus.id) {
+                            return post.likes.map(like => {
+                                let user
+                                if (like.userId === fanclub?.artistId) {
+                                    const artistFound = artists.find(artist => artist?.id === like.userId);
+                                    if (artistFound) {
+                                        user = {
+                                            id: artistFound.id,
+                                            username: artistFound.artistName,
+                                            image: artistFound.image
+                                        };
+                                    }
+                                } else {
+                                    const fanFound = fans.find(fan => fan?.id === like.userId);
+                                    if (fanFound) {
+                                        user = {
+                                            id: fanFound.id,
+                                            username: fanFound.username,
+                                            image: fanFound.image
+                                        };
+                                    }
+                                }
+
+                                return (
+                                    <LikeUser user={user}/>
+                                )
+                            })
+                        }})
+                    }
+                </Container>
+            </ModalLayout>
+            }
+            
             
 
             <Appbar />

@@ -5,6 +5,7 @@ import { ArtistsContext } from '../contexts/artists.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { LiveQuizContext } from '../contexts/live-quiz.context'
+import { FansContext } from '../contexts/fans.context'
 
 import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
 import useFanclubSubscription from '../utils/get-fanclub-subscription.hook'
@@ -33,10 +34,11 @@ import TextbarComments from '../components/textbar-comments.component'
 import TabFanclub from '../components/tab-fanclub.component'
 import Snackbar from '../components/snackbar.component'
 import CommentsModalTextbarLayout from '../layout/comments-modal-textbar.layout'
-
+import ModalLayout from '../layout/modal.layout'
 import IconFollow from '../images/icons/icon-follow.svg'
 import IconThunder from '../images/icons/icon-thunder.svg'
 import IconUnfollow from '../images/icons/icon-unfollow.svg'
+import LikeUser from '../components/like-user.component'
 
 const ArtistRoute = () => {
 
@@ -58,6 +60,7 @@ const ArtistRoute = () => {
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { quizzes } = useContext(LiveQuizContext)
     const [ artistLiveQuizzes, setArtistLiveQuizzes] = useState()
+    const {fans} = useContext(FansContext)
 
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     
@@ -329,7 +332,8 @@ const ArtistRoute = () => {
     const { likeReply} = useLikeReply()
    /*  const { modalOpen, openModal, closeModal } = useModal() */
     const { share, messageSnackbar, triggered } = useShare()
-    const { modalOpen, openModal, closeModal } = useModal()
+    const { modalOpen: modal1Open, openModal: openModal1, closeModal: closeModal1 } = useModal()
+    const { modalOpen: modal2Open, openModal: openModal2, closeModal: closeModal2 } = useModal()
     
 
     const [postInFocus, setPostInFocus] = useState({
@@ -420,10 +424,21 @@ const ArtistRoute = () => {
         setReplyingUser(null)
     }
     const openComments = (id) => {
-        openModal()
+        openModal1()
+    }
+    const openLikes = (id) => {
+        openModal2()
+    }
+    const closeLikes = (id) => {
+        closeModal2()
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
     }
     const closeComments = () => {
-        closeModal()
+        closeModal1()
         setPostInFocus({
             id: undefined,
             action: undefined,
@@ -432,10 +447,15 @@ const ArtistRoute = () => {
         setCommentInFocus(null)
     }
 
+    
+
     useEffect(() => {
         if ( postInFocus.id ) {
             if ( postInFocus.action === 'OPEN_COMMENTS' ) {
                 openComments()
+            }
+            if ( postInFocus.action === 'OPEN_LIKES' ) {
+                openLikes()
             }
             if ( postInFocus.action === 'OPEN_SETTINGS' ) {
                 navigate(`/artist-app/fanclub/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
@@ -555,6 +575,8 @@ const ArtistRoute = () => {
             )
         )
     }
+
+
 
     return (
         <>
@@ -714,10 +736,10 @@ const ArtistRoute = () => {
 
             {/* MAJOR CHANGES */}
             {
-                modalOpen &&
+                modal1Open &&
             
                 <CommentsModalTextbarLayout
-                    modalOpen={modalOpen}
+                    modalOpen={modal1Open}
                     closeModal={closeComments}
                     handleCurrentComment={handleCurrentComment}
                     handleSubmitComment={submitComment}
@@ -753,6 +775,47 @@ const ArtistRoute = () => {
                     </Container>
 
                 </CommentsModalTextbarLayout>
+            }
+
+            {modal2Open &&
+            <ModalLayout
+                modalOpen={modal2Open}
+                closeModal={closeLikes}
+            >
+                <NavbarCommentsModal title={'Likes'} closeModal={closeLikes}/>
+                <Container style={'pb-xs-12 pb-sm-2'}>
+                    {fanclub?.posts.map(post => {
+                        if ( post.id ===  postInFocus.id) {
+                            return post.likes.map(like => {
+                                let user
+                                if (like.userId === fanclub?.artistId) {
+                                    const artistFound = artists.find(artist => artist?.id === like.userId);
+                                    if (artistFound) {
+                                        user = {
+                                            id: artistFound.id,
+                                            username: artistFound.artistName,
+                                            image: artistFound.image
+                                        };
+                                    }
+                                } else {
+                                    const fanFound = fans.find(fan => fan?.id === like.userId);
+                                    if (fanFound) {
+                                        user = {
+                                            id: fanFound.id,
+                                            username: fanFound.username,
+                                            image: fanFound.image
+                                        };
+                                    }
+                                }
+
+                                return (
+                                    <LikeUser user={user}/>
+                                )
+                            })
+                        }})
+                    }
+                </Container>
+            </ModalLayout>
             }
             
 

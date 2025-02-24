@@ -126,48 +126,67 @@ const Post = ({ artistId, post, hasUserSubscribed, handleSubscription, focusPost
 				<div className='w-100  mb-xs-4'>
 					<div className='d-flex-row w-100 j-c-space-between align-items-center mt-xs-2 mb-xs-1'>
 						<div className='d-flex-row align-items-center gap-1em'>
-							<div className='d-flex-row align-items-center gap-0_25em'
-								onClick={() => {
-									if ( !pathname.includes('/artist-app') ) {
-										if (hasUserSubscribed || !post.settings.isPrivate) {
+							<div className='d-flex-row align-items-center gap-0_25em'>
+
+								<div 
+									className='d-flex-row avatar-28 j-c-center align-items-center'
+									onClick={() => {
+										if ( !pathname.includes('/artist-app') ) {
+											if (hasUserSubscribed || !post.settings.isPrivate) {
+												likePost(post.id)
+											}
+										} else {
 											likePost(post.id)
 										}
-									} else {
-										likePost(post.id)
-									}
-									
-								}}>
-								{!pathname.includes('/artist-app') ? (
-									isLiked ? (
-										<img
-											className="avatar-28  border-radius-04"
-											src={IconThunderActive}
-											alt="Liked"
-										/>
+										
+									}}
+								>
+									{!pathname.includes('/artist-app') ? (
+										isLiked ? (
+											<img
+												className="avatar-28  border-radius-04"
+												src={IconThunderActive}
+												alt="Liked"
+											/>
+										) : (
+											<img
+												className="avatar-28  border-radius-04"
+												src={IconThunder}
+												alt="Not Liked"
+											/>
+										)
 									) : (
-										<img
-											className="avatar-28  border-radius-04"
-											src={IconThunder}
-											alt="Not Liked"
-										/>
-									)
-								) : (
-									isLiked ? (
-										<img
-											className="avatar-28  border-radius-04"
-											src={IconThunderActive}
-											alt="Liked"
-										/>
-									) : (
-										<img
-											className="avatar-28  border-radius-04"
-											src={IconThunder}
-											alt="Not Liked"
-										/>
-									)
-								)}
+										isLiked ? (
+											<img
+												className="avatar-28  border-radius-04"
+												src={IconThunderActive}
+												alt="Liked"
+											/>
+										) : (
+											<img
+												className="avatar-28  border-radius-04"
+												src={IconThunder}
+												alt="Not Liked"
+											/>
+										)
+									)}
+								</div>
 									
-								<p className='fsize-xs-1'>{post.likes.length}</p>
+								<p 
+									className='fsize-xs-1'
+									onClick={() => {
+										if ( !pathname.includes('/artist-app') ) {
+											if (hasUserSubscribed || !post.settings.isPrivate) {
+												focusPost(post.id, 'OPEN_LIKES')
+											}
+										} else {
+											focusPost(post.id, 'OPEN_LIKES')
+										}
+										
+									}}
+								>
+									{post.likes.length}
+								</p>
 							</div>
 
 							<div 
