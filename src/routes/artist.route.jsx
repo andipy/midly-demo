@@ -601,7 +601,7 @@ const ArtistRoute = () => {
             
             <article className='position-sticky top-navbar z-index-999 bg-dark pb-xs-2'>
                 <Container className='container'>
-                    {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
+                    {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && !pathname.includes('sfera-ebbasta') &&
                         <MessageFlashLeaderboard artist={artist} />
                     }
                     {currentFan.hasSpotify && userFollowing && !hasUserSubscribed && pathname.includes('/leaderboard-streaming') &&
@@ -840,7 +840,7 @@ const ArtistRoute = () => {
                 />
             } */}
 
-            {(artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING')  ?
+            {((artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING') && !pathname.includes('sfera-ebbasta')) ?
                 <MessageFlashLeaderboardModal
                     artist={artist}
                     modalOpen={modalOpenFlash}
