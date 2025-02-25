@@ -81,11 +81,11 @@ a {
 }
 
 .comment-container.swiped .comment-content {
-  margin-left: -160px;
+  margin-left: -161px;
 }
 
 .comment-container.swiped-fan .comment-content {
-  margin-left: -76px;
+  margin-left: -80px;
 }
 
 .comment-actions {

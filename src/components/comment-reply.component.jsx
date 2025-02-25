@@ -127,16 +127,16 @@ const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentR
                         !pathname.includes('artist-app') && comment.userId === currentFan.id ?
                         <></>
                         :
-                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2' onClick={() => {replyUserModeration(); setIsSwiped(false)}}>Segnala</div>
+                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2 w-80px' onClick={() => {replyUserModeration(); setIsSwiped(false)}}>Segnala</div>
                     }
                     {
                         pathname.includes('artist-app') &&
-                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8' onClick={() => {deleteReply(); setIsSwiped(false)}}>Elimina</div>
+                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 w-80px' onClick={() => {deleteReply(); setIsSwiped(false)}}>Elimina</div>
 
                     }
                     {
                         !pathname.includes('artist-app') && comment?.userId === currentFan.id &&
-                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8' onClick={() => {deleteReply(); setIsSwiped(false)}}>Elimina</div>
+                        <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 w-80px' onClick={() => {deleteReply(); setIsSwiped(false)}}>Elimina</div>
 
                     }
                 </div>

@@ -59,7 +59,7 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
     return (
         <div className={`d-flex-column mb-xs-6`}>
             <div 
-                className={`d-flex-row j-c-start gap-0_5em mb-xs-3 comment-container overflow-x w-100 ${isSwiped && pathname.includes('artist-app') ? "swiped" : "swiped-off"} ${isSwiped && !pathname.includes('artist-app') ? "swiped-fan" : "swiped-off"} ${isSwiped && !pathname.includes('artist-app') && comment.userId === currentFan.id ? "swiped" : "swiped-off"} ${isSwiped && pathname.includes('artist-app') && comment.userType === 'ARTIST' ? "swiped-fan" : "swiped-off"}`} 
+                className={`d-flex-row j-c-start gap-0_5em mb-xs-3 comment-container overflow-x w-100 ${isSwiped && pathname.includes('artist-app') ? "swiped" : "swiped-off"} ${isSwiped && !pathname.includes('artist-app') ? "swiped-fan" : "swiped-off"} ${isSwiped && !pathname.includes('artist-app') && comment.userId === currentFan.id ? "swiped-fan" : "swiped-off"} ${isSwiped && pathname.includes('artist-app') && comment.userType === 'ARTIST' ? "swiped-fan" : "swiped-off"}`} 
                 key={comment.id}
                 onTouchStart={handleTouchStart} 
                 onTouchMove={handleTouchMove}
@@ -119,16 +119,16 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
                             !pathname.includes('artist-app') && comment.userId === currentFan.id ?
                             <></>
                             :
-                            <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2' onClick={() => {commentUserModeration(); setIsSwiped(false)}}>Segnala</div>
+                            <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2 w-80px' onClick={() => {commentUserModeration(); setIsSwiped(false)}}>Segnala</div>
                         }
                         {
                             pathname.includes('artist-app') &&
-                            <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2' onClick={() => {deleteComment(); setIsSwiped(false)}}>Elimina</div>
+                            <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2 w-80px' onClick={() => {deleteComment(); setIsSwiped(false)}}>Elimina</div>
 
                         }
                         {
                             !pathname.includes('artist-app') && comment?.userId === currentFan.id &&
-                            <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2' onClick={() => {deleteComment(); setIsSwiped(false)}}>Elimina</div>
+                            <div className='bg-red-400 d-flex-row j-c-center align-items-center pr-xs-8 pl-xs-8 mr-xs-2 w-80px' onClick={() => {deleteComment(); setIsSwiped(false)}}>Elimina</div>
 
                         }
                     </div>
