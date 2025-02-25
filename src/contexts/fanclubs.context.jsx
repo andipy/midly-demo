@@ -97,10 +97,304 @@ export const FanclubsProvider = ({ children }) => {
                 },
             ],
             concerts: [],
-            forum: [],
+            forum: [
+                {
+                    id: 2,
+                    artistId: 'a3p8',
+                    userImage: require('../images/pictures/thasup.jpg'),
+                    userName: 'thasup',
+                    publisher: {
+                        id: 'a3p8',
+                        type: 'ARTIST'
+                    },
+                    cover: undefined,
+                    title: 'Secondo voi qual è il futuro della musica urban?',
+                    description: 'Quali suoni diventeranno main stream? Per me suoni sempre più sintetici e particolari, ma vedo anche un ritorno degli strumenti classici come il piano. Per voi?',
+                    //hashtags: ['musica', 'futuro', 'gustiMusicali'],
+                    likes: [
+                        {userId: 1},
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                    ],
+                    comments: [
+                        {
+                            comment: 'Bella domanda, secondo me un ritorno alle origini, suoni semplici, strumenti classici e poi.... boom, suoni devastanti nel mezzo',
+                            comments: [],
+                            createdAt: '2025-01-27',
+                            id: 1,
+                            likes: [],
+                            repliedUsername: undefined,
+                            userId: 1,
+                            userImage: require('../images/pictures/ai_01.png'),
+                            userType: 'FAN',
+                            username: 'chiara'
+                        }
+                    ],
+                    saved: [],
+                    weight: 10,
+                    commentsCount:1,
+                    createdAt: '2025-01-24'
+
+                },
+                {
+                    id: 1,
+                    artistId: "a3p8",
+                    userImage: require('../images/pictures/ai_01.png'),
+                    userName: 'chiara',
+                    publisher: {
+                        id: 1,
+                        type: 'FAN'
+                    },
+                    cover: require('../images/pictures/sferaebbasta-topic-image.jpg'),
+                    title: 'Foto del live al Forum?',
+                    description: 'Qualcuno ha fatto qualche foto al live di sabato?',
+                    //hashtags: ['foto', 'live', 'forum'],
+                    likes: [
+                        {userId: 1},
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                    ],
+                    comments: [],
+                    saved: [],
+                    weight: 10,
+                    commentsCount:0,
+                    createdAt: '2025-01-24'
+
+                }
+            ],
             leaderboard: [],
-            fanLetters: [],
-            messages:[]
+            fanLetters: [
+                {
+                    id: 1,
+                    userId: 1,
+                    media: 
+                    {
+                        url: require('../images/pictures/thasup-letter-1.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Numero uno',
+                    mode: 'PUBLISHED'
+                },
+                {
+                    id: 2,
+                    userId: 5,
+                    media: 
+                    {
+                        url: require('../images/pictures/thasup-letter-2.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Numero uno',
+                    mode: 'PUBLISHED'
+                },
+                {
+                    id: 3,
+                    userId: 3,
+                    media: 
+                    {
+                        url: require('../images/pictures/thasup-letter-3.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Prova di una caption più lunga di modo che su due righe venga troncata e non venga mostrata oltre nella home letters club',
+                    mode: 'PUBLISHED'
+                },
+                {
+                    id: 4,
+                    userId: 6,
+                    media: 
+                    {
+                        url: require('../images/pictures/thasup-letter-4.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Prova video loop muto',
+                    mode: 'PUBLISHED'
+                },
+                {
+                    id: 5,
+                    userId: 1,
+                    media: 
+                    {
+                        url: require('../images/pictures/thasup-letter-5.jpg'),
+                        type: 'IMAGE'
+                    },
+                    caption: 'Numero uno',
+                    mode: 'PUBLISHED'
+                }
+            ],
+            messages:[
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 1,
+                    createdAt: "2025-02-05T12:22:23.542Z",
+                    content: 'Raga, ma secondo voi quando esce il nuovo album? Sto in astinenza da thasup vibes 😭'
+                },
+                {
+                    userType: 'fan',
+                    userId: 2,
+                    userImage: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    id: 2,
+                    createdAt: "2025-02-05T13:22:23.542Z",
+                    content: 'Dicono entro quest anno, ma nulla di confermato… spero che lasci qualche indizio presto!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 3,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Io sto ancora in loop con c@ra++ere s?ec!@le 🔥 Quell’album è stato una rivoluzione.'
+                },
+                {
+                    userType: 'fan',
+                    userId: 6,
+                    userImage: require('../images/pictures/ai_03.png'),
+                    username: 'giulietta',
+                    id: 4,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Frà, ma la voce robotica? Mi fa impazzire, è come un viaggio spaziale ogni volta!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 7,
+                    userImage: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    id: 5,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'La vera domanda è: con chi farà il prossimo feat? Sogno una collab con Salmo o Lazza.'
+                },
+                {
+                    userType: 'fan',
+                    userId: 2,
+                    userImage: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    id: 6,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Io dico che potrebbe fare qualcosa con Drillionaire… o magari un pezzo più chill tipo con Ariete?'
+                },
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 7,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Vero, con Ariete spaccherebbe. Ma voglio anche un altra bomba come okk@pp@!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 8,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Secondo voi cambierà sound nel prossimo album o resterà fedele al suo stile glitchato?'
+                },
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 9,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Dai, sicuro sperimenta ancora! Thasup non si ripete mai uguale.'
+                },
+                {
+                    userType: 'fan',
+                    userId: 6,
+                    userImage: require('../images/pictures/ai_03.png'),
+                    username: 'giulietta',
+                    id: 10,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: ' Raga, ma voi riuscite a capire al primo ascolto i testi o anche voi andate su Genius? 😂'
+                },
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 11,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Ahahah, io certe barre le capisco dopo settimane! Ma è il bello di thasup, lascia sempre dettagli nascosti.'
+                },
+                {
+                    userType: 'fan',
+                    userId: 2,
+                    userImage: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    id: 12,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Ho visto su Reddit che alcuni pensano che il prossimo album sarà un concept tipo cyberpunk… che ne dite?'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 13,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Sarebbe pazzesco! Già immagino il video tutto in CGI con lui in versione avatar 3D.'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 14,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'E se tornasse con una nuova estetica? Tipo più dark, più minimal…'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 15,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'O magari va full anime-style, tipo thasup in Tokyo'
+                },
+                {
+                    userType: 'fan',
+                    userId: 6,
+                    userImage: require('../images/pictures/ai_03.png'),
+                    username: 'giulietta',
+                    id: 16,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'L’importante è che non smetta mai con quei beat che ti mandano in un’altra dimensione.'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 17,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'A proposito, voi usate mai le sue basi per freestyle? Alcuni sono perfetti per allenarsi.'
+                },
+                {
+                    userType: 'fan',
+                    userId: 7,
+                    userImage: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    id: 18,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Io sì! E a volte provo a ricreare i suoi suoni, ma è impossibile… ha un tocco troppo unico.'
+                },
+                {
+                    userType: 'fan',
+                    userId: 8,
+                    userImage: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    id: 19,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Concordo. Comunque, se annuncia qualcosa di nuovo, SPAMMATEMI SUBITO!'
+                },
+            ]
         },{
             id: 4,
             artistId: 'a2p1',
