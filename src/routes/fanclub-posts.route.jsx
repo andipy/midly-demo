@@ -13,6 +13,7 @@ import useFanclub from '../utils/get-fanclub.hooks'
 import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
 import useLikePost from '../utils/handle-like-post.hook'
 import Button from '../components/button.component'
+import useArtist from '../utils/get-artist.hook'
 const FanclubPostsRoute = () => {
     const {artist, focusPost} = useOutletContext()
     const {artists} = useContext(ArtistsContext)
@@ -23,6 +24,7 @@ const FanclubPostsRoute = () => {
 
     const hasUserSubscribed =  useFanclubSubscription(artistF?.id)
     const fanclub = useFanclub(artistF?.id)
+    const artistCurrent = useArtist(artistF?.id)
 
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     const {likePost} = useLikePost()
@@ -57,7 +59,7 @@ const FanclubPostsRoute = () => {
             </div>
         }
 
-        <Container style={'pb-xs-2 mt-xs-4'}>
+<Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' ? 'pb-xs-24' : 'pb-xs-4'} mt-xs-4`}>
             {fanclub?.posts
                 .sort((a, b) => sortPosts(a,b))
                 .map(item => {

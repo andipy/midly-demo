@@ -16,6 +16,7 @@ import useShare from '../utils/handle-share.hook'
 import useLikeTopic from "../utils/handle-like-topic.hook"
 import useSaveTopic from "../utils/handle-save-topic.hook"
 import useFanclubSubscription from "../utils/get-fanclub-subscription.hook"
+import useArtist from "../utils/get-artist.hook"
 const FanclubForumRoute = () => {
     const {artist, handlePopUp} = useOutletContext()
     const navigate = useNavigate()
@@ -26,6 +27,7 @@ const FanclubForumRoute = () => {
 
 
     const fanclub = useFanclub(artistF?.id)
+    const artistCurrent = useArtist(artistF?.id)
 
     const { share, messageSnackbar, triggered } = useShare()
     const {likeTopic} = useLikeTopic()
@@ -89,7 +91,7 @@ const FanclubForumRoute = () => {
                         <img className='' src={IconPlus}/>
                     </div> 
                 :
-                    <div className="bottom-5 right-5 position-fixed z-index-999 d-flex-column j-c-center align-items-center gap-0_5em">
+                    <div className={`${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING')  ?  'bottom-12':'bottom-5'} right-5 position-fixed z-index-999 d-flex-column j-c-center align-items-center gap-0_5em`}>
                         <div className='bg-dark-soft-2 avatar-40 border-radius-100  d-flex-row j-c-center align-items-center' onClick={() => navigate('saved', { state: {artist:artistF, from: location.pathname} })}>
                             <img className='' src={IconSave}/>
                         </div> 
@@ -109,7 +111,7 @@ const FanclubForumRoute = () => {
         </>
     }
     
-    <Container style={'pb-xs-2 mt-xs-4'}>             
+    <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' ? 'pb-xs-24' : 'pb-xs-4'} mt-xs-4`}>             
         {topicWithMaxWeight && (
             <ForumTopic 
                 key={topicWithMaxWeight.id} 

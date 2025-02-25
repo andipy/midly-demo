@@ -12,6 +12,7 @@ import ModalLayout from "../layout/modal.layout"
 import Container from "../layout/container.layout"
 import SpotifyLogo from '../images/icons/icon-spotify.svg'
 import CardConnectSpotify from "../components/card-connect-spotify.component"
+import useArtist from "../utils/get-artist.hook"
 const FanclubLeaderboardRoute = () => {
     /* MAJOR CHANGES */
     const { artist}  = useOutletContext()
@@ -21,6 +22,7 @@ const FanclubLeaderboardRoute = () => {
     let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
     const navigate = useNavigate()
     const fanclub = useFanclub(artistF?.id)
+    const artistCurrent = useArtist(artistF?.id)
 
     //regole
     const storageKey = `rulesViewed_${artistF?.id}`
@@ -207,7 +209,7 @@ const FanclubLeaderboardRoute = () => {
             <ModalRulesAuraboard closeModal={() => closeRules()}/>
         } */}
         {
-            <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' onClick={() => openRules()}>
+            <div className={`${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING')  ?  'bottom-12':'bottom-5'} bg-acid-lime avatar-40 border-radius-100 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center`} onClick={() => openRules()}>
                 <img className='' src={IconInfo}/>
             </div> 
             

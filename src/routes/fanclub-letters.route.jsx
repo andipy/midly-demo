@@ -8,6 +8,7 @@ import PostFanLetter from "../components/post-fan-letter.component"
 import Button from "../components/button.component"
 import IconPlus from '../images/icons/icon-plus-black.svg'
 import useFanclubSubscription from "../utils/get-fanclub-subscription.hook"
+import useArtist from "../utils/get-artist.hook"
 
 const FanclubLettersRoute = () => {
     const {artist, handlePopUp} = useOutletContext()
@@ -18,7 +19,9 @@ const FanclubLettersRoute = () => {
     const hasUserSubscribed = useFanclubSubscription(artistF?.id)
 
     const fanclub = useFanclub(artistF?.id)
+    const artistCurrent = useArtist(artistF?.id)
     const {fans} = useContext(FansContext)
+    
 
     const [posts, setPosts] = useState()
     useEffect(() => {
@@ -67,7 +70,7 @@ const FanclubLettersRoute = () => {
             <>
             {
                 !location?.pathname.includes("/artist-app") &&
-                <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center' 
+                <div className={`bg-acid-lime avatar-40 border-radius-100 ${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING')  ?  'bottom-12':'bottom-5'} right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center`}
                     onClick={() => {
                     if (!hasUserSubscribed) {
                         handlePopUp('POST-LETTER')
@@ -81,7 +84,7 @@ const FanclubLettersRoute = () => {
             }
             </>
         }
-        <Container style={'pb-xs-2 mt-xs-2'}>
+        <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' ? 'pb-xs-24' : 'pb-xs-4'} mt-xs-4`}>
             <div className="d-flex-row j-c-space-between align-items-start w-100 gap-0_5em">
                 <div className="d-flex-column j-c-start align-items-start w-50">
                 {posts?.filter((_, index) => index % 2 === 0).map(post => {
