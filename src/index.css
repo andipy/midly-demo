@@ -1805,6 +1805,9 @@ animation: dot-loader-after 1s infinite linear;
 .bottom-10 {
   bottom: 10%;
 }
+.bottom-11 {
+  bottom: 11%;
+}
 .bottom-12 {
   bottom: 12%;
 }
@@ -3156,6 +3159,9 @@ nav .container {
   }
   .pb-xs-30 {
       padding-bottom: 30%;
+  }
+  .pb-xs-40 {
+    padding-bottom: 40%;
   }
   .pb-xs-65 {
       padding-bottom: 65%;

@@ -102,7 +102,7 @@ const FanclubGroupChatRoute = () => {
   return (
     <>
     {!pathname.includes('/artist-app/') && 
-        <Container style='pt-xs-8 pb-xs-appbar'>
+        <Container style={`${artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-40' : 'pb-xs-24'} mt-xs-4`}>
             <div ref={messagesContainerRef}>
             {fanclub?.messages && fanclub?.messages.length > 0 ?
                 fanclub?.messages.map((mess, index) => (
@@ -162,7 +162,7 @@ const FanclubGroupChatRoute = () => {
     }
     {
         !pathname.includes('/artist-app/') &&
-        <div className='position-fixed bg-dark-soft bottom-0 w-100 z-index-5 border-radius-top-08 shadow-dark-750'>
+        <div className={`${(artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING') && !pathname.includes('sfera-ebbasta') ?  'bottom-12':'bottom-0'} position-fixed bg-dark-soft  w-100 z-index-5 border-radius-top-08 shadow-dark-750`}>
             <Textbar
                 className={'image-wrapper w-100vw'}
                 onClick={() => setChatOpen(true)}

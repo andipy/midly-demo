@@ -85,7 +85,7 @@ const FanclubLeaderboardRoute = () => {
         }
         
         {leaderboard && leaderboard.length > 0 &&
-            <section className='mt-xs-4'>
+            <section className={`${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING') && !location.pathname.includes('sfera-ebbasta') ?  'pb-xs-24':'pb-xs-4'} mt-xs-4`}>
             <div className='mb-xs-4'>
                 <div className='d-flex-row j-c-center'>
                     <div className='d-flex-column align-items-center w-33'>
@@ -209,7 +209,7 @@ const FanclubLeaderboardRoute = () => {
             <ModalRulesAuraboard closeModal={() => closeRules()}/>
         } */}
         {
-            <div className={`${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING')  ?  'bottom-12':'bottom-5'} bg-acid-lime avatar-40 border-radius-100 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center`} onClick={() => openRules()}>
+            <div className={`${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING') && !location.pathname.includes('sfera-ebbasta') ?  'bottom-12':'bottom-5'} bg-acid-lime avatar-40 border-radius-100 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center`} onClick={() => openRules()}>
                 <img className='' src={IconInfo}/>
             </div> 
             

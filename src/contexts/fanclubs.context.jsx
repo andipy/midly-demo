@@ -164,7 +164,49 @@ export const FanclubsProvider = ({ children }) => {
 
                 }
             ],
-            leaderboard: [],
+            leaderboard: [
+                {
+                    userId: 2,
+                    image: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    auraPoints: 3689,
+                },{
+                    userId: 6,
+                    image: require('../images/pictures/ai_03.png'),
+                    username: 'Giulietta',
+                    auraPoints: 2907,
+                },{
+                    userId: 5,
+                    image: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    auraPoints: 1984,
+                },{
+                    userId: 4,
+                    image: require('../images/pictures/ai_05.png'),
+                    username: 'marco_09',
+                    auraPoints: 1888,
+                },{
+                    userId: 9,
+                    image: require('../images/pictures/ai_06.png'),
+                    username: 'francesca.david',
+                    auraPoints: 1467,
+                },{
+                    userId: 8,
+                    image: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    auraPoints: 1107,
+                },{
+                    userId: 3,
+                    image: require('../images/pictures/ai_08.png'),
+                    username: 'bob16',
+                    auraPoints: 467,
+                },{
+                    userId: 7,
+                    image: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    auraPoints: 399,
+                }
+            ],
             fanLetters: [
                 {
                     id: 1,

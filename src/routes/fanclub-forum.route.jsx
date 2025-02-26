@@ -91,7 +91,7 @@ const FanclubForumRoute = () => {
                         <img className='' src={IconPlus}/>
                     </div> 
                 :
-                    <div className={`${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING')  ?  'bottom-12':'bottom-5'} right-5 position-fixed z-index-999 d-flex-column j-c-center align-items-center gap-0_5em`}>
+                    <div className={`${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING')  && !location.pathname.includes('sfera-ebbasta') ?  'bottom-12':'bottom-5'} right-5 position-fixed z-index-999 d-flex-column j-c-center align-items-center gap-0_5em`}>
                         <div className='bg-dark-soft-2 avatar-40 border-radius-100  d-flex-row j-c-center align-items-center' onClick={() => navigate('saved', { state: {artist:artistF, from: location.pathname} })}>
                             <img className='' src={IconSave}/>
                         </div> 
@@ -111,7 +111,7 @@ const FanclubForumRoute = () => {
         </>
     }
     
-    <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' ? 'pb-xs-24' : 'pb-xs-4'} mt-xs-4`}>             
+    <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-24' : 'pb-xs-4'} mt-xs-4`}>             
         {topicWithMaxWeight && (
             <ForumTopic 
                 key={topicWithMaxWeight.id} 
