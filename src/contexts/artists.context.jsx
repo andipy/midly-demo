@@ -23,7 +23,7 @@ export const ArtistsProvider = ({ children }) => {
             artistName: 'thasup',
             image: require('../images/pictures/thasup.jpg'),
             flashLeaderboard: {
-                status: 'PENDING',
+                status: undefined,
             },
             importance: 3,
             highlight: true,

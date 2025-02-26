@@ -70,23 +70,29 @@ const NavbarArtistPage = ({ artist, onClick, quiz, fanclub, openSettings, openMe
                     <div className='bg-dark-soft-transp75 j-c-center align-items-center pt-xs-2 pb-xs-2 pr-xs-2 pl-xs-2 border-radius-1' onClick={onClick}>
                         <h4 className={`fsize-xs-1 f-w-500 ${quiz ? 'white':'lime-400'}`}>Live quiz</h4>
                     </div>
-                    {fanclub ? 
-                        userSubscribed ?
-                        <div className='avatar-32 bg-dark-soft-transp75 pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-1 border-radius-100 d-flex-row j-c-center align-items-center' onClick={openSettings}>
-                            <img className='avatar-32' src={SettingsLogo}/>
-                        </div>
-                        :
-                        <div className='avatar-32 bg-dark-soft-transp75 pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-1 border-radius-100 d-flex-row j-c-center align-items-center' onClick={openModalSubscription}>
-                            <img className='avatar-32' src={SettingsLogo}/>
-                        </div>
-                    :
-                    <></>
+                    {
+                        fanclub?.isActive &&
+                        <>
+                            {fanclub ? 
+                                userSubscribed ?
+                                <div className='avatar-32 bg-dark-soft-transp75 pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-1 border-radius-100 d-flex-row j-c-center align-items-center' onClick={openSettings}>
+                                    <img className='avatar-32' src={SettingsLogo}/>
+                                </div>
+                                :
+                                <div className='avatar-32 bg-dark-soft-transp75 pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-1 border-radius-100 d-flex-row j-c-center align-items-center' onClick={openModalSubscription}>
+                                    <img className='avatar-32' src={SettingsLogo}/>
+                                </div>
+                            :
+                            <></>
+                            }
+                            {fanclub &&  
+                                <div className='avatar-32 bg-dark-soft-transp75 pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-1 border-radius-100 d-flex-row j-c-center align-items-center' onClick={openMessages}>
+                                    <img className='avatar-32' src={IconDm}/>
+                                </div>
+                            }
+                        </>
                     }
-                    {fanclub &&  
-                        <div className='avatar-32 bg-dark-soft-transp75 pt-xs-1 pb-xs-1 pl-xs-1 pr-xs-1 border-radius-100 d-flex-row j-c-center align-items-center' onClick={openMessages}>
-                            <img className='avatar-32' src={IconDm}/>
-                        </div>
-                    }
+                    
                 </div>
 
                 

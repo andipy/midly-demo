@@ -30,9 +30,9 @@ const FanclubFlashLeaderboardStatus = () => {
     const now = new Date()
 
     useEffect(() => {
-        const convAnnounceStartDate = new Date(matchingLeaderboard.announceStartDate)
-        const convRankStartDate = new Date(matchingLeaderboard.rankStartDate)
-        const convRankEndDate = new Date(matchingLeaderboard.rankEndDate)
+        const convAnnounceStartDate = new Date(matchingLeaderboard?.announceStartDate)
+        const convRankStartDate = new Date(matchingLeaderboard?.rankStartDate)
+        const convRankEndDate = new Date(matchingLeaderboard?.rankEndDate)
         const updateLabel = () => {
             if (now > convAnnounceStartDate && now < convRankStartDate) {
                 setTargetDate(matchingLeaderboard.rankStartDate)
@@ -42,7 +42,7 @@ const FanclubFlashLeaderboardStatus = () => {
         }
 
         updateLabel()
-    }, [matchingLeaderboard.announceStartDate, matchingLeaderboard.rankStartDate, matchingLeaderboard.rankEndDate])
+    }, [matchingLeaderboard?.announceStartDate, matchingLeaderboard?.rankStartDate, matchingLeaderboard?.rankEndDate])
 
     useEffect(() => {
         const calculateTimeRemaining = () => {
@@ -65,7 +65,7 @@ const FanclubFlashLeaderboardStatus = () => {
     
     return (
         <>
-            {artist.flashLeaderboard.status === 'PENDING' &&
+            {artist?.flashLeaderboard?.status === 'PENDING' &&
                 <div
                     className={` pb-xs-4 pt-xs-4 pr-xs-4 pl-xs-4  mb-xs-4 mt-xs-4 bg-dark-soft-2 d-flex-column j-c-center align-items-center border-radius-08`}
                 >
@@ -94,7 +94,7 @@ const FanclubFlashLeaderboardStatus = () => {
                 </div>
             }
 
-            {artist.flashLeaderboard.status === 'ONGOING' &&
+            {artist?.flashLeaderboard?.status === 'ONGOING' &&
                 <div className='position-relative pb-xs-6 mb-xs-4 mt-xs-4 bg-dark-soft-2 d-flex-column j-c-center align-items-center border-radius-04 overflow-all-hidden'>
                     <div className='modal-header w-100'>
                         <img
@@ -128,7 +128,7 @@ const FanclubFlashLeaderboardStatus = () => {
                 </div>
             }
 
-            {artist.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
+            {artist?.flashLeaderboard?.status === 'CLOSED_VISIBLE' &&
                 <div className='position-relative pb-xs-6 mb-xs-4 mt-xs-4 bg-dark-soft-2 d-flex-column j-c-center align-items-center border-radius-04 overflow-all-hidden'>
                     <div className='modal-header w-100'>
                         <img
