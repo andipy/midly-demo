@@ -122,7 +122,7 @@ const FanclubGroupChatRoute = () => {
             :
                 <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                     <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Avvia la chat!</p>
+                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Avvia la chat!</p>      
                     </div>
                 </div>
             }
@@ -146,7 +146,7 @@ const FanclubGroupChatRoute = () => {
             <>
                 <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                     <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Avvia la chat!</p>
+                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Avvia la chat!</p>      
                     </div>
                 </div>
             </>

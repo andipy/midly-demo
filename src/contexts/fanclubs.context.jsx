@@ -1821,7 +1821,98 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 1,
+                    createdAt: "2025-02-05T12:22:23.542Z",
+                    content: 'Ragazzi, ma quanto è assurdo Sirio? Lo ascolto in loop da settimane! 🚀🔥'
+                },
+                {
+                    userType: 'fan',
+                    userId: 2,
+                    userImage: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    id: 2,
+                    createdAt: "2025-02-05T13:22:23.542Z",
+                    content: 'Concordo! “Cenere” è una hit immortale! Ogni volta mi prende una carica assurda!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 3,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Ragazzi, ma avete visto che sta lavorando a nuova musica? Ho troppa hype! 😍🎹'
+                },
+                {
+                    userType: 'fan',
+                    userId: 6,
+                    userImage: require('../images/pictures/ai_03.png'),
+                    username: 'giulietta',
+                    id: 4,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Se il prossimo album è anche solo la metà di Re Mida e Sirio, spaccherà tutto! '
+                },
+                {
+                    userType: 'fan',
+                    userId: 7,
+                    userImage: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    id: 5,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'A me fa impazzire il suo modo di mescolare rap e pianoforte, talento puro! 🎹👑'
+                },
+                {
+                    userType: 'fan',
+                    userId: 2,
+                    userImage: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    id: 6,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Esatto! E poi live è una bomba! Qualcuno di voi è andato a un suo concerto?'
+                },
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 7,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Yesss, ero a Milano l’anno scorso! L’energia era pazzesca, e quando ha suonato al piano... brividi!!'
+                },
+                {
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 8,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Ragazzi, se organizziamo un raduno del fanclub? Sarebbe troppo figo conoscerci e magari suonare qualcosa insieme! '
+                },
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 9,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Idea top! Possiamo trovarci e fare un ascolto collettivo quando esce il nuovo album! '
+                },
+                {
+                    userType: 'fan',
+                    userId: 6,
+                    userImage: require('../images/pictures/ai_03.png'),
+                    username: 'giulietta',
+                    id: 10,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: ' Ci sto! Lazza merita tutto il supporto del mondo! Facciamogli sentire la nostra carica! '
+                }
+            ]
         },{
             id: 11,
             artistId: 3,
