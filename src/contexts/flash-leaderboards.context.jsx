@@ -10,7 +10,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
     const [flashLeaderboards, setFlashLeaderboards] = useState([
         {
             id: 1,
-            artistId: 'a3p8',
+            artistId: 'artist2',
             announceMessage: 'Sta per aprire la classifica flash di thasup',
             announceStartDate: '2025-02-25 00:00:00',
             announceEndDate: '2025-03-01 00:00:00',
@@ -98,7 +98,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 2,
-            artistId: 3,
+            artistId: 'artist3',
             announceMessage: 'Sta per aprire la classifica flash di Artie 5ive',
             announceStartDate: '2024-12-12 10:00:00',
             announceEndDate: '2024-12-22 00:00:00',
@@ -186,7 +186,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 3,
-            artistId: 1,
+            artistId: 'artist1',
             announceMessage: 'La CLASSIFICA FLASH si attiverà all 1:30',
             announceStartDate: '2025-02-08 10:00:00',
             announceEndDate: '2025-02-15 00:00:00',
@@ -331,7 +331,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 4,
-            artistId: 5,
+            artistId: 'artist5',
             announceMessage: 'Sta per aprire la classifica flash di Astro',
             announceStartDate: '2024-11-10 13:00:00',
             announceEndDate: '2024-11-13 00:00:00',
@@ -419,7 +419,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 5,
-            artistId: 'a2p1',
+            artistId: 'artist13',
             announceMessage: 'Sta per aprire la classifica flash di Sfera Ebbasta',
             announceStartDate: '2025-02-25 00:00:00',
             announceEndDate: '2025-03-01 00:00:00',

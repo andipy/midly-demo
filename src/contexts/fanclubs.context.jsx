@@ -6,13 +6,125 @@ export const FanclubsProvider = ({ children }) => {
 
     const [fanclubs, setFanclubs] = useState([
         {
+            id: 1,
+            artistId: 'artist1',
+            isActive: false,
+            subscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
+            maxSubscribers: null,
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[
+                {
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 1,
+                    createdAt: "2025-02-05T12:22:23.542Z",
+                    content: 'Ragazzi, ma quanto è assurdo Sirio? Lo ascolto in loop da settimane! 🚀🔥'
+                },{
+                    userType: 'fan',
+                    userId: 2,
+                    userImage: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    id: 2,
+                    createdAt: "2025-02-05T13:22:23.542Z",
+                    content: 'Concordo! “Cenere” è una hit immortale! Ogni volta mi prende una carica assurda!'
+                },{
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 3,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Ragazzi, ma avete visto che sta lavorando a nuova musica? Ho troppa hype! 😍🎹'
+                },{
+                    userType: 'fan',
+                    userId: 6,
+                    userImage: require('../images/pictures/ai_03.png'),
+                    username: 'giulietta',
+                    id: 4,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Se il prossimo album è anche solo la metà di Re Mida e Sirio, spaccherà tutto! '
+                },{
+                    userType: 'fan',
+                    userId: 7,
+                    userImage: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    id: 5,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'A me fa impazzire il suo modo di mescolare rap e pianoforte, talento puro! 🎹👑'
+                },{
+                    userType: 'fan',
+                    userId: 2,
+                    userImage: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    id: 6,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Esatto! E poi live è una bomba! Qualcuno di voi è andato a un suo concerto?'
+                },{
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 7,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Yesss, ero a Milano l’anno scorso! L’energia era pazzesca, e quando ha suonato al piano... brividi!!'
+                },{
+                    userType: 'fan',
+                    userId: 5,
+                    userImage: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    id: 8,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Ragazzi, se organizziamo un raduno del fanclub? Sarebbe troppo figo conoscerci e magari suonare qualcosa insieme! '
+                },{
+                    userType: 'fan',
+                    userId: 1,
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    id: 9,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: 'Idea top! Possiamo trovarci e fare un ascolto collettivo quando esce il nuovo album! '
+                },{
+                    userType: 'fan',
+                    userId: 6,
+                    userImage: require('../images/pictures/ai_03.png'),
+                    username: 'giulietta',
+                    id: 10,
+                    createdAt: "2025-02-05T13:23:23.542Z",
+                    content: ' Ci sto! Lazza merita tutto il supporto del mondo! Facciamogli sentire la nostra carica! '
+                }
+            ]
+        },{
             id: 2,
-            artistId: 'a3p8',
+            artistId: 'artist2',
             isActive: true,
-            subscribers: 0,
+            subscribers: 2386,
             name: 'amici str3tt1',
             description: 'il mio clu3 esclusivo',
-            pricing: '',
+            pricing: 4.99,
             cover: {
                 id: undefined,
                 url: undefined,
@@ -31,7 +143,8 @@ export const FanclubsProvider = ({ children }) => {
             iban: null,
             posts: [
                 {
-                    artistId: 'a3p8',
+                    id: 1,
+                    artistId: 'artist2',
                     caption: 'qualche amico sul nuovo brano...',
                     commentsCount: 2,
                     comments: [
@@ -46,7 +159,7 @@ export const FanclubsProvider = ({ children }) => {
                             likes: [],
                             comments: [
                                 {
-                                    id: 2,
+                                    id: 1,
                                     userId: 6,
                                     userType: "FAN",
                                     userImage: "",
@@ -56,12 +169,11 @@ export const FanclubsProvider = ({ children }) => {
                                     likes: [],
                                     comments: [],
                                     repliedUsername: "utente_03"
-                                  }
+                                }
                             ]
-                          }
+                        }
                     ],
                     createdAt: "2024-12-23T09:22:23.542Z",
-                    id: 1,
                     likes: [
                         {userId: 1},
                         {userId: 2},
@@ -80,7 +192,7 @@ export const FanclubsProvider = ({ children }) => {
                     ],
                     mode: 'PUBLISHED',
                     publisher: {
-                        id: 'a2p1',
+                        id: 'artist2',
                         type: 'ARTIST'
                     },
                     settings: {
@@ -92,19 +204,17 @@ export const FanclubsProvider = ({ children }) => {
                         shareLink: undefined,
                     },
                     text: ''
-                    
-
                 },
             ],
             concerts: [],
             forum: [
                 {
-                    id: 2,
-                    artistId: 'a3p8',
+                    id: 1,
+                    artistId: 'artist2',
                     userImage: require('../images/pictures/thasup.jpg'),
                     userName: 'thasup',
                     publisher: {
-                        id: 'a3p8',
+                        id: 'artist2',
                         type: 'ARTIST'
                     },
                     cover: undefined,
@@ -119,10 +229,10 @@ export const FanclubsProvider = ({ children }) => {
                     ],
                     comments: [
                         {
+                            id: 1,
                             comment: 'Bella domanda, secondo me un ritorno alle origini, suoni semplici, strumenti classici e poi.... boom, suoni devastanti nel mezzo',
                             comments: [],
                             createdAt: '2025-01-27',
-                            id: 1,
                             likes: [],
                             repliedUsername: undefined,
                             userId: 1,
@@ -135,11 +245,9 @@ export const FanclubsProvider = ({ children }) => {
                     weight: 10,
                     commentsCount:1,
                     createdAt: '2025-01-24'
-
-                },
-                {
-                    id: 1,
-                    artistId: "a3p8",
+                },{
+                    id: 2,
+                    artistId: 'artist2',
                     userImage: require('../images/pictures/ai_01.png'),
                     userName: 'chiara',
                     publisher: {
@@ -161,7 +269,6 @@ export const FanclubsProvider = ({ children }) => {
                     weight: 10,
                     commentsCount:0,
                     createdAt: '2025-01-24'
-
                 }
             ],
             leaderboard: [
@@ -266,191 +373,233 @@ export const FanclubsProvider = ({ children }) => {
             ],
             messages:[
                 {
+                    id: 1,
                     userType: 'fan',
                     userId: 1,
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
-                    id: 1,
-                    createdAt: "2025-02-05T12:22:23.542Z",
+                    createdAt: '2025-02-05T12:22:23.542Z',
                     content: 'Raga, ma secondo voi quando esce il nuovo album? Sto in astinenza da thasup vibes 😭'
-                },
-                {
+                },{
+                    id: 2,
                     userType: 'fan',
                     userId: 2,
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
-                    id: 2,
-                    createdAt: "2025-02-05T13:22:23.542Z",
+                    createdAt: '2025-02-05T13:22:23.542Z',
                     content: 'Dicono entro quest anno, ma nulla di confermato… spero che lasci qualche indizio presto!'
-                },
-                {
+                },{
+                    id: 3,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 3,
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: '2025-02-05T13:23:23.542Z',
                     content: 'Io sto ancora in loop con c@ra++ere s?ec!@le 🔥 Quell’album è stato una rivoluzione.'
-                },
-                {
+                },{
+                    id: 4,
                     userType: 'fan',
                     userId: 6,
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
-                    id: 4,
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: '2025-02-05T13:23:23.542Z',
                     content: 'Frà, ma la voce robotica? Mi fa impazzire, è come un viaggio spaziale ogni volta!'
-                },
-                {
+                },{
+                    id: 5,
                     userType: 'fan',
                     userId: 7,
                     userImage: require('../images/pictures/ai_09.png'),
                     username: 'kevin.alfa.il.migliore',
-                    id: 5,
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: '2025-02-05T13:23:23.542Z',
                     content: 'La vera domanda è: con chi farà il prossimo feat? Sogno una collab con Salmo o Lazza.'
-                },
-                {
+                },{
+                    id: 6,
                     userType: 'fan',
                     userId: 2,
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
-                    id: 6,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Io dico che potrebbe fare qualcosa con Drillionaire… o magari un pezzo più chill tipo con Ariete?'
-                },
-                {
+                },{
+                    id: 7,
                     userType: 'fan',
                     userId: 1,
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
-                    id: 7,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Vero, con Ariete spaccherebbe. Ma voglio anche un altra bomba come okk@pp@!'
-                },
-                {
+                },{
+                    id: 8,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 8,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Secondo voi cambierà sound nel prossimo album o resterà fedele al suo stile glitchato?'
-                },
-                {
+                },{
+                    id: 9,
                     userType: 'fan',
                     userId: 1,
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
-                    id: 9,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Dai, sicuro sperimenta ancora! Thasup non si ripete mai uguale.'
-                },
-                {
+                },{
+                    id: 10,
                     userType: 'fan',
                     userId: 6,
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
-                    id: 10,
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: ' Raga, ma voi riuscite a capire al primo ascolto i testi o anche voi andate su Genius? 😂'
-                },
-                {
+                    content: 'Raga, ma voi riuscite a capire al primo ascolto i testi o anche voi andate su Genius? 😂'
+                },{
+                    id: 11,
                     userType: 'fan',
                     userId: 1,
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
-                    id: 11,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Ahahah, io certe barre le capisco dopo settimane! Ma è il bello di thasup, lascia sempre dettagli nascosti.'
-                },
-                {
+                },{
+                    id: 12,
                     userType: 'fan',
                     userId: 2,
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
-                    id: 12,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Ho visto su Reddit che alcuni pensano che il prossimo album sarà un concept tipo cyberpunk… che ne dite?'
-                },
-                {
+                },{
+                    id: 13,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 13,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Sarebbe pazzesco! Già immagino il video tutto in CGI con lui in versione avatar 3D.'
-                },
-                {
+                },{
+                    id: 14,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 14,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'E se tornasse con una nuova estetica? Tipo più dark, più minimal…'
-                },
-                {
+                },{
+                    id: 15,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 15,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'O magari va full anime-style, tipo thasup in Tokyo'
-                },
-                {
+                },{
+                    id: 16,
                     userType: 'fan',
                     userId: 6,
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
-                    id: 16,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'L’importante è che non smetta mai con quei beat che ti mandano in un’altra dimensione.'
-                },
-                {
+                },{
+                    id: 17,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 17,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'A proposito, voi usate mai le sue basi per freestyle? Alcuni sono perfetti per allenarsi.'
-                },
-                {
+                },{
+                    id: 18,
                     userType: 'fan',
                     userId: 7,
                     userImage: require('../images/pictures/ai_09.png'),
                     username: 'kevin.alfa.il.migliore',
-                    id: 18,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Io sì! E a volte provo a ricreare i suoi suoni, ma è impossibile… ha un tocco troppo unico.'
-                },
-                {
+                },{
+                    id: 19,
                     userType: 'fan',
                     userId: 8,
                     userImage: require('../images/pictures/ai_07.png'),
                     username: 'davide00',
-                    id: 19,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Concordo. Comunque, se annuncia qualcosa di nuovo, SPAMMATEMI SUBITO!'
-                },
+                }
             ]
         },{
+            id: 3,
+            artistId: 'artist3',
+            isActive: false,
+            subscribers: null,
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
             id: 4,
-            artistId: 'a2p1',
+            artistId: 'artist4',
+            isActive: false,
+            subscribers: null,
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 5,
+            artistId: 'artist5',
             isActive: true,
             subscribers: null,
-            name: 'Club di Sfera',
-            description: 'sferaebbasta',
+            maxSubscribers: null,
+            name: 'Astri',
+            description: '3000, nuova musica presto out!!',
             pricing: '3.99',
             cover: {
                 id: 1,
-                url: require('../images/pictures/sferaebbasta-poster-fanclub.png'),
+                url: require('../images/pictures/astro-fanclub-cover.jpg'),
                 type: 'IMAGE'
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -463,47 +612,421 @@ export const FanclubsProvider = ({ children }) => {
             iban: null,
             posts: [
                 {
-                    artistId: 'a2p1',
+                    id: 1,
+                    artistId: 'artist5',
+                    caption: 'Spoiler del prossimo feat, no cap',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-02-01T09:22:23.542Z",
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {
+                        name: null,
+                        url: null
+                    },
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/astro-post-2.jpg'),
+                        },
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'artist5',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: true
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                },{
+                    id: 2,
+                    artistId: 'artist5',
+                    caption: 'Presto fuori ci siamo o no?',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-02-05T09:22:23.542Z",
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {
+                        name: null,
+                        url: null
+                    },
+                    media: [
+                        {
+                            id: 1,
+                            type: 'VIDEO',
+                            url: require('../assets/video/astro-post-3.mp4'),
+                        },{
+                            id: 2,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/astro-post-1.jpg'),
+                        },
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'artist5',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: false
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                }
+            ],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 6,
+            artistId: 'artist6',
+            isActive: false,
+            subscribers: null,
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 7,
+            artistId: 'artist7',
+            isActive: true,
+            subscribers: null,
+            maxSubscribers: null,
+            name: 'SSSSickLukeClub',
+            description: 'X2',
+            pricing: 4.99,
+            cover: {
+                id: 1,
+                url: require('../images/pictures/sick-luke-fanclub-cover.png'),
+                type: 'IMAGE'
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [
+                {
+                    id: 1,
+                    artistId: 'artist7',
+                    caption: 'Solo x voi la copertina di X2, il mio nuovo album lesssgoo',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2024-08-23T09:22:23.542Z",
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {
+                        name: null,
+                        url: null
+                    },
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sick-luke-post-1.jpg'),
+                        },
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'artist7',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: true
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                }
+            ],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 8,
+            artistId: 'artist8',
+            isActive: false,
+            subscribers: null,
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 9,
+            artistId: 'artist9',
+            isActive: false,
+            subscribers: null,
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 10,
+            artistId: 'artist10',
+            isActive: false,
+            subscribers: null,
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 11,
+            artistId: 'artist11',
+            isActive: false,
+            subscribers: null,
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 12,
+            artistId: 'artist12',
+            isActive: false,
+            subscribers: null,
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 13,
+            artistId: 'artist13',
+            isActive: true,
+            subscribers: null,
+            maxSubscribers: null,
+            name: 'Club di Sfera',
+            description: 'sferaebbasta',
+            pricing: 4.99,
+            cover: {
+                id: 1,
+                url: require('../images/pictures/sferaebbasta-poster-fanclub.png'),
+                type: 'IMAGE'
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [
+                {
+                    id: 1,
+                    artistId: 'artist13',
                     caption: 'Prime Ebbasta',
                     commentsCount: 2,
                     comments: [
                         {
-                        id: 1,
-                        userId: "a2p1",
-                        userType: "ARTIST",
-                        userImage: require('../images/pictures/sfera-ebbasta.jpg'),
-                        username: "Sfera Ebbasta",
-                        createdAt: "2025-01-27",
-                        comment: "Ciao superfans!",
-                        repliedUsername: undefined,
-                        likes: [
-                            {
-                                type: 'FAN',
-                                userId: 1
-                            },
-                            {
-                                type: "FAN",
-                                userId: 2
-                            }
-                        ],
-                        comments: [
-                            {
-                            id: 2,
-                            userId: 1,
-                            userType: "FAN",
-                            userImage: require('../images/pictures/ai_01.png'),
-                            username: "chiara",
+                            id: 1,
+                            userId: "artist13",
+                            userType: "ARTIST",
+                            userImage: require('../images/pictures/sfera-ebbasta.jpg'),
+                            username: "Sfera Ebbasta",
                             createdAt: "2025-01-27",
-                            comment: "Spaccato!!",
-                            repliedUsername: 'Sfera Ebbasta',
-                            likes: [],
-                            comments: []
-                            }
-                        ]
+                            comment: "Ciao superfans!",
+                            repliedUsername: undefined,
+                            likes: [
+                                {
+                                    type: 'FAN',
+                                    userId: 1
+                                },
+                                {
+                                    type: "FAN",
+                                    userId: 2
+                                }
+                            ],
+                            comments: [
+                                {
+                                    id: 1,
+                                    userId: 1,
+                                    userType: "FAN",
+                                    userImage: require('../images/pictures/ai_01.png'),
+                                    username: "chiara",
+                                    createdAt: "2025-01-27",
+                                    comment: "Spaccato!!",
+                                    repliedUsername: 'Sfera Ebbasta',
+                                    likes: [],
+                                    comments: []
+                                }
+                            ]
                         }
                     ],
                     createdAt: "2024-12-23T09:22:23.542Z",
-                    id: 1,
                     likes: [
                         {userId: 1},
                         {userId: 2},
@@ -512,7 +1035,10 @@ export const FanclubsProvider = ({ children }) => {
                         {userId: 5},
                         {userId: 6}
                     ],
-                    link: {name: '', url: ''},
+                    link: {
+                        name: '',
+                        url: ''
+                    },
                     media: [
                         {
                             id: 1,
@@ -526,7 +1052,7 @@ export const FanclubsProvider = ({ children }) => {
                     ],
                     mode: 'PUBLISHED',
                     publisher: {
-                        id: 'a2p1',
+                        id: 'artist13',
                         type: 'ARTIST'
                     },
                     settings: {
@@ -538,17 +1064,13 @@ export const FanclubsProvider = ({ children }) => {
                         shareLink: undefined,
                     },
                     text: ''
-                    
-
-                },
-                {
-                    artistId: 'a2p1',
+                },{
+                    id: 2,
+                    artistId: 'artist13',
                     caption: 'X2VR fuori venerdì',
                     commentsCount: 0,
-                    comments: [
-                    ],
+                    comments: [],
                     createdAt: "2025-01-27T09:22:23.542Z",
-                    id: 2,
                     likes: [
                         {userId: 1},
                         {userId: 2},
@@ -557,7 +1079,10 @@ export const FanclubsProvider = ({ children }) => {
                         {userId: 5},
                         {userId: 6}
                     ],
-                    link: {name: 'Presalva qui!', url: 'linkfinto'},
+                    link: {
+                        name: 'Presalva qui!',
+                        url: 'linkfinto'
+                    },
                     media: [
                         {
                             id: 1,
@@ -571,7 +1096,7 @@ export const FanclubsProvider = ({ children }) => {
                     ],
                     mode: 'PUBLISHED',
                     publisher: {
-                        id: 'a2p1',
+                        id: 'artist13',
                         type: 'ARTIST'
                     },
                     settings: {
@@ -583,16 +1108,13 @@ export const FanclubsProvider = ({ children }) => {
                         shareLink: undefined,
                     },
                     text: ''
-                    
-
-                },
-                {
-                    artistId: 'a2p1',
+                },{
+                    id: 3,
+                    artistId: 'artist13',
                     caption: 'Merch esclusivo superfan abbonati!',
                     commentsCount: 0,
                     comments: [],
                     createdAt: "2025-01-26T09:22:23.542Z",
-                    id: 3,
                     likes: [
                         {userId: 1},
                         {userId: 2},
@@ -601,7 +1123,10 @@ export const FanclubsProvider = ({ children }) => {
                         {userId: 5},
                         {userId: 6}
                     ],
-                    link: {name: '', url: ''},
+                    link: {
+                        name: '',
+                        url: ''
+                    },
                     media: [
                         {
                             id: 1,
@@ -611,7 +1136,7 @@ export const FanclubsProvider = ({ children }) => {
                     ],
                     mode: 'PUBLISHED',
                     publisher: {
-                        id: 'a2p1',
+                        id: 'artist13',
                         type: 'ARTIST'
                     },
                     settings: {
@@ -623,16 +1148,13 @@ export const FanclubsProvider = ({ children }) => {
                         shareLink: undefined,
                     },
                     text: '25 pezzi disponibili da ora.'
-                    
-
-                },
-                {
-                    artistId: 'a2p1',
+                },{
+                    id: 4,
+                    artistId: 'artist13',
                     caption: 'Italiano vero',
                     commentsCount: 0,
                     comments: [],
                     createdAt: "2025-01-21T09:22:23.542Z",
-                    id: 4,
                     likes: [
                         {userId: 1},
                         {userId: 2},
@@ -641,7 +1163,10 @@ export const FanclubsProvider = ({ children }) => {
                         {userId: 5},
                         {userId: 6}
                     ],
-                    link: {name: '', url: ''},
+                    link: {
+                        name: '',
+                        url: ''
+                    },
                     media: [
                         {
                             id: 1,
@@ -651,7 +1176,7 @@ export const FanclubsProvider = ({ children }) => {
                     ],
                     mode: 'PUBLISHED',
                     publisher: {
-                        id: 'a2p1',
+                        id: 'artist13',
                         type: 'ARTIST'
                     },
                     settings: {
@@ -663,16 +1188,13 @@ export const FanclubsProvider = ({ children }) => {
                         shareLink: undefined,
                     },
                     text: ''
-                    
-
-                },
-                {
-                    artistId: 'a2p1',
+                },{
+                    id: 5,
+                    artistId: 'artist13',
                     caption: 'Lifestyle',
                     commentsCount: 0,
                     comments: [],
                     createdAt: "2025-01-10T09:22:23.542Z",
-                    id: 5,
                     likes: [
                         {userId: 1},
                         {userId: 2},
@@ -681,7 +1203,10 @@ export const FanclubsProvider = ({ children }) => {
                         {userId: 5},
                         {userId: 6}
                     ],
-                    link: {name: '', url: ''},
+                    link: {
+                        name: '',
+                        url: ''
+                    },
                     media: [
                         {
                             id: 1,
@@ -691,7 +1216,7 @@ export const FanclubsProvider = ({ children }) => {
                     ],
                     mode: 'PUBLISHED',
                     publisher: {
-                        id: 'a2p1',
+                        id: 'artist13',
                         type: 'ARTIST'
                     },
                     settings: {
@@ -703,16 +1228,13 @@ export const FanclubsProvider = ({ children }) => {
                         shareLink: undefined,
                     },
                     text: ''
-                    
-
-                },
-                {
-                    artistId: 'a2p1',
+                },{
+                    id: 6,
+                    artistId: 'artist13',
                     caption: 'State ascoltando le nuove uscite?',
                     commentsCount: 0,
                     comments: [],
                     createdAt: "2025-01-27T12:22:23.542Z",
-                    id: 6,
                     likes: [
                         {userId: 1},
                         {userId: 2},
@@ -721,7 +1243,10 @@ export const FanclubsProvider = ({ children }) => {
                         {userId: 5},
                         {userId: 6}
                     ],
-                    link: {name: '', url: ''},
+                    link: {
+                        name: '',
+                        url: ''
+                    },
                     media: [
                         {
                             id: 1,
@@ -731,7 +1256,7 @@ export const FanclubsProvider = ({ children }) => {
                     ],
                     mode: 'PUBLISHED',
                     publisher: {
-                        id: 'a2p1',
+                        id: 'artist13',
                         type: 'ARTIST'
                     },
                     settings: {
@@ -743,15 +1268,12 @@ export const FanclubsProvider = ({ children }) => {
                         shareLink: undefined,
                     },
                     text: ''
-                    
-
                 }
-                
-
             ],
             concerts: [
                 {
-                    artistId: 'a2p1',
+                    id: 1,
+                    artistId: 'artist13',
                     buyLinks: [
                         'https://www.ticketone.it/artist/sfera-ebbasta/'
                     ],
@@ -765,75 +1287,68 @@ export const FanclubsProvider = ({ children }) => {
                         {
                             id: 1,
                             mainPlace: 'Arena Spettacoli Padova Fiere',
-                            city:'Padova',
-                            address:'Indirizzo',
-                            date:"02-03-2025",
-                            messages:[],
-                            province:'Padova',
-                            zipCode:'00000',
-                        },
-                        {
+                            city: 'Padova',
+                            address: 'Indirizzo',
+                            date: "02-03-2025",
+                            messages: [],
+                            province: 'Padova',
+                            zipCode: '00000',
+                        },{
                             id: 2,
                             mainPlace: 'Nelson Mandela Forum',
-                            city:'Firenze',
-                            address:'Indirizzo',
-                            date:"07-03-2025",
-                            messages:[],
-                            province:'Firenze',
-                            zipCode:'00000',
-                        },
-                        {
+                            city: 'Firenze',
+                            address: 'Indirizzo',
+                            date: "07-03-2025",
+                            messages: [],
+                            province: 'Firenze',
+                            zipCode: '00000',
+                        },{
                             id: 3,
                             mainPlace: 'Palazzo Dello Sport',
-                            city:'Roma',
-                            address:'Indirizzo',
-                            date:"12-03-2025",
-                            messages:[],
-                            province:'Roma',
-                            zipCode:'00000',
-                        },
-                        {
+                            city: 'Roma',
+                            address: 'Indirizzo',
+                            date: "12-03-2025",
+                            messages: [],
+                            province: 'Roma',
+                            zipCode: '00000',
+                        },{
                             id: 4,
                             mainPlace: 'Unipol Arena',
-                            city:'Casalecchio di reno',
-                            address:'Indirizzo',
-                            date:"22-03-2025",
-                            messages:[],
-                            province:'Province',
-                            zipCode:'00000',
-                        },
-                        {
+                            city: 'Casalecchio di reno',
+                            address: 'Indirizzo',
+                            date: "22-03-2025",
+                            messages: [],
+                            province: 'Milano',
+                            zipCode: '00000',
+                        },{
                             id: 5,
                             mainPlace: 'Inalpi Arena',
-                            city:'Torino',
-                            address:'Indirizzo',
-                            date:"29-03-2025",
-                            messages:[],
-                            province:'Province',
-                            zipCode:'00000',
-                        },
-                        {
+                            city: 'Torino',
+                            address: 'Indirizzo',
+                            date: "29-03-2025",
+                            messages: [],
+                            province: 'Province',
+                            zipCode: '00000',
+                        },{
                             id: 6,
                             mainPlace: 'Unipol Forum',
-                            city:'Assago',
-                            address:'Indirizzo',
-                            date:"04-04-2025",
-                            messages:[],
-                            province:'Province',
-                            zipCode:'00000',
-                        },
-                        {
+                            city: 'Assago',
+                            address: 'Indirizzo',
+                            date: "04-04-2025",
+                            messages: [],
+                            province: 'Province',
+                            zipCode: '00000',
+                        },{
                             id: 7,
                             mainPlace: 'Unipol Forum',
-                            city:'Assago',
-                            address:'Indirizzo',
-                            date:"27-04-2025",
-                            messages:[],
-                            province:'Province',
-                            zipCode:'00000',
+                            city: 'Assago',
+                            address: 'Indirizzo',
+                            date: "27-04-2025",
+                            messages: [],
+                            province: 'Province',
+                            zipCode: '00000',
                         }
                     ],
-                    id: 1,
                     likes: [],
                     messages: [],
                     name: '$€ tour 2025',
@@ -845,7 +1360,7 @@ export const FanclubsProvider = ({ children }) => {
                         
                     ],
                     publisher: {
-                        id: 'a2p1',
+                        id: 'artist13',
                         type: 'ARTIST'
                     },
                     settings: {
@@ -856,10 +1371,9 @@ export const FanclubsProvider = ({ children }) => {
                         shareCount: 0, shareLink: undefined
                     },
                     type: 'TOUR'
-
-                },
-                {
-                    artistId: 'a2p1',
+                },{
+                    id: 2,
+                    artistId: 'artist13',
                     buyLinks: ['https://www.vivoconcerti.com/roster/sfera-ebbasta/stadio-maradona'],
                     comments: [],
                     cover: {
@@ -868,33 +1382,30 @@ export const FanclubsProvider = ({ children }) => {
                     },
                     createdAt: "2025-01-27T10:03:15.683Z",
                     date: '07-06-2025',
-                    id: 2,
                     likes:[],
                     messages: [
                         {
+                            id: 1,
                             content: 'Qualcuno parte da Bari?',
                             createdAt: '2025-01-27',
-                            id: 1,
                             type: 'COMMENT',
                             userId: 1,
                             userImage: '',
                             userType: 'fan',
                             username: 'imtheKING'
-                        },
-                        {
+                        },{
+                            id: 2,
                             content: 'Noi siamo in tre, possiamo stringerci!',
                             createdAt: '2025-01-27',
-                            id: 2,
                             type: 'COMMENT',
                             userId: 3,
                             userImage: '',
                             userType: 'fan',
                             username: 'username_user'
-                        },
-                        {
+                        },{
+                            id: 3,
                             content: 'Ciao raga, ma piove?',
                             createdAt: '2025-01-27',
-                            id: 3,
                             type: 'COMMENT',
                             userId: 5,
                             userImage: require('../images/pictures/ai_05.png'),
@@ -919,7 +1430,10 @@ export const FanclubsProvider = ({ children }) => {
                         province: 'provincia',
                         zipCode: '00000'
                     },
-                    publisher: {id: 'a2p1', type: 'ARTIST'},
+                    publisher: {
+                        id: 'artist13',
+                        type: 'ARTIST'
+                    },
                     settings: {
                         isPinned: false,
                         isPrivate: true
@@ -930,12 +1444,12 @@ export const FanclubsProvider = ({ children }) => {
             ],
             forum: [
                 {
-                    id: 2,
-                    artistId: 'a2p1',
+                    id: 1,
+                    artistId: 'artist13',
                     userImage: require('../images/pictures/sfera-ebbasta.jpg'),
                     userName: 'Sfera Ebbasta',
                     publisher: {
-                        id: 'a2p1',
+                        id: 'artist13',
                         type: 'ARTIST'
                     },
                     cover: undefined,
@@ -950,10 +1464,10 @@ export const FanclubsProvider = ({ children }) => {
                     ],
                     comments: [
                         {
+                            id: 1,
                             comment: 'Bella domanda, secondo me un ritorno alle origini, suoni semplici, strumenti classici e poi.... boom, suoni devastanti nel mezzo',
                             comments: [],
                             createdAt: '2025-01-27',
-                            id: 1,
                             likes: [],
                             repliedUsername: undefined,
                             userId: 1,
@@ -966,11 +1480,9 @@ export const FanclubsProvider = ({ children }) => {
                     weight: 10,
                     commentsCount:1,
                     createdAt: '2025-01-24'
-
-                },
-                {
-                    id: 1,
-                    artistId: "a2p1",
+                },{
+                    id: 2,
+                    artistId: 'artist13',
                     userImage: require('../images/pictures/ai_01.png'),
                     userName: 'chiara',
                     publisher: {
@@ -992,7 +1504,6 @@ export const FanclubsProvider = ({ children }) => {
                     weight: 10,
                     commentsCount:0,
                     createdAt: '2025-01-24'
-
                 }
             ],
             leaderboard: [
@@ -1049,8 +1560,7 @@ export const FanclubsProvider = ({ children }) => {
                     },
                     caption: 'Numero uno',
                     mode: 'PUBLISHED'
-                },
-                {
+                },{
                     id: 2,
                     userId: 5,
                     media: 
@@ -1060,8 +1570,7 @@ export const FanclubsProvider = ({ children }) => {
                     },
                     caption: 'Numero uno',
                     mode: 'PUBLISHED'
-                },
-                {
+                },{
                     id: 3,
                     userId: 3,
                     media: 
@@ -1071,8 +1580,7 @@ export const FanclubsProvider = ({ children }) => {
                     },
                     caption: 'Prova di una caption più lunga di modo che su due righe venga troncata e non venga mostrata oltre nella home letters club',
                     mode: 'PUBLISHED'
-                },
-                {
+                },{
                     id: 4,
                     userId: 6,
                     media: 
@@ -1082,8 +1590,7 @@ export const FanclubsProvider = ({ children }) => {
                     },
                     caption: 'Prova video loop muto',
                     mode: 'PUBLISHED'
-                },
-                {
+                },{
                     id: 5,
                     userId: 1,
                     media: 
@@ -1093,8 +1600,7 @@ export const FanclubsProvider = ({ children }) => {
                     },
                     caption: 'Numero uno',
                     mode: 'PUBLISHED'
-                },
-                {
+                },{
                     id: 6,
                     userId: 1,
                     media: 
@@ -1104,8 +1610,7 @@ export const FanclubsProvider = ({ children }) => {
                     },
                     caption: 'Numero uno',
                     mode: 'PUBLISHED'
-                },
-                {
+                },{
                     id: 7,
                     userId: 2,
                     media: 
@@ -1119,904 +1624,173 @@ export const FanclubsProvider = ({ children }) => {
             ],
             messages:[
                 {
+                    id: 1,
                     userType: 'fan',
                     userId: 1,
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
-                    id: 1,
                     createdAt: "2025-02-05T12:22:23.542Z",
                     content: 'Raga, ma avete sentito l ultimo pezzo di Sfera? "Soldi e Diamanti" è una bomba!'
-                },
-                {
+                },{
+                    id: 2,
                     userType: 'fan',
                     userId: 2,
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
-                    id: 2,
                     createdAt: "2025-02-05T13:22:23.542Z",
                     content: 'Yesss! Il beat spacca e il ritornello ti rimane in testa subito'
-                },
-                {
+                },{
+                    id: 3,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 3,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Secondo voi è meglio questa o "Baby"? Io sono ancora in fissa con quella'
-                },
-                {
+                },{
+                    id: 4,
                     userType: 'fan',
                     userId: 6,
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
-                    id: 4,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Bro, "Baby" è un classico, ma l ultimo singolo è già una hit!'
-                },
-                {
+                },{
+                    id: 5,
                     userType: 'fan',
                     userId: 7,
                     userImage: require('../images/pictures/ai_09.png'),
                     username: 'kevin.alfa.il.migliore',
-                    id: 5,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Sfera non sbaglia un colpo, ogni traccia è un successo assicurato!'
-                },
-                {
+                },{
+                    id: 6,
                     userType: 'fan',
                     userId: 2,
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
-                    id: 6,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Ho visto che sta annunciando le date del tour, chi viene al concerto di Milano?'
-                },
-                {
+                },{
+                    id: 7,
                     userType: 'fan',
                     userId: 1,
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
-                    id: 7,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Io ci sarò! Voglio sentire "Piove" live, con Lazza sarebbe una bomba!'
-                },
-                {
+                },{
+                    id: 8,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 8,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Raga, ma secondo voi collaborerà mai con artisti americani tipo Travis Scott?'
-                },
-                {
+                },{
+                    id: 9,
                     userType: 'fan',
                     userId: 1,
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
-                    id: 9,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Sarebbe il top! Lui ha già fatto feat internazionali, quindi mai dire mai!'
-                },
-                {
+                },{
+                    id: 10,
                     userType: 'fan',
                     userId: 6,
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
-                    id: 10,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: ' Io spero solo che porti i pezzi vecchi nei live, tipo "Rockstar", quella è leggenda!'
-                },
-                {
+                },{
+                    id: 11,
                     userType: 'fan',
                     userId: 1,
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
-                    id: 11,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Verooo! "Rockstar" mi riporta a un sacco di ricordi, che anni pazzeschi!'
-                },
-                {
+                },{
+                    id: 12,
                     userType: 'fan',
                     userId: 2,
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
-                    id: 12,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'E il nuovo album? Quando lo annuncia? Sto aspettando troppo!'
-                },
-                {
+                },{
+                    id: 13,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 13,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Dicono esca prima dell estate, vi immaginate un altra hit estiva come "M Manc"!? 🔥'
-                },
-                {
+                },{
+                    id: 14,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 14,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'O magari un pezzo drill con Shiva e Capo Plaza 😈 Sarebbe il delirio!'
-                },
-                {
+                },{
+                    id: 15,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 15,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Raga ma parliamo del look di Sfera? Sempre il più fresco, gli occhiali a cuore sono già iconici'
-                },
-                {
+                },{
+                    id: 16,
                     userType: 'fan',
                     userId: 6,
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
-                    id: 16,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Poi l’attitude… Sfera ha proprio quella vibe da superstar, come pochi!'
-                },
-                {
+                },{
+                    id: 17,
                     userType: 'fan',
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    id: 17,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Infatti, se oggi la trap italiana è conosciuta è anche merito suo!'
-                },
-                {
+                },{
+                    id: 18,
                     userType: 'fan',
                     userId: 7,
                     userImage: require('../images/pictures/ai_09.png'),
                     username: 'kevin.alfa.il.migliore',
-                    id: 18,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Non vedo l’ora di sentirlo dal vivo, il palco è il suo regno!'
-                },
-                {
+                },{
+                    id: 19,
                     userType: 'fan',
                     userId: 8,
                     userImage: require('../images/pictures/ai_07.png'),
                     username: 'davide00',
-                    id: 19,
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Sfera numero uno! Ci vediamo sotto il palco raga! '
-                },
-
-            ]
-        },{
-            id: 5,
-            artistId: 'a8p1',
-            isActive: true,
-            subscribers: null,
-            name: 'Club di NAYT',
-            description: 'Lettera Q',
-            pricing: '3.99',
-            cover: {
-                id: 1,
-                url: require('../images/pictures/nayt-fanclub-cover.jpg'),
-                type: 'IMAGE'
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [
-                {
-                    artistId: 'a8p1',
-                    caption: 'Lettera Q, il mio nuovo disco, fuori venerdì, presalva qui sotto',
-                    commentsCount: 0,
-                    comments: [],
-                    createdAt: "2024-12-23T09:22:23.542Z",
-                    id: 1,
-                    likes: [
-                        {userId: 2},
-                        {userId: 3},
-                        {userId: 4},
-                        {userId: 5},
-                        {userId: 6},
-                        {userId: 7},
-                        {userId: 8},
-                        {userId: 9},
-                    ],
-                    link: {name: 'Presave del disco', url: 'https://open.spotify.com/intl-it/artist/7tmTvmqgTBcX88ZrSHByrD'},
-                    media: [
-                        {
-                            id: 1,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/nayt-fanclub-cover.jpg'),
-                        },
-                        {
-                            id: 2,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/nayt-post-1.jpg')
-                        }
-                    ],
-                    mode: 'PUBLISHED',
-                    publisher: {
-                        id: 'a8p1',
-                        type: 'ARTIST'
-                    },
-                    settings: {
-                        isPinned: false,
-                        isPrivate: false
-                    },
-                    share: {
-                        shareCount: 100,
-                        shareLink: undefined,
-                    },
-                    text: ''
-                    
-
-                },{
-                    artistId: 'a8p1',
-                    caption: 'Biglietti del tour anticipati solo per i Superfan!!',
-                    commentsCount: 0,
-                    comments: [],
-                    createdAt: "2025-02-06T09:22:23.542Z",
-                    id: 2,
-                    likes: [
-                        {userId: 2},
-                        {userId: 3},
-                        {userId: 4},
-                        {userId: 5},
-                        {userId: 6},
-                        {userId: 7},
-                        {userId: 8},
-                        {userId: 9},
-                    ],
-                    link: {name: 'Link i biglietti', url: 'https://open.spotify.com/intl-it/artist/7tmTvmqgTBcX88ZrSHByrD'},
-                    media: [
-                        {
-                            id: 1,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/nayt-post-2.jpg'),
-                        }
-                    ],
-                    mode: 'PUBLISHED',
-                    publisher: {
-                        id: 'a8p1',
-                        type: 'ARTIST'
-                    },
-                    settings: {
-                        isPinned: false,
-                        isPrivate: true
-                    },
-                    share: {
-                        shareCount: 100,
-                        shareLink: undefined,
-                    },
-                    text: ''
-                    
-
-                },
-            ],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters:[],
-            messages:[]
-        },{
-            id: 6,
-            artistId: 'a4p4',
-            isActive: true,
-            subscribers: null,
-            name: 'SSSSickLukeClub',
-            description: 'X2',
-            pricing: '3.99',
-            cover: {
-                id: 1,
-                url: require('../images/pictures/sick-luke-fanclub-cover.png'),
-                type: 'IMAGE'
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [
-                {
-                    artistId: 'a4p4',
-                    caption: 'Solo x voi la copertina di X2, il mio nuovo album lesssgoo',
-                    commentsCount: 0,
-                    comments: [],
-                    createdAt: "2024-08-23T09:22:23.542Z",
-                    id: 1,
-                    likes: [
-                        {userId: 2},
-                        {userId: 3},
-                        {userId: 4},
-                        {userId: 5},
-                        {userId: 6},
-                        {userId: 7},
-                        {userId: 8},
-                        {userId: 9},
-                    ],
-                    link: {name: '', url: ''},
-                    media: [
-                        {
-                            id: 1,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/sick-luke-post-1.jpg'),
-                        },
-                    ],
-                    mode: 'PUBLISHED',
-                    publisher: {
-                        id: 'a4p4',
-                        type: 'ARTIST'
-                    },
-                    settings: {
-                        isPinned: false,
-                        isPrivate: true
-                    },
-                    share: {
-                        shareCount: 100,
-                        shareLink: undefined,
-                    },
-                    text: ''
-                    
-
-                }
-            ],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters:[],
-            messages:[]
-        },{
-            id: 7,
-            artistId: 'a5p1',
-            isActive: true,
-            subscribers: null,
-            name: 'Astri',
-            description: '3000, nuova musica presto out!!',
-            pricing: '3.99',
-            cover: {
-                id: 1,
-                url: require('../images/pictures/astro-fanclub-cover.jpg'),
-                type: 'IMAGE'
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [
-                {
-                    artistId: 'a5p1',
-                    caption: 'Spoiler del prossimo feat, no cap',
-                    commentsCount: 0,
-                    comments: [],
-                    createdAt: "2025-02-01T09:22:23.542Z",
-                    id: 1,
-                    likes: [
-                        {userId: 2},
-                        {userId: 3},
-                        {userId: 4},
-                        {userId: 5},
-                        {userId: 6},
-                        {userId: 7},
-                        {userId: 8},
-                        {userId: 9},
-                    ],
-                    link: {name: '', url: ''},
-                    media: [
-                        {
-                            id: 1,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/astro-post-2.jpg'),
-                        },
-                    ],
-                    mode: 'PUBLISHED',
-                    publisher: {
-                        id: 'a5p1',
-                        type: 'ARTIST'
-                    },
-                    settings: {
-                        isPinned: false,
-                        isPrivate: true
-                    },
-                    share: {
-                        shareCount: 100,
-                        shareLink: undefined,
-                    },
-                    text: ''
-                    
-
-                },{
-                    artistId: 'a5p1',
-                    caption: 'Presto fuori ci siamo o no?',
-                    commentsCount: 0,
-                    comments: [],
-                    createdAt: "2025-02-05T09:22:23.542Z",
-                    id: 2,
-                    likes: [
-                        {userId: 2},
-                        {userId: 3},
-                        {userId: 4},
-                        {userId: 5},
-                        {userId: 6},
-                        {userId: 7},
-                        {userId: 8},
-                        {userId: 9},
-                    ],
-                    link: {name: '', url: ''},
-                    media: [
-                        {
-                            id: 1,
-                            type: 'VIDEO',
-                            url: require('../assets/video/astro-post-3.mp4'),
-                        },{
-                            id: 2,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/astro-post-1.jpg'),
-                        },
-                    ],
-                    mode: 'PUBLISHED',
-                    publisher: {
-                        id: 'a5p1',
-                        type: 'ARTIST'
-                    },
-                    settings: {
-                        isPinned: false,
-                        isPrivate: false
-                    },
-                    share: {
-                        shareCount: 100,
-                        shareLink: undefined,
-                    },
-                    text: ''
-                    
-
-                }
-            ],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters:[],
-            messages:[]
-        },{
-            id: 8,
-            artistId: 'a7p3',
-            isActive: true,
-            subscribers: null,
-            name: 'okClub',
-            description: 'okokokokokokokokokokokokokokokokokokokok',
-            pricing: '3.99',
-            cover: {
-                id: 1,
-                url: require('../images/pictures/okgiorgio-fanclub-cover.png'),
-                type: 'IMAGE'
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [
-                {
-                    artistId: 'a7p3',
-                    caption: 'Dj set per le mucche',
-                    commentsCount: 0,
-                    comments: [],
-                    createdAt: "2025-01-28T22:22:23.542Z",
-                    id: 1,
-                    likes: [
-                        {userId: 2},
-                        {userId: 3},
-                        {userId: 4},
-                        {userId: 5},
-                        {userId: 6},
-                        {userId: 7},
-                        {userId: 8},
-                        {userId: 9},
-                    ],
-                    link: {name: '', url: ''},
-                    media: [
-                        {
-                            id: 1,
-                            type: 'VIDEO',
-                            url: require('../assets/video/okgiorgio-post-1.mp4'),
-                        },
-                    ],
-                    mode: 'PUBLISHED',
-                    publisher: {
-                        id: 'a7p3',
-                        type: 'ARTIST'
-                    },
-                    settings: {
-                        isPinned: false,
-                        isPrivate: false
-                    },
-                    share: {
-                        shareCount: 100,
-                        shareLink: undefined,
-                    },
-                    text: ''
-                    
-
-                }
-            ],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters:[],
-            messages:[]
-        },{
-            id: 9,
-            artistId: 'a6p2',
-            isActive: true,
-            subscribers: null,
-            name: 'we love Villanova',
-            description: 'TOCCA IL CIELO FEST',
-            pricing: '3.99',
-            cover: {
-                id: 1,
-                url: require('../images/pictures/bnkr44-fanclub-cover.jpg'),
-                type: 'IMAGE'
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [
-                {
-                    artistId: 'a6p2',
-                    caption: 'BIGLIETTI IN ANTEPRIMA, EMPOLI CI VEDIAMO LI!',
-                    commentsCount: 0,
-                    comments: [],
-                    createdAt: "2025-02-05T22:22:23.542Z",
-                    id: 1,
-                    likes: [
-                        {userId: 2},
-                        {userId: 3},
-                        {userId: 4},
-                        {userId: 5},
-                        {userId: 6},
-                        {userId: 7},
-                        {userId: 8},
-                        {userId: 9},
-                    ],
-                    link: {name: 'TOCCA IL CIELO FEST', url: 'https://open.spotify.com/intl-it/artist/1lwGYDWoXC7E5wDNYZBurw?si=Mq6kiGjESwKSXe-8yk22NQ'},
-                    media: [
-                        {
-                            id: 1,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/bnkr44-post-1.jpg'),
-                        },{
-                            id: 2,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/bnkr44-post-2.jpg'),
-                        },
-                    ],
-                    mode: 'PUBLISHED',
-                    publisher: {
-                        id: 'a6p2',
-                        type: 'ARTIST'
-                    },
-                    settings: {
-                        isPinned: false,
-                        isPrivate: true
-                    },
-                    share: {
-                        shareCount: 100,
-                        shareLink: undefined,
-                    },
-                    text: ''
-                    
-
-                },{
-                    artistId: 'a6p2',
-                    caption: 'Korea44',
-                    commentsCount: 0,
-                    comments: [],
-                    createdAt: "2025-01-27T22:22:23.542Z",
-                    id: 2,
-                    likes: [
-                        {userId: 2},
-                        {userId: 3},
-                        {userId: 4},
-                        {userId: 5},
-                        {userId: 6},
-                        {userId: 7},
-                        {userId: 8},
-                        {userId: 9},
-                    ],
-                    link: {name: '', url: ''},
-                    media: [
-                        {
-                            id: 1,
-                            type: 'IMAGE',
-                            url: require('../images/pictures/bnkr44-post-3.jpg'),
-                        }
-                    ],
-                    mode: 'PUBLISHED',
-                    publisher: {
-                        id: 'a6p2',
-                        type: 'ARTIST'
-                    },
-                    settings: {
-                        isPinned: false,
-                        isPrivate: false
-                    },
-                    share: {
-                        shareCount: 100,
-                        shareLink: undefined,
-                    },
-                    text: ''
-                    
-
-                }
-            ],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters:[],
-            messages:[]
-        },{
-            id: 10,
-            artistId: 1,
-            isActive: false,
-            subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
-            cover: {
-                id: null,
-                url: null,
-                type: null
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters:[],
-            messages:[
-                {
-                    userType: 'fan',
-                    userId: 1,
-                    userImage: require('../images/pictures/current-fan.jpg'),
-                    username: 'imtheKING',
-                    id: 1,
-                    createdAt: "2025-02-05T12:22:23.542Z",
-                    content: 'Ragazzi, ma quanto è assurdo Sirio? Lo ascolto in loop da settimane! 🚀🔥'
-                },
-                {
-                    userType: 'fan',
-                    userId: 2,
-                    userImage: require('../images/pictures/ai_01.png'),
-                    username: 'chiara',
-                    id: 2,
-                    createdAt: "2025-02-05T13:22:23.542Z",
-                    content: 'Concordo! “Cenere” è una hit immortale! Ogni volta mi prende una carica assurda!'
-                },
-                {
-                    userType: 'fan',
-                    userId: 5,
-                    userImage: require('../images/pictures/ai_04.png'),
-                    username: 'ginger04',
-                    id: 3,
-                    createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Ragazzi, ma avete visto che sta lavorando a nuova musica? Ho troppa hype! 😍🎹'
-                },
-                {
-                    userType: 'fan',
-                    userId: 6,
-                    userImage: require('../images/pictures/ai_03.png'),
-                    username: 'giulietta',
-                    id: 4,
-                    createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Se il prossimo album è anche solo la metà di Re Mida e Sirio, spaccherà tutto! '
-                },
-                {
-                    userType: 'fan',
-                    userId: 7,
-                    userImage: require('../images/pictures/ai_09.png'),
-                    username: 'kevin.alfa.il.migliore',
-                    id: 5,
-                    createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'A me fa impazzire il suo modo di mescolare rap e pianoforte, talento puro! 🎹👑'
-                },
-                {
-                    userType: 'fan',
-                    userId: 2,
-                    userImage: require('../images/pictures/ai_01.png'),
-                    username: 'chiara',
-                    id: 6,
-                    createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Esatto! E poi live è una bomba! Qualcuno di voi è andato a un suo concerto?'
-                },
-                {
-                    userType: 'fan',
-                    userId: 1,
-                    userImage: require('../images/pictures/current-fan.jpg'),
-                    username: 'imtheKING',
-                    id: 7,
-                    createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Yesss, ero a Milano l’anno scorso! L’energia era pazzesca, e quando ha suonato al piano... brividi!!'
-                },
-                {
-                    userType: 'fan',
-                    userId: 5,
-                    userImage: require('../images/pictures/ai_04.png'),
-                    username: 'ginger04',
-                    id: 8,
-                    createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Ragazzi, se organizziamo un raduno del fanclub? Sarebbe troppo figo conoscerci e magari suonare qualcosa insieme! '
-                },
-                {
-                    userType: 'fan',
-                    userId: 1,
-                    userImage: require('../images/pictures/current-fan.jpg'),
-                    username: 'imtheKING',
-                    id: 9,
-                    createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Idea top! Possiamo trovarci e fare un ascolto collettivo quando esce il nuovo album! '
-                },
-                {
-                    userType: 'fan',
-                    userId: 6,
-                    userImage: require('../images/pictures/ai_03.png'),
-                    username: 'giulietta',
-                    id: 10,
-                    createdAt: "2025-02-05T13:23:23.542Z",
-                    content: ' Ci sto! Lazza merita tutto il supporto del mondo! Facciamogli sentire la nostra carica! '
                 }
             ]
-        },{
-            id: 11,
-            artistId: 3,
-            isActive: false,
-            subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
-            cover: {
-                id: null,
-                url: null,
-                type: null
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters:[],
-            messages:[]
-        },{
-            id: 12,
-            artistId: 4,
-            isActive: false,
-            subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
-            cover: {
-                id: null,
-                url: null,
-                type: null
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters:[],
-            messages:[]
-        },{
-            id: 13,
-            artistId: 6,
-            isActive: false,
-            subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
-            cover: {
-                id: null,
-                url: null,
-                type: null
-            },
-            maxSubscribers: null,
-            firstName: null,
-            lastName: null,
-            fiscalCode: null,
-            email: null,
-            address: null,
-            zipCode: null,
-            city: null,
-            province: null,
-            beneficiary: null,
-            iban: null,
-            posts: [],
-            concerts: [],
-            forum: [],
-            leaderboard: [],
-            fanLetters:[],
-            messages:[]
         },{
             id: 14,
-            artistId: 8,
+            artistId: 'artist14',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2035,18 +1809,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 15,
-            artistId: 9,
+            artistId: 'artist15',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2065,18 +1839,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 16,
-            artistId: 10,
+            artistId: 'artist16',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2095,18 +1869,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 17,
-            artistId: 11,
+            artistId: 'artist17',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2125,18 +1899,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 18,
-            artistId: 12,
+            artistId: 'artist18',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2155,18 +1929,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 19,
-            artistId: 14,
+            artistId: 'artist19',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2185,18 +1959,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 20,
-            artistId: 15,
+            artistId: 'artist20',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2215,18 +1989,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 21,
-            artistId: 16,
+            artistId: 'artist21',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2245,18 +2019,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 22,
-            artistId: 17,
+            artistId: 'artist22',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2275,18 +2049,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 23,
-            artistId: 18,
+            artistId: 'artist23',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2305,18 +2079,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 24,
-            artistId: 19,
+            artistId: 'artist24',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2335,18 +2109,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 25,
-            artistId: 20,
+            artistId: 'artist25',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2365,18 +2139,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 26,
-            artistId: 21,
+            artistId: 'artist26',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2395,18 +2169,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 27,
-            artistId: 22,
+            artistId: 'artist27',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2425,18 +2199,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 28,
-            artistId: 23,
+            artistId: 'artist28',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2455,18 +2229,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 29,
-            artistId: 24,
+            artistId: 'artist29',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2485,18 +2259,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 30,
-            artistId: 25,
+            artistId: 'artist30',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2515,18 +2289,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 31,
-            artistId: 26,
+            artistId: 'artist31',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2545,18 +2319,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 32,
-            artistId: 27,
+            artistId: 'artist32',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2575,18 +2349,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 33,
-            artistId: 28,
+            artistId: 'artist33',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2605,18 +2379,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 34,
-            artistId: 29,
+            artistId: 'artist34',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2635,18 +2409,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 35,
-            artistId: 30,
+            artistId: 'artist35',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2665,18 +2439,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 36,
-            artistId: 31,
+            artistId: 'artist36',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2695,18 +2469,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 37,
-            artistId: 32,
+            artistId: 'artist37',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2725,18 +2499,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 38,
-            artistId: 33,
-            isActive: false,
+            artistId: 'artist38',
+            isActive: true,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
-            cover: {
-                id: null,
-                url: null,
-                type: null
-            },
             maxSubscribers: null,
+            name: 'we love Villanova',
+            description: 'TOCCA IL CIELO FEST',
+            pricing: 3.99,
+            cover: {
+                id: 1,
+                url: require('../images/pictures/bnkr44-fanclub-cover.jpg'),
+                type: 'IMAGE'
+            },
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2747,7 +2521,97 @@ export const FanclubsProvider = ({ children }) => {
             province: null,
             beneficiary: null,
             iban: null,
-            posts: [],
+            posts: [
+                {
+                    id: 1,
+                    artistId: 'artist38',
+                    caption: 'BIGLIETTI IN ANTEPRIMA, EMPOLI CI VEDIAMO LI!',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-02-05T22:22:23.542Z",
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {
+                        name: 'TOCCA IL CIELO FEST',
+                        url: 'https://open.spotify.com/intl-it/artist/1lwGYDWoXC7E5wDNYZBurw?si=Mq6kiGjESwKSXe-8yk22NQ'
+                    },
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/bnkr44-post-1.jpg'),
+                        },{
+                            id: 2,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/bnkr44-post-2.jpg'),
+                        },
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'artist38',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: true
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                },{
+                    id: 2,
+                    artistId: 'artist38',
+                    caption: 'Korea44',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-01-27T22:22:23.542Z",
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {
+                        name: null,
+                        url: null
+                    },
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/bnkr44-post-3.jpg'),
+                        }
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'artist38',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: false
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                }
+            ],
             concerts: [],
             forum: [],
             leaderboard: [],
@@ -2755,18 +2619,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 39,
-            artistId: 34,
-            isActive: false,
+            artistId: 'artist39',
+            isActive: true,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
-            cover: {
-                id: null,
-                url: null,
-                type: null
-            },
             maxSubscribers: null,
+            name: 'okClub',
+            description: 'okokokokokokokokokokokokokokokokokokokok',
+            pricing: 3.99,
+            cover: {
+                id: 1,
+                url: require('../images/pictures/okgiorgio-fanclub-cover.png'),
+                type: 'IMAGE'
+            },
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2777,7 +2641,51 @@ export const FanclubsProvider = ({ children }) => {
             province: null,
             beneficiary: null,
             iban: null,
-            posts: [],
+            posts: [
+                {
+                    id: 1,
+                    artistId: 'artist39',
+                    caption: 'Dj set per le mucche',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-01-28T22:22:23.542Z",
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {
+                        name: null,
+                        url: null
+                    },
+                    media: [
+                        {
+                            id: 1,
+                            type: 'VIDEO',
+                            url: require('../assets/video/okgiorgio-post-1.mp4'),
+                        },
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'artist39',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: false
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                }
+            ],
             concerts: [],
             forum: [],
             leaderboard: [],
@@ -2785,18 +2693,18 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 40,
-            artistId: 35,
-            isActive: false,
+            artistId: 'artist40',
+            isActive: true,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
-            cover: {
-                id: null,
-                url: null,
-                type: null
-            },
             maxSubscribers: null,
+            name: 'Club di NAYT',
+            description: 'Lettera Q',
+            pricing: 4.99,
+            cover: {
+                id: 1,
+                url: require('../images/pictures/nayt-fanclub-cover.jpg'),
+                type: 'IMAGE'
+            },
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2807,26 +2715,117 @@ export const FanclubsProvider = ({ children }) => {
             province: null,
             beneficiary: null,
             iban: null,
-            posts: [],
+            posts: [
+                {
+                    id: 1,
+                    artistId: 'artist40',
+                    caption: 'Lettera Q, il mio nuovo disco, fuori venerdì, presalva qui sotto',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2024-12-23T09:22:23.542Z",
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {
+                        name: 'Presave del disco',
+                        url: 'https://open.spotify.com/intl-it/artist/7tmTvmqgTBcX88ZrSHByrD'
+                    },
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/nayt-fanclub-cover.jpg'),
+                        },
+                        {
+                            id: 2,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/nayt-post-1.jpg')
+                        }
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'artist40',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: false
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                },{
+                    id: 2,
+                    artistId: 'artist40',
+                    caption: 'Biglietti del tour anticipati solo per i Superfan!!',
+                    commentsCount: 0,
+                    comments: [],
+                    createdAt: "2025-02-06T09:22:23.542Z",
+                    likes: [
+                        {userId: 2},
+                        {userId: 3},
+                        {userId: 4},
+                        {userId: 5},
+                        {userId: 6},
+                        {userId: 7},
+                        {userId: 8},
+                        {userId: 9},
+                    ],
+                    link: {
+                        name: 'Link i biglietti',
+                        url: 'https://open.spotify.com/intl-it/artist/7tmTvmqgTBcX88ZrSHByrD'
+                    },
+                    media: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/nayt-post-2.jpg'),
+                        }
+                    ],
+                    mode: 'PUBLISHED',
+                    publisher: {
+                        id: 'artist40',
+                        type: 'ARTIST'
+                    },
+                    settings: {
+                        isPinned: false,
+                        isPrivate: true
+                    },
+                    share: {
+                        shareCount: 100,
+                        shareLink: undefined,
+                    },
+                    text: ''
+                }
+            ],
             concerts: [],
             forum: [],
             leaderboard: [],
             fanLetters:[],
             messages:[]
         },{
-            id: 41,
-            artistId: 36,
+            id: 40,
+            artistId: 'artist40',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
-            maxSubscribers: null,
             firstName: null,
             lastName: null,
             fiscalCode: null,
@@ -2845,18 +2844,78 @@ export const FanclubsProvider = ({ children }) => {
             messages:[]
         },{
             id: 42,
-            artistId: 37,
+            artistId: 'artist42',
             isActive: false,
             subscribers: null,
-            name: '',
-            description: '',
-            pricing: '',
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
             cover: {
                 id: null,
                 url: null,
                 type: null
             },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 43,
+            artistId: 'artist43',
+            isActive: false,
+            subscribers: null,
             maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
+            firstName: null,
+            lastName: null,
+            fiscalCode: null,
+            email: null,
+            address: null,
+            zipCode: null,
+            city: null,
+            province: null,
+            beneficiary: null,
+            iban: null,
+            posts: [],
+            concerts: [],
+            forum: [],
+            leaderboard: [],
+            fanLetters:[],
+            messages:[]
+        },{
+            id: 44,
+            artistId: 'artist44',
+            isActive: false,
+            subscribers: null,
+            maxSubscribers: null,
+            name: null,
+            description: null,
+            pricing: null,
+            cover: {
+                id: null,
+                url: null,
+                type: null
+            },
             firstName: null,
             lastName: null,
             fiscalCode: null,

@@ -8,7 +8,7 @@ export const LiveQuizProvider = ({ children }) => {
 
 		{
 			id: 1,
-			artistId: 1,
+			artistId: 'artist1',
 			artistSlug: 'lazza',
 			artistName: 'Lazza',
 			playDate: '2024-12-04 00:00:00',
@@ -28,7 +28,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 2,
-			artistId: 'a3p8',
+			artistId: 'artist2',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-12-04 00:00:00',
@@ -48,7 +48,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 3,
-			artistId: 3,
+			artistId: 'artist3',
 			artistSlug: 'artie-5ive',
 			artistName: 'Artie 5ive',
 			playDate: '2024-12-04 00:00:00',
@@ -68,7 +68,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 4,
-			artistId: 4,
+			artistId: 'artist4',
 			artistSlug: 'suspect-cb',
 			artistName: 'Suspect CB',
 			playDate: '2024-11-26 00:00:00',
@@ -85,7 +85,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 5,
-			artistId: 5,
+			artistId: 'artist5',
 			artistSlug: 'astro',
 			artistName: 'Astro',
 			playDate: '2024-11-26 00:00:00',
@@ -102,7 +102,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 6,
-			artistId: 'a3p8',
+			artistId: 'artist2',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-24 00:00:00',
@@ -119,7 +119,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 7,
-			artistId: 'a3p8',
+			artistId: 'artist2',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-23 00:00:00',
@@ -136,7 +136,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 8,
-			artistId: 'a3p8',
+			artistId: 'artist2',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-01-01 00:00:00',
@@ -153,7 +153,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 9,
-			artistId: 5,
+			artistId: 'artist5',
 			artistSlug: 'astro',
 			artistName: 'Astro',
 			playDate: '2024-09-22 00:00:00',
@@ -170,7 +170,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 10,
-			artistId: 5,
+			artistId: 'artist5',
 			artistSlug: 'astro',
 			artistName: 'Astro',
 			playDate: '2024-11-23 00:00:00',
@@ -187,7 +187,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 11,
-			artistId: 3,
+			artistId: 'artist3',
 			artistSlug: 'artie-5ive',
 			artistName: 'Artie 5ive',
 			playDate: '2024-12-05 00:00:00',
@@ -204,7 +204,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 12,
-			artistId: 3,
+			artistId: 'artist3',
 			artistSlug: 'artie-5ive',
 			artistName: 'Artie 5ive',
 			playDate: '2024-10-24 00:00:00',
@@ -221,7 +221,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 13,
-			artistId: 1,
+			artistId: 'artist1',
 			artistSlug: 'lazza',
 			artistName: 'Lazza',
 			playDate: '2024-12-05 00:00:00',
@@ -238,7 +238,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 14,
-			artistId: 1,
+			artistId: 'artist1',
 			artistSlug: 'lazza',
 			artistName: 'Lazza',
 			playDate: '2024-11-21 00:00:00',
@@ -255,7 +255,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 15,
-			artistId: 'a3p8',
+			artistId: 'artist2',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-27 00:00:00',
@@ -272,7 +272,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 16,
-			artistId: 'a3p8',
+			artistId: 'artist2',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-28 00:00:00',
@@ -289,7 +289,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 17,
-			artistId: 'a3p8',
+			artistId: 'artist2',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-30 00:00:00',
@@ -306,7 +306,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 18,
-			artistId: 'a3p8',
+			artistId: 'artist2',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-11-30 00:00:00',
@@ -323,7 +323,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 19,
-			artistId: 'a3p8',
+			artistId: 'artist2',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-12-05 00:00:00',
@@ -340,7 +340,7 @@ export const LiveQuizProvider = ({ children }) => {
 			responses: []
 		},{
 			id: 20,
-			artistId: 'a3p8',
+			artistId: 'artist2',
 			artistSlug: 'thasup',
 			artistName: 'thasup',
 			playDate: '2024-12-03 00:00:00',

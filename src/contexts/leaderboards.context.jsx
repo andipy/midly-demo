@@ -7,7 +7,7 @@ export const LeaderboardsProvider = ({ children }) => {
     const [leaderboards, setLeaderboards] = useState([
         {
             id: 1,
-            artistId: 1,
+            artistId: 'artist1',
             leaderboard: [
                 {
                     userId: 2,
@@ -67,7 +67,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 2,
-            artistId: 'a3p8',
+            artistId: 'artist2',
             leaderboard: [
                 {
                     userId: 2,
@@ -127,7 +127,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 3,
-            artistId: 3,
+            artistId: 'artist3',
             leaderboard: [
                 {
                     userId: 2,
@@ -187,7 +187,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 4,
-            artistId: 4,
+            artistId: 'artist4',
             leaderboard: [
                 {
                     userId: 2,
@@ -247,7 +247,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 5,
-            artistId: 'a5p1',
+            artistId: 'artist5',
             leaderboard: [
                 {
                     userId: 2,
@@ -307,7 +307,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 6,
-            artistId: 6,
+            artistId: 'artist6',
             leaderboard: [
                 {
                     userId: 2,
@@ -367,7 +367,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 7,
-            artistId: 'a4p4',
+            artistId: 'artist7',
             leaderboard: [
                 {
                     userId: 2,
@@ -427,7 +427,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 8,
-            artistId: 8,
+            artistId: 'artist8',
             leaderboard: [
                 {
                     userId: 2,
@@ -487,7 +487,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 9,
-            artistId: 9,
+            artistId: 'artist9',
             leaderboard: [
                 {
                     userId: 2,
@@ -547,7 +547,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 10,
-            artistId: 10,
+            artistId: 'artist10',
             leaderboard: [
                 {
                     userId: 2,
@@ -607,7 +607,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 11,
-            artistId: 11,
+            artistId: 'artist11',
             leaderboard: [
                 {
                     userId: 2,
@@ -667,7 +667,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 12,
-            artistId: 12,
+            artistId: 'artist12',
             leaderboard: [
                 {
                     userId: 2,
@@ -727,7 +727,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 13,
-            artistId: 'a2p1',
+            artistId: 'artist13',
             leaderboard: [
                 {
                     userId: 2,
@@ -787,7 +787,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 14,
-            artistId: 14,
+            artistId: 'artist14',
             leaderboard: [
                 {
                     userId: 2,
@@ -847,7 +847,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 15,
-            artistId: 15,
+            artistId: 'artist15',
             leaderboard: [
                 {
                     userId: 2,
@@ -907,7 +907,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 16,
-            artistId: 16,
+            artistId: 'artist16',
             leaderboard: [
                 {
                     userId: 2,
@@ -967,7 +967,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 17,
-            artistId: 17,
+            artistId: 'artist17',
             leaderboard: [
                 {
                     userId: 2,
@@ -1027,7 +1027,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 18,
-            artistId: 18,
+            artistId: 'artist18',
             leaderboard: [
                 {
                     userId: 2,
@@ -1087,7 +1087,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 19,
-            artistId: 19,
+            artistId: 'artist19',
             leaderboard: [
                 {
                     userId: 2,
@@ -1147,7 +1147,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 20,
-            artistId: 20,
+            artistId: 'artist20',
             leaderboard: [
                 {
                     userId: 2,
@@ -1207,7 +1207,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 21,
-            artistId: 21,
+            artistId: 'artist21',
             leaderboard: [
                 {
                     userId: 2,
@@ -1267,7 +1267,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 22,
-            artistId: 22,
+            artistId: 'artist22',
             leaderboard: [
                 {
                     userId: 2,
@@ -1327,7 +1327,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 23,
-            artistId: 23,
+            artistId: 'artist23',
             leaderboard: [
                 {
                     userId: 2,
@@ -1387,7 +1387,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 24,
-            artistId: 24,
+            artistId: 'artist24',
             leaderboard: [
                 {
                     userId: 2,
@@ -1447,7 +1447,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 25,
-            artistId: 25,
+            artistId: 'artist25',
             leaderboard: [
                 {
                     userId: 2,
@@ -1507,7 +1507,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 26,
-            artistId: 26,
+            artistId: 'artist26',
             leaderboard: [
                 {
                     userId: 2,
@@ -1567,7 +1567,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 27,
-            artistId: 27,
+            artistId: 'artist27',
             leaderboard: [
                 {
                     userId: 2,
@@ -1627,7 +1627,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 28,
-            artistId: 28,
+            artistId: 'artist28',
             leaderboard: [
                 {
                     userId: 2,
@@ -1687,7 +1687,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 29,
-            artistId: 29,
+            artistId: 'artist29',
             leaderboard: [
                 {
                     userId: 2,
@@ -1747,7 +1747,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 30,
-            artistId: 30,
+            artistId: 'artist30',
             leaderboard: [
                 {
                     userId: 2,
@@ -1807,7 +1807,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 31,
-            artistId: 31,
+            artistId: 'artist31',
             leaderboard: [
                 {
                     userId: 2,
@@ -1867,7 +1867,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 32,
-            artistId: 32,
+            artistId: 'artist32',
             leaderboard: [
                 {
                     userId: 2,
@@ -1927,7 +1927,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 33,
-            artistId: 33,
+            artistId: 'artist33',
             leaderboard: [
                 {
                     userId: 2,
@@ -1987,7 +1987,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 34,
-            artistId: 34,
+            artistId: 'artist34',
             leaderboard: [
                 {
                     userId: 2,
@@ -2047,7 +2047,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 35,
-            artistId: 35,
+            artistId: 'artist35',
             leaderboard: [
                 {
                     userId: 2,
@@ -2107,7 +2107,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 36,
-            artistId: 36,
+            artistId: 'artist36',
             leaderboard: [
                 {
                     userId: 2,
@@ -2167,7 +2167,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 37,
-            artistId: 37,
+            artistId: 'artist37',
             leaderboard: [
                 {
                     userId: 2,
@@ -2227,7 +2227,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 38,
-            artistId: 'a15p1',
+            artistId: 'artist38',
             leaderboard: [
                 {
                     userId: 2,
@@ -2287,7 +2287,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 39,
-            artistId: 'a16p1',
+            artistId: 'artist39',
             leaderboard: [
                 {
                     userId: 2,
@@ -2347,7 +2347,7 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 40,
-            artistId: 'a17p1',
+            artistId: 'artist40',
             leaderboard: [
                 {
                     userId: 2,
@@ -2407,7 +2407,187 @@ export const LeaderboardsProvider = ({ children }) => {
             ]
         },{
             id: 41,
-            artistId: 'a18p1',
+            artistId: 'artist41',
+            leaderboard: [
+                {
+                    userId: 2,
+                    image: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    points: 3689,
+                    // position: 1
+                },{
+                    userId: 1,
+                    image: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    points: 2237,
+                    // position: 2
+                },{
+                    userId: 6,
+                    image: require('../images/pictures/ai_03.png'),
+                    username: 'Giulietta',
+                    points: 2907,
+                    // position: 3
+                },{
+                    userId: 5,
+                    image: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    points: 1984,
+                    // position: 4
+                },{
+                    userId: 4,
+                    image: require('../images/pictures/ai_05.png'),
+                    username: 'marco_09',
+                    points: 1888,
+                    // position: 5
+                },{
+                    userId: 9,
+                    image: require('../images/pictures/ai_06.png'),
+                    username: 'francesca.david',
+                    points: 1467,
+                    // position: 6
+                },{
+                    userId: 8,
+                    image: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    points: 1107,
+                    // position: 7
+                },{
+                    userId: 3,
+                    image: require('../images/pictures/ai_08.png'),
+                    username: 'bob16',
+                    points: 467,
+                    // position: 8
+                },{
+                    userId: 7,
+                    image: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    points: 399,
+                    // position: 9
+                }
+            ]
+        },{
+            id: 42,
+            artistId: 'artist42',
+            leaderboard: [
+                {
+                    userId: 2,
+                    image: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    points: 3689,
+                    // position: 1
+                },{
+                    userId: 1,
+                    image: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    points: 2237,
+                    // position: 2
+                },{
+                    userId: 6,
+                    image: require('../images/pictures/ai_03.png'),
+                    username: 'Giulietta',
+                    points: 2907,
+                    // position: 3
+                },{
+                    userId: 5,
+                    image: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    points: 1984,
+                    // position: 4
+                },{
+                    userId: 4,
+                    image: require('../images/pictures/ai_05.png'),
+                    username: 'marco_09',
+                    points: 1888,
+                    // position: 5
+                },{
+                    userId: 9,
+                    image: require('../images/pictures/ai_06.png'),
+                    username: 'francesca.david',
+                    points: 1467,
+                    // position: 6
+                },{
+                    userId: 8,
+                    image: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    points: 1107,
+                    // position: 7
+                },{
+                    userId: 3,
+                    image: require('../images/pictures/ai_08.png'),
+                    username: 'bob16',
+                    points: 467,
+                    // position: 8
+                },{
+                    userId: 7,
+                    image: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    points: 399,
+                    // position: 9
+                }
+            ]
+        },{
+            id: 43,
+            artistId: 'artist43',
+            leaderboard: [
+                {
+                    userId: 2,
+                    image: require('../images/pictures/ai_01.png'),
+                    username: 'chiara',
+                    points: 3689,
+                    // position: 1
+                },{
+                    userId: 1,
+                    image: require('../images/pictures/current-fan.jpg'),
+                    username: 'imtheKING',
+                    points: 2237,
+                    // position: 2
+                },{
+                    userId: 6,
+                    image: require('../images/pictures/ai_03.png'),
+                    username: 'Giulietta',
+                    points: 2907,
+                    // position: 3
+                },{
+                    userId: 5,
+                    image: require('../images/pictures/ai_04.png'),
+                    username: 'ginger04',
+                    points: 1984,
+                    // position: 4
+                },{
+                    userId: 4,
+                    image: require('../images/pictures/ai_05.png'),
+                    username: 'marco_09',
+                    points: 1888,
+                    // position: 5
+                },{
+                    userId: 9,
+                    image: require('../images/pictures/ai_06.png'),
+                    username: 'francesca.david',
+                    points: 1467,
+                    // position: 6
+                },{
+                    userId: 8,
+                    image: require('../images/pictures/ai_07.png'),
+                    username: 'davide00',
+                    points: 1107,
+                    // position: 7
+                },{
+                    userId: 3,
+                    image: require('../images/pictures/ai_08.png'),
+                    username: 'bob16',
+                    points: 467,
+                    // position: 8
+                },{
+                    userId: 7,
+                    image: require('../images/pictures/ai_09.png'),
+                    username: 'kevin.alfa.il.migliore',
+                    points: 399,
+                    // position: 9
+                }
+            ]
+        },{
+            id: 44,
+            artistId: 'artist44',
             leaderboard: [
                 {
                     userId: 2,

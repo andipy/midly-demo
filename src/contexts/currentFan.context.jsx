@@ -28,15 +28,14 @@ export const CurrentFanProvider = ({ children }) => {
         hasInstagram: false,
         hasTikTok: false,
         followedArtists: [
-            {artistId: 'a2p1'},
-            {artistId: 'a5p1'},
-            {artistId: 1},
-            {artistId: 'a3p8'},
+            {artistId: 'artist1'},
+            {artistId: 'artist2'},
+            {artistId: 'artist5'}
         ],
         fanclubsSubscribed: [
             {
-                artistId: "a2p1",
-                createdAt: "2025-02-09"
+                artistId: 'artist13',
+                createdAt: '2025-02-09'
             }
         ],
         removedSubscriptions: [],

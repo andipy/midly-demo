@@ -6,7 +6,7 @@ export const ArtistsProvider = ({ children }) => {
 
     const [artists, setArtists] = useState([
         {
-            id: 1,
+            id: 'artist1',
             slug: 'lazza',
             artistName: 'Lazza',
             image: require('../images/pictures/lazza.jpeg'),
@@ -18,7 +18,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 'a3p8',
+            id: 'artist2',
             slug: 'thasup',
             artistName: 'thasup',
             image: require('../images/pictures/thasup.jpg'),
@@ -30,7 +30,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 3,
+            id: 'artist3',
             slug: 'artie-5ive',
             artistName: 'Artie 5ive',
             image: require('../images/pictures/artie-5ive.jpeg'),
@@ -42,7 +42,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 4,
+            id: 'artist4',
             slug: 'suspect-cb',
             artistName: 'Suspect CB',
             image: require('../images/pictures/suspect-cb.jpg'),
@@ -54,7 +54,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 'a5p1',
+            id: 'artist5',
             slug: 'astro',
             artistName: 'Astro',
             image: require('../images/pictures/astro.jpg'),
@@ -66,7 +66,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 6,
+            id: 'artist6',
             slug: 'alfa',
             artistName: 'Alfa',
             image: require('../images/pictures/alfa.jpg'),
@@ -78,7 +78,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 'a4p4',
+            id: 'artist7',
             slug: 'sick-luke',
             artistName: 'Sick Luke',
             image: require('../images/pictures/sick-luke.jpg'),
@@ -90,7 +90,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 8,
+            id: 'artist8',
             slug: 'nabi',
             artistName: 'Nabi',
             image: require('../images/pictures/nabi.jpg'),
@@ -102,7 +102,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 9,
+            id: 'artist9',
             slug: 'mezzosangue',
             artistName: 'Mezzosangue',
             image: require('../images/pictures/mezzosangue.jpg'),
@@ -114,7 +114,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 10,
+            id: 'artist10',
             slug: 'anna',
             artistName: 'ANNA',
             image: require('../images/pictures/anna.jpg'),
@@ -126,7 +126,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 11,
+            id: 'artist11',
             slug: 'gue',
             artistName: 'Guè',
             image: require('../images/pictures/gue.jpg'),
@@ -138,7 +138,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 12,
+            id: 'artist12',
             slug: 'marracash',
             artistName: 'Marracash',
             image: require('../images/pictures/marracash.jpg'),
@@ -150,7 +150,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 'a2p1',
+            id: 'artist13',
             slug: 'sfera-ebbasta',
             artistName: 'Sfera Ebbasta',
             image: require('../images/pictures/sfera-ebbasta.jpg'),
@@ -162,7 +162,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 14,
+            id: 'artist14',
             slug: 'coma-cose',
             artistName: 'Coma_cose',
             image: require('../images/pictures/coma_cose.jpeg'),
@@ -174,7 +174,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 15,
+            id: 'artist15',
             slug: 'salmo',
             artistName: 'Salmo',
             image: require('../images/pictures/salmo.jpeg'),
@@ -186,7 +186,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 16,
+            id: 'artist16',
             slug: 'mara-sattei',
             artistName: 'Mara Sattei',
             image: require('../images/pictures/mara-sattei.jpeg'),
@@ -198,7 +198,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 17,
+            id: 'artist17',
             slug: 'don-pero',
             artistName: 'Don Pero',
             image: require('../images/pictures/don-pero.jpeg'),
@@ -210,7 +210,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 18,
+            id: 'artist18',
             slug: 'olly',
             artistName: 'Olly',
             image: require('../images/pictures/olly.jpeg'),
@@ -222,7 +222,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 19,
+            id: 'artist19',
             slug: 'venerus',
             artistName: 'Venerus',
             image: require('../images/pictures/venerus.jpeg'),
@@ -234,7 +234,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 20,
+            id: 'artist20',
             slug: 'nitro',
             artistName: 'Nitro',
             image: require('../images/pictures/nitro.jpeg'),
@@ -246,7 +246,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 21,
+            id: 'artist21',
             slug: 'maneskin',
             artistName: 'Maneskin',
             image: require('../images/pictures/maneskin.jpeg'),
@@ -258,7 +258,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 22,
+            id: 'artist22',
             slug: 'gionny-scandal',
             artistName: 'GionnyScandal',
             image: require('../images/pictures/gionny-scandal.jpeg'),
@@ -270,7 +270,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 23,
+            id: 'artist23',
             slug: 'sadturs',
             artistName: 'Sadturs',
             image: require('../images/pictures/sadturs.jpeg'),
@@ -282,7 +282,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 24,
+            id: 'artist24',
             slug: 'rose-villain',
             artistName: 'Rose Villain',
             image: require('../images/pictures/rose-villain.jpeg'),
@@ -294,7 +294,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 25,
+            id: 'artist25',
             slug: 'mace',
             artistName: 'MACE',
             image: require('../images/pictures/mace.jpeg'),
@@ -306,7 +306,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 26,
+            id: 'artist26',
             slug: 'ghali',
             artistName: 'Ghali',
             image: require('../images/pictures/ghali.jpeg'),
@@ -318,7 +318,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 27,
+            id: 'artist27',
             slug: 'kid-yugi',
             artistName: 'Kid Yugi',
             image: require('../images/pictures/kid-yugi.jpeg'),
@@ -330,7 +330,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 28,
+            id: 'artist28',
             slug: 'drefgold',
             artistName: 'DrefGold',
             image: require('../images/pictures/drefgold.jpeg'),
@@ -342,7 +342,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 29,
+            id: 'artist29',
             slug: 'miles',
             artistName: 'MILES',
             image: require('../images/pictures/miles.jpeg'),
@@ -354,7 +354,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: true,
             chatIsActive: true,
         },{
-            id: 30,
+            id: 'artist30',
             slug: 'billie-eilish',
             artistName: 'Billie Eilish',
             image: require('../images/pictures/billie_eilish.jpg'),
@@ -366,7 +366,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 31,
+            id: 'artist31',
             slug: '21-savage',
             artistName: '21 Savage',
             image: require('../images/pictures/21_savage.jpg'),
@@ -378,7 +378,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 32,
+            id: 'artist32',
             slug: 'future',
             artistName: 'Future',
             image: require('../images/pictures/future.jpg'),
@@ -390,7 +390,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 33,
+            id: 'artist33',
             slug: 'travis-scott',
             artistName: 'Travis Scott',
             image: require('../images/pictures/travis_scott.jpg'),
@@ -402,7 +402,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 34,
+            id: 'artist34',
             slug: 'nirvana',
             artistName: 'Nirvana',
             image: require('../images/pictures/nirvana.jpg'),
@@ -414,7 +414,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 35,
+            id: 'artist35',
             slug: 'stray-kids',
             artistName: 'Stray Kids',
             image: require('../images/pictures/stray_kids.jpg'),
@@ -426,7 +426,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 36,
+            id: 'artist36',
             slug: 'eminem',
             artistName: 'Eminem',
             image: require('../images/pictures/eminem.jpg'),
@@ -438,7 +438,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 37,
+            id: 'artist37',
             slug: 'laura-pausini',
             artistName: 'Laura Pausini',
             image: require('../images/pictures/laura_pausini.jpg'),
@@ -450,7 +450,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 'a6p2',
+            id: 'artist38',
             slug: 'bnkr44',
             artistName: 'bnkr44',
             image: require('../images/pictures/bnkr44.jpg'),
@@ -462,7 +462,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 'a7p3',
+            id: 'artist39',
             slug: 'okgiorgio',
             artistName: 'okgiorgio',
             image: require('../images/pictures/okgiorgio.jpg'),
@@ -474,7 +474,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 'a8p1',
+            id: 'artist40',
             slug: 'nayt',
             artistName: 'Nayt',
             image: require('../images/pictures/nayt.jpg'),
@@ -486,7 +486,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 'a15p1',
+            id: 'artist41',
             slug: 'fedez',
             artistName: 'Fedez',
             image: require('../images/pictures/fedez.jpg'),
@@ -498,7 +498,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 'a16p1',
+            id: 'artist42',
             slug: 'irama',
             artistName: 'Irama',
             image: require('../images/pictures/irama.jpg'),
@@ -510,7 +510,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 'a17p1',
+            id: 'artist43',
             slug: 'achille-lauro',
             artistName: 'Achille Lauro',
             image: require('../images/pictures/achille-lauro.jpg'),
@@ -522,7 +522,7 @@ export const ArtistsProvider = ({ children }) => {
             verified: false,
             chatIsActive: true,
         },{
-            id: 'a18p1',
+            id: 'artist44',
             slug: 'serena-brancale',
             artistName: 'Serena Brancale',
             image: require('../images/pictures/serena-brancale.jpg'),
