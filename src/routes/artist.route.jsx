@@ -608,7 +608,7 @@ const ArtistRoute = () => {
                     {artist?.flashLeaderboard.status === 'CLOSED_VISIBLE' && !pathname.includes('sfera-ebbasta') &&
                         <MessageFlashLeaderboard artist={artist} />
                     }
-                    {currentFan.hasSpotify && userFollowing && !hasUserSubscribed && pathname.includes('/leaderboard-streaming') &&
+                    {currentFan.hasSpotify && userFollowing && !fanclub?.isActive &&
                         <div className='d-flex-row gap-0_5em mt-xs-2'>
                         <Button
                             style={artist?.requestFanclub?.some(req => req.userId === currentFan.id) 
@@ -630,16 +630,12 @@ const ArtistRoute = () => {
                     </div>
                         
                     }
+                    
 
-                    {userFollowing && currentFan.hasSpotify && pathname.includes('/leaderboard-streaming') &&
-                        <CardLeaderboardYourPosition
-                            currentFan={currentFan}
-                            artist={artist}
-                        />
-                    }
+                    
 
                     <div className='d-flex-row gap-0_5em mt-xs-2'>
-                        {!userFollowing && !hasUserSubscribed && !pathname.includes('/leaderboard-streaming') &&
+                        {!userFollowing && !hasUserSubscribed && !pathname.includes('/leaderboard-streaming') && fanclub?.isActive &&
                             <Button
                                 style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
                                 label='Segui'
@@ -657,7 +653,7 @@ const ArtistRoute = () => {
                         }
                     </div>
 
-                    {currentFan.hasSpotify && !userFollowing && !hasUserSubscribed && pathname.includes('/leaderboard-streaming') &&
+                    {currentFan.hasSpotify && !userFollowing && !fanclub?.isActive &&
                     <div className='d-flex-row gap-0_5em mt-xs-2'>
                         <Button
                             style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
@@ -666,32 +662,6 @@ const ArtistRoute = () => {
                         >
                             <img src={IconFollow} />
                         </ Button>
-                        {/* <Button
-                            style='border-lime bg-black lime-400 fsize-xs-3 f-w-500 black'
-                            label={''}
-                            onClick={handleRequestFanclub}
-                        >
-                            <div className='d-flex-column j-c-center align-items-center'>
-                                <span>
-                                Richiedi fanclub
-                                </span>
-                                <span className='fsize-xs-0 f-w-300'>
-                                    {artist?.requestFanclub ?
-                                        <>
-                                            Richiesto  {artist?.requestFanclub ? `${artist?.requestFanclub}` : '0' } {artist?.requestFanclub === 1 ? 'volta' : 'volte'}
-                                        </>
-                                        :
-                                        <></>
-                                    }
-                                </span>
-                                {isHeartVisible && (
-                                    <div className="heart-animation avatar-28">
-                                        <img className='avatar-24' src={IconThunder}/>
-                                    </div>
-                                )}
-                                
-                            </div>
-                        </Button> */}
                         <Button
                             style={artist?.requestFanclub?.some(req => req.userId === currentFan.id) 
                                 ? 'border-grey-small grey-400 bg-black text-white fsize-xs-3 f-w-500 '
@@ -713,6 +683,17 @@ const ArtistRoute = () => {
                         
                     }
 
+                    {!fanclub?.isActive && artist?.chatIsActive &&
+                        <TabFanclub artist={artist}/>
+                    }
+
+                    {userFollowing && currentFan.hasSpotify && pathname.includes('/leaderboard-streaming') &&
+                        <CardLeaderboardYourPosition
+                            currentFan={currentFan}
+                            artist={artist}
+                        />
+                    }
+
                     
 
                     {!currentFan.hasSpotify && pathname.includes('/leaderboard-streaming') &&
@@ -722,6 +703,7 @@ const ArtistRoute = () => {
                     {fanclub?.isActive &&
                         <TabFanclub artist={artist}/>
                     }
+                    
 
                     {userFollowing && currentFan.hasSpotify && pathname.includes('/leaderboard') &&  !pathname.includes('/leaderboard-streaming') &&
                         <CardLeaderboardYourPosition

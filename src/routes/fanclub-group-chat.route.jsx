@@ -22,9 +22,16 @@ const FanclubGroupChatRoute = () => {
 
 
     useEffect(() => {
-        if (shake) {
-            handlePopUp('MESSAGE-CHAT')
+        {
+            if ( !fanclub?.isActive && artist?.chatIsActive) {
+                return
+            }
+            if (shake) {
+                handlePopUp('MESSAGE-CHAT')
+            }
+
         }
+        
     }, [shake])
 
     useEffect(() => {
