@@ -10,17 +10,17 @@ export const FansProvider = ({ children }) => {
             image: require('../images/pictures/current-fan.jpg'),
             username: 'imtheKING',
             mostListenedArtistsOnSpotify : [
-                {artistId: 1},
-                {artistId: 7},
-                {artistId: 6},
-                {artistId: 10},
-                {artistId: 11}
+                {artistId: 'artist1'},
+                {artistId: 'artist7'},
+                {artistId: 'artist6'},
+                {artistId: 'artist10'},
+                {artistId: 'artist11'}
             ],
             followedArtists: [
-                {artistId: 1,},
-                {artistId: 2},
-                {artistId: 3},
-                {artistId: 6},
+                {artistId: 'artist1',},
+                {artistId: 'artist2'},
+                {artistId: 'artist3'},
+                {artistId: 'artist6'},
             ],
             affinityWithCurrentUser: 100,
         },{
@@ -28,17 +28,17 @@ export const FansProvider = ({ children }) => {
             image: require('../images/pictures/ai_01.png'),
             username: 'chiara',
             mostListenedArtistsOnSpotify : [
-                {artistId: 2},
-                {artistId: 7},
-                {artistId: 8},
-                {artistId: 10},
-                {artistId: 20}
+                {artistId: 'artist2'},
+                {artistId: 'artist7'},
+                {artistId: 'artist8'},
+                {artistId: 'artist10'},
+                {artistId: 'artist20'}
             ],
             followedArtists: [
-                {artistId: 6},
-                {artistId: 2},
-                {artistId: 8},
-                {artistId: 20},
+                {artistId: 'artist6'},
+                {artistId: 'artist2'},
+                {artistId: 'artist8'},
+                {artistId: 'artist20'},
             ],
             affinityWithCurrentUser: 10,
         },{
@@ -46,17 +46,17 @@ export const FansProvider = ({ children }) => {
             image: require('../images/pictures/ai_08.png'),
             username: 'bob16',
             mostListenedArtistsOnSpotify : [
-                {artistId: 7},
-                {artistId: 15},
-                {artistId: 6},
-                {artistId: 10},
-                {artistId: 12}
+                {artistId: 'artist7'},
+                {artistId: 'artist15'},
+                {artistId: 'artist6'},
+                {artistId: 'artist10'},
+                {artistId: 'artist12'}
             ],
             followedArtists: [
-                {artistId: 1},
-                {artistId: 7},
-                {artistId: 15},
-                {artistId: 6},
+                {artistId: 'artist1'},
+                {artistId: 'artist7'},
+                {artistId: 'artist15'},
+                {artistId: 'artist6'},
             ],
             affinityWithCurrentUser: 42,
         },{
@@ -64,17 +64,17 @@ export const FansProvider = ({ children }) => {
             image: require('../images/pictures/ai_05.png'),
             username: 'marco_09',
             mostListenedArtistsOnSpotify : [
-                {artistId: 1},
-                {artistId: 20},
-                {artistId: 6},
-                {artistId: 21},
-                {artistId: 22}
+                {artistId: 'artist1'},
+                {artistId: 'artist20'},
+                {artistId: 'artist6'},
+                {artistId: 'artist21'},
+                {artistId: 'artist22'}
             ],
             followedArtists: [
-                {artistId: 20},
-                {artistId: 21},
-                {artistId: 22},
-                {artistId: 6},
+                {artistId: 'artist20'},
+                {artistId: 'artist21'},
+                {artistId: 'artist22'},
+                {artistId: 'artist6'},
             ],
             affinityWithCurrentUser: 82,
         },{
@@ -82,36 +82,36 @@ export const FansProvider = ({ children }) => {
             image: require('../images/pictures/ai_04.png'),
             username: 'ginger04',
             mostListenedArtistsOnSpotify : [
-                {artistId: 1},
-                {artistId: 13},
-                {artistId: 6},
-                {artistId: 10},
-                {artistId: 11}
+                {artistId: 'artist1'},
+                {artistId: 'artist13'},
+                {artistId: 'artist6'},
+                {artistId: 'artist10'},
+                {artistId: 'artist11'}
             ],
             followedArtists: [
-                {artistId: 1},
-                {artistId: 2},
-                {artistId: 13},
-                {artistId: 6},
+                {artistId: 'artist1'},
+                {artistId: 'artist2'},
+                {artistId: 'artist13'},
+                {artistId: 'artist6'},
             ],
             affinityWithCurrentUser: 57,
             
-        },,{
+        },{
             id: 6,
             image: require('../images/pictures/ai_03.png'),
             username: 'Giulietta',
             mostListenedArtistsOnSpotify : [
-                {artistId: 2},
-                {artistId: 16},
-                {artistId: 15},
-                {artistId: 10},
-                {artistId: 11}
+                {artistId: 'artist2'},
+                {artistId: 'artist16'},
+                {artistId: 'artist15'},
+                {artistId: 'artist10'},
+                {artistId: 'artist11'}
             ],
             followedArtists: [
-                {artistId: 15},
-                {artistId: 2},
-                {artistId: 3},
-                {artistId: 16},
+                {artistId: 'artist15'},
+                {artistId: 'artist2'},
+                {artistId: 'artist3'},
+                {artistId: 'artist16'},
             ],
             affinityWithCurrentUser: 98,
         },{
@@ -119,17 +119,17 @@ export const FansProvider = ({ children }) => {
             image: require('../images/pictures/ai_09.png'),
             username: 'kevin.alfa.il.migliore',
             mostListenedArtistsOnSpotify : [
-                {artistId: 6},
-                {artistId: 7},
-                {artistId: 9},
-                {artistId: 10},
-                {artistId: 11}
+                {artistId: 'artist6'},
+                {artistId: 'artist7'},
+                {artistId: 'artist9'},
+                {artistId: 'artist10'},
+                {artistId: 'artist11'}
             ],
             followedArtists: [
-                {artistId: 1},
-                {artistId: 9},
-                {artistId: 10},
-                {artistId: 6},
+                {artistId: 'artist1'},
+                {artistId: 'artist9'},
+                {artistId: 'artist10'},
+                {artistId: 'artist6'},
             ],
             affinityWithCurrentUser: 100,
         },{
@@ -137,17 +137,17 @@ export const FansProvider = ({ children }) => {
             image: require('../images/pictures/ai_07.png'),
             username: 'davide00',
             mostListenedArtistsOnSpotify : [
-                {artistId: 18},
-                {artistId: 19},
-                {artistId:20},
-                {artistId: 10},
-                {artistId: 11}
+                {artistId: 'artist18'},
+                {artistId: 'artist19'},
+                {artistId: 'artist20'},
+                {artistId: 'artist10'},
+                {artistId: 'artist11'}
             ],
             followedArtists: [
-                {artistId: 18},
-                {artistId: 19},
-                {artistId: 3},
-                {artistId: 6},
+                {artistId: 'artist18'},
+                {artistId: 'artist19'},
+                {artistId: 'artist3'},
+                {artistId: 'artist6'},
             ],
             affinityWithCurrentUser: 36,
         },{
@@ -155,17 +155,17 @@ export const FansProvider = ({ children }) => {
             image: require('../images/pictures/ai_06.png'),
             username: 'francesca.david',
             mostListenedArtistsOnSpotify : [
-                {artistId: 1},
-                {artistId: 7},
-                {artistId: 6},
-                {artistId: 10},
-                {artistId: 11}
+                {artistId: 'artist1'},
+                {artistId: 'artist7'},
+                {artistId: 'artist6'},
+                {artistId: 'artist10'},
+                {artistId: 'artist11'}
             ],
             followedArtists: [
-                {artistId: 1},
-                {artistId: 2},
-                {artistId: 3},
-                {artistId: 6},
+                {artistId: 'artist1'},
+                {artistId: 'artist2'},
+                {artistId: 'artist3'},
+                {artistId: 'artist6'},
             ],
             affinityWithCurrentUser: 48,
         }
