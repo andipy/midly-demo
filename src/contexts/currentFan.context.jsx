@@ -40,11 +40,11 @@ export const CurrentFanProvider = ({ children }) => {
         ],
         removedSubscriptions: [],
         mostListenedArtistsOnSpotify : [
-            {artistId: 1},
-            {artistId: 7},
-            {artistId: 6},
-            {artistId: 10},
-            {artistId: 11}
+            {artistId: 'artist1'},
+            {artistId: 'artist7'},
+            {artistId: 'artist6'},
+            {artistId: 'artist10'},
+            {artistId: 'artist11'}
         ],
         badges: {
             monthly: [
