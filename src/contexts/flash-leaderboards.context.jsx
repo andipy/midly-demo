@@ -424,7 +424,7 @@ export const FlashLeaderboardsProvider = ({ children }) => {
             announceStartDate: '2025-02-25 00:00:00',
             announceEndDate: '2025-03-01 00:00:00',
             rankStartDate: '2025-02-26 00:00:00',
-            rankEndDate: '2025-02-28 00:00:00',
+            rankEndDate: '2025-02-29 00:00:00',
             participants: 6970,
             totalStreams: 39016,
             image: require('../images/pictures/sfera-ebbasta-flash.jpg'),

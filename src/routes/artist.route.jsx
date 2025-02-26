@@ -491,7 +491,7 @@ const ArtistRoute = () => {
         previousIsActive.current = fanclub?.isActive
 
         if (fanclub?.isActive) {
-            if (pathname.includes('sfera-ebbasta')) {
+            if (pathname.includes('sfera-ebbasta') && (artist?.flashLeaderboard.status === 'ONGOING' || artist?.flashLeaderboard.status === 'PENDING')) {
                 navigate(`/artist/${artistSlug}/flash-chart`)
             } else {
                 navigate(`/artist/${artistSlug}/posts`)
@@ -720,7 +720,7 @@ const ArtistRoute = () => {
                     }
 
                     {fanclub?.isActive &&
-                        <TabFanclub />
+                        <TabFanclub artist={artist}/>
                     }
 
                     {userFollowing && currentFan.hasSpotify && pathname.includes('/leaderboard') &&  !pathname.includes('/leaderboard-streaming') &&
