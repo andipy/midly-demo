@@ -492,7 +492,7 @@ const ArtistRoute = () => {
 
         if (fanclub?.isActive) {
             if (pathname.includes('sfera-ebbasta')) {
-                navigate(`/artist/${artistSlug}/flash-status`)
+                navigate(`/artist/${artistSlug}/flash-chart`)
             } else {
                 navigate(`/artist/${artistSlug}/posts`)
             }  

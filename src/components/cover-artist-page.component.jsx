@@ -15,18 +15,28 @@ const CoverArtistPage = ({ artist, leaderboard, userFollowing, handleFollow, cur
 
     const { pathname } = useLocation()
 
-    const [cover, setCover] = useState({})
+
+    const [cover, setCover] = useState(null)
+
     useEffect(() => {
-        if (fanclub?.isActive) {
+
+        if (fanclub?.isActive && !pathname.includes('/flash-leaderboard') && fanclub.cover?.url) {
             setCover(fanclub.cover)
-        }
-        if ( artist ) {
+        } else if (artist && !pathname.includes('/flash-leaderboard') && artist.image) {
             setCover({
                 url: artist.image,
                 type: 'IMAGE'
             })
+        } else if (leaderboard && pathname.includes('/flash-leaderboard') && leaderboard.image) {
+            setCover({
+                url: leaderboard.image,
+                type: 'IMAGE'
+            })
+        } else {
+            console.log("🚫 No valid cover found, keeping previous cover.")
         }
-    }, [artist, fanclub])
+    }, [artist, fanclub, leaderboard, pathname])
+
     
     return (
         <header className={`position-relative ${pathname.includes('flash-leaderboard') ? 'position-fixed w-100 z-index-5 top-0 h-xs-20' : 'h-xs-27'}`}>

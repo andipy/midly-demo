@@ -10,8 +10,8 @@ export const FanclubsProvider = ({ children }) => {
             artistId: 'a3p8',
             isActive: true,
             subscribers: 0,
-            name: '',
-            description: '',
+            name: 'amici str3tt1',
+            description: 'il mio clu3 esclusivo',
             pricing: '',
             cover: {
                 id: undefined,

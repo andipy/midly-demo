@@ -153,7 +153,7 @@ const router = createBrowserRouter([
 				element: <Navigate to='posts' replace />,
 			}, */
 			{
-				path: 'flash-status',
+				path: 'flash-chart',
 				element: <FanclubFlashLeaderboardStatus />
 			},{
 				path: 'forum',

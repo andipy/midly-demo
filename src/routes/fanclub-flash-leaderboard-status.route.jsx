@@ -19,7 +19,6 @@ const FanclubFlashLeaderboardStatus = () => {
     
     const matchingLeaderboard = flashLeaderboards.find(lb => lb.artistId === artist?.id)
 
-
     const [targetDate, setTargetDate] = useState('')
     const [timeRemaining, setTimeRemaining] = useState({ 
         days: 0,
@@ -63,111 +62,92 @@ const FanclubFlashLeaderboardStatus = () => {
 
         return () => clearInterval(interval)
     }, [targetDate])
-  return (
-    <>
-    {artist.flashLeaderboard.status === 'PENDING' &&
-        <div
-            className={` pb-xs-4 pt-xs-4 pr-xs-4 pl-xs-4  mb-xs-4 mt-xs-4 bg-dark-soft-2 d-flex-column j-c-center align-items-center border-radius-08`}
-        >
-                <img className='avatar-80' src={IllustrationTrophy} />
-                <h4 className='fsize-xs-4 mb-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 w-80'>Sta per uscire {matchingLeaderboard.album ? matchingLeaderboard.album.title : matchingLeaderboard.song.title} il nuovo {matchingLeaderboard.album ? 'album' : 'brano'} di {artist.artistName}! {matchingLeaderboard.announceMessage}</h4>
-                <div className='d-flex-row j-c-center gap-0_5em fsize-xs-2 no-shrink bg-brand-gradient pt-xs-4 pb-xs-4 border-radius-04 w-100'>
-                    <span className='f-w-600 black fsize-xs-4'>SI ATTIVA TRA </span>
-                    {timeRemaining.days > 0 &&
-                        <span className='f-w-600 black fsize-xs-4'>{timeRemaining.days}<span className='f-w-300'>G</span></span>
-                    }
-                    {timeRemaining.hours > 0 &&
-                        <span className='f-w-600 black fsize-xs-4'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
-                    }
-                    {timeRemaining.minutes > 0 &&
-                        <span className='f-w-600 black fsize-xs-4'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
-                    }
-                    {timeRemaining.seconds > 0 &&
-                        <span className='f-w-600 black fsize-xs-4'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
-                    }
-                </div>
-                <Button
-                    style='bg-dark-soft border-lime lime-400 border-radius-04 fsize-xs-3 f-w-500 mt-xs-4 z-index-6'
-                    label="COS'È UNA CLASSIFICA FLASH?"
-                    onClick={() => navigate('/flash-leaderboard-explanation')}
-                />
-            {/* <div className={`bg-brand-gradient w-100 position-sticky bottom-0 z-index-999 `} >
-                <Container style={`d-flex-column align-items-center j-c-center overflow-all-hidden z-index-6 `}>
-                    <h4 className='fsize-xs-3 f-w-500 black'>CLASSIFICA FLASH SI ATTIVA TRA:</h4>
-                    <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink mt-xs-4 border-radius-04 w-100'>
+    
+    return (
+        <>
+            {artist.flashLeaderboard.status === 'PENDING' &&
+                <div
+                    className={` pb-xs-4 pt-xs-4 pr-xs-4 pl-xs-4  mb-xs-4 mt-xs-4 bg-dark-soft-2 d-flex-column j-c-center align-items-center border-radius-08`}
+                >
+                    <img className='avatar-80' src={IllustrationTrophy} />
+                    <h4 className='fsize-xs-3 mb-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 w-85'>Sta per uscire "{matchingLeaderboard.album ? matchingLeaderboard.album.title : matchingLeaderboard.song.title}", il nuovo {matchingLeaderboard.album ? 'album' : 'brano'} di {artist.artistName}! {matchingLeaderboard.announceMessage}</h4>
+                    <div className='d-flex-row j-c-center gap-0_5em fsize-xs-2 no-shrink bg-brand-gradient pt-xs-4 pb-xs-4 border-radius-04 w-100'>
+                        <span className='f-w-600 black fsize-xs-3'>SI ATTIVA TRA </span>
                         {timeRemaining.days > 0 &&
-                            <span className='f-w-600 black'>{timeRemaining.days}<span className='f-w-300'>G</span></span>
+                            <span className='f-w-600 black fsize-xs-3'>{timeRemaining.days}<span className='f-w-300'>G</span></span>
                         }
                         {timeRemaining.hours > 0 &&
-                            <span className='f-w-600 black'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
+                            <span className='f-w-600 black fsize-xs-3'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
                         }
                         {timeRemaining.minutes > 0 &&
-                            <span className='f-w-600 black'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
+                            <span className='f-w-600 black fsize-xs-3'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
                         }
                         {timeRemaining.seconds > 0 &&
-                            <span className='f-w-600 black'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
+                            <span className='f-w-600 black fsize-xs-3'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
                         }
                     </div>
-                </Container>
-            </div> */}
-        </div>
-    }
-    {artist.flashLeaderboard.status === 'ONGOING' &&
-        <div className={` pb-xs-4 pt-xs-4 pr-xs-4 pl-xs-4  mb-xs-4 mt-xs-4 bg-dark-soft-2 d-flex-column j-c-center align-items-center border-radius-08`}>
-
-            
-                <img className='avatar-80' src={IllustrationTrophy} />
-                <h4 className='fsize-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 mb-xs-4'>La classifica flash di "<span className='lime-400 f-w-500'>{matchingLeaderboard.album ? matchingLeaderboard.album.title : matchingLeaderboard.song.title}</span>" è attiva: ascolta {matchingLeaderboard.album ? 'i brani' : 'il brano'} e competi nella classifica dei super fan di {artist.artistName}.</h4>
-
-                <Button
-                    style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2 mb-xs-2'
-                    label="ENTRA →"
-                    onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}
-                />
-
-                <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink pt-xs-4 border-radius-04 w-100'>
-                    <span className='f-w-600 white'>TERMINA TRA: </span>
-                    {timeRemaining.days > 0 &&
-                        <span className='f-w-600 white'>{timeRemaining.days}<span className='f-w-300'>D</span></span>
-                    }
-                    {timeRemaining.hours > 0 &&
-                        <span className='f-w-600 white'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
-                    }
-                    {timeRemaining.minutes > 0 &&
-                        <span className='f-w-600 white'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
-                    }
-                    {timeRemaining.seconds > 0 &&
-                        <span className='f-w-600 white'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
-                    }
+                    <Button
+                        style='bg-dark-soft border-lime lime-400 border-radius-04 fsize-xs-3 f-w-500 mt-xs-4 z-index-6'
+                        label="COS'È UNA CLASSIFICA FLASH?"
+                        onClick={() => navigate('/flash-leaderboard-explanation')}
+                    />
                 </div>
+            }
 
-            {/* <div className={`bg-brand-gradient w-100 position-sticky bottom-0 z-index-999 ${lowerModalCompressed ? 'compress-down' : 'expand-down pt-xs-6 pb-xs-6'}`} onClick={toggleModalContent}>
-                <Container style={'d-flex-row align-items-center j-c-space-between'}>
-                        <div className='d-flex-row align-items-center gap-0_5em'>
-                            <img src={IconThunderBlack} />
-                            <h4 className='fsize-xs-4 f-w-500 black'>CLASSIFICA FLASH ATTIVA</h4>
-                        </div>
-                        <img className='avatar-24 bg-white border-radius-100' src={IconRightDark} alt='GO!' />
-                </Container>
-            </div> */}
-        </div>
-    }
-    {artist.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
-        <div className={` pb-xs-4 pt-xs-4 pr-xs-4 pl-xs-4  mb-xs-4 mt-xs-4 bg-dark-soft-2 d-flex-column j-c-center align-items-center border-radius-08`}>
+            {artist.flashLeaderboard.status === 'ONGOING' &&
+                <div className='position-relative pb-xs-6 mb-xs-4 mt-xs-4 bg-dark-soft-2 d-flex-column j-c-center align-items-center border-radius-04 overflow-all-hidden'>
+                    <div className='modal-header w-100'>
+                        <img
+                            className='w-inherit h-inherit object-fit-cover'
+                            src={matchingLeaderboard.image}
+                        />
+                    </div>
+                    <h4 className='fsize-xs-3 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 mb-xs-4 w-85'>La classifica flash di "<span className='lime-400 f-w-500'>{matchingLeaderboard.album ? matchingLeaderboard.album.title : matchingLeaderboard.song.title}</span>" è attiva: ascolta {matchingLeaderboard.album ? 'i brani' : 'il brano'} e competi nella classifica dei super fan di {artist.artistName}.</h4>
 
-                <img className='avatar-80' src={IllustrationTrophy} />
-                <h4 className='fsize-xs-4 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 mb-xs-4'>La classifica flash di "<span className='lime-400 f-w-500'>{matchingLeaderboard.album ? matchingLeaderboard.album.title : matchingLeaderboard.song.title}</span>" è terminata: vedi i risultati.</h4>
+                    <Button
+                        style='bg-acid-lime fsize-xs-3 f-w-500 black mt-xs-2 mb-xs-4 w-85'
+                        label="ENTRA →"
+                        onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}
+                    />
 
-                <Button
-                    style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 z-index-6 mb-xs-4'
-                    label="CLASSIFICA FLASH TERMINATA →"
-                    onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}
-                />
+                    <div className='d-flex-row j-c-center gap-0_5em fsize-xs-3 no-shrink pt-xs-4 border-radius-04 w-100'>
+                        <span className='f-w-600 white'>TERMINA TRA: </span>
+                        {timeRemaining.days > 0 &&
+                            <span className='f-w-600 white'>{timeRemaining.days}<span className='f-w-300'>D</span></span>
+                        }
+                        {timeRemaining.hours > 0 &&
+                            <span className='f-w-600 white'>{timeRemaining.hours}<span className='f-w-300'>H</span></span>
+                        }
+                        {timeRemaining.minutes > 0 &&
+                            <span className='f-w-600 white'>{timeRemaining.minutes}<span className='f-w-300'>M</span></span>
+                        }
+                        {timeRemaining.seconds > 0 &&
+                            <span className='f-w-600 white'>{timeRemaining.seconds}<span className='f-w-300'>S</span></span>
+                        }
+                    </div>
+                </div>
+            }
 
-        </div>
-    }
-    </>
-  )
+            {artist.flashLeaderboard.status === 'CLOSED_VISIBLE' &&
+                <div className='position-relative pb-xs-6 mb-xs-4 mt-xs-4 bg-dark-soft-2 d-flex-column j-c-center align-items-center border-radius-04 overflow-all-hidden'>
+                    <div className='modal-header w-100'>
+                        <img
+                            className='w-inherit h-inherit object-fit-cover'
+                            src={matchingLeaderboard.image}
+                        />
+                    </div>
+
+                    <h4 className='fsize-xs-3 letter-spacing-1 f-w-300 line-height-140 white t-align-center mt-xs-4 mb-xs-4 w-85'>La classifica flash di "<span className='lime-400 f-w-500'>{matchingLeaderboard.album ? matchingLeaderboard.album.title : matchingLeaderboard.song.title}</span>" è terminata: vedi i risultati.</h4>
+
+                    <Button
+                        style='bg-acid-lime black border-radius-04 fsize-xs-3 f-w-500 z-index-6 mb-xs-4 w-85'
+                        label="CLASSIFICA FLASH TERMINATA →"
+                        onClick={() => navigate(`/artist/${artist.slug}/flash-leaderboard`, { state: artist })}
+                    />
+                </div>
+            }
+        </>
+    )
 }
 
 export default FanclubFlashLeaderboardStatus

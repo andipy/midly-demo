@@ -374,8 +374,7 @@ li {
     opacity: 0;
     transform: translateY(20%);
   }
-} 
-
+}
 
 /******************************************/
 /****************** POINTS ****************/
@@ -736,14 +735,14 @@ animation: dot-loader-after 1s infinite linear;
     opacity: 100%;
   }
   50%{
-    -moz-width: 48px;
-    -moz-height: 48px;
+    -moz-width: var(--flash-dot-size);
+    -moz-height: var(--flash-dot-size);
     -moz-opacity: 0%;
-    -webkit-width: 48px;
-    -webkit-height: 48px;
+    -webkit-width: var(--flash-dot-size);
+    -webkit-height: var(--flash-dot-size);
     -webkit-opacity: 0%;
-    width: 48px;
-    height: 48px;
+    width: var(--flash-dot-size);
+    height: var(--flash-dot-size);
     opacity: 0%;
   }
   100% {
@@ -2802,6 +2801,7 @@ nav .container {
   --avatar-80: 80px;
   --avatar-96: 96px;
   --avatar-120: 120px;
+  --flash-dot-size: 32px;
 }
 
 .ml-input-search-center {
