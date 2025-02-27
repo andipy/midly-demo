@@ -1,12 +1,14 @@
 import { useContext, useState, useEffect } from "react"
 import { FanclubsContext } from "../contexts/fanclubs.context"
 import { CurrentFanContext } from "../contexts/currentFan.context"
+import { FansContext } from "../contexts/fans.context"
 import { SUBSCRIPTION_MONTHLY, SUBSCRIPTION_YEARLY } from "./aura-points-values"
 import useAuraPoints from "./handle-aura-points.hook"
 
 const useFanclubSubscriptionHandler = () => {
   const { fanclubs, setFanclubs } = useContext(FanclubsContext)
   const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
+  const {fans, setFans} = useContext(FansContext)
   const [err, setErr] = useState(false)
   const [isExiting, setIsExiting] = useState(false)
   const {setAuraPoints} = useAuraPoints()
@@ -68,6 +70,16 @@ const useFanclubSubscriptionHandler = () => {
         fanclubsSubscribed: [...prev.fanclubsSubscribed, { artistId, createdAt: currentDate }],
         removedSubscriptions: prev.removedSubscriptions.filter(f => f.artistId !== artistId)
       }))
+
+      setFans(prevFan =>
+        prevFan.map(fan =>
+          fan.id === currentFan?.id
+            ? { ...fan, subscribedArtists: fan.subscribedArtists 
+              ? [...fan.subscribedArtists, { artistId: artistId }] 
+              : [{ artistId: artistId }]}
+            : fan
+        )
+      )
 
       if (period === 'MONTH') {
         setAuraPoints(SUBSCRIPTION_MONTHLY, 'SUBSCRIPTION_MONTHLY', artistId)

@@ -3,7 +3,7 @@ import IconPoints from '../images/icons/icon-points.svg'
 
 
 import { ArtistsContext } from "../contexts/artists.context"
-function WidgetPositionFan({ artistId, leaderboard, fanDetails }) {
+function WidgetPositionFan({ artistId, leaderboard, fanDetails, leaderboardType }) {
 
     const { artists } = useContext(ArtistsContext)
 
@@ -25,7 +25,12 @@ function WidgetPositionFan({ artistId, leaderboard, fanDetails }) {
             const fanEntry = sortedLeaderboard.find(entry => entry.userId === fanDetails.userId)
 
             if (fanEntry) {
-                setPoints(fanEntry.points)
+                if (leaderboardType === 'AURA') {
+                    setPoints(fanEntry.auraPoints)
+                } else {
+                    setPoints(fanEntry.points)
+                }
+                
 
                 const fanPosition = sortedLeaderboard.findIndex(entry => entry.userId === fanDetails.userId) + 1 
                 setFanPosition(fanPosition)

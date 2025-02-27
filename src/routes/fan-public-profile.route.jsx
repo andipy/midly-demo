@@ -5,6 +5,7 @@ import { ArtistsContext } from '../contexts/artists.context'
 import { FansContext } from '../contexts/fans.context'
 import { CurrentFanContext } from '../contexts/currentFan.context'
 import { LeaderboardsContext } from '../contexts/leaderboards.context'
+import { FanclubsContext } from '../contexts/fanclubs.context'
 
 import FullScreenModalLayout from '../layout/full-screen-modal.layout'
 import NavbarBackOnly from '../components/navbar-back-only.component'
@@ -24,11 +25,13 @@ const FanPublicProfileRoute = () => {
 	const { fans } = useContext(FansContext)
 	const { currentFan } = useContext(CurrentFanContext)
 	const {leaderboards, setLeaderboards} = useContext(LeaderboardsContext)
+	const {fanclubs} = useContext(FanclubsContext)
 
 	const [selectedFan, setSelectedFan ] = useState()
 	const [mostListenedArtists, setMostListenedArtists] = useState([])
 	const [commonArtists, setCommonArtists] = useState([])
 	const [leaderboardsFan, setLeaderboardsFan] = useState([])
+	const [auraBoards, setAuraBoards] = useState([])
 
 	useEffect(() => {
 		const foundFan = fans.find(fan => fan?.id === state.fan.userId)
@@ -54,7 +57,20 @@ const FanPublicProfileRoute = () => {
 		const filteredLeaderboards = leaderboards.filter(leaderboard => {
 			return selectedFan?.followedArtists.some(favArtist => favArtist.artistId === leaderboard.artistId)
 		})
+		let auraBoard = [];
+
+		selectedFan?.subscribedArtists?.forEach(subArtist => {
+			const fanclub = fanclubs.find(fanclub => fanclub.artistId === subArtist.artistId);
+	
+			if (fanclub?.leaderboard) {
+				auraBoard.push({
+					artistId: subArtist.artistId,
+					leaderboard: fanclub.leaderboard
+				});
+			}
+		});
 		setLeaderboardsFan(filteredLeaderboards)
+		setAuraBoards(auraBoard)
 	}, [selectedFan])
 
 	const chunkArray = (array, chunkSize) => {
@@ -66,6 +82,7 @@ const FanPublicProfileRoute = () => {
 	}
 	
 	const chunkedLeaderboardsFan = chunkArray(leaderboardsFan, 2)
+	const chunkedAuraBoardsFan = chunkArray(auraBoards, 2)
 
 	const closeFanModal = () => {
 		navigate(-1, { state : { invokedModal: false}})
@@ -129,9 +146,9 @@ const FanPublicProfileRoute = () => {
 							</Carousel>
 
 					</div>
-					<div className='d-flex-column w-100 align-items-start mt-xs-12'>
+					<div className='d-flex-column w-100 align-items-start j-c-center mt-xs-12'>
 						<h2 className='fsize-xs-4 f-w-600'>A novembre ha ascoltato di più:</h2>
-							<div className='mt-xs-4 d-flex-column j-c-center align-items-center'>
+							<div className='mt-xs-4 d-flex-column j-c-center align-items-center w-100'>
 								{mostListenedArtists.length > 0 ? (
 											<CardArtistHighlight 
 												artist={mostListenedArtists[0]} 
@@ -144,13 +161,13 @@ const FanPublicProfileRoute = () => {
 								)}
 
 							
-								<div className='mt-xs-4 d-flex-row gap-1em'>
+								<div className='mt-xs-4 d-flex-row w-100 j-c-center align-items-center gap-1em'>
 									{mostListenedArtists.length > 1 ? (
 										mostListenedArtists.slice(1, 5).map((artist, index) => (
 											<CardPreferredArtist 
 												artist={artist}
 												key={artist.id}
-												size={'small'}
+												size={'xsmall'}
 												index={index+1}
 												onClick={() => navigate(`/artist/${artist?.slug}/leaderboard`, { state: { artist: artist } })}
 											/>
@@ -174,6 +191,7 @@ const FanPublicProfileRoute = () => {
 										artistId={artist.artistId}
 										leaderboard={artist.leaderboard}
 										fanDetails={state.fan}
+										leaderboardType={'CLASSIC'}
 									/>
 								))}
 							</Carousel>
@@ -183,6 +201,36 @@ const FanPublicProfileRoute = () => {
 
 
 					</div>
+					{
+						auraBoards.length > 0 ?
+						<div className='d-flex-column w-100 align-items-start mt-xs-12'>
+							<h2 className='fsize-xs-4 f-w-600'>I suoi punti aura:</h2>
+							{chunkedAuraBoardsFan.map((chunk, chunkIndex) => (
+							<div className='w-100' key={chunkIndex}>
+								<Carousel>
+									{chunk.map((artist, index) => (
+										<WidgetPositionFan
+											key={index}
+											artistId={artist.artistId}
+											leaderboard={artist.leaderboard}
+											fanDetails={state.fan}
+											leaderboardType={'AURA'}
+										/>
+									))}
+								</Carousel>
+							</div>
+
+							))}
+
+
+						</div>
+						:
+						<div className='d-flex-column w-100 align-items-start mt-xs-12'>
+							<h2 className='fsize-xs-4 f-w-600'>I suoi punti aura:</h2>
+							<h1 className='t-align-start grey-400 fsize-xs-3 mt-xs-2 mt-xl-2  overflow-x'>{state.fan.username} non è iscritto a nessun fanclub!</h1>
+						</div>
+					}
+					
 
 				</div>
 				

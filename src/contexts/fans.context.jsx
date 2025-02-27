@@ -22,6 +22,9 @@ export const FansProvider = ({ children }) => {
                 {artistId: 'artist3'},
                 {artistId: 'artist6'},
             ],
+            subscribedArtists: [
+                {artistId: 'artist13'},
+            ],
             affinityWithCurrentUser: 100,
         },{
             id: 2,
@@ -40,6 +43,7 @@ export const FansProvider = ({ children }) => {
                 {artistId: 'artist8'},
                 {artistId: 'artist20'},
             ],
+
             affinityWithCurrentUser: 10,
         },{
             id: 3,
@@ -58,6 +62,7 @@ export const FansProvider = ({ children }) => {
                 {artistId: 'artist15'},
                 {artistId: 'artist6'},
             ],
+            subscribedArtists: [],
             affinityWithCurrentUser: 42,
         },{
             id: 4,
@@ -76,6 +81,9 @@ export const FansProvider = ({ children }) => {
                 {artistId: 'artist22'},
                 {artistId: 'artist6'},
             ],
+            subscribedArtists: [
+                {artistId: 'artist13'},
+            ],
             affinityWithCurrentUser: 82,
         },{
             id: 5,
@@ -93,6 +101,9 @@ export const FansProvider = ({ children }) => {
                 {artistId: 'artist2'},
                 {artistId: 'artist13'},
                 {artistId: 'artist6'},
+            ],
+            subscribedArtists: [
+                {artistId: 'artist13'},
             ],
             affinityWithCurrentUser: 57,
             
@@ -113,6 +124,9 @@ export const FansProvider = ({ children }) => {
                 {artistId: 'artist3'},
                 {artistId: 'artist16'},
             ],
+            subscribedArtists: [
+                {artistId: 'artist13'},
+            ],
             affinityWithCurrentUser: 98,
         },{
             id: 7,
@@ -130,6 +144,9 @@ export const FansProvider = ({ children }) => {
                 {artistId: 'artist9'},
                 {artistId: 'artist10'},
                 {artistId: 'artist6'},
+            ],
+            subscribedArtists: [
+                {artistId: 'artist13'},
             ],
             affinityWithCurrentUser: 100,
         },{
@@ -149,6 +166,9 @@ export const FansProvider = ({ children }) => {
                 {artistId: 'artist3'},
                 {artistId: 'artist6'},
             ],
+            subscribedArtists: [
+                {artistId: 'artist13'},
+            ],
             affinityWithCurrentUser: 36,
         },{
             id: 9,
@@ -166,6 +186,9 @@ export const FansProvider = ({ children }) => {
                 {artistId: 'artist2'},
                 {artistId: 'artist3'},
                 {artistId: 'artist6'},
+            ],
+            subscribedArtists: [
+                {artistId: 'artist13'},
             ],
             affinityWithCurrentUser: 48,
         }
