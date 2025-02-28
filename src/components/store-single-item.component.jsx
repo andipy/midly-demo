@@ -17,8 +17,8 @@ const StoreSingleItem = ({item, hasUserSubscribed}) => {
     const artist = useArtist(item?.artistId)
   return (
     <>
-    <div className={` artist-card-multiple-row bg-dark-gradient border-radius-06 position-relative overflow-all-hidden`} >
-        <div className={`${(item?.private && !hasUserSubscribed && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} artist-card-multiple-row bg-dark-gradient border-radius-06 position-relative`} >
+    <div className={` store-card-multiple-row bg-dark-gradient border-radius-06 position-relative overflow-all-hidden w-50`} >
+        <div className={`${(item?.private && !hasUserSubscribed && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} store-card-multiple-row bg-dark-gradient border-radius-06 position-relative`} >
             <div className='banner-store-card  bg-acid-lime border-radius-06 z-index-1 d-flex-column j-c-center align-items-center '>
                 <h1 className="f-w-500 fsize-xs-1 black">{`
                     ${item?.collectionName}-${artist?.artistName}`.length > 16 
