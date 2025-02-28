@@ -1,0 +1,77 @@
+import { useContext, useState, useEffect } from "react"
+import { useOutletContext, Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { CurrentArtistContext } from "../contexts/currentArtist.context"
+
+import useFanclub from '../utils/get-fanclub.hooks'
+import useFanclubSubscription from "../utils/get-fanclub-subscription.hook"
+import useArtist from "../utils/get-artist.hook"
+import Container from "../layout/container.layout"
+import StoreSingleItem from "../components/store-single-item.component"
+import Carousel from "../layout/carousel.layout"
+import StoreCollection from "../components/store-collection.component"
+const FanclubStoreRoute = () => {
+    const {artist, handlePopUp} = useOutletContext()
+        const navigate = useNavigate()
+        const {currentArtist} = useContext(CurrentArtistContext)
+        const location = useLocation()
+        let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
+        const hasUserSubscribed = useFanclubSubscription(artistF?.id)
+        const fanclub = useFanclub(artistF?.id)
+        const artistCurrent = useArtist(artistF?.id)
+
+        const [singleItems, setSingleItems] = useState()
+        const [collection, setCollection] = useState()
+        useEffect(() => {
+            if (fanclub && fanclub?.storeItems) {
+                setSingleItems(fanclub.storeItems
+                    .filter(item => item.collection === false)
+                    .sort((a, b) => b.newItem - a.newItem)
+                )
+                setCollection(fanclub.storeItems
+                    .filter(item => item.collection === true)
+                    .sort((a, b) => b.newItem - a.newItem)
+                )
+            }
+        }, [fanclub])
+        console.log(collection)
+
+        const chunkArray = (array, chunkSize) => {
+            const chunks = []
+            for (let i = 0; i < array?.length; i += chunkSize) {
+                chunks.push(array?.slice(i, i + chunkSize))
+            }
+            return chunks
+        }
+        
+        const chunkedSingleItems = chunkArray(singleItems, 2)
+  return (
+    <>
+        {
+            fanclub?.storeItems?.length > 0 ?
+            <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-24' : 'pb-xs-4'} mt-xs-4`}>
+                {collection?.map((item, index) => (
+                    <div className='w-100 mb-xs-2' key={index}>
+                        <StoreCollection item={item} hasUserSubscribed={hasUserSubscribed}/>
+                    </div>
+                ))}
+                {chunkedSingleItems?.map((chunk, chunkIndex) => (
+                    <div className='w-100 d-flex-row j-c-space-between align-items-center mb-xs-2' key={chunkIndex}>
+                            {chunk.map((item, index) => (
+                                <StoreSingleItem item={item} hasUserSubscribed={hasUserSubscribed}/>
+                            ))}
+                    </div>
+                ))}
+                
+            </Container>
+            :
+            <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
+                <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
+                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Non ci sono nuove item nel merch di {artist?.artistName}.</p>
+                </div>
+            </div>
+        }
+    </>
+  )
+}
+
+export default FanclubStoreRoute

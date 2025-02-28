@@ -116,7 +116,8 @@ export const FanclubsProvider = ({ children }) => {
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: ' Ci sto! Lazza merita tutto il supporto del mondo! Facciamogli sentire la nostra carica! '
                 }
-            ]
+            ],
+            storeItems: []
         },{
             id: 2,
             artistId: 'artist2',
@@ -525,7 +526,8 @@ export const FanclubsProvider = ({ children }) => {
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Concordo. Comunque, se annuncia qualcosa di nuovo, SPAMMATEMI SUBITO!'
                 }
-            ]
+            ],
+            storeItems: []
         },{
             id: 3,
             artistId: 'artist3',
@@ -555,7 +557,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 4,
             artistId: 'artist4',
@@ -585,7 +588,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 5,
             artistId: 'artist5',
@@ -705,7 +709,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 6,
             artistId: 'artist6',
@@ -735,7 +740,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 7,
             artistId: 'artist7',
@@ -809,7 +815,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 8,
             artistId: 'artist8',
@@ -839,7 +846,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 9,
             artistId: 'artist9',
@@ -869,7 +877,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 10,
             artistId: 'artist10',
@@ -899,7 +908,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 11,
             artistId: 'artist11',
@@ -929,7 +939,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 12,
             artistId: 'artist12',
@@ -959,7 +970,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 13,
             artistId: 'artist13',
@@ -1776,6 +1788,68 @@ export const FanclubsProvider = ({ children }) => {
                     createdAt: "2025-02-05T13:23:23.542Z",
                     content: 'Sfera numero uno! Ci vediamo sotto il palco raga! '
                 }
+            ],
+            storeItems: [
+                {
+                    id: 1,
+                    artistId: 'artist13',
+                    image: require('../images/pictures/sfera-cd-1.webp'),
+                    collectionName: 'X2VR', //nome album
+                    itemType: 'CD', //CD, VINILE, BUNDLE, T-SHIRT...
+                    price: '24.99',
+                    newItem: false,
+                    limitedItem: false,
+                    collection: false,
+                    singleItems: [],
+                    private: true,
+                    sale: 20,
+                    link: '',
+                },
+                {
+                    id: 1,
+                    artistId: 'artist13',
+                    image: require('../images/pictures/sfera-limited-1.jpg'),
+                    collectionName: 'FAMOSO', //nome album
+                    itemType: 'BUNDLE', //CD, VINILE, BUNDLE, T-SHIRT...
+                    price: '52.99',
+                    newItem: false,
+                    limitedItem: true,
+                    collection: false,
+                    singleItems: [],
+                    private: true,
+                    sale: 0,
+                    link: '',
+                },
+                {
+                    id: 1,
+                    artistId: 'artist13',
+                    image: require('../images/pictures/sfera-vinile-1.webp'),
+                    collectionName: 'X2VR', //nome album
+                    itemType: 'VINILE', //CD, VINILE, BUNDLE, T-SHIRT...
+                    price: '39.99',
+                    newItem: true,
+                    limitedItem: true,
+                    collection: false,
+                    singleItems: [],
+                    private: true,
+                    sale: 0,
+                    link: '',
+                },
+                {
+                    id: 1,
+                    artistId: 'artist13',
+                    image: require('../images/pictures/sfera-capsule-2.jpg'),
+                    collectionName: 'ITALIANO', //nome album
+                    itemType: '', //CD, VINILE, BUNDLE, T-SHIRT...
+                    price: '',
+                    newItem: false,
+                    limitedItem: true,
+                    collection: true,
+                    singleItems: [],
+                    private: true,
+                    sale: 0,
+                    link: '',
+                }
             ]
         },{
             id: 14,
@@ -1806,7 +1880,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 15,
             artistId: 'artist15',
@@ -1836,7 +1911,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 16,
             artistId: 'artist16',
@@ -1866,7 +1942,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 17,
             artistId: 'artist17',
@@ -1896,7 +1973,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 18,
             artistId: 'artist18',
@@ -1926,7 +2004,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 19,
             artistId: 'artist19',
@@ -1956,7 +2035,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 20,
             artistId: 'artist20',
@@ -1986,7 +2066,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 21,
             artistId: 'artist21',
@@ -2016,7 +2097,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 22,
             artistId: 'artist22',
@@ -2046,7 +2128,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 23,
             artistId: 'artist23',
@@ -2076,7 +2159,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 24,
             artistId: 'artist24',
@@ -2106,7 +2190,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 25,
             artistId: 'artist25',
@@ -2136,7 +2221,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 26,
             artistId: 'artist26',
@@ -2166,7 +2252,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 27,
             artistId: 'artist27',
@@ -2196,7 +2283,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 28,
             artistId: 'artist28',
@@ -2226,7 +2314,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 29,
             artistId: 'artist29',
@@ -2256,7 +2345,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 30,
             artistId: 'artist30',
@@ -2286,7 +2376,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 31,
             artistId: 'artist31',
@@ -2316,7 +2407,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 32,
             artistId: 'artist32',
@@ -2346,7 +2438,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 33,
             artistId: 'artist33',
@@ -2376,7 +2469,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 34,
             artistId: 'artist34',
@@ -2406,7 +2500,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 35,
             artistId: 'artist35',
@@ -2436,7 +2531,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 36,
             artistId: 'artist36',
@@ -2466,7 +2562,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 37,
             artistId: 'artist37',
@@ -2496,7 +2593,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 38,
             artistId: 'artist38',
@@ -2616,7 +2714,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 39,
             artistId: 'artist39',
@@ -2690,7 +2789,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 40,
             artistId: 'artist40',
@@ -2811,7 +2911,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 40,
             artistId: 'artist40',
@@ -2841,7 +2942,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 42,
             artistId: 'artist42',
@@ -2871,7 +2973,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 43,
             artistId: 'artist43',
@@ -2901,7 +3004,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         },{
             id: 44,
             artistId: 'artist44',
@@ -2931,7 +3035,8 @@ export const FanclubsProvider = ({ children }) => {
             forum: [],
             leaderboard: [],
             fanLetters:[],
-            messages:[]
+            messages:[],
+            storeItems: []
         }
     ])
 

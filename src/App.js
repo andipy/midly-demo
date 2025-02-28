@@ -60,6 +60,7 @@ import HomeRoute from './routes/home.route'
 import ForumSavedRoute from './routes/forum-saved.route'
 import FanclubActivityRoute from './routes/fanclub-activity.route'
 import FanclubFlashLeaderboardStatus from './routes/fanclub-flash-leaderboard-status.route'
+import FanclubStoreRoute from './routes/fanclub-store.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -179,6 +180,9 @@ const router = createBrowserRouter([
 			},{
 				path: 'group-chat',
 				element: <FanclubGroupChatRoute />,
+			},{
+				path: 'store',
+				element: <FanclubStoreRoute />,
 			},{
 				path: 'leaderboard-streaming',
 				element: <LeaderboardRoute />,

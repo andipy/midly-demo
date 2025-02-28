@@ -51,6 +51,20 @@ a {
   color: inherit;
 }
 
+.banner-store-card {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  z-index: 1;
+}
+
+.store-card-collection-multiple {
+  width: 100%;
+  height: calc(var(--container) / 1.3);
+}
+
 .heart-animation {
   position: absolute;
   animation: heart-fade 1s ease-out forwards;
@@ -1918,6 +1932,9 @@ animation: dot-loader-after 1s infinite linear;
 .left-5 {
   left: 5%;
 }
+.left-15 {
+  left: 15%;
+}
 .left-neg5 {
   left: 5%;
 }
@@ -2171,11 +2188,20 @@ animation: dot-loader-after 1s infinite linear;
 .h-10px {
   height: 10px;
 }
+.h-80 {
+  height: 80%;
+}
+.h-70 {
+  height: 70%;
+}
 .h-60 {
   height: 60%;
 }
 .h-50 {
   height: 50%;
+}
+.h-30 {
+  height: 30%;
 }
 .h-min-100vh {
   min-height: 100vh;
