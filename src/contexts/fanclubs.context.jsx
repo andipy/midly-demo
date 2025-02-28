@@ -1793,7 +1793,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     id: 1,
                     artistId: 'artist13',
-                    image: require('../images/pictures/sfera-cd-1.webp'),
+                    image: require('../images/pictures/sfera-cd-1-black.jpg'),
                     collectionName: 'X2VR', //nome album
                     itemType: 'CD', //CD, VINILE, BUNDLE, T-SHIRT...
                     price: '24.99',
@@ -1808,7 +1808,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     id: 1,
                     artistId: 'artist13',
-                    image: require('../images/pictures/sfera-limited-1.jpg'),
+                    image: require('../images/pictures/sfera-limited-1-black.jpg'),
                     collectionName: 'FAMOSO', //nome album
                     itemType: 'BUNDLE', //CD, VINILE, BUNDLE, T-SHIRT...
                     price: '52.99',
@@ -1823,7 +1823,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     id: 1,
                     artistId: 'artist13',
-                    image: require('../images/pictures/sfera-vinile-1.webp'),
+                    image: require('../images/pictures/sfera-vinile-1-black.jpg'),
                     collectionName: 'X2VR', //nome album
                     itemType: 'VINILE', //CD, VINILE, BUNDLE, T-SHIRT...
                     price: '39.99',
@@ -1838,7 +1838,7 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     id: 1,
                     artistId: 'artist13',
-                    image: require('../images/pictures/sfera-capsule-2.jpg'),
+                    image: require('../images/pictures/sfera-capsule-1-black.jpg'),
                     collectionName: 'ITALIANO', //nome album
                     itemType: '', //CD, VINILE, BUNDLE, T-SHIRT...
                     price: '',
