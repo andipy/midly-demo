@@ -49,11 +49,11 @@ const FanclubStoreRoute = () => {
         {
             fanclub?.storeItems?.length > 0 ?
             <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-24' : 'pb-xs-4'} mt-xs-4 d-flex-column j-c-center align-items-center w-100`}>
-                {collection?.map((item, index) => (
+                {/* {collection?.map((item, index) => (
                     <div className='w-100 mb-xs-2' key={index}>
                         <StoreCollection item={item} hasUserSubscribed={hasUserSubscribed}/>
                     </div>
-                ))}
+                ))} */}
                 {chunkedSingleItems?.map((chunk, chunkIndex) => (
                     <div className={` w-100 d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2`} key={chunkIndex}>
                             {chunk.map((item, index) => (

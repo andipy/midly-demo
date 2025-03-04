@@ -1278,6 +1278,9 @@ animation: dot-loader-after 1s infinite linear;
 .border-blue-bright-600 {
   border: 2px solid #1191EC;
 }
+.border-blue-1 {
+  border: 1px solid #6990F5;
+}
 .border-red-dashed-1 {
   border: 1px dashed #E94359;
 }
