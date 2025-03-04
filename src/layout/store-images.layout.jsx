@@ -106,7 +106,7 @@ const StoreImages = ({ images }) => {
           >
             <img className="avatar-64" src={image?.url} alt={`Thumbnail ${index}`} />
 
-            {currentIndex === index && (
+            {currentIndex !== index && (
               <div className="overlay-card-followed bg-dark-soft-transp75 d-flex align-items-center j-c-center z-index-2">
               </div>
             )}
