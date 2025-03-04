@@ -15,10 +15,10 @@ const StoreItemRoute = () => {
 
     const [filledMandatory, setFilledMandatory] = useState(false)
     useEffect(() => {
-        if (item?.sizesAvaible && selectedType === null) {
-            setFilledMandatory(false)
-        } else {
+        if (!item?.soldOut && (selectedType !== null || !item?.sizesAvaible)) {
             setFilledMandatory(true)
+        } else {
+            setFilledMandatory(false)
         }
     
         
@@ -32,52 +32,49 @@ const StoreItemRoute = () => {
         
         <StoreImages images={item?.images}/>
 
-        <div className="d-flex-column j-c-center align-items-center mt-xs-8 mb-xs-4 gap-0_25em">
-            <h1 className="fsize-xs-5 f-w-600 ">{item?.collectionName} - {artist?.artistName}</h1>
-            <p className="grey-400 fsize-xs-3 f-w-300">{item?.itemType}</p>
-            <div className="d-flex-row j-c-center align-items-center gap-0_5em"> 
-                <div className="border-lime-1 border-radius-08 d-flex-row align-items-center pl-xs-8 pr-xs-8" style={{ display: 'inline-block' }}>
-                    <p className="fsize-xs-1 lime-400 f-w-300">Disponibile</p>  
-                </div>
-                {
-                    item?.sale > 0 &&
-                    <div className="bg-black border-red-1 pr-xs-8 pl-xs-8 border-radius-100 d-flex-row j-c-center align-items-center"> 
-                        <p className="fsize-xs-1 red-400 f-w-300">%</p>
-                    </div>
-
-                }
-                {
-                    item?.newItem &&
-                    <div className="bg-black border-blue-1 pr-xs-8 pl-xs-8 border-radius-100 d-flex-row j-c-center align-items-center"> 
-                        <p className="fsize-xs-1 blue-400 f-w-300">New</p>
-                    </div>
-
-                }
-                {
-                    item?.limitedItem &&
-                    <div className="bg-black border-red-1 pr-xs-8 pl-xs-8 border-radius-100 d-flex-row j-c-center align-items-center"> 
-                        <p className="fsize-xs-1 red-400 f-w-300">Limited</p>
-                    </div>
-
-                }
-            </div>
+        <div className="d-flex-row j-c-start align-items-center mt-xs-8 mb-xs-4 w-100 ">
+            <h1 className="fsize-xs-5 f-w-600 w-100">
+            {item?.collectionName}
+            <span className="fsize-xs-3 f-w-300 grey-400 ml-xs-2">{item?.itemType}</span>
+            </h1>
+            
+            
         </div>
         
         <div className="w-100 d-flex-row j-c-start align-items-center mt-xs-4">
-            <p className="fsize-xs-3 grey-400 f-w-600">Prezzo:</p>
-            <h1 className={`${item?.sale > 0 ? 'grey-400 f-w-300 ':'lime-400 f-w-600 '} fsize-xs-1 d-flex-row j-c-center align-items-center gap-0_25em ml-xs-2`}>{item?.price}€ <span className="red-400 fsize-xs-0">{item?.sale > 0 ? `-${item?.sale.toString()}%`:''}</span><span className="lime-400 f-w-600">{item?.sale > 0 ? `${parseFloat(item?.price) - (parseFloat(item?.price) * (parseFloat(item?.sale) / 100)).toFixed(2)}€`:''}</span></h1>
+            <p className="fsize-xs-3 white f-w-600">Prezzo:</p>
+            <h1 className={`${item?.sale > 0 ? 'grey-400 f-w-300 ' : 'white f-w-600 '} fsize-xs-1 d-flex-row j-c-center align-items-center gap-0_25em ml-xs-2`}>
+                {item?.sale > 0 ? (
+                    <del className="grey-400" style={{ textDecorationColor: '#F64040' }}>{item?.price}€</del>
+                ) : (
+                    <span>{item?.price}€</span>
+                )}
+                <span className="red-400 fsize-xs-0">{item?.sale > 0 ? `-${item?.sale.toString()}%` : ''}</span>
+                <span className="lime-400 f-w-600">
+                    {item?.sale > 0 ? `${(parseFloat(item?.price) - (parseFloat(item?.price) * (parseFloat(item?.sale) / 100))).toFixed(2)}€` : ''}
+                </span>
+            </h1> 
+            {
+                item?.soldOut &&
+                <div className="d-flex-row j-c-center align-items-center bg-red-400 pr-xs-2 pl-xs-2">
+                    <p className="fsize-xs-1 f-w-600">Esaurito</p>
+                </div>
+            } 
 
         </div>
-        <div className="w-100 d-flex-row j-c-start align-items-center mt-xs-4">
-            <p className="fsize-xs-3 grey-400 f-w-600">Colore:</p>
-            <h1 className={`lime-400 f-w-600 fsize-xs-1 d-flex-row j-c-center align-items-center gap-0_25em ml-xs-2`}>{item?.colour}</h1>
+        {
+            item?.colour &&
+            <div className="w-100 d-flex-row j-c-start align-items-center mt-xs-4">
+                <p className="fsize-xs-3 white f-w-600">Colore:</p>
+                <h1 className={`lime-400 f-w-600 fsize-xs-1 d-flex-row j-c-center align-items-center gap-0_25em ml-xs-2`}>{item?.colour}</h1>
 
-        </div>
+            </div>
+        }
         {
             item?.sizesAvaible &&
             <>
                 <div className="w-100 d-flex-row j-c-start align-items-center mt-xs-4">
-                    <p className="fsize-xs-3 grey-400 f-w-600">Seleziona taglia:</p>
+                    <p className="fsize-xs-3 white f-w-600">Seleziona taglia:</p>
                 </div>
                 <div className="w-100 d-flex-row j-c-start align-items-center mt-xs-4 mb-xs-4 gap-0_25em">
                     {
@@ -90,8 +87,8 @@ const StoreItemRoute = () => {
                                     <p className="fsize-xs-3 f-w-300 lime-400">{size}</p>
                                 </div>
                                 :
-                                <div className="avatar-28 border-grey-small bg-black d-flex-row j-c-center align-items-center" onClick={() => setSelectedType(index)}>
-                                    <p className="fsize-xs-3 f-w-300 grey-400">{size}</p>
+                                <div className="avatar-28 border-white-small bg-black d-flex-row j-c-center align-items-center" onClick={() => setSelectedType(index)}>
+                                    <p className="fsize-xs-3 f-w-300 white">{size}</p>
                                 </div>
                                 
                             }
@@ -103,10 +100,10 @@ const StoreItemRoute = () => {
             
         }
         <div className="w-100 d-flex-row j-c-start align-items-center mt-xs-4">
-            <p className="fsize-xs-3 grey-400 f-w-600">Descrizione:</p>
+            <p className="fsize-xs-3 white f-w-600">Descrizione:</p>
         </div>
         <div className="w-100 d-flex-row j-c-center align-items-center ">
-            <p className="fsize-xs-2 grey-400 f-w-300">
+            <p className="fsize-xs-2 white f-w-300">
                 {item?.description}
             </p>
         </div> 

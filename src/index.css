@@ -1210,7 +1210,9 @@ animation: dot-loader-after 1s infinite linear;
 .border-white {
   border: 2px solid #FFFFFF;
 }
-
+.border-white-small {
+  border: 1px solid #FFFFFF;
+}
 
 .border-grey-small {
   border: 1px solid #8d8d8d;

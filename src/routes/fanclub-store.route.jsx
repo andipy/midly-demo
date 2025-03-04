@@ -25,15 +25,17 @@ const FanclubStoreRoute = () => {
             if (fanclub && fanclub?.storeItems) {
                 setSingleItems(fanclub.storeItems
                     .filter(item => item.collection === false)
-                    .sort((a, b) => b.newItem - a.newItem)
+                    .sort((a, b) => {
+                        if (a.soldOut !== b.soldOut) return a.soldOut ? 1 : -1;
+                        return b.newItem - a.newItem;
+                    })
                 )
-                setCollection(fanclub.storeItems
+                /* setCollection(fanclub.storeItems
                     .filter(item => item.collection === true)
                     .sort((a, b) => b.newItem - a.newItem)
-                )
+                ) */
             }
         }, [fanclub])
-        console.log(collection)
 
         const chunkArray = (array, chunkSize) => {
             const chunks = []

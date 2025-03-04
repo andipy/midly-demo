@@ -1815,8 +1815,8 @@ export const FanclubsProvider = ({ children }) => {
                     private: true,
                     sale: 20,
                     link: '',
-                    colour: 'Viola',
-                    description: 'Con X2VR Sfera Ebbasta torna alle origini proponendo il secondo attesissimo capitolo dell’album che lo ha reso celebre nel 2015, XDVR, un disco che ha lasciato un segno indelebile nella storia della trap e tra i suoi milioni di fan.'
+                    description: 'Con X2VR Sfera Ebbasta torna alle origini proponendo il secondo attesissimo capitolo dell’album che lo ha reso celebre nel 2015, XDVR, un disco che ha lasciato un segno indelebile nella storia della trap e tra i suoi milioni di fan.',
+                    soldOut: false
                 },{
                     id: 2,
                     artistId: 'artist13',
@@ -1844,7 +1844,35 @@ export const FanclubsProvider = ({ children }) => {
                     link: '',
                     colour: 'Nero',
                     sizesAvaible: ['XS', 'S', 'M', 'L', 'XL'],
-                    description: 'Con X2VR Sfera Ebbasta torna alle origini proponendo il secondo attesissimo capitolo dell’album che lo ha reso celebre nel 2015, XDVR, un disco che ha lasciato un segno indelebile nella storia della trap e tra i suoi milioni di fan.'
+                    description: 'Con X2VR Sfera Ebbasta torna alle origini proponendo il secondo attesissimo capitolo dell’album che lo ha reso celebre nel 2015, XDVR, un disco che ha lasciato un segno indelebile nella storia della trap e tra i suoi milioni di fan.',
+                    soldOut: false
+                },{
+                    id: 2,
+                    artistId: 'artist13',
+                    images: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sfera-cd-image-1.webp'),
+                        },
+                        {
+                            id: 2,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sfera-cd-image-2.webp'),
+                        }
+                    ],
+                    collectionName: 'NOME PRODOTTO MOLTO LUNGO SOLDOUT', //nome album
+                    itemType: 'CD', //CD, VINILE, BUNDLE, T-SHIRT...
+                    price: '19.99',
+                    newItem: false,
+                    limitedItem: true,
+                    collection: false,
+                    singleItems: [],
+                    private: true,
+                    sale: 0,
+                    link: '',
+                    description: 'Con X2VR Sfera Ebbasta torna alle origini proponendo il secondo attesissimo capitolo dell’album che lo ha reso celebre nel 2015, XDVR, un disco che ha lasciato un segno indelebile nella storia della trap e tra i suoi milioni di fan.',
+                    soldOut: true
                 },
             ]
         },{
