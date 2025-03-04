@@ -41,6 +41,12 @@ const NavbarPostFeed = ({artist, type, from}) => {
                         Topic salvati
                     </p>
                 }
+                {
+                    type === 'STORE_ITEM' &&
+                    <p className='fsize-xs-3 f-w-600'>
+                        Shop
+                    </p>
+                }
                 
             </div>
             

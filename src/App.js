@@ -61,6 +61,7 @@ import ForumSavedRoute from './routes/forum-saved.route'
 import FanclubActivityRoute from './routes/fanclub-activity.route'
 import FanclubFlashLeaderboardStatus from './routes/fanclub-flash-leaderboard-status.route'
 import FanclubStoreRoute from './routes/fanclub-store.route'
+import StoreItemRoute from './routes/store-item.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -325,6 +326,9 @@ const router = createBrowserRouter([
 	},{
 		path: '/artist/:artistSlug/forum/saved',
 		element: <ForumSavedRoute />,
+	},{
+		path: '/artist/:artistSlug/store/item',
+		element: <StoreItemRoute />
 	},{
 		path: '/artist/:artistSlug/forum/saved/topic/details',
 		element: <TopicDetailsRoute />,

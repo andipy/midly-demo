@@ -1793,9 +1793,20 @@ export const FanclubsProvider = ({ children }) => {
                 {
                     id: 1,
                     artistId: 'artist13',
-                    image: require('../images/pictures/sfera-cd-1-black.jpg'),
+                    images: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sfera-lp-image-1.webp'),
+                        },
+                        {
+                            id: 2,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sfera-lp-image-2.webp'),
+                        }
+                    ],
                     collectionName: 'X2VR', //nome album
-                    itemType: 'CD', //CD, VINILE, BUNDLE, T-SHIRT...
+                    itemType: 'VINILE', //CD, VINILE, BUNDLE, T-SHIRT...
                     price: '24.99',
                     newItem: false,
                     limitedItem: false,
@@ -1806,9 +1817,15 @@ export const FanclubsProvider = ({ children }) => {
                     link: '',
                 },
                 {
-                    id: 1,
+                    id: 2,
                     artistId: 'artist13',
-                    image: require('../images/pictures/sfera-limited-1-black.jpg'),
+                    images: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sfera-limited-1-black.jpg'),
+                        }
+                    ],
                     collectionName: 'FAMOSO', //nome album
                     itemType: 'BUNDLE', //CD, VINILE, BUNDLE, T-SHIRT...
                     price: '52.99',
@@ -1821,9 +1838,15 @@ export const FanclubsProvider = ({ children }) => {
                     link: '',
                 },
                 {
-                    id: 1,
+                    id: 3,
                     artistId: 'artist13',
-                    image: require('../images/pictures/sfera-vinile-1-black.jpg'),
+                    images: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sfera-vinile-1-black.jpg'),
+                        }
+                    ],
                     collectionName: 'X2VR', //nome album
                     itemType: 'VINILE', //CD, VINILE, BUNDLE, T-SHIRT...
                     price: '39.99',
@@ -1836,9 +1859,15 @@ export const FanclubsProvider = ({ children }) => {
                     link: '',
                 },
                 {
-                    id: 1,
+                    id: 4,
                     artistId: 'artist13',
-                    image: require('../images/pictures/sfera-capsule-1-black.jpg'),
+                    images: [
+                        {
+                            id: 1,
+                            type: 'IMAGE',
+                            url: require('../images/pictures/sfera-capsule-1-black.jpg'),
+                        }
+                    ],
                     collectionName: 'ITALIANO', //nome album
                     itemType: '', //CD, VINILE, BUNDLE, T-SHIRT...
                     price: '',

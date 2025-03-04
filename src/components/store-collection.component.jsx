@@ -26,7 +26,7 @@ const StoreCollection = ({item, hasUserSubscribed}) => {
                     : `${item?.collectionName}-${artist?.artistName}`}
                 </h1>
             </div>
-            <img className='w-100 object-fit-cover border-radius-06 h-80' src={item.image} alt='' />
+            <img className='w-100 object-fit-cover border-radius-06 h-80' src={item.images[0].url} alt='' />
             <div className=" d-flex-row j-c-start align-items-center position-absolute-x left-2 top-2 w-100 ml-xs-2 gap-0_25em">
                 {
                     item?.sale > 0 &&
