@@ -104,8 +104,8 @@ const FlashLeaderboardRoute = () => {
     const fetchCompeting = () => {
         if ( currentFan.followedArtists.length > 0 ) {
             const favouriteArtistIds = currentFan.followedArtists.map(followed => followed.artistId)
-
-            if (favouriteArtistIds.includes(artist.id)) {
+            const subscribedArtistIds = currentFan.fanclubsSubscribed.map(sub => sub.artistId)
+            if (favouriteArtistIds.includes(artist.id) || subscribedArtistIds.includes(artist.id) ) {
                 setUserFollowing(true)
             } else {
                 setUserFollowing(false)

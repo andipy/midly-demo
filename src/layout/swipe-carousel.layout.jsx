@@ -4,7 +4,6 @@ import AudioPost from '../components/audio-post.component'
 
 const SwipeCarousel = ({ images, text, preview }) => {
 
-	console.log(images)
 
 	const [currentIndex, setCurrentIndex] = useState(0)
 	const [isDragging, setIsDragging] = useState(false)

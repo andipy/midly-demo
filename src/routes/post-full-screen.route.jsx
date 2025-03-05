@@ -296,7 +296,7 @@ const  PostFullScreenRoute = () => {
 	}
 
     const [modalSubscription, setModalSubscription] = useState(false)
-
+    console.log(from)
     return (
         <>
         
@@ -305,10 +305,8 @@ const  PostFullScreenRoute = () => {
             <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
             :
             <>
-                {from ?
+                {from &&
                     <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`${from}`, { state : {artist: artist} })}/>
-                :
-                    <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}`, { state : {artist: artist} })}/>
                 }
             </>
             }
