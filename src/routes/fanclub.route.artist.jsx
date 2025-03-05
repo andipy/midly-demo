@@ -400,13 +400,20 @@ const FanclubRoute = () => {
     }
 
     const [scrolled, setScrolled] = useState(false)
-    window.addEventListener('scroll', () => {
-        if ( window.pageYOffset >= 160 ) {
-            setScrolled(true);
-        } else {
-            setScrolled(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.pageYOffset >= 165) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
         }
-    })
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, [])
    
     return (
         <>
