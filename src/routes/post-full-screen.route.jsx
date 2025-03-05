@@ -43,8 +43,9 @@ import IconUnfollow from '../images/icons/icon-unfollow.svg'
 const  PostFullScreenRoute = () => {
     const navigate = useNavigate()
     const location = useLocation()
-    const { postId, artistId, from } = location.state || {}    
+    const { postId, artistId, fromPage } = location.state || {}    
     const { pathname } = useLocation()
+    console.log(location.state)
 
     const { currentArtist} = useContext(CurrentArtistContext)
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
@@ -296,7 +297,6 @@ const  PostFullScreenRoute = () => {
 	}
 
     const [modalSubscription, setModalSubscription] = useState(false)
-    console.log(from)
     return (
         <>
         
@@ -304,11 +304,7 @@ const  PostFullScreenRoute = () => {
             {pathname.includes('/artist-app') ?
             <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
             :
-            <>
-                {from &&
-                    <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`${from}`, { state : {artist: artist} })}/>
-                }
-            </>
+            <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`${location.state.fromPage}`, { state : {artist: artist} })}/>
             }
             
             <div className={` d-flex-row j-c-center align-items-center w-100 h-100 position-relative`} >

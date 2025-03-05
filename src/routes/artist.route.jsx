@@ -464,7 +464,7 @@ const ArtistRoute = () => {
                 handleShare(postInFocus.post)
             }
             if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
-                navigate(`${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: artist.id, from: pathname} })
+                navigate(`${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: artist.id, fromPage: `/artist/${artist?.slug}/posts`} })
             }
         }
     }, [postInFocus])
@@ -483,6 +483,10 @@ const ArtistRoute = () => {
     useEffect(() => {
         const expectedPath = `/artist/${artistSlug}`
 
+        if (location.pathname.includes('posts')) {
+            navigate(`/artist/${artistSlug}/posts`)
+            return
+        }
         if (fanclub === undefined) return
         if (location.pathname !== expectedPath) return
         if (fanclub !== null && fanclub?.isActive === previousIsActive.current) {
@@ -503,7 +507,7 @@ const ArtistRoute = () => {
         if (fanclub === null) {
             navigate(`/artist/${artistSlug}/leaderboard-streaming`)
         }
-    }, [fanclub, navigate, artistSlug, location.pathname])
+    }, [fanclub, artistSlug, pathname])
 
     /* const deleteComment = (commentId, postId) => {
         console.log(postId, commentId)

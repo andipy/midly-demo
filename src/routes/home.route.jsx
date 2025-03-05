@@ -130,7 +130,7 @@ const HomeRoute = () => {
 			handleShare(postInFocus.post)
 		}
 		if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
-			navigate(`${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: postInFocus.artistId, from: pathname} })
+			navigate(`${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: postInFocus.artistId, fromPage: '/your-favourites'} })
 		}
 	}
 	}, [postInFocus])
