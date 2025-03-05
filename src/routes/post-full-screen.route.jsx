@@ -301,10 +301,17 @@ const  PostFullScreenRoute = () => {
         <>
         
         <FullPageCenter style=''>
-            {pathname.includes('/artist-app') ?
-            <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
-            :
-            <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`${fromPage}`, { state : {artist: artist} })}/>
+            {
+            pathname.includes('/artist-app') &&
+                <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
+            }
+            {
+            pathname.includes('/your-favourites') &&
+                <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
+            }
+            {
+            !pathname.includes('/your-favourites') && !pathname.includes('/artist-app') &&
+                <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}/posts`, { state : {artist: artist} })}/>
             }
             
             <div className={` d-flex-row j-c-center align-items-center w-100 h-100 position-relative`} >
@@ -322,10 +329,11 @@ const  PostFullScreenRoute = () => {
             </div>
             <div 
 				className='d-flex-row w-100 j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4 bg-color-none position-absolute-y top-5 container z-index-1200'
-				onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
 				>
-				<img className='avatar-28 border-radius-100' src={artist?.image}/>
-				<p className='fsize-xs-1 f-w-500'>{artist?.artistName}</p>
+                    <div className='d-flex-row j-c-center align-items-center gap-0_25em' onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}>
+                        <img className='avatar-28 border-radius-100' src={artist?.image}/>
+                        <p className='fsize-xs-1 f-w-500'>{artist?.artistName}</p>
+                    </div>
 			</div>
             {
                 (hasUserSubscribed || pathname.includes('/artist-app/') || !post?.settings?.isPrivate) &&
