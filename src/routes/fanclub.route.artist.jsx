@@ -398,10 +398,19 @@ const FanclubRoute = () => {
             )
         );
     }
+
+    const [scrolled, setScrolled] = useState(false)
+    window.addEventListener('scroll', () => {
+        if ( window.pageYOffset >= 160 ) {
+            setScrolled(true);
+        } else {
+            setScrolled(false);
+        }
+    })
    
     return (
         <>
-            <Navbar fanclub={fanclub} background={'transparent100'} create={() => setCreateContent(true)}/>
+            <Navbar fanclub={fanclub} background={`${scrolled ? 'black' : 'transparent100'}`} create={() => setCreateContent(true)}/>
             {fanclub?.isActive &&
                 <>
                     <div className='position-relative'>
@@ -431,8 +440,17 @@ const FanclubRoute = () => {
 
             {
                 fanclub?.isActive &&
+                <article className='position-sticky top-navbar z-index-999 bg-dark pb-xs-2'>
+                    <Container className='container'>
+                        <TabFanclub artist={currentArtist}/>
+                    </Container>
+                </article>
+            }
+            
+
+            {
+                fanclub?.isActive &&
                 <Container style={'pb-xs-appbar '}>
-                    <TabFanclub artist={currentArtist}/>
                     {
                         !window.location.pathname.includes('/edit-post') &&
                             <Outlet context={{focusPost, setPostInFocus}}/>
