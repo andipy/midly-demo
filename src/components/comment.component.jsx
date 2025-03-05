@@ -11,7 +11,7 @@ import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FansContext } from '../contexts/fans.context'
 
 
-const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment, postId, likeReply, commentUserModeration, deleteComment, deleteReply, replyUserModeration }) => {
+const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment, postId, likeReply, commentUserModeration, deleteComment, deleteReply, replyUserModeration, modalUserModerationRep }) => {
     const { currentFan	} = useContext(CurrentFanContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const { fans } = useContext(FansContext)
@@ -138,7 +138,7 @@ const Comment = ({ comment, spotCommentToReply, modalUserModeration, likeComment
             </div>
             {comment.comments.map(reply => {
                 return (
-                    <CommentReply comment={reply} postId={postId} likeReply={likeReply} commentReplied={comment.id} commentUserModeration={commentUserModeration} deleteReply={() => deleteReply(reply.id, reply.userId)} replyUserModeration = {() => replyUserModeration(reply.userId, reply, reply.id)}/>
+                    <CommentReply comment={reply} postId={postId} likeReply={likeReply} commentReplied={comment.id} commentUserModeration={commentUserModeration} deleteReply={() => deleteReply(reply.id, reply.userId)} replyUserModeration = {() => replyUserModeration(reply.userId, reply, reply.id)} modalUserModerationRep={() => modalUserModerationRep(reply?.userId)}/>
                 )
             })}
         </div>

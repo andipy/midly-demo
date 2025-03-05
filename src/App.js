@@ -139,7 +139,22 @@ const router = createBrowserRouter([
 		element: <HomeRoute />
 	},{
 		path: '/your-favourites',
-		element: <YourFavouritesRoute />
+		element: <YourFavouritesRoute />,
+		children: [
+			{
+				path: 'user-moderation',
+				element: <UserModerationRoute />,
+			},{
+				path: 'user-moderation/block',
+				element: <UserModerationBlockRoute />,
+			},{
+				path: 'user-moderation/report',
+				element: <UserModerationReportRoute />,
+			},{
+				path: 'user-moderation/delete',
+				element: <UserModerationDeleteRoute />,
+			}
+		]
 	},{
 		path: '/your-favourites/:postId',
 		element: <PostFullScreenRoute />,

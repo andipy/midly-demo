@@ -746,6 +746,16 @@ const ArtistRoute = () => {
                                             inputRef={inputRef}
                                             spotCommentToReply={spotCommentToReply}
                                             modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id}})}
+                                            modalUserModerationRep={(userId) => 
+                                                navigate('user-moderation', { 
+                                                    state: { 
+                                                    userId, 
+                                                    commentId: comment.id, 
+                                                    fanclubId: fanclub?.id, 
+                                                    postId: post.id 
+                                                    } 
+                                                })
+                                            }
                                             commentUserModeration={() => navigate('user-moderation/report', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, artistId: fanclub?.artistId, reported: false, type: 'COMMENT', comment: comment }})}
                                             replyUserModeration={(userId, reply, replyId) => navigate('user-moderation/report', {state: {  userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, artistId: fanclub?.artistId, reported: false, type: 'COMMENT', reply, replyId }})}
                                             likeComment = {() => likeComment(comment.id, post.id, artist.id)}

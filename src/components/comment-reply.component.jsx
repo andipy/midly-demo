@@ -8,7 +8,7 @@ import { CurrentFanContext } from '../contexts/currentFan.context'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FansContext } from '../contexts/fans.context'
 
-const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentReplied, commentUserModeration, deleteReply, replyUserModeration}) => {
+const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentReplied, commentUserModeration, deleteReply, replyUserModeration, modalUserModerationRep}) => {
 
     const { currentFan	} = useContext(CurrentFanContext)
     const { currentArtist} = useContext(CurrentArtistContext)
@@ -64,7 +64,7 @@ const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentR
             <div className='d-flex-row gap-0_5em mb-xs-3 pl-xs-13 pl-sm-8 pl-md-10 comment-content w-min-100' key={comment.id}>
                 {comment.userType==='FAN' ?
                         userImage ?
-                        <img src={userImage} className='avatar-24 border-radius-100' />
+                        <img src={userImage} className='avatar-24 border-radius-100' onClick={modalUserModerationRep}/>
                         :
                         <div className='avatar-24 position-relative'>
                             <div className='d-flex-row j-c-center align-items-center avatar-24 border-radius-100 bg-purple-400' >
@@ -79,7 +79,7 @@ const CommentReply = ({ comment, spotCommentToReply, postId, likeReply, commentR
                 }
                 <div className='d-flex-column w-100'>
                     <div className='d-flex-row align-items-center gap-0_5em'>
-                        <span className='fsize-xs-2 f-w-600 grey-250'>{comment.username}</span>
+                        <span className='fsize-xs-2 f-w-600 grey-250' onClick={comment.userType === 'FAN' ? modalUserModerationRep : undefined}>{comment.username}</span>
                         {comment.userType === 'ARTIST' &&
                             <span className='fsize-xs-0 gold'>Artista</span>
                         }

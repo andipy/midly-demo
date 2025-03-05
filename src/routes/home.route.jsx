@@ -28,6 +28,7 @@ import ModalSubscriptionFanclub from "../components/modal-subscription-fanclub.c
 import FullPageCenter from "../layout/full-page-center.layout"
 import ModalLayout from "../layout/modal.layout"
 import LikeUser from "../components/like-user.component"
+import { Outlet } from "react-router-dom"
 const HomeRoute = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
@@ -470,11 +471,24 @@ const HomeRoute = () => {
 								} 
 							})
 							}
+							modalUserModerationRep={(userId) => 
+								navigate('user-moderation', { 
+									state: { 
+									userId, 
+									commentId: comment.id, 
+									fanclubId: fanclub?.id, 
+									postId: post.id 
+									} 
+								})
+								}
+							replyUserModeration={(userId, reply, replyId) => navigate('user-moderation/report', {state: {  userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, artistId: fanclub?.artistId, reported: false, type: 'COMMENT', reply, replyId }})}
 							likeComment={() => likeComment(comment.id, post.id, fanclub.artistId)}
 							postId={post.id}
 							likeReply={(replyId, commentId, postId) => 
 							likeReply(replyId, commentId, postId, fanclub.artistId)
 							}
+							deleteComment = {() => navigate('user-moderation/delete', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, deleted: false}})}
+                            deleteReply = {(replyId, userId) => navigate('user-moderation/delete', {state: {  userId: userId, commentId: comment.id, fanclubId: fanclub?.id, postId: post.id, deleted: false, replyId: replyId, type: 'REPLY'}})}
 						/>
 						)
 					})
@@ -544,6 +558,9 @@ const HomeRoute = () => {
 			</FullPageCenter>
 		}
 		<Snackbar message={messageSnackbar} triggered={triggered} />
+		<Container style=''>
+			<Outlet  />
+		</Container>
 		</>
 	)
 }

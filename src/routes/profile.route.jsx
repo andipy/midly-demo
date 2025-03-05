@@ -220,7 +220,7 @@ const ProfileRoute = () => {
                             return fanclub ? (
                                 <div className='d-flex-row j-c-space-between align-items-center w-100 mt-xs-4'>
                                     <div className='d-flex-row j-c-start align-items-center gap-0_5em'>
-                                        <img className='avatar-32 border-radius-100' src={fanclub?.cover.url} />
+                                        <img className='avatar-32 border-radius-100' src={thisArtist?.image} />
                                         <p className='fsize-xs-2 f-w-500'>{thisArtist?.artistName}:</p>
                                     </div>
                                     <div className='d-flex-row j-c-end align-items-center'>
