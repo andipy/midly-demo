@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useRef } from 'react'
+import { useEffect, useState, useContext, useRef, useMemo } from 'react'
 import { useNavigate, useLocation, useParams, Navigate, Outlet } from 'react-router-dom'
 
 import { ArtistsContext } from '../contexts/artists.context'
@@ -480,7 +480,43 @@ const ArtistRoute = () => {
     }
 
     const previousIsActive = useRef(null)
+
+    const expectedPath = `/artist/${artistSlug}`
+
+    const targetPath = useMemo(() => {
+        if (location.pathname.includes('posts')) {
+            return `/artist/${artistSlug}/posts`
+        }
+
+        if (fanclub === undefined || location.pathname !== expectedPath) {
+            return null
+        }
+
+        if (fanclub?.isActive === previousIsActive.current) {
+            return null
+        }
+
+        previousIsActive.current = fanclub?.isActive
+
+        if (fanclub?.isActive) {
+            if (
+                location.pathname.includes('sfera-ebbasta') &&
+                ['ONGOING', 'PENDING', 'CLOSED_VISIBLE'].includes(artist?.flashLeaderboard?.status)
+            ) {
+                return `/artist/${artistSlug}/flash-chart`
+            }
+            return `/artist/${artistSlug}/posts`
+        }
+
+        return `/artist/${artistSlug}/leaderboard-streaming`
+    }, [fanclub, artistSlug, location.pathname, artist?.flashLeaderboard?.status])
+
     useEffect(() => {
+        if (targetPath) {
+            navigate(targetPath)
+        }
+    }, [targetPath, navigate])
+    /* useEffect(() => {
         const expectedPath = `/artist/${artistSlug}`
 
         if (location.pathname.includes('posts')) {
@@ -507,7 +543,7 @@ const ArtistRoute = () => {
         if (fanclub === null) {
             navigate(`/artist/${artistSlug}/leaderboard-streaming`)
         }
-    }, [fanclub, artistSlug, pathname])
+    }, [fanclub, artistSlug, pathname]) */
 
     /* const deleteComment = (commentId, postId) => {
         console.log(postId, commentId)

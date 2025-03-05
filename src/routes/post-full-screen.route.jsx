@@ -45,7 +45,7 @@ const  PostFullScreenRoute = () => {
     const location = useLocation()
     const { postId, artistId, fromPage } = location.state || {}    
     const { pathname } = useLocation()
-    console.log(location.state)
+    
 
     const { currentArtist} = useContext(CurrentArtistContext)
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
@@ -304,7 +304,7 @@ const  PostFullScreenRoute = () => {
             {pathname.includes('/artist-app') ?
             <NavbarCloseOnly transparent={true} onClick={() => navigate(-1)}/>
             :
-            <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`${location.state.fromPage}`, { state : {artist: artist} })}/>
+            <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`${fromPage}`, { state : {artist: artist} })}/>
             }
             
             <div className={` d-flex-row j-c-center align-items-center w-100 h-100 position-relative`} >
