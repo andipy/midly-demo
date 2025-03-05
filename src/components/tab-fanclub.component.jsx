@@ -7,6 +7,8 @@ const TabFanclub = ({artist}) => {
     const navigate = useNavigate()
 
     const fanclub = useFanclub(artist?.id)
+
+    console.log(fanclub)
     
     return (
         <Carousel>

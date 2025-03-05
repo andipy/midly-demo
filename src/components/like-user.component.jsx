@@ -25,7 +25,7 @@ const LikeUser = ({user, type}) => {
                     }
                     <p className="fsize-xs-3 f-w-600 grey-250">{user?.username}</p>
                 </div>
-                {
+                {/* {
                     !location.pathname.includes('artist-app') &&
                     <>
                     {user.id !== currentFan.id &&
@@ -35,7 +35,7 @@ const LikeUser = ({user, type}) => {
                     }
                     </>
                     
-                }
+                } */}
                 
                 
             </div>

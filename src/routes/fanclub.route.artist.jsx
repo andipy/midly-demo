@@ -432,7 +432,7 @@ const FanclubRoute = () => {
             {
                 fanclub?.isActive &&
                 <Container style={'pb-xs-appbar '}>
-                    <TabFanclub />
+                    <TabFanclub artist={currentArtist}/>
                     {
                         !window.location.pathname.includes('/edit-post') &&
                             <Outlet context={{focusPost, setPostInFocus}}/>

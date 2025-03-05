@@ -822,7 +822,7 @@ const ArtistRoute = () => {
                 <Container style={'pb-xs-12 pb-sm-2'}>
                     {fanclub?.posts.map(post => {
                         if ( post.id ===  postInFocus.id) {
-                            return post.likes.map(like => {
+                            return post.likes.sort((a, b) => (b.userId === currentFan.id ? 1 : 0) - (a.userId === currentFan.id ? 1 : 0)).map(like => {
                                 let user
                                 if (like.userId === fanclub?.artistId) {
                                     const artistFound = artists.find(artist => artist?.id === like.userId);
