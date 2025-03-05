@@ -112,7 +112,7 @@ const FanLetterCreationRoute = () => {
                 tracks.forEach((track) => track.stop())
             }
         }
-    }, [photo, video, facingMode, contentType])
+    }, [facingMode, contentType])
 
     const switchCamera = () => {
         setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'))
@@ -258,15 +258,13 @@ const FanLetterCreationRoute = () => {
                 <div className='camera-frame-wrapper position-relative'>
                     {!photo && !video &&
                         <>
-                            {contentType === 'IMAGE' || contentType === 'VIDEO' &&
-                                <video
-                                    className='overflow-clip object-fit-cover'
-                                    ref={videoRef}
-                                    autoPlay
-                                    playsInline
-                                    style={{ width: '100%', height: '100%' }}
-                                />
-                            }
+                            <video
+                                className='overflow-clip object-fit-cover'
+                                ref={videoRef}
+                                autoPlay
+                                playsInline
+                                style={{ width: '100%', height: '100%' }}
+                            />
                         </>
                     }
 
