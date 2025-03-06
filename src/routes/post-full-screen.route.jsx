@@ -43,16 +43,17 @@ import IconUnfollow from '../images/icons/icon-unfollow.svg'
 const  PostFullScreenRoute = () => {
     const navigate = useNavigate()
     const location = useLocation()
-    const { postId, artistId, fromPage } = location.state || {}    
+    const { postId, artistId, fromPage, posts } = location.state || {}    
     const { pathname } = useLocation()
-    
 
     const { currentArtist} = useContext(CurrentArtistContext)
     const { currentFan, setCurrentFan } = useContext(CurrentFanContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
     const { artists } = useContext(ArtistsContext)
     const hasUserSubscribed = useFanclubSubscription(artistId)
+    const [currentPostIndex, setCurrentPostIndex] = useState(postId)
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
+    console.log(currentPostIndex)
 
     const [userFollowing, setUserFollowing] = useState(false)
     const fetchCompeting = () => {
@@ -93,7 +94,7 @@ const  PostFullScreenRoute = () => {
     const thisFanclub = useFanclub(artistId)
     const [post, setPost] = useState({})
     const fetchThisPost = () => {
-        const thisPost = thisFanclub?.posts?.find(elem => elem.id === postId)
+        const thisPost = thisFanclub?.posts?.find(elem => elem.id === currentPostIndex)
         setPost(thisPost)
     }
     useEffect(() => {
@@ -101,7 +102,7 @@ const  PostFullScreenRoute = () => {
             fetchThisPost()
         }
        
-    }, [thisFanclub])
+    }, [currentPostIndex, thisFanclub])
 
     useEffect(() => {
         if (artist) {
@@ -126,32 +127,32 @@ const  PostFullScreenRoute = () => {
     }
     
     const [postInFocus, setPostInFocus] = useState({
-            id: undefined,
-            action: undefined,
-            post: undefined
+        id: undefined,
+        action: undefined,
+        post: undefined
+    })
+    const focusPost = (id, action) => {
+        const thisPost = thisFanclub.posts.find(post => post.id === id)
+        setPostInFocus({
+            id: thisPost.id,
+            action: action,
+            post: thisPost
         })
-        const focusPost = (id, action) => {
-            const thisPost = thisFanclub.posts.find(post => post.id === id)
-            setPostInFocus({
-                id: thisPost.id,
-                action: action,
-                post: thisPost
-            })
-        }
+    }
 
-        useEffect(() => {
-            if ( postInFocus.id ) {
-                if ( postInFocus.action === 'OPEN_COMMENTS' ) {
-                    openComments(postInFocus.id)
-                }
-                if ( postInFocus.action === 'OPEN_SETTINGS' ) {
-                    navigate(`/artist-app/fanclub/${postInFocus.post.id}/edit-post`, { state: { ...postInFocus.post, invokedModal: true } })
-                }
-                if ( postInFocus.action === 'SHARE_POST' ) {
-                    handleShare(postInFocus.post)
-                }
+    useEffect(() => {
+        if ( postInFocus.id ) {
+            if ( postInFocus.action === 'OPEN_COMMENTS' ) {
+                openComments(postInFocus.id)
             }
-        }, [postInFocus])
+            if ( postInFocus.action === 'OPEN_SETTINGS' ) {
+                navigate(`/artist-app/fanclub/${postInFocus.post.id}/edit-post`, { state: { ...postInFocus.post, invokedModal: true } })
+            }
+            if ( postInFocus.action === 'SHARE_POST' ) {
+                handleShare(postInFocus.post)
+            }
+        }
+    }, [postInFocus])
 
     const [showCaption, setShowCaption] = useState(false)
     const [isLiked, setIsLiked] = useState(false)
@@ -314,7 +315,7 @@ const  PostFullScreenRoute = () => {
                 <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}/posts`, { state : {artist: artist} })}/>
             }
             
-            <div className={` d-flex-row j-c-center align-items-center w-100 h-100 position-relative`} >
+            <div className={` d-flex-row j-c-center align-items-center w-100 h-100 position-relative`} id="post-container">
                 <div className={`${(post?.settings?.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} d-flex-row j-c-center align-items-center w-100 h-100`} >
                 {post?.media?.length >= 0 &&
                     <SwipeCarouselFull images={post.media} text={post.text} />
@@ -462,56 +463,56 @@ const  PostFullScreenRoute = () => {
 
 
         {
-                modalOpen &&
-            
-                <CommentsModalTextbarLayout
-                    modalOpen={modalOpen}
-                    closeModal={closeComments}
-                    handleCurrentComment={handleCurrentComment}
-                    handleSubmitComment={submitComment}
-                    currentComment={currentComment}
-                    setCurrentComment={setCurrentComment}
-                    inputRef={inputRef}
-                    replyingUser={replyingUser}
-                    
-                >
-                    <Container style={'pb-xs-12 pb-sm-2'}>
-                        {thisFanclub?.posts.map(post => {
-                            if ( post.id ===  postInFocus.id) {
-                                return post.comments.map(comment => {
-                                    return (
-                                        <Comment
-                                            comment={comment}
-                                            key={comment.id}
-                                            inputRef={inputRef}
-                                            spotCommentToReply={spotCommentToReply}
-                                            modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id}})}
-                                            modalUserModerationRep={(userId) => 
-                                                navigate('user-moderation', { 
-                                                    state: { 
-                                                    userId, 
-                                                    commentId: comment.id, 
-                                                    fanclubId: thisFanclub?.id, 
-                                                    postId: post.id 
-                                                    } 
-                                                })
-                                            }
-                                            commentUserModeration={() => navigate('user-moderation/report', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, artistId: thisFanclub?.artistId, reported: false, type: 'COMMENT', comment: comment }})}
-                                            replyUserModeration={(userId, reply, replyId) => navigate('user-moderation/report', {state: {  userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, artistId: thisFanclub?.artistId, reported: false, type: 'COMMENT', reply, replyId }})}
-                                            likeComment = {() => likeComment(comment.id, post.id, artist.id)}
-                                            postId={post.id}
-                                            likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, artist.id)}
-                                            deleteComment = {() => navigate('user-moderation/delete', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, deleted: false}})}
-                                            deleteReply = {(replyId, userId) => navigate('user-moderation/delete', {state: {  userId: userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, deleted: false, replyId: replyId, type: 'REPLY'}})}
-                                        />
-                                    )
-                                })
-                            }})
-                        }
-                    </Container>
+            modalOpen &&
+        
+            <CommentsModalTextbarLayout
+                modalOpen={modalOpen}
+                closeModal={closeComments}
+                handleCurrentComment={handleCurrentComment}
+                handleSubmitComment={submitComment}
+                currentComment={currentComment}
+                setCurrentComment={setCurrentComment}
+                inputRef={inputRef}
+                replyingUser={replyingUser}
+                
+            >
+                <Container style={'pb-xs-12 pb-sm-2'}>
+                    {thisFanclub?.posts.map(post => {
+                        if ( post.id ===  postInFocus.id) {
+                            return post.comments.map(comment => {
+                                return (
+                                    <Comment
+                                        comment={comment}
+                                        key={comment.id}
+                                        inputRef={inputRef}
+                                        spotCommentToReply={spotCommentToReply}
+                                        modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id}})}
+                                        modalUserModerationRep={(userId) => 
+                                            navigate('user-moderation', { 
+                                                state: { 
+                                                userId, 
+                                                commentId: comment.id, 
+                                                fanclubId: thisFanclub?.id, 
+                                                postId: post.id 
+                                                } 
+                                            })
+                                        }
+                                        commentUserModeration={() => navigate('user-moderation/report', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, artistId: thisFanclub?.artistId, reported: false, type: 'COMMENT', comment: comment }})}
+                                        replyUserModeration={(userId, reply, replyId) => navigate('user-moderation/report', {state: {  userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, artistId: thisFanclub?.artistId, reported: false, type: 'COMMENT', reply, replyId }})}
+                                        likeComment = {() => likeComment(comment.id, post.id, artist.id)}
+                                        postId={post.id}
+                                        likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, artist.id)}
+                                        deleteComment = {() => navigate('user-moderation/delete', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, deleted: false}})}
+                                        deleteReply = {(replyId, userId) => navigate('user-moderation/delete', {state: {  userId: userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, deleted: false, replyId: replyId, type: 'REPLY'}})}
+                                    />
+                                )
+                            })
+                        }})
+                    }
+                </Container>
 
-                </CommentsModalTextbarLayout>
-            }
+            </CommentsModalTextbarLayout>
+        }
 
         <Outlet context={{ postInFocus, setPostInFocus }} />
 

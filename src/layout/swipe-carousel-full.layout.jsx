@@ -59,7 +59,7 @@ const SwipeCarouselFull = ({ images, text }) => {
 	const canSlide = images.length + (text ? 1 : 0) > 1
 
 	return (
-		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden'
+		<div className='d-flex-column j-c-center align-items-center overflow-all-hidden h-100vh'
 			onMouseDown={canSlide ? handleDragStart : undefined}
 			onMouseMove={isDragging && canSlide ? handleDragMove : undefined}
 			onMouseUp={canSlide ? handleDragEnd : undefined}

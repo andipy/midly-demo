@@ -464,7 +464,7 @@ const ArtistRoute = () => {
                 handleShare(postInFocus.post)
             }
             if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
-                navigate(`${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: artist.id, fromPage: `/artist/${artist?.slug}/posts`} })
+                navigate(`${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: artist.id, fromPage: `/artist/${artist?.slug}/posts`, posts: fanclub?.posts} })
             }
         }
     }, [postInFocus])
@@ -516,96 +516,6 @@ const ArtistRoute = () => {
             navigate(targetPath)
         }
     }, [targetPath, navigate])
-    /* useEffect(() => {
-        const expectedPath = `/artist/${artistSlug}`
-
-        if (location.pathname.includes('posts')) {
-            navigate(`/artist/${artistSlug}/posts`)
-            return
-        }
-        if (fanclub === undefined) return
-        if (location.pathname !== expectedPath) return
-        if (fanclub !== null && fanclub?.isActive === previousIsActive.current) {
-            return
-        }
-        previousIsActive.current = fanclub?.isActive
-
-        if (fanclub?.isActive) {
-            if (pathname.includes('sfera-ebbasta') && (artist?.flashLeaderboard.status === 'ONGOING' || artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'CLOSED_VISIBLE')) {
-                navigate(`/artist/${artistSlug}/flash-chart`)
-            } else {
-                navigate(`/artist/${artistSlug}/posts`)
-            }  
-        } else {
-            navigate(`/artist/${artistSlug}/leaderboard-streaming`)
-        }
-
-        if (fanclub === null) {
-            navigate(`/artist/${artistSlug}/leaderboard-streaming`)
-        }
-    }, [fanclub, artistSlug, pathname]) */
-
-    /* const deleteComment = (commentId, postId) => {
-        console.log(postId, commentId)
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub =>
-                fanclub.artistId === artist?.id
-                    ? {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post =>
-                            post.id === postId
-                                ? { ...post, commentsCount: post.commentsCount-1, comments: post.comments.filter(comment => comment.id !== commentId) }
-                                : post
-                        )
-                    }
-                    : fanclub
-            )
-        )
-    }
-
-    const deleteReply = (commentId, postId, replyId) => {
-        console.log(postId, commentId, replyId)
-        setFanclubs(prevFanclubs =>
-            prevFanclubs.map(fanclub =>
-                fanclub.artistId === artist?.id
-                    ? {
-                        ...fanclub,
-                        posts: fanclub.posts.map(post =>
-                            post.id === postId
-                                ? {
-                                    ...post,
-                                    commentsCount: post.commentsCount-1,
-                                    comments: post.comments.map(comment =>
-                                        comment.id === commentId
-                                            ? {
-                                                ...comment,
-                                                comments: comment.comments.filter(reply => reply.id !== replyId) // Rimuovi la risposta
-                                            }
-                                            : comment
-                                    )
-                                }
-                                : post
-                        )
-                    }
-                    : fanclub
-            )
-        );
-    } */
-
-    /* const [isHeartVisible, setIsHeartVisible] = useState(false)
-    const handleRequestFanclub = () => {
-        setIsHeartVisible(true)
-        setArtists(prevArtists => 
-            prevArtists.map(art => 
-                art.id === artist.id 
-                    ? { ...art, requestFanclub: (art.requestFanclub || 0) + 1 } 
-                    : art
-            )
-        )
-        setTimeout(() => {
-            setIsHeartVisible(false)
-        }, 1000)
-    } */
 
     const handleRequestFanclub = () => {
         setArtists(prevArtists => 

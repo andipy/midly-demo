@@ -50,6 +50,7 @@ const HomeRoute = () => {
 	const [latestPosts, setLatestPosts] = useState()
 	const [latestTopics, setLatestTopics] = useState()
 	const [latestFanLetters, setLatestFanLetters] = useState()
+	const [all, setAll]= useState()
 
 	useEffect(() => {
 
@@ -77,7 +78,7 @@ const HomeRoute = () => {
 
 		const sortedPosts = allPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 		const sortedTopics = allTopics.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-
+		setAll(sortedPosts)
 		setLatestPosts(chunkArray(sortedPosts, 4))
 		setLatestTopics(chunkArray(sortedTopics, 4))
 	}, [fanclubs])
@@ -130,7 +131,7 @@ const HomeRoute = () => {
 			handleShare(postInFocus.post)
 		}
 		if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
-			navigate(`${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: postInFocus.artistId, fromPage: '/your-favourites'} })
+			navigate(`${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: postInFocus.artistId, fromPage: '/your-favourites', posts: all} })
 		}
 	}
 	}, [postInFocus])

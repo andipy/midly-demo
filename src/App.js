@@ -62,6 +62,7 @@ import FanclubActivityRoute from './routes/fanclub-activity.route'
 import FanclubFlashLeaderboardStatus from './routes/fanclub-flash-leaderboard-status.route'
 import FanclubStoreRoute from './routes/fanclub-store.route'
 import StoreItemRoute from './routes/store-item.route'
+import PostFullScreenNewRoute from './routes/post-full-screen-new.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -157,7 +158,7 @@ const router = createBrowserRouter([
 		]
 	},{
 		path: '/your-favourites/:postId',
-		element: <PostFullScreenRoute />,
+		element: <PostFullScreenNewRoute />,
 		children: [
 			{
 				path: 'user-moderation',
@@ -323,7 +324,7 @@ const router = createBrowserRouter([
 		/* MAJOR CHANGE */
 		/* path: '/artist/:artistSlug/fanclub/:postId', */
 		path: '/artist/:artistSlug/:postId',
-		element: <PostFullScreenRoute />,
+		element: <PostFullScreenNewRoute />,
 		children: [
 			{
 				path: 'user-moderation',
