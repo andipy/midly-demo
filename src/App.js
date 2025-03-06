@@ -158,6 +158,21 @@ const router = createBrowserRouter([
 	},{
 		path: '/your-favourites/:postId',
 		element: <PostFullScreenRoute />,
+		children: [
+			{
+				path: 'user-moderation',
+				element: <UserModerationRoute />,
+			},{
+				path: 'user-moderation/block',
+				element: <UserModerationBlockRoute />,
+			},{
+				path: 'user-moderation/report',
+				element: <UserModerationReportRoute />,
+			},{
+				path: 'user-moderation/delete',
+				element: <UserModerationDeleteRoute />,
+			}
+		]
 	},{
 		path: '/your-favourites/activity',
 		element: <FanclubActivityRoute />,
@@ -309,6 +324,21 @@ const router = createBrowserRouter([
 		/* path: '/artist/:artistSlug/fanclub/:postId', */
 		path: '/artist/:artistSlug/:postId',
 		element: <PostFullScreenRoute />,
+		children: [
+			{
+				path: 'user-moderation',
+				element: <UserModerationRoute />,
+			},{
+				path: 'user-moderation/block',
+				element: <UserModerationBlockRoute />,
+			},{
+				path: 'user-moderation/report',
+				element: <UserModerationReportRoute />,
+			},{
+				path: 'user-moderation/delete',
+				element: <UserModerationDeleteRoute />,
+			}
+		]
 	},{
 		path: '/home/:postId',
 		element: <PostFullScreenRoute />,

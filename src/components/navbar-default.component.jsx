@@ -15,12 +15,9 @@ const NavbarDefault = () => {
             <Container style='d-flex-row align-items-center j-c-space-between'>
                 <img className='w-20' src={Logo} alt='MIDLY' />
 
-                {
-                    location.pathname.includes('your-favourites') &&
-                    <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate('activity')}>
-                        <img className='avatar-32' src={IconThunder} alt='M' />
-                    </div>
-                }
+                <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate('activity')}>
+                    <img className='avatar-32' src={IconThunder} alt='M' />
+                </div>
                 
             </Container>
         </nav>
