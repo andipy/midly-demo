@@ -50,17 +50,20 @@ const PostFullScreenNewRoute = () => {
     const {currentArtist} = useContext(CurrentArtistContext)
     const {setAuraPoints} = useAuraPoints()
     const {likePost} = useLikePost()
-
-    console.log(posts)
-
+    const { share, messageSnackbar, triggered } = useShare()
+    const { modalOpen, openModal, closeModal } = useModal()
+    const { handleSubmitComment } = useSubmitComment()
+    const { likeComment } = useLikeComment()
+    const { likeReply} = useLikeReply()
+    const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     const initialIndex = posts.findIndex(post => post.id === postId && post?.artistId === artistId)
-    console.log(initialIndex)
     const [currentPostIndex, setCurrentPostIndex] = useState(initialIndex)
 
     const [artist, setArtist] = useState()
     const [hasUserSubscribed, setHasUserSubscribed] = useState(false)
     const [userFollowing, setUserFollowing] = useState(false)
     const [thisFanclub, setThisFanclub] = useState()
+    const [thisPost, setThisPost] = useState()
     useEffect(() => {
         if (posts && posts?.length > 0) {
             const currentPost = posts[currentPostIndex]
@@ -74,6 +77,9 @@ const PostFullScreenNewRoute = () => {
             const isSubscribed = currentFan && fanclubs && currentFan.fanclubsSubscribed.some(sub => sub.artistId === currentPost?.artistId)
             setHasUserSubscribed(isSubscribed)
 
+            const thisPost = fanclub?.posts.find(post => post.id === currentPost.id)
+            setThisPost(thisPost)
+
             if ( currentFan?.followedArtists?.length > 0 ) {
                 const favouriteArtistIds = currentFan.followedArtists.map(followed => followed.artistId)
     
@@ -86,8 +92,10 @@ const PostFullScreenNewRoute = () => {
                 setUserFollowing(false)
             }
         }
-    }, [currentPostIndex, posts, artists, currentFan, fanclubs])
+    }, [currentPostIndex, artists, currentFan, fanclubs])
 
+    console.log('Artist id: ', artist?.id)
+    console.log('Post id: ', thisPost?.id)
     
     const postWrapperRef = useRef(null)
 
@@ -209,29 +217,126 @@ const PostFullScreenNewRoute = () => {
 
     useEffect(() => {
         if ( postInFocus.id ) {
-            /* if ( postInFocus.action === 'OPEN_COMMENTS' ) {
+            if ( postInFocus.action === 'OPEN_COMMENTS' ) {
                 openComments(postInFocus.id)
             }
+            /*
             if ( postInFocus.action === 'OPEN_SETTINGS' ) {
                 navigate(`/artist-app/fanclub/${postInFocus.post.id}/edit-post`, { state: { ...postInFocus.post, invokedModal: true } })
             }
+            */
             if ( postInFocus.action === 'SHARE_POST' ) {
                 handleShare(postInFocus.post)
-            } */
+            } 
         }
     }, [postInFocus])
 
     const [isLiked, setIsLiked] = useState(false)
 	useEffect(() => {
-		if (posts[currentPostIndex] && posts[currentPostIndex].likes && !pathname.includes('/artist-app')) {
-			const likedByUser = posts[currentPostIndex].likes.some(like => like.userId === currentFan.id)
+		if (thisPost && thisPost.likes && !pathname.includes('/artist-app')) {
+			const likedByUser = thisPost.likes.some(like => like.userId === currentFan.id)
 			setIsLiked(likedByUser)
 		}
-		if (posts[currentPostIndex] && posts[currentPostIndex].likes && pathname.includes('/artist-app')) {
-			const likedByUser = posts[currentPostIndex].likes.some(like => like.userId === currentArtist.id)
+		/* if (thisPost && thisPost.likes && pathname.includes('/artist-app')) {
+			const likedByUser = thisPost.likes.some(like => like.userId === currentArtist.id)
 			setIsLiked(likedByUser)
-		}
-	}, [fanclubs])
+		} */
+	}, [thisPost])
+
+    const handleShare = (post) => {
+        share(post, artist?.id)
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
+    }
+
+    // handle comment section
+    const [currentComment, setCurrentComment] = useState({
+        id: undefined,
+        userId: undefined,
+        userType: undefined,
+        userImage: undefined,
+        username: undefined,
+        createdAt: undefined,
+        comment: '',
+        likes: [],
+        comments: [],
+        repliedUsername: undefined
+    })
+    const handleCurrentComment = (e) => {
+        e.preventDefault()
+        let commentsNumber
+        let currentDate = new Date()
+        let date = currentDate.toISOString().split('T')[0]
+        fanclubs.map(fanclub => {
+            if ( fanclub.artistId === artist?.id ) {
+                fanclub.posts.map(post => {
+                    if ( post.id === postInFocus.id ) {
+                        commentsNumber = post?.commentsCount + 1
+                    }
+                })
+            }
+        })
+
+        let replied
+        if ( commentInFocus) {
+            replied = replyingUser
+        }
+
+        setCurrentComment(prev => ({
+            ...prev,
+            id: commentsNumber,
+            userId: currentFan.id,
+            userType: currentFan.type,
+            userImage: currentFan.image,
+            username: currentFan.username,
+            createdAt: date,
+            comment: e.target.value,
+            repliedUsername: replied
+        }))
+    }
+
+    const inputRef = useRef(null)
+    const [commentInFocus, setCommentInFocus] = useState(null)
+    const [replyingUser, setReplyingUser] = useState(null)
+    const spotCommentToReply = (id, username) => {
+        setReplyingUser(username)
+        setCommentInFocus(id)
+        inputRef.current.focus()
+    }
+
+    const submitComment = (e) => {
+        e.preventDefault()
+        handleSubmitComment(currentComment, postInFocus, commentInFocus, artist?.id)
+        setCurrentComment({
+            id: undefined,
+            userId: undefined,
+            userType: undefined,
+            userImage: undefined,
+            username: undefined,
+            createdAt: undefined,
+            comment: '',
+            likes: [],
+            comments: [],
+            repliedUsername: undefined
+        })
+        setCommentInFocus(null)
+        setReplyingUser(null)
+    }
+    const openComments = (id) => {
+        openModal()
+    }
+    const closeComments = () => {
+        closeModal()
+        setPostInFocus({
+            id: undefined,
+            action: undefined,
+            post: undefined
+        })
+        setCommentInFocus(null)
+    }
 
     const [modalSubscription, setModalSubscription] = useState(false)
 
@@ -250,52 +355,54 @@ const PostFullScreenNewRoute = () => {
             !pathname.includes('/your-favourites') && !pathname.includes('/artist-app') &&
                 <NavbarCloseOnly transparent={true} onClick={() =>  navigate(`/artist/${artist?.slug}/posts`, { state : {artist: artist} })}/>
             }
-            <div
-                className="d-flex-column j-c-center align-items-center overflow-hidden w-100vw"
-                style={{
-                    height: '100vh',
-                    overflow: 'hidden',
-                    position: 'relative',
-                }}
-            >
+            <FullPageCenter style='z-index-999'>
                 <div
-                    ref={postWrapperRef}
-                    className="posts-wrapper"
+                    className="d-flex-column j-c-center align-items-center overflow-hidden w-100vw"
                     style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        height: '100%',
-                        transition: 'transform 0.5s ease', 
-                        transform: `translateY(-${currentPostIndex * 100}vh)`, 
+                        height: '100vh',
+                        overflow: 'hidden',
+                        position: 'relative',
                     }}
                 >
-                    {posts?.map((post, index) => (
-                        <div
-                            key={index}
-                            className={`${(post?.settings?.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} post`} 
-                            style={{
-                                width: '100vw',
-                                height: '100vh', 
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                            }}
-                        >
-                            <SwipeCarouselFull images={post.media} text={post.text} />
-                            
-                        </div>
-                    ))}
+                    <div
+                        ref={postWrapperRef}
+                        className="posts-wrapper"
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            height: '100%',
+                            transition: 'transform 0.5s ease', 
+                            transform: `translateY(-${currentPostIndex * 100}vh)`, 
+                        }}
+                    >
+                        {posts?.map((post, index) => (
+                            <div
+                                key={index}
+                                className={`${(post?.settings?.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} post`} 
+                                style={{
+                                    width: '100vw',
+                                    height: '100vh', 
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <SwipeCarouselFull images={post.media} text={post.text} />
+                                
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
-            {!hasUserSubscribed && !pathname.includes('/artist-app/') && posts[currentPostIndex]?.settings?.isPrivate &&
-            <div className='position-absolute-x-y w-80 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06 z-index-1300'>
-                <p className='t-align-center mb-xs-4'>Vuoi accedere ai contenuti esclusivi dell'artista?</p>
-                <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={() => setModalSubscription(true)} />
-            </div>
-            }
+                {!hasUserSubscribed && !pathname.includes('/artist-app/') && posts[currentPostIndex]?.settings?.isPrivate &&
+                <div className='position-absolute-x-y w-80 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06 z-index-1300'>
+                    <p className='t-align-center mb-xs-4'>Vuoi accedere ai contenuti esclusivi dell'artista?</p>
+                    <Button style='bg-acid-lime black f-w-500 fsize-xs-2' label='Abbonati' onClick={() => setModalSubscription(true)} />
+                </div>
+                }
+            </FullPageCenter>         
             <div 
-				className='d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4 bg-color-none position-absolute-y top-5  z-index-1200 ml-xs-6 '
-                onClick={() => console.log('click')}
+				className='d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4 bg-color-none position-absolute-y top-5  z-index-1300 ml-xs-6 '
+                onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
 				>
                     <div className='d-flex-row j-c-center align-items-center gap-0_25em z-index-1100' >
                         <img className='avatar-28 border-radius-100' src={artist?.image}/>
@@ -306,8 +413,8 @@ const PostFullScreenNewRoute = () => {
                 (hasUserSubscribed || pathname.includes('/artist-app/') || !posts[currentPostIndex]?.settings?.isPrivate) &&
 
                 <>
-                <div className='d-flex-column gap-0_5em position-absolute-y right-5 z-index-5'>
-                <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => likePost(artist?.id, posts[currentPostIndex].id)}>
+                <div className='d-flex-column gap-0_5em position-absolute-y right-5 z-index-1000'>
+                <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => likePost(artist?.id, thisPost.id)}>
                     {isLiked ?		
                         <img
                             className='avatar-32 border-radius-100'
@@ -389,7 +496,7 @@ const PostFullScreenNewRoute = () => {
                             }
                             
                             {posts[currentPostIndex]?.link.url !== '' &&
-                                <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={posts[currentPostIndex]?.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artistId)}>
+                                <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={posts[currentPostIndex]?.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artist?.id)}>
                                     <img className='avatar-20' src={IconLink} />
                                     <span>{posts[currentPostIndex]?.link.name ? posts[currentPostIndex].link.name : 'Apri il link'}</span>
                                 </Link>
@@ -425,7 +532,63 @@ const PostFullScreenNewRoute = () => {
             </div>
             </>
             }
+            {
+                modalOpen &&
+        
+                <CommentsModalTextbarLayout
+                    modalOpen={modalOpen}
+                    closeModal={closeComments}
+                    handleCurrentComment={handleCurrentComment}
+                    handleSubmitComment={submitComment}
+                    currentComment={currentComment}
+                    setCurrentComment={setCurrentComment}
+                    inputRef={inputRef}
+                    replyingUser={replyingUser}
+                    
+                >
+                    <Container style={'pb-xs-12 pb-sm-2'}>
+                        {thisFanclub?.posts.map(post => {
+                            if ( post.id ===  postInFocus.id) {
+                                return post.comments.map(comment => {
+                                    return (
+                                        <Comment
+                                            comment={comment}
+                                            key={comment.id}
+                                            inputRef={inputRef}
+                                            spotCommentToReply={spotCommentToReply}
+                                            modalUserModeration={() => navigate('user-moderation', {state: { userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id}})}
+                                            modalUserModerationRep={(userId) => 
+                                                navigate('user-moderation', { 
+                                                    state: { 
+                                                    userId, 
+                                                    commentId: comment.id, 
+                                                    fanclubId: thisFanclub?.id, 
+                                                    postId: post.id 
+                                                    } 
+                                                })
+                                            }
+                                            commentUserModeration={() => navigate('user-moderation/report', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, artistId: thisFanclub?.artistId, reported: false, type: 'COMMENT', comment: comment }})}
+                                            replyUserModeration={(userId, reply, replyId) => navigate('user-moderation/report', {state: {  userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, artistId: thisFanclub?.artistId, reported: false, type: 'COMMENT', reply, replyId }})}
+                                            likeComment = {() => likeComment(comment.id, post.id, artist.id)}
+                                            postId={post.id}
+                                            likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, artist.id)}
+                                            deleteComment = {() => navigate('user-moderation/delete', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, deleted: false}})}
+                                            deleteReply = {(replyId, userId) => navigate('user-moderation/delete', {state: {  userId: userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, deleted: false, replyId: replyId, type: 'REPLY'}})}
+                                        />
+                                    )
+                                })
+                            }})
+                        }
+                    </Container>
 
+                </CommentsModalTextbarLayout>
+            }
+
+            <Snackbar message={messageSnackbar} triggered={triggered} />
+            {
+            modalSubscription &&
+                <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={thisFanclub} handleSubscription={(period) => handleSubscription(artist?.id, period)}/>
+            }
         </>
         
     )

@@ -53,7 +53,6 @@ const  PostFullScreenRoute = () => {
     const hasUserSubscribed = useFanclubSubscription(artistId)
     const [currentPostIndex, setCurrentPostIndex] = useState(postId)
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
-    console.log(currentPostIndex)
 
     const [userFollowing, setUserFollowing] = useState(false)
     const fetchCompeting = () => {
