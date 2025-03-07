@@ -364,7 +364,18 @@ const PostFullScreenNewRoute = () => {
 
     const [modalSubscription, setModalSubscription] = useState(false)
 
-
+    useEffect(() => {
+        if (posts && posts.length > 0 && initialIndex !== undefined) {
+          setCurrentPostIndex(initialIndex)
+        }
+      }, [posts])
+    
+      useEffect(() => {
+        if (currentPostIndex !== undefined && posts.length > 0) {
+          prevTranslate.current = -currentPostIndex * trackRef.current.offsetHeight
+          trackRef.current.style.transform = `translateY(${prevTranslate.current}px)`
+        }
+      }, [currentPostIndex, posts])
     return (
         <>
             {
