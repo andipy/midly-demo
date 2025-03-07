@@ -2,14 +2,13 @@ import React, { useState, useRef } from 'react'
 import IconSpeaker from '../images/icons/icon-speaker.png'
 import AudioPost from '../components/audio-post.component'
 
-const SwipeCarouselFull = ({ images, text }) => {
+const SwipeCarouselFull = ({ images, text}) => {
 	const [currentIndex, setCurrentIndex] = useState(0)
 	const [isDragging, setIsDragging] = useState(false)
 	const trackRef = useRef(null)
 	const startX = useRef(0)
 	const currentTranslate = useRef(0)
 	const prevTranslate = useRef(0)
-
 	const handleDragStart = (event) => {
 		// Solo se la lunghezza non è 1 (media + text)
 		if (images.length + (text ? 1 : 0) === 1) return
@@ -81,7 +80,13 @@ const SwipeCarouselFull = ({ images, text }) => {
 						{media.type === 'IMAGE' ?
 							<img  className='object-fit-cover w-100 h-100' src={media.url} />
 						: media.type === 'VIDEO' ?	
-						<video className='w-100 h-100 object-fit-cover' autoPlay playsInline loop muted={!isMuted}>
+						<video 
+						className="w-100 h-100 object-fit-cover" 
+						autoPlay={true}  // Avvia il video solo se play è true
+						playsInline 
+						loop 
+						muted={true}  // Se play è false, muto; se true, audio attivo
+					>
 							<source src={media.url} type='video/mp4' />
 						</video>
 						: media.type === 'AUDIO'?

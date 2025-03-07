@@ -83,7 +83,7 @@ const PostFullScreenNewRoute = () => {
             if ( currentFan?.followedArtists?.length > 0 ) {
                 const favouriteArtistIds = currentFan.followedArtists.map(followed => followed.artistId)
     
-                if (favouriteArtistIds.includes(artist?.id)) {
+                if (favouriteArtistIds.includes(foundArtist?.id)) {
                     setUserFollowing(true)
                 } else {
                     setUserFollowing(false)
@@ -357,7 +357,7 @@ const PostFullScreenNewRoute = () => {
             }
             <FullPageCenter style='z-index-999'>
                 <div
-                    className="d-flex-column j-c-center align-items-center overflow-hidden w-100vw"
+                    className="d-flex-column j-c-center align-items-center overflow-all-hidden w-100vw"
                     style={{
                         height: '100vh',
                         overflow: 'hidden',
@@ -387,7 +387,7 @@ const PostFullScreenNewRoute = () => {
                                     alignItems: 'center',
                                 }}
                             >
-                                <SwipeCarouselFull images={post.media} text={post.text} />
+                                <SwipeCarouselFull images={post.media} text={post.text}/>
                                 
                             </div>
                         ))}
