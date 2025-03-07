@@ -83,14 +83,14 @@ const FanclubRoute = () => {
                 openLikes(postInFocus.id)
             }
             if ( postInFocus.action === 'OPEN_SETTINGS' ) {
-                navigate(`/artist-app/fanclub/edit-post/${postInFocus.post.id}`, { state: { ...postInFocus.post, invokedModal: true } })
+                navigate(`/artist-app/fanclub/edit-post/${postInFocus.post.id}`, { state: { postId: postInFocus.id, artistId: currentArtist.id, invokedModal: true, post: postInFocus.post } })
             }
             if ( postInFocus.action === 'SHARE_POST' ) {
                 handleShare(postInFocus.post)
             }
             if ( postInFocus.action === 'FULL_SCREEN_POST' ) {
-                navigate(`/artist-app/fanclub/${postInFocus.post.id}`, {
-                    state: { ...postInFocus.post }
+                navigate(`${postInFocus.post.id}`, {
+                    state: {postId: postInFocus.id, artistId: currentArtist.id, fromPage: `/artist/${currentArtist?.slug}/posts`, posts: fanclub?.posts}
                 })
             }
         }

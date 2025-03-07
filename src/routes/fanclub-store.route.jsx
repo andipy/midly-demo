@@ -10,7 +10,7 @@ import StoreSingleItem from "../components/store-single-item.component"
 import Carousel from "../layout/carousel.layout"
 import StoreCollection from "../components/store-collection.component"
 const FanclubStoreRoute = () => {
-    const {artist, handlePopUp} = useOutletContext()
+        const {artist, handlePopUp} = useOutletContext()
         const navigate = useNavigate()
         const {currentArtist} = useContext(CurrentArtistContext)
         const location = useLocation()
@@ -68,7 +68,7 @@ const FanclubStoreRoute = () => {
             :
             <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                 <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Non ci sono nuove item nel merch di {artist?.artistName}.</p>
+                    <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Non ci sono nuove item nel merch di {artistF?.artistName}.</p>
                 </div>
             </div>
         }

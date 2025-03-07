@@ -433,6 +433,9 @@ const router = createBrowserRouter([
 			},{
 				path: 'events',
 				element: <FanclubEventsRoute />
+			},{
+				path: 'store',
+				element: <FanclubStoreRoute />,
 			}, {
 				path: 'letters',
 				element: <FanclubLettersRoute />
@@ -464,7 +467,7 @@ const router = createBrowserRouter([
 		]
 	},{
 		path: '/artist-app/fanclub/:postId',
-		element: <PostFullScreenRoute />,
+		element: <PostFullScreenNewRoute />,
 		children: [
 			{
 				path: '/artist-app/fanclub/:postId/edit-post',

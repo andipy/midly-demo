@@ -56,7 +56,7 @@ const PostFullScreenNewRoute = () => {
     const { likeComment } = useLikeComment()
     const { likeReply} = useLikeReply()
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
-    const initialIndex = posts.findIndex(post => post.id === postId && post?.artistId === artistId)
+    const initialIndex = posts?.findIndex(post => post.id === postId && post?.artistId === artistId)
     const [currentPostIndex, setCurrentPostIndex] = useState(initialIndex)
 
     const [artist, setArtist] = useState()
@@ -96,56 +96,65 @@ const PostFullScreenNewRoute = () => {
 
     console.log('Artist id: ', artist?.id)
     console.log('Post id: ', thisPost?.id)
+    console.log('index', currentPostIndex)
+
     
-    const postWrapperRef = useRef(null)
+    
+/*     const postWrapperRef = useRef(null)
 
-    // Riferimenti per il touch
     const touchStartY = useRef(0)
-    const touchEndY = useRef(0)
-    const isDragging = useRef(false)
+    const touchEndY = useRef(0) */
 
-    const handleTouchStart = (e) => {
-        touchStartY.current = e.touches[0].clientY
-        isDragging.current = true
+    const [isDragging, setIsDragging] = useState(false)
+    const trackRef = useRef(null)
+
+    const startY = useRef(0)
+    const currentTranslate = useRef(0)
+    const prevTranslate = useRef(0)
+
+    const handleDragStart = (event) => {
+        if (posts.length === 1) return
+        setIsDragging(true)
+        startY.current = event.touches ? event.touches[0].clientY : event.clientY
+        currentTranslate.current = prevTranslate.current
+        trackRef.current.style.transition = 'none'
     }
 
-    const handleTouchMove = (e) => {
-        if (!isDragging.current) return
-        touchEndY.current = e.touches[0].clientY
+    // Gestione del movimento del drag
+    const handleDragMove = (event) => {
+        if (!isDragging) return
+        const currentY = event.touches ? event.touches[0].clientY : event.clientY
+        const diffY = currentY - startY.current 
+        currentTranslate.current = prevTranslate.current + diffY
+        trackRef.current.style.transform = `translateY(${currentTranslate.current}px)` 
     }
 
-    const handleTouchEnd = () => {
-        if (!isDragging.current) return
-        const diff = touchStartY.current - touchEndY.current
-        
-        if (diff > 50 && currentPostIndex < posts?.length - 1) {
-            // Scorrimento verso l'alto (swipe verso il basso per vedere il prossimo post)
-            setCurrentPostIndex(prevIndex => Math.min(prevIndex + 1, posts?.length - 1))
-        } else if (diff < -50 && currentPostIndex > 0) {
-            // Scorrimento verso il basso (swipe verso l'alto per vedere il post precedente)
-            setCurrentPostIndex(prevIndex => Math.max(prevIndex - 1, 0))
+    // Gestione del rilascio del drag
+    const handleDragEnd = () => {
+        if (!isDragging) return
+        setIsDragging(false)
+
+        const height = trackRef.current.offsetHeight
+        const movedBy = currentTranslate.current - prevTranslate.current
+
+        let newIndex = currentPostIndex
+        const totalSlides = posts.length
+
+        // Se il movimento supera la soglia, cambia il post
+        if (movedBy < -height / 3 && currentPostIndex < totalSlides - 1) {
+            newIndex = currentPostIndex + 1
+        } else if (movedBy > height / 3 && currentPostIndex > 0) {
+            newIndex = currentPostIndex - 1
         }
-        isDragging.current = false
-    }
-    useEffect(() => {
-        const postWrapper = postWrapperRef.current;
-        
-        // Aggiungi gli eventi solo a questo div
-        if (postWrapper) {
-            postWrapper.addEventListener('touchstart', handleTouchStart);
-            postWrapper.addEventListener('touchmove', handleTouchMove);
-            postWrapper.addEventListener('touchend', handleTouchEnd);
-        }
 
-        // Pulisci gli event listener al momento dello smontaggio del componente
-        return () => {
-            if (postWrapper) {
-                postWrapper.removeEventListener('touchstart', handleTouchStart);
-                postWrapper.removeEventListener('touchmove', handleTouchMove);
-                postWrapper.removeEventListener('touchend', handleTouchEnd);
-            }
-        };
-    }, [currentPostIndex]);
+        setCurrentPostIndex(newIndex)
+
+        // Calcola la posizione finale in base all'indice
+        prevTranslate.current = -newIndex * height
+        trackRef.current.style.transition = 'transform 0.3s ease-out'
+        trackRef.current.style.transform = `translateY(${prevTranslate.current}px)`
+    }
+    
 
     const [days, setDays] = useState(0)
 	const [hours, setHours] = useState(0)
@@ -220,11 +229,11 @@ const PostFullScreenNewRoute = () => {
             if ( postInFocus.action === 'OPEN_COMMENTS' ) {
                 openComments(postInFocus.id)
             }
-            /*
+            
             if ( postInFocus.action === 'OPEN_SETTINGS' ) {
-                navigate(`/artist-app/fanclub/${postInFocus.post.id}/edit-post`, { state: { ...postInFocus.post, invokedModal: true } })
+                navigate(`edit-post`, { state: {postId: postInFocus.id, artistId: currentArtist.id, fromPage: `/artist/${currentArtist?.slug}/posts`, posts: thisFanclub?.posts, invokedModal: true, post: postInFocus.post} })
             }
-            */
+           
             if ( postInFocus.action === 'SHARE_POST' ) {
                 handleShare(postInFocus.post)
             } 
@@ -237,10 +246,10 @@ const PostFullScreenNewRoute = () => {
 			const likedByUser = thisPost.likes.some(like => like.userId === currentFan.id)
 			setIsLiked(likedByUser)
 		}
-		/* if (thisPost && thisPost.likes && pathname.includes('/artist-app')) {
+		if (thisPost && thisPost.likes && pathname.includes('/artist-app')) {
 			const likedByUser = thisPost.likes.some(like => like.userId === currentArtist.id)
 			setIsLiked(likedByUser)
-		} */
+		}
 	}, [thisPost])
 
     const handleShare = (post) => {
@@ -285,18 +294,33 @@ const PostFullScreenNewRoute = () => {
             replied = replyingUser
         }
 
-        setCurrentComment(prev => ({
-            ...prev,
-            id: commentsNumber,
-            userId: currentFan.id,
-            userType: currentFan.type,
-            userImage: currentFan.image,
-            username: currentFan.username,
-            createdAt: date,
-            comment: e.target.value,
-            repliedUsername: replied
-        }))
+        if (!pathname.includes('/artist-app')) {
+            setCurrentComment(prev => ({
+                ...prev,
+                id: commentsNumber,
+                userId: currentFan.id,
+                userType: currentFan.type,
+                userImage: currentFan.image,
+                username: currentFan.username,
+                createdAt: date,
+                comment: e.target.value,
+                repliedUsername: replied
+            }))
+        } else  {
+            setCurrentComment(prev => ({
+                ...prev,
+                id: commentsNumber,
+                userId: currentArtist.id,
+                userType: 'ARTIST',
+                userImage: currentArtist.image,
+                username: currentArtist.artistName,
+                createdAt: date,
+                comment: e.target.value,
+                repliedUsername: replied
+            }))
+        }
     }
+        
 
     const inputRef = useRef(null)
     const [commentInFocus, setCommentInFocus] = useState(null)
@@ -365,15 +389,17 @@ const PostFullScreenNewRoute = () => {
                     }}
                 >
                     <div
-                        ref={postWrapperRef}
+                        ref={trackRef}
                         className="posts-wrapper"
                         style={{
                             display: 'flex',
                             flexDirection: 'column',
                             height: '100%',
-                            transition: 'transform 0.5s ease', 
-                            transform: `translateY(-${currentPostIndex * 100}vh)`, 
+
                         }}
+                        onTouchStart={handleDragStart}
+                        onTouchMove={handleDragMove}
+                        onTouchEnd={handleDragEnd}
                     >
                         {posts?.map((post, index) => (
                             <div
@@ -441,64 +467,68 @@ const PostFullScreenNewRoute = () => {
                 </div>
                 }
             </div>
-            <div className='bg-dark-soft-transp75 position-absolute-x bottom-0 w-100 pt-xs-4 pb-xs-4 z-index-1100'>
+            <div className='bg-dark-soft-transp75 position-absolute-x bottom-0 w-100 pt-xs-4 pb-xs-4 z-index-1100 position-fixed'>
                 <Container style='d-flex-column j-c-center gap-0_5em'>
-                    {!posts[currentPostIndex]?.settings?.isPrivate && !hasUserSubscribed && !userFollowing &&
-                        <Button
-                            style='border-lime bg-black lime-400 fsize-xs-2 w-30 f-w-500 black'
-                            label='Segui'
-                            onClick={handleFollow}
-                        >
-                            <img className='avatar-22' src={IconFollow} />
-                        </ Button>
+                    {
+                        !pathname.includes('/artist-app') &&
+                        <>
+                            {!posts[currentPostIndex]?.settings?.isPrivate && !hasUserSubscribed && !userFollowing &&
+                            <Button
+                                style='border-lime bg-black lime-400 fsize-xs-2 w-30 f-w-500 black'
+                                label='Segui'
+                                onClick={handleFollow}
+                            >
+                                <img className='avatar-22' src={IconFollow} />
+                            </ Button>
+                        }
+                        {hasUserSubscribed &&
+                            <Button
+                                style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em'
+                                label={`Sei abbonato a ${artist?.artistName}`}
+                                /* onClick={openSettingsSubscription} */
+                            >
+                                <img className='avatar-20' src={IconOk} />
+                            </Button>
+                        }
+                        {!hasUserSubscribed && userFollowing &&
+                            <Button
+                                style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em'
+                                label='Segui già'
+                                /* onClick={handleFollow} */
+                            >
+                                <img className='avatar-20' src={IconUnfollow} />
+                            </Button>
+                        }
+                        </>
                     }
-                    {hasUserSubscribed &&
-                        <Button
-                            style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em'
-                            label={`Sei abbonato a ${artist?.artistName}`}
-                            /* onClick={openSettingsSubscription} */
-                        >
-                            <img className='avatar-20' src={IconOk} />
-                        </Button>
-                    }
-                    {!hasUserSubscribed && userFollowing &&
-                        <Button
-                            style='button-leave-leaderboard d-flex-row align-items-center j-c-center bg-dark-soft-2 border-radius-04 grey-300 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 align-self-start w-auto gap-0_25em'
-                            label='Segui già'
-                            /* onClick={handleFollow} */
-                        >
-                            <img className='avatar-20' src={IconUnfollow} />
-                        </Button>
-                    }
-                    
-                    {posts[currentPostIndex]?.link && posts[currentPostIndex]?.caption && 
+                    {thisPost?.link && thisPost?.caption && 
                         <div className='d-flex-column j-c-center w-100'>
-                            {posts[currentPostIndex]?.caption !== '' &&
+                            {thisPost?.caption !== '' &&
                                 <p className='pre-wrap mb-xs-2 grey-100 f-w-400 fsize-xs-2'>
-                                    {posts[currentPostIndex]?.caption?.length > 95 ?
+                                    {thisPost?.caption?.length > 95 ?
                                     <>
                                         {showCaption ?
                                             <>
-                                                {posts[currentPostIndex]?.caption}
+                                                {thisPost?.caption}
                                                 <span className='lime-400 f-w-500' onClick={() => setShowCaption(false)}> meno</span>
                                             </>
                                         :
                                             <>
-                                                {posts[currentPostIndex]?.caption.slice(0, 95)}...
+                                                {thisPost?.caption.slice(0, 95)}...
                                                 <span className='lime-400 f-w-500' onClick={() => setShowCaption(true)}> altro</span>
                                             </>
                                         }
                                     </>
                                     :
-                                    posts[currentPostIndex]?.caption
+                                    thisPost?.caption
                                     }
                                 </p>
                             }
                             
-                            {posts[currentPostIndex]?.link.url !== '' &&
+                            {thisPost?.link.url !== '' &&
                                 <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={posts[currentPostIndex]?.link.url} target='blank' onClick={() => setAuraPoints(CLICK_POST_LINK, 'CLICK_POST_LINK', artist?.id)}>
                                     <img className='avatar-20' src={IconLink} />
-                                    <span>{posts[currentPostIndex]?.link.name ? posts[currentPostIndex].link.name : 'Apri il link'}</span>
+                                    <span>{thisPost?.link.name ? thisPost.link.name : 'Apri il link'}</span>
                                 </Link>
                             }
 
@@ -589,6 +619,7 @@ const PostFullScreenNewRoute = () => {
             modalSubscription &&
                 <ModalSubscriptionFanclub closeModal={() => setModalSubscription(false)} fanclub={thisFanclub} handleSubscription={(period) => handleSubscription(artist?.id, period)}/>
             }
+            <Outlet context={{ postInFocus, setPostInFocus }} />
         </>
         
     )

@@ -22,9 +22,9 @@ const PostSettingsRoute = () => {
     const { state } = useLocation()
     const {fanclubs, setFanclubs} = useContext(FanclubsContext)
 
-
+    
     const onClick = () => {
-        navigate(-1, { state : { ...state, invokedModal: false }})
+        navigate(-1, { state : { postId: state.postId, artistId: state.artistId, fromPage: state.fromPage, posts: thisFanclub?.posts}})
         setPostInFocus({
             id: undefined,
             action: undefined,
@@ -34,12 +34,23 @@ const PostSettingsRoute = () => {
 
     const [post, setPost] = useState({})
     const fetchThisPost = () => {
-        setPost(state)
+        setPost(state.post)
+    }
+
+    console.log(post)
+
+    const [thisFanclub, setThisFanclub] = useState()
+    const fetchThisFanclub = () => {
+        const foundFanclub = fanclubs.find(fanclub => fanclub.artistId === state.artistId)
+        if (foundFanclub) {
+            setThisFanclub(foundFanclub)
+        }
     }
 
     useEffect(() => {
             if (state) {
                 fetchThisPost()
+                fetchThisFanclub()
             }
     }, [state])
 
@@ -73,7 +84,7 @@ const PostSettingsRoute = () => {
             })
         )
 
-        navigate(-1)
+       navigate(-1, {state : { postId: state.postId, artistId: state.artistId, fromPage: state.fromPage, posts: thisFanclub?.posts}})
     }
 
     const handleCaption = (e) => {
@@ -170,8 +181,8 @@ const PostSettingsRoute = () => {
             <Container style=''>
                 <div className='position-relative'>
                     <Carousel>
-                        {state?.media &&
-                            state.media?.map(media => (
+                        {post?.media &&
+                            post.media?.map(media => (
                                 media.type === 'IMAGE' ?
                                     <img
                                         key={media.id}
@@ -198,13 +209,13 @@ const PostSettingsRoute = () => {
                                 : null
                             ))
                         }
-                        {state?.text?.length > 0 &&
+                        {post?.text?.length > 0 &&
                             <div className='d-flex-row align-items-center bg-dark-soft pt-xs-6 pb-xs-6 border-radius-04 w-min-100'>
                                 <p className='fsize-xs-8 t-align-center f-w-600 pl-xs-4 pr-xs-4 line-height-140'>{state.text}</p>
                             </div>
                         }
 
-                        {(state?.media?.length > 1 || (state?.media?.length > 0 && state?.text?.length > 0)) &&
+                        {(post?.media?.length > 1 || (post?.media?.length > 0 && post?.text?.length > 0)) &&
                             <div className='d-flex-row position-absolute bottom-2 right-2 bg-black-transp70 pr-xs-2 pl-xs-1 border-radius-100 j-c-center align-items-center'>
                                 <img className='avatar-28' src={IconCopy} />
                                 <p className='fsize-xs-2 f-w-500'>Riordina</p>
