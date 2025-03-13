@@ -614,6 +614,11 @@ const FanclubRoute = () => {
                 window.location.pathname.includes('/edit-post') &&
                 <Outlet context={{ postInFocus, setPostInFocus }} />
             }  
+
+{
+                window.location.pathname.includes('/activation') &&
+                <Outlet  />
+            }  
              
 
             {err && 

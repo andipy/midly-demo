@@ -121,7 +121,7 @@ export const FanclubsProvider = ({ children }) => {
         },{
             id: 2,
             artistId: 'artist2',
-            isActive: true,
+            isActive: false,
             subscribers: 2386,
             name: 'amici str3tt1',
             description: 'il mio clu3 esclusivo',

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef, useLayoutEffect } from "react"
-import { useOutletContext, useLocation } from "react-router-dom"
+import { useOutletContext, useLocation, useNavigate } from "react-router-dom"
 import { CurrentArtistContext } from "../contexts/currentArtist.context"
 import { CurrentFanContext } from "../contexts/currentFan.context"
 import { FanclubsContext } from "../contexts/fanclubs.context"
@@ -9,8 +9,10 @@ import MessageChatConcert from "../components/message-chat-concert.component"
 import FullPageCenter from "../layout/full-page-center.layout"
 import useFanclubGroupChatHandler from "../utils/handle-fanclub-chat-message.hook"
 import useFanclub from "../utils/get-fanclub.hooks"
+import IconComment from '../images/icons/icon-comment-black.svg'
 const FanclubGroupChatRoute = () => {
     const location = useLocation()
+    const navigate = useNavigate()
     const pathname = location?.pathname
     const {artist, handlePopUp} = useOutletContext()
     const {currentArtist} = useContext(CurrentArtistContext)
@@ -132,7 +134,7 @@ const FanclubGroupChatRoute = () => {
     }
 
     {pathname.includes('/artist-app/') && 
-        <Container  style='mt-xs-4 pb-xs-appbar'>
+        <Container  style='mt-xs-4'>
             <div ref={messagesContainerRef}>
             {fanclub?.messages && fanclub?.messages.length > 0 ?
                 fanclub?.messages.map((mess, index) => (
@@ -157,15 +159,9 @@ const FanclubGroupChatRoute = () => {
     }
     {
         pathname.includes('/artist-app/') &&
-        <div className='position-fixed bg-dark-soft bottom-10 w-100 z-index-999 border-radius-top-08 shadow-dark-750'>
-            <Textbar
-                className={'image-wrapper w-100vw'}
-                onClick={() => setChatOpen(true)}
-                currentComment={currentMessage}
-                handleCurrentComment={handleCurrentMessage}
-                handleSubmitComment={handleSubmitMessage} 
-            />
-        </div>        
+        <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center mb-xs-16' onClick={() => navigate(`/artist-app/fanclub/chats/group-chat`, { state: { from: location} })}>
+            <img className='' src={IconComment}/>
+        </div>       
     }
     {
         !pathname.includes('/artist-app/') &&
