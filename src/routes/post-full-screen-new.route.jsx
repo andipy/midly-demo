@@ -119,43 +119,48 @@ const PostFullScreenNewRoute = () => {
         currentTranslate.current = prevTranslate.current
         trackRef.current.style.transition = 'none'
     }
-
+    
     // Gestione del movimento del drag
     const handleDragMove = (event) => {
         if (!isDragging) return
+    
         const currentY = event.touches ? event.touches[0].clientY : event.clientY
-        const diffY = currentY - startY.current 
-        currentTranslate.current = prevTranslate.current + diffY
-        trackRef.current.style.transform = `translateY(${currentTranslate.current}px)` 
+        const diffY = currentY - startY.current // Differenza in pixel
+    
+        // Converti la differenza in pixel a vh
+        const diffVh = (diffY / window.innerHeight) * 100 // 1vh = 1% dell'altezza della finestra
+    
+        // Calcola la nuova posizione in vh
+        currentTranslate.current = prevTranslate.current + diffVh
+        trackRef.current.style.transform = `translateY(${currentTranslate.current}vh)` // Usa vh per la trasformazione
     }
-
+    
     // Gestione del rilascio del drag
     const handleDragEnd = () => {
         if (!isDragging) return
         setIsDragging(false)
-
+    
         const height = window.innerHeight
         const movedBy = currentTranslate.current - prevTranslate.current
-
+    
         let newIndex = currentPostIndex
         const totalSlides = posts.length
-
+    
         // Se il movimento supera la soglia, cambia il post
-        if (movedBy < -height / 3 && currentPostIndex < totalSlides - 1) {
+        if (movedBy < -35 && currentPostIndex < totalSlides - 1) {
             newIndex = currentPostIndex + 1
-        } else if (movedBy > height / 3 && currentPostIndex > 0) {
+        } else if (movedBy > 35 && currentPostIndex > 0) {
             newIndex = currentPostIndex - 1
         }
-
+    
         setCurrentPostIndex(newIndex)
-
+    
         // Calcola la posizione finale in base all'indice
-        prevTranslate.current = -newIndex * height
+        prevTranslate.current = -newIndex * 100 // Restituisce il valore in vh
         trackRef.current.style.transition = 'transform 0.3s ease-out'
-        trackRef.current.style.transform = `translateY(${-newIndex * height}px)`
+        trackRef.current.style.transform = `translateY(${-newIndex * 100}vh)` // Usa la posizione in vh
     }
 
-    console.log(trackRef.current)
     
 
     const [days, setDays] = useState(0)
@@ -373,11 +378,11 @@ const PostFullScreenNewRoute = () => {
     }, [posts])
 
     useEffect(() => {
-    if (currentPostIndex !== undefined && posts.length > 0) {
-        prevTranslate.current = -currentPostIndex * trackRef.current.offsetHeight
-        trackRef.current.style.transform = `translateY(${-currentPostIndex * 100}vh)`
-    }
-    }, [currentPostIndex, posts])
+        if (currentPostIndex !== undefined && posts.length > 0) {
+            prevTranslate.current = -currentPostIndex * 100
+            trackRef.current.style.transform = `translateY(${-currentPostIndex * 100}vh)` // Mantieni la trasformazione in vh
+        }
+    }, [posts])
     return (
         <>
             {
