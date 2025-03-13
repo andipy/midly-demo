@@ -152,7 +152,7 @@ const PostFullScreenNewRoute = () => {
         // Calcola la posizione finale in base all'indice
         prevTranslate.current = -newIndex * height
         trackRef.current.style.transition = 'transform 0.3s ease-out'
-        trackRef.current.style.transform = `translateY(${-newIndex * 100}vh)`
+        trackRef.current.style.transform = `translateY(${-newIndex * height}px)`
     }
 
     console.log(trackRef.current)
