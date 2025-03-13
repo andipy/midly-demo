@@ -152,8 +152,10 @@ const PostFullScreenNewRoute = () => {
         // Calcola la posizione finale in base all'indice
         prevTranslate.current = -newIndex * height
         trackRef.current.style.transition = 'transform 0.3s ease-out'
-        trackRef.current.style.transform = `translateY(${prevTranslate.current}px)`
+        trackRef.current.style.transform = `translateY(${-newIndex * 100}vh)`
     }
+
+    console.log(trackRef.current)
     
 
     const [days, setDays] = useState(0)
@@ -370,12 +372,12 @@ const PostFullScreenNewRoute = () => {
     }
     }, [posts])
 
-    useEffect(() => {
+    /* useEffect(() => {
     if (currentPostIndex !== undefined && posts.length > 0) {
         prevTranslate.current = -currentPostIndex * trackRef.current.offsetHeight
         trackRef.current.style.transform = `translateY(${prevTranslate.current}px)`
     }
-    }, [currentPostIndex, posts])
+    }, [currentPostIndex, posts]) */
     return (
         <>
             {
@@ -438,7 +440,7 @@ const PostFullScreenNewRoute = () => {
                 }
             </FullPageCenter>         
             <div 
-				className='d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4 bg-color-none position-absolute-y top-5  z-index-1300 ml-xs-6 '
+				className='d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4 bg-color-none position-absolute-y top-5  z-index-1300 ml-xs-6 position-fixed'
                 onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
 				>
                     <div className='d-flex-row j-c-center align-items-center gap-0_25em z-index-1100' >
@@ -450,7 +452,7 @@ const PostFullScreenNewRoute = () => {
                 (hasUserSubscribed || pathname.includes('/artist-app/') || !posts[currentPostIndex]?.settings?.isPrivate) &&
 
                 <>
-                <div className='d-flex-column gap-0_5em position-absolute-y right-5 z-index-1000'>
+            <div className='d-flex-column gap-0_5em position-absolute-y right-5 z-index-1000 position-fixed'>
                 <div className='d-flex-row align-items-center j-c-center avatar-40 bg-dark-soft-transp75 border-radius-100 mb-xs-2' onClick={() => likePost(artist?.id, thisPost.id)}>
                     {isLiked ?		
                         <img
