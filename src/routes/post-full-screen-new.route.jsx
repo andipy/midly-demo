@@ -372,12 +372,12 @@ const PostFullScreenNewRoute = () => {
     }
     }, [posts])
 
-    /* useEffect(() => {
+    useEffect(() => {
     if (currentPostIndex !== undefined && posts.length > 0) {
         prevTranslate.current = -currentPostIndex * trackRef.current.offsetHeight
-        trackRef.current.style.transform = `translateY(${prevTranslate.current}px)`
+        trackRef.current.style.transform = `translateY(${-currentPostIndex * 100}vh)`
     }
-    }, [currentPostIndex, posts]) */
+    }, [currentPostIndex, posts])
     return (
         <>
             {
