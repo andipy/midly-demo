@@ -118,45 +118,49 @@ const PostFullScreenNewRoute = () => {
         startY.current = event.touches ? event.touches[0].clientY : event.clientY
         currentTranslate.current = prevTranslate.current
         trackRef.current.style.transition = 'none'
+        
+        // Impediamo il refresh della pagina
+        event.preventDefault()
     }
     
-    // Gestione del movimento del drag
     const handleDragMove = (event) => {
         if (!isDragging) return
-    
+        
         const currentY = event.touches ? event.touches[0].clientY : event.clientY
         const diffY = currentY - startY.current // Differenza in pixel
     
         // Converti la differenza in pixel a vh
-        const diffVh = (diffY / window.innerHeight) * 100 // 1vh = 1% dell'altezza della finestra
+        const diffVh = (diffY / window.innerHeight) * 100
     
         // Calcola la nuova posizione in vh
         currentTranslate.current = prevTranslate.current + diffVh
         trackRef.current.style.transform = `translateY(${currentTranslate.current}vh)` // Usa vh per la trasformazione
+        
+        // Impediamo il comportamento di pull to refresh
+        event.preventDefault()
     }
     
-    // Gestione del rilascio del drag
     const handleDragEnd = () => {
         if (!isDragging) return
         setIsDragging(false)
-    
+        
         const height = window.innerHeight
         const movedBy = currentTranslate.current - prevTranslate.current
-    
+        
         let newIndex = currentPostIndex
         const totalSlides = posts.length
     
         // Se il movimento supera la soglia, cambia il post
-        if (movedBy < -35 && currentPostIndex < totalSlides - 1) {
+        if (movedBy < -20 && currentPostIndex < totalSlides - 1) {
             newIndex = currentPostIndex + 1
-        } else if (movedBy > 35 && currentPostIndex > 0) {
+        } else if (movedBy > 20 && currentPostIndex > 0) {
             newIndex = currentPostIndex - 1
         }
     
         setCurrentPostIndex(newIndex)
     
         // Calcola la posizione finale in base all'indice
-        prevTranslate.current = -newIndex * 100 // Restituisce il valore in vh
+        prevTranslate.current = -newIndex * 100
         trackRef.current.style.transition = 'transform 0.3s ease-out'
         trackRef.current.style.transform = `translateY(${-newIndex * 100}vh)` // Usa la posizione in vh
     }
@@ -408,12 +412,10 @@ const PostFullScreenNewRoute = () => {
                 >
                     <div
                         ref={trackRef}
-                        className="posts-wrapper"
+                        className="posts-wrapper h-100vh"
                         style={{
                             display: 'flex',
                             flexDirection: 'column',
-                            height: '100%',
-
                         }}
                         onTouchStart={handleDragStart}
                         onTouchMove={handleDragMove}
