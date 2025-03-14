@@ -3,7 +3,6 @@ import IconTime from '../images/icons/icon-time.svg'
 
 const CountdownConcert = ({date}) => {
     const [text, setText] = useState(null)
-    // const [label, setLabel] = useState('')
     const [ended, setEnded] = useState(false)
     const [targetDate, setTargetDate] = useState('')
     const [timeRemaining, setTimeRemaining] = useState({ 
@@ -49,91 +48,37 @@ const CountdownConcert = ({date}) => {
         return () => clearInterval(interval)
     }, [targetDate])
 
-    // useEffect(() => {
-    //     setText(label)
-    // }, [label])
 
     return (
-        <div className='d-grid-countdown align-items-center gap-0_5em'>
-            {/* <span className='f-w-600'>{text}</span> */}
-            {!ended &&
-                <>
-                    {timeRemaining.days > 0 &&
-                        <div className='d-inline-flex-row j-c-center align-items-start gap-0_25em'>
-                            {timeRemaining.days
-                                .toString()
-                                .padStart(2, '0')
-                                .split('')
-                                .map((digit, index) => (
-                                    <p
-                                        key={index}
-                                        className='f-w-400 bg-white-transp15 fsize-xs-8 pt-xs-4 pb-xs-4 pl-xs-10 pr-xs-10 no-shrink border-radius-03'
-                                    >
-                                        {digit}
-                                    </p>
-                                ))}
-                        </div>
+        <div className={`d-flex-row align-items-center pt-xs-1 pb-xs-1 pl-xs-2 pr-xs-2 mb-xs-2 mt-xs-2 bg-dark-soft-2 border-radius-100 w-max-content no-shrink ${ended ? 'pt-xs-4 pb-xs-4 pl-xs-4 pr-xs-4' : ''}`}>
+            <p className='fsize-xs-2 f-w-300 '>
+                Prossima tappa tra:
+            </p>
+            <div className='d-flex-row j-c-center align-items-center'>
+                {!ended &&
+                    <img className='avatar-28' src={IconTime} />
+                }
+
+                <div className='d-flex-row gap-0_5em fsize-xs-1 no-shrink'>
+                    {!ended &&
+                        <>
+                            {timeRemaining.days !== 0 &&
+                                <span className='f-w-600'>{timeRemaining.days}<span className='f-w-300'>d</span></span>
+                            }
+                            {timeRemaining.hours !== 0 &&
+                                <span className='f-w-600'>{timeRemaining.hours}<span className='f-w-300'>h</span></span>
+                            }
+                            {timeRemaining.minutes !== 0 &&
+                                <span className='f-w-600'>{timeRemaining.minutes}<span className='f-w-300'>m</span></span>
+                            }
+                            {timeRemaining.seconds !== 0 &&
+                                <span className='f-w-600'>{timeRemaining.seconds}<span className='f-w-300'>s</span></span>
+                            }
+                        </>
                     }
-                    <p className='f-w-400 fsize-xs-8'>:</p>
-                    {timeRemaining.days > 0 &&
-                        <div className='d-inline-flex-row j-c-center align-items-start gap-0_25em'>
-                            {timeRemaining.hours
-                                .toString()
-                                .padStart(2, '0')
-                                .split('')
-                                .map((digit, index) => (
-                                    <p
-                                        key={index}
-                                        className='f-w-400 bg-white-transp15 fsize-xs-8 pt-xs-4 pb-xs-4 pl-xs-10 pr-xs-10 no-shrink border-radius-03'
-                                    >
-                                        {digit}
-                                    </p>
-                                ))}
-                        </div>
-                    }
-                    <p className='f-w-400 fsize-xs-8'>:</p>
-                    {timeRemaining.hours > 0 &&
-                        <div className='d-inline-flex-row j-c-center align-items-start gap-0_25em'>
-                            {timeRemaining.minutes
-                                .toString()
-                                .padStart(2, '0')
-                                .split('')
-                                .map((digit, index) => (
-                                    <p
-                                        key={index}
-                                        className='f-w-400 bg-white-transp15 fsize-xs-8 pt-xs-4 pb-xs-4 pl-xs-10 pr-xs-10 no-shrink border-radius-03'
-                                    >
-                                        {digit}
-                                    </p>
-                                ))}
-                        </div>
-                    }
-                    <p className='f-w-400 fsize-xs-8'>:</p>
-                    {timeRemaining.minutes > 0 &&
-                        <div className='d-inline-flex-row j-c-center align-items-start gap-0_25em'>
-                            {timeRemaining.seconds
-                                .toString()
-                                .padStart(2, '0')
-                                .split('')
-                                .map((digit, index) => (
-                                    <p
-                                        key={index}
-                                        className='f-w-400 bg-white-transp15 fsize-xs-8 pt-xs-4 pb-xs-4 pl-xs-10 pr-xs-10 no-shrink border-radius-03'
-                                    >
-                                        {digit}
-                                    </p>
-                                ))}
-                        </div>
-                    }
-                    <span>giorni</span>
-                    <span></span>
-                    <span>ore</span>
-                    <span></span>
-                    <span>minuti</span>
-                    <span></span>
-                    <span>secondi</span>
-                </>
-            }
+                </div>
+            </div>
+            
         </div>
     )
 }

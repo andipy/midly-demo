@@ -36,16 +36,16 @@ const NavbarPostFeed = ({artist, type, from}) => {
                     </div>
                 </div>
                 {
-                    type === 'FORUM' &&
+                    type === 'FORUM' ?
                     <p className='fsize-xs-3 f-w-600'>
                         Topic salvati
                     </p>
-                }
-                {
-                    type === 'STORE_ITEM' &&
+                    : type !== '' ?
                     <p className='fsize-xs-3 f-w-600'>
-                        Shop
+                        {type}
                     </p>
+                    :
+                    <></>
                 }
                 
             </div>

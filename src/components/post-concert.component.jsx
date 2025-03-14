@@ -96,6 +96,12 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                 </div>
                 <p className='grey-100 f-w-400 fsize-xs-2'>{concert.place.mainPlace}</p>
             </div>
+            {concert.buyLinks[0] &&
+                <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={concert.buyLinks[0]} target='blank'>
+                    {/* <img className='avatar-20' src={IconLink} /> */}
+                    <span>{'Acquista qui i biglietti'}</span>
+                </Link>
+            }
             {!pathname.includes('/artist-app/') &&
                 <div className='d-flex-row j-c-space-between align-items-center gap-0_5em mt-xs-2 mb-xs-2'>
                     {partecipate ? (
@@ -139,12 +145,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                     <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
                 </div>
             }
-            {concert.buyLinks[0] &&
-                <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={concert.buyLinks[0]} target='blank'>
-                    {/* <img className='avatar-20' src={IconLink} /> */}
-                    <span>{'Acquista qui i biglietti'}</span>
-                </Link>
-            }
+            
         </>
         :
         <div className='w-100 pb-xs-4 '>
@@ -196,72 +197,16 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                         <img className='avatar-20' src={IconSettings} onClick={() => openSettings(concert)}></img>
                     }
                 </div>
+                <p className='grey-100 f-w-400 fsize-xs-2'>{concert.dates.length} tappe</p>
             </div>
-            {/* {concert.dates.length > 0 &&
-                <section id='quiz' className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} mt-xs-2`}>
-                    <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Tutte le tappe del tour</h2>
-                    <Carousel>
-                        {concert.dates
-                        .sort((a, b) => {
-                            const dateA = new Date(a.date.split('-').reverse().join('-'))
-                            const dateB = new Date(b.date.split('-').reverse().join('-'))
-                            return dateA - dateB
-                        })
-                        .map(date => {
-                            return (
-                            <CardConcertStop 
-                                date={date}
-                            />
-                            )
-                        })}
-                    </Carousel>
-                </section>
+            {concert.buyLinks[0] &&
+                <Link className='d-flex-row align-items-center grey-100 f-w-400 fsize-xs-1 text-underline mb-xs-3' to={concert.buyLinks[0]} target='blank'>
+                    {/* <img className='avatar-20' src={IconLink} /> */}
+                    <span>{'Acquista qui i biglietti'}</span>
+                </Link>
             }
-            {!pathname.includes('/artist-app/') &&
-                <div className='d-flex-row j-c-space-between align-items-center gap-0_5em mt-xs-4 mb-xs-2'>
-                    {partecipate ? (
-                        <>
-                        <div className='bg-acid-lime-op-10 border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
-                            <div className='avatar-16 bg-acid-lime border-lime d-flex-row j-c-center align-items-center border-radius-100'>
-                                <img src={IconOkBlack}></img>
-                            </div>
-                            <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
-                        </div>
-                        <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => navigate(`/artist/${slug}/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id,  from: location  } })}> 
-                            <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
-                                <img src={IconGroupBlack}></img>
-                            </div>
-                            <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
-                        </div>
-                        </>
-                        
-                        
-                    ) : (
-                        <>
-                        <div className='bg-dark-gradient border-lime border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  onClick={() => newPartecipation(concert.id)}> 
-                            <div className='avatar-16 bg-dark-gradient border-lime d-flex-row border-radius-100'></div>
-                            <p className='lime-400 fsize-xs-2 f-w-500'>Parteciperò</p>
-                        </div>
-                        <div className='bg-dark-gradient  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-100'  > 
-                            <div className='avatar-16 bg-dark-gradient  d-flex-row j-c-center align-items-center border-radius-100'>
-                                <img src={IconGroup}></img>
-                            </div>
-                            <p className='grey-400 fsize-xs-2 f-w-500'>Chat di gruppo</p>
-                        </div>
-                        </>
-                    )}
-                </div>
-            }
-            {pathname.includes('/artist-app/') &&
-                <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-start align-items-center gap-0_5em w-50 mt-xs-4 mb-xs-2'  onClick={() => navigate(`/artist-app/fanclub/tour/chat`, { state: { artistId: concert?.artistId, id: concert?.id} })}> 
-                    <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
-                        <img src={IconGroupBlack}></img>
-                    </div>
-                    <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
-                </div>
-            } */}
             <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-space-between align-items-center gap-0_5em w-100 mt-xs-2'  onClick={() => navigate(`/artist/${slug}/events/tour`, { state: { artistId: concert?.artistId, tourId: concert?.id,  from: location  } })}> 
-                <p className='black fsize-xs-2 f-w-500'>Vedi dettagli</p>
+                <p className='black fsize-xs-2 f-w-500'>Vedi tutte le tappe del tour</p>
                 <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
                     <img src={IconArrowRight}></img>
                 </div>

@@ -40,12 +40,11 @@ const TabFanclub = ({artist}) => {
                     <div className={`${pathname.includes('store') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('store')}}> 
                         <p className='fsize-xs-2'>Store</p>
                     </div>
-                    <div className={`${pathname.includes('letters') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('letters')}}> 
-                        <p className='fsize-xs-2 no-shrink'>Fan messages</p>
-                    </div>
-
                     <div className={`${pathname.includes('group-chat') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('group-chat')}}> 
                         <p className='fsize-xs-2'>Chat di gruppo</p>
+                    </div>
+                    <div className={`${pathname.includes('letters') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('letters')}}> 
+                        <p className='fsize-xs-2 no-shrink'>Fan messages</p>
                     </div>
 
                     <div className={`${pathname.includes('forum') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('forum')}}> 
