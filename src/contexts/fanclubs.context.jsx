@@ -1305,6 +1305,7 @@ export const FanclubsProvider = ({ children }) => {
                             messages: [],
                             province: 'Padova',
                             zipCode: '00000',
+                            participants: []
                         },{
                             id: 2,
                             mainPlace: 'Nelson Mandela Forum',
@@ -1314,6 +1315,7 @@ export const FanclubsProvider = ({ children }) => {
                             messages: [],
                             province: 'Firenze',
                             zipCode: '00000',
+                            participants: []
                         },{
                             id: 3,
                             mainPlace: 'Palazzo Dello Sport',
@@ -1323,6 +1325,7 @@ export const FanclubsProvider = ({ children }) => {
                             messages: [],
                             province: 'Roma',
                             zipCode: '00000',
+                            participants: []
                         },{
                             id: 4,
                             mainPlace: 'Unipol Arena',
@@ -1332,6 +1335,7 @@ export const FanclubsProvider = ({ children }) => {
                             messages: [],
                             province: 'Milano',
                             zipCode: '00000',
+                            participants: []
                         },{
                             id: 5,
                             mainPlace: 'Inalpi Arena',
@@ -1341,6 +1345,7 @@ export const FanclubsProvider = ({ children }) => {
                             messages: [],
                             province: 'Province',
                             zipCode: '00000',
+                            participants: []
                         },{
                             id: 6,
                             mainPlace: 'Unipol Forum',
@@ -1350,6 +1355,7 @@ export const FanclubsProvider = ({ children }) => {
                             messages: [],
                             province: 'Province',
                             zipCode: '00000',
+                            participants: []
                         },{
                             id: 7,
                             mainPlace: 'Unipol Forum',
@@ -1359,6 +1365,7 @@ export const FanclubsProvider = ({ children }) => {
                             messages: [],
                             province: 'Province',
                             zipCode: '00000',
+                            participants: []
                         }
                     ],
                     likes: [],

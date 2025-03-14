@@ -62,7 +62,7 @@ const AddStopRoute = () => {
     }, [eventDate, eventCap, eventProvince, eventPlace, eventAddress, eventCity])
 
     const addTourStop = () => {
-        setTourStops([...tourStops, { id: tourStops.length +1, date: eventDate, mainPlace: eventPlace, city: eventCity, address: eventAddress, province: eventProvince, zipCode: eventCap, messages: [] }])
+        setTourStops([...tourStops, { id: tourStops.length +1, date: eventDate, mainPlace: eventPlace, city: eventCity, address: eventAddress, province: eventProvince, zipCode: eventCap, messages: [], participants: [] }])
         navigate(-1)
     }
     

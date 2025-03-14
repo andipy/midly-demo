@@ -18,6 +18,7 @@ import IconGroup from '../images/icons/icon-group.svg'
 import IconGroupBlack from '../images/icons/icon-group-black.svg'
 import IconOkBlack from '../images/icons/icon-ok-black.svg'
 import IconSettings from '../images/icons/icon-settings-white.svg'
+import IconArrowRight from '../images/icons/icon-arrowright-dark.svg'
 
 
 const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscription, slug, openSettings}) => {
@@ -196,7 +197,7 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                     }
                 </div>
             </div>
-            {concert.dates.length > 0 &&
+            {/* {concert.dates.length > 0 &&
                 <section id='quiz' className={`${(concert.settings.isPrivate && hasUserSubscribed === false && !pathname.includes('/artist-app/')) ? 'blur-50' : ''} mt-xs-2`}>
                     <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Tutte le tappe del tour</h2>
                     <Carousel>
@@ -258,7 +259,13 @@ const PostConcert = ({concert, newPartecipation, hasUserSubscribed, handleSubscr
                     </div>
                     <p className='black fsize-xs-2 f-w-500'>Chat di gruppo</p>
                 </div>
-            }
+            } */}
+            <div className='bg-acid-lime  border-radius-02 pt-xs-2 pb-xs-2 pl-xs-2 pr-xs-2 d-flex-row j-c-space-between align-items-center gap-0_5em w-100 mt-xs-2'  onClick={() => navigate(`/artist/${slug}/events/tour`, { state: { artistId: concert?.artistId, tourId: concert?.id,  from: location  } })}> 
+                <p className='black fsize-xs-2 f-w-500'>Vedi dettagli</p>
+                <div className='avatar-16  d-flex-row j-c-center align-items-center border-radius-100'>
+                    <img src={IconArrowRight}></img>
+                </div>
+            </div>
         </>
         :
             <div className='w-100 pb-xs-4 '>

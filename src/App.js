@@ -63,6 +63,7 @@ import FanclubFlashLeaderboardStatus from './routes/fanclub-flash-leaderboard-st
 import FanclubStoreRoute from './routes/fanclub-store.route'
 import StoreItemRoute from './routes/store-item.route'
 import PostFullScreenNewRoute from './routes/post-full-screen-new.route'
+import TourDetailsRoute from './routes/tour-details.route'
 // ARTIST ROUTES
 import FanclubRoute from './routes/fanclub.route.artist'
 import FlashLeaderboardsRoute from './routes/flash-leaderboards.route.artist'
@@ -302,6 +303,9 @@ const router = createBrowserRouter([
 	},{
 		path: '/artist/:artistSlug/concert/chat',
 		element: <ChatConcertRoute />
+	},{
+		path: '/artist/:artistSlug/events/tour',
+		element: <TourDetailsRoute />
 	},{
 		path: '/artist/:artistSlug/tour/chat',
 		element: <ChatTourRoute />
