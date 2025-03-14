@@ -109,6 +109,7 @@ const PostFullScreenNewRoute = () => {
     const trackRef = useRef(null)
 
     const startY = useRef(0)
+    const startX = useRef(0)
     const currentTranslate = useRef(0)
     const prevTranslate = useRef(0)
 
@@ -116,18 +117,28 @@ const PostFullScreenNewRoute = () => {
         if (posts.length === 1) return
         setIsDragging(true)
         startY.current = event.touches ? event.touches[0].clientY : event.clientY
+        startX.current = event.touches ? event.touches[0].clientX : event.clientX // Salva la posizione X
         currentTranslate.current = prevTranslate.current
         trackRef.current.style.transition = 'none'
-        
+    
         // Impediamo il refresh della pagina
         event.preventDefault()
     }
     
     const handleDragMove = (event) => {
         if (!isDragging) return
-        
+    
         const currentY = event.touches ? event.touches[0].clientY : event.clientY
-        const diffY = currentY - startY.current // Differenza in pixel
+        const currentX = event.touches ? event.touches[0].clientX : event.clientX
+    
+        const diffY = currentY - startY.current // Differenza in pixel verticale
+        const diffX = currentX - startX.current // Differenza in pixel orizzontale
+    
+        // Se il movimento orizzontale è maggiore di quello verticale, non fare nessun movimento verticale
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            // Movimento orizzontale maggiore, non fare movimento verticale
+            return
+        }
     
         // Converti la differenza in pixel a vh
         const diffVh = (diffY / window.innerHeight) * 100
@@ -135,8 +146,8 @@ const PostFullScreenNewRoute = () => {
         // Calcola la nuova posizione in vh
         currentTranslate.current = prevTranslate.current + diffVh
         trackRef.current.style.transform = `translateY(${currentTranslate.current}vh)` // Usa vh per la trasformazione
-        
-        // Impediamo il comportamento di pull to refresh
+    
+        // Preveniamo il comportamento di pull-to-refresh
         event.preventDefault()
     }
     
@@ -164,6 +175,25 @@ const PostFullScreenNewRoute = () => {
         trackRef.current.style.transition = 'transform 0.3s ease-out'
         trackRef.current.style.transform = `translateY(${-newIndex * 100}vh)` // Usa la posizione in vh
     }
+
+    // Aggiungi gli event listener con passive: false
+    useEffect(() => {
+        const trackElement = trackRef.current
+
+        if (trackElement) {
+            // Aggiungi l'evento per il touchstart (passive: false)
+            trackElement.addEventListener('touchstart', handleDragStart, { passive: false })
+            
+            // Aggiungi l'evento per il touchmove (passive: false)
+            trackElement.addEventListener('touchmove', handleDragMove, { passive: false })
+
+            // Rimuovi gli eventi al termine
+            return () => {
+                trackElement.removeEventListener('touchstart', handleDragStart)
+                trackElement.removeEventListener('touchmove', handleDragMove)
+            }
+        }
+    }, [])
 
     
 
