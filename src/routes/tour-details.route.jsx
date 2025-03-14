@@ -3,8 +3,6 @@ import { useLocation } from "react-router-dom"
 import useArtist from "../utils/get-artist.hook"
 import useFanclub from "../utils/get-fanclub.hooks"
 import NavbarPostFeed from "../components/navbar-post-feed.component"
-import Carousel from "../layout/carousel.layout"
-import CardConcertStop from "../components/card-concert-stop.component"
 import Container from "../layout/container.layout"
 import ConcertStop from "../components/concert-stop.component"
 import CountdownConcert from "../components/countdown-concert.component"
@@ -48,23 +46,23 @@ const TourDetailsRoute = () => {
 
         setNextDate(closestDate);
         }
-      }, [tour]);
+    }, [tour]);
 
-      const [scrolled, setScrolled] = useState(false)
-        useEffect(() => {
-            const handleScroll = () => {
-                if (window.pageYOffset >= 230) {
-                    setScrolled(true);
-                } else {
-                    setScrolled(false);
-                }
+    const [scrolled, setScrolled] = useState(false)
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.pageYOffset >= 230) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
             }
+        }
 
-            window.addEventListener('scroll', handleScroll);
-            return () => {
-                window.removeEventListener('scroll', handleScroll);
-            }
-        }, [])
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, [])
 
 
   return (
@@ -96,7 +94,7 @@ const TourDetailsRoute = () => {
     <Container>
     {nextDate &&
         <section id='quiz' className={` mt-xs-2`}>
-            <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Next stop:</h2>
+            <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Next up</h2>
             <div className="d-flex-column j-c-center align-items-center w-100">
                 <ConcertStop concertId={nextDate?.id} tourId={tour.id} artistId={artistId}/>
             </div>
@@ -104,13 +102,39 @@ const TourDetailsRoute = () => {
     }
     {tour?.dates.length > 0 &&
         <section id='quiz' className={` mt-xs-2`}>
-            <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Tutte le tappe del tour</h2>
+            <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Altre date</h2>
             <div className="d-flex-column j-c-center align-items-center w-100">
                 {tour?.dates
                 .sort((a, b) => {
                     const dateA = new Date(a.date.split('-').reverse().join('-'))
                     const dateB = new Date(b.date.split('-').reverse().join('-'))
                     return dateA - dateB
+                })
+                .filter(date => {
+                    const concertDate = new Date(date.date.split('-').reverse().join('-'))
+                    return concertDate > new Date(nextDate?.date.split('-').reverse().join('-'))
+                })
+                .map(date => {
+                    return (
+                    <ConcertStop concertId={date.id} tourId={tour.id} artistId={artistId}/>
+                    )
+                })}
+            </div>
+        </section>
+    }
+    {tour?.dates.length > 0 &&
+        <section id='quiz' className={` mt-xs-2`}>
+            <h2 className='fsize-xs-5 f-w-600 mb-xs-4'>Date passate</h2>
+            <div className="d-flex-column j-c-center align-items-center w-100">
+                {tour?.dates
+                .sort((a, b) => {
+                    const dateA = new Date(a.date.split('-').reverse().join('-'))
+                    const dateB = new Date(b.date.split('-').reverse().join('-'))
+                    return dateA - dateB
+                })
+                .filter(date => {
+                    const concertDate = new Date(date.date.split('-').reverse().join('-'))
+                    return concertDate < new Date(nextDate?.date.split('-').reverse().join('-'))
                 })
                 .map(date => {
                     return (
