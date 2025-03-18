@@ -9,6 +9,8 @@ import Container from "../layout/container.layout"
 import StoreSingleItem from "../components/store-single-item.component"
 import Carousel from "../layout/carousel.layout"
 import StoreCollection from "../components/store-collection.component"
+import IconCreateContent from '../images/icons/icon-create-content.svg'
+
 const FanclubStoreRoute = () => {
         const {artist, handlePopUp} = useOutletContext()
         const navigate = useNavigate()
@@ -66,9 +68,19 @@ const FanclubStoreRoute = () => {
                 
             </Container>
             :
+            !location.pathname.includes('/artist-app') ?
             <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                 <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
                     <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Non ci sono nuove item nel merch di {artistF?.artistName}.</p>
+                </div>
+            </div>
+            :
+            <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20 gap-0_5em">
+                <div className='avatr-64'>
+                    <img src={IconCreateContent}/>
+                </div>
+                <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
+                    <p className='fsize-xs-2 f-w-500 letter-spacing-1'>Non ci sono nuove items nel tuo merch</p>
                 </div>
             </div>
         }

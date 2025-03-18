@@ -12,11 +12,14 @@ import useFanclub from '../utils/get-fanclub.hooks'
 import useConcertParticipation from '../utils/handle-event-partecipation.hooks'
 import useFanclubSubscriptionHandler from '../utils/handle-subscription.hook'
 import Button from '../components/button.component'
+import IconCreateContent from '../images/icons/icon-create-content.svg'
+import IconPlus from '../images/icons/icon-plus-black.svg'
 const FanclubEventsRoute = () => {
     const {artist, focusPost} = useOutletContext()
     const {artists} = useContext(ArtistsContext)
     const {currentArtist} = useContext(CurrentArtistContext)
     const location = useLocation()
+    const navigate = useNavigate()
 
     let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
 
@@ -43,7 +46,7 @@ const FanclubEventsRoute = () => {
 
   return (
     <div>
-        {empty &&
+        {empty  && !location.pathname.includes('/artist-app') &&
             <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
                 <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
                     <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Il fanclub di {artistF?.artistName} è attivo, rimani sintonizzato per vedere i suoi prossimi live.</p>
@@ -51,6 +54,21 @@ const FanclubEventsRoute = () => {
                         !hasUserSubscribed &&
                         <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Abbonati' onClick={() => setModalSubscription(true)} />
                     }                
+                </div>
+            </div>
+        }
+        {empty && location.pathname.includes('/artist-app') &&
+            <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20 gap-0_5em">
+                <div className='avatr-64'>
+                    <img src={IconCreateContent}/>
+                </div>
+                <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
+                    <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
+                        onClick={() => navigate('/artist-app/concert-creation')}
+                    >
+                        <img className='' src={IconPlus}/>
+                    </div> 
+                    <p className='fsize-xs-2 f-w-500 letter-spacing-1'>Pubblica il tuo primo evento</p>
                 </div>
             </div>
         }
