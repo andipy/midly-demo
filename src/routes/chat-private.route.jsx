@@ -89,7 +89,7 @@ const ChatPrivateRoute = () => {
         e.preventDefault()
         let messagesNumber = 1
         let currentDate = new Date()
-        let date = currentDate.toISOString().split('T')[0]
+        let date = currentDate.toISOString()
 
         setCurrentMessage(prev => ({
             ...prev,
@@ -242,6 +242,39 @@ const ChatPrivateRoute = () => {
         }
     }
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString)
+        const today = new Date()
+        
+        today.setHours(0, 0, 0, 0)
+        
+        // Calcola la differenza in giorni tra oggi e la data del messaggio
+        const diffTime = today - date
+        const diffDays = diffTime / (1000 * 3600 * 24)
+    
+        // Se il messaggio è oggi
+        if (diffDays < 1) {
+            return 'OGGI'
+        }
+    
+        // Se il messaggio è entro questa settimana
+        const startOfWeek = today.getDate() - today.getDay()
+        const daysSinceStartOfWeek = today.getDate() - startOfWeek
+        const messageDay = date.getDate()
+    
+        if (diffDays < 7) {
+            const options = { weekday: 'long' }
+            return date.toLocaleDateString('it-IT', options)
+        }
+    
+        // Se il messaggio è più vecchio di una settimana
+        return date.toLocaleDateString('it-IT', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        }).split('/').reverse().join('-')
+    }
+
 
   return (
     <div className='position-relative'>
@@ -270,14 +303,31 @@ const ChatPrivateRoute = () => {
                     const foundChat = chats.find(
                         chat => chat.artistId === artist?.id && chat.fanId === currentFan?.id
                     )
-
+                    
                     if (foundChat?.messages && foundChat.messages.length > 0) {
-                        return foundChat.messages.map((mess, index) => (
-                            <MessageChatPrivate
-                                message={mess}
-                                currentUserId={currentFan?.id}
-                            />
-                        ))
+                        const groupedMessages = foundChat.messages.reduce((acc, message) => {
+                            const formattedDate = formatDate(message.createdAt) // Formatta la data
+                            if (!acc[formattedDate]) {
+                                acc[formattedDate] = []
+                            }
+                            acc[formattedDate].push(message)
+                            return acc
+                        }, {})
+                    
+                        return Object.keys(groupedMessages).map((date, index) => (
+                            <div key={index}>
+                                <div className="w-100 d-flex-row j-c-center align-items-center mb-xs-4">
+                                    <h5 className='fsize-xs-1 f-w-500 letter-spacing-2 grey-400'>{date.toUpperCase()}</h5>
+                                </div>
+                                {groupedMessages[date].map((mess, idx) => (
+                                    <MessageChatPrivate
+                                        key={idx}
+                                        message={mess}
+                                        currentUserId={currentFan?.id}
+                                    />
+                                ))}
+                            </div>
+                    ))
                     } else {
                         return (
                             <FullPageCenter style={'z-index-999'}>
@@ -294,14 +344,32 @@ const ChatPrivateRoute = () => {
                         const foundChat = chats.find(
                             chat => chat.artistId === currentArtist?.id && chat.fanId === artist?.id
                         )
-
+                        
                         if (foundChat?.messages && foundChat.messages.length > 0) {
-                            return foundChat.messages.map((mess, index) => (
-                                <MessageChatPrivate
-                                    message={mess}
-                                    currentUserId={currentArtist?.id}
-                                />
+                            const groupedMessages = foundChat.messages.reduce((acc, message) => {
+                                const formattedDate = formatDate(message.createdAt) 
+                                if (!acc[formattedDate]) {
+                                    acc[formattedDate] = []
+                                }
+                                acc[formattedDate].push(message)
+                                return acc
+                            }, {})
+                        
+                            return Object.keys(groupedMessages).map((date, index) => (
+                                <div key={index}>
+                                    <div className="w-100 d-flex-row j-c-center align-items-center mb-xs-4">
+                                        <h5 className='fsize-xs-1 f-w-500 letter-spacing-2 grey-400'>{date.toUpperCase()}</h5>
+                                    </div>
+                                    {groupedMessages[date].map((mess, idx) => (
+                                        <MessageChatPrivate
+                                            key={idx}
+                                            message={mess}
+                                            currentUserId={currentArtist?.id}
+                                        />
+                                    ))}
+                                </div>
                             ))
+                        
                         } else {
                             return (
                                 <FullPageCenter>

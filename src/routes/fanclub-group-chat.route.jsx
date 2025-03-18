@@ -10,6 +10,8 @@ import FullPageCenter from "../layout/full-page-center.layout"
 import useFanclubGroupChatHandler from "../utils/handle-fanclub-chat-message.hook"
 import useFanclub from "../utils/get-fanclub.hooks"
 import IconComment from '../images/icons/icon-comment-black.svg'
+import IconCreateContent from '../images/icons/icon-create-content.svg'
+import IconPlus from '../images/icons/icon-plus-black.svg'
 const FanclubGroupChatRoute = () => {
     const location = useLocation()
     const navigate = useNavigate()
@@ -82,7 +84,7 @@ const FanclubGroupChatRoute = () => {
         e.preventDefault()
         let messagesNumber
         let currentDate = new Date()
-        let date = currentDate.toISOString().split('T')[0]
+        let date = currentDate.toISOString()
         fanclubs.map(fanclub => {
             if (fanclub.artistId === artistF?.id) {
                 messagesNumber = fanclub.messages.length + 1
@@ -131,23 +133,75 @@ const FanclubGroupChatRoute = () => {
         messagesEndRef.current?.scrollIntoView()
     }, [fanclub?.messages])
 
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString)
+        const today = new Date()
+        
+        today.setHours(0, 0, 0, 0)
+        
+        const diffTime = today - date
+        const diffDays = diffTime / (1000 * 3600 * 24)
+    
+        if (diffDays < 1) {
+            return 'OGGI'
+        }
+    
+        const startOfWeek = today.getDate() - today.getDay() 
+        const daysSinceStartOfWeek = today.getDate() - startOfWeek
+        const messageDay = date.getDate()
+    
+        if (diffDays < 7) {
+            const options = { weekday: 'long' } 
+            return date.toLocaleDateString('it-IT', options)
+        }
+    
+        return date.toLocaleDateString('it-IT', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        }).split('/').reverse().join('-')
+    }
+    
+    const groupedMessages = fanclub?.messages?.reduce((acc, message) => {
+        const date = formatDate(message.createdAt)
+        if (!acc[date]) {
+            acc[date] = []
+        }
+        acc[date].push(message)
+        return acc
+    }, {})
+
+
   return (
     <>
     {!pathname.includes('/artist-app/') && 
         <Container style={`${artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-40' : 'pb-xs-24'} mt-xs-4`}>
             <div ref={messagesContainerRef}>
             {fanclub?.messages && fanclub?.messages.length > 0 ?
-                fanclub?.messages.map((mess, index) => (
-                    <MessageChatConcert 
-                        message={mess}
-                        currentUserId={currentFan?.id}
-                        color={userColors[mess.userId]}
-                    />
+                Object.keys(groupedMessages).map((date, index) => (
+                    <div key={index}>
+                        
+                        <div className="w-100 d-flex-row j-c-center align-items-center mb-xs-4">
+                            <h5 className='fsize-xs-1 f-w-500 letter-spacing-2 grey-400'>{date.toUpperCase()}</h5>
+                        </div>
+                        
+                        {groupedMessages[date].map((message, msgIndex) => (
+                            <MessageChatConcert 
+                                message={message}
+                                currentUserId={currentFan?.id}
+                                color={userColors[message.userId]}
+                            />
+                        ))}
+                    </div>
                 ))
             :
-                <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
-                    <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Avvia la chat!</p>      
+                <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20 gap-0_5em">
+                    <div className='avatr-64'>
+                        <img src={IconCreateContent}/>
+                    </div>
+                    <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
+                        <p className='fsize-xs-2 f-w-500 letter-spacing-1'>Avvia la chat</p>
                     </div>
                 </div>
             }
@@ -160,18 +214,35 @@ const FanclubGroupChatRoute = () => {
         <Container  style='mt-xs-4'>
             <div ref={messagesContainerRef}>
             {fanclub?.messages && fanclub?.messages.length > 0 ?
-                fanclub?.messages.map((mess, index) => (
-                    <MessageChatConcert 
-                        message={mess}
-                        currentUserId={currentArtist?.id}
-                        color={userColors[mess.userId]}
-                    />
+                Object.keys(groupedMessages).map((date, index) => (
+                    <div key={index}>
+                        
+                        <div className="w-100 d-flex-row j-c-center align-items-center mb-xs-4">
+                            <h5 className='fsize-xs-1 f-w-500 letter-spacing-2 grey-400'>{date.toUpperCase()}</h5>
+                        </div>
+                        
+                        {groupedMessages[date].map((message, msgIndex) => (
+                            <MessageChatConcert 
+                                message={message}
+                                currentUserId={currentArtist?.id}
+                                color={userColors[message.userId]}
+                            />
+                        ))}
+                    </div>
                 ))
             :
             <>
-                <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
-                    <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Avvia la chat!</p>      
+                <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20 gap-0_5em">
+                    <div className='avatr-64'>
+                        <img src={IconCreateContent}/>
+                    </div>
+                    <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
+                        <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
+                            onClick={() => navigate(`/artist-app/fanclub/chats/group-chat`, { state: { from: location} })}
+                        >
+                            <img className='avatar-16' src={IconComment}/>
+                        </div> 
+                        <p className='fsize-xs-2 f-w-500 letter-spacing-1'>Avvia la chat</p>
                     </div>
                 </div>
             </>
@@ -181,7 +252,7 @@ const FanclubGroupChatRoute = () => {
         </Container>
     }
     {
-        pathname.includes('/artist-app/') &&
+        pathname.includes('/artist-app/') && fanclub?.messages.length > 0 &&
         <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center mb-xs-16' onClick={() => navigate(`/artist-app/fanclub/chats/group-chat`, { state: { from: location} })}>
             <img className='' src={IconComment}/>
         </div>       

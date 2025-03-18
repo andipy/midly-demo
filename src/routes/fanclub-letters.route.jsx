@@ -9,6 +9,8 @@ import Button from "../components/button.component"
 import IconPlus from '../images/icons/icon-plus-black.svg'
 import useFanclubSubscription from "../utils/get-fanclub-subscription.hook"
 import useArtist from "../utils/get-artist.hook"
+import IconCreateContent from '../images/icons/icon-create-content.svg'
+
 
 const FanclubLettersRoute = () => {
     const {artist, handlePopUp} = useOutletContext()
@@ -43,10 +45,16 @@ const FanclubLettersRoute = () => {
             <>
             {
                 !location?.pathname.includes("/artist-app") ?
-                <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
-                    <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Sii il primo a postare un messaggio per {artistF?.artistName} direttamente nel suo fanclub.</p>
-                        <Button  style={`bg-acid-lime black f-w-500 fsize-xs-3`} label='Posta un messaggio' 
+                <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20 gap-0_5em">
+                    <div className='avatr-64'>
+                        <img src={IconCreateContent}/>
+                    </div>
+                    
+                    <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
+                        
+                        <p className='fsize-xs-2 f-w-500 letter-spacing-1 t-align-center'>Sii il primo a postare un messaggio per {artistF?.artistName} direttamente nel suo fanclub</p>
+                    </div>
+                    <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
                         onClick={() => {
                             if (!hasUserSubscribed) {
                                 handlePopUp('POST-LETTER')
@@ -54,13 +62,17 @@ const FanclubLettersRoute = () => {
                                 navigate('creation', { state: {artist:artistF} })
                             }
                             }}
-                        />
-                    </div>
+                    >
+                        <img className='' src={IconPlus}/>
+                    </div> 
                 </div>
                 :
-                <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
-                    <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>I tuoi Superfan non hanno ancora pubblicato nulla.</p>
+                <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20 gap-0_5em">
+                    <div className='avatr-64'>
+                        <img src={IconCreateContent}/>
+                    </div>
+                    <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
+                        <p className='fsize-xs-2 f-w-500 letter-spacing-1 t-align-center'>I tuoi Superfan non hanno ancora pubblicato nulla</p>
                     </div>
                 </div>
             }

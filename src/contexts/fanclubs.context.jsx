@@ -209,7 +209,7 @@ export const FanclubsProvider = ({ children }) => {
             ],
             concerts: [],
             forum: [
-                {
+                /* {
                     id: 1,
                     artistId: 'artist2',
                     userImage: require('../images/pictures/thasup.jpg'),
@@ -270,7 +270,7 @@ export const FanclubsProvider = ({ children }) => {
                     weight: 10,
                     commentsCount:0,
                     createdAt: '2025-01-24'
-                }
+                } */
             ],
             leaderboard: [
                 {

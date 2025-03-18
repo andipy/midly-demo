@@ -64,6 +64,15 @@ a {
   color: inherit;
 }
 
+.message-time {
+  font-size: 12px;
+  color: #888;
+  margin-top: 1%; 
+  text-align: right; 
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
 .banner-store-card {
   position: absolute;
   bottom: 0;

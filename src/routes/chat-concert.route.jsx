@@ -92,7 +92,7 @@ const ChatConcertRoute = () => {
         e.preventDefault()
         let messagesNumber
         let currentDate = new Date()
-        let date = currentDate.toISOString().split('T')[0]
+        let date = currentDate.toISOString()
         fanclubs.map(fanclub => {
             if (fanclub.artistId === artistId) {
                 fanclub.concerts.map(c => {
@@ -115,6 +115,48 @@ const ChatConcertRoute = () => {
     const closeModal = () => {
         setChatOpen(false)
     }
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString)
+        const today = new Date()
+        
+        today.setHours(0, 0, 0, 0)
+        
+        // Calcola la differenza in giorni tra oggi e la data del messaggio
+        const diffTime = today - date
+        const diffDays = diffTime / (1000 * 3600 * 24)
+    
+        // Se il messaggio è oggi
+        if (diffDays < 1) {
+            return 'OGGI'
+        }
+    
+        // Se il messaggio è entro questa settimana
+        const startOfWeek = today.getDate() - today.getDay()
+        const daysSinceStartOfWeek = today.getDate() - startOfWeek
+        const messageDay = date.getDate()
+    
+        if (diffDays < 7) {
+            const options = { weekday: 'long' }
+            return date.toLocaleDateString('it-IT', options)
+        }
+    
+        // Se il messaggio è più vecchio di una settimana
+        return date.toLocaleDateString('it-IT', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        }).split('/').reverse().join('-')
+    }
+
+    const groupedMessages = concert?.messages?.reduce((acc, message) => {
+        const date = formatDate(message.createdAt); // Usa la funzione `formatDate` per ottenere la data formattata
+        if (!acc[date]) {
+            acc[date] = [];
+        }
+        acc[date].push(message);
+        return acc;
+    }, {})
 
     return (
         <>
@@ -149,11 +191,18 @@ const ChatConcertRoute = () => {
             {!pathname.includes('/artist-app/') && 
                 <Container style='pt-xs-8 pb-xs-appbar'>
                     {concert?.messages && concert?.messages.length > 0 ?
-                        concert?.messages.map((mess, index) => (
-                            <MessageChatConcert 
-                                message={mess}
-                                currentUserId={currentFan?.id}
-                            />
+                        Object.keys(groupedMessages).map((date, index) => (
+                            <div key={date}>
+                                <div className="w-100 d-flex-row j-c-center align-items-center mb-xs-4">
+                                    <h5 className='fsize-xs-1 f-w-500 letter-spacing-2 grey-400'>{date.toUpperCase()}</h5>
+                                </div>
+                                {groupedMessages[date].map((mess, index) => (
+                                    <MessageChatConcert 
+                                    message={mess}
+                                    currentUserId={currentFan?.id}
+                                    />
+                                ))}
+                            </div>
                         ))
                     :
                         <FullPageCenter>
@@ -166,11 +215,18 @@ const ChatConcertRoute = () => {
             {pathname.includes('/artist-app/') && 
                 <Container style='mt-xs-4 pb-xs-appbar'>
                     {concert?.messages && concert?.messages.length > 0 ?
-                        concert?.messages.map((mess, index) => (
-                            <MessageChatConcert 
-                                message={mess}
-                                currentUserId={currentArtist?.id}
-                            />
+                        Object.keys(groupedMessages).map((date, index) => (
+                            <div key={date}>
+                                <div className="w-100 d-flex-row j-c-center align-items-center mb-xs-4">
+                                    <h5 className='fsize-xs-1 f-w-500 letter-spacing-2 grey-400'>{date.toUpperCase()}</h5>
+                                </div>
+                                {groupedMessages[date].map((mess, index) => (
+                                    <MessageChatConcert 
+                                        message={mess}
+                                        currentUserId={currentArtist?.id}
+                                    />
+                                ))}
+                            </div>
                         ))
                     :
                         <FullPageCenter>

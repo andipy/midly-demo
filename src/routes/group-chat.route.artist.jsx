@@ -82,7 +82,7 @@ const GroupChatRoute = () => {
         e.preventDefault()
         let messagesNumber
         let currentDate = new Date()
-        let date = currentDate.toISOString().split('T')[0]
+        let date = currentDate.toISOString()
         fanclubs.map(fanclub => {
             if (fanclub.artistId === currentArtist?.id) {
                 messagesNumber = fanclub.messages.length + 1
@@ -105,6 +105,74 @@ const GroupChatRoute = () => {
         messagesEndRef.current?.scrollIntoView()
     }, [fanclub?.messages])
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString)
+        const today = new Date()
+        
+        today.setHours(0, 0, 0, 0)
+        
+        const diffTime = today - date
+        const diffDays = diffTime / (1000 * 3600 * 24)
+    
+        if (diffDays < 1) {
+            return 'OGGI'
+        }
+    
+        const startOfWeek = today.getDate() - today.getDay() 
+        const daysSinceStartOfWeek = today.getDate() - startOfWeek
+        const messageDay = date.getDate()
+    
+        if (diffDays < 7) {
+            const options = { weekday: 'long' } 
+            return date.toLocaleDateString('it-IT', options)
+        }
+    
+        return date.toLocaleDateString('it-IT', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        }).split('/').reverse().join('-')
+    }
+    
+    const groupedMessages = fanclub?.messages?.reduce((acc, message) => {
+        const date = formatDate(message.createdAt)
+        if (!acc[date]) {
+            acc[date] = []
+        }
+        acc[date].push(message)
+        return acc
+    }, {})
+
+    const colors = [
+        { id: 1, text: 'color-01', icon: 'color-fill-01' },
+        { id: 2, text: 'color-02', icon: 'color-fill-02' },
+        { id: 3, text: 'color-03', icon: 'color-fill-03' },
+        { id: 4, text: 'color-04', icon: 'color-fill-04' },
+        { id: 5, text: 'color-05', icon: 'color-fill-05' },
+    ]
+
+    const [userColors, setUserColors] = useState({})
+
+    useEffect(() => {
+        if (fanclub?.messages) {
+            let newUserColors = { ...userColors }
+
+            fanclub.messages.forEach((mess) => {
+                if (!newUserColors[mess.userId]) {
+                    const availableColors = colors.filter(c => !Object.values(newUserColors).includes(c))
+                    const randomColor = availableColors.length > 0 
+                        ? availableColors[Math.floor(Math.random() * availableColors.length)] 
+                        : colors[Math.floor(Math.random() * colors.length)]
+
+                    newUserColors[mess.userId] = randomColor
+                }
+            })
+
+            setUserColors(newUserColors)
+        }
+        messagesEndRef.current?.scrollIntoView()
+    }, [fanclub?.messages])
+
   return (
     <div className='position-relative'>
         <div className={`${!hasUserSubscribed ? 'blur-50':''}`}>
@@ -112,14 +180,23 @@ const GroupChatRoute = () => {
                 <NavbarChat from={from}/>
                 <Container  style='pt-xs-topbar pb-xs-appbar'>
                     <div ref={messagesContainerRef}>
-                    {fanclub?.messages && fanclub?.messages.length > 0 &&
-                        fanclub?.messages.map((mess, index) => (
-                            <MessageChatConcert 
-                                message={mess}
-                                currentUserId={currentArtist?.id}
-                            />
-                        ))
-                    }
+                    {groupedMessages && Object.keys(groupedMessages).map((date, index) => (
+                        <div key={index}>
+                            
+                            <div className="w-100 d-flex-row j-c-center align-items-center mb-xs-4">
+                                <h5 className='fsize-xs-1 f-w-500 letter-spacing-2 grey-400'>{date.toUpperCase()}</h5>
+                            </div>
+                            
+                            {groupedMessages[date].map((message, msgIndex) => (
+                                <MessageChatConcert 
+                                    key={msgIndex}
+                                    message={message}
+                                    currentUserId={currentArtist?.id}
+                                    color={userColors[message.userId]}
+                                />
+                            ))}
+                        </div>
+                    ))}
                     </div>
                     <div ref={messagesEndRef} />
                 </Container>         

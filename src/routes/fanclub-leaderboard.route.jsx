@@ -13,6 +13,8 @@ import Container from "../layout/container.layout"
 import SpotifyLogo from '../images/icons/icon-spotify.svg'
 import CardConnectSpotify from "../components/card-connect-spotify.component"
 import useArtist from "../utils/get-artist.hook"
+import IconCreateContent from '../images/icons/icon-create-content.svg'
+
 const FanclubLeaderboardRoute = () => {
     /* MAJOR CHANGES */
     const { artist}  = useOutletContext()
@@ -72,18 +74,26 @@ const FanclubLeaderboardRoute = () => {
     }
   return (
     <>
-        {empty &&
-            <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20">
-                <div className=' w-70 bg-black-transp50 pt-xs-4 pb-xs-6 pl-xs-6 pr-xs-6 border-radius-06'>
-                    {!location.pathname.includes("/artist-app") ?
-                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Più interagisci con il fanclub di {artistF?.artistName}, più verrai riconosciuto come un suo Super fan.</p>
-                    :
-                        <p className='t-align-center mb-xs-4 letter-spacing-1 grey-400 f-w-600'>Qui vedrai i Superfan che intergiscono di più con te.</p>
-                    }
+        {empty && !location.pathname.includes('/artist-app') &&
+            <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20 gap-0_5em">
+                <div className='avatr-64'>
+                    <img src={IconCreateContent}/>
+                </div>
+                <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
+                    <p className='fsize-xs-2 f-w-500 letter-spacing-1 t-align-center'>Qui vedrai i Superfan che interagiscono di più con il fanclub di {artist?.artistName}</p>
                 </div>
             </div>
         }
-        
+        {empty && location.pathname.includes('/artist-app') &&
+            <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20 gap-0_5em">
+                <div className='avatr-64'>
+                    <img src={IconCreateContent}/>
+                </div>
+                <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
+                    <p className='fsize-xs-2 f-w-500 letter-spacing-1 t-align-center'>Qui vedrai i Superfan che interagiscono di più con il tuo fanclub</p>
+                </div>
+            </div>
+        }
         {leaderboard && leaderboard.length > 0 &&
             <section className={`${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING') && !location.pathname.includes('sfera-ebbasta') ?  'pb-xs-24':'pb-xs-4'} mt-xs-4`}>
             <div className='mb-xs-4'>

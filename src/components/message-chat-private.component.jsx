@@ -61,6 +61,13 @@ const MessageChatPrivate = ({ message, currentUserId }) => {
         setTimeRemaining(formatTime(audioRef.current.duration))
     }
 
+    const formatTimeFromCreatedAt = (createdAt) => {
+        const date = new Date(createdAt)
+        const hours = date.getHours()
+        const minutes = date.getMinutes()
+        return `${hours}:${minutes < 10 ? '0' + minutes : minutes}`
+    }
+
     return (
         <>
             {message?.userId === currentUserId ? (
@@ -86,40 +93,49 @@ const MessageChatPrivate = ({ message, currentUserId }) => {
                             <p className="t-align-start">{message.content}</p>
                         )}
                     </div>
+                    <div className="d-flex-row j-c-center align-items-center mt-xs-1">
+                        <p className="message-time">{formatTimeFromCreatedAt(message.createdAt)}</p>
+                    </div>
                 </div>
             ) : (
                 <div className="d-flex-row j-c-start align-items-end mb-xs-4">
                     {message?.userImage ? (
-                        <img src={message?.userImage} className='avatar-28 border-radius-100' />
+                        <img src={message?.userImage} className='avatar-28 border-radius-100 mb-xs-8' />
                     ) : (
                         <div className='avatar-28 position-relative'>
-                            <div className='d-flex-row j-c-center align-items-center avatar-28 border-radius-100 bg-purple-400'>
+                            <div className='d-flex-row j-c-center align-items-center avatar-28 border-radius-100 bg-purple-400 mb-xs-8'>
                                 <h5 className='f-w-500 fsize-xs-6'>
                                     {message?.username.charAt(0).toUpperCase()}
                                 </h5>
                             </div>
                         </div>
                     )}
-                    <div className="bg-dark-gradient border-radius-08 pt-xs-2 pb-xs-2 pl-xs-4 pr-xs-4 ml-xs-2 mr-xs-20">
-                        {message.type === 'AUDIO' ? (
-                            <div className='d-flex-row j-c-start align-items-center w-100 gap-0_5em'>
-                                <audio
-                                    ref={audioRef}
-                                    src={message.content}
-                                    onLoadedMetadata={handleLoadedMetadata}
-                                    onEnded={handleEnded}
-                                    onTimeUpdate={updateProgress}
-                                />
-                                <div className="avatar-24 bg-white border-radius-100 d-flex-row j-c-center align-items-center" onClick={togglePlayPause}>
-                                    <img className='avatar-16' src={isPlaying ? IconPause : IconPlay} />
+                    <div className='d-flex-column j-c-start align-items-start w-100'>
+                        <div className="bg-dark-gradient border-radius-08 pt-xs-2 pb-xs-2 pl-xs-4 pr-xs-4 ml-xs-2 mr-xs-20">
+                            {message.type === 'AUDIO' ? (
+                                <div className='d-flex-row j-c-start align-items-center w-100 gap-0_5em'>
+                                    <audio
+                                        ref={audioRef}
+                                        src={message.content}
+                                        onLoadedMetadata={handleLoadedMetadata}
+                                        onEnded={handleEnded}
+                                        onTimeUpdate={updateProgress}
+                                    />
+                                    <div className="avatar-24 bg-white border-radius-100 d-flex-row j-c-center align-items-center" onClick={togglePlayPause}>
+                                        <img className='avatar-16' src={isPlaying ? IconPause : IconPlay} />
+                                    </div>
+                                    <div onClick={handleProgressClick} style={progressBarStyle}>
+                                        <div style={{ ...progressFillStyle, width: `${progress}%` }} />
+                                    </div>
                                 </div>
-                                <div onClick={handleProgressClick} style={progressBarStyle}>
-                                    <div style={{ ...progressFillStyle, width: `${progress}%` }} />
-                                </div>
-                            </div>
-                        ) : (
-                            <p className="t-align-start">{message.content}</p>
-                        )}
+                            ) : (
+                                <p className="t-align-start">{message.content}</p>
+                            )}
+                        </div>
+                        
+                        <div className="d-flex-row justify-content-start align-items-center mt-xs-1">
+                            <p className="message-time">{formatTimeFromCreatedAt(message.createdAt)}</p>
+                        </div>
                     </div>
                 </div>
             )}
