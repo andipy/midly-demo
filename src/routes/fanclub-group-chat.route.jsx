@@ -17,11 +17,34 @@ const FanclubGroupChatRoute = () => {
     const {artist, handlePopUp} = useOutletContext()
     const {currentArtist} = useContext(CurrentArtistContext)
     const {currentFan} = useContext(CurrentFanContext)
-    const {fanclubs} = useContext(FanclubsContext)
+    const {fanclubs, setFanclubs} = useContext(FanclubsContext)
     let artistF = location?.pathname.includes("/artist-app") ? currentArtist : artist
     const {currentMessage, setCurrentMessage, handleSubmitMessage, shake} = useFanclubGroupChatHandler(artistF?.id)
     const fanclub = useFanclub(artistF?.id)
 
+    //legge i messaggi
+    useEffect(() => {
+        const targetId = pathname.includes('artist-app') ? currentArtist.id : currentFan.id
+    
+        if (fanclub?.id) {
+            const updatedFanclub = {
+                ...fanclub,
+                messages: fanclub.messages.map((message) => {
+                    if (!message.read.includes(targetId)) {
+                        return {
+                            ...message,
+                            read: [...message.read, targetId] 
+                        }
+                    }
+                    return message 
+                })
+            }
+    
+            setFanclubs((prevFanclubs) =>
+                prevFanclubs.map((fc) => (fc.id === updatedFanclub.id ? updatedFanclub : fc))
+            )
+        }
+    }, [fanclub?.id])
 
     useEffect(() => {
         {
@@ -76,7 +99,7 @@ const FanclubGroupChatRoute = () => {
     const [chatOpen, setChatOpen] = useState(true)
 
     const messagesContainerRef = useRef(null)
-    const messagesEndRef = useRef(null);
+    const messagesEndRef = useRef(null)
 
     const colors = [
         { id: 1, text: 'color-01', icon: 'color-fill-01' },

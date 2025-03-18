@@ -28,7 +28,6 @@ const GroupChatRoute = () => {
     const { currentFan, setCurrentFan} = useContext(CurrentFanContext)
     const { currentArtist } = useContext(CurrentArtistContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
-
     const [modalSubscription, setModalSubscription] = useState(false)
 
     const hasUserSubscribed = useFanclubSubscription(currentArtist?.id)
@@ -38,6 +37,27 @@ const GroupChatRoute = () => {
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     const {currentMessage, setCurrentMessage, handleSubmitMessage, shake} = useFanclubGroupChatHandler(currentArtist?.id)
 
+    //legge i messsaggi
+    useEffect(() => {
+        if (fanclub?.id) {
+            const updatedFanclub = { 
+                ...fanclub, 
+                messages: fanclub.messages.map((message) => {
+                    if (message.userId !== currentArtist.id && !message.read.includes(currentArtist.id)) {
+                        return {
+                            ...message,
+                            read: [...message.read, currentArtist.id]
+                        }
+                    }
+                    return message
+                })
+            }
+    
+            setFanclubs((prevFanclubs) => 
+                prevFanclubs.map((fc) => (fc.id === updatedFanclub.id ? updatedFanclub : fc))
+            )
+        }
+    }, [fanclub?.id])
 
     useEffect(() => {
         pathname.includes('/artist-app') ?
@@ -79,7 +99,7 @@ const GroupChatRoute = () => {
     const [chatOpen, setChatOpen] = useState(true)
 
     const messagesContainerRef = useRef(null)
-    const messagesEndRef = useRef(null);
+    const messagesEndRef = useRef(null)
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView()

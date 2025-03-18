@@ -1,14 +1,31 @@
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { CurrentArtistContext } from '../contexts/currentArtist.context'
+import { CurrentFanContext } from '../contexts/currentFan.context'
 import Carousel from '../layout/carousel.layout'
 import useFanclub from '../utils/get-fanclub.hooks'
 const TabFanclub = ({artist}) => {
     
     const {pathname } = useLocation()
     const navigate = useNavigate()
+    const {currentFan} = useContext(CurrentFanContext)
+    const {currentArtist} = useContext(CurrentArtistContext)
 
     const fanclub = useFanclub(artist?.id)
 
-    console.log(fanclub)
+    //messaggi non letti
+    const [unreadMessages, setUnreadMessages] = useState()
+
+    useEffect(() => {
+        const targetId = pathname.includes('artist-app') ? currentArtist?.id : currentFan?.id
+
+        const unreadMessagesCount = fanclub?.messages?.filter((message) => {
+            return message.userId !== targetId && !message.read.includes(targetId)
+        }).length
+
+        setUnreadMessages(unreadMessagesCount)
+        console.log(`${unreadMessagesCount} messaggi non letti`)
+    }, [fanclub])
     
     return (
         <Carousel>
@@ -40,8 +57,15 @@ const TabFanclub = ({artist}) => {
                     <div className={`${pathname.includes('store') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('store')}}> 
                         <p className='fsize-xs-2'>Store</p>
                     </div>
-                    <div className={`${pathname.includes('group-chat') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('group-chat')}}> 
+                    <div className={`${pathname.includes('group-chat') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink d-flex-row j-c-center align-items-center gap-0_25em`} onClick={() => {navigate('group-chat')}}> 
+                        
                         <p className='fsize-xs-2'>Chat di gruppo</p>
+                        {
+                            unreadMessages > 0 &&
+                            <div className={`bg-acid-lime avatar-16  border-radius-100 d-flex-row j-c-center align-items-center`}>
+                                <p className='fsize-xs-0 f-w-600 black'>{unreadMessages}</p>
+                            </div>
+                        }
                     </div>
                     <div className={`${pathname.includes('letters') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('letters')}}> 
                         <p className='fsize-xs-2 no-shrink'>Fan messages</p>
@@ -63,8 +87,14 @@ const TabFanclub = ({artist}) => {
                     </div>
                     {
                         artist?.chatIsActive &&
-                        <div className={`${pathname.includes('group-chat') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink w-50 d-flex-row j-c-center align-items-center`} onClick={() => {navigate('group-chat')}}> 
+                        <div className={`${pathname.includes('group-chat') ? 'bg-acid-lime black f-w-600' : 'bg-dark-soft-3 white f-w-500'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink w-50 d-flex-row j-c-center align-items-center gap-0_25em`} onClick={() => {navigate('group-chat')}}> 
                             <p className='fsize-xs-2'>Chat di gruppo</p>
+                            {
+                                unreadMessages > 0 &&
+                                <div className={`bg-acid-lime avatar-16  border-radius-100 d-flex-row j-c-center align-items-center`}>
+                                    <p className='fsize-xs-0 f-w-600 black'>{unreadMessages}</p>
+                                </div>
+                            }
                         </div>
 
                     }

@@ -16,7 +16,8 @@ const useFanclubGroupChatHandler = (artistId) => {
     username: '',
     id: undefined,
     createdAt: undefined,
-    content: ''
+    content: '',
+    read: []
   })
 
   const handleSubmitMessage = (e) => {

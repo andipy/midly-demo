@@ -28,6 +28,10 @@ const ChatsRoute = () => {
         }
     }, [chats])
 
+    const unreadMessagesGroupCount = fanclub?.messages?.filter((message) => {
+        return message.userId !== currentArtist.id && !message.read.includes(currentArtist.id)
+    }).length
+
   return (
     <>
     <NavbarBackOnly onClick={() => navigate(-1)}/>
@@ -47,7 +51,13 @@ const ChatsRoute = () => {
                 </div>
             </div>
 
-            <div className="d-flex-row ml-xs-2" >
+            <div className="d-flex-row j-c-center align-items-center ml-xs-2" >
+            {
+                unreadMessagesGroupCount > 0 &&
+                <div className='avatar-16 d-flex-row j-c-center align-items-center border-radius-100 bg-acid-lime'>
+                    <p className='fsize-xs-0 f-w-600 black'>{unreadMessagesGroupCount}</p>
+                </div>
+            }
                 <img className="avatar-24 border-radius-02" src={IconArrowRight} alt="Chat image" />
             </div>
         </div>
@@ -59,7 +69,8 @@ const ChatsRoute = () => {
             {
                 artistChats?.map(chat => {
                     const user = fans?.find(fan => fan.id === chat.fanId)
-
+                    const messages = chat?.messages
+                    const unreadMessages = messages.filter(message => message.userId !== currentArtist?.id && message.read === false)
                     return (
                         <div key={chat.id} className="d-flex-row align-items-center j-c-space-between pt-xs-2 pb-xs-2 pr-xs-2 mt-xs-2 mb-xs-2" onClick={() => navigate(`/artist-app/fanclub/chats/chat`, { state: { from: location, artist: currentFan } })}>
                             <div className="d-flex-row align-items-center j-c-start">
@@ -69,7 +80,14 @@ const ChatsRoute = () => {
                                 </div>
                             </div>
 
-                            <div className="d-flex-row ml-xs-2" >
+                            <div className="d-flex-row j-c-center align-items-center ml-xs-2" >
+                                {
+                                    unreadMessages?.length > 0 &&
+                                    <div className='avatar-16 d-flex-row j-c-center align-items-center border-radius-100 bg-acid-lime'>
+                                        <p className='fsize-xs-0 f-w-600 black'>{unreadMessages?.length}</p>
+                                    </div>
+                                }
+                                
                                 <img className="avatar-24 border-radius-02" src={IconArrowRight} alt="Chat image" />
                             </div>
                         </div>

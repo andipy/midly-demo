@@ -17,7 +17,8 @@ const usePrivateChatHandler = (artistId, pathname, hasUserSubscribed) => {
     username: "",
     userImage: undefined,
     createdAt: undefined,
-    id: undefined
+    id: undefined,
+    read: false
   })
 
   const submitMessage = (e = null) => {

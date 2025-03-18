@@ -40,6 +40,32 @@ const ChatPrivateRoute = () => {
     const { handleSubscription, err, isExiting } = useFanclubSubscriptionHandler()
     const { currentMessage, setCurrentMessage, shake, submitMessage } = usePrivateChatHandler(artist?.id, pathname, hasUserSubscribed)
 
+    //legge i messaggi non letti fino ad ora
+    useEffect(() =>{
+        if (chats) {
+            if (pathname.includes('/artist-app')) {
+                let chat = chats.find(
+                    (c) => c.artistId === currentArtist?.id && c.fanId === artist?.id
+                )
+            
+                if (chat) {
+                    const updatedMessages = chat.messages.map((message) => {
+                        if (message.userId !== currentArtist.id && !message.read) {
+                            return { ...message, read: true }
+                        }
+                        return message
+                    })
+            
+                    const updatedChat = { ...chat, messages: updatedMessages }
+            
+                    setChats((prevChats) => 
+                        prevChats.map((c) => (c.id === chat.id ? updatedChat : c))
+                    )
+                }
+            }
+        }
+    }, [])
+
     useEffect(() => {
         pathname.includes('/artist-app') ?
             setCurrentMessage(prev => ({
@@ -283,7 +309,7 @@ const ChatPrivateRoute = () => {
                                         Avvia la chat!
                                     </h3>
                                 </FullPageCenter>
-                            );
+                            )
                         }
                     })()}
                 </Container>

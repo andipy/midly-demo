@@ -143,7 +143,7 @@ export const FanclubsProvider = ({ children }) => {
             beneficiary: null,
             iban: null,
             posts: [
-                {
+                /* {
                     id: 1,
                     artistId: 'artist2',
                     caption: 'qualche amico sul nuovo brano...',
@@ -205,7 +205,7 @@ export const FanclubsProvider = ({ children }) => {
                         shareLink: undefined,
                     },
                     text: ''
-                },
+                }, */
             ],
             concerts: [],
             forum: [
@@ -380,7 +380,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
                     createdAt: '2025-02-05T12:22:23.542Z',
-                    content: 'Raga, ma secondo voi quando esce il nuovo album? Sto in astinenza da thasup vibes 😭'
+                    content: 'Raga, ma secondo voi quando esce il nuovo album? Sto in astinenza da thasup vibes 😭',
+                    read: []
                 },{
                     id: 2,
                     userType: 'fan',
@@ -388,7 +389,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
                     createdAt: '2025-02-05T13:22:23.542Z',
-                    content: 'Dicono entro quest anno, ma nulla di confermato… spero che lasci qualche indizio presto!'
+                    content: 'Dicono entro quest anno, ma nulla di confermato… spero che lasci qualche indizio presto!',
+                    read: []
                 },{
                     id: 3,
                     userType: 'fan',
@@ -396,7 +398,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: '2025-02-05T13:23:23.542Z',
-                    content: 'Io sto ancora in loop con c@ra++ere s?ec!@le 🔥 Quell’album è stato una rivoluzione.'
+                    content: 'Io sto ancora in loop con c@ra++ere s?ec!@le 🔥 Quell’album è stato una rivoluzione.',
+                    read: []
                 },{
                     id: 4,
                     userType: 'fan',
@@ -404,7 +407,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
                     createdAt: '2025-02-05T13:23:23.542Z',
-                    content: 'Frà, ma la voce robotica? Mi fa impazzire, è come un viaggio spaziale ogni volta!'
+                    content: 'Frà, ma la voce robotica? Mi fa impazzire, è come un viaggio spaziale ogni volta!',
+                    read: []
                 },{
                     id: 5,
                     userType: 'fan',
@@ -412,7 +416,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_09.png'),
                     username: 'kevin.alfa.il.migliore',
                     createdAt: '2025-02-05T13:23:23.542Z',
-                    content: 'La vera domanda è: con chi farà il prossimo feat? Sogno una collab con Salmo o Lazza.'
+                    content: 'La vera domanda è: con chi farà il prossimo feat? Sogno una collab con Salmo o Lazza.',
+                    read: []
                 },{
                     id: 6,
                     userType: 'fan',
@@ -420,7 +425,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Io dico che potrebbe fare qualcosa con Drillionaire… o magari un pezzo più chill tipo con Ariete?'
+                    content: 'Io dico che potrebbe fare qualcosa con Drillionaire… o magari un pezzo più chill tipo con Ariete?',
+                    read: []
                 },{
                     id: 7,
                     userType: 'fan',
@@ -428,7 +434,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Vero, con Ariete spaccherebbe. Ma voglio anche un altra bomba come okk@pp@!'
+                    content: 'Vero, con Ariete spaccherebbe. Ma voglio anche un altra bomba come okk@pp@!',
+                    read: []
                 },{
                     id: 8,
                     userType: 'fan',
@@ -436,7 +443,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Secondo voi cambierà sound nel prossimo album o resterà fedele al suo stile glitchato?'
+                    content: 'Secondo voi cambierà sound nel prossimo album o resterà fedele al suo stile glitchato?',
+                    read: []
                 },{
                     id: 9,
                     userType: 'fan',
@@ -444,7 +452,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Dai, sicuro sperimenta ancora! Thasup non si ripete mai uguale.'
+                    content: 'Dai, sicuro sperimenta ancora! Thasup non si ripete mai uguale.',
+                    read: []
                 },{
                     id: 10,
                     userType: 'fan',
@@ -452,7 +461,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Raga, ma voi riuscite a capire al primo ascolto i testi o anche voi andate su Genius? 😂'
+                    content: 'Raga, ma voi riuscite a capire al primo ascolto i testi o anche voi andate su Genius? 😂',
+                    read: []
                 },{
                     id: 11,
                     userType: 'fan',
@@ -460,7 +470,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Ahahah, io certe barre le capisco dopo settimane! Ma è il bello di thasup, lascia sempre dettagli nascosti.'
+                    content: 'Ahahah, io certe barre le capisco dopo settimane! Ma è il bello di thasup, lascia sempre dettagli nascosti.',
+                    read: []
                 },{
                     id: 12,
                     userType: 'fan',
@@ -468,7 +479,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Ho visto su Reddit che alcuni pensano che il prossimo album sarà un concept tipo cyberpunk… che ne dite?'
+                    content: 'Ho visto su Reddit che alcuni pensano che il prossimo album sarà un concept tipo cyberpunk… che ne dite?',
+                    read: []
                 },{
                     id: 13,
                     userType: 'fan',
@@ -476,7 +488,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Sarebbe pazzesco! Già immagino il video tutto in CGI con lui in versione avatar 3D.'
+                    content: 'Sarebbe pazzesco! Già immagino il video tutto in CGI con lui in versione avatar 3D.',
+                    read: []
                 },{
                     id: 14,
                     userType: 'fan',
@@ -484,7 +497,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'E se tornasse con una nuova estetica? Tipo più dark, più minimal…'
+                    content: 'E se tornasse con una nuova estetica? Tipo più dark, più minimal…',
+                    read: []
                 },{
                     id: 15,
                     userType: 'fan',
@@ -492,7 +506,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'O magari va full anime-style, tipo thasup in Tokyo'
+                    content: 'O magari va full anime-style, tipo thasup in Tokyo',
+                    read: []
                 },{
                     id: 16,
                     userType: 'fan',
@@ -500,7 +515,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'L’importante è che non smetta mai con quei beat che ti mandano in un’altra dimensione.'
+                    content: 'L’importante è che non smetta mai con quei beat che ti mandano in un’altra dimensione.',
+                    read: []
                 },{
                     id: 17,
                     userType: 'fan',
@@ -508,7 +524,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'A proposito, voi usate mai le sue basi per freestyle? Alcuni sono perfetti per allenarsi.'
+                    content: 'A proposito, voi usate mai le sue basi per freestyle? Alcuni sono perfetti per allenarsi.',
+                    read: []
                 },{
                     id: 18,
                     userType: 'fan',
@@ -516,7 +533,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_09.png'),
                     username: 'kevin.alfa.il.migliore',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Io sì! E a volte provo a ricreare i suoi suoni, ma è impossibile… ha un tocco troppo unico.'
+                    content: 'Io sì! E a volte provo a ricreare i suoi suoni, ma è impossibile… ha un tocco troppo unico.',
+                    read: []
                 },{
                     id: 19,
                     userType: 'fan',
@@ -524,7 +542,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_07.png'),
                     username: 'davide00',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Concordo. Comunque, se annuncia qualcosa di nuovo, SPAMMATEMI SUBITO!'
+                    content: 'Concordo. Comunque, se annuncia qualcosa di nuovo, SPAMMATEMI SUBITO!',
+                    read: []
                 }
             ],
             storeItems: []
@@ -1649,7 +1668,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
                     createdAt: "2025-02-05T12:22:23.542Z",
-                    content: 'Raga, ma avete sentito l ultimo pezzo di Sfera? "Soldi e Diamanti" è una bomba!'
+                    content: 'Raga, ma avete sentito l ultimo pezzo di Sfera? "Soldi e Diamanti" è una bomba!',
+                    read: []
                 },{
                     id: 2,
                     userType: 'fan',
@@ -1657,7 +1677,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
                     createdAt: "2025-02-05T13:22:23.542Z",
-                    content: 'Yesss! Il beat spacca e il ritornello ti rimane in testa subito'
+                    content: 'Yesss! Il beat spacca e il ritornello ti rimane in testa subito',
+                    read: []
                 },{
                     id: 3,
                     userType: 'fan',
@@ -1665,7 +1686,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Secondo voi è meglio questa o "Baby"? Io sono ancora in fissa con quella'
+                    content: 'Secondo voi è meglio questa o "Baby"? Io sono ancora in fissa con quella',
+                    read: []
                 },{
                     id: 4,
                     userType: 'fan',
@@ -1673,7 +1695,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Bro, "Baby" è un classico, ma l ultimo singolo è già una hit!'
+                    content: 'Bro, "Baby" è un classico, ma l ultimo singolo è già una hit!',
+                    read: []
                 },{
                     id: 5,
                     userType: 'fan',
@@ -1681,7 +1704,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_09.png'),
                     username: 'kevin.alfa.il.migliore',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Sfera non sbaglia un colpo, ogni traccia è un successo assicurato!'
+                    content: 'Sfera non sbaglia un colpo, ogni traccia è un successo assicurato!',
+                    read: []
                 },{
                     id: 6,
                     userType: 'fan',
@@ -1689,7 +1713,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Ho visto che sta annunciando le date del tour, chi viene al concerto di Milano?'
+                    content: 'Ho visto che sta annunciando le date del tour, chi viene al concerto di Milano?',
+                    read: []
                 },{
                     id: 7,
                     userType: 'fan',
@@ -1697,7 +1722,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Io ci sarò! Voglio sentire "Piove" live, con Lazza sarebbe una bomba!'
+                    content: 'Io ci sarò! Voglio sentire "Piove" live, con Lazza sarebbe una bomba!',
+                    read: []
                 },{
                     id: 8,
                     userType: 'fan',
@@ -1705,7 +1731,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Raga, ma secondo voi collaborerà mai con artisti americani tipo Travis Scott?'
+                    content: 'Raga, ma secondo voi collaborerà mai con artisti americani tipo Travis Scott?',
+                    read: []
                 },{
                     id: 9,
                     userType: 'fan',
@@ -1713,7 +1740,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Sarebbe il top! Lui ha già fatto feat internazionali, quindi mai dire mai!'
+                    content: 'Sarebbe il top! Lui ha già fatto feat internazionali, quindi mai dire mai!',
+                    read: []
                 },{
                     id: 10,
                     userType: 'fan',
@@ -1721,7 +1749,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: ' Io spero solo che porti i pezzi vecchi nei live, tipo "Rockstar", quella è leggenda!'
+                    content: ' Io spero solo che porti i pezzi vecchi nei live, tipo "Rockstar", quella è leggenda!',
+                    read: []
                 },{
                     id: 11,
                     userType: 'fan',
@@ -1729,7 +1758,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Verooo! "Rockstar" mi riporta a un sacco di ricordi, che anni pazzeschi!'
+                    content: 'Verooo! "Rockstar" mi riporta a un sacco di ricordi, che anni pazzeschi!',
+                    read: []
                 },{
                     id: 12,
                     userType: 'fan',
@@ -1737,7 +1767,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'E il nuovo album? Quando lo annuncia? Sto aspettando troppo!'
+                    content: 'E il nuovo album? Quando lo annuncia? Sto aspettando troppo!',
+                    read: []
                 },{
                     id: 13,
                     userType: 'fan',
@@ -1745,7 +1776,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Dicono esca prima dell estate, vi immaginate un altra hit estiva come "M Manc"!? 🔥'
+                    content: 'Dicono esca prima dell estate, vi immaginate un altra hit estiva come "M Manc"!? 🔥',
+                    read: []
                 },{
                     id: 14,
                     userType: 'fan',
@@ -1753,7 +1785,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'O magari un pezzo drill con Shiva e Capo Plaza 😈 Sarebbe il delirio!'
+                    content: 'O magari un pezzo drill con Shiva e Capo Plaza 😈 Sarebbe il delirio!',
+                    read: []
                 },{
                     id: 15,
                     userType: 'fan',
@@ -1761,7 +1794,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Raga ma parliamo del look di Sfera? Sempre il più fresco, gli occhiali a cuore sono già iconici'
+                    content: 'Raga ma parliamo del look di Sfera? Sempre il più fresco, gli occhiali a cuore sono già iconici',
+                    read: []
                 },{
                     id: 16,
                     userType: 'fan',
@@ -1769,7 +1803,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Poi l’attitude… Sfera ha proprio quella vibe da superstar, come pochi!'
+                    content: 'Poi l’attitude… Sfera ha proprio quella vibe da superstar, come pochi!',
+                    read: []
                 },{
                     id: 17,
                     userType: 'fan',
@@ -1777,7 +1812,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Infatti, se oggi la trap italiana è conosciuta è anche merito suo!'
+                    content: 'Infatti, se oggi la trap italiana è conosciuta è anche merito suo!',
+                    read: []
                 },{
                     id: 18,
                     userType: 'fan',
@@ -1785,7 +1821,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_09.png'),
                     username: 'kevin.alfa.il.migliore',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Non vedo l’ora di sentirlo dal vivo, il palco è il suo regno!'
+                    content: 'Non vedo l’ora di sentirlo dal vivo, il palco è il suo regno!',
+                    read: []
                 },{
                     id: 19,
                     userType: 'fan',
@@ -1793,7 +1830,8 @@ export const FanclubsProvider = ({ children }) => {
                     userImage: require('../images/pictures/ai_07.png'),
                     username: 'davide00',
                     createdAt: "2025-02-05T13:23:23.542Z",
-                    content: 'Sfera numero uno! Ci vediamo sotto il palco raga! '
+                    content: 'Sfera numero uno! Ci vediamo sotto il palco raga! ',
+                    read: []
                 }
             ],
             storeItems: [
