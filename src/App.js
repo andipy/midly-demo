@@ -462,6 +462,9 @@ const router = createBrowserRouter([
 			}
 		]
 	},{
+		path: '/artist-app/fanclub/letters/full',
+		element: <FanLetterFullScreenRoute />,
+	},{
 		path: '/artist-app/fanclub/forum/topic/details',
 		element: <TopicDetailsRoute />,
 	},{
