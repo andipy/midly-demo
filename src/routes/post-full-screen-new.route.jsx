@@ -169,6 +169,7 @@ const PostFullScreenNewRoute = () => {
         }
     
         setCurrentPostIndex(newIndex)
+        setShowCaption(false)
     
         // Calcola la posizione finale in base all'indice
         prevTranslate.current = -newIndex * 100

@@ -38,6 +38,7 @@ const FanclubLettersRoute = () => {
             setEmpty(false)
         }
     }, [fanclub])
+    
   return (
     <>
         {
@@ -102,7 +103,7 @@ const FanclubLettersRoute = () => {
                 {posts?.filter((_, index) => index % 2 === 0).map(post => {
                     const fan = fans?.find(fan => fan?.id === post?.userId)
                     return (
-                        <PostFanLetter post={post} fan={fan} /> 
+                        <PostFanLetter post={post} fan={fan} goFull={() => navigate(`full`, {state:{letterId: post?.id, fromPage: location.pathname, letters: posts}})}/> 
                     )
                 })}
                 </div>
@@ -110,7 +111,7 @@ const FanclubLettersRoute = () => {
                 {posts?.filter((_, index) => index % 2 !== 0).map(post => {
                     const fan = fans?.find(fan => fan?.id === post?.userId)
                     return (
-                        <PostFanLetter post={post} fan={fan} /> 
+                        <PostFanLetter post={post} fan={fan} goFull={() => navigate(`full`, {state:{letterId: post?.id, fromPage: location.pathname, letters: posts}})}/> 
                     )
                 })}
                 </div>

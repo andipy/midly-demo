@@ -1,8 +1,11 @@
 import { useState } from "react"
-const PostFanLetter = ({post, fan})=> {
+import { useNavigate, useLocation } from "react-router-dom"
+const PostFanLetter = ({post, fan, goFull})=> {
+    const navigate = useNavigate()
+    const location= useLocation()
     const [showCaption, setShowCaption] = useState(false)
   return (
-    <div className="d-flex-column align-items-start j-c-start">
+    <div className="d-flex-column align-items-start j-c-start" onClick={() => goFull()}>
         <div className="border-radius-08 w-100 d-flex-row j-c-center align-items-center position-relative">
             {
                 post?.media.type === 'IMAGE' &&
