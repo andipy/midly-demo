@@ -71,13 +71,9 @@ const FanclubPostsRoute = () => {
                     <img src={IconCreateContent}/>
                 </div>
                 <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
-                    <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
-                        onClick={() => navigate('/artist-app/content-creation')}
-                    >
-                        <img className='' src={IconPlus}/>
-                    </div> 
                     <p className='fsize-xs-2 f-w-500 letter-spacing-1'>Crea il tuo primo contenuto</p>
                 </div>
+                <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Crea post' onClick={() => navigate('/artist-app/content-creation')} />
             </div>
         }
 

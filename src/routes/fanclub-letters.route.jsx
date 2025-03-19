@@ -55,7 +55,7 @@ const FanclubLettersRoute = () => {
                         
                         <p className='fsize-xs-2 f-w-500 letter-spacing-1 t-align-center'>Sii il primo a postare un messaggio per {artistF?.artistName} direttamente nel suo fanclub</p>
                     </div>
-                    <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
+                    {/* <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
                         onClick={() => {
                             if (!hasUserSubscribed) {
                                 handlePopUp('POST-LETTER')
@@ -65,7 +65,16 @@ const FanclubLettersRoute = () => {
                             }}
                     >
                         <img className='' src={IconPlus}/>
-                    </div> 
+                    </div>  */}
+                    <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Pubblica messaggio' onClick={() => {
+                            if (!hasUserSubscribed) {
+                                handlePopUp('POST-LETTER')
+                            } else {
+                                navigate('creation', { state: {artist:artistF} })
+                            }
+                            }}
+                    />
+
                 </div>
                 :
                 <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20 gap-0_5em">

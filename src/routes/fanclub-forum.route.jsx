@@ -66,13 +66,9 @@ const FanclubForumRoute = () => {
                             <img src={IconCreateContent}/>
                         </div>
                         <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
-                            <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
-                                onClick={() =>navigate('topic/creation', { state: {artist:artistF} })}
-                            >
-                                <img className='' src={IconPlus}/>
-                            </div> 
                             <p className='fsize-xs-2 f-w-500 letter-spacing-1 t-align-center'>Sii il primo ad aprire un topic</p>
                         </div>
+                        <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Crea topic' onClick={() =>navigate('topic/creation', { state: {artist:artistF} })} />
                     </div>
                 :
                     <div className="w-100 d-flex-column j-c-center align-items-center h-100 mt-xs-20 mb-xs-20 gap-0_5em">
@@ -84,7 +80,7 @@ const FanclubForumRoute = () => {
                             
                             <p className='fsize-xs-2 f-w-500 letter-spacing-1 t-align-center'>Sii il primo ad aprire un topic di discussione nel fanclub di {artist?.artistName}</p>
                         </div>
-                        <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
+                        {/* <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
                             onClick={() => {
                                 if (!hasUserSubscribed) {
                                     handlePopUp('POST-TOPIC')
@@ -94,7 +90,15 @@ const FanclubForumRoute = () => {
                                 }}
                         >
                             <img className='' src={IconPlus}/>
-                        </div> 
+                        </div>  */}
+                        <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Crea topic' onClick={() => {
+                                if (!hasUserSubscribed) {
+                                    handlePopUp('POST-TOPIC')
+                                } else {
+                                    navigate('topic/creation', { state: { artist: artistF } });
+                                }
+                                }}
+                        />
                     </div>
             }
         </>

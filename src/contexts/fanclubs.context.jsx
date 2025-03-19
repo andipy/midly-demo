@@ -121,7 +121,7 @@ export const FanclubsProvider = ({ children }) => {
         },{
             id: 2,
             artistId: 'artist2',
-            isActive: false,
+            isActive: true,
             subscribers: 2386,
             name: 'amici str3tt1',
             description: 'il mio clu3 esclusivo',
@@ -316,7 +316,7 @@ export const FanclubsProvider = ({ children }) => {
                 }
             ],
             fanLetters: [
-                {
+                /* {
                     id: 1,
                     userId: 1,
                     media: 
@@ -370,7 +370,7 @@ export const FanclubsProvider = ({ children }) => {
                     },
                     caption: 'Numero uno',
                     mode: 'PUBLISHED'
-                }
+                } */
             ],
             messages:[
                 {
@@ -442,7 +442,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-02-06T13:23:23.542Z",
                     content: 'Secondo voi cambierà sound nel prossimo album o resterà fedele al suo stile glitchato?',
                     read: []
                 },{
@@ -451,7 +451,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 1,
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-02-06T13:23:23.542Z",
                     content: 'Dai, sicuro sperimenta ancora! Thasup non si ripete mai uguale.',
                     read: []
                 },{
@@ -460,7 +460,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 6,
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-02-07T13:23:23.542Z",
                     content: 'Raga, ma voi riuscite a capire al primo ascolto i testi o anche voi andate su Genius? 😂',
                     read: []
                 },{
@@ -469,7 +469,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 1,
                     userImage: require('../images/pictures/current-fan.jpg'),
                     username: 'imtheKING',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-02-07T13:23:23.542Z",
                     content: 'Ahahah, io certe barre le capisco dopo settimane! Ma è il bello di thasup, lascia sempre dettagli nascosti.',
                     read: []
                 },{
@@ -478,7 +478,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 2,
                     userImage: require('../images/pictures/ai_01.png'),
                     username: 'chiara',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-02-07T13:23:23.542Z",
                     content: 'Ho visto su Reddit che alcuni pensano che il prossimo album sarà un concept tipo cyberpunk… che ne dite?',
                     read: []
                 },{
@@ -487,7 +487,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-02-07T13:23:23.542Z",
                     content: 'Sarebbe pazzesco! Già immagino il video tutto in CGI con lui in versione avatar 3D.',
                     read: []
                 },{
@@ -496,7 +496,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-03-18T13:23:23.542Z",
                     content: 'E se tornasse con una nuova estetica? Tipo più dark, più minimal…',
                     read: []
                 },{
@@ -505,7 +505,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-03-18T13:23:23.542Z",
                     content: 'O magari va full anime-style, tipo thasup in Tokyo',
                     read: []
                 },{
@@ -514,7 +514,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 6,
                     userImage: require('../images/pictures/ai_03.png'),
                     username: 'giulietta',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-03-18T13:23:23.542Z",
                     content: 'L’importante è che non smetta mai con quei beat che ti mandano in un’altra dimensione.',
                     read: []
                 },{
@@ -523,7 +523,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 5,
                     userImage: require('../images/pictures/ai_04.png'),
                     username: 'ginger04',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-03-18T13:23:23.542Z",
                     content: 'A proposito, voi usate mai le sue basi per freestyle? Alcuni sono perfetti per allenarsi.',
                     read: []
                 },{
@@ -532,7 +532,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 7,
                     userImage: require('../images/pictures/ai_09.png'),
                     username: 'kevin.alfa.il.migliore',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-03-18T13:23:23.542Z",
                     content: 'Io sì! E a volte provo a ricreare i suoi suoni, ma è impossibile… ha un tocco troppo unico.',
                     read: []
                 },{
@@ -541,7 +541,7 @@ export const FanclubsProvider = ({ children }) => {
                     userId: 8,
                     userImage: require('../images/pictures/ai_07.png'),
                     username: 'davide00',
-                    createdAt: "2025-02-05T13:23:23.542Z",
+                    createdAt: "2025-03-19T13:23:23.542Z",
                     content: 'Concordo. Comunque, se annuncia qualcosa di nuovo, SPAMMATEMI SUBITO!',
                     read: []
                 }

@@ -12,6 +12,7 @@ import useFanclub from "../utils/get-fanclub.hooks"
 import IconComment from '../images/icons/icon-comment-black.svg'
 import IconCreateContent from '../images/icons/icon-create-content.svg'
 import IconPlus from '../images/icons/icon-plus-black.svg'
+import Button from "../components/button.component"
 const FanclubGroupChatRoute = () => {
     const location = useLocation()
     const navigate = useNavigate()
@@ -237,13 +238,14 @@ const FanclubGroupChatRoute = () => {
                         <img src={IconCreateContent}/>
                     </div>
                     <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
-                        <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
+                        {/* <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
                             onClick={() => navigate(`/artist-app/fanclub/chats/group-chat`, { state: { from: location} })}
                         >
                             <img className='avatar-16' src={IconComment}/>
-                        </div> 
+                        </div>  */}
                         <p className='fsize-xs-2 f-w-500 letter-spacing-1'>Avvia la chat</p>
                     </div>
+                    <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Crea post' onClick={() => navigate(`/artist-app/fanclub/chats/group-chat`, { state: { from: location} })}/>
                 </div>
             </>
             }

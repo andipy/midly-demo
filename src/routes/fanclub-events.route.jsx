@@ -54,10 +54,10 @@ const FanclubEventsRoute = () => {
                 <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
                     <p className='fsize-xs-2 f-w-500 letter-spacing-1 t-align-center'>Il fanlcub di {artist?.artistName} è attivo, rimani sintonizzato per vedere i suoi prossimi eventi</p>
                 </div>
-                {
+                {/* {
                     !hasUserSubscribed &&
                     <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Abbonati' onClick={() => setModalSubscription(true)} />
-                }  
+                }  */} 
             </div>
         }
         {empty && location.pathname.includes('/artist-app') &&
@@ -66,13 +66,9 @@ const FanclubEventsRoute = () => {
                     <img src={IconCreateContent}/>
                 </div>
                 <div className='d-flex-row j-c-center align-items-center gap-0_5em'>
-                    <div className={`bg-acid-lime avatar-16 border-radius-100  d-flex-row j-c-center align-items-center`}
-                        onClick={() => navigate('/artist-app/concert-creation')}
-                    >
-                        <img className='' src={IconPlus}/>
-                    </div> 
                     <p className='fsize-xs-2 f-w-500 letter-spacing-1'>Pubblica il tuo primo evento</p>
                 </div>
+                <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Crea evento' onClick={() => navigate('/artist-app/concert-creation')}/>
             </div>
         }
         <Container style={'pb-xs-2 mt-xs-4'}>
