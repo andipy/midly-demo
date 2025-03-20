@@ -1044,7 +1044,7 @@ export const FanclubsProvider = ({ children }) => {
                             comments: [
                                 {
                                     id: 1,
-                                    userId: 1,
+                                    userId: 2,
                                     userType: "FAN",
                                     userImage: require('../images/pictures/ai_01.png'),
                                     username: "chiara",
