@@ -483,6 +483,18 @@ const router = createBrowserRouter([
 			{
 				path: '/artist-app/fanclub/:postId/edit-post',
 				element: <PostSettingsRoute />
+			},{
+				path: 'user-moderation',
+				element: <UserModerationRoute />,
+			},{
+				path: 'user-moderation/block',
+				element: <UserModerationBlockRoute />,
+			},{
+				path: 'user-moderation/report',
+				element: <UserModerationReportRoute />,
+			},{
+				path: 'user-moderation/delete',
+				element: <UserModerationDeleteRoute />,
 			}
 		]
 	},{

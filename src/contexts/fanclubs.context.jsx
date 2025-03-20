@@ -143,7 +143,7 @@ export const FanclubsProvider = ({ children }) => {
             beneficiary: null,
             iban: null,
             posts: [
-                /* {
+                {
                     id: 1,
                     artistId: 'artist2',
                     caption: 'qualche amico sul nuovo brano...',
@@ -205,7 +205,7 @@ export const FanclubsProvider = ({ children }) => {
                         shareLink: undefined,
                     },
                     text: ''
-                }, */
+                },
             ],
             concerts: [],
             forum: [

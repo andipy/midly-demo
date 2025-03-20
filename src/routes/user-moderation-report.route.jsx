@@ -43,7 +43,13 @@ const UserModerationReportRoute = () => {
           replyId,
           reply
         })
-        navigate('.', { state: { userId, reported: true } })
+        navigate('.', { 
+            state: {
+                ...location.state, 
+                userId,          
+                reported: true   
+            }
+        });
       }
 
     

@@ -42,6 +42,7 @@ import IconUnfollow from '../images/icons/icon-unfollow.svg'
 const PostFullScreenNewRoute = () => {
     const location = useLocation()
     const navigate = useNavigate()
+    console.log(location.state)
     const { postId, artistId, fromPage, posts } = location.state || {}
     const { pathname } = useLocation()
     const {artists} = useContext(ArtistsContext)
@@ -648,13 +649,74 @@ const PostFullScreenNewRoute = () => {
                                                     } 
                                                 })
                                             }
-                                            commentUserModeration={() => navigate('user-moderation/report', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, artistId: thisFanclub?.artistId, reported: false, type: 'COMMENT', comment: comment }})}
-                                            replyUserModeration={(userId, reply, replyId) => navigate('user-moderation/report', {state: {  userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, artistId: thisFanclub?.artistId, reported: false, type: 'COMMENT', reply, replyId }})}
+                                            commentUserModeration={() => {
+                                                const currentState = location.state || {}; 
+                                            
+                                                const newState = {
+                                                    ...currentState,  
+                                                    userId: comment.userId,
+                                                    commentId: comment.id,
+                                                    fanclubId: thisFanclub?.id,
+                                                    postId: postId,
+                                                    artistId: thisFanclub?.artistId,
+                                                    reported: false,
+                                                    type: 'COMMENT',
+                                                    comment: comment
+                                                };
+                                            
+                                                navigate('user-moderation/report', { state: newState });
+                                            }}
+                                            replyUserModeration={(userId, reply, replyId) => {
+                                                const currentState = location.state || {}; 
+                                            
+                                                const newState = {
+                                                    ...currentState, 
+                                                    userId,
+                                                    commentId: comment.id,
+                                                    fanclubId: thisFanclub?.id,
+                                                    postId: postId,
+                                                    artistId: thisFanclub?.artistId,
+                                                    reported: false,
+                                                    type: 'COMMENT',
+                                                    reply,     
+                                                    replyId    
+                                                };
+                                            
+                                                navigate('user-moderation/report', { state: newState });
+                                            }}
                                             likeComment = {() => likeComment(comment.id, post.id, artist.id)}
                                             postId={post.id}
                                             likeReply={(replyId, commentId, postId) => likeReply(replyId, commentId, postId, artist.id)}
-                                            deleteComment = {() => navigate('user-moderation/delete', {state: {  userId: comment.userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, deleted: false}})}
-                                            deleteReply = {(replyId, userId) => navigate('user-moderation/delete', {state: {  userId: userId, commentId: comment.id, fanclubId: thisFanclub?.id, postId: post.id, deleted: false, replyId: replyId, type: 'REPLY'}})}
+                                            deleteComment = {() => {
+                                                const currentState = location.state || {}; 
+                                            
+                                                const newState = {
+                                                    ...currentState, 
+                                                    userId: comment.userId,
+                                                    commentId: comment.id,
+                                                    fanclubId: thisFanclub?.id,
+                                                    postId: postId,
+                                                    deleted: false
+                                                };
+                                            
+                                                navigate('user-moderation/delete', { state: newState });
+                                            }}
+                                            deleteReply = {(replyId, userId) => {
+                                                const currentState = location.state || {}; 
+                                            
+                                                const newState = {
+                                                    ...currentState,  
+                                                    userId,          
+                                                    commentId: comment.id, 
+                                                    fanclubId: thisFanclub?.id,  
+                                                    postId: postId, 
+                                                    deleted: false,   
+                                                    replyId,          
+                                                    type: 'REPLY'     
+                                                };
+                                            
+                                                navigate('user-moderation/delete', { state: newState });
+                                            }}
                                         />
                                     )
                                 })

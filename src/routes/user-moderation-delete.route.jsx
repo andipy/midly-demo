@@ -46,7 +46,13 @@ const UserModerationDeleteRoute = () => {
                     : fanclub
             )
         )
-        navigate('.', { state: { userId: userId, deleted: true } })
+        navigate('.', { 
+            state: {
+                ...location.state,  // Mantieni lo stato precedente
+                userId,             // ID dell'utente
+                deleted: true       // Flag per indicare che è stato eliminato
+            }
+        });
     }
     const deleteReply = (commentId, postId, replyId) => {
         console.log('risposta')
@@ -75,7 +81,13 @@ const UserModerationDeleteRoute = () => {
                     : fanclub
             )
         );
-        navigate('.', { state: { userId: userId, deleted: true } })
+        navigate('.', { 
+            state: {
+                ...location.state, 
+                userId,   
+                deleted: true    
+            }
+        });
     }
   return (
     <FullPageCenter style='z-index-1200 bg-black-transp70'>
