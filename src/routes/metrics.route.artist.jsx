@@ -1,13 +1,16 @@
+import { useNavigate } from 'react-router-dom'
 import Container from '../layout/container.layout'
 
 import Navbar from '../components/navbar.component.artist'
 import Appbar from '../components/appbar.component.artist'
 import WidgetMetric from '../components/widget-metric.component.artist'
 import Graph from '../components/graph.component.artist'
+import NavbarBackOnly from '../components/navbar-back-only.component'
 
 
 const MetricsRoute = () => {
 
+    const navigate = useNavigate()
     const getCurrentMonthAndYear = () => {
         const today = new Date()
         const month = today.toLocaleString('default', { month: 'long' })
@@ -151,9 +154,10 @@ const MetricsRoute = () => {
 
     return (
         <>
-            <Navbar background='solid-black' />
+            {/* <Navbar background='solid-black' /> */}
+            <NavbarBackOnly onClick={() => navigate(-1)}/>
 
-            <Container style={'pt-xs-topbar pb-xs-appbar'}>
+            <Container style={'pb-xs-appbar'}>
                 <div>
                     <h1>{getCurrentMonthAndYear()}</h1>
                     <p className='fsize-xs-3 f-w-300 grey-200 letter-spacing-1 mt-xs-2'>Statistiche della classifica mensile da inizio mese ad oggi:</p>
@@ -174,7 +178,7 @@ const MetricsRoute = () => {
                 </section>
             </Container>
 
-            <Appbar />
+            {/* <Appbar /> */}
         </>
     )
 }

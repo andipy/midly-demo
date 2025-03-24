@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef } from 'react'
-import { useNavigate, Outlet, Link } from 'react-router-dom'
+import { useNavigate, Outlet, Link, useLocation } from 'react-router-dom'
 import { CurrentArtistContext } from '../contexts/currentArtist.context'
 import { FanclubsContext } from '../contexts/fanclubs.context'
 import { FansContext } from '../contexts/fans.context'
@@ -31,11 +31,29 @@ import useShare from '../utils/handle-share.hook'
 import TabFanclub from '../components/tab-fanclub.component'
 import ModalLayout from '../layout/modal.layout'
 import LikeUser from '../components/like-user.component'
+import IconPlus from '../images/icons/icon-plus-black.svg'
 const FanclubRoute = () => {
 
     //utils
 
     const navigate = useNavigate()
+    const location = useLocation()
+
+    const [isOpen, setIsOpen] = useState(false)
+    const [isClosing, setIsClosing] = useState(false)
+
+    const handleClick = () => {
+        if (isOpen) {
+            setIsClosing(true)
+            setTimeout(() => {
+                setIsOpen(false)
+                setIsClosing(false)
+            }, 100)
+            } else {
+            setIsOpen(true)
+            setIsClosing(false)
+        }
+    }
 
     const { currentArtist } = useContext(CurrentArtistContext)
     const { fanclubs, setFanclubs } = useContext(FanclubsContext)
@@ -464,47 +482,6 @@ const FanclubRoute = () => {
                     }   
                 </Container>      
             }
-{/* 
-            {fanclub?.isActive &&
-                <>
-                    {fanclub?.posts.length === 0 && fanclub?.concerts.length === 0 ?
-                        <Container style={'d-flex-column align-items-center mt-xs-20'}>
-                            <h2 className='fsize-xs-5 f-w-600 grey-200 mb-xs-3'>Il tuo fanclub è attivo!</h2>
-                            <p className='fsize-xs-3 f-w-400 grey-300 w-70 t-align-center mb-xs-4'>Pubblica contenuti a pagamento per i tuoi fan.</p>
-                            <Button
-                                style='bg-dark lime-400 border-lime fsize-xs-3 f-w-600 black w-70'
-                                label='Crea un contenuto'
-                                onClick={() => setCreateContent(true)}
-                            />
-                        </Container >
-                    :   
-                        <Container style={'pb-xs-appbar mt-xs-4'}>
-                            {
-                               mixedPosts.map(item => {
-                                if (item.type === 'CONCERT' || item.type === 'TOUR' ) {
-                                  return (
-                                    <PostConcert 
-                                        concert={item}
-                                        openSettings={openSettingsConcert}
-                                    />
-                                  );
-                                } else {
-                                  return (
-                                    <Post
-                                        key={item.id}
-                                        artistId={fanclub?.artistId}
-                                        post={item}
-                                        focusPost={focusPost}
-                                        likePost={(postId) => likePost(currentArtist?.id, postId)}
-                                    />
-                                  );
-                                }
-                                })
-                            }
-                        </Container>
-                    }
-                </>
-            } */}
 
             {!fanclub?.isActive &&
                 <FullPageCenter>
@@ -607,8 +584,40 @@ const FanclubRoute = () => {
             </ModalLayout>
             }
             
-            
+            {
+                !location.pathname.includes("leaderboard") && !location.pathname.includes("group-chat") &&
+                <div className="  bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-end align-items-end w-100 overflow-all-hidden ">
+                    <div className='avatar-40 d-flex-row j-c-center align-items-center mb-xs-16 z-index-999 overflow-all-hidden '>
+                        <div 
+                            className={`${isOpen ? 'bg-dark-soft-2' : 'bg-acid-lime'} avatar-40 border-radius-100 d-flex-row j-c-center align-items-center z-index-999 overflow-all-hidden `} 
+                            onClick={handleClick}
+                        >
+                            <img className='' src={IconPlus} alt="plus" />
+                        </div>
+                    </div>
+                    
 
+                    {
+                        <div className={`options-container ${isOpen ? 'open' : ''} ${isClosing ? 'closing' : ''} mb-xs-16 overflow-all-hidden`}>
+                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center" >
+                                <img className='' src={IconPlus} alt="plus" />
+                            </div>
+                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center">
+                            <img className='' src={IconPlus} alt="plus" />
+                            </div>
+                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center">
+                            <img className='' src={IconPlus} alt="plus" />
+                            </div>
+                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center">
+                            <img className='' src={IconPlus} alt="plus" />
+
+                            </div>
+                        </div>
+                    }
+                    
+                </div>
+            }
+             
             <Appbar />
             {
                 window.location.pathname.includes('/edit-post') &&

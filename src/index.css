@@ -20,6 +20,8 @@ body {
   overflow: hidden;
 }
 
+
+
 .post-wrapper {
   display: flex;
   flex-direction: column;
@@ -63,7 +65,26 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.options-container {
+  display: flex;
+  position: absolute;
+  bottom: 0rem;
+  right: 3rem;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.1s ease, transform 0.3s ease;
+  gap: 0.5rem;
+}
 
+.options-container.open {
+  transition: opacity 1s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.option {
+  transition: transform 0.3s ease;
+}
 .message-time {
   font-size: 12px;
   color: #888;

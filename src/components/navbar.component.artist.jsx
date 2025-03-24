@@ -29,13 +29,13 @@ const Navbar = ({ fanclub, background, create, artist }) => {
 
                 {fanclub?.isActive && pathname.includes('fanclub') &&
                     <div className='d-flex-row gap-0_5em'>
-                        <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate('tips')}>
+                        {/* <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate('tips')}>
                             <img className='avatar-32' src={IconInfo} alt='?' />
-                        </div>
+                        </div> */}
 
-                        <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate('settings', { state: {field: 'FANCLUB_PRICING' }})}>
+                        {/* <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate('settings', { state: {field: 'FANCLUB_PRICING' }})}>
                             <img className='avatar-32' src={IconSettings} alt='O' />
-                        </div>
+                        </div> */}
 
                         <div className='avatar-32 d-flex-row align-items-center j-c-center bg-black-transp50 border-radius-100' onClick={() => navigate('activity')}>
                             <img className='avatar-32' src={IconThunder} alt='M' />
@@ -45,9 +45,9 @@ const Navbar = ({ fanclub, background, create, artist }) => {
                             <img className='avatar-32' src={IconDm} alt='M' />
                         </div>
 
-                        <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32 border-radius-100' onClick={() => create()}>
+                        {/* <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32 border-radius-100' onClick={() => create()}>
                             <img src={IconPlus} alt='+' />
-                        </button>
+                        </button> */}
                     </div>
                 }
             </div>
