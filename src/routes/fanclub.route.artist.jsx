@@ -32,6 +32,11 @@ import TabFanclub from '../components/tab-fanclub.component'
 import ModalLayout from '../layout/modal.layout'
 import LikeUser from '../components/like-user.component'
 import IconPlus from '../images/icons/icon-plus-black.svg'
+import IconContent from '../images/icons/icon-content.svg'
+import IconEvent from '../images/icons/icon-event.svg'
+import IconTopic from '../images/icons/icon-topic.svg'
+
+
 const FanclubRoute = () => {
 
     //utils
@@ -599,19 +604,16 @@ const FanclubRoute = () => {
 
                     {
                         <div className={`options-container ${isOpen ? 'open' : ''} ${isClosing ? 'closing' : ''} mb-xs-16 overflow-all-hidden`}>
-                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center" >
-                                <img className='' src={IconPlus} alt="plus" />
+                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center" onClick={() => navigate('/artist-app/content-creation')} >
+                                <img className='' src={IconContent} alt="plus" />
                             </div>
-                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center">
-                            <img className='' src={IconPlus} alt="plus" />
+                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center" onClick={() => navigate('/artist-app/concert-creation')}>
+                                <img className='' src={IconEvent} alt="plus" />
                             </div>
-                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center">
-                            <img className='' src={IconPlus} alt="plus" />
+                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center" onClick={() =>navigate('/artist-app/fanclub/forum/topic/creation', { state: {artist:currentArtist} })} >
+                                <img className='' src={IconTopic} alt="plus" />
                             </div>
-                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center">
-                            <img className='' src={IconPlus} alt="plus" />
-
-                            </div>
+                           
                         </div>
                     }
                     

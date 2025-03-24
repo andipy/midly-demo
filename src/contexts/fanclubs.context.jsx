@@ -127,9 +127,9 @@ export const FanclubsProvider = ({ children }) => {
             description: 'il mio clu3 esclusivo',
             pricing: 4.99,
             cover: {
-                id: undefined,
-                url: undefined,
-                type: undefined
+                id: 1,
+                url: require('../images/pictures/thasup-fanclub-cover.jpeg'),
+                type: 'IMAGE'
             },
             maxSubscribers: null,
             firstName: null,

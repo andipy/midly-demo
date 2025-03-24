@@ -253,6 +253,7 @@ const fileInputRef = useRef(null)
     const [showMessageWhitePoints, setShowMessageWhitePoints] = useState(false)
     return (
         <>
+            
             <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} editable={false} transparent={true}/>
             <Container style={`pb-xs-appbar ${type === 'ALL' ? '' : 'pt-xs-topbar'}`}>
                 <div className='mb-xs-8 d-flex-column align-items-start j-c-start'>
