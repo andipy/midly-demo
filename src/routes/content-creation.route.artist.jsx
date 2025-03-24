@@ -621,7 +621,7 @@ const ContentCreationRoute = () => {
     return (
         <>
         <div className='d-flex-column j-c-center outer'>
-            <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} transparent={true} forcedExitPath={'/artist-app/fanclub'} clear={deletePost}/>
+            <NavbarMultistep stepNumber={1} totalStepNumber={1} dismissable={true} transparent={true} forcedExitPath={-1} clear={deletePost}/>
             {error && <p className='pt-xs-topbar'>Error accessing the camera: {error}</p>}
             
             <div className='camera-frame-wrapper position-relative'>

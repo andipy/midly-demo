@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import IconArrowLeft from '../images/icons/icon-arrowleft.svg'
 import IconVerifiedArtist from '../images/icons/icon-verified-artist.svg'
 import IconPerson from '../images/icons/icon-person.svg'
+
 
 const NavbarLeaderboardFlashPage = ({ artist, leaderboard }) => {
 
@@ -11,7 +12,7 @@ const NavbarLeaderboardFlashPage = ({ artist, leaderboard }) => {
     return (
         <nav className='top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0'>
             <div className='container d-flex-row align-items-center j-c-space-between w-100'>
-                <div className='avatar-28' onClick={() => navigate(`/artist/${artist?.slug}`, { state: { artist: artist } })}>
+                <div className='avatar-28' onClick={() => navigate(-1, { state: { artist: artist } })}>
                     <img className='avatar-28 bg-dark-soft-transp75 border-radius-100' src={IconArrowLeft} />
                 </div>
 

@@ -373,7 +373,7 @@ const ConcertCreationRoute = () => {
 
   return (
     <>
-            <NavbarDismiss transparent={true} forcedExitPath={'/artist-app/fanclub'} clear={() => console.log('Annulla')}/>
+            <NavbarDismiss transparent={true} forcedExitPath={-1} clear={() => console.log('Annulla')}/>
 
             <Container style={'pt-xs-topbar pb-xs-appbar'}>
                 <h1 className='fsize-xs-5 f-w-600 mb-xs-4'>Seleziona tipologia</h1>

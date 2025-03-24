@@ -419,6 +419,16 @@ const PostFullScreenNewRoute = () => {
             trackRef.current.style.transform = `translateY(${-currentPostIndex * 100}vh)` // Mantieni la trasformazione in vh
         }
     }, [posts])
+
+    const navigateToArtist = (artist) => {      
+        const currentPath = window.location.pathname
+      
+        if (currentPath.includes('/artist-app')) {
+          navigate(-1)
+        } else {
+          navigate(`/artist/${artist?.slug}`, { state: { artist: artist } })
+        }
+    }
     return (
         <>
             {
@@ -480,7 +490,7 @@ const PostFullScreenNewRoute = () => {
             </FullPageCenter>         
             <div 
 				className='d-flex-row j-c-start align-items-center gap-0_5em mb-xs-2 mt-xs-4 bg-color-none position-absolute-y top-5  z-index-1300 ml-xs-6 position-fixed'
-                onClick={() => navigate(`/artist/${artist?.slug}`, { state: {artist: artist} })}
+                onClick={() => navigateToArtist(artist)}
 				>
                     <div className='d-flex-row j-c-center align-items-center gap-0_25em z-index-1100' >
                         <img className='avatar-28 border-radius-100' src={artist?.image}/>
