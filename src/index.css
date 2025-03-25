@@ -302,9 +302,19 @@ li {
   width: 101%;
   aspect-ratio: 1.288 / 1;
 }
+.position-absolute-badge {
+  position: absolute;
+  left: 50%;
+  top: 57%;
+  transform: translate(-50%, -57%);
+}
+.bg-dark-overlay-badge {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 2%, rgba(0, 0, 0, .85) 15%, rgba(0, 0, 0, 1) 100%);
+}
 .flash-badge-image-rotation {
   transform: rotate(350deg);
 }
+
 
 .badge-miniatura-container {
   width: 100%;
@@ -2455,6 +2465,12 @@ animation: dot-loader-after 1s infinite linear;
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
+.avatar-180 {
+  width: var(--avatar-180);
+  height: var(--avatar-180);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
 
 /******************************************/
 /*********** ARTIST PAGE HEADER ***********/
@@ -2742,6 +2758,9 @@ nav .container {
 .opacity-03 {
   opacity: 0.3;
 }
+.opacity-0_9 {
+  opacity: .9;
+}
 .opacity-1 {
   opacity: 1;
 }
@@ -2890,6 +2909,7 @@ nav .container {
   --avatar-80: 80px;
   --avatar-96: 96px;
   --avatar-120: 120px;
+  --avatar-180: 180px;
   --flash-dot-size: 32px;
 }
 

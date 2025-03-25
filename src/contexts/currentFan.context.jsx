@@ -52,18 +52,22 @@ export const CurrentFanProvider = ({ children }) => {
                     month: 12,
                     year: 2024,
                     username: 'imtheKING',
+                    userImage: require('../images/pictures/current-fan.jpg'),
                     position: 3,
                     points: 177,
                     artistId: 1,
                     artistName: 'Lazza',
+                    artistImage: require('../images/pictures/lazza.jpeg')
                 },{
                     month: 9,
                     year: 2024,
                     username: 'imtheKING',
+                    userImage: require('../images/pictures/current-fan.jpg'),
                     position: 4,
                     points: 109,
                     artistId: 2,
                     artistName: 'thasup',
+                    artistImage: require('../images/pictures/thasup.jpg')
                 }
             ]
         },
