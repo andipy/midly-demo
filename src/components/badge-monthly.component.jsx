@@ -23,7 +23,7 @@ const BadgeMonthly = ({ badge, transition }) => {
     }
 
     return (
-        <div className='position-relative h-80vh border-radius-08 overflow-all-hidden w-100'>
+        <div className='position-relative h-80vh border-radius-08 overflow-all-hidden w-100 bg-black border-dark-soft-1'>
             {/* Top Section */}
             <div className='w-100 d-flex-row align-items-center j-c-space-between pl-xs-8 pr-xs-8 pt-xs-2 pb-xs-4 z-index-3 position-relative'>
                 <div className='avatar-28'></div>
@@ -42,7 +42,7 @@ const BadgeMonthly = ({ badge, transition }) => {
             </div>
 
             {/* Artist Image Section */}
-            <div className='position-absolute-badge avatar-180 bg-red-300 d-flex-row align-items-center j-c-center border-radius-100 overflow-all-hidden z-index-3'>
+            <div className='position-absolute-badge avatar-180 bg-red-300 d-flex-row align-items-center j-c-center border-radius-100 overflow-all-hidden z-index-4'>
                 <img className='w-inherit' src={badge.artistImage} alt="" />
             </div>
 
@@ -55,11 +55,10 @@ const BadgeMonthly = ({ badge, transition }) => {
                         <p className='f-w-700 f-size-xs-4'>{badge.year}</p>
                     </div>
 
-                    <div className='avatar-32 d-flex-row align-items-center j-c-center border-radius-04 border-white'>
+                    <div className='avatar-32 d-flex-row align-items-center j-c-center border-radius-04 border-white mr-xs-4'>
                         <img className='avatar-24' src={IconDownload} />
                     </div>
                 </div>
-
             </div>
 
             {/* Background Graphic */}
