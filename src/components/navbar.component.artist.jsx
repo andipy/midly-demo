@@ -45,9 +45,9 @@ const Navbar = ({ fanclub, background, create, artist }) => {
                             <img className='avatar-32' src={IconDm} alt='M' />
                         </div>
 
-                        {/* <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32 border-radius-100' onClick={() => create()}>
+                        <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32 border-radius-100' onClick={() => create()}>
                             <img src={IconPlus} alt='+' />
-                        </button> */}
+                        </button>
                     </div>
                 }
             </div>

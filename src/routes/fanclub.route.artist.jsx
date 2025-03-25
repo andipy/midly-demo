@@ -589,7 +589,7 @@ const FanclubRoute = () => {
             </ModalLayout>
             }
             
-            {
+            {/* {
                 !(location.pathname.includes("leaderboard") || 
                 location.pathname.includes("group-chat") || 
                 location.pathname.includes("letters") ||
@@ -623,7 +623,7 @@ const FanclubRoute = () => {
                     }
                     
                 </div>
-            }
+            } */}
              
             <Appbar />
             {
@@ -659,7 +659,7 @@ const FanclubRoute = () => {
             }
 
             {createContent &&
-                <PostType close={() => setCreateContent(false)} createPost={() => navigate('/artist-app/content-creation')} createConcert={() => navigate('/artist-app/concert-creation')}/>
+                <PostType close={() => setCreateContent(false)} createPost={() => navigate('/artist-app/content-creation')} createConcert={() => navigate('/artist-app/concert-creation')} createTopic={() => navigate('/artist-app/fanclub/forum/topic/creation')}/>
             }
 
             <Snackbar message={messageSnackbar} triggered={triggered} />
