@@ -77,7 +77,7 @@ const FanclubPostsRoute = () => {
             </div>
         }
 
-        <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-24' : 'pb-xs-4'} mt-xs-4`}>
+        <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-4' : 'pb-xs-4'} mt-xs-4`}>
             {fanclub?.posts
                 .sort((a, b) => sortPosts(a,b))
                 .map(item => {

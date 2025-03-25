@@ -500,7 +500,6 @@ const ArtistRoute = () => {
 
         if (fanclub?.isActive) {
             if (
-                location.pathname.includes('sfera-ebbasta') &&
                 ['ONGOING', 'PENDING', 'CLOSED_VISIBLE'].includes(artist?.flashLeaderboard?.status)
             ) {
                 return `/artist/${artistSlug}/flash-chart`
@@ -786,7 +785,7 @@ const ArtistRoute = () => {
                 />
             } */}
 
-            {((artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING') && !pathname.includes('sfera-ebbasta')) ?
+            {/* {((artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'ONGOING') && !pathname.includes('sfera-ebbasta')) ?
                 <MessageFlashLeaderboardModal
                     artist={artist}
                     modalOpen={modalOpenFlash}
@@ -796,7 +795,7 @@ const ArtistRoute = () => {
                 />
             : 
                 null
-            }
+            } */}
 
             {settings &&
             <FullPageCenter style='z-index-1000 bg-black-transp70'>

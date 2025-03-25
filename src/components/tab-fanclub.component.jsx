@@ -36,7 +36,7 @@ const TabFanclub = ({artist}) => {
                     {/* <div className={`${pathname.includes('dashboard')? 'bg-acid-lime black f-w-600' : 'bg-dark-gradient white f-w-300'} pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('dashboard')}}> 
                         <p className='fsize-xs-2'>Bacheca</p>
                     </div> */}
-                    {pathname.includes('sfera-ebbasta') && (artist?.flashLeaderboard.status === 'ONGOING' || artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'CLOSED_VISIBLE') &&
+                    {(artist?.flashLeaderboard.status === 'ONGOING' || artist?.flashLeaderboard.status === 'PENDING' || artist?.flashLeaderboard.status === 'CLOSED_VISIBLE') &&
                         <div className={`${pathname.includes('flash-chart') ? 'bg-brand-gradient black f-w-600' : 'bg-dark-soft-3 white f-w-500'} d-flex-row align-items-center gap-0_5em pt-xs-1 pb-xs-1 pl-xs-4 pr-xs-4 border-radius-02 no-shrink`} onClick={() => {navigate('flash-chart')}}>
                             {/* {!pathname.includes('flash-chart') && */}
                             <div className={`${pathname.includes('flash-chart') ? 'bg-black' : 'bg-white'} avatar-12 position-relative border-radius-100`}>

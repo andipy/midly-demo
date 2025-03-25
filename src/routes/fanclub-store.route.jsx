@@ -52,7 +52,7 @@ const FanclubStoreRoute = () => {
     <>
         {
             fanclub?.storeItems?.length > 0 ?
-            <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-24' : 'pb-xs-4'} mt-xs-4 d-flex-column j-c-center align-items-center w-100`}>
+            <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-4' : 'pb-xs-4'} mt-xs-4 d-flex-column j-c-center align-items-center w-100`}>
                 {/* {collection?.map((item, index) => (
                     <div className='w-100 mb-xs-2' key={index}>
                         <StoreCollection item={item} hasUserSubscribed={hasUserSubscribed}/>

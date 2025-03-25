@@ -92,7 +92,7 @@ const FanclubLettersRoute = () => {
             <>
             {
                 !location?.pathname.includes("/artist-app") &&
-                <div className={`bg-acid-lime avatar-40 border-radius-100 ${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING') && !location.pathname.includes('sfera-ebbasta')  ?  'bottom-12':'bottom-5'} right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center`}
+                <div className={`bg-acid-lime avatar-40 border-radius-100 ${(artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING') && !location.pathname.includes('sfera-ebbasta')  ?  'bottom-5':'bottom-5'} right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center`}
                     onClick={() => {
                     if (!hasUserSubscribed) {
                         handlePopUp('POST-LETTER')
@@ -106,7 +106,7 @@ const FanclubLettersRoute = () => {
             }
             </>
         }
-        <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-24' : 'pb-xs-4'} mt-xs-4`}>
+        <Container style={`${artistCurrent?.flashLeaderboard.status === 'PENDING' || artistCurrent?.flashLeaderboard.status === 'ONGOING' && !location.pathname.includes('sfera-ebbasta') ? 'pb-xs-4' : 'pb-xs-4'} mt-xs-4`}>
             <div className="d-flex-row j-c-space-between align-items-start w-100 gap-0_5em">
                 <div className="d-flex-column j-c-start align-items-start w-50">
                 {posts?.filter((_, index) => index % 2 === 0).map(post => {
