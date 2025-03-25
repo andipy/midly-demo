@@ -590,7 +590,12 @@ const FanclubRoute = () => {
             }
             
             {
-                !location.pathname.includes("leaderboard") && !location.pathname.includes("group-chat") &&
+                !(location.pathname.includes("leaderboard") || 
+                location.pathname.includes("group-chat") || 
+                location.pathname.includes("letters") ||
+                (location.pathname.includes("posts") && fanclub?.posts.length === 0) || 
+                (location.pathname.includes("events") && fanclub?.concerts.length === 0) || 
+                (location.pathname.includes("forum") && fanclub?.forum.length === 0)) &&
                 <div className="  bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-end align-items-end w-100 overflow-all-hidden ">
                     <div className='avatar-40 d-flex-row j-c-center align-items-center mb-xs-16 z-index-999 overflow-all-hidden '>
                         <div 
