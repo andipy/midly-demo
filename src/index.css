@@ -65,6 +65,151 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.button-container {
+  position: relative;
+}
+
+.transition-all {
+  transition: transform 0.2s ease
+}
+
+/* Pulsante che aumenta di dimensioni al clic */
+.scale-up {
+  transform: scale(1.6);
+}
+
+.rotate-icon {
+  transition: transform 0.5s ease;
+}
+
+.circle-buttons {
+  position: absolute;
+  top: 50%;  /* Posizioniamo il contenitore subito sotto il pulsante principale */
+  left: 50%;  /* Centrato orizzontalmente rispetto al pulsante principale */
+  transform: translateX(-50%); /* Centrato esattamente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  animation: appear 0.5s ease-out forwards; 
+  opacity: 0; 
+}
+
+.circle-buttons button {
+  position: absolute;
+  transition: transform 0.3s ease;
+  opacity: 0;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg) translate(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(90deg) translate(50px); 
+  }
+}
+
+.circle-buttons button:nth-child(1) {
+  animation: rotateButton1 0.5s ease-out forwards;
+}
+
+@keyframes rotateButton1 {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg) translate(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(90deg) translate(60px);
+  }
+}
+
+.circle-buttons button:nth-child(2) {
+  animation: rotateButton2 0.5s ease-out forwards;
+}
+
+@keyframes rotateButton2 {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg) translate(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(135deg) translate(60px); /* Secondo bottone */
+  }
+}
+
+.circle-buttons button:nth-child(3) {
+  animation: rotateButton3 0.5s ease-out forwards;
+}
+
+@keyframes rotateButton3 {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg) translate(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(180deg) translate(60px); /* Terzo bottone */
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Animazione di ritorno quando i bottoni devono scomparire */
+.circle-buttons.reverse button:nth-child(1) {
+  animation: reverseRotateButton1 0.3s ease-out forwards;
+}
+
+@keyframes reverseRotateButton1 {
+  0% {
+    opacity: 1;
+    transform: rotate(90deg) translate(60px);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(0deg) translate(0px);
+  }
+}
+
+.circle-buttons.reverse button:nth-child(2) {
+  animation: reverseRotateButton2 0.3s ease-out forwards;
+}
+
+@keyframes reverseRotateButton2 {
+  0% {
+    opacity: 1;
+    transform: rotate(135deg) translate(60px);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(0deg) translate(0px);
+  }
+}
+
+.circle-buttons.reverse button:nth-child(3) {
+  animation: reverseRotateButton3 0.3s ease-out forwards;
+}
+
+@keyframes reverseRotateButton3 {
+  0% {
+    opacity: 1;
+    transform: rotate(180deg) translate(60px);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(0deg) translate(0px);
+  }
+}
 .options-container {
   display: flex;
   position: absolute;
@@ -425,7 +570,9 @@ li {
   margin: 0;
 }
 
- .centered-popup {
+
+
+.centered-popup {
   transform: translateY(20%);
   opacity: 0;
   animation-name: positionPopup;
@@ -1863,6 +2010,9 @@ animation: dot-loader-after 1s infinite linear;
 }
 .z-index-1300 {
   z-index: 1300;
+}
+.z-index-1400 {
+  z-index: 1400;
 }
 .m-auto {
   margin: 0 auto;

@@ -12,7 +12,7 @@ import IconInbox from '../images/icons/icon-inbox-white.svg'
 import IconMessage from '../images/icons/icon-message.svg'
 import IconDm from '../images/icons/icon-dm.svg'
 import IconThunder from '../images/icons/icon-thunder.svg'
-
+import CreateButton from './create-button.component'
 
 const Navbar = ({ fanclub, background, create, artist }) => {
 
@@ -21,7 +21,7 @@ const Navbar = ({ fanclub, background, create, artist }) => {
     const { currentArtist } = useContext(CurrentArtistContext)
 
     return (
-        <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-999 top-0 ${background === 'transparent50' ? 'bg-black-transp50 shadow-dark-750' : background === 'transparent100' && ''} ${background === 'black' ? 'bg-black' : ''}`}>
+        <nav className={`top-bar-area-overlay-fixed d-flex-row align-items-center j-c-center white z-index-1300 top-0 ${background === 'transparent50' ? 'bg-black-transp50 shadow-dark-750' : background === 'transparent100' && ''} ${background === 'black' ? 'bg-black' : ''}`}>
             <div className='container d-flex-row align-items-center j-c-space-between'>
                 <div className='d-flex-row align-items-center j-c-center'>
                     <img src={Logo} alt='MIDLY' />
@@ -45,9 +45,11 @@ const Navbar = ({ fanclub, background, create, artist }) => {
                             <img className='avatar-32' src={IconDm} alt='M' />
                         </div>
 
-                        <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32 border-radius-100' onClick={() => create()}>
+                        {/* <button className='bg-acid-lime d-flex-row align-items-center j-c-center fsize-xs-2 f-w-500 avatar-32 border-radius-100' onClick={() => create()}>
                             <img src={IconPlus} alt='+' />
-                        </button>
+                        </button> */}
+                        <CreateButton />
+                        
                     </div>
                 }
             </div>

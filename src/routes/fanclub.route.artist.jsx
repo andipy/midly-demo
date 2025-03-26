@@ -437,10 +437,16 @@ const FanclubRoute = () => {
             window.removeEventListener('scroll', handleScroll);
         }
     }, [])
-   
+
     return (
         <>
-            <Navbar fanclub={fanclub} background={`${scrolled ? 'black' : 'transparent100'}`} create={() => setCreateContent(true)}/>
+            <Navbar fanclub={fanclub} background={`${scrolled ? 'black' : 'transparent100'}`} create={() => setCreateContent(true)} />
+            {/* {
+                bg &&
+                <FullPageCenter style='z-index-1200 bg-black-transp70'>
+                
+                </FullPageCenter>
+            } */}
             {fanclub?.isActive &&
                 <>
                     <div className='position-relative'>
@@ -470,7 +476,7 @@ const FanclubRoute = () => {
 
             {
                 fanclub?.isActive &&
-                <article className='position-sticky top-navbar z-index-999 bg-dark pb-xs-2'>
+                <article className='position-sticky top-navbar bg-dark pb-xs-2 z-index-999'>
                     <Container className='container'>
                         <TabFanclub artist={currentArtist}/>
                     </Container>
@@ -624,7 +630,8 @@ const FanclubRoute = () => {
                     
                 </div>
             } */}
-             
+
+            
             <Appbar />
             {
                 window.location.pathname.includes('/edit-post') &&
@@ -661,6 +668,7 @@ const FanclubRoute = () => {
             {createContent &&
                 <PostType close={() => setCreateContent(false)} createPost={() => navigate('/artist-app/content-creation')} createConcert={() => navigate('/artist-app/concert-creation')} createTopic={() => navigate('/artist-app/fanclub/forum/topic/creation')}/>
             }
+            
 
             <Snackbar message={messageSnackbar} triggered={triggered} />
         </>
