@@ -441,12 +441,6 @@ const FanclubRoute = () => {
     return (
         <>
             <Navbar fanclub={fanclub} background={`${scrolled ? 'black' : 'transparent100'}`} create={() => setCreateContent(true)} />
-            {/* {
-                bg &&
-                <FullPageCenter style='z-index-1200 bg-black-transp70'>
-                
-                </FullPageCenter>
-            } */}
             {fanclub?.isActive &&
                 <>
                     <div className='position-relative'>
@@ -594,44 +588,6 @@ const FanclubRoute = () => {
                 </Container>
             </ModalLayout>
             }
-            
-            {/* {
-                !(location.pathname.includes("leaderboard") || 
-                location.pathname.includes("group-chat") || 
-                location.pathname.includes("letters") ||
-                (location.pathname.includes("posts") && fanclub?.posts.length === 0) || 
-                (location.pathname.includes("events") && fanclub?.concerts.length === 0) || 
-                (location.pathname.includes("forum") && fanclub?.forum.length === 0)) &&
-                <div className="  bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-end align-items-end w-100 overflow-all-hidden ">
-                    <div className='avatar-40 d-flex-row j-c-center align-items-center mb-xs-16 z-index-999 overflow-all-hidden '>
-                        <div 
-                            className={`${isOpen ? 'bg-dark-soft-2 rotate' : 'bg-acid-lime rotate-back'} avatar-40 border-radius-100 d-flex-row j-c-center align-items-center z-index-999 overflow-all-hidden `} 
-                            onClick={handleClick}
-                        >
-                            <img className='' src={IconPlus} alt="plus" />
-                        </div>
-                    </div>
-                    
-
-                    {
-                        <div className={`options-container ${isOpen ? 'open' : ''} ${isClosing ? 'closing' : ''} mb-xs-16 overflow-all-hidden`}>
-                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center" onClick={() => navigate('/artist-app/content-creation')} >
-                                <img className='' src={IconContent} alt="plus" />
-                            </div>
-                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center" onClick={() => navigate('/artist-app/concert-creation')}>
-                                <img className='' src={IconEvent} alt="plus" />
-                            </div>
-                            <div className="option bg-acid-lime avatar-40 border-radius-100 d-flex-row j-c-center align-items-center" onClick={() =>navigate('/artist-app/fanclub/forum/topic/creation', { state: {artist:currentArtist} })} >
-                                <img className='' src={IconTopic} alt="plus" />
-                            </div>
-                           
-                        </div>
-                    }
-                    
-                </div>
-            } */}
-
-            
             <Appbar />
             {
                 window.location.pathname.includes('/edit-post') &&
