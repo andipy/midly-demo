@@ -52,25 +52,25 @@ const CreateButton = ({}) => {
           <button className="d-flex-column align-items-center j-c-center z-index-1400" alt={`button-${1}`} onClick={() => navigate('/artist-app/fanclub/forum/topic/creation')} >
             <div className='d-flex-column j-c-center align-items-center'  style={{ transform: 'rotate(270deg)' }} >
               <div className='avatar-40 bg-acid-lime border-radius-100 d-flex-row j-c-center align-items-center'>
-                <img src={IconTopic} />
+                <img className='avatar-24' src={IconTopic} />
               </div>
               <p className='fsize-xs-0 f-w-300 lime-400'>Topic</p>
             </div>
           </button>
           <button className="d-flex-column align-items-center j-c-center  z-index-1400" alt={`button-${2}`}  onClick={() => navigate('/artist-app/concert-creation')} >
-            <div className='d-flex-column j-c-center align-items-center'  style={{ transform: 'rotate(225deg)' }}  >
+            <div className='d-flex-column j-c-center align-items-center'  style={{ transform: 'rotate(227.5deg)' }}  >
               <div className='avatar-40 bg-acid-lime border-radius-100 d-flex-row j-c-center align-items-center'>
-                <img src={IconEvent} />
+                <img className='avatar-24' src={IconEvent} />
               </div>
               <p className='fsize-xs-0 f-w-300 lime-400'>Evento</p>
             </div>
           </button>
           <button className="d-flex-column align-items-center j-c-center z-index-1400" alt={`button-${3}`}  onClick={() => navigate('/artist-app/content-creation')} >
-            <div className='d-flex-column j-c-center align-items-center' style={{ transform: 'rotate(180deg)' }}>
+            <div className='d-flex-column j-c-center align-items-center' style={{ transform: 'rotate(185deg)' }}>
               <div className='avatar-40 bg-acid-lime border-radius-100 d-flex-row j-c-center align-items-center'>
-                <img src={IconContent} />
+                <img className='avatar-24' src={IconContent} />
               </div>
-              <p className='fsize-xs-0 f-w-300 lime-400'>Contenuti</p>
+              <p className='fsize-xs-0 f-w-300 lime-400'>Post</p>
             </div>
           </button>
         </div>

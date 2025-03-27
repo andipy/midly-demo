@@ -74,7 +74,7 @@ a {
 }
 
 .scale-up {
-  transform: scale(2);
+  transform: scale(1);
 }
 
 .rotate-icon {
@@ -137,7 +137,7 @@ a {
   }
   100% {
     opacity: 1;
-    transform: rotate(135deg) translate(100px); /* Secondo bottone */
+    transform: rotate(132.5deg) translate(100px); /* Secondo bottone */
   }
 }
 
@@ -152,7 +152,7 @@ a {
   }
   100% {
     opacity: 1;
-    transform: rotate(180deg) translate(100px); /* Terzo bottone */
+    transform: rotate(175deg) translate(100px); /* Terzo bottone */
   }
 }
 
