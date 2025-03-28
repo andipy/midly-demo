@@ -11,7 +11,7 @@ import useFanclubGroupChatHandler from "../utils/handle-fanclub-chat-message.hoo
 import useFanclub from "../utils/get-fanclub.hooks"
 import IconComment from '../images/icons/icon-comment-black.svg'
 import IconCreateContent from '../images/icons/icon-create-content.svg'
-import IconPlus from '../images/icons/icon-plus-black.svg'
+import IconDm from '../images/icons/icon-dm-black.svg'
 import Button from "../components/button.component"
 const FanclubGroupChatRoute = () => {
     const location = useLocation()
@@ -256,7 +256,7 @@ const FanclubGroupChatRoute = () => {
     {
         pathname.includes('/artist-app/') && fanclub?.messages.length > 0 &&
         <div className='bg-acid-lime avatar-40 border-radius-100 bottom-5 right-5 position-fixed z-index-999 d-flex-row j-c-center align-items-center mb-xs-16' onClick={() => navigate(`/artist-app/fanclub/chats/group-chat`, { state: { from: location} })}>
-            <img className='' src={IconComment}/>
+            <img className='' src={IconDm}/>
         </div>       
     }
     {
