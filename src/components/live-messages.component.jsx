@@ -103,7 +103,16 @@ const LiveMessages = ({leaderboard}) => {
                 )
             }
         }
-        setCurrentComment({
+        pathname.includes('/artist-app') ?
+            setCurrentComment({
+                type: 'COMMENT',
+                user_type: 'artist',
+                username: undefined,
+                content: '',
+                timestamp: undefined,
+                id: undefined
+            })
+        : setCurrentComment({
             type: 'COMMENT',
             user_type: 'fan',
             username: currentFan.username,
@@ -111,6 +120,7 @@ const LiveMessages = ({leaderboard}) => {
             timestamp: undefined,
             id: undefined
         })
+        
 
         // when a message is sent, the related useRef declared above turns true, and immediately after, it start a timeout that resets it to false after 2.5 seconds
     }
@@ -206,6 +216,14 @@ const LiveMessages = ({leaderboard}) => {
         setChatOpen(false)
     }
 
+    const messagesEndRef = useRef(null)
+
+    useEffect(() => {
+        if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+        }
+    }, [liveMessages])
+
     return (
         <div className={`position-fixed bg-dark-soft bottom-0 w-100 z-index-5 border-radius-top-08 shadow-dark-750`}>
             <div className={`${chatOpen ? 'd-xs-block' : 'd-none'}`}>
@@ -235,6 +253,7 @@ const LiveMessages = ({leaderboard}) => {
                                         if ( message.user_type == 'fan' || message.user_type == null )
                                             return <LiveMessage key={key} message={message} color={color} />
                                     })}
+                                    <div ref={messagesEndRef} />
                                 </div>
                             }
                         </Container>

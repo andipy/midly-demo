@@ -39,6 +39,7 @@ const CreateButton = ({}) => {
     >
       <img
           src={showButtons ? IconPlusActive : IconPlus}
+          className='avatar-20'
           alt={clicked ? 'exit' : 'plus'}
           style={{
             transform: clicked ? 'rotate(45deg)' : 'rotate(0deg)',
@@ -79,7 +80,9 @@ const CreateButton = ({}) => {
     {
         bg &&
         <FullPageCenter style='z-index-1200 bg-black-transp90'>
-        
+          <div className='w-100vw h-100vh' onClick={handleClick}>
+
+          </div>
         </FullPageCenter>
     }
     </>
