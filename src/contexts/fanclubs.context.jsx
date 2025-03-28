@@ -373,7 +373,7 @@ export const FanclubsProvider = ({ children }) => {
                 } */
             ],
             messages:[
-                {
+                /* {
                     id: 1,
                     userType: 'fan',
                     userId: 1,
@@ -544,7 +544,7 @@ export const FanclubsProvider = ({ children }) => {
                     createdAt: "2025-03-19T13:23:23.542Z",
                     content: 'Concordo. Comunque, se annuncia qualcosa di nuovo, SPAMMATEMI SUBITO!',
                     read: []
-                }
+                } */
             ],
             storeItems: []
         },{

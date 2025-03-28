@@ -474,7 +474,7 @@ const FanclubRoute = () => {
                     <Container className='container'>
                         <TabFanclub artist={currentArtist}/>
                         {
-                            location.pathname.includes('group-chat') &&
+                            location.pathname.includes('group-chat') && fanclub?.messages && fanclub?.messages.length > 0 &&
                             <div className='d-flex-row j-c-center align-items-center w-100 mt-xs-4'>
                                 <Button style='bg-acid-lime fsize-xs-3 f-w-600 black ' label='Chatta con i tuoi fan' onClick={() => navigate(`/artist-app/fanclub/chats/group-chat`, { state: { from: location} })}/>
                             </div>

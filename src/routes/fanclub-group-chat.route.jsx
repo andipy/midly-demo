@@ -245,7 +245,7 @@ const FanclubGroupChatRoute = () => {
                         </div>  */}
                         <p className='fsize-xs-2 f-w-500 letter-spacing-1'>Avvia la chat</p>
                     </div>
-                    <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Crea post' onClick={() => navigate(`/artist-app/fanclub/chats/group-chat`, { state: { from: location} })}/>
+                    <Button  style={`bg-acid-lime black f-w-500 fsize-xs-2`} label='Scrivi il primo messaggio' onClick={() => navigate(`/artist-app/fanclub/chats/group-chat`, { state: { from: location} })}/>
                 </div>
             </>
             }
