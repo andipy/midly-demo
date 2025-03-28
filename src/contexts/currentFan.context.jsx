@@ -47,6 +47,23 @@ export const CurrentFanProvider = ({ children }) => {
             {artistId: 'artist11'}
         ],
         badges: {
+            flash: [
+                {
+                    month: 3,
+                    year: 2025,
+                    username: 'imtheKING',
+                    userImage: require('../images/pictures/current-fan.jpg'),
+                    position: 3,
+                    points: 177,
+                    artistId: 'artist3',
+                    artistName: 'Artie 5ive',
+                    coverImage: require('../images/pictures/la-bellavita-cover.jpg'),
+                    productType: 'ALBUM',
+                    productName: 'LA BELLAVITA',
+                    rankStartDate: '2025-03-28',
+                    rankEndDate: '2025-03-31'
+                }
+            ],
             monthly: [
                 {
                     month: 12,
@@ -55,7 +72,7 @@ export const CurrentFanProvider = ({ children }) => {
                     userImage: require('../images/pictures/current-fan.jpg'),
                     position: 3,
                     points: 177,
-                    artistId: 1,
+                    artistId: 'artist1',
                     artistName: 'Lazza',
                     artistImage: require('../images/pictures/lazza.jpeg')
                 },{
@@ -65,7 +82,7 @@ export const CurrentFanProvider = ({ children }) => {
                     userImage: require('../images/pictures/current-fan.jpg'),
                     position: 4,
                     points: 109,
-                    artistId: 2,
+                    artistId: 'artist2',
                     artistName: 'thasup',
                     artistImage: require('../images/pictures/thasup.jpg')
                 }

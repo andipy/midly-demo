@@ -452,13 +452,18 @@ li {
   top: 57%;
   transform: translate(-50%, -57%);
 }
+.position-absolute-badge-flash {
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  transform: translate(-50%, -65%);
+}
 .bg-dark-overlay-badge {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 2%, rgba(0, 0, 0, .85) 15%, rgba(0, 0, 0, 1) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 2%, rgba(0, 0, 0, .95) 15%, rgba(0, 0, 0, 1) 100%);
 }
 .flash-badge-image-rotation {
   transform: rotate(350deg);
 }
-
 
 .badge-miniatura-container {
   width: 100%;
