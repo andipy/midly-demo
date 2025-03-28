@@ -43,7 +43,7 @@ const BadgeMonthly = ({ badge, transition }) => {
                 </div>
 
                 {/* Artist Image Section */}
-                <div className='position-absolute-badge avatar-180 bg-red-300 d-flex-row align-items-center j-c-center border-radius-100 overflow-all-hidden z-index-4'>
+                <div className='position-absolute-badge avatar-180 d-flex-row align-items-center j-c-center border-radius-100 overflow-all-hidden z-index-4'>
                     <img className='w-inherit' src={badge.artistImage} alt="" />
                 </div>
 
