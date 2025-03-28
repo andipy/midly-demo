@@ -3,21 +3,6 @@ import BadgeFlashGraphic from '../images/illustrations/badge_flash_base_graphic.
 import IconDownload from '../images/icons/icon-download-white.svg'
 
 const BadgeFlash = ({ badge, transition }) => {
-    
-    const months = {
-        1: 'GENNAIO',
-        2: 'FEBBRAIO',
-        3: 'MARZO',
-        4: 'APRILE',
-        5: 'MAGGIO',
-        6: 'GIUGNO',
-        7: 'LUGLIO',
-        8: 'AGOSTO',
-        9: 'SETTEMBRE',
-        10: 'OTTOBRE',
-        11: 'NOVEMBRE',
-        12: 'DICEMBRE'
-    }
 
     return (
         <div className='w-100 position-relative'>
